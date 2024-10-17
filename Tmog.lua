@@ -1,3 +1,6 @@
+-- adapted from https://github.com/Zebouski/MoPGearTooltips/tree/masterturtle
+local _G, _ = _G or getfenv()
+local TmogTip = CreateFrame("Frame", "TmogTip", GameTooltip)
 local tmog = CreateFrame("Frame")
 local GAME_YELLOW = "|cffffd200"
 local strfind = string.find
@@ -146,11 +149,11 @@ local function GetItemLinkByName(name)
 
 local HookSetItemRef = SetItemRef
 SetItemRef = function(link, text, button)
-    local _, _, id = string.find(link, "item:(%d+):.*")
-    if id then
-        ItemRefTooltip.itemLink = id
-    end
+    local item, _, id = string.find(link, "item:(%d+):.*")
     HookSetItemRef(link, text, button)
+    if item then
+        TmogTip.extendTooltip(ItemRefTooltip, "ItemRefTooltip")
+    end
 end
 
 local HookSetHyperlink = GameTooltip.SetHyperlink
@@ -340,15 +343,14 @@ local function GetTableForClass(class)
     end
 end
 
--- adapted from https://github.com/Zebouski/MoPGearTooltips/tree/masterturtle
-local _G, _ = _G or getfenv()
-local TmogTip = CreateFrame("Frame", "TmogTip", GameTooltip)
+
 
 -- return true and slot if this is gear
 function IsGear(tooltipTypeStr)
     local originalTooltip = {}
     local isGear = false
     local slot = nil
+    -- collect left and right lines of the original tooltip into lua table
     for row = 1, 30 do
         local tooltipRowLeft = _G[tooltipTypeStr .. 'TextLeft' .. row]
         local tooltipRowRight = _G[tooltipTypeStr .. 'TextRight' .. row]
@@ -421,7 +423,7 @@ function TmogTip.extendTooltip(tooltip, tooltipTypeStr)
     local itemName = getglobal(tooltip:GetName() .. "TextLeft1"):GetText()
     local isGear, slot = IsGear(tooltipTypeStr)
     local tLabel = getglobal(tooltip:GetName() .. "TextLeft2")
-    if not isGear then return end
+    if not isGear or not itemName or not tLabel then return end
     if itemName == LastItemName then
         if tLabel then
             if SetContains(TRANSMOG_CACHE[LastSlot], LastItemName) then
@@ -450,23 +452,7 @@ TmogTip:SetScript("OnHide", function()
 end)
 
 TmogTip:SetScript("OnShow", function()
-    if GameTooltip.itemLink then
-        local _, _, itemLink = string.find(GameTooltip.itemLink, "(item:%d+:%d+:%d+:%d+)");
-        if not itemLink then
-            return false
-        end
-        TmogTip.extendTooltip(GameTooltip, "GameTooltip")
-    end
-end)
-
-ItemRefTooltip:SetScript("OnHide", function()
-    ItemRefTooltip.itemLink = nil
-end)
-
-ItemRefTooltip:SetScript("OnShow", function()
-    if ItemRefTooltip.itemLink then
-        TmogTip.extendTooltip(ItemRefTooltip, "ItemRefTooltip")
-    end
+    TmogTip.extendTooltip(GameTooltip, "GameTooltip")
 end)
 
 -- adapted from http://shagu.org/ShaguTweaks/

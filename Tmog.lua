@@ -5,7 +5,8 @@ local tmog = CreateFrame("Frame")
 local GAME_YELLOW = "|cffffd200"
 local strfind = string.find
 local tonumber = tonumber
-local s_debugging = false
+local t_debug = false
+
 TRANSMOG_CACHE = TRANSMOG_CACHE or {
     [1] = {}, --HeadSlot
     [3] = {}, --ShoulderSlot
@@ -20,7 +21,7 @@ TRANSMOG_CACHE = TRANSMOG_CACHE or {
     [17] = {}, --SecondaryHandSlot
     [18] = {} --RangedSlot
 }
--- strings from game tooltips to determine if this is a transmoggable item
+-- strings from game tooltips to determine if this item can be used for transmog
 TRANSMOG_GEARSLOTS = {
     "Head",
     "Shoulder",
@@ -52,7 +53,7 @@ local tmog_warrior = {["Cloth"]=true,["Leather"]=true,["Mail"]=true,["Plate"]=tr
 local tmog_rogue = {["Cloth"]=true,["Leather"]=true,["Mace"]=true,["Dagger"]=true,["Sword"]=true,["Fist Weapon"]=true,["Bow"]=true}
 local tmog_hunter = {["Cloth"]=true,["Leather"]=true,["Mail"]=true,["Staff"]=true,["Dagger"]=true,["Sword"]=true,["Polearm"]=true,["Fist Weapon"]=true,["Axe"]=true,["Bow"]=true}
 
-local function s_print(a)
+local function tmog_print(a)
     if a == nil then
         ChatFrame2:AddMessage('Attempt to print a nil value.')
         return false
@@ -83,18 +84,17 @@ function SetContains(set, key)
     return set[key] ~= nil
 end
 
-
-local function s_debug(a)
-    if s_debugging ~= true then return end
+local function tmog_debug(a)
+    if t_debug ~= true then return end
     if type(a) == 'boolean' then
         if a then
-            s_print('|cff0070de[DEBUG]|cffffffff[true]')
+            tmog_print('|cff0070de[DEBUG]|cffffffff[true]')
         else
-            s_print('|cff0070de[DEBUG]|cffffffff[false]')
+            tmog_print('|cff0070de[DEBUG]|cffffffff[false]')
         end
         return true
     end
-    s_print('|cff0070de[DEBUG:' .. GetTime() .. ']|cffffffff[' .. a .. ']')
+    tmog_print('|cff0070de[DEBUG:' .. GetTime() .. ']|cffffffff[' .. a .. ']')
 end
 
 
@@ -119,7 +119,7 @@ function InvenotySlotFromItemID(itemID)
         then id = 9
     elseif slot == "INVTYPE_HAND"
         then id = 10
-    elseif slot == "INVTYPE_BACK" or
+    elseif slot == "INVTYPE_BACK" or --?
             slot == "INVTYPE_CLOAK"
         then id = 15
     elseif slot == "INVTYPE_WEAPONMAINHAND" or
@@ -151,7 +151,7 @@ local HookSetItemRef = SetItemRef
 SetItemRef = function(link, text, button)
     local item, _, id = string.find(link, "item:(%d+):.*")
     HookSetItemRef(link, text, button)
-    if item then
+    if not IsShiftKeyDown() and not IsControlKeyDown() and item then
         TmogTip.extendTooltip(ItemRefTooltip, "ItemRefTooltip")
     end
 end
@@ -275,22 +275,32 @@ tmog:RegisterEvent("UNIT_INVENTORY_CHANGED")
 tmog:RegisterEvent("CHAT_MSG_ADDON")
 tmog:SetScript("OnEvent", function()
     if event == "CHAT_MSG_ADDON" and strfind(arg1, "TW_TRANSMOG", 1, true)then
-        s_debug(event)
-        s_debug(arg1)
-        s_debug(arg2)
-        s_debug(arg3)
-        s_debug(arg4)
+        tmog_debug(event)
+        tmog_debug(arg1)
+        tmog_debug(arg2)
+        tmog_debug(arg3)
+        tmog_debug(arg4)
         if strfind(arg2, "AvailableTransmogs", 1, true) and arg4 == UnitName("player") then
             local ex = strsplit(arg2, ":")
-            s_debug("ex4: [" .. ex[4] .."]")
+            tmog_debug("ex4: [" .. ex[4] .."]")
             local InventorySlotId = tonumber(ex[2])
             for i, itemID in ex do
                 if i > 3 then
                     itemID = tonumber(itemID)
                     if itemID then
                         local itemName, itemString, itemQuality, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture = GetItemInfo(itemID)
-                        if itemName and not SetContains(TRANSMOG_CACHE[InventorySlotId], itemName) then
-                            AddToSet(TRANSMOG_CACHE[InventorySlotId], itemName)
+                        if itemName then
+                            if not SetContains(TRANSMOG_CACHE[InventorySlotId], itemName) then
+                                AddToSet(TRANSMOG_CACHE[InventorySlotId], itemName)
+                            end
+                            -- check if it shares Display ID with other items and add those if it does
+                            if SetContains(DisplayIdDB, itemName) then
+                                for k,v in pairs(DisplayIdDB[itemName]) do
+                                    if not SetContains(TRANSMOG_CACHE[InventorySlotId], v) then
+                                        AddToSet(TRANSMOG_CACHE[InventorySlotId], v)
+                                    end
+                                end
+                            end
                         end
                     end
                 end
@@ -299,24 +309,42 @@ tmog:SetScript("OnEvent", function()
         end
         if strfind(arg2, "NewTransmog", 1, true) and arg4 == UnitName("player") then
             local ex = strsplit(arg2, ":")
-            s_debug("id: ".. ex[2])
+            tmog_debug("id: ".. ex[2])
             local slot = InvenotySlotFromItemID(ex[2])
             local itemName, itemString, itemQuality, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture = GetItemInfo(ex[2])
             if slot and itemName then
-                s_debug("slot: "..slot)
+                tmog_debug("slot: "..slot)
                 AddToSet(TRANSMOG_CACHE[slot], itemName)
+                -- check if it shares Display ID with other items and add those if it does
+                if SetContains(DisplayIdDB, itemName) then
+                    for k,v in pairs(DisplayIdDB[itemName]) do
+                        if not SetContains(TRANSMOG_CACHE[slot], v) then
+                            AddToSet(TRANSMOG_CACHE[slot], v)
+                        end
+                    end
+                end
             end
             return
         end
     elseif event == "UNIT_INVENTORY_CHANGED" and arg1 == "player" then
-        s_debug(event)
-        s_debug(arg1)
+        tmog_debug(event)
+        tmog_debug(arg1)
         for k,v in pairs(TRANSMOG_CACHE) do
             if TmogTooltip:SetInventoryItem("player", k) then
                 local itemName = getglobal(TmogTooltip:GetName() .. "TextLeft1"):GetText()
-                s_debug(itemName)
-                if itemName and not SetContains(TRANSMOG_CACHE[k], itemName) then
-                    AddToSet(TRANSMOG_CACHE[k], itemName)
+                tmog_debug(itemName)
+                if itemName then
+                    if not SetContains(TRANSMOG_CACHE[k], itemName) then
+                        AddToSet(TRANSMOG_CACHE[k], itemName)
+                    end
+                    -- check if it shares Display ID with other items and add those if it does
+                    if SetContains(DisplayIdDB, itemName) then
+                        for _,v2 in pairs(DisplayIdDB[itemName]) do
+                            if not SetContains(TRANSMOG_CACHE[k], v) then
+                                AddToSet(TRANSMOG_CACHE[k], v2)
+                            end
+                        end
+                    end
                 end
             end
         end
@@ -343,25 +371,19 @@ local function GetTableForClass(class)
     end
 end
 
-
-
--- return true and slot if this is gear
+-- return true and slot if this is gear and we can equip it
+local originalTooltip = {}
 function IsGear(tooltipTypeStr)
-    local originalTooltip = {}
     local isGear = false
     local slot = nil
-    -- collect left and right lines of the original tooltip into lua table
+    -- collect left lines of the original tooltip into lua table
     for row = 1, 30 do
         local tooltipRowLeft = _G[tooltipTypeStr .. 'TextLeft' .. row]
-        local tooltipRowRight = _G[tooltipTypeStr .. 'TextRight' .. row]
         if tooltipRowLeft then
             local rowtext = tooltipRowLeft:GetText()
             if rowtext then
                 originalTooltip[row] = {}
                 originalTooltip[row].text = rowtext
-                if tooltipRowRight:GetText() then
-                    originalTooltip[row].textR = tooltipRowRight:GetText()
-                end
             end
         end
     end
@@ -370,24 +392,26 @@ function IsGear(tooltipTypeStr)
     local canEquip = false
     for row=1, table.getn(originalTooltip) do
         -- check if its class restricted item
-        local classesRow = strfind(originalTooltip[row].text, "Classes:",1,true)
-        if classesRow then
-            local playerClass = strfind(originalTooltip[row].text, UnitClass("player"),1,true)
-            if not playerClass then
+        if originalTooltip[row].text then
+            local classesRow = strfind(originalTooltip[row].text, "Classes:",1,true)
+            if classesRow then
+                local playerClass = strfind(originalTooltip[row].text, UnitClass("player"),1,true)
+                if not playerClass then
+                    return false, nil
+                end
+            end
+            -- skip recipies
+            if strfind(originalTooltip[row].text, "Pattern:",1,true) or
+                strfind(originalTooltip[row].text, "Plans:",1,true) or
+                strfind(originalTooltip[row].text, "Schematic:",1,true) then
                 return false, nil
             end
-        end
-        -- skip recipies
-        if strfind(originalTooltip[row].text, "Pattern:",1,true) or
-            strfind(originalTooltip[row].text, "Plans:",1,true) or
-            strfind(originalTooltip[row].text, "Schematic:",1,true) then
-            return false, nil
         end
         -- Gear is guaranteed to be labeled with the slot it occupies.
         for _, v in ipairs(TRANSMOG_GEARSLOTS) do
             if v == originalTooltip[row].text then
                 if v == "Back" then return true, 15 -- everyone can equip
-                elseif v == "Held In Off-hand" then return true, 16 -- everyone can equip
+                elseif v == "Held In Off-hand" then return true, 17 -- everyone can equip
                 elseif v == "Head" then slot = 1
                 elseif v == "Shoulder" then slot = 3
                 elseif v == "Chest" then slot = 5
@@ -406,12 +430,27 @@ function IsGear(tooltipTypeStr)
                 isGear = true
             end
         end
-        if originalTooltip[row].textR then
-            if SetContains(tableToCheck, originalTooltip[row].textR) then
-                canEquip = true
+    end
+    if isGear then
+        -- collect right lines of the original tooltip into lua table
+        for row=1, table.getn(originalTooltip) do
+            local tooltipRowRight = _G[tooltipTypeStr .. 'TextRight' .. row]
+            if tooltipRowRight then
+                local rowtext = tooltipRowRight:GetText()
+                if rowtext then
+                    originalTooltip[row] = {}
+                    originalTooltip[row].textR = rowtext
+                    tmog_debug(rowtext)
+                end
+            end
+            if originalTooltip[row].textR then
+                if SetContains(tableToCheck, originalTooltip[row].textR) then
+                    canEquip = true
+                end
             end
         end
     end
+
     if not canEquip then return false, nil end
     return isGear, slot
 end
@@ -426,10 +465,12 @@ function TmogTip.extendTooltip(tooltip, tooltipTypeStr)
     if not isGear or not itemName or not tLabel then return end
     if itemName == LastItemName then
         if tLabel then
-            if SetContains(TRANSMOG_CACHE[LastSlot], LastItemName) then
-                tLabel:SetText(GAME_YELLOW..'In your collection|r\n'..tLabel:GetText())
-            else
-                tLabel:SetText(GAME_YELLOW..'Not collected (or not cached yet)|r\n'..tLabel:GetText())
+            if tLabel:GetText() then
+                if SetContains(TRANSMOG_CACHE[LastSlot], LastItemName) then
+                    tLabel:SetText(GAME_YELLOW..'In your collection|r\n'..tLabel:GetText())
+                else
+                    tLabel:SetText(GAME_YELLOW..'Not collected (or not cached yet)|r\n'..tLabel:GetText())
+                end
             end
         end
     else
@@ -437,10 +478,12 @@ function TmogTip.extendTooltip(tooltip, tooltipTypeStr)
         LastSlot = slot
         -- tooltips have max 30 lines so dont just AddLine, insert into 2nd line of the tooltip instead to avoid hitting lines cap
         if tLabel then
-            if SetContains(TRANSMOG_CACHE[slot], itemName) then
-                tLabel:SetText(GAME_YELLOW..'In your collection|r\n'..tLabel:GetText())
-            else
-                tLabel:SetText(GAME_YELLOW..'Not collected (or not cached yet)|r\n'..tLabel:GetText())
+            if tLabel:GetText() then
+                if SetContains(TRANSMOG_CACHE[slot], itemName) then
+                    tLabel:SetText(GAME_YELLOW..'In your collection|r\n'..tLabel:GetText())
+                else
+                    tLabel:SetText(GAME_YELLOW..'Not collected (or not cached yet)|r\n'..tLabel:GetText())
+                end
             end
         end
     end
@@ -449,6 +492,10 @@ end
 
 TmogTip:SetScript("OnHide", function()
     GameTooltip.itemLink = nil
+    -- clear right text otherwise it will collect bunch of random strings and mess things up
+    for row=1, table.getn(originalTooltip) do
+        _G["GameTooltip" .. 'TextRight' .. row]:SetText("")
+    end
 end)
 
 TmogTip:SetScript("OnShow", function()

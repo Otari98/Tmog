@@ -1,7 +1,8 @@
 ## Interface: 11200
 ## Title: Tmog |cffc79c6e-Spit-|r
 ## Author: Otari98
-## Version: 1.0
-## Notes: Adds info about your transmog collection to game tooltips
+## Version: 1.1
+## Notes: Adds info about your transmog collection to game tooltips v1.1
 ## SavedVariablesPerCharacter: TRANSMOG_CACHE
+DisplayIdDB.lua
 Tmog.lua

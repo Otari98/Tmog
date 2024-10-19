@@ -150,6 +150,7 @@ local function GetItemLinkByName(name)
 local HookSetItemRef = SetItemRef
 SetItemRef = function(link, text, button)
     local item, _, id = string.find(link, "item:(%d+):.*")
+    ItemRefTooltip.itemLink = link
     HookSetItemRef(link, text, button)
     if not IsShiftKeyDown() and not IsControlKeyDown() and item then
         TmogTip.extendTooltip(ItemRefTooltip, "ItemRefTooltip")
@@ -269,6 +270,56 @@ function GameTooltip.SetTradeTargetItem(self, index)
   return HookSetTradeTargetItem(self, index)
 end
 
+local suffixes = {
+    [" of the Owl"]=true,
+    [" of the Eagle"]=true,
+    [" of the Whale"]=true,
+    [" of the Bear"]=true,
+    [" of the Monkey"]=true,
+    [" of the Falcon"]=true,
+    [" of the Wolf"]=true,
+    [" of the Tiger"]=true,
+    [" of the Gorilla"]=true,
+    [" of the Boar"]=true,
+
+    [" of Strength"]=true,
+    [" of Agility"]=true,
+    [" of Stamina"]=true,
+    [" of Intellect"]=true,
+    [" of Spirit"]=true,
+
+    [" of Power"]=true,
+    [" of Marksmanship"]=true,
+    [" of Healing"]=true,
+
+    [" of Fiery Wrath"]=true,
+    [" of Frozen Wrath"]=true,
+    [" of Nature's Wrath"]=true,
+    [" of Shadow Wrath"]=true,
+    [" of Arcane Wrath"]=true,
+
+    [" of Arcane Resistance"]=true,
+    [" of Fire Resistance"]=true,
+    [" of Frost Resistance"]=true,
+    [" of Shadow Resistance"]=true,
+    [" of Nature Resistance"]=true,
+
+    [" of Defense"]=true,
+    [" of Blocking"]=true,
+}
+
+function FixName(name)
+    local suffix = ""
+    for k,v in pairs(suffixes) do
+        if strfind(name, k, 1, true) then
+            suffix = k
+            break
+        end
+    end
+    name = string.gsub(name, suffix, "")
+    return name
+end
+
 local TmogTooltip = getglobal("TmogTooltip") or CreateFrame("GameTooltip", "TmogTooltip", nil, "GameTooltipTemplate")
 TmogTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
 tmog:RegisterEvent("UNIT_INVENTORY_CHANGED")
@@ -332,6 +383,8 @@ tmog:SetScript("OnEvent", function()
         for k,v in pairs(TRANSMOG_CACHE) do
             if TmogTooltip:SetInventoryItem("player", k) then
                 local itemName = getglobal(TmogTooltip:GetName() .. "TextLeft1"):GetText()
+                -- get rid of suffixes
+                itemName = FixName(itemName)
                 tmog_debug(itemName)
                 if itemName then
                     if not SetContains(TRANSMOG_CACHE[k], itemName) then
@@ -462,6 +515,15 @@ function TmogTip.extendTooltip(tooltip, tooltipTypeStr)
     local itemName = getglobal(tooltip:GetName() .. "TextLeft1"):GetText()
     local isGear, slot = IsGear(tooltipTypeStr)
     local tLabel = getglobal(tooltip:GetName() .. "TextLeft2")
+    -- get rid of suffixes
+    if tooltip.itemLink then
+        local _, _, itemID = string.find(tooltip.itemLink, "item:(%d+):.*")
+        if itemID then
+            itemName = GetItemInfo(itemID)
+        end
+    else
+        itemName = FixName(itemName)
+    end
     if not isGear or not itemName or not tLabel then return end
     if itemName == LastItemName then
         if tLabel then
@@ -492,6 +554,7 @@ end
 
 TmogTip:SetScript("OnHide", function()
     GameTooltip.itemLink = nil
+    ItemRefTooltip.itemLink = nil
     -- clear right text otherwise it will collect bunch of random strings and mess things up
     for row=1, table.getn(originalTooltip) do
         _G["GameTooltip" .. 'TextRight' .. row]:SetText("")

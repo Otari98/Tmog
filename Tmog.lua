@@ -137,15 +137,21 @@ function InvenotySlotFromItemID(itemID)
     return id
 end
 
+local LastSearchName = nil
+local lastSearchLink = nil
 local function GetItemLinkByName(name)
-    for itemID = 1, 90000 do
-      local itemName, hyperLink, itemQuality = GetItemInfo(itemID)
-      if (itemName and itemName == name) then
-        local _, _, _, hex = GetItemQualityColor(tonumber(itemQuality))
-        return hex.. "|H"..hyperLink.."|h["..itemName.."]|h|r"
-      end
-    end
-  end
+	if name ~= LastSearchName then
+    	for itemID = 1, 90000 do
+      		local itemName, hyperLink, itemQuality = GetItemInfo(itemID)
+      		if (itemName and itemName == name) then
+        		local _, _, _, hex = GetItemQualityColor(tonumber(itemQuality))
+        		lastSearchLink = hex.. "|H"..hyperLink.."|h["..itemName.."]|h|r"
+     		end
+    	end
+		LastSearchName = name
+  	end
+	return lastSearchLink
+end
 
 local HookSetItemRef = SetItemRef
 SetItemRef = function(link, text, button)
@@ -309,6 +315,7 @@ local suffixes = {
 }
 
 function FixName(name)
+    if not name then return end
     local suffix = ""
     for k,v in pairs(suffixes) do
         if strfind(name, k, 1, true) then
@@ -316,8 +323,7 @@ function FixName(name)
             break
         end
     end
-    name = string.gsub(name, suffix, "")
-    return name
+    return string.gsub(name, suffix, "")
 end
 
 local TmogTooltip = getglobal("TmogTooltip") or CreateFrame("GameTooltip", "TmogTooltip", nil, "GameTooltipTemplate")
@@ -424,8 +430,8 @@ local function GetTableForClass(class)
     end
 end
 
--- return true and slot if this is gear and we can equip it
 local originalTooltip = {}
+-- return true and slot if this is gear and we can equip it
 function IsGear(tooltipTypeStr)
     local isGear = false
     local slot = nil
@@ -446,10 +452,9 @@ function IsGear(tooltipTypeStr)
     for row=1, table.getn(originalTooltip) do
         -- check if its class restricted item
         if originalTooltip[row].text then
-            local classesRow = strfind(originalTooltip[row].text, "Classes:",1,true)
+            local _, _, classesRow = strfind(originalTooltip[row].text, "Classes: (.*)")
             if classesRow then
-                local playerClass = strfind(originalTooltip[row].text, UnitClass("player"),1,true)
-                if not playerClass then
+                if not strfind(classesRow, UnitClass("player"),1,true) then
                     return false, nil
                 end
             end
@@ -460,27 +465,31 @@ function IsGear(tooltipTypeStr)
                 return false, nil
             end
         end
-        -- Gear is guaranteed to be labeled with the slot it occupies.
-        for _, v in ipairs(TRANSMOG_GEARSLOTS) do
-            if v == originalTooltip[row].text then
-                if v == "Back" then return true, 15 -- everyone can equip
-                elseif v == "Held In Off-hand" then return true, 17 -- everyone can equip
-                elseif v == "Head" then slot = 1
-                elseif v == "Shoulder" then slot = 3
-                elseif v == "Chest" then slot = 5
-                elseif v == "Waist" then slot = 6
-                elseif v == "Legs" then slot = 7
-                elseif v == "Feet" then slot = 8
-                elseif v == "Wrist" then slot = 9
-                elseif v == "Hands" then slot = 10
-                elseif v == "Main Hand" or v == "Two-Hand" or v == "One-Hand" then slot = 16
-                elseif v == "Off Hand" then slot = 17
-                elseif v == "Ranged" then slot = 18
-                elseif (v == "Gun" or v == "Crossbow") and (class == "WARRIOR" or class == "ROGUE" or class == "HUNTER") then return true, 18
-                elseif v == "Wand" and (class == "MAGE" or class == "WARLOCK" or class == "PRIEST") then return true, 18
-                else return false, nil
+    end
+    for row=1, table.getn(originalTooltip) do
+        if originalTooltip[row].text then
+            -- Gear is guaranteed to be labeled with the slot it occupies.
+            for _, v in ipairs(TRANSMOG_GEARSLOTS) do
+                if v == originalTooltip[row].text then
+                    if v == "Back" then return true, 15 -- everyone can equip
+                    elseif v == "Held In Off-hand" then return true, 17 -- everyone can equip
+                    elseif v == "Head" then slot = 1
+                    elseif v == "Shoulder" then slot = 3
+                    elseif v == "Chest" then slot = 5
+                    elseif v == "Waist" then slot = 6
+                    elseif v == "Legs" then slot = 7
+                    elseif v == "Feet" then slot = 8
+                    elseif v == "Wrist" then slot = 9
+                    elseif v == "Hands" then slot = 10
+                    elseif v == "Main Hand" or v == "Two-Hand" or v == "One-Hand" then slot = 16
+                    elseif v == "Off Hand" then slot = 17
+                    elseif v == "Ranged" then slot = 18
+                    elseif (v == "Gun" or v == "Crossbow") and (class == "WARRIOR" or class == "ROGUE" or class == "HUNTER") then return true, 18
+                    elseif v == "Wand" and (class == "MAGE" or class == "WARLOCK" or class == "PRIEST") then return true, 18
+                    else return false, nil
+                    end
+                    isGear = true
                 end
-                isGear = true
             end
         end
     end

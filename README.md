@@ -3,9 +3,9 @@ Addon for TurtleWoW. Adds information about your transmog collection on item too
 ## Instruction
 Download addon, extract into Interface/Addons, remove ```-master```, folder should be named Tmog.<br>
 
-If this is first time using addon you need to cache your existing transmog collection, for that go to fashionista in Stormwind or Orgrimmar, click on every item slot, you need to do this for all weapon types (tho-handed, polearms, swords/axes/maces, daggers, shields, off-hand holdables, wands, crossbows, bows, guns)<br>
-For example if you have transmogs for daggers and polearms, you need to equip any dagger, go to tmog npc and click on dagger, then equip any polearm, talk to npc again, click on polearm. Repeat for other weapon types.
-For armor slots just clicking once should be enough.
+If this is first time using addon you need to cache your existing transmog collection, for that go to fashionista in Stormwind or Orgrimmar, click on every item slot, you need to do this for all weapon types (two-hand, polearms, staves, one-hand swords/axes/maces, daggers, shields, off-hand holdables, wands, crossbows, bows, guns)<br>
+For example if you have transmogs for daggers and polearms, you need to equip any dagger, go to transmog npc and click on dagger, then equip any polearm, talk to npc again, click on polearm. Repeat for other weapon types that you have.
+For armor slots clicking once should be enough.
 
 Note: some items can say they are not collected but when you equip them you arent getting "new transmog" alert, thats because you already have item with the same appearance in your collection. If you find some item that looks like other item and it shows incorrect info on tooltip, please let me know.
 ## Preview

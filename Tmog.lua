@@ -44,8 +44,8 @@ TRANSMOG_GEARSLOTS = {
   }
 -- Skip items unequipable for player class (this is right text only)
 local tmog_druid = {["Cloth"]=true,["Leather"]=true,["Staff"]=true,["Mace"]=true,["Dagger"]=true,["Polearm"]=true,["Fist Weapon"]=true}
-local tmog_shaman = {["Cloth"]=true,["Leather"]=true,["Mail"]=true,["Staff"]=true, ["Mace"]=true, ["Dagger"]=true,["Axe"]=true,["Fist Weapon"]=true}
-local tmog_paladin = {["Cloth"]=true, ["Leather"]=true,["Mail"]=true,["Plate"]=true,["Staff"]=true,["Mace"]=true,["Sword"]=true,["Axe"]=true,["Polearm"]=true}
+local tmog_shaman = {["Cloth"]=true,["Leather"]=true,["Mail"]=true,["Staff"]=true, ["Mace"]=true, ["Dagger"]=true,["Axe"]=true,["Fist Weapon"]=true,["Shield"]=true}
+local tmog_paladin = {["Cloth"]=true, ["Leather"]=true,["Mail"]=true,["Plate"]=true,["Staff"]=true,["Mace"]=true,["Sword"]=true,["Axe"]=true,["Polearm"]=true,["Shield"]=true}
 local tmog_magelock = {["Cloth"]=true,["Staff"]=true,["Sword"]=true,["Dagger"]=true,["Wand"]=true}
 local tmog_priest = {["Cloth"]=true,["Staff"]=true,["Mace"]=true,["Dagger"]=true,["Wand"]=true}
 local tmog_warrior = {["Cloth"]=true,["Leather"]=true,["Mail"]=true,["Plate"]=true,["Staff"]=true,["Mace"]=true,["Dagger"]=true,["Polearm"]=true,["Sword"]=true,
@@ -99,8 +99,10 @@ end
 
 
 function InvenotySlotFromItemID(itemID)
-    if not itemID then return end
-    local name, itemstring, quality, level, class, subclass, max_stack, slot, texture = GetItemInfo(itemID)
+    if not itemID then
+        return
+    end
+    local name, itemstring, quality, level, class, subclass, max_stack, slot  = GetItemInfo(itemID)
     local id = nil
     if slot == "INVTYPE_HEAD"
         then id = 1
@@ -155,7 +157,7 @@ end
 
 local HookSetItemRef = SetItemRef
 SetItemRef = function(link, text, button)
-    local item, _, id = string.find(link, "item:(%d+):.*")
+    local item = string.find(link, "item:(%d+):.*")
     ItemRefTooltip.itemLink = link
     HookSetItemRef(link, text, button)
     if not IsShiftKeyDown() and not IsControlKeyDown() and item then
@@ -203,7 +205,7 @@ end
 
 local HookSetInboxItem = GameTooltip.SetInboxItem
 function GameTooltip.SetInboxItem(self, mailID, attachmentIndex)
-  local itemName, itemTexture, inboxItemCount, inboxItemQuality = GetInboxItem(mailID)
+  local itemName = GetInboxItem(mailID)
   GameTooltip.itemLink = GetItemLinkByName(itemName)
   return HookSetInboxItem(self, mailID, attachmentIndex)
 end
@@ -345,7 +347,7 @@ tmog:SetScript("OnEvent", function()
                 if i > 3 then
                     itemID = tonumber(itemID)
                     if itemID then
-                        local itemName, itemString, itemQuality, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture = GetItemInfo(itemID)
+                        local itemName = GetItemInfo(itemID)
                         if itemName then
                             if not SetContains(TRANSMOG_CACHE[InventorySlotId], itemName) then
                                 AddToSet(TRANSMOG_CACHE[InventorySlotId], itemName)
@@ -368,7 +370,7 @@ tmog:SetScript("OnEvent", function()
             local ex = strsplit(arg2, ":")
             tmog_debug("id: ".. ex[2])
             local slot = InvenotySlotFromItemID(ex[2])
-            local itemName, itemString, itemQuality, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture = GetItemInfo(ex[2])
+            local itemName = GetItemInfo(ex[2])
             if slot and itemName then
                 tmog_debug("slot: "..slot)
                 AddToSet(TRANSMOG_CACHE[slot], itemName)
@@ -391,7 +393,7 @@ tmog:SetScript("OnEvent", function()
                 local itemName = getglobal(TmogTooltip:GetName() .. "TextLeft1"):GetText()
                 -- get rid of suffixes
                 itemName = FixName(itemName)
-                tmog_debug(itemName)
+                --tmog_debug(itemName)
                 if itemName then
                     if not SetContains(TRANSMOG_CACHE[k], itemName) then
                         AddToSet(TRANSMOG_CACHE[k], itemName)
@@ -455,6 +457,7 @@ function IsGear(tooltipTypeStr)
             local _, _, classesRow = strfind(originalTooltip[row].text, "Classes: (.*)")
             if classesRow then
                 if not strfind(classesRow, UnitClass("player"),1,true) then
+                    tmog_debug("Bad class")
                     return false, nil
                 end
             end
@@ -462,31 +465,55 @@ function IsGear(tooltipTypeStr)
             if strfind(originalTooltip[row].text, "Pattern:",1,true) or
                 strfind(originalTooltip[row].text, "Plans:",1,true) or
                 strfind(originalTooltip[row].text, "Schematic:",1,true) then
+                tmog_debug("Recipie")
                 return false, nil
             end
         end
     end
+    local off_hand = false
     for row=1, table.getn(originalTooltip) do
         if originalTooltip[row].text then
             -- Gear is guaranteed to be labeled with the slot it occupies.
             for _, v in ipairs(TRANSMOG_GEARSLOTS) do
                 if v == originalTooltip[row].text then
-                    if v == "Back" then return true, 15 -- everyone can equip
-                    elseif v == "Held In Off-hand" then return true, 17 -- everyone can equip
-                    elseif v == "Head" then slot = 1
-                    elseif v == "Shoulder" then slot = 3
-                    elseif v == "Chest" then slot = 5
-                    elseif v == "Waist" then slot = 6
-                    elseif v == "Legs" then slot = 7
-                    elseif v == "Feet" then slot = 8
-                    elseif v == "Wrist" then slot = 9
-                    elseif v == "Hands" then slot = 10
-                    elseif v == "Main Hand" or v == "Two-Hand" or v == "One-Hand" then slot = 16
-                    elseif v == "Off Hand" then slot = 17
-                    elseif v == "Ranged" then slot = 18
-                    elseif (v == "Gun" or v == "Crossbow") and (class == "WARRIOR" or class == "ROGUE" or class == "HUNTER") then return true, 18
-                    elseif v == "Wand" and (class == "MAGE" or class == "WARLOCK" or class == "PRIEST") then return true, 18
-                    else return false, nil
+                    if v == "Back" then
+                        tmog_debug("Cloak")
+                        return true, 15 -- everyone can equip
+                    elseif v == "Held In Off-hand" then
+                        tmog_debug("Off hand holdable")
+                        return true, 17 -- everyone can equip
+                    elseif v == "Head" then
+                        slot = 1
+                    elseif v == "Shoulder" then
+                        slot = 3
+                    elseif v == "Chest" then
+                        slot = 5
+                    elseif v == "Waist" then
+                        slot = 6
+                    elseif v == "Legs" then
+                        slot = 7
+                    elseif v == "Feet" then
+                        slot = 8
+                    elseif v == "Wrist" then
+                        slot = 9
+                    elseif v == "Hands" then
+                        slot = 10
+                    elseif v == "Main Hand" or v == "Two-Hand" or v == "One-Hand" then
+                        slot = 16
+                    elseif v == "Off Hand" then
+                        slot = 17
+                        off_hand = true -- some classes cant dual weild, will need to double check later
+                    elseif v == "Ranged" then
+                        slot = 18
+                    elseif (v == "Gun" or v == "Crossbow") and (class == "WARRIOR" or class == "ROGUE" or class == "HUNTER") then
+                        tmog_debug("Gun/Xbow, class - "..class)
+                        return true, 18
+                    elseif v == "Wand" and (class == "MAGE" or class == "WARLOCK" or class == "PRIEST") then
+                        tmog_debug("Wand, class - "..class)
+                        return true, 18
+                    else
+                        tmog_debug("Bad text left")
+                        return false, nil
                     end
                     isGear = true
                 end
@@ -494,26 +521,35 @@ function IsGear(tooltipTypeStr)
         end
     end
     if isGear then
-        -- collect right lines of the original tooltip into lua table
-        for row=1, table.getn(originalTooltip) do
+        -- looking at the first line on the right
+        local gearType
+        for row=1, 30 do
             local tooltipRowRight = _G[tooltipTypeStr .. 'TextRight' .. row]
             if tooltipRowRight then
                 local rowtext = tooltipRowRight:GetText()
-                if rowtext then
-                    originalTooltip[row] = {}
-                    originalTooltip[row].textR = rowtext
-                    tmog_debug(rowtext)
+                if rowtext and not strfind(rowtext, "Speed",1,true) then
+                    gearType = rowtext
+                    tmog_debug(gearType)
+                    break
                 end
             end
-            if originalTooltip[row].textR then
-                if SetContains(tableToCheck, originalTooltip[row].textR) then
-                    canEquip = true
+        end
+        if gearType then
+            if SetContains(tableToCheck, gearType) then
+                canEquip = true
+                if off_hand and gearType ~= "Shield" and not (class == "WARRIOR" or class == "ROGUE" or class == "HUNTER") then
+                    canEquip = false
+                    tmog_debug("off hand, not shield, bad class")
                 end
+                tmog_debug("Can Equip")
             end
         end
     end
 
-    if not canEquip then return false, nil end
+    if not canEquip then
+        tmog_debug("Cant transmog")
+        return false, nil
+    end
     return isGear, slot
 end
 
@@ -592,6 +628,16 @@ end
 tmog.HookAddonOrVariable("AtlasLoot", function()
     local atlas = CreateFrame("Frame", nil, AtlasLootTooltip)
     local atlas2 = CreateFrame("Frame", nil, AtlasLootTooltip2)
+    atlas2:SetScript("OnHide", function()
+        for row=1, 30 do
+            _G["AtlasLootTooltip2" .. 'TextRight' .. row]:SetText("")
+        end
+    end)
+    atlas:SetScript("OnHide", function()
+        for row=1, 30 do
+            _G["AtlasLootTooltip" .. 'TextRight' .. row]:SetText("")
+        end
+    end)
     atlas:SetScript("OnShow", function()
         TmogTip.extendTooltip(AtlasLootTooltip, "AtlasLootTooltip")
     end)

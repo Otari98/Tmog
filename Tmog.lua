@@ -432,9 +432,9 @@ local function GetTableForClass(class)
     end
 end
 
-local originalTooltip = {}
 -- return true and slot if this is gear and we can equip it
 function IsGear(tooltipTypeStr)
+    local originalTooltip = {}
     local isGear = false
     local slot = nil
     -- collect left lines of the original tooltip into lua table
@@ -527,7 +527,8 @@ function IsGear(tooltipTypeStr)
             local tooltipRowRight = _G[tooltipTypeStr .. 'TextRight' .. row]
             if tooltipRowRight then
                 local rowtext = tooltipRowRight:GetText()
-                if rowtext and not strfind(rowtext, "Speed",1,true) then
+                if rowtext and not strfind(rowtext, "Speed",1,true) -- ignore weapon speed
+                        and not strfind(rowtext, "%d") then -- ignore digits
                     gearType = rowtext
                     tmog_debug(gearType)
                     break
@@ -539,9 +540,10 @@ function IsGear(tooltipTypeStr)
                 canEquip = true
                 if off_hand and gearType ~= "Shield" and not (class == "WARRIOR" or class == "ROGUE" or class == "HUNTER") then
                     canEquip = false
-                    tmog_debug("off hand, not shield, bad class")
+                    tmog_debug("Cant dual weild")
+                else
+                    tmog_debug("Can Equip")
                 end
-                tmog_debug("Can Equip")
             end
         end
     end
@@ -562,11 +564,6 @@ function TmogTip.extendTooltip(tooltip, tooltipTypeStr)
     local tLabel = getglobal(tooltip:GetName() .. "TextLeft2")
     -- get rid of suffixes
     if tooltip.itemLink then
-        local _, _, itemID = string.find(tooltip.itemLink, "item:(%d+):.*")
-        if itemID then
-            itemName = GetItemInfo(itemID)
-        end
-    else
         itemName = FixName(itemName)
     end
     if not isGear or not itemName or not tLabel then return end
@@ -597,12 +594,19 @@ function TmogTip.extendTooltip(tooltip, tooltipTypeStr)
     tooltip:Show()
 end
 
-TmogTip:SetScript("OnHide", function()
-    GameTooltip.itemLink = nil
+ItemRefTooltip:SetScript("OnHide", function()
     ItemRefTooltip.itemLink = nil
     -- clear right text otherwise it will collect bunch of random strings and mess things up
-    for row=1, table.getn(originalTooltip) do
-        _G["GameTooltip" .. 'TextRight' .. row]:SetText("")
+    for row=1, 30 do
+        _G["ItemRefTooltipTextRight" .. row]:SetText("")
+    end
+end)
+
+TmogTip:SetScript("OnHide", function()
+    GameTooltip.itemLink = nil
+    -- clear right text otherwise it will collect bunch of random strings and mess things up
+    for row=1, 30 do
+        _G["GameTooltipTextRight" .. row]:SetText("")
     end
 end)
 

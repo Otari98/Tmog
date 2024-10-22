@@ -3,6 +3,75 @@
 -- some of these items are unobtainable but I cba to check that
 DisplayIdDB= {
     -- head
+    ["Gurubashi Helm"] = {"Savage Helmet"},
+    ["Savage Helmet"] = {"Gurubashi Helm"},
+
+    ["Sailor's Headband"] = {"Vital Headband"},
+    ["Vital Headband"] = {"Sailor's Headband"},
+
+    ["Crown of Unstable Nature"] = {"Huntsman's Cap"},
+    ["Huntsman's Cap"] = {"Crown of Unstable Nature"},
+
+    ["Crochet Hat"] = {"Hat of Loruk"},
+    ["Hat of Loruk"] = {"Crochet Hat"},
+
+    ["X-51 Arcane Ocular Implants"] = {"X-52 Stealth Ocular Implants","X-53 Ranger Ocular Implants","X-54 Guardian Ocular Implants"},
+    ["X-52 Stealth Ocular Implants"] = {"X-51 Arcane Ocular Implants","X-53 Ranger Ocular Implants","X-54 Guardian Ocular Implants"},
+    ["X-53 Ranger Ocular Implants"] = {"X-51 Arcane Ocular Implants","X-52 Stealth Ocular Implants","X-54 Guardian Ocular Implants"},
+    ["X-54 Guardian Ocular Implants"] = {"X-51 Arcane Ocular Implants","X-52 Stealth Ocular Implants","X-53 Ranger Ocular Implants"},
+
+    ["Emerald Helm"] = {"Tel Co. Protective Helmet"},
+    ["Tel Co. Protective Helmet"] = {"Emerald Helm"},
+
+    ["Feathermoon Headdress"] = {"Headband of a Hundred Feathers"},
+    ["Headband of a Hundred Feathers"] = {"Feathermoon Headdress"},
+
+    ["Cowl of Memento"] = {"Aurora Cowl"},
+    ["Aurora Cowl"] = {"Cowl of Memento"},
+
+    ["Gaea's Circlet"] = {"Whelpling Tiara"},
+    ["Whelpling Tiara"] = {"Gaea's Circlet"},
+
+    ["Moonshadow Hood"] = {"Energyseekers Cover"},
+    ["Energyseekers Cover"] = {"Moonshadow Hood"},
+    
+    ["Darkmist Wizard Hat"] = {"Dalaran Wizard's Hat"},
+    ["Dalaran Wizard's Hat"] = {"Darkmist Wizard Hat"},
+    
+    ["High Bergg Helm"] = {"Kul Tiras Marine Helmet"},
+    ["Kul Tiras Marine Helmet"] = {"High Bergg Helm"},
+    
+    ["Zorbin's Water Resistant Hat"] = {"Scruffy Cloth Hat"},
+    ["Scruffy Cloth Hat"] = {"Zorbin's Water Resistant Hat"},
+
+    ["Chief Brigadier Coif"] = {"Vagrant Coif","Wreath of Worgen Blood"},
+    ["Vagrant Coif"] = {"Chief Brigadier Coif","Wreath of Worgen Blood"},
+    ["Wreath of Worgen Blood"] = {"Chief Brigadier Coif","Vagrant Coif"},
+
+    ["Whisperwind Headdress"] = {"Hawkspear's Ceremonial Headdress"},
+    ["Hawkspear's Ceremonial Headdress"] = {"Whisperwind Headdress"},
+
+    ["First Mate Hat"] = {"Grayson’s Hat"},
+    ["Grayson’s Hat"] = {"First Mate Hat"},
+
+    ["Enchanter's Cowl"] = {"Woolen Cowl"},
+    ["Woolen Cowl"] = {"Enchanter's Cowl"},
+
+    ["Crown of the Ogre King"] = {"Crown of Corthan"},
+    ["Crown of Corthan"] = {"Crown of the Ogre King"},
+
+    ["Feathered Headdress"] = {"Hazzuri Primalist Headdress"},
+    ["Hazzuri Primalist Headdress"] = {"Feathered Headdress"},
+
+    ["Chromite Barbute"] = {"Scrapforged Helmet"},
+    ["Scrapforged Helmet"] = {"Chromite Barbute"},
+
+    ["Wanderer's Hat"] = {"Crab Catcher's Hat"},
+    ["Crab Catcher's Hat"] = {"Wanderer's Hat"},
+
+    ["Raging Berserker's Helm"] = {"Helm of Nethergarde"},
+    ["Helm of Nethergarde"] = {"Raging Berserker's Helm"},
+
     ["Ebonhold Helmet"] = {"The Crown of Shattering"},
     ["The Crown of Shattering"] = {"Ebonhold Helmet"},
 	
@@ -15,8 +84,9 @@ DisplayIdDB= {
 	["Frostreaver Crown"] = {"Timeloop Headguard"},
     ["Timeloop Headguard"] = {"Frostreaver Crown"},
 
-    ["Venomshroud Mask"] = {"Thornweave Mask"},
-    ["Thornweave Mask"] = {"Venomshroud Mask"},
+    ["Venomshroud Mask"] = {"Thornweave Mask","Mask of Denatharion"},
+    ["Thornweave Mask"] = {"Venomshroud Mask","Mask of Denatharion"},
+    ["Mask of Denatharion"] = {"Venomshroud Mask","Thornweave Mask"},
 	
 	["Avenguard Helm"] = {"Monolith Headguard"},
     ["Monolith Headguard"] = {"Avenguard Helm"},
@@ -114,9 +184,6 @@ DisplayIdDB= {
     ["Hibernal Cowl"] = {"Conjurer's Hood"},
     ["Conjurer's Hood"] = {"Hibernal Cowl"},
 
-    ["White Bandit Mask"] = {"Shadoweave Mask"},
-    ["Shadoweave Mask"] = {"White Bandit Mask"},
-
     ["Spellpower Goggles Xtreme Plus"] = {"Bloodvine Goggles"},
     ["Bloodvine Goggles"] = {"Spellpower Goggles Xtreme Plus"},
 
@@ -126,9 +193,11 @@ DisplayIdDB= {
     ["Rageclaw Helm"] = {"Tribal War Feathers"},
     ["Tribal War Feathers"] = {"Rageclaw Helm"},
 
-    ["Foror's Eyepatch"] = {"Ragefury Eyepatch", "Pirate's Eye Patch"},
-    ["Pirate's Eye Patch"] = {"Ragefury Eyepatch", "Foror's Eyepatch"},
-    ["Ragefury Eyepatch"] = {"Foror's Eyepatch","Pirate's Eye Patch"},
+    ["Foror's Eyepatch"] = {"Ragefury Eyepatch", "Pirate's Eye Patch","Bloodsail Eyepatch","Swamphunter's Eye"},
+    ["Pirate's Eye Patch"] = {"Ragefury Eyepatch", "Foror's Eyepatch","Bloodsail Eyepatch","Swamphunter's Eye"},
+    ["Ragefury Eyepatch"] = {"Foror's Eyepatch","Pirate's Eye Patch","Bloodsail Eyepatch","Swamphunter's Eye"},
+    ["Bloodsail Eyepatch"] = {"Foror's Eyepatch","Pirate's Eye Patch","Ragefury Eyepatch","Swamphunter's Eye"},
+    ["Swamphunter's Eye"] = {"Foror's Eyepatch","Pirate's Eye Patch","Ragefury Eyepatch","Bloodsail Eyepatch"},
 
     ["Hawkeye's Helm"] = {"Sentinel Cap"},
     ["Sentinel Cap"] = {"Hawkeye's Helm"},
@@ -159,9 +228,10 @@ DisplayIdDB= {
     ["Protector Helm"] = {"Myrmidon's Helm","Battlemaster Helm"},
     ["Battlemaster Helm"] = {"Myrmidon's Helm","Protector Helm"},
 
-    ["Lord's Crown"] = {"Formidable Circlet","Cryptstone Circlet"},
-    ["Formidable Circlet"] = {"Lord's Crown","Cryptstone Circlet"},
-    ["Cryptstone Circlet"] = {"Lord's Crown","Formidable Circlet"},
+    ["Lord's Crown"] = {"Formidable Circlet","Cryptstone Circlet","Crown of Grobi"},
+    ["Formidable Circlet"] = {"Lord's Crown","Cryptstone Circlet","Crown of Grobi"},
+    ["Cryptstone Circlet"] = {"Lord's Crown","Formidable Circlet","Crown of Grobi"},
+    ["Crown of Grobi"] = {"Lord's Crown","Formidable Circlet","Cryptstone Circlet"},
 
     ["Khan's Helmet"] = {"Triumphant Skullcap"},
     ["Triumphant Skullcap"] = {"Khan's Helmet"},
@@ -173,9 +243,10 @@ DisplayIdDB= {
     ["Nightsky Cowl"] = {"Cloaked Hood","Cowl of Terror"},
     ["Cowl of Terror"] = {"Cloaked Hood","Nightsky Cowl"},
 
-    ["Red Defias Mask"] = {"Bloodwoven Mask","Blackened Defias Mask"},
-    ["Bloodwoven Mask"] = {"Red Defias Mask","Blackened Defias Mask"},
-    ["Blackened Defias Mask"] = {"Red Defias Mask","Bloodwoven Mask"},
+    ["Red Defias Mask"] = {"Bloodwoven Mask","Blackened Defias Mask","Tattered Defias Mask"},
+    ["Bloodwoven Mask"] = {"Red Defias Mask","Blackened Defias Mask","Tattered Defias Mask"},
+    ["Blackened Defias Mask"] = {"Red Defias Mask","Bloodwoven Mask","Tattered Defias Mask"},
+    ["Tattered Defias Mask"] = {"Red Defias Mask","Bloodwoven Mask","Blackened Defias Mask"},
 
     ["Shadow Hood"] = {"Wildheart Cowl"},
     ["Wildheart Cowl"] = {"Shadow Hood"},
@@ -187,6 +258,50 @@ DisplayIdDB= {
     ["Don Rigoberto's Lost Hat"] = {"Clever Hat"},
 
     -- shoulder
+    ["Greyshire Pauldrons"] = {"Insignia Mantle"},
+    ["Insignia Mantle"] = {"Greyshire Pauldrons"},
+
+    ["Ebonhold Girdle"] = {"Ravenwood Belt","Dark Footpad Belt"},
+    ["Ravenwood Belt"] = {"Ebonhold Girdle","Dark Footpad Belt"},
+    ["Dark Footpad Belt"] = {"Ebonhold Girdle","Ravenwood Belt"},
+
+    ["Runic Stone Shoulders"] = {"Tel Co. Huntsman Pauldrons"},
+    ["Tel Co. Huntsman Pauldrons"] = {"Runic Stone Shoulders"},
+
+    ["Earthslag Shoulders"] = {"Ogre-Head Pauldrons"},
+    ["Ogre-Head Pauldrons"] = {"Earthslag Shoulders"},
+
+    ["Razorsteel Shoulders"] = {"Fleet Pauldrons","Mantle of Dag'grak"},
+    ["Fleet Pauldrons"] = {"Razorsteel Shoulders","Mantle of Dag'grak"},
+    ["Mantle of Dag'grak"] = {"Razorsteel Shoulders","Fleet Pauldrons"},
+
+    ["Lead Surveyor's Mantle"] = {"Shoulderpads of Gazzirik"},
+    ["Shoulderpads of Gazzirik"] = {"Lead Surveyor's Mantle"},
+    
+    ["Heraldic Spaulders"] = {"The Ogre Mantle"},
+    ["The Ogre Mantle"] = {"Heraldic Spaulders"},
+
+    ["Crystal Breeze Mantle"] = {"Archivist Mantle"},
+    ["Archivist Mantle"] = {"Crystal Breeze Mantle"},
+
+    ["Steadfast Shoulders"] = {"Defias Enforcer Shoulderguards"},
+    ["Defias Enforcer Shoulderguards"] = {"Steadfast Shoulders"},
+
+    ["Warmonger's Pauldrons"] = {"Blatarg's Mantle"},
+    ["Blatarg's Mantle"] = {"Warmonger's Pauldrons"},
+
+    ["Runic Leather Shoulders"] = {"Mantle of the Ogre Slayer"},
+    ["Mantle of the Ogre Slayer"] = {"Runic Leather Shoulders"},
+
+    ["Phytoskin Spaulders"] = {"Dreamwind Spaulders"},
+    ["Dreamwind Spaulders"] = {"Phytoskin Spaulders"},
+
+    ["Tough Scorpid Shoulders"] = {"Shoulders of Loruk"},
+    ["Shoulders of Loruk"] = {"Tough Scorpid Shoulders"},
+
+    ["Imperial Leather Spaulders"] = {"Epaulets of Denatharion"},
+    ["Epaulets of Denatharion"] = {"Imperial Leather Spaulders"},
+
     ["Captain's Shoulderguards"] = {"Turtle Scale Shoulderguards"},
     ["Turtle Scale Shoulderguards"] = {"Captain's Shoulderguards"},
 	
@@ -205,7 +320,6 @@ DisplayIdDB= {
 	
 	["Mooncloth Shoulders"] = {"Dragonbane Pauldrons"},
     ["Dragonbane Pauldrons"] = {"Mooncloth Shoulders"},
-
 
     ["Amice of the Webweaver"] = {"Animist's Spaulders"},
     ["Animist's Spaulders"] = {"Amice of the Webweaver"},
@@ -238,8 +352,9 @@ DisplayIdDB= {
     ["Bloody Gladiator's Pauldrons"] = {"Impenetrable Pauldrons"},
     ["Impenetrable Pauldrons"] = {"Bloody Gladiator's Pauldrons"},
 
-    ["Shoulderpads of True Flight"] = {"Crusader's Pauldrons"},
-    ["Crusader's Pauldrons"] = {"Shoulderpads of True Flight"},
+    ["Shoulderpads of True Flight"] = {"Crusader's Pauldrons","Truthkeeper Mantle"},
+    ["Crusader's Pauldrons"] = {"Shoulderpads of True Flight","Truthkeeper Mantle"},
+    ["Truthkeeper Mantle"] = {"Shoulderpads of True Flight","Crusader's Pauldrons"},
 
     ["Bloody Gladiator's Spaulders"] = {"Overlord's Spaulders"},
     ["Overlord's Spaulders"] = {"Bloody Gladiator's Spaulders"},
@@ -351,14 +466,75 @@ DisplayIdDB= {
     ["Black Brood Pauldrons"] = {"Stratholme Militia Shoulderguard"},
 
     -- cloaks
+    ["Infiltrator Cloak"] = {"Anvilrage Shroud"},
+    ["Anvilrage Shroud"] = {"Infiltrator Cloak"},
+
+    ["Dark Leather Cloak"] = {"Ash Shawl"},
+    ["Ash Shawl"] = {"Dark Leather Cloak"},
+
+    ["Ghostwalker Cloak"] = {"Windfeather Poncho"},
+    ["Windfeather Poncho"] = {"Ghostwalker Cloak"},
+
+    ["Tiger Hunter Gloves"] = {"Golemslayer Mitts"},
+    ["Golemslayer Mitts"] = {"Tiger Hunter Gloves"},
+
+    ["Cloak of Blight"] = {"Glaymore Shawl"},
+    ["Glaymore Shawl"] = {"Cloak of Blight"},
+
+    ["Crusader's Cloak"] = {"Drape of Westfall"},
+    ["Drape of Westfall"] = {"Crusader's Cloak"},
+
+    ["Thick Cloak"] = {"Ashenvale Shawl"},
+    ["Ashenvale Shawl"] = {"Thick Cloak"},
+
+    ["Bristlebark Cape"] = {"Highmane Shawl"},
+    ["Highmane Shawl"] = {"Bristlebark Cape"},
+
+    ["Wendigo Fur Cloak"] = {"Deepmurk Cloak"},
+    ["Deepmurk Cloak"] = {"Wendigo Fur Cloak"},
+
+    ["Embossed Leather Cloak"] = {"Ashpaw Mantle"},
+    ["Ashpaw Mantle"] = {"Embossed Leather Cloak"},
+
+    ["Combat Cloak"] = {"Drape of Flickering Flame"},
+    ["Drape of Flickering Flame"] = {"Combat Cloak"},
+
+    ["Worn Hide Cloak"] = {"Mana Wyrm Cape"},
+    ["Mana Wyrm Cape"] = {"Worn Hide Cloak"},
+
+    ["Durable Cape"] = {"Warm Woolen Drape"},
+    ["Warm Woolen Drape"] = {"Durable Cape"},
+
+    ["Glowing Thresher Cape"] = {"Quagmire Shawl"},
+    ["Quagmire Shawl"] = {"Glowing Thresher Cape"},
+
+    ["Marauder's Cloak"] = {"Woven Ivy Cloak"},
+    ["Woven Ivy Cloak"] = {"Marauder's Cloak"},
+
+    ["Yeti Fur Cloak"] = {"Fur of Navakesh"},
+    ["Fur of Navakesh"] = {"Yeti Fur Cloak"},
+
+    ["Elunarian Cloak"] = {"Windtalker Cape"},
+    ["Windtalker Cape"] = {"Elunarian Cloak"},
+
+    ["Frostweaver Cape"] = {"Cloak of Loruk"},
+    ["Cloak of Loruk"] = {"Frostweaver Cape"},
+
+    ["Forest Cloak"] = {"Cloak of Denatharion"},
+    ["Cloak of Denatharion"] = {"Forest Cloak"},
+
     ["Dark Phantom Cape"] = {"Shroud of Haunted Torment"},
     ["Shroud of Haunted Torment"] = {"Dark Phantom Cape"},
 	
 	["Glacial Cloak"] = {"Magic-infused Cloak"},
     ["Magic-infused Cloak"] = {"Glacial Cloak"},
 	
-	["Big Voodoo Cloak"] = {"Cloak of Elemental Warding"},
-    ["Cloak of Elemental Warding"] = {"Big Voodoo Cloak"},
+	["Big Voodoo Cloak"] = {"Cloak of Elemental Warding","Kirin Tor Shawl of Potency","Kirin Tor Shawl of Authority","Kirin Tor Shawl of Persecution","Kirin Tor Shawl of Oppresion"},
+    ["Cloak of Elemental Warding"] = {"Big Voodoo Cloak","Kirin Tor Shawl of Potency","Kirin Tor Shawl of Authority","Kirin Tor Shawl of Persecution","Kirin Tor Shawl of Oppresion"},
+    ["Kirin Tor Shawl of Potency"] = {"Big Voodoo Cloak","Cloak of Elemental Warding","Kirin Tor Shawl of Authority","Kirin Tor Shawl of Persecution","Kirin Tor Shawl of Oppresion"},
+    ["Kirin Tor Shawl of Authority"] = {"Big Voodoo Cloak","Cloak of Elemental Warding","Kirin Tor Shawl of Potency","Kirin Tor Shawl of Persecution","Kirin Tor Shawl of Oppresion"},
+    ["Kirin Tor Shawl of Persecution"] = {"Big Voodoo Cloak","Cloak of Elemental Warding","Kirin Tor Shawl of Authority","Kirin Tor Shawl of Potency","Kirin Tor Shawl of Oppresion"},
+    ["Kirin Tor Shawl of Oppresion"] = {"Big Voodoo Cloak","Cloak of Elemental Warding","Kirin Tor Shawl of Authority","Kirin Tor Shawl of Potency","Kirin Tor Shawl of Persecution"},
 
     ["Conjurer's Cloak"] = {"Canopy Cloak"},
     ["Canopy Cloak"] = {"Conjurer's Cloak"},
@@ -465,14 +641,16 @@ DisplayIdDB= {
     ["Wild Leather Cloak"] = {"Frightmaw Hide"},
     ["Frightmaw Hide"] = {"Wild Leather Cloak"},
 
-    ["Crochet Cloak"] = {"Pagan Cape"},
-    ["Pagan Cape"] = {"Crochet Cloak"},
-
+    ["Crochet Cloak"] = {"Pagan Cape","Fisherman's Shawl"},
+    ["Pagan Cape"] = {"Crochet Cloak","Fisherman's Shawl"},
+    ["Fisherman's Shawl"] = {"Crochet Cloak","Pagan Cape"},
+ 
     ["Enchanted Moonstalker Cloak"] = {"Superior Cloak"},
     ["Superior Cloak"] = {"Enchanted Moonstalker Cloak"},
 
-    ["Shimmering Cloak"] = {"Watcher's Cape"},
-    ["Watcher's Cape"] = {"Shimmering Cloak"},
+    ["Shimmering Cloak"] = {"Watcher's Cape","Hydromancer's Peak"},
+    ["Watcher's Cape"] = {"Shimmering Cloak","Hydromancer's Peak"},
+    ["Hydromancer's Peak"] = {"Shimmering Cloak","Watcher's Cape"},
 
     ["Finely Woven Cloak"] = {"Spellbinder Cloak"},
     ["Spellbinder Cloak"] = {"Finely Woven Cloak"},
@@ -560,6 +738,135 @@ DisplayIdDB= {
     ["Shadow Silk Cloak"] = {"Crystalline Threaded Cape","Drape of Vaulted Secrets"},
 
     -- chest
+    ["Chromatic Robe"] = {"Robe of the Obedient"},
+    ["Robe of the Obedient"] = {"Chromatic Robe"},
+
+    ["Burnt Leather Vest"] = {"Tanned Hide Vest"},
+    ["Tanned Hide Vest"] = {"Burnt Leather Vest"},
+
+    ["Feral Harness"] = {"Chainmail Harness"},
+    ["Chainmail Harness"] = {"Feral Harness"},
+
+    ["Red Linen Robe"] = {"Bloodstained Robe"},
+    ["Bloodstained Robe"] = {"Red Linen Robe"},
+
+    ["Wolffear Harness"] = {"Thornmantle Harness"},
+    ["Thornmantle Harness"] = {"Wolffear Harness"},
+
+    ["Brawnhide Armor"] = {"Vest of the Messenger"},
+    ["Vest of the Messenger"] = {"Brawnhide Armor"},
+
+    ["Warped Leather Vest"] = {"Blue Summer Shirt"},
+    ["Blue Summer Shirt"] = {"Warped Leather Vest"},
+
+    ["Interlaced Vest"] = {"Red Summer Shirt"},
+    ["Red Summer Shirt"] = {"Interlaced Vest"},
+
+    ["Heroic Armor"] = {"Spark-Charged Cuirass"},
+    ["Spark-Charged Cuirass"] = {"Heroic Armor"},
+
+    ["Orcish War Chain"] = {"Cuirass of the Kirin-Eye"},
+    ["Cuirass of the Kirin-Eye"] = {"Orcish War Chain"},
+
+    ["Husk of Naraxis"] = {"Glaymore Family Breastplate"},
+    ["Glaymore Family Breastplate"] = {"Husk of Naraxis"},
+
+    ["Robes of Ravenshire"] = {"Black Velvet Robes"},
+    ["Black Velvet Robes"] = {"Robes of Ravenshire"},
+
+    ["Brown Lumberjack Vest"] = {"Canvas Vest"},
+    ["Canvas Vest"] = {"Brown Lumberjack Vest"},
+
+    ["Neophyte's Robe"] = {"Dust-covered Robe"},
+    ["Dust-covered Robe"] = {"Neophyte's Robe"},
+
+    ["Bloodspattered Surcoat"] = {"Bruiser's Chainmail"},
+    ["Bruiser's Chainmail"] = {"Bloodspattered Surcoat"},
+
+    ["Emblazoned Chestpiece"] = {"Labor Union Tunic"},
+    ["Labor Union Tunic"] = {"Emblazoned Chestpiece"},
+
+    ["Gahz'rilla Scale Armor"] = {"Swamplink Harness"},
+    ["Swamplink Harness"] = {"Gahz'rilla Scale Armor"},
+
+    ["Heavy Lamellar Chestpiece"] = {"Gladeforge Breastplate"},
+    ["Gladeforge Breastplate"] = {"Heavy Lamellar Chestpiece"},
+
+    ["Imperial Leather Breastplate"] = {"Tel Co. Vest"},
+    ["Tel Co. Vest"] = {"Imperial Leather Breastplate"},
+
+    ["Laminated Scale Armor"] = {"Polished Scalemail"},
+    ["Polished Scalemail"] = {"Laminated Scale Armor"},
+
+    ["Seer's Robe"] = {"Comfy Robe"},
+    ["Comfy Robe"] = {"Seer's Robe"},
+
+    ["Flax Vest"] = {"Stitched Leather Vest"},
+    ["Stitched Leather Vest"] = {"Flax Vest"},
+
+    ["Ragged Leather Vest"] = {"Ragged Cloth Vest"},
+    ["Ragged Cloth Vest"] = {"Ragged Leather Vest"},
+
+    ["Ogre Forged Hauberk"] = {"Chain of Denatharion"},
+    ["Chain of Denatharion"] = {"Ogre Forged Hauberk"},
+
+    ["Chillwind Armor"] = {"Blue Dragonscale Breastplate"},
+    ["Blue Dragonscale Breastplate"] = {"Chillwind Armor"},
+
+    ["Quel'dorei Ranger's Hauberk"] = {"Vest of the Covenant"},
+    ["Vest of the Covenant"] = {"Quel'dorei Ranger's Hauberk"},
+
+    ["Ironspine's Ribcage"] = {"Crystaltouched Breastplate"},
+    ["Crystaltouched Breastplate"] = {"Ironspine's Ribcage"},
+
+    ["Nether-lace Robe"] = {"Darkseer Acolyte Robe"},
+    ["Darkseer Acolyte Robe"] = {"Nether-lace Robe"},
+
+    ["Hardened Leather Tunic"] = {"Timbermaw Battle Vest"},
+    ["Timbermaw Battle Vest"] = {"Hardened Leather Tunic"},
+
+    ["Nature's Embrace"] = {"Oakweave Vestments"},
+    ["Oakweave Vestments"] = {"Nature's Embrace"},
+
+    ["Burning Robes"] = {"Cook's Apron"},
+    ["Cook's Apron"] = {"Burning Robes"},
+
+    ["Apprentice's Robe"] = {"Oil-splattered Robe"},
+    ["Oil-splattered Robe"] = {"Apprentice's Robe"},
+
+    ["Worn Leather Vest"] = {"Scorched Vest"},
+    ["Scorched Vest"] = {"Worn Leather Vest"},
+
+    ["Spore-covered Tunic"] = {"Ash-covered Tunic"},
+    ["Ash-covered Tunic"] = {"Spore-covered Tunic"},
+
+    ["Relentless Chain"] = {"Chain of Loruk"},
+    ["Chain of Loruk"] = {"Relentless Chain"},
+
+    ["Camouflaged Tunic"] = {"Reedwoven Tunic"},
+    ["Reedwoven Tunic"] = {"Camouflaged Tunic"},
+
+    ["Green Dragonscale Breastplate"] = {"Ironwood Vest"},
+    ["Ironwood Vest"] = {"Green Dragonscale Breastplate"},
+
+    ["Aurora Robe"] = {"Robe of Humility"},
+    ["Robe of Humility"] = {"Aurora Robe"},
+
+    ["Runed Bloodstained Hauberk"] = {"Strom Defender's Vest"},
+    ["Strom Defender's Vest"] = {"Runed Bloodstained Hauberk"},
+
+    ["Dusty Chain Armor"] = {"Grumnir's Hauberk"},
+    ["Grumnir's Hauberk"] = {"Dusty Chain Armor"},
+
+    ["Brackwater Vest"] = {"Gowlfang's Vest"},
+    ["Gowlfang's Vest"] = {"Brackwater Vest"},
+
+    ["Brightcloth Robe"] = {"Shawl of the Hazu Leaf"},
+    ["Shawl of the Hazu Leaf"] = {"Brightcloth Robe"},
+
+    ["Templar Chestplate"] = {"Gusthewn Chestplate"},
+    ["Gusthewn Chestplate"] = {"Templar Chestplate"},
+
     ["Hibernal Robe"] = {"Venomshroud Silk Robes","Clutchweave Robe"},
     ["Venomshroud Silk Robes"] = {"Hibernal Robe","Clutchweave Robe"},
 	["Clutchweave Robe"] = {"Hibernal Robe","Venomshroud Silk Robes"},
@@ -600,8 +907,9 @@ DisplayIdDB= {
     ["Chan's Imperial Robes"] = {"Regal Robes of the Regent"},
     ["Regal Robes of the Regent"] = {"Chan's Imperial Robes"},
 
-    ["Mechbuilder's Overalls"] = {"Figgle's Coveralls"},
-    ["Figgle's Coveralls"] = {"Mechbuilder's Overalls"},
+    ["Mechbuilder's Overalls"] = {"Figgle's Coveralls","Gigno's Overalls"},
+    ["Figgle's Coveralls"] = {"Mechbuilder's Overalls","Gigno's Overalls"},
+    ["Gigno's Overalls"] = {"Mechbuilder's Overalls","Figgle's Coveralls"},
 
     ["Primal Batskin Jerkin"] = {"Carapace of the Spider Queen"},
     ["Carapace of the Spider Queen"] = {"Primal Batskin Jerkin"},
@@ -692,8 +1000,10 @@ DisplayIdDB= {
     ["Bound Harness"] = {"Strapped Armor"},
     ["Strapped Armor"] = {"Bound Harness"},
 
-    ["Slarkskin"] = {"Explorer's Vest"},
-    ["Explorer's Vest"] = {"Slarkskin"},
+    ["Slarkskin"] = {"Explorer's Vest","Goblin Chain Hauberk","Westfall Hauberk"},
+    ["Explorer's Vest"] = {"Slarkskin","Goblin Chain Hauberk","Westfall Hauberk"},
+    ["Goblin Chain Hauberk"] = {"Slarkskin","Explorer's Vest","Westfall Hauberk"},
+    ["Westfall Hauberk"] = {"Slarkskin","Explorer's Vest","Goblin Chain Hauberk"},
 
     ["Barbaric Harness"] = {"Warbear Harness","Rageboar Harness"},
     ["Warbear Harness"] = {"Barbaric Harness","Rageboar Harness"},
@@ -773,6 +1083,43 @@ DisplayIdDB= {
     ["Onyxia Scale Breastplate"] = {"Black Dragonscale Breastplate"},
 
     -- wrist
+    ["Grizzly Bracers"] = {"Tyrant Cuffs"},
+    ["Tyrant Cuffs"] = {"Grizzly Bracers"},
+
+    ["Blinkstrike Armguards"] = {"Bloodfist Vambraces","Ebonmere Vambraces"},
+    ["Bloodfist Vambraces"] = {"Blinkstrike Armguards","Ebonmere Vambraces"},
+    ["Ebonmere Vambraces"] = {"Blinkstrike Armguards","Bloodfist Vambraces"},
+
+    ["Gripsteel Wristguards"] = {"Sootstone Shackles"},
+    ["Sootstone Shackles"] = {"Gripsteel Wristguards"},
+
+    ["Forest Leather Bracers"] = {"Oaken Braid Bands"},
+    ["Oaken Braid Bands"] = {"Forest Leather Bracers"},
+
+    ["Chillhide Bracers"] = {"Inlaid Wristwraps"},
+    ["Inlaid Wristwraps"] = {"Chillhide Bracers"},
+
+    ["Heavy Weave Bracers"] = {"Rowdy Sailor Wraps"},
+    ["Rowdy Sailor Wraps"] = {"Heavy Weave Bracers"},
+
+    ["Fingerbone Bracers"] = {"Cuffs of Sanctitude"},
+    ["Cuffs of Sanctitude"] = {"Fingerbone Bracers"},
+
+    ["Laminated Scale Bracers"] = {"Bearbane Cuffs"},
+    ["Bearbane Cuffs"] = {"Laminated Scale Bracers"},
+
+    ["Tyrant's Armguards"] = {"Bogplate Shackles"},
+    ["Bogplate Shackles"] = {"Tyrant's Armguards"},
+
+    ["Yorgen Bracers"] = {"Hallister's Cuffs"},
+    ["Hallister's Cuffs"] = {"Yorgen Bracers"},
+
+    ["Refugee’s Bracers"] = {"Royalist Wraps"},
+    ["Royalist Wraps"] = {"Refugee’s Bracers"},
+
+    ["Canvas Bracers"] = {"Dockmaster Cuffs"},
+    ["Dockmaster Cuffs"] = {"Canvas Bracers"},
+
     ["Light Plate Bracers"] = {"Consumer Shackles"},
     ["Consumer Shackles"] = {"Light Plate Bracers"},
 	
@@ -844,11 +1191,13 @@ DisplayIdDB= {
     ["Bloody Gladiator's Bracers"] = {"Deeprock Bracers"},
     ["Deeprock Bracers"] = {"Bloody Gladiator's Bracers"},
 
-    ["Templar Bracers"] = {"Cloudplate Wristguards"},
-    ["Cloudplate Wristguards"] = {"Templar Bracers"},
+    ["Templar Bracers"] = {"Cloudplate Wristguards","Cuffs of Justice"},
+    ["Cloudplate Wristguards"] = {"Templar Bracers","Cuffs of Justice"},
+    ["Cuffs of Justice"] = {"Templar Bracers","Cloudplate Wristguards"},
 
-    ["Deepwood Bracers"] = {"Huntsman's Bands"},
-    ["Huntsman's Bands"] = {"Deepwood Bracers"},
+    ["Deepwood Bracers"] = {"Huntsman's Bands","Cuffs of Nordanaar"},
+    ["Huntsman's Bands"] = {"Deepwood Bracers","Cuffs of Nordanaar"},
+    ["Cuffs of Nordanaar"] = {"Deepwood Bracers","Huntsman's Bands"},
 
     ["Silver-thread Cuffs"] = {"Necropile Cuffs"},
     ["Necropile Cuffs"] = {"Silver-thread Cuffs"},
@@ -874,9 +1223,10 @@ DisplayIdDB= {
     ["Copper Bracers"] = {"Overlinked Chain Bracers"},
     ["Overlinked Chain Bracers"] = {"Copper Bracers"},
 
-    ["Scalemail Bracers"] = {"Mithril Scale Bracers","Blackshackle Bracers"},
-    ["Mithril Scale Bracers"] = {"Scalemail Bracers","Blackshackle Bracers"},
-    ["Blackshackle Bracers"] = {"Scalemail Bracers","Mithril Scale Bracers"},
+    ["Scalemail Bracers"] = {"Mithril Scale Bracers","Blackshackle Bracers","Energized Shackles"},
+    ["Mithril Scale Bracers"] = {"Scalemail Bracers","Blackshackle Bracers","Energized Shackles"},
+    ["Blackshackle Bracers"] = {"Scalemail Bracers","Mithril Scale Bracers","Energized Shackles"},
+    ["Energized Shackles"] = {"Scalemail Bracers","Mithril Scale Bracers","Blackshackle Bracers"},
 
     ["Graystone Bracers"] = {"Rustmetal Bracers"},
     ["Rustmetal Bracers"] = {"Graystone Bracers"},
@@ -906,19 +1256,23 @@ DisplayIdDB= {
     ["Venomshroud Armguards"] = {"Hibernal Bracers","Dreamthread Bracers"},
     ["Dreamthread Bracers"] = {"Hibernal Bracers","Venomshroud Armguards"},
 
-    ["Frayed Bracers"] = {"Ritual Bands","Owlbeard Bracers"},
-    ["Ritual Bands"] = {"Frayed Bracers","Owlbeard Bracers"},
-    ["Owlbeard Bracers"] = {"Frayed Bracers","Ritual Bands"},
+    ["Frayed Bracers"] = {"Ritual Bands","Owlbeard Bracers","Safety Wraps"},
+    ["Ritual Bands"] = {"Frayed Bracers","Owlbeard Bracers","Safety Wraps"},
+    ["Owlbeard Bracers"] = {"Frayed Bracers","Ritual Bands","Safety Wraps"},
+    ["Safety Wraps"] = {"Frayed Bracers","Ritual Bands","Owlbeard Bracers"},
 
     ["Heavy Cord Bracers"] = {"Mystic's Bracelets"},
     ["Mystic's Bracelets"] = {"Heavy Cord Bracers"},
 
-    ["Radiant Silver Bracers"] = {"Master's Bracers","Black Bark Wristbands"},
-    ["Master's Bracers"] = {"Radiant Silver Bracers","Black Bark Wristbands"},
-    ["Black Bark Wristbands"] = {"Radiant Silver Bracers","Master's Bracers"},
+    ["Radiant Silver Bracers"] = {"Master's Bracers","Black Bark Wristbands","Dusty Cuffs"},
+    ["Master's Bracers"] = {"Radiant Silver Bracers","Black Bark Wristbands","Dusty Cuffs"},
+    ["Black Bark Wristbands"] = {"Radiant Silver Bracers","Master's Bracers","Dusty Cuffs"},
+    ["Dusty Cuffs"] = {"Radiant Silver Bracers","Master's Bracers","Black Bark Wristbands"},
 
-    ["Battered Leather Bracers"] = {"Feral Bracers"},
-    ["Feral Bracers"] = {"Battered Leather Bracers"},
+    ["Battered Leather Bracers"] = {"Feral Bracers","Studded Bracers","Whispering Cuffs"},
+    ["Feral Bracers"] = {"Battered Leather Bracers","Studded Bracers","Whispering Cuffs"},
+    ["Studded Bracers"] = {"Battered Leather Bracers","Feral Bracers","Whispering Cuffs"},
+    ["Whispering Cuffs"] = {"Battered Leather Bracers","Feral Bracers","Studded Bracers"},
 
     ["Nomadic Bracers"] = {"Gypsy Bands","Groveweald Elder Cuffs"},
     ["Gypsy Bands"] = {"Nomadic Bracers","Groveweald Elder Cuffs"},
@@ -939,8 +1293,9 @@ DisplayIdDB= {
     ["Warrior's Bracers"] = {"Battle Chain Armguards"},
     ["Battle Chain Armguards"] = {"Warrior's Bracers"},
 
-    ["Loomguard Armbraces"] = {"Spiked Chain Wristbands"},
-    ["Spiked Chain Wristbands"] = {"Loomguard Armbraces"},
+    ["Loomguard Armbraces"] = {"Spiked Chain Wristbands","Ash Covered Shackles"},
+    ["Spiked Chain Wristbands"] = {"Loomguard Armbraces","Ash Covered Shackles"},
+    ["Ash Covered Shackles"] = {"Loomguard Armbraces","Spiked Chain Wristbands"},
 
     ["Greenweave Bracers"] = {"Stemleaf Bracers"},
     ["Stemleaf Bracers"] = {"Greenweave Bracers"},
@@ -962,6 +1317,80 @@ DisplayIdDB= {
     ["Zandalar Predator's Bracers"] = {"Pyremail Wristguards"},
 
     -- hands
+    ["Fletcher's Gloves"] = {"Sea Brigand's Grips"},
+    ["Sea Brigand's Grips"] = {"Fletcher's Gloves"},
+
+    ["Darkspinner Claws"] = {"Razzari Battle Gauntlets"},
+    ["Razzari Battle Gauntlets"] = {"Darkspinner Claws"},
+
+    ["Black Whelp Gloves"] = {"Oilfused Gloves"},
+    ["Oilfused Gloves"] = {"Black Whelp Gloves"},
+
+    ["Formidable Gauntlets"] = {"Ionized Metal Grips"},
+    ["Ionized Metal Grips"] = {"Formidable Gauntlets"},
+
+    ["Golden Gauntlets of Stormwind"] = {"Sunscale Gauntlets"},
+    ["Sunscale Gauntlets"] = {"Golden Gauntlets of Stormwind"},
+
+    ["Serenity Belt"] = {"Regal Goldthreaded Sash"},
+    ["Regal Goldthreaded Sash"] = {"Serenity Belt"},
+
+    ["Wicked Chain Gauntlets"] = {"Quick-Surge Gloves"},
+    ["Quick-Surge Gloves"] = {"Wicked Chain Gauntlets"},
+
+    ["Gordok's Gauntlets"] = {"Kirin Tor Watch Grips"},
+    ["Kirin Tor Watch Grips"] = {"Gordok's Gauntlets"},
+
+    ["Councillor's Gloves"] = {"Gladewind Gloves"},
+    ["Gladewind Gloves"] = {"Councillor's Gloves"},
+
+    ["Blackened Defias Gloves"] = {"Fizzwack's Gloves of Enforcement"},
+    ["Fizzwack's Gloves of Enforcement"] = {"Blackened Defias Gloves"},
+
+    ["Quel'dorei Guardian's Handguards"] = {"Thalassian Handguards"},
+    ["Thalassian Handguards"] = {"Quel'dorei Guardian's Handguards"},
+
+    ["Pratt's Handcrafted Gloves"] = {"Technician's Field Gloves"},
+    ["Technician's Field Gloves"] = {"Pratt's Handcrafted Gloves"},
+
+    ["Veiled Grips"] = {"Scorched Gloves"},
+    ["Scorched Gloves"] = {"Veiled Grips"},
+
+    ["Tattered Cloth Gloves"] = {"Oil Splattered Gloves"},
+    ["Oil Splattered Gloves"] = {"Tattered Cloth Gloves"},
+
+    ["Gauntlets of Insight"] = {"Dagmire Gauntlets"},
+    ["Dagmire Gauntlets"] = {"Gauntlets of Insight"},
+
+    ["Mail Combat Gauntlets"] = {"Xtra-Protective Gloves"},
+    ["Xtra-Protective Gloves"] = {"Mail Combat Gauntlets"},
+
+    ["Rabbit Handler Gloves"] = {"Deepfrond Gloves"},
+    ["Deepfrond Gloves"] = {"Rabbit Handler Gloves"},
+
+    ["Nightshade Gloves"] = {"Varlag's Clutches"},
+    ["Varlag's Clutches"] = {"Nightshade Gloves"},
+
+    ["Gloves of Undead Cleansing"] = {"Riftwatcher Gloves"},
+    ["Riftwatcher Gloves"] = {"Gloves of Undead Cleansing"},
+
+    ["Gnomish Mechanic's Gloves"] = {"Riftseeker Gloves"},
+    ["Riftseeker Gloves"] = {"Gnomish Mechanic's Gloves"},
+
+    ["Ragged Leather Gloves"] = {"Worn Gloves","Mud Covered Gloves","Stitched Leather Gloves"},
+    ["Worn Gloves"] = {"Ragged Leather Gloves","Mud Covered Gloves","Stitched Leather Gloves"},
+    ["Mud Covered Gloves"] = {"Ragged Leather Gloves","Worn Gloves","Stitched Leather Gloves"},
+    ["Stitched Leather Gloves"] = {"Ragged Leather Gloves","Worn Gloves","Mud Covered Gloves"},
+
+    ["Ironvine Gloves"] = {"Waveguard Gauntlets"},
+    ["Waveguard Gauntlets"] = {"Ironvine Gloves"},
+
+    ["Overgrown Gloves"] = {"Heavy Weave Gloves"},
+    ["Heavy Weave Gloves"] = {"Overgrown Gloves"},
+
+    ["Pulverizer Gauntlets"] = {"Marauder's Gauntlets"},
+    ["Marauder's Gauntlets"] = {"Pulverizer Gauntlets"},
+
     ["Gloves of the Unknown"] = {"Ghostweave Gloves"},
     ["Ghostweave Gloves"] = {"Gloves of the Unknown"},
 
@@ -1008,8 +1437,9 @@ DisplayIdDB= {
     ["Shadoweave Gloves"] = {"Befouled Handwraps"},
     ["Befouled Handwraps"] = {"Shadoweave Gloves"},
     
-    ["Hands of Thero-shan"] = {"Blackthorn Gauntlets"},
-    ["Blackthorn Gauntlets"] = {"Hands of Thero-shan"},
+    ["Hands of Thero-shan"] = {"Blackthorn Gauntlets","Ravenshire Gloves"},
+    ["Blackthorn Gauntlets"] = {"Hands of Thero-shan","Ravenshire Gloves"},
+    ["Ravenshire Gloves"] = {"Hands of Thero-shan","Blackthorn Gauntlets"},
 
     ["Strapped Gloves"] = {"Bloody Gladiator's Gloves"},
     ["Bloody Gladiator's Gloves"] = {"Strapped Gloves"},
@@ -1059,8 +1489,9 @@ DisplayIdDB= {
     ["Sewing Gloves"] = {"Wolf Handler Gloves"},
     ["Wolf Handler Gloves"] = {"Sewing Gloves"},
 
-    ["Nomadic Gloves"] = {"Grizzly Gloves"},
-    ["Grizzly Gloves"] = {"Nomadic Gloves"},
+    ["Nomadic Gloves"] = {"Grizzly Gloves","Coal Miner Gloves"},
+    ["Grizzly Gloves"] = {"Nomadic Gloves","Coal Miner Gloves"},
+    ["Coal Miner Gloves"] = {"Nomadic Gloves","Grizzly Gloves"},
 
     ["Veteran Gloves"] = {"Brackwater Chain Handgrips"},
     ["Brackwater Chain Handgrips"] = {"Veteran Gloves"},
@@ -1075,22 +1506,26 @@ DisplayIdDB= {
     ["Shadowskin Gloves"] = {"Ebon Vise"},
     ["Knife Juggler Gloves"] = {"Shadowskin Gloves","Ebon Vise"},
 
-    ["Flax Gloves"] = {"Native Handwraps"},
-    ["Native Handwraps"] = {"Flax Gloves"},
+    ["Flax Gloves"] = {"Native Handwraps","Ragged Cloth Gloves"},
+    ["Native Handwraps"] = {"Flax Gloves","Ragged Cloth Gloves"},
+    ["Ragged Cloth Gloves"] = {"Flax Gloves","Native Handwraps"},
 
-    ["Hibernal Gloves"] = {"Venomshroud Mitts","Dreamthread Gloves"},
-    ["Venomshroud Mitts"] = {"Hibernal Gloves","Dreamthread Gloves"},
-    ["Dreamthread Gloves"] = {"Hibernal Gloves","Venomshroud Mitts"},
+    ["Hibernal Gloves"] = {"Venomshroud Mitts","Dreamthread Gloves","Spiritual Mitts"},
+    ["Venomshroud Mitts"] = {"Hibernal Gloves","Dreamthread Gloves","Spiritual Mitts"},
+    ["Dreamthread Gloves"] = {"Hibernal Gloves","Venomshroud Mitts","Spiritual Mitts"},
+    ["Spiritual Mitts"] = {"Hibernal Gloves","Venomshroud Mitts","Dreamthread Gloves"},
 
     ["Silver-thread Gloves"] = {"Master's Gloves","Magefist Gloves"},
     ["Master's Gloves"] = {"Silver-thread Gloves","Magefist Gloves"},
     ["Magefist Gloves"] = {"Silver-thread Gloves","Master's Gloves"},
 
-    ["Frayed Gloves"] = {"Ritual Gloves"},
-    ["Ritual Gloves"] = {"Frayed Gloves"},
+    ["Frayed Gloves"] = {"Ritual Gloves","Pyrehand Gloves"},
+    ["Ritual Gloves"] = {"Frayed Gloves","Pyrehand Gloves"},
+    ["Pyrehand Gloves"] = {"Frayed Gloves","Ritual Gloves"},
 
-    ["Salma's Oven Mitts"] = {"Gordok's Handwraps"},
-    ["Gordok's Handwraps"] = {"Salma's Oven Mitts"},
+    ["Salma's Oven Mitts"] = {"Gordok's Handwraps","Farmer's Gloves"},
+    ["Gordok's Handwraps"] = {"Salma's Oven Mitts","Farmer's Gloves"},
+    ["Farmer's Gloves"] = {"Salma's Oven Mitts","Gordok's Handwraps"},
 
     ["Burnished Gloves"] = {"Dragonscale Gauntlets"},
     ["Dragonscale Gauntlets"] = {"Burnished Gloves"},
@@ -1148,6 +1583,96 @@ DisplayIdDB= {
     ["Desert Bloom Gloves"] = {"Sandworm Skin Gloves"},
 
     -- waist
+    ["Battle Chain Girdle"] = {"Charred Belt"},
+    ["Charred Belt"] = {"Battle Chain Girdle"},
+
+    ["Frayed Sash"] = {"Trickster's Sash"},
+    ["Trickster's Sash"] = {"Frayed Sash"},
+
+    ["Gold Link Belt"] = {"Wolfwood Sash"},
+    ["Wolfwood Sash"] = {"Gold Link Belt"},
+
+    ["Tapered Belt"] = {"Thin Cloth Belt"},
+    ["Thin Cloth Belt"] = {"Tapered Belt"},
+
+    ["Bright Belt"] = {"Hauling Belt"},
+    ["Hauling Belt"] = {"Bright Belt"},
+
+    ["Engraved Girdle"] = {"Speckled Sapphire Sash"},
+    ["Speckled Sapphire Sash"] = {"Engraved Girdle"},
+
+    ["Twill Belt"] = {"Hydromancer Sash"},
+    ["Hydromancer Sash"] = {"Twill Belt"},
+
+    ["Hillman's Belt"] = {"Tinkering Belt"},
+    ["Tinkering Belt"] = {"Hillman's Belt"},
+
+    ["Cutthroat's Belt"] = {"Sorrowguard Clutch"},
+    ["Sorrowguard Clutch"] = {"Cutthroat's Belt"},
+
+    ["Nomadic Belt"] = {"Scorched Belt"},
+    ["Scorched Belt"] = {"Nomadic Belt"},
+
+    ["Quel'dorei Guardian's Girdle"] = {"Thalassian Sentinel Belt"},
+    ["Thalassian Sentinel Belt"] = {"Quel'dorei Guardian's Girdle"},
+
+    ["Dokebi Cord"] = {"Mort's Backup Belt"},
+    ["Mort's Backup Belt"] = {"Dokebi Cord"},
+
+    ["Clutch of Andros"] = {"Clutch of Joshua"},
+    ["Clutch of Joshua"] = {"Clutch of Andros"},
+
+    ["Runescale Girdle"] = {"Girdle of Galron"},
+    ["Girdle of Galron"] = {"Runescale Girdle"},
+
+    ["Councillor's Sash"] = {"Flaxwhisker Sash","Sash of Goblin Luck","Greenweave Sash","Sash of Upperson"},
+    ["Flaxwhisker Sash"] = {"Councillor's Sash","Sash of Goblin Luck","Greenweave Sash","Sash of Upperson"},
+    ["Sash of Goblin Luck"] = {"Councillor's Sash","Flaxwhisker Sash","Greenweave Sash","Sash of Upperson"},
+    ["Greenweave Sash"] = {"Councillor's Sash","Flaxwhisker Sash","Sash of Goblin Luck","Sash of Upperson"},
+    ["Sash of Upperson"] = {"Councillor's Sash","Flaxwhisker Sash","Sash of Goblin Luck","Greenweave Sash"},
+
+    ["Hawkeye's Cord"] = {"Dunewind Sash"},
+    ["Dunewind Sash"] = {"Hawkeye's Cord"},
+
+    ["Prospector's Sash"] = {"Smuggler's Sash"},
+    ["Smuggler's Sash"] = {"Prospector's Sash"},
+
+    ["Journeyman's Belt"] = {"Sash of Innocent Blood"},
+    ["Sash of Innocent Blood"] = {"Journeyman's Belt"},
+
+    ["Darkmist Girdle"] = {"Violet Sash"},
+    ["Violet Sash"] = {"Darkmist Girdle"},
+
+    ["Razorblade Buckler"] = {"Oscilation Inhibited Disk"},
+    ["Oscilation Inhibited Disk"] = {"Razorblade Buckler"},
+
+    ["Dark Leather Belt"] = {"Gnomish Chemistry Belt"},
+    ["Gnomish Chemistry Belt"] = {"Dark Leather Belt"},
+
+    ["Flax Belt"] = {"Ragged Cloth Sash"},
+    ["Ragged Cloth Sash"] = {"Flax Belt"},
+
+    ["Aurora Sash"] = {"Farmer's Sash"},
+    ["Farmer's Sash"] = {"Aurora Sash"},
+
+    ["Tidehunter Girdle"] = {"Infantry Belt"},
+    ["Infantry Belt"] = {"Tidehunter Girdle"},
+
+    ["Cinched Belt"] = {"Rusty Chain Belt"},
+    ["Rusty Chain Belt"] = {"Cinched Belt"},
+
+    ["Foreman Belt"] = {"Powder Town Sash"},
+    ["Powder Town Sash"] = {"Foreman Belt"},
+
+    ["Raincaller Cord"] = {"Isle Watcher's Sash"},
+    ["Isle Watcher's Sash"] = {"Raincaller Cord"},
+
+    ["Nightwoven Belt"] = {"Runecloth Belt"},
+    ["Runecloth Belt"] = {"Nightwoven Belt"},
+
+    ["Zephyrian Girdle"] = {"Templar Girdle"},
+    ["Templar Girdle"] = {"Zephyrian Girdle"},
+
     ["Field Plate Girdle"] = {"Deathforge Belt"},
     ["Deathforge Belt"] = {"Field Plate Girdle"},
 	
@@ -1160,8 +1685,9 @@ DisplayIdDB= {
     ["Crystallized Girdle"] = {"Girdle of Distant Stars"},
     ["Girdle of Distant Stars"] = {"Crystallized Girdle"},
 
-    ["Grizzlehide Belt"] = {"Might of the Timbermaw"},
-    ["Might of the Timbermaw"] = {"Grizzlehide Belt"},
+    ["Grizzlehide Belt"] = {"Might of the Timbermaw","Greenpaw's Sash"},
+    ["Might of the Timbermaw"] = {"Grizzlehide Belt","Greenpaw's Sash"},
+    ["Greenpaw's Sash"] = {"Grizzlehide Belt","Might of the Timbermaw"},
 	
 	["Lava Belt"] = {"Torturer's Girdle"},
     ["Torturer's Girdle"] = {"Lava Belt"},
@@ -1192,8 +1718,9 @@ DisplayIdDB= {
     ["Green Leather Belt"] = {"Blackcowl Sash"},
     ["Blackcowl Sash"] = {"Green Leather Belt"},
 
-    ["Reinforced Leather Belt"] = {"Bloody Gladiator's Belt"},
-    ["Bloody Gladiator's Belt"] = {"Reinforced Leather Belt"},
+    ["Reinforced Leather Belt"] = {"Bloody Gladiator's Belt","Belt of Forgiving"},
+    ["Bloody Gladiator's Belt"] = {"Reinforced Leather Belt","Belt of Forgiving"},
+    ["Belt of Forgiving"] = {"Reinforced Leather Belt","Bloody Gladiator's Belt"},
 
     ["Belt of Archaic Power"] = {"Marshal's Silk Sash","Marshal's Dreadweave Sash","Marshal's Satin Sash","Overcharged Belt"},
     ["Marshal's Silk Sash"] = {"Belt of Archaic Power","Marshal's Dreadweave Sash","Marshal's Satin Sash","Overcharged Belt"},
@@ -1211,8 +1738,9 @@ DisplayIdDB= {
     ["Bloody Gladiator's Cord"] = {"Seapost Girdle"},
     ["Seapost Girdle"] = {"Bloody Gladiator's Cord"},
 
-    ["Bonelink Belt"] = {"Stoneslate Belt"},
-    ["Stoneslate Belt"] = {"Bonelink Belt"},
+    ["Bonelink Belt"] = {"Stoneslate Belt","Swampguard Girdle"},
+    ["Stoneslate Belt"] = {"Bonelink Belt","Swampguard Girdle"},
+    ["Swampguard Girdle"] = {"Bonelink Belt","Stoneslate Belt"},
 
     ["Belt of the Gladiator"] = {"Arena Belt"},
     ["Arena Belt"] = {"Belt of the Gladiator"},
@@ -1292,8 +1820,9 @@ DisplayIdDB= {
     ["Indomitable Belt"] = {"Cabalist Belt","Serpentskin Girdle","Clutch of Hivaxxis"},
     ["Clutch of Hivaxxis"] = {"Cabalist Belt","Serpentskin Girdle","Indomitable Belt"},
 
-    ["Burnt Leather Belt"] = {"Tribal Belt"},
-    ["Tribal Belt"] = {"Burnt Leather Belt"},
+    ["Burnt Leather Belt"] = {"Tribal Belt","Greatfather Winter's Belt"},
+    ["Tribal Belt"] = {"Burnt Leather Belt","Greatfather Winter's Belt"},
+    ["Greatfather Winter's Belt"] = {"Burnt Leather Belt","Tribal Belt"},
 
     ["Warped Leather Belt"] = {"Aquarius Belt","Unstable Belt"},
     ["Aquarius Belt"] = {"Warped Leather Belt","Unstable Belt"},
@@ -1316,9 +1845,10 @@ DisplayIdDB= {
     ["Tharg's Shoelace"] = {"Raptor Hide Belt","Wolf Rider's Belt"},
     ["Wolf Rider's Belt"] = {"Raptor Hide Belt","Tharg's Shoelace"},
 
-    ["Nightshade Girdle"] = {"Imposing Belt","Grand Belt"},
-    ["Imposing Belt"] = {"Nightshade Girdle","Grand Belt"},
-    ["Grand Belt"] = {"Nightshade Girdle","Imposing Belt"},
+    ["Nightshade Girdle"] = {"Imposing Belt","Grand Belt","Worg Rider Sash"},
+    ["Imposing Belt"] = {"Nightshade Girdle","Grand Belt","Worg Rider Sash"},
+    ["Grand Belt"] = {"Nightshade Girdle","Imposing Belt","Worg Rider Sash"},
+    ["Worg Rider Sash"] = {"Nightshade Girdle","Imposing Belt","Grand Belt"},
 
     ["Hibernal Sash"] = {"Venomshroud Belt"},
     ["Venomshroud Belt"] = {"Hibernal Sash"},
@@ -1367,6 +1897,82 @@ DisplayIdDB= {
     ["Girdle of Elemental Fury"] = {"Grasp of the Fallen Emperor"},
 
     -- legs
+    ["Copper Scale Leggings"] = {"Copper Chain Pants"},
+    ["Copper Chain Pants"] = {"Copper Scale Leggings"},
+
+    ["Jinxed Hoodoo Kilt"] = {"Prancing Dryad Dress-Skirt"},
+    ["Prancing Dryad Dress-Skirt"] = {"Jinxed Hoodoo Kilt"},
+
+    ["Turtle Scale Leggings"] = {"Leggings of Stonard"},
+    ["Leggings of Stonard"] = {"Turtle Scale Leggings"},
+
+    ["Fire Hardened Leggings"] = {"Legplates of the Raider"},
+    ["Legplates of the Raider"] = {"Fire Hardened Leggings"},
+
+    ["Firepike's Lucky Trousers"] = {"Blackened Defias Leggings"},
+    ["Blackened Defias Leggings"] = {"Firepike's Lucky Trousers"},
+
+    ["Handstitched Linen Britches"] = {"Flame-retardant Britches"},
+    ["Flame-retardant Britches"] = {"Handstitched Linen Britches"},
+
+    ["Patchwork Pants"] = {"Torn Pants"},
+    ["Torn Pants"] = {"Patchwork Pants"},
+
+    ["Ebony Flame Gloves"] = {"Fusemaster Mitts"},
+    ["Fusemaster Mitts"] = {"Ebony Flame Gloves"},
+
+    ["Elunarian Sarong"] = {"Swampseeker's Kilt"},
+    ["Swampseeker's Kilt"] = {"Elunarian Sarong"},
+
+    ["Ranger Leggings"] = {"Tel Co. Jungle Pants"},
+    ["Tel Co. Jungle Pants"] = {"Ranger Leggings"},
+
+    ["Wizardweave Leggings"] = {"Breaches of Commitment"},
+    ["Breaches of Commitment"] = {"Wizardweave Leggings"},
+
+    ["Brown Linen Pants"] = {"Ragged Cloth Pants"},
+    ["Ragged Cloth Pants"] = {"Brown Linen Pants"},
+
+    ["Lord's Legguards"] = {"Maul'ogg Thighguards"},
+    ["Maul'ogg Thighguards"] = {"Lord's Legguards"},
+
+    ["Greenweave Leggings"] = {"Aquaweave Leggings"},
+    ["Aquaweave Leggings"] = {"Greenweave Leggings"},
+
+    ["Phalanx Leggings"] = {"Corsair's Leggings"},
+    ["Corsair's Leggings"] = {"Phalanx Leggings"},
+
+    ["Cross-stitched Pants"] = {"Dirty Trousers"},
+    ["Dirty Trousers"] = {"Cross-stitched Pants"},
+
+    ["Stonemason Trousers"] = {"Prospect Leggings"},
+    ["Prospect Leggings"] = {"Stonemason Trousers"},
+
+    ["Brambleweed Leggings"] = {"Razzari Tribal Slacks"},
+    ["Razzari Tribal Slacks"] = {"Brambleweed Leggings"},
+
+    ["Dark Leather Pants"] = {"Nomadic Pants"},
+    ["Nomadic Pants"] = {"Dark Leather Pants"},
+
+    ["Protector Legguards"] = {"Sandmoon Greaves"},
+    ["Sandmoon Greaves"] = {"Protector Legguards"},
+
+    ["Guardian Pants"] = {"Firecracker Trousers","Old Venture Co. Pants"},
+    ["Firecracker Trousers"] = {"Guardian Pants","Old Venture Co. Pants"},
+    ["Old Venture Co. Pants"] = {"Guardian Pants","Firecracker Trousers"},
+
+    ["Lace Pants"] = {"Island Dungarees"},
+    ["Island Dungarees"] = {"Lace Pants"},
+
+    ["Durable Pants"] = {"Hollow-Thread Trousers"},
+    ["Hollow-Thread Trousers"] = {"Durable Pants"},
+
+    ["Cadet Leggings"] = {"Deepfrond Leggings"},
+    ["Deepfrond Leggings"] = {"Cadet Leggings"},
+
+    ["Augmented Chain Leggings"] = {"Gilneas Brigade Leggings"},
+    ["Gilneas Brigade Leggings"] = {"Augmented Chain Leggings"},
+
     ["Bloodstained Legplates"] = {"Crimson Defender's Leggings"},
     ["Crimson Defender's Leggings"] = {"Bloodstained Legplates"},
 	
@@ -1443,8 +2049,9 @@ DisplayIdDB= {
     ["Rough Bronze Leggings"] = {"Overlinked Chain Pants"},
     ["Overlinked Chain Pants"] = {"Rough Bronze Leggings"},
 
-    ["Laminated Scale Pants"] = {"Brass Scale Pants"},
-    ["Brass Scale Pants"] = {"Laminated Scale Pants"},
+    ["Laminated Scale Pants"] = {"Brass Scale Pants","Crystalforged Leggings"},
+    ["Brass Scale Pants"] = {"Laminated Scale Pants","Crystalforged Leggings"},
+    ["Crystalforged Leggings"] = {"Laminated Scale Pants","Brass Scale Pants"},
 
     ["Sea Dog Britches"] = {"Beaded Britches"},
     ["Beaded Britches"] = {"Sea Dog Britches"},
@@ -1606,6 +2213,76 @@ DisplayIdDB= {
     ["Sentinel's Leather Pants"] = {"Outrider's Leather Pants"},
 
     -- feet
+    ["Excelsior Boots"] = {"Sternrock Trudgers"},
+    ["Sternrock Trudgers"] = {"Excelsior Boots"},
+
+    ["Burnt Leather Boots"] = {"Charred Boots"},
+    ["Charred Boots"] = {"Burnt Leather Boots"},
+
+    ["Feet of the Lynx"] = {"Horseskin Boots"},
+    ["Horseskin Boots"] = {"Feet of the Lynx"},
+
+    ["Blackrock Boots"] = {"Blackstone Work Boots"},
+    ["Blackstone Work Boots"] = {"Blackrock Boots"},
+
+    ["Primal Boots"] = {"Demon Skin Boots"},
+    ["Demon Skin Boots"] = {"Primal Boots"},
+
+    ["Quel'dorei Guardian's Boots"] = {"Thalassian Sentinel Boots"},
+    ["Thalassian Sentinel Boots"] = {"Quel'dorei Guardian's Boots"},
+
+    ["Embossed Leather Boots"] = {"Lightkeeping Boots"},
+    ["Lightkeeping Boots"] = {"Embossed Leather Boots"},
+
+    ["Nocturnal Shoes"] = {"Oil Splattered Boots"},
+    ["Oil Splattered Boots"] = {"Nocturnal Shoes"},
+
+    ["Gray Fur Booties"] = {"Oilrag Boots"},
+    ["Oilrag Boots"] = {"Gray Fur Booties"},
+
+    ["Interlaced Boots"] = {"Westfall Rancher Boots"},
+    ["Westfall Rancher Boots"] = {"Interlaced Boots"},
+
+    ["Infantry Boots"] = {"Prospector Battle Boots"},
+    ["Prospector Battle Boots"] = {"Infantry Boots"},
+
+    ["Inscribed Leather Boots"] = {"Lighthouse Keeper Boots"},
+    ["Lighthouse Keeper Boots"] = {"Inscribed Leather Boots"},
+
+    ["Dark Leather Boots"] = {"Stormlight Boots"},
+    ["Stormlight Boots"] = {"Dark Leather Boots"},
+
+    ["Platemail Boots"] = {"Inlaid Plate Boots"},
+    ["Inlaid Plate Boots"] = {"Platemail Boots"},
+
+    ["Patchwork Shoes"] = {"Wet Socks"},
+    ["Wet Socks"] = {"Patchwork Shoes"},
+
+    ["Cadet Boots"] = {"Painted Chain Boots"},
+    ["Painted Chain Boots"] = {"Cadet Boots"},
+
+    ["Coal Drudgers"] = {"Bard's Boots"},
+    ["Bard's Boots"] = {"Coal Drudgers"},
+
+    ["Phalanx Boots"] = {"Tidehunter Greaves"},
+    ["Tidehunter Greaves"] = {"Phalanx Boots"},
+
+    ["Soft Fur-lined Shoes"] = {"Woodland Boots"},
+    ["Woodland Boots"] = {"Soft Fur-lined Shoes"},
+
+    ["Durable Boots"] = {"Blackheart Boots"},
+    ["Blackheart Boots"] = {"Durable Boots"},
+
+    ["Thin Cloth Shoes"] = {"Web Covered Shoes"},
+    ["Web Covered Shoes"] = {"Thin Cloth Shoes"},
+
+    ["Ragged Leather Boots"] = {"Ranger Training Boots","Stitched Leather Boots"},
+    ["Ranger Training Boots"] = {"Ragged Leather Boots","Stitched Leather Boots"},
+    ["Stitched Leather Boots"] = {"Ragged Leather Boots","Ranger Training Boots"},
+
+    ["Trailblazer Boots"] = {"Verdant Boots"},
+    ["Verdant Boots"] = {"Trailblazer Boots"},
+
     ["Verdant Dreamer's Boots"] = {"Marshtreader Slippers"},
     ["Marshtreader Slippers"] = {"Verdant Dreamer's Boots"},
 
@@ -1660,8 +2337,9 @@ DisplayIdDB= {
     ["Sandals of the Insurgent"] = {"Sandals of Inner Peace"},
     ["Sandals of Inner Peace"] = {"Sandals of the Insurgent"},
 
-    ["Junglewalker Sandals"] = {"Sandals of Lucidity"},
-    ["Sandals of Lucidity"] = {"Junglewalker Sandals"},
+    ["Junglewalker Sandals"] = {"Sandals of Lucidity","Sootwalker Sandals"},
+    ["Sandals of Lucidity"] = {"Junglewalker Sandals","Sootwalker Sandals"},
+    ["Sootwalker Sandals"] = {"Junglewalker Sandals","Sandals of Lucidity"},
 
     ["Bramblewood Boots"] = {"Dragonspur Boots"},
     ["Dragonspur Boots"] = {"Bramblewood Boots"},
@@ -1669,8 +2347,9 @@ DisplayIdDB= {
     ["Frostsaber Boots"] = {"Windwalker Boots"},
     ["Windwalker Boots"] = {"Frostsaber Boots"},
 
-    ["Laminated Scale Boots"] = {"Basilisk Scale Boots"},
-    ["Basilisk Scale Boots"] = {"Laminated Scale Boots"},
+    ["Laminated Scale Boots"] = {"Basilisk Scale Boots","Polished Scale Boots"},
+    ["Basilisk Scale Boots"] = {"Laminated Scale Boots","Polished Scale Boots"},
+    ["Polished Scale Boots"] = {"Laminated Scale Boots","Basilisk Scale Boots"},
 
     ["Savage Gladiator Greaves"] = {"Blackstone Stompers","Greaves of the Elusive"},
     ["Blackstone Stompers"] = {"Savage Gladiator Greaves","Greaves of the Elusive"},
@@ -1716,16 +2395,18 @@ DisplayIdDB= {
     ["Darkspear Boots"] = {"Rough Bronze Boots"},
     ["Rough Bronze Boots"] = {"Darkspear Boots"},
 
-    ["Worn Mail Boots"] = {"Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots"},
-    ["Laced Mail Boots"] = {"Worn Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots"},
-    ["Linked Chain Boots"] = {"Worn Mail Boots","Laced Mail Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots"},
-    ["Reinforced Chain Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots"},
-    ["Tarnished Chain Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots"},
-    ["Light Mail Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots"},
-    ["Loose Chain Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots"},
-    ["Flimsy Chain Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Outfitter Boots","Double Mail Boots"},
-    ["Outfitter Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Double Mail Boots"},
-    ["Double Mail Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Outfitter Boots","Flimsy Chain Boots"},
+    ["Worn Mail Boots"] = {"Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
+    ["Laced Mail Boots"] = {"Worn Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
+    ["Linked Chain Boots"] = {"Worn Mail Boots","Laced Mail Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
+    ["Reinforced Chain Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
+    ["Tarnished Chain Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
+    ["Light Mail Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
+    ["Loose Chain Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
+    ["Flimsy Chain Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
+    ["Outfitter Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
+    ["Double Mail Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Outfitter Boots","Flimsy Chain Boots","Scrapmetal Boots","Hardlink Boots"},
+    ["Scrapmetal Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Outfitter Boots","Flimsy Chain Boots","Double Mail Boots","Hardlink Boots"},
+    ["Hardlink Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Outfitter Boots","Flimsy Chain Boots","Double Mail Boots","Scrapmetal Boots"},
 
     ["Gold Militia Boots"] = {"Soldier's Boots"},
     ["Soldier's Boots"] = {"Gold Militia Boots"},
@@ -1776,8 +2457,9 @@ DisplayIdDB= {
     ["Imperial Red Boots"] = {"Rancor Boots"},
     ["Rancor Boots"] = {"Imperial Red Boots"},
 
-    ["Soft Wool Boots"] = {"Mystic's Slippers"},
-    ["Mystic's Slippers"] = {"Soft Wool Boots"},
+    ["Soft Wool Boots"] = {"Mystic's Slippers","Wolfskin Boots"},
+    ["Mystic's Slippers"] = {"Soft Wool Boots","Wolfskin Boots"},
+    ["Wolfskin Boots"] = {"Soft Wool Boots","Mystic's Slippers"},
 
     ["Web-covered Boots"] = {"Simple Linen Boots"},
     ["Simple Linen Boots"] = {"Web-covered Boots"},
@@ -1817,8 +2499,9 @@ DisplayIdDB= {
     ["Buccaneer's Boots"] = {"Mistwalker Boots","Bloodsail Boots"},
     ["Bloodsail Boots"] = {"Mistwalker Boots","Buccaneer's Boots"},
 
-    ["Warrior's Boots"] = {"Battle Chain Boots"},
-    ["Battle Chain Boots"] = {"Warrior's Boots"},
+    ["Warrior's Boots"] = {"Battle Chain Boots","Deathguard Boots"},
+    ["Battle Chain Boots"] = {"Warrior's Boots","Deathguard Boots"},
+    ["Deathguard Boots"] = {"Warrior's Boots","Battle Chain Boots"},
 
     ["Veteran Boots"] = {"Brackwater Chain Greaves"},
     ["Brackwater Chain Greaves"] = {"Veteran Boots"},
@@ -1850,6 +2533,18 @@ DisplayIdDB= {
     ["Dunestalker's Boots"] = {"Sandstorm Boots"},
 
     -- bow
+    ["Lunaris Bow"] = {"Bow of Alah’Thalas"},
+    ["Bow of Alah’Thalas"] = {"Lunaris Bow"},
+
+    ["Cliffrunner's Aim"] = {"'Jadewood' Longbow"},
+    ["'Jadewood' Longbow"] = {"Cliffrunner's Aim"},
+
+    ["Primitive Bow"] = {"Worn Wooden Bow"},
+    ["Worn Wooden Bow"] = {"Primitive Bow"},
+
+    ["Laminated Recurve Bow"] = {"Bow of the Night Huntress"},
+    ["Bow of the Night Huntress"] = {"Laminated Recurve Bow"},
+
     ["Ranger Bow"] = {"Bow of the Grove"},
     ["Bow of the Grove"] = {"Ranger Bow"},
 
@@ -1859,8 +2554,9 @@ DisplayIdDB= {
     ["Gorewood Bow"] = {"Nature's Call"},
     ["Nature's Call"] = {"Gorewood Bow"},
 
-    ["Fine Shortbow"] = {"Longbow"},
-    ["Longbow"] = {"Fine Shortbow"},
+    ["Fine Shortbow"] = {"Longbow","Brackenwall Longbow"},
+    ["Longbow"] = {"Fine Shortbow","Brackenwall Longbow"},
+    ["Brackenwall Longbow"] = {"Fine Shortbow","Longbow"},
 
     ["Worn Shortbow"] = {"Ogre Toothpick Shooter"},
     ["Ogre Toothpick Shooter"] = {"Worn Shortbow"},
@@ -1883,6 +2579,21 @@ DisplayIdDB= {
     ["Ancient Bone Bow"] = {"High Warlord's Recurve"},
 
     -- gun
+    ["Owlsight Rifle"] = {"Brave's Rifle"},
+    ["Brave's Rifle"] = {"Owlsight Rifle"},
+
+    ["Beasthunter's Blunderbuss"] = {"Brigade Rifle"},
+    ["Brigade Rifle"] = {"Beasthunter's Blunderbuss"},
+
+    ["Skorn's Rifle"] = {"Miscalibrated Rifle"},
+    ["Miscalibrated Rifle"] = {"Skorn's Rifle"},
+
+    ["Rough Boomstick"] = {"Polished Boomstick"},
+    ["Polished Boomstick"] = {"Rough Boomstick"},
+
+    ["Light Hunting Rifle"] = {"Hawkwind Rifle"},
+    ["Hawkwind Rifle"] = {"Light Hunting Rifle"},
+
     ["Blastershot Launcher"] = {"Flintlocke's Hand Cannon"},
     ["Flintlocke's Hand Cannon"] = {"Blastershot Launcher"},
 
@@ -1895,8 +2606,9 @@ DisplayIdDB= {
     ["Solid Blunderbuss"] = {"Lovingly Crafted Boomstick"},
     ["Lovingly Crafted Boomstick"] = {"Solid Blunderbuss"},
 
-    ["Moonsight Rifle"] = {"Burstshot Harquebus"},
-    ["Burstshot Harquebus"] = {"Moonsight Rifle"},
+    ["Moonsight Rifle"] = {"Burstshot Harquebus","Wobblefree Fizz-rifle"},
+    ["Burstshot Harquebus"] = {"Moonsight Rifle","Wobblefree Fizz-rifle"},
+    ["Wobblefree Fizz-rifle"] = {"Moonsight Rifle","Burstshot Harquebus"},
 
     ["Precisely Calibrated Boomstick"] = {"Sharpshooter Harquebus"},
     ["Sharpshooter Harquebus"] = {"Precisely Calibrated Boomstick"},
@@ -1908,14 +2620,16 @@ DisplayIdDB= {
     ["Mithril Blunderbuss"] = {"Galgann's Fireblaster","Willey's Portable Howitzer"},
     ["Willey's Portable Howitzer"] = {"Galgann's Fireblaster","Mithril Blunderbuss"},
 
-    ["Rust-covered Blunderbuss"] = {"Cheap Blunderbuss"},
-    ["Cheap Blunderbuss"] = {"Rust-covered Blunderbuss"},
+    ["Rust-covered Blunderbuss"] = {"Cheap Blunderbuss","Water-logged Musket"},
+    ["Cheap Blunderbuss"] = {"Rust-covered Blunderbuss","Water-logged Musket"},
+    ["Water-logged Musket"] = {"Rust-covered Blunderbuss","Cheap Blunderbuss"},
 
     ["Shoddy Blunderbuss"] = {"Long-barreled Musket"},
     ["Long-barreled Musket"] = {"Shoddy Blunderbuss"},
 
-    ["Hunter's Boomstick"] = {"Hunting Rifle"},
-    ["Hunting Rifle"] = {"Hunter's Boomstick"},
+    ["Hunter's Boomstick"] = {"Hunting Rifle","Otherworldly Rifle"},
+    ["Hunting Rifle"] = {"Hunter's Boomstick","Otherworldly Rifle"},
+    ["Otherworldly Rifle"] = {"Hunter's Boomstick","Hunting Rifle"},
 
     ["Ironweaver"] = {"Smokey's Explosive Launcher"},
     ["Smokey's Explosive Launcher"] = {"Ironweaver"},
@@ -1924,8 +2638,18 @@ DisplayIdDB= {
     ["Crystal Slugthrower"] = {"Xorothian Firestick"},
 
     -- crossbow
-    ["Light Crossbow"] = {"Fine Light Crossbow"},
-    ["Fine Light Crossbow"] = {"Light Crossbow"},
+    ["Stoneshatter"] = {"Stunning Crossbow"},
+    ["Stunning Crossbow"] = {"Stoneshatter"},
+
+    ["Steelarrow Crossbow"] = {"Lordaeron Rusty Crossbow"},
+    ["Lordaeron Rusty Crossbow"] = {"Steelarrow Crossbow"},
+
+    ["Heavy Crossbow"] = {"Goldplated Royal Crossbow"},
+    ["Goldplated Royal Crossbow"] = {"Heavy Crossbow"},
+
+    ["Light Crossbow"] = {"Fine Light Crossbow","Theramore Arbalest"},
+    ["Fine Light Crossbow"] = {"Light Crossbow","Theramore Arbalest"},
+    ["Theramore Arbalest"] = {"Light Crossbow","Fine Light Crossbow"},
 
     ["Carapace Spine Crossbow"] = {"Abomination Crossbow"},
     ["Abomination Crossbow"] = {"Carapace Spine Crossbow"},
@@ -1936,6 +2660,16 @@ DisplayIdDB= {
     ["Fahrad's Reloading Repeater"] = {"Blackcrow","Crystalpine Stinger","Heartseeking Crossbow"},
 
     -- wand
+    ["Dancing Flame"] = {"Crackling Zapper"},
+    ["Crackling Zapper"] = {"Dancing Flame"},
+
+    ["Gloom Wand"] = {"Webwood Branch","Withered Wand"},
+    ["Webwood Branch"] = {"Gloom Wand","Withered Wand"},
+    ["Withered Wand"] = {"Gloom Wand","Webwood Branch"},
+
+    ["Primitive Walking Stick"] = {"Crooked Tree Branch"},
+    ["Crooked Tree Branch"] = {"Primitive Walking Stick"},
+
     ["Cryptwatcher's Call"] = {"Plaguerot Sprig"},
     ["Plaguerot Sprig"] = {"Cryptwatcher's Call"},
 	
@@ -1966,8 +2700,9 @@ DisplayIdDB= {
     ["Burning Wand"] = {"Pitchwood Wand"},
     ["Pitchwood Wand"] = {"Burning Wand"},
 
-    ["Wand of Decay"] = {"Necrotic Wand"},
-    ["Necrotic Wand"] = {"Wand of Decay"},
+    ["Wand of Decay"] = {"Necrotic Wand","Diathorus' Claw"},
+    ["Necrotic Wand"] = {"Wand of Decay","Diathorus' Claw"},
+    ["Diathorus' Claw"] = {"Wand of Decay","Necrotic Wand"},
 
     ["Gnomish Zapper"] = {"Wand of Arcane Potency"},
     ["Wand of Arcane Potency"] = {"Gnomish Zapper"},
@@ -1979,6 +2714,37 @@ DisplayIdDB= {
     ["Wand of the Whispering Dead"] = {"Wand of Fates"},
 
     -- dagger
+    ["Sharp Kitchen Knife"] = {"Rusted Pirate Dagger"},
+    ["Rusted Pirate Dagger"] = {"Sharp Kitchen Knife"},
+
+    ["Sharpened Letter Opener"] = {"Jeweled Letter Opener"},
+    ["Jeweled Letter Opener"] = {"Sharpened Letter Opener"},
+
+    ["War Knife"] = {"Shadowforge Skinner"},
+    ["Shadowforge Skinner"] = {"War Knife"},
+
+    ["Thun'grim's Dagger"] = {"Bleaktalon","Agal's Ambusher"},
+    ["Bleaktalon"] = {"Thun'grim's Dagger","Agal's Ambusher"},
+    ["Agal's Ambusher"] = {"Thun'grim's Dagger","Bleaktalon"},
+
+    ["Relic Blade"] = {"Blade of Caliban"},
+    ["Blade of Caliban"] = {"Relic Blade"},
+
+    ["Ritual Blade"] = {"The Dark Knife"},
+    ["The Dark Knife"] = {"Ritual Blade"},
+
+    ["Hunting Knife"] = {"Ornate Dagger of Jalvan"},
+    ["Ornate Dagger of Jalvan"] = {"Hunting Knife"},
+
+    ["Simple Dagger"] = {"Pocket Knife"},
+    ["Pocket Knife"] = {"Simple Dagger"},
+
+    ["Sentinel's Blade"] = {"Kaldorei Side-Blade"},
+    ["Kaldorei Side-Blade"] = {"Sentinel's Blade"},
+
+    ["Vampiric Kris"] = {"Chanting Blade"},
+    ["Chanting Blade"] = {"Vampiric Kris"},
+
     ["Barman Shanker"] = {"Broken Bottle"},
     ["Broken Bottle"] = {"Barman Shanker"},
 	
@@ -2014,39 +2780,45 @@ DisplayIdDB= {
     ["Glinting Steel Dagger"] = {"Fine Pointed Dagger","Spiked Dagger"},
     ["Spiked Dagger"] = {"Fine Pointed Dagger","Glinting Steel Dagger"},
 
-    ["Anvilmar Knife"] = {"Militia Dagger","Forsaken Dagger","Thistlewood Dagger"},
-    ["Militia Dagger"] = {"Anvilmar Knife","Forsaken Dagger","Thistlewood Dagger"},
-    ["Forsaken Dagger"] = {"Anvilmar Knife","Militia Dagger","Thistlewood Dagger"},
-    ["Thistlewood Dagger"] = {"Anvilmar Knife","Militia Dagger","Forsaken Dagger"},
+    ["Anvilmar Knife"] = {"Militia Dagger","Forsaken Dagger","Thistlewood Dagger","Camping Knife"},
+    ["Militia Dagger"] = {"Anvilmar Knife","Forsaken Dagger","Thistlewood Dagger","Camping Knife"},
+    ["Forsaken Dagger"] = {"Anvilmar Knife","Militia Dagger","Thistlewood Dagger","Camping Knife"},
+    ["Thistlewood Dagger"] = {"Anvilmar Knife","Militia Dagger","Forsaken Dagger","Camping Knife"},
+    ["Camping Knife"] = {"Anvilmar Knife","Militia Dagger","Forsaken Dagger","Thistlewood Dagger"},
 
     ["Whittling Knife"] = {"Fisherman Knife","Bloodstained Knife"},
     ["Fisherman Knife"] = {"Whittling Knife","Bloodstained Knife"},
     ["Bloodstained Knife"] = {"Whittling Knife","Fisherman Knife"},
 
-    ["Worn Dagger"] = {"Deadman Dagger","Small Knife"},
-    ["Deadman Dagger"] = {"Worn Dagger","Small Knife"},
-    ["Small Knife"] = {"Worn Dagger","Deadman Dagger"},
+    ["Worn Dagger"] = {"Deadman Dagger","Small Knife","The 'Slip' Dagger"},
+    ["Deadman Dagger"] = {"Worn Dagger","Small Knife","The 'Slip' Dagger"},
+    ["Small Knife"] = {"Worn Dagger","Deadman Dagger","The 'Slip' Dagger"},
+    ["The 'Slip' Dagger"] = {"Worn Dagger","Deadman Dagger","Small Knife"},
 
     ["Cross Dagger"] = {"Distracting Dagger"},
     ["Distracting Dagger"] = {"Cross Dagger"},
 
-    ["Small Dagger"] = {"Scuffed Dagger"},
-    ["Scuffed Dagger"] = {"Small Dagger"},
+    ["Small Dagger"] = {"Scuffed Dagger","Arcanist Dagger"},
+    ["Scuffed Dagger"] = {"Small Dagger","Arcanist Dagger"},
+    ["Arcanist Dagger"] = {"Small Dagger","Scuffed Dagger"},
 
     ["Deft Stiletto"] = {"Deadly Bronze Poniard"},
     ["Deadly Bronze Poniard"] = {"Deft Stiletto"},
 
-    ["Small Hand Blade"] = {"Camping Knife"},
-    ["Camping Knife"] = {"Small Hand Blade"},
+    ["Small Hand Blade"] = {"Camping Knife","Balanced Hand Blade"},
+    ["Camping Knife"] = {"Small Hand Blade","Balanced Hand Blade"},
+    ["Balanced Hand Blade"] = {"Small Hand Blade","Camping Knife"},
 
-    ["Torturing Poker"] = {"Flarethorn"},
-    ["Flarethorn"] = {"Torturing Poker"},
+    ["Torturing Poker"] = {"Flarethorn","Half-O-Staff"},
+    ["Flarethorn"] = {"Torturing Poker","Half-O-Staff"},
+    ["Half-O-Staff"] = {"Torturing Poker","Flarethorn"},
 
     ["Ebon Shiv"] = {"Thorium Stiletto"},
     ["Thorium Stiletto"] = {"Ebon Shiv"},
 
-    ["Serrated Knife"] = {"Battle Knife"},
-    ["Battle Knife"] = {"Serrated Knife"},
+    ["Serrated Knife"] = {"Battle Knife","Demonblood Dirk"},
+    ["Battle Knife"] = {"Serrated Knife","Demonblood Dirk"},
+    ["Demonblood Dirk"] = {"Serrated Knife","Battle Knife"},
 
     ["Lifeforce Dirk"] = {"Gemstone Dagger"},
     ["Gemstone Dagger"] = {"Lifeforce Dirk"},
@@ -2096,20 +2868,53 @@ DisplayIdDB= {
     ["Left-Handed Brass Knuckles"] = {"Right-Handed Brass Knuckles"},
 
     -- staff
+    ["Priestess of Elune's Staff"] = {"Tyrande's Staff"},
+    ["Tyrande's Staff"] = {"Priestess of Elune's Staff"},
+
+    ["Arcane Staff"] = {"Pearltip Staff"},
+    ["Pearltip Staff"] = {"Arcane Staff"},
+
+    ["Dreamwatcher Staff"] = {"Femur Staff"},
+    ["Femur Staff"] = {"Dreamwatcher Staff"},
+
+    ["Frostmane Staff"] = {"Powered Iron Staff"},
+    ["Powered Iron Staff"] = {"Frostmane Staff"},
+
+    ["Witching Stave"] = {"Infused Briarwood Staff"},
+    ["Infused Briarwood Staff"] = {"Witching Stave"},
+
+    ["Battle Staff"] = {"Telraz's Jeweled Staff"},
+    ["Telraz's Jeweled Staff"] = {"Battle Staff"},
+
+    ["Long Bo Staff"] = {"Staff of Shackled Lightning"},
+    ["Staff of Shackled Lightning"] = {"Long Bo Staff"},
+
+    ["Crescent Staff"] = {"Moonseeker Staff"},
+    ["Moonseeker Staff"] = {"Crescent Staff"},
+
+    ["Gnarled Short Staff"] = {"Staff of Insom'ni"},
+    ["Staff of Insom'ni"] = {"Gnarled Short Staff"},
+
+    ["Foamspittle Staff"] = {"Staff of the Arcane Path","Staff of the Ogre Seer"},
+    ["Staff of the Arcane Path"] = {"Foamspittle Staff","Staff of the Ogre Seer"},
+    ["Staff of the Ogre Seer"] = {"Foamspittle Staff","Staff of the Arcane Path"},
+
     ["Magus Long Staff"] = {"Sealbreaker Staff"},
     ["Sealbreaker Staff"] = {"Magus Long Staff"},
 	
-    ["Diviner Long Staff"] = {"Verdant Cane"},
-    ["Verdant Cane"] = {"Diviner Long Staff"},
-	
+    ["Diviner Long Staff"] = {"Verdant Cane","Evermoon Staff"},
+    ["Verdant Cane"] = {"Diviner Long Staff","Evermoon Staff"},
+    ["Evermoon Staff"] = {"Diviner Long Staff","Verdant Cane"},
+
 	["Cryptbone Staff"] = {"Plaguerot Staff"},
     ["Plaguerot Staff"] = {"Cryptbone Staff"},
 	
 	["Farmer's Broom"] = {"Stablehand Broom"},
     ["Stablehand Broom"] = {"Farmer's Broom"},
 
-    ["Enchanted Azsharite Felbane Staff"] = {"Doomcaller Staff"},
-    ["Doomcaller Staff"] = {"Enchanted Azsharite Felbane Staff"},
+    ["Enchanted Azsharite Felbane Staff"] = {"Doomcaller Staff","Varimathras' Cunning"},
+    ["Doomcaller Staff"] = {"Enchanted Azsharite Felbane Staff","Varimathras' Cunning"},
+    ["Varimathras' Cunning"] = {"Enchanted Azsharite Felbane Staff","Doomcaller Staff"},
 	
 	["Lord Valthalak's Staff of Command"] = {"Timewarper's Staff"},
     ["Timewarper's Staff"] = {"Lord Valthalak's Staff of Command"},
@@ -2120,14 +2925,16 @@ DisplayIdDB= {
     ["Windweaver Staff"] = {"Batu'kar of the Second Khan"},
     ["Batu'kar of the Second Khan"] = {"Windweaver Staff"},
 
-    ["Balanced Fighting Stick"] = {"Oakthrush Staff"},
-    ["Oakthrush Staff"] = {"Balanced Fighting Stick"},
+    ["Balanced Fighting Stick"] = {"Oakthrush Staff","Smooth Wooden Staff"},
+    ["Oakthrush Staff"] = {"Balanced Fighting Stick","Smooth Wooden Staff"},
+    ["Smooth Wooden Staff"] = {"Balanced Fighting Stick","Oakthrush Staff"},
 
-    ["Spellforce Rod"] = {"Lorekeeper's Staff","Moonshadow Stave","Guardian Staff","Staff of Ushered Ruination"},
-    ["Lorekeeper's Staff"] = {"Spellforce Rod","Moonshadow Stave","Guardian Staff","Staff of Ushered Ruination"},
-    ["Moonshadow Stave"] = {"Spellforce Rod","Lorekeeper's Staff","Guardian Staff","Staff of Ushered Ruination"},
-    ["Guardian Staff"] = {"Spellforce Rod","Lorekeeper's Staff","Moonshadow Stave","Staff of Ushered Ruination"},
-    ["Staff of Ushered Ruination"] = {"Spellforce Rod","Lorekeeper's Staff","Moonshadow Stave","Guardian Staff"},
+    ["Spellforce Rod"] = {"Lorekeeper's Staff","Moonshadow Stave","Guardian Staff","Staff of Ushered Ruination","Hexxer Staff"},
+    ["Lorekeeper's Staff"] = {"Spellforce Rod","Moonshadow Stave","Guardian Staff","Staff of Ushered Ruination","Hexxer Staff"},
+    ["Moonshadow Stave"] = {"Spellforce Rod","Lorekeeper's Staff","Guardian Staff","Staff of Ushered Ruination","Hexxer Staff"},
+    ["Guardian Staff"] = {"Spellforce Rod","Lorekeeper's Staff","Moonshadow Stave","Staff of Ushered Ruination","Hexxer Staff"},
+    ["Staff of Ushered Ruination"] = {"Spellforce Rod","Lorekeeper's Staff","Moonshadow Stave","Guardian Staff","Hexxer Staff"},
+    ["Hexxer Staff"] = {"Spellforce Rod","Lorekeeper's Staff","Moonshadow Stave","Guardian Staff","Staff of Ushered Ruination"},
 
     ["Heavy War Staff"] = {"Stout War Staff"},
     ["Stout War Staff"] = {"Heavy War Staff"},
@@ -2140,6 +2947,19 @@ DisplayIdDB= {
     ["Cleric's Bent Staff"] = {"Redemption","Staff of the Purifier"},
 
     -- polearm
+    ["Pitchfork"] = {"Livingstone Pitchfork"},
+    ["Livingstone Pitchfork"] = {"Pitchfork"},
+
+    ["Eyegouger"] = {"Garran's Pike"},
+    ["Garran's Pike"] = {"Eyegouger"},
+
+    ["Bloodpike"] = {"Krog's Pike","Savage Spear"},
+    ["Krog's Pike"] = {"Bloodpike","Savage Spear"},
+    ["Savage Spear"] = {"Bloodpike","Krog's Pike"},
+
+    ["Diabolic Skiver"] = {"Halberd of the Bronze Defender"},
+    ["Halberd of the Bronze Defender"] = {"Diabolic Skiver"},
+
     ["The Needler"] = {"Satyr Poker"},
     ["Satyr Poker"] = {"The Needler"},
 	
@@ -2149,8 +2969,9 @@ DisplayIdDB= {
 	["Monstrous Glaive"] = {"Defender's Glaive"},
     ["Defender's Glaive"] = {"Monstrous Glaive"},
 
-    ["Headspike"] = {"Cryptkeeper's Pike"},
-    ["Cryptkeeper's Pike"] = {"Headspike"},
+    ["Headspike"] = {"Cryptkeeper's Pike","Ceremonial Gilnean Pike"},
+    ["Cryptkeeper's Pike"] = {"Headspike","Ceremonial Gilnean Pike"},
+    ["Ceremonial Gilnean Pike"] = {"Headspike","Cryptkeeper's Pike"},
 	
 	["Gargoyle's Bite"] = {"Sharpened Iron Bar"},
     ["Sharpened Iron Bar"] = {"Gargoyle's Bite"},
@@ -2159,6 +2980,18 @@ DisplayIdDB= {
     ["Hunting Spear"] = {"Jadestone Skewer"},
 
     -- 2h sword
+    ["X'caliboar"] = {"Blade of Marauder Kings"},
+    ["Blade of Marauder Kings"] = {"X'caliboar"},
+
+    ["Combatant Claymore"] = {"Sword of Laneron"},
+    ["Sword of Laneron"] = {"Combatant Claymore"},
+
+    ["Rusted Claymore"] = {"Rusted Bastard Sword"},
+    ["Rusted Bastard Sword"] = {"Rusted Claymore"},
+
+    ["Huge Ogre Sword"] = {"Garalon's Might"},
+    ["Garalon's Might"] = {"Huge Ogre Sword"},
+
 	["Wolfblood"] = {"Untempered Runeblade"},
     ["Untempered Runeblade"] = {"Wolfblood"},
 
@@ -2172,6 +3005,15 @@ DisplayIdDB= {
     ["Tapered Greatsword"] = {"Whetted Claymore"},
 
     -- 2h mace
+    ["The Pacifier"] = {"The Skull Smasher"},
+    ["The Skull Smasher"] = {"The Pacifier"},
+
+    ["Crushing Maul"] = {"Blackstone Basher"},
+    ["Blackstone Basher"] = {"Crushing Maul"},
+
+    ["Bonecracker"] = {"Harvest Golem Arm"},
+    ["Harvest Golem Arm"] = {"Bonecracker"},
+
     ["Steamrigged Servohammer"] = {"Spiked Club"},
     ["Spiked Club"] = {"Steamrigged Servohammer"},
 	
@@ -2187,23 +3029,38 @@ DisplayIdDB= {
     ["Tok'kar's Murloc Basher"] = {"Skullcracking Mace"},
     ["Skullcracking Mace"] = {"Tok'kar's Murloc Basher"},
 
-    ["Kobold Mining Shovel"] = {"Farmer's Shovel","Burrowing Shovel"},
-    ["Farmer's Shovel"] = {"Kobold Mining Shovel","Burrowing Shovel"},
-    ["Burrowing Shovel"] = {"Kobold Mining Shovel","Farmer's Shovel"},
+    ["Kobold Mining Shovel"] = {"Farmer's Shovel","Burrowing Shovel","Rusty Shovel","Garden Shovel"},
+    ["Farmer's Shovel"] = {"Kobold Mining Shovel","Burrowing Shovel","Rusty Shovel","Garden Shovel"},
+    ["Burrowing Shovel"] = {"Kobold Mining Shovel","Farmer's Shovel","Rusty Shovel","Garden Shovel"},
+    ["Rusty Shovel"] = {"Kobold Mining Shovel","Farmer's Shovel","Burrowing Shovel","Garden Shovel"},
+    ["Garden Shovel"] = {"Kobold Mining Shovel","Farmer's Shovel","Burrowing Shovel","Rusty Shovel"},
 
     ["Goblin Power Shovel"] = {"Silver Spade","The Shoveler"},
     ["Silver Spade"] = {"Goblin Power Shovel","The Shoveler"},
     ["The Shoveler"] = {"Goblin Power Shovel","Silver Spade"},
 
-    ["Goblin Smasher"] = {"Militia Warhammer","Anvilmar Sledge"},
-    ["Militia Warhammer"] = {"Goblin Smasher","Anvilmar Sledge"},
-    ["Anvilmar Sledge"] = {"Goblin Smasher","Militia Warhammer"},
+    ["Goblin Smasher"] = {"Militia Warhammer","Anvilmar Sledge","Bruiser Club"},
+    ["Militia Warhammer"] = {"Goblin Smasher","Anvilmar Sledge","Bruiser Club"},
+    ["Anvilmar Sledge"] = {"Goblin Smasher","Militia Warhammer","Bruiser Club"},
+    ["Bruiser Club"] = {"Goblin Smasher","Militia Warhammer","Anvilmar Sledge"},
 
     ["Kazon's Maul"] = {"Demolition Hammer","Thornroot Maul"},
     ["Demolition Hammer"] = {"Kazon's Maul","Thornroot Maul"},
     ["Thornroot Maul"] = {"Demolition Hammer","Kazon's Maul"},
 
     -- 2h axe
+    ["Massive Battle Axe"] = {"The Reaver"},
+    ["The Reaver"] = {"Massive Battle Axe"},
+
+    ["Midnight Axe"] = {"Baneful Edge"},
+    ["Baneful Edge"] = {"Midnight Axe"},
+
+    ["Vile Fin Battle Axe"] = {"Foe Chopper"},
+    ["Foe Chopper"] = {"Vile Fin Battle Axe"},
+
+    ["Death Striker"] = {"Scrapforged Greataxe"},
+    ["Scrapforged Greataxe"] = {"Death Striker"},
+
     ["Corpsemaker"] = {"Shadowcaller Axe"},
     ["Shadowcaller Axe"] = {"Corpsemaker"},
 	
@@ -2222,6 +3079,33 @@ DisplayIdDB= {
     ["The Axe of Severing"] = {"Prospector Axe"},
 
     -- axe
+    ["Nathrezim Wedge"] = {"Wraith Scythe"},
+    ["Wraith Scythe"] = {"Nathrezim Wedge"},
+
+    ["Guillotine Axe"] = {"Axe of Fargosh"},
+    ["Axe of Fargosh"] = {"Guillotine Axe"},
+
+    ["Fish Gutter"] = {"Troll Hunter's Axe"},
+    ["Troll Hunter's Axe"] = {"Fish Gutter"},
+
+    ["Hedgecutter"] = {"Axe of the Wildtusk"},
+    ["Axe of the Wildtusk"] = {"Hedgecutter"},
+
+    ["Greater Scythe"] = {"Skystormer Axe"},
+    ["Skystormer Axe"] = {"Greater Scythe"},
+
+    ["Callous Axe"] = {"Dustwrought Cleaver"},
+    ["Dustwrought Cleaver"] = {"Callous Axe"},
+
+    ["Guerrilla Cleaver"] = {"Worgen Cleaver"},
+    ["Worgen Cleaver"] = {"Guerrilla Cleaver"},
+
+    ["Worn Axe"] = {"Ebonmere Reaver"},
+    ["Ebonmere Reaver"] = {"Worn Axe"},
+
+    ["Orcish Cleaver"] = {"Ebonmere Axe"},
+    ["Ebonmere Axe"] = {"Orcish Cleaver"},
+
     ["Shadowreaper"] = {"Gloom Reaper"},
     ["Gloom Reaper"] = {"Shadowreaper"},
 	
@@ -2251,8 +3135,9 @@ DisplayIdDB= {
     ["Force of the Hippogryph"] = {"Axe of the Ebon Drake"},
     ["Axe of the Ebon Drake"] = {"Force of the Hippogryph"},
 
-    ["Cleaver"] = {"Deadmines Cleaver"},
-    ["Deadmines Cleaver"] = {"Cleaver"},
+    ["Cleaver"] = {"Deadmines Cleaver","Velden's Backup Cleaver"},
+    ["Deadmines Cleaver"] = {"Cleaver","Velden's Backup Cleaver"},
+    ["Velden's Backup Cleaver"] = {"Cleaver","Deadmines Cleaver"},
 
     ["Stonesplinter Axe"] = {"Rodentia Flint Axe"},
     ["Rodentia Flint Axe"] = {"Stonesplinter Axe"},
@@ -2268,11 +3153,51 @@ DisplayIdDB= {
     ["Scythe of the Unseen Path"] = {"Sickle of Unyielding Strength"},
 
     -- mace
+    ["Scarlet Pillar"] = {"The Jackhammer"},
+    ["The Jackhammer"] = {"Scarlet Pillar"},
+
+    ["Blackrock Mace"] = {"Lightgraced Mallet"},
+    ["Lightgraced Mallet"] = {"Blackrock Mace"},
+
+    ["Deckman's Cudgel"] = {"Heavy Spiked Mace"},
+    ["Heavy Spiked Mace"] = {"Deckman's Cudgel"},
+
+    ["Leaden Mace"] = {"Enforcer's Fist"},
+    ["Enforcer's Fist"] = {"Leaden Mace"},
+
+    ["Heaven's Light"] = {"Rubyheart Mallet"},
+    ["Rubyheart Mallet"] = {"Heaven's Light"},
+
+    ["Carpenter's Mallet"] = {"Gnoll Slammer"},
+    ["Gnoll Slammer"] = {"Carpenter's Mallet"},
+
+    ["Tempered Argus Mace"] = {"Dawnshield Mace"},
+    ["Dawnshield Mace"] = {"Tempered Argus Mace"},
+
+    ["Mace"] = {"The Murloc Clubber"},
+    ["The Murloc Clubber"] = {"Mace"},
+
+    ["Bulky Maul"] = {"Enforcer's Maul"},
+    ["Enforcer's Maul"] = {"Bulky Maul"},
+
+    ["Wicked Spiked Mace"] = {"Dwarven Battle Bludgeon"},
+    ["Dwarven Battle Bludgeon"] = {"Wicked Spiked Mace"},
+
+    ["Copper Mace"] = {"Copper Infused Bludgeon"},
+    ["Copper Infused Bludgeon"] = {"Copper Mace"},
+
+    ["Stonesplinter Mace"] = {"Blackrock Authority"},
+    ["Blackrock Authority"] = {"Stonesplinter Mace"},
+
+    ["Priest's Mace"] = {"Stonemaul Seer Club"},
+    ["Stonemaul Seer Club"] = {"Priest's Mace"},
+
     ["Petrified Shinbone"] = {"Tribal Trogg Club"},
     ["Tribal Trogg Club"] = {"Petrified Shinbone"},
 	
-	["Wrench of Creation"] = {"Shoni's Disarming Tool"},
-    ["Shoni's Disarming Tool"] = {"Wrench of Creation"},
+	["Wrench of Creation"] = {"Shoni's Disarming Tool","Gigno's Spanner"},
+    ["Shoni's Disarming Tool"] = {"Wrench of Creation","Gigno's Spanner"},
+    ["Gigno's Spanner"] = {"Wrench of Creation","Shoni's Disarming Tool"},
 	
 	["Midnight Mace"] = {"Skull of Grarr"},
     ["Skull of Grarr"] = {"Midnight Mace"},
@@ -2297,9 +3222,10 @@ DisplayIdDB= {
     ["Murphstar"] = {"Big Black Mace"},
     ["Big Black Mace"] = {"Murphstar"},
 
-    ["Bludgeoning Cudgel"] = {"Noboru's Cudgel","Giant Club"},
-    ["Noboru's Cudgel"] = {"Bludgeoning Cudgel","Giant Club"},
-    ["Giant Club"] = {"Bludgeoning Cudgel","Noboru's Cudgel"},
+    ["Bludgeoning Cudgel"] = {"Noboru's Cudgel","Giant Club","Winter Veil Branch"},
+    ["Noboru's Cudgel"] = {"Bludgeoning Cudgel","Giant Club","Winter Veil Branch"},
+    ["Giant Club"] = {"Bludgeoning Cudgel","Noboru's Cudgel","Winter Veil Branch"},
+    ["Winter Veil Branch"] = {"Bludgeoning Cudgel","Noboru's Cudgel","Giant Club"},
 
     ["Truncheon"] = {"Hardwood Cudgel"},
     ["Hardwood Cudgel"] = {"Truncheon"},
@@ -2316,15 +3242,39 @@ DisplayIdDB= {
     ["Hammer of the Gathering Storm"] = {"Mace of Unending Life","Gavel of Infinite Wisdom"},
     ["Mace of Unending Life"] = {"Hammer of the Gathering Storm","Gavel of Infinite Wisdom"},
     ["Gavel of Infinite Wisdom"] = {"Hammer of the Gathering Storm","Mace of Unending Life"},
+
     -- sword
+    ["Militant Shortsword"] = {"Sorrowguard Shortsword"},
+    ["Sorrowguard Shortsword"] = {"Militant Shortsword"},
+
+    ["Fine Scimitar"] = {"Brightwater Cutlass","Barnacle-covered Scimitar"},
+    ["Brightwater Cutlass"] = {"Fine Scimitar","Barnacle-covered Scimitar"},
+    ["Barnacle-covered Scimitar"] = {"Fine Scimitar","Brightwater Cutlass"},
+
+    ["Broadsword"] = {"Lynx Sword"},
+    ["Lynx Sword"] = {"Broadsword"},
+
+    ["Mercenary Blade"] = {"The Dune Blade"},
+    ["The Dune Blade"] = {"Mercenary Blade"},
+
+    ["Captain's Moonglaive"] = {"Sentinel's Glaive"},
+    ["Sentinel's Glaive"] = {"Captain's Moonglaive"},
+
+    ["Well-used Sword"] = {"Marauder Blade"},
+    ["Marauder Blade"] = {"Well-used Sword"},
+
+    ["Enamelled Broadsword"] = {"Blade of Sentinel Hill"},
+    ["Blade of Sentinel Hill"] = {"Enamelled Broadsword"},
+
     ["Cursed Thornblade"] = {"Skeletal Longsword"},
     ["Skeletal Longsword"] = {"Cursed Thornblade"},
 	
 	["Sageblade"] = {"Magus Blade"},
     ["Magus Blade"] = {"Sageblade"},
 
-    ["Brushwood Blade"] = {"Blade of Rotting"},
-    ["Blade of Rotting"] = {"Brushwood Blade"},
+    ["Brushwood Blade"] = {"Blade of Rotting","Sharpened Bastard Sword"},
+    ["Blade of Rotting"] = {"Brushwood Blade","Sharpened Bastard Sword"},
+    ["Sharpened Bastard Sword"] = {"Brushwood Blade","Blade of Rotting"},
 
     ["Blade of Infinite Mysteries"] = {"Elemental Attuned Blade"},
     ["Elemental Attuned Blade"] = {"Blade of Infinite Mysteries"},
@@ -2366,6 +3316,15 @@ DisplayIdDB= {
     ["Blade of Vaulted Secrets"] = {"Blade of Eternal Justice"},
 
     -- shield
+    ["Furen's Favor"] = {"Shield of Mathela"},
+    ["Shield of Mathela"] = {"Furen's Favor"},
+
+    ["Razormane War Shield"] = {"Labor Union Defender"},
+    ["Labor Union Defender"] = {"Razormane War Shield"},
+
+    ["Collection Plate"] = {"The People's Defender"},
+    ["The People's Defender"] = {"Collection Plate"},
+
     ["Vault's Defender"] = {"The Green Tower"},
     ["The Green Tower"] = {"Vault's Defender"},
 	
@@ -2404,8 +3363,9 @@ DisplayIdDB= {
     ["Seedcloud Buckler"] = {"Scaled Shield"},
     ["Scaled Shield"] = {"Seedcloud Buckler"},
 
-    ["Welding Shield"] = {"Quel'dorai Guard"},
-    ["Quel'dorai Guard"] = {"Welding Shield"},
+    ["Welding Shield"] = {"Quel'dorai Guard","Dustwallow Defender"},
+    ["Quel'dorai Guard"] = {"Welding Shield","Dustwallow Defender"},
+    ["Dustwallow Defender"] = {"Welding Shield","Quel'dorai Guard"},
 
     ["Crag Buckler"] = {"Techbot CPU Shell"},
     ["Techbot CPU Shell"] = {"Crag Buckler"},
@@ -2424,12 +3384,12 @@ DisplayIdDB= {
 
     ["Forest Buckler"] = {"Bristlebark Buckler"},
     ["Bristlebark Buckler"] = {"Forest Buckler"},
-
     ["Emblazoned Buckler"] = {"Dokebi Buckler"},
     ["Dokebi Buckler"] = {"Emblazoned Buckler"},
 
-    ["Hunting Buckler"] = {"Archer's Buckler"},
-    ["Archer's Buckler"] = {"Hunting Buckler"},
+    ["Hunting Buckler"] = {"Archer's Buckler","Rounded Petrified Bark"},
+    ["Archer's Buckler"] = {"Hunting Buckler","Rounded Petrified Bark"},
+    ["Rounded Petrified Bark"] = {"Hunting Buckler","Archer's Buckler"},
 
     ["Scouting Buckler"] = {"Wrangler's Buckler"},
     ["Wrangler's Buckler"] = {"Scouting Buckler"},
@@ -2458,14 +3418,16 @@ DisplayIdDB= {
     ["Earthclasp Barrier"] = {"Observer's Shield"},
     ["Observer's Shield"] = {"Earthclasp Barrier"},
 
-    ["Savage Boar's Guard"] = {"Lofty Shield"},
-    ["Lofty Shield"] = {"Savage Boar's Guard"},
+    ["Savage Boar's Guard"] = {"Lofty Shield","Wattapo's Bulwark"},
+    ["Lofty Shield"] = {"Savage Boar's Guard","Wattapo's Bulwark"},
+    ["Wattapo's Bulwark"] = {"Savage Boar's Guard","Lofty Shield"},
 
     ["Draconian Deflector"] = {"High Chief's Shield"},
     ["High Chief's Shield"] = {"Draconian Deflector"},
 
-    ["Rhombeard Protector"] = {"Bloodspattered Shield"},
-    ["Bloodspattered Shield"] = {"Rhombeard Protector"},
+    ["Rhombeard Protector"] = {"Bloodspattered Shield","Sen’jin Buckler"},
+    ["Bloodspattered Shield"] = {"Rhombeard Protector","Sen’jin Buckler"},
+    ["Sen’jin Buckler"] = {"Rhombeard Protector","Bloodspattered Shield"},
 
     ["Crest of Retribution"] = {"Warbringer's Shield","Hulking Shield"},
     ["Warbringer's Shield"] = {"Crest of Retribution","Hulking Shield"},
@@ -2475,8 +3437,9 @@ DisplayIdDB= {
     ["War Paint Shield"] = {"Kresh's Back","Ghamoo-ra's Guard"},
     ["Ghamoo-ra's Guard"] = {"Kresh's Back","War Paint Shield"},
 	
-    ["Astral Guard"] = {"Saltstone Shield"},
-    ["Saltstone Shield"] = {"Astral Guard"},
+    ["Astral Guard"] = {"Saltstone Shield","Hazzuri Primalist Defender"},
+    ["Saltstone Shield"] = {"Astral Guard","Hazzuri Primalist Defender"},
+    ["Hazzuri Primalist Defender"] = {"Astral Guard"},
 
     ["Garrett Family Crest"] = {"Argent Defender"},
     ["Argent Defender"] = {"Garrett Family Crest"},
@@ -2487,8 +3450,9 @@ DisplayIdDB= {
     ["Jazeraint Shield"] = {"Sparkleshell Shield"},
     ["Sparkleshell Shield"] = {"Jazeraint Shield"},
 
-    ["Banded Shield"] = {"Wicked Chain Shield"},
-    ["Wicked Chain Shield"] = {"Banded Shield"},
+    ["Banded Shield"] = {"Wicked Chain Shield","Rakklan's Targe"},
+    ["Wicked Chain Shield"] = {"Banded Shield","Rakklan's Targe"},
+    ["Rakklan's Targe"] = {"Banded Shield","Wicked Chain Shield"},
 
     ["Champion's Wall Shield"] = {"Bonelink Wall Shield"},
     ["Bonelink Wall Shield"] = {"Champion's Wall Shield"},
@@ -2506,6 +3470,19 @@ DisplayIdDB= {
     ["Clink Shield"] = {"Headhunter's Buckler"},
 
     -- off hand holdables
+    ["Opulent Scepter"] = {"Darkbrow Scepter","Scepter of Aka'sha"},
+    ["Darkbrow Scepter"] = {"Opulent Scepter","Scepter of Aka'sha"},
+    ["Scepter of Aka'sha"] = {"Opulent Scepter","Darkbrow Scepter"},
+
+    ["Tear of Grief"] = {"Waters of Vision"},
+    ["Waters of Vision"] = {"Tear of Grief"},
+
+    ["Everglow Lantern"] = {"Shining Electro-lantern"},
+    ["Shining Electro-lantern"] = {"Everglow Lantern"},
+
+    ["Mistscape Stave"] = {"Pennyworth Cane"},
+    ["Pennyworth Cane"] = {"Mistscape Stave"},
+
     ["Tome of Knowledge"] = {"Tome of Dark Powers"},
     ["Tome of Dark Powers"] = {"Tome of Knowledge"},
 
@@ -2517,9 +3494,10 @@ DisplayIdDB= {
     ["Explorer's League Lodestar"] = {"Eerie Stable Lantern","Beacon of Hope","Pyreflame Lantern"},
     ["Pyreflame Lantern"] = {"Explorer's League Lodestar","Beacon of Hope","Eerie Stable Lantern"},
 
-    ["Dim Torch"] = {"Smoky Torch","Cell Heater"},
-    ["Smoky Torch"] = {"Dim Torch","Cell Heater"},
-    ["Cell Heater"] = {"Dim Torch","Smoky Torch"},
+    ["Dim Torch"] = {"Smoky Torch","Cell Heater","Smoldering Brand"},
+    ["Smoky Torch"] = {"Dim Torch","Cell Heater","Smoldering Brand"},
+    ["Cell Heater"] = {"Dim Torch","Smoky Torch","Smoldering Brand"},
+    ["Smoldering Brand"] = {"Dim Torch","Smoky Torch","Cell Heater"},
 
     ["Tome of Arcane Domination"] = {"Tome of Riftmancy"},
     ["Tome of Riftmancy"] = {"Tome of Arcane Domination"},

@@ -1,10 +1,6 @@
 -- adapted from https://github.com/Zebouski/MoPGearTooltips/tree/masterturtle
-local _G, _ = _G or getfenv()
-local TmogTip = CreateFrame("Frame", "TmogTip", GameTooltip)
-local tmog = CreateFrame("Frame")
 local GAME_YELLOW = "|cffffd200"
-local strfind = string.find
-local tonumber = tonumber
+
 local t_debug = false
 
 TRANSMOG_CACHE = TRANSMOG_CACHE or {
@@ -22,7 +18,7 @@ TRANSMOG_CACHE = TRANSMOG_CACHE or {
     [18] = {} --RangedSlot
 }
 -- strings from game tooltips to determine if this item can be used for transmog
-TRANSMOG_GEARSLOTS = {
+local gearslots = {
     "Head",
     "Shoulder",
     "Back",
@@ -43,45 +39,140 @@ TRANSMOG_GEARSLOTS = {
     "Held In Off-hand",
   }
 -- Skip items unequipable for player class (this is right text only)
-local tmog_druid = {["Cloth"]=true,["Leather"]=true,["Staff"]=true,["Mace"]=true,["Dagger"]=true,["Polearm"]=true,["Fist Weapon"]=true}
-local tmog_shaman = {["Cloth"]=true,["Leather"]=true,["Mail"]=true,["Staff"]=true, ["Mace"]=true, ["Dagger"]=true,["Axe"]=true,["Fist Weapon"]=true,["Shield"]=true}
-local tmog_paladin = {["Cloth"]=true, ["Leather"]=true,["Mail"]=true,["Plate"]=true,["Staff"]=true,["Mace"]=true,["Sword"]=true,["Axe"]=true,["Polearm"]=true,["Shield"]=true}
-local tmog_magelock = {["Cloth"]=true,["Staff"]=true,["Sword"]=true,["Dagger"]=true,["Wand"]=true}
-local tmog_priest = {["Cloth"]=true,["Staff"]=true,["Mace"]=true,["Dagger"]=true,["Wand"]=true}
-local tmog_warrior = {["Cloth"]=true,["Leather"]=true,["Mail"]=true,["Plate"]=true,["Staff"]=true,["Mace"]=true,["Dagger"]=true,["Polearm"]=true,["Sword"]=true,
-    ["Axe"]=true,["Fist Weapon"]=true,["Shield"]=true,["Bow"]=true}
-local tmog_rogue = {["Cloth"]=true,["Leather"]=true,["Mace"]=true,["Dagger"]=true,["Sword"]=true,["Fist Weapon"]=true,["Bow"]=true}
-local tmog_hunter = {["Cloth"]=true,["Leather"]=true,["Mail"]=true,["Staff"]=true,["Dagger"]=true,["Sword"]=true,["Polearm"]=true,["Fist Weapon"]=true,["Axe"]=true,["Bow"]=true}
+local tmog_druid = {
+    ["Cloth"]=true,
+    ["Leather"]=true,
+    ["Staff"]=true,
+    ["Mace"]=true,
+    ["Dagger"]=true,
+    ["Polearm"]=true,
+    ["Fist Weapon"]=true
+}
+
+local tmog_shaman = {
+    ["Cloth"]=true,
+    ["Leather"]=true,
+    ["Mail"]=true,
+    ["Staff"]=true,
+    ["Mace"]=true,
+    ["Dagger"]=true,
+    ["Axe"]=true,
+    ["Fist Weapon"]=true,
+    ["Shield"]=true
+}
+
+local tmog_paladin = {
+    ["Cloth"]=true,
+    ["Leather"]=true,
+    ["Mail"]=true,
+    ["Plate"]=true,
+    ["Staff"]=true,
+    ["Mace"]=true,
+    ["Sword"]=true,
+    ["Axe"]=true,
+    ["Polearm"]=true,
+    ["Shield"]=true
+}
+
+local tmog_magelock = {
+    ["Cloth"]=true,
+    ["Staff"]=true,
+    ["Sword"]=true,
+    ["Dagger"]=true,
+    ["Wand"]=true
+}
+
+local tmog_priest = {
+    ["Cloth"]=true,
+    ["Staff"]=true,
+    ["Mace"]=true,
+    ["Dagger"]=true,
+    ["Wand"]=true
+}
+
+local tmog_warrior = {
+    ["Cloth"]=true,
+    ["Leather"]=true,
+    ["Mail"]=true,
+    ["Plate"]=true,
+    ["Staff"]=true,
+    ["Mace"]=true,
+    ["Dagger"]=true,
+    ["Polearm"]=true,
+    ["Sword"]=true,
+    ["Axe"]=true,
+    ["Fist Weapon"]=true,
+    ["Shield"]=true,
+    ["Bow"]=true
+}
+
+local tmog_rogue = {
+    ["Cloth"]=true,
+    ["Leather"]=true,
+    ["Mace"]=true,
+    ["Dagger"]=true,
+    ["Sword"]=true,
+    ["Fist Weapon"]=true,
+    ["Bow"]=true
+}
+
+local tmog_hunter = {
+    ["Cloth"]=true,
+    ["Leather"]=true,
+    ["Mail"]=true,
+    ["Staff"]=true,
+    ["Dagger"]=true,
+    ["Sword"]=true,
+    ["Polearm"]=true,
+    ["Fist Weapon"]=true,
+    ["Axe"]=true,
+    ["Bow"]=true
+}
+
+local suffixes = {
+    [" of the Owl"]=true,
+    [" of the Eagle"]=true,
+    [" of the Whale"]=true,
+    [" of the Bear"]=true,
+    [" of the Monkey"]=true,
+    [" of the Falcon"]=true,
+    [" of the Wolf"]=true,
+    [" of the Tiger"]=true,
+    [" of the Gorilla"]=true,
+    [" of the Boar"]=true,
+
+    [" of Strength"]=true,
+    [" of Agility"]=true,
+    [" of Stamina"]=true,
+    [" of Intellect"]=true,
+    [" of Spirit"]=true,
+
+    [" of Power"]=true,
+    [" of Marksmanship"]=true,
+    [" of Healing"]=true,
+
+    [" of Fiery Wrath"]=true,
+    [" of Frozen Wrath"]=true,
+    [" of Nature's Wrath"]=true,
+    [" of Shadow Wrath"]=true,
+    [" of Arcane Wrath"]=true,
+
+    [" of Arcane Resistance"]=true,
+    [" of Fire Resistance"]=true,
+    [" of Frost Resistance"]=true,
+    [" of Shadow Resistance"]=true,
+    [" of Nature Resistance"]=true,
+
+    [" of Defense"]=true,
+    [" of Blocking"]=true,
+}
 
 local function tmog_print(a)
-    if a == nil then
+    if not a then
         ChatFrame2:AddMessage('Attempt to print a nil value.')
-        return false
+        return
     end
     ChatFrame2:AddMessage(GAME_YELLOW .. a)
-end
-
-local function strsplit(str, delimiter)
-    local result = {}
-    local from = 1
-    local delim_from, delim_to = strfind(str, delimiter, from, 1, true)
-    while delim_from do
-        table.insert(result, string.sub(str, from, delim_from - 1))
-        from = delim_to + 1
-        delim_from, delim_to = strfind(str, delimiter, from, true)
-    end
-    table.insert(result, string.sub(str, from))
-    return result
-end
-
-function AddToSet(set, key)
-    if not set or not key then return end
-    set[key] = true
-end
-
-function SetContains(set, key)
-    if not set or not key then return end
-    return set[key] ~= nil
 end
 
 local function tmog_debug(a)
@@ -97,8 +188,30 @@ local function tmog_debug(a)
     tmog_print('|cff0070de[DEBUG:' .. GetTime() .. ']|cffffffff[' .. a .. ']')
 end
 
+local function strsplit(str, delimiter)
+    local result = {}
+    local from = 1
+    local delim_from, delim_to = string.find(str, delimiter, from, 1, true)
+    while delim_from do
+        table.insert(result, string.sub(str, from, delim_from - 1))
+        from = delim_to + 1
+        delim_from, delim_to = string.find(str, delimiter, from, true)
+    end
+    table.insert(result, string.sub(str, from))
+    return result
+end
 
-function InvenotySlotFromItemID(itemID)
+local function AddToSet(set, key)
+    if not set or not key then return end
+    set[key] = true
+end
+
+local function SetContains(set, key)
+    if not set or not key then return end
+    return set[key] ~= nil
+end
+
+local function InvenotySlotFromItemID(itemID)
     if not itemID then
         return
     end
@@ -139,188 +252,20 @@ function InvenotySlotFromItemID(itemID)
     return id
 end
 
-local LastSearchName = nil
-local lastSearchLink = nil
-local function GetItemLinkByName(name)
-	if name ~= LastSearchName then
-    	for itemID = 1, 90000 do
-      		local itemName, hyperLink, itemQuality = GetItemInfo(itemID)
-      		if (itemName and itemName == name) then
-        		local _, _, _, hex = GetItemQualityColor(tonumber(itemQuality))
-        		lastSearchLink = hex.. "|H"..hyperLink.."|h["..itemName.."]|h|r"
-     		end
-    	end
-		LastSearchName = name
-  	end
-	return lastSearchLink
-end
-
 local HookSetItemRef = SetItemRef
 SetItemRef = function(link, text, button)
-    local item = string.find(link, "item:(%d+):.*")
-    ItemRefTooltip.itemLink = link
+    local item = string.find(link, "item:.*")
     HookSetItemRef(link, text, button)
     if not IsShiftKeyDown() and not IsControlKeyDown() and item then
         TmogTip.extendTooltip(ItemRefTooltip, "ItemRefTooltip")
     end
 end
 
-local HookSetHyperlink = GameTooltip.SetHyperlink
-function GameTooltip.SetHyperlink(self, arg1)
-  if arg1 then
-    local _, _, linktype = string.find(arg1, "^(.-):(.+)$")
-    if linktype == "item" then
-      GameTooltip.itemLink = arg1
-    end
-  end
-
-  return HookSetHyperlink(self, arg1)
-end
-
-local HookSetBagItem = GameTooltip.SetBagItem
-function GameTooltip.SetBagItem(self, container, slot)
-  GameTooltip.itemLink = GetContainerItemLink(container, slot)
-  _, GameTooltip.itemCount = GetContainerItemInfo(container, slot)
-  return HookSetBagItem(self, container, slot)
-end
-
-local HookSetQuestLogItem = GameTooltip.SetQuestLogItem
-function GameTooltip.SetQuestLogItem(self, itemType, index)
-  GameTooltip.itemLink = GetQuestLogItemLink(itemType, index)
-  if not GameTooltip.itemLink then return end
-  return HookSetQuestLogItem(self, itemType, index)
-end
-
-local HookSetQuestItem = GameTooltip.SetQuestItem
-function GameTooltip.SetQuestItem(self, itemType, index)
-  GameTooltip.itemLink = GetQuestItemLink(itemType, index)
-  return HookSetQuestItem(self, itemType, index)
-end
-
-local HookSetLootItem = GameTooltip.SetLootItem
-function GameTooltip.SetLootItem(self, slot)
-  GameTooltip.itemLink = GetLootSlotLink(slot)
-  HookSetLootItem(self, slot)
-end
-
-local HookSetInboxItem = GameTooltip.SetInboxItem
-function GameTooltip.SetInboxItem(self, mailID, attachmentIndex)
-  local itemName = GetInboxItem(mailID)
-  GameTooltip.itemLink = GetItemLinkByName(itemName)
-  return HookSetInboxItem(self, mailID, attachmentIndex)
-end
-
-local HookSetInventoryItem = GameTooltip.SetInventoryItem
-function GameTooltip.SetInventoryItem(self, unit, slot)
-  GameTooltip.itemLink = GetInventoryItemLink(unit, slot)
-  return HookSetInventoryItem(self, unit, slot)
-end
-
-local HookSetLootRollItem = GameTooltip.SetLootRollItem
-function GameTooltip.SetLootRollItem(self, id)
-  GameTooltip.itemLink = GetLootRollItemLink(id)
-  return HookSetLootRollItem(self, id)
-end
-
-local HookSetMerchantItem = GameTooltip.SetMerchantItem
-function GameTooltip.SetMerchantItem(self, merchantIndex)
-  GameTooltip.itemLink = GetMerchantItemLink(merchantIndex)
-  return HookSetMerchantItem(self, merchantIndex)
-end
-
-local HookSetCraftItem = GameTooltip.SetCraftItem
-function GameTooltip.SetCraftItem(self, skill, slot)
-  GameTooltip.itemLink = GetCraftReagentItemLink(skill, slot)
-  return HookSetCraftItem(self, skill, slot)
-end
-
-local HookSetCraftSpell = GameTooltip.SetCraftSpell
-function GameTooltip.SetCraftSpell(self, slot)
-  GameTooltip.itemLink = GetCraftItemLink(slot)
-  return HookSetCraftSpell(self, slot)
-end
-
-local HookSetTradeSkillItem = GameTooltip.SetTradeSkillItem
-function GameTooltip.SetTradeSkillItem(self, skillIndex, reagentIndex)
-  if reagentIndex then
-    GameTooltip.itemLink = GetTradeSkillReagentItemLink(skillIndex, reagentIndex)
-  else
-    GameTooltip.itemLink = GetTradeSkillItemLink(skillIndex)
-  end
-  return HookSetTradeSkillItem(self, skillIndex, reagentIndex)
-end
-
-local HookSetAuctionItem = GameTooltip.SetAuctionItem
-function GameTooltip.SetAuctionItem(self, atype, index)
-  local itemName, _, itemCount = GetAuctionItemInfo(atype, index)
-  GameTooltip.itemCount = itemCount
-  GameTooltip.itemLink = GetItemLinkByName(itemName)
-  return HookSetAuctionItem(self, atype, index)
-end
-
-local HookSetAuctionSellItem = GameTooltip.SetAuctionSellItem
-function GameTooltip.SetAuctionSellItem(self)
-  local itemName, _, itemCount = GetAuctionSellItemInfo()
-  GameTooltip.itemCount = itemCount
-  GameTooltip.itemLink = GetItemLinkByName(itemName)
-  return HookSetAuctionSellItem(self)
-end
-
-local HookSetTradePlayerItem = GameTooltip.SetTradePlayerItem
-function GameTooltip.SetTradePlayerItem(self, index)
-  GameTooltip.itemLink = GetTradePlayerItemLink(index)
-  return HookSetTradePlayerItem(self, index)
-end
-
-local HookSetTradeTargetItem = GameTooltip.SetTradeTargetItem
-function GameTooltip.SetTradeTargetItem(self, index)
-  GameTooltip.itemLink = GetTradeTargetItemLink(index)
-  return HookSetTradeTargetItem(self, index)
-end
-
-local suffixes = {
-    [" of the Owl"]=true,
-    [" of the Eagle"]=true,
-    [" of the Whale"]=true,
-    [" of the Bear"]=true,
-    [" of the Monkey"]=true,
-    [" of the Falcon"]=true,
-    [" of the Wolf"]=true,
-    [" of the Tiger"]=true,
-    [" of the Gorilla"]=true,
-    [" of the Boar"]=true,
-
-    [" of Strength"]=true,
-    [" of Agility"]=true,
-    [" of Stamina"]=true,
-    [" of Intellect"]=true,
-    [" of Spirit"]=true,
-
-    [" of Power"]=true,
-    [" of Marksmanship"]=true,
-    [" of Healing"]=true,
-
-    [" of Fiery Wrath"]=true,
-    [" of Frozen Wrath"]=true,
-    [" of Nature's Wrath"]=true,
-    [" of Shadow Wrath"]=true,
-    [" of Arcane Wrath"]=true,
-
-    [" of Arcane Resistance"]=true,
-    [" of Fire Resistance"]=true,
-    [" of Frost Resistance"]=true,
-    [" of Shadow Resistance"]=true,
-    [" of Nature Resistance"]=true,
-
-    [" of Defense"]=true,
-    [" of Blocking"]=true,
-}
-
-function FixName(name)
+local function FixName(name)
     if not name then return end
     local suffix = ""
     for k,v in pairs(suffixes) do
-        if strfind(name, k, 1, true) then
+        if string.find(name, k, 1, true) then
             suffix = k
             break
         end
@@ -328,18 +273,22 @@ function FixName(name)
     return string.gsub(name, suffix, "")
 end
 
+local TmogTip = CreateFrame("Frame", "TmogTip", GameTooltip)
 local TmogTooltip = getglobal("TmogTooltip") or CreateFrame("GameTooltip", "TmogTooltip", nil, "GameTooltipTemplate")
 TmogTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
-tmog:RegisterEvent("UNIT_INVENTORY_CHANGED")
-tmog:RegisterEvent("CHAT_MSG_ADDON")
-tmog:SetScript("OnEvent", function()
-    if event == "CHAT_MSG_ADDON" and strfind(arg1, "TW_TRANSMOG", 1, true)then
+
+local t = CreateFrame("Frame")
+t:RegisterEvent("UNIT_INVENTORY_CHANGED")
+t:RegisterEvent("CHAT_MSG_ADDON")
+
+t:SetScript("OnEvent", function()
+    if event == "CHAT_MSG_ADDON" and string.find(arg1, "TW_TRANSMOG", 1, true)then
         tmog_debug(event)
         tmog_debug(arg1)
         tmog_debug(arg2)
         tmog_debug(arg3)
         tmog_debug(arg4)
-        if strfind(arg2, "AvailableTransmogs", 1, true) and arg4 == UnitName("player") then
+        if string.find(arg2, "AvailableTransmogs", 1, true) and arg4 == UnitName("player") then
             local ex = strsplit(arg2, ":")
             tmog_debug("ex4: [" .. ex[4] .."]")
             local InventorySlotId = tonumber(ex[2])
@@ -366,7 +315,7 @@ tmog:SetScript("OnEvent", function()
             end
             return
         end
-        if strfind(arg2, "NewTransmog", 1, true) and arg4 == UnitName("player") then
+        if string.find(arg2, "NewTransmog", 1, true) and arg4 == UnitName("player") then
             local ex = strsplit(arg2, ":")
             tmog_debug("id: ".. ex[2])
             local slot = InvenotySlotFromItemID(ex[2])
@@ -439,7 +388,7 @@ function IsGear(tooltipTypeStr)
     local slot = nil
     -- collect left lines of the original tooltip into lua table
     for row = 1, 30 do
-        local tooltipRowLeft = _G[tooltipTypeStr .. 'TextLeft' .. row]
+        local tooltipRowLeft = getglobal(tooltipTypeStr .. 'TextLeft' .. row)
         if tooltipRowLeft then
             local rowtext = tooltipRowLeft:GetText()
             if rowtext then
@@ -454,17 +403,17 @@ function IsGear(tooltipTypeStr)
     for row=1, table.getn(originalTooltip) do
         -- check if its class restricted item
         if originalTooltip[row].text then
-            local _, _, classesRow = strfind(originalTooltip[row].text, "Classes: (.*)")
+            local _, _, classesRow = string.find(originalTooltip[row].text, "Classes: (.*)")
             if classesRow then
-                if not strfind(classesRow, UnitClass("player"),1,true) then
+                if not string.find(classesRow, UnitClass("player"),1,true) then
                     tmog_debug("Bad class")
                     return false, nil
                 end
             end
             -- skip recipies
-            if strfind(originalTooltip[row].text, "Pattern:",1,true) or
-                strfind(originalTooltip[row].text, "Plans:",1,true) or
-                strfind(originalTooltip[row].text, "Schematic:",1,true) then
+            if string.find(originalTooltip[row].text, "Pattern:",1,true) or
+                string.find(originalTooltip[row].text, "Plans:",1,true) or
+                string.find(originalTooltip[row].text, "Schematic:",1,true) then
                 tmog_debug("Recipie")
                 return false, nil
             end
@@ -474,7 +423,7 @@ function IsGear(tooltipTypeStr)
     for row=1, table.getn(originalTooltip) do
         if originalTooltip[row].text then
             -- Gear is guaranteed to be labeled with the slot it occupies.
-            for _, v in ipairs(TRANSMOG_GEARSLOTS) do
+            for _, v in ipairs(gearslots) do
                 if v == originalTooltip[row].text then
                     if v == "Back" then
                         tmog_debug("Cloak")
@@ -524,11 +473,11 @@ function IsGear(tooltipTypeStr)
         -- looking at the first line on the right
         local gearType
         for row=1, 30 do
-            local tooltipRowRight = _G[tooltipTypeStr .. 'TextRight' .. row]
+            local tooltipRowRight = getglobal(tooltipTypeStr .. 'TextRight' .. row)
             if tooltipRowRight then
                 local rowtext = tooltipRowRight:GetText()
-                if rowtext and not strfind(rowtext, "Speed",1,true) -- ignore weapon speed
-                        and not strfind(rowtext, "%d") then -- ignore digits
+                if rowtext and not string.find(rowtext, "Speed",1,true) -- ignore weapon speed
+                        and not string.find(rowtext, "%d") then -- ignore digits
                     gearType = rowtext
                     tmog_debug(gearType)
                     break
@@ -562,14 +511,13 @@ function TmogTip.extendTooltip(tooltip, tooltipTypeStr)
     local itemName = getglobal(tooltip:GetName() .. "TextLeft1"):GetText()
     local isGear, slot = IsGear(tooltipTypeStr)
     local tLabel = getglobal(tooltip:GetName() .. "TextLeft2")
-    -- get rid of suffixes
-    if tooltip.itemLink then
-        itemName = FixName(itemName)
-    end
     if not isGear or not itemName or not tLabel then return end
+    -- get rid of suffixes
+    itemName = FixName(itemName)
     if itemName == LastItemName then
         if tLabel then
             if tLabel:GetText() then
+                -- tooltips have max 30 lines so dont just AddLine, insert into 2nd line of the tooltip instead to avoid hitting lines cap
                 if SetContains(TRANSMOG_CACHE[LastSlot], LastItemName) then
                     tLabel:SetText(GAME_YELLOW..'In your collection|r\n'..tLabel:GetText())
                 else
@@ -580,9 +528,9 @@ function TmogTip.extendTooltip(tooltip, tooltipTypeStr)
     else
         LastItemName = itemName
         LastSlot = slot
-        -- tooltips have max 30 lines so dont just AddLine, insert into 2nd line of the tooltip instead to avoid hitting lines cap
         if tLabel then
             if tLabel:GetText() then
+                -- tooltips have max 30 lines so dont just AddLine, insert into 2nd line of the tooltip instead to avoid hitting lines cap
                 if SetContains(TRANSMOG_CACHE[slot], itemName) then
                     tLabel:SetText(GAME_YELLOW..'In your collection|r\n'..tLabel:GetText())
                 else
@@ -595,18 +543,16 @@ function TmogTip.extendTooltip(tooltip, tooltipTypeStr)
 end
 
 ItemRefTooltip:SetScript("OnHide", function()
-    ItemRefTooltip.itemLink = nil
     -- clear right text otherwise it will collect bunch of random strings and mess things up
     for row=1, 30 do
-        _G["ItemRefTooltipTextRight" .. row]:SetText("")
+        getglobal("ItemRefTooltipTextRight" .. row):SetText("")
     end
 end)
 
 TmogTip:SetScript("OnHide", function()
-    GameTooltip.itemLink = nil
     -- clear right text otherwise it will collect bunch of random strings and mess things up
     for row=1, 30 do
-        _G["GameTooltipTextRight" .. row]:SetText("")
+        getglobal("GameTooltipTextRight" .. row):SetText("")
     end
 end)
 
@@ -615,31 +561,31 @@ TmogTip:SetScript("OnShow", function()
 end)
 
 -- adapted from http://shagu.org/ShaguTweaks/
-tmog.HookAddonOrVariable = function(addon, func)
+t.HookAddonOrVariable = function(addon, func)
     local lurker = CreateFrame("Frame", nil)
     lurker.func = func
     lurker:RegisterEvent("ADDON_LOADED")
     lurker:RegisterEvent("VARIABLES_LOADED")
     lurker:RegisterEvent("PLAYER_ENTERING_WORLD")
     lurker:SetScript("OnEvent",function()
-      if IsAddOnLoaded(addon) or _G[addon] then
+      if IsAddOnLoaded(addon) or getglobal(addon) then
         this:func()
         this:UnregisterAllEvents()
       end
     end)
 end
 
-tmog.HookAddonOrVariable("AtlasLoot", function()
+t.HookAddonOrVariable("AtlasLoot", function()
     local atlas = CreateFrame("Frame", nil, AtlasLootTooltip)
     local atlas2 = CreateFrame("Frame", nil, AtlasLootTooltip2)
     atlas2:SetScript("OnHide", function()
         for row=1, 30 do
-            _G["AtlasLootTooltip2" .. 'TextRight' .. row]:SetText("")
+            getglobal("AtlasLootTooltip2" .. 'TextRight' .. row):SetText("")
         end
     end)
     atlas:SetScript("OnHide", function()
         for row=1, 30 do
-            _G["AtlasLootTooltip" .. 'TextRight' .. row]:SetText("")
+            getglobal("AtlasLootTooltip" .. 'TextRight' .. row):SetText("")
         end
     end)
     atlas:SetScript("OnShow", function()

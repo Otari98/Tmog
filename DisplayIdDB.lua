@@ -1332,9 +1332,6 @@ DisplayIdDB= {
     ["Golden Gauntlets of Stormwind"] = {"Sunscale Gauntlets"},
     ["Sunscale Gauntlets"] = {"Golden Gauntlets of Stormwind"},
 
-    ["Serenity Belt"] = {"Regal Goldthreaded Sash"},
-    ["Regal Goldthreaded Sash"] = {"Serenity Belt"},
-
     ["Wicked Chain Gauntlets"] = {"Quick-Surge Gloves"},
     ["Quick-Surge Gloves"] = {"Wicked Chain Gauntlets"},
 
@@ -1709,8 +1706,9 @@ DisplayIdDB= {
     ["Stonecloth Circlet"] = {"Bloody Gladiator's Circlet"},
     ["Bloody Gladiator's Circlet"] = {"Stonecloth Circlet"},
 
-    ["Arena Sash"] = {"Serenity Belt"},
-    ["Serenity Belt"] = {"Arena Sash"},
+    ["Arena Sash"] = {"Serenity Belt","Regal Goldthreaded Sash"},
+    ["Serenity Belt"] = {"Arena Sash","Regal Goldthreaded Sash"},
+    ["Regal Goldthreaded Sash"] = {"Serenity Belt","Arena Sash"},
 
     ["Imperial Leather Belt"] = {"Grug'thok's Sash"},
     ["Grug'thok's Sash"] = {"Imperial Leather Belt"},
@@ -1728,12 +1726,11 @@ DisplayIdDB= {
     ["Marshal's Satin Sash"] = {"Belt of Archaic Power","Marshal's Silk Sash","Marshal's Dreadweave Sash","Overcharged Belt"},
     ["Overcharged Belt"] = {"Belt of Archaic Power","Marshal's Silk Sash","Marshal's Dreadweave Sash","Marshal's Satin Sash"},
 
-    ["Binding Chain"] = {"Highlander's Mail Girdle","Highlander's Chain Girdle","Defiler's Chain Girdle","Defiler's Mail Girdle","Binding Chain"},
-    ["Highlander's Mail Girdle"] = {"Binding Chain","Highlander's Chain Girdle","Defiler's Chain Girdle","Defiler's Mail Girdle","Binding Chain"},
-    ["Highlander's Chain Girdle"] = {"Binding Chain","Highlander's Mail Girdle","Defiler's Chain Girdle","Defiler's Mail Girdle","Binding Chain"},
-    ["Defiler's Chain Girdle"] = {"Binding Chain","Highlander's Mail Girdle","Highlander's Chain Girdle","Defiler's Mail Girdle","Binding Chain"},
-    ["Defiler's Mail Girdle"] = {"Binding Chain","Highlander's Mail Girdle","Highlander's Chain Girdle","Defiler's Chain Girdle","Binding Chain"},
-    ["Binding Chain"] = {"Binding Chain","Highlander's Mail Girdle","Highlander's Chain Girdle","Defiler's Chain Girdle","Defiler's Mail Girdle"},
+    ["Binding Chain"] = {"Highlander's Mail Girdle","Highlander's Chain Girdle","Defiler's Chain Girdle","Defiler's Mail Girdle"},
+    ["Highlander's Mail Girdle"] = {"Binding Chain","Highlander's Chain Girdle","Defiler's Chain Girdle","Defiler's Mail Girdle"},
+    ["Highlander's Chain Girdle"] = {"Binding Chain","Highlander's Mail Girdle","Defiler's Chain Girdle","Defiler's Mail Girdle"},
+    ["Defiler's Chain Girdle"] = {"Binding Chain","Highlander's Mail Girdle","Highlander's Chain Girdle","Defiler's Mail Girdle"},
+    ["Defiler's Mail Girdle"] = {"Binding Chain","Highlander's Mail Girdle","Highlander's Chain Girdle","Defiler's Chain Girdle"},
 
     ["Bloody Gladiator's Cord"] = {"Seapost Girdle"},
     ["Seapost Girdle"] = {"Bloody Gladiator's Cord"},
@@ -2222,8 +2219,9 @@ DisplayIdDB= {
     ["Feet of the Lynx"] = {"Horseskin Boots"},
     ["Horseskin Boots"] = {"Feet of the Lynx"},
 
-    ["Blackrock Boots"] = {"Blackstone Work Boots"},
-    ["Blackstone Work Boots"] = {"Blackrock Boots"},
+    ["Blackrock Boots"] = {"Blackstone Work Boots","Goblin Mail Boots"},
+    ["Blackstone Work Boots"] = {"Blackrock Boots","Goblin Mail Boots"},
+    ["Goblin Mail Boots"] = {"Blackrock Boots","Blackstone Work Boots"},
 
     ["Primal Boots"] = {"Demon Skin Boots"},
     ["Demon Skin Boots"] = {"Primal Boots"},
@@ -2291,9 +2289,6 @@ DisplayIdDB= {
 
     ["Rigid Moccasins"] = {"Operator Boots"},
     ["Operator Boots"] = {"Rigid Moccasins"},
-
-    ["Blackrock Boots"] = {"Goblin Mail Boots"},
-    ["Goblin Mail Boots"] = {"Blackrock Boots"},
 
     ["Dusty Mail Boots"] = {"Commander's Greaves"},
     ["Commander's Greaves"] = {"Dusty Mail Boots"},

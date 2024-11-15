@@ -855,9 +855,6 @@ DisplayIdDB= {
     ["Runed Bloodstained Hauberk"] = {"Strom Defender's Vest"},
     ["Strom Defender's Vest"] = {"Runed Bloodstained Hauberk"},
 
-    ["Dusty Chain Armor"] = {"Grumnir's Hauberk"},
-    ["Grumnir's Hauberk"] = {"Dusty Chain Armor"},
-
     ["Brackwater Vest"] = {"Gowlfang's Vest"},
     ["Gowlfang's Vest"] = {"Brackwater Vest"},
 

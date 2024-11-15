@@ -347,18 +347,25 @@ Tmog:SetScript("OnEvent", function()
             local dataEx = strsplit(arg2, "TransmogStatus:")
             if dataEx[2] then
                 local TransmogStatus = strsplit(dataEx[2], ",")
-                
-                TMOG_CURRENT_TRANSMOG_STATUS = {}
-
+                if not TMOG_TRANSMOG_STATUS then
+                    TMOG_TRANSMOG_STATUS = {}
+                end
                 for _, InventorySlotId in Tmog.inventorySlots do
-                    TMOG_CURRENT_TRANSMOG_STATUS[InventorySlotId] = 0
+                    if not TMOG_TRANSMOG_STATUS[InventorySlotId] then
+                        TMOG_TRANSMOG_STATUS[InventorySlotId] = {}
+                    end
                 end
                 for _, d in TransmogStatus do
                     local slotEx = strsplit(d, ":")
                     local InventorySlotId = tonumber(slotEx[1])
                     local itemID = tonumber(slotEx[2])
-                    if InventorySlotId then
-                        TMOG_CURRENT_TRANSMOG_STATUS[InventorySlotId] = itemID
+                    local link = GetInventoryItemLink("player", InventorySlotId)
+                    local actualItemId = Tmog:IDFromLink(link) or 0
+                    if actualItemId ~= 0 and InventorySlotId then
+                        if not TMOG_TRANSMOG_STATUS[InventorySlotId][actualItemId] then
+                            TMOG_TRANSMOG_STATUS[InventorySlotId][actualItemId] = 0
+                        end
+                        TMOG_TRANSMOG_STATUS[InventorySlotId][actualItemId] = itemID
                     end
                 end
             end
@@ -726,8 +733,8 @@ function Tmog_OnLoad()
     if not TMOG_PLAYER_OUTFITS then
         TMOG_PLAYER_OUTFITS = {}
     end
-    if not TMOG_CURRENT_TRANSMOG_STATUS then
-        TMOG_CURRENT_TRANSMOG_STATUS = {}
+    if not TMOG_TRANSMOG_STATUS then
+        TMOG_TRANSMOG_STATUS = {}
     end
 
     if not Tmog_currentGear then
@@ -751,9 +758,13 @@ function Tmog:CacheAllGearSlots()
         local link = GetInventoryItemLink("player", InventorySlotId)
         Tmog.actualGear[InventorySlotId] = Tmog:IDFromLink(link) or 0
     end
-    for slot, itemID in TMOG_CURRENT_TRANSMOG_STATUS do
-        if itemID ~= 0 then
-            Tmog.actualGear[slot] = itemID
+    for slot, data in TMOG_TRANSMOG_STATUS do
+        local link = GetInventoryItemLink("player", slot)
+        local id = Tmog:IDFromLink(link) or 0
+        for actualItemID, transmogID in TMOG_TRANSMOG_STATUS[slot] do
+            if actualItemID == id then
+                Tmog.actualGear[slot] = transmogID
+            end
         end
     end
 end

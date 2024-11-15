@@ -3,6 +3,6 @@
 ## Author: Otari98
 ## Version: 1.5
 ## Notes: Item browser and info about your transmog collection on game tooltips v1.5
-## SavedVariablesPerCharacter: TRANSMOG_CACHE, TMOG_PLAYER_OUTFITS, TMOG_CURRENT_TRANSMOG_STATUS, TMOG_POSITION
+## SavedVariablesPerCharacter: TRANSMOG_CACHE, TMOG_PLAYER_OUTFITS, TMOG_TRANSMOG_STATUS, TMOG_POSITION
 
 Tmog.xml

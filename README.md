@@ -16,3 +16,9 @@ Note: some items are unobtainable, not sure what I should do with them... 	( Í Â
 ![Tmog1](https://github.com/user-attachments/assets/1b564394-76fa-48e0-b361-25edfbb8f392)
 ![Tmog2](https://github.com/user-attachments/assets/44acc996-b55f-49df-b6a3-e2136dbdacd8)
 ![TmogUI](https://github.com/user-attachments/assets/c35379ce-43a6-4b24-b5bb-9992b801f466)
+
+
+## Thanks to
+Shagu (http://shagu.org/ShaguTweaks/)<br>
+Zaas (https://github.com/Zebouski/MoPGearTooltips/tree/masterturtle)<br>
+CosminPOP (Turtle_TransmogUI)

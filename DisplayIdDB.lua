@@ -3,6 +3,10 @@
 -- some of these items are unobtainable but I cba to check that
 DisplayIdDB= {
     -- head
+    ["Mistwood Tiara"]={"Sunburst Tiara","Holy Diadem"},
+    ["Sunburst Tiara"]={"Mistwood Tiara","Holy Diadem"},
+    ["Holy Diadem"]={"Mistwood Tiara","Sunburst Tiara"},
+
     ["Gurubashi Helm"] = {"Savage Helmet"},
     ["Savage Helmet"] = {"Gurubashi Helm"},
 
@@ -173,9 +177,12 @@ DisplayIdDB= {
     ["Jazeraint Helm"] = {"Towerforge Crown"},
     ["Towerforge Crown"] = {"Jazeraint Helm"},
 
-    ["Azure Silk Hood"] = {"Raincaller Cap","Thistlefur Cap"},
-    ["Raincaller Cap"] = {"Azure Silk Hood","Thistlefur Cap"},
-    ["Thistlefur Cap"] = {"Azure Silk Hood","Raincaller Cap"},
+    ["Azure Silk Hood"] = {"Raincaller Cap","Outland Exile Hood"},
+    ["Raincaller Cap"] = {"Azure Silk Hood","Outland Exile Hood"},
+    ["Outland Exile Hood"] = {"Azure Silk Hood","Raincaller Cap"},
+
+    ["Cowl of Necromancy"] = {"Thistlefur Cap"},
+    ["Thistlefur Cap"] = {"Cowl of Necromancy"},
 
     ["Lucky Fishing Hat"] = {"Worn Fishing Hat","Blump Family Fishing Hat"},
     ["Worn Fishing Hat"] = {"Lucky Fishing Hat","Blump Family Fishing Hat"},
@@ -738,6 +745,9 @@ DisplayIdDB= {
     ["Shadow Silk Cloak"] = {"Crystalline Threaded Cape","Drape of Vaulted Secrets"},
 
     -- chest
+    ["Captain's Overcoat"] = {"Jacket of the Scarlet Admiral"},
+    ["Jacket of the Scarlet Admiral"] = {"Captain's Overcoat"},
+
     ["Chromatic Robe"] = {"Robe of the Obedient"},
     ["Robe of the Obedient"] = {"Chromatic Robe"},
 
@@ -994,9 +1004,6 @@ DisplayIdDB= {
     ["Polished Jazeraint Armor"] = {"Polished Scale Vest"},
     ["Polished Scale Vest"] = {"Polished Jazeraint Armor"},
 
-    ["Bound Harness"] = {"Strapped Armor"},
-    ["Strapped Armor"] = {"Bound Harness"},
-
     ["Slarkskin"] = {"Explorer's Vest","Goblin Chain Hauberk","Westfall Hauberk"},
     ["Explorer's Vest"] = {"Slarkskin","Goblin Chain Hauberk","Westfall Hauberk"},
     ["Goblin Chain Hauberk"] = {"Slarkskin","Explorer's Vest","Westfall Hauberk"},
@@ -1073,8 +1080,9 @@ DisplayIdDB= {
     ["Heavy Scorpid Vest"] = {"Wicked Leather Armor"},
     ["Wicked Leather Armor"] = {"Heavy Scorpid Vest"},
 
-    ["Wrangler's Wraps"] = {"Pathfinder Vest"},
-    ["Pathfinder Vest"] = {"Wrangler's Wraps"},
+    ["Wrangler's Wraps"] = {"Pathfinder Vest","Hunting Tunic"},
+    ["Pathfinder Vest"] = {"Wrangler's Wraps","Hunting Tunic"},
+    ["Hunting Tunic"] = {"Wrangler's Wraps","Pathfinder Vest"},
 
     ["Black Dragonscale Breastplate"] = {"Onyxia Scale Breastplate"},
     ["Onyxia Scale Breastplate"] = {"Black Dragonscale Breastplate"},
@@ -2567,9 +2575,6 @@ DisplayIdDB= {
     ["Quillfire Bow"] = {"Deep Strike Bow"},
     ["Deep Strike Bow"] = {"Quillfire Bow"},
     
-    ["High Warlord's Recurve"] = {"Ancient Bone Bow"},
-    ["Ancient Bone Bow"] = {"High Warlord's Recurve"},
-
     -- gun
     ["Owlsight Rifle"] = {"Brave's Rifle"},
     ["Brave's Rifle"] = {"Owlsight Rifle"},

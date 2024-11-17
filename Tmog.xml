@@ -272,22 +272,22 @@
                 end
             </OnMouseDown>
             <OnEnter>
-                GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT", 0, 0)
-                local name, linkString, quality, _, _, _, _, _, tex = GetItemInfo(Tmog_currentGear[this:GetID()])
+                TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT", 0, 0)
+                local name, linkString, quality, _, _, _, _, _, tex = GetItemInfo(TMOG_CURRENT_GEAR[this:GetID()])
                 if name and quality then
                     local r, g, b, color = GetItemQualityColor(quality)
-                    GameTooltip:SetText(name, r, g, b)
-                    GameTooltip:AddLine("|cffffd200ItemID: "..Tmog_currentGear[this:GetID()].."|r", 1, 1, 1)
-                    GameTooltip:Show()
+                    TmogTooltip:SetText(name, r, g, b)
+                    TmogTooltip:AddLine("|cffffd200ItemID: "..TMOG_CURRENT_GEAR[this:GetID()].."|r", 1, 1, 1)
+                    TmogTooltip:Show()
                 end
                 if not name then
                     local text = TEXT(getglobal(strupper(strsub(this:GetName(), 10))))
-                    GameTooltip:SetText(text)
-                    GameTooltip:Show()
+                    TmogTooltip:SetText(text)
+                    TmogTooltip:Show()
                 end
             </OnEnter>
             <OnLeave>
-                GameTooltip:Hide()
+                TmogTooltip:Hide()
             </OnLeave>
         </Scripts>
     </Button>
@@ -370,7 +370,7 @@
                         </Anchor>
                     </Anchors>
                 </FontString>
-                <FontString name="$parentTitleText" inherits="GameFontNormal" text="Tmog v1.5">
+                <FontString name="$parentTitleText" inherits="GameFontNormal" text="Tmog v1.6">
                     <Size>
                         <AbsDimension x="512" y="14" />
                     </Size>
@@ -842,7 +842,7 @@
             </Button>
             <Button name="$parentRemoveGear" hidden="false" inherits="OptionsButtonTemplate" text="Undress">
                 <Size>
-                    <AbsDimension x="62" y="24" />
+                    <AbsDimension x="62" y="22" />
                 </Size>
                 <Anchors>
                     <Anchor point="BOTTOMLEFT">
@@ -859,7 +859,7 @@
             </Button>
             <Button name="$parentResetPosition" hidden="false" inherits="OptionsButtonTemplate" text="Reset Position">
                 <Size>
-                    <AbsDimension x="114" y="24" />
+                    <AbsDimension x="115" y="22" />
                 </Size>
                 <Anchors>
                     <Anchor point="BOTTOMLEFT">
@@ -928,6 +928,39 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
+                <Frames>
+                    <Button name="$parentClearButton">
+                        <Size x="14" y="14" />
+                        <Anchors>
+                            <Anchor point="RIGHT" relativeTo="$parent">
+                                <Offset x="-3" y="0" />
+                            </Anchor>
+                        </Anchors>
+                        <Backdrop bgFile="Interface\Common\UI-SearchBox-Clear">
+                            <Color r="1.0" g="1.0" b="1.0" a="0.6" />
+                        </Backdrop>
+                        <Scripts>
+                            <OnClick>
+                                local box = this:GetParent();
+                                box:SetText("");
+                                box:SetFocus();
+                                box:ClearFocus();
+                                TMOG_SEARCH_STRING = nil
+                                getglobal(box:GetParent():GetName().."SearchButton"):Click()
+                            </OnClick>
+                            <OnEnter>
+                                TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT", 0, 0)
+                                TmogTooltip:SetText("Clear")
+                                TmogTooltip:Show()
+                                this:SetBackdropColor(1.0, 1.0, 1.0, 1.0);
+                            </OnEnter>
+                            <OnLeave>
+                                TmogTooltip:Hide()
+                                this:SetBackdropColor(1.0, 1.0, 1.0, 0.6);
+                            </OnLeave>
+                        </Scripts>
+                    </Button>
+                </Frames>
 				<Scripts>
 					<OnLoad>
 						this:SetAutoFocus(false);
@@ -1011,7 +1044,7 @@
                     <OnEnter>
                             GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT", 0, 0)
                             GameTooltip:AddLine('Tmog', 1, 1, 1)
-                            GameTooltip:AddLine('Left-click to toggle frame')
+                            GameTooltip:AddLine('Left-click to toggle frame\nHold Left-click and drag to move this button')
                             GameTooltip:Show()
                     </OnEnter>
                     <OnLeave>

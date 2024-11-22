@@ -2,6 +2,8 @@
 TmogGearDB = {
 	[1] = {
 		["Leather"] = {
+			["Forgotten Hide Helm"] = 55119,
+
 			["Felhide Cap"] = 18325,
 			["Runic Leather Headband"] = 15094,
 			["Stormrage Cover"] = 16900,
@@ -177,6 +179,12 @@ TmogGearDB = {
 			["Praetorian Coif"] = 15185,
 		},
 		["Cloth"] = {
+			["Navy Top Hat"] = 41498,
+			["Cordovan Top Hat"] = 41499,
+			["Black Banded Top Hat"] = 41503,
+			["Bishop's Reverence"] = 55105,
+			["Brown Top Hat"] = 41497,
+
 			["Crown of Molten Ascension"] = 56060,
 			["Red Hat of Destruction"] = 61252,
 			["Reveler's Hat"] = 61086,
@@ -250,7 +258,7 @@ TmogGearDB = {
 			["Executioner's Cowl"] = 81353,
 			["Halo of Transcendence"] = 16921,
 			["High Councillor's Circlet"] = 10139,
-			--["Black Top Hat"] = 41500,
+			["Black Top Hat"] = 41500,
 			["Diviner's Cowl"] = 83282,
 			["Circlet of the Guardian"] = 47114,
 			["Elder's Hat"] = 7357,
@@ -314,7 +322,7 @@ TmogGearDB = {
 			["Wizardweave Turban"] = 14130,
 			["Craftsman's Monocle"] = 4393,
 			--["Trade Co. Standard-Issue Helmet"] = 51036,
-			["Armet of the Templar"] = 51019,
+			--["Armet of the Templar"] = 51019,
 			["Cowl of Terror"] = 80801,
 			["Highborne Crown"] = 14449,
 			["Gemburst Circlet"] = 10751,
@@ -328,7 +336,7 @@ TmogGearDB = {
 			["Champion's Silk Cowl"] = 23263,
 			["Miner's Hat of the Deep"] = 9429,
 			["Warlord's Silk Cowl"] = 16533,
-			["High Inquisitor's Chapeau"] = 50036,
+			--["High Inquisitor's Chapeau"] = 50036,
 			["Deepdive Helmet"] = 10506,
 			["Shadoweave Mask"] = 10025,
 			["The Creator's Goggles"] = 60540,
@@ -339,7 +347,7 @@ TmogGearDB = {
 			["Augural Shroud"] = 2620,
 			["Crochet Hat"] = 8749,
 			["Circle of Flame"] = 11808,
-			--["The Greatest Wizzard Hat"] = 8,
+			["The Greatest Wizzard Hat"] = 7, -- there is one with same name and id 8 that doesnt hide haircut
 			["Dread Mage Hat"] = 3556,
 			["Champion's Dreadweave Cowl"] = 23255,
 			["Dreadmist Mask"] = 16698,
@@ -458,6 +466,8 @@ TmogGearDB = {
 			["Gnomish Turban of Psychic Might"] = 21517,
 		},
 		["Plate"] = {
+			["Dreadslayer Horns"] = 55113,
+
 			["Helm of Valor"] = 16731,
 			["Symbolic Crown"] = 14831,
 			["Foreman's Head Protector"] = 22223,
@@ -521,7 +531,7 @@ TmogGearDB = {
 			["Emerald Helm"] = 10279,
 			["Thorium Helm"] = 12410,
 			["Avenger's Helmet"] = 47032,
-			["Crown of the Damned"] = 80180,
+			--["Crown of the Damned"] = 80180,
 			["Lionheart Crown"] = 47072,
 			["Warbringer's Crown"] = 14944,
 			["Lionheart Helm"] = 12640,
@@ -547,7 +557,7 @@ TmogGearDB = {
 			["Crown of Eternal Sacrifice"] = 70057,
 			["Bloodforged Helmet"] = 14952,
 			["Avenger's Crown"] = 21387,
-			["Horned Helm of Ancient Kings"] = 70056,
+			--["Horned Helm of Ancient Kings"] = 70056,
 			["Gurubashi Helm"] = 20263,
 			["Whitesoul Helm"] = 12633,
 			["Hyperion Helm"] = 10388,
@@ -588,6 +598,8 @@ TmogGearDB = {
 			["Lieutenant Commander's Plate Helm"] = 23314,
 		},
 		["Mail"] = {
+			["Crown of the Wildpack"] = 55083,
+
 			["Formidable Circlet"] = 15634,
 			["Captain's Circlet"] = 7488,
 			["Champion's Helmet"] = 7540,
@@ -760,6 +772,8 @@ TmogGearDB = {
 	},
 	[3] = {
 		["Leather"] = {
+			["Mantle of the Drifting Stars"] = 55126,
+
 			["Golden Mantle of the Dawn"] = 19058,
 			["Potent Shoulders"] = 15177,
 			["Champion's Dragonhide Shoulders"] = 23254,
@@ -1111,6 +1125,8 @@ TmogGearDB = {
 			["Wicked Chain Shoulder Pads"] = 15542,
 		},
 		["Plate"] = {
+			["Dreadslayer Shoulderblades"] = 55108,
+
 			["Pauldron of Deflection"] = 65014,
 			["Mantle of Dag'grak"] = 60405,
 			["Emerald Peak Spaulders"] = 19037,
@@ -1147,7 +1163,7 @@ TmogGearDB = {
 			["Stockade Pauldrons"] = 14552,
 			["Warleader's Shoulders"] = 14868,
 			["Redemption Pauldrons"] = 47052,
-			["Epaulets of the Damned"] = 80186,
+			--["Epaulets of the Damned"] = 80186,
 			["Mantle of the Redeemed Prophecy"] = 21683,
 			["Imbued Plate Pauldrons"] = 10374,
 			["Wyrmslayer Spaulders"] = 13066,
@@ -1241,6 +1257,9 @@ TmogGearDB = {
 			["Pauldrons of Might"] = 47241,
 		},
 		["Cloth"] = {
+			["Pall of the Black Rose"] = 41487,
+			["Mantle of Faith"] = 22515,
+
 			["Epaulets of the Forgotten Past"] = 61027,
 			["Mantle of the Scarlet Crusade"] = 22405,
 			["Felheart Mantle"] = 47277,
@@ -1327,7 +1346,7 @@ TmogGearDB = {
 			["Regal Mantle"] = 7473,
 			--["Trade Co. Standard-Issue Pauldrons"] = 51035,
 			["Shoulderpads of Faith"] = 47220,
-			["Pauldrons of the Templar"] = 51018,
+			--["Pauldrons of the Templar"] = 51018,
 			["Mantle of the Oracle"] = 21350,
 			["Ghostly Mantle"] = 3324,
 			["Frostfire Epaulets"] = 47100,
@@ -1839,6 +1858,8 @@ TmogGearDB = {
 			["Raptorbane Armor"] = 3566,
 		},
 		["Mail"] = {
+			["Insomnius' Retribution"] = 55102,
+
 			["Slayer's Surcoat"] = 14751,
 			["Tarnished Chain Vest"] = 2379,
 			["Brigandine Vest"] = 2423,
@@ -2134,7 +2155,7 @@ TmogGearDB = {
 			["Ursa's Embrace"] = 21322,
 			["Quel'dorei Guardian's Chestplate"] = 80507,
 			["Energized Chestplate"] = 18312,
-			["Bulwark of the Damned"] = 80181,
+			--["Bulwark of the Damned"] = 80181,
 			["Redemption Tunic"] = 22425,
 			["Breastplate of Fortitutde"] = 70058,
 			["Breastplate of Forgotten Valor"] = 70055,
@@ -2215,6 +2236,30 @@ TmogGearDB = {
 			["Dreadnaught Chestplate"] = 47263,
 		},
 		["Cloth"] = {
+			["Frock of Thirty-Two Fouettes"] = 41507,
+			["Green Formal Suit"] = 41532,
+			["Elune Adornments"] = 41547,
+			["Purple Robes of Insight"] = 41553,
+			["Green Robes of Insight"] = 41552,
+			["Array of the Eclipsed Moon"] = 41548,
+			["Purple Formal Suit"] = 41533,
+			["Red Robes of Insight"] = 41554,
+			["Lady Cavatica's Gown"] = 41505,
+			["Black Robes of Insight"] = 41549,
+			["Blue Robes of Insight"] = 41551,
+			["Hallow's End Suit"] = 41509,
+			["Vestments of Three Virtues"] = 41541,
+			["Raiment of Scarlet Zeal"] = 41544,
+			["Blue Formal Suit"] = 41531,
+			["Cerement of the Black Rose"] = 41486,
+			["Black & Silver Robes of Insight"] = 41550,
+			["Demon Hunter Harness"] = 50034,
+			["Black Widow's Guise"] = 41491,
+			["Mantle of the Night Lord"] = 41494,
+			["Mummy 5wraps"] = 41510,
+			["Black Formal Suit"] = 41530,
+			["Mid-Autumn Festival Hanfu"] = 41496,
+
 			["Felheart Raiments"] = 47278,
 			["Reefscale Robe"] = 41186,
 			--["Necromancer's Cuirass"] = 50514,
@@ -2259,7 +2304,7 @@ TmogGearDB = {
 			["Journeyman's Robe"] = 6511,
 			["Vicar's Robe"] = 3569,
 			["Snowy Robe"] = 2114,
-			["Hauberk of the Templar"] = 51013,
+			--["Hauberk of the Templar"] = 51013,
 			["Gilnean Archmage Robe"] = 69118,
 			["Gown of the Holly Queen"] = 41085,
 			["Formal Purple Waistcoat"] = 41252,
@@ -3043,6 +3088,10 @@ TmogGearDB = {
 			["Ranger Cord"] = 7485,
 		},
 		["Mail"] = {
+			["Girdle of the Faded Primals"] = 55117,
+			["Primal Murloc Scale Belt"] = 55499,
+			["Magehunter Belt"] = 55086,
+
 			["Earthshatter Belt"] = 22470,
 			["Lord's Girdle"] = 10081,
 			["Wolfwood Sash"] = 61727,
@@ -3260,7 +3309,7 @@ TmogGearDB = {
 			["Deathbone Girdle"] = 14620,
 			["Redemption Girdle"] = 47056,
 			["Sunscale Belt"] = 14847,
-			["Girdle of the Damned"] = 80184,
+			--["Girdle of the Damned"] = 80184,
 			["Abyssal Plate Girdle"] = 20673,
 			["Moontouched Girdle"] = 81376,
 			["Belt of the Fallen Emperor"] = 21606,
@@ -3387,7 +3436,7 @@ TmogGearDB = {
 			["Ivycloth Sash"] = 9799,
 			["Native Sash"] = 14099,
 			["Gnoll Seer Belt"] = 61678,
-			["Girdle of the Templar"] = 51014,
+			--["Girdle of the Templar"] = 51014,
 			["Farmer's Sash"] = 51401,
 			["Overcharged Belt"] = 61568,
 			["Mystical Girdle"] = 61536,
@@ -3589,6 +3638,8 @@ TmogGearDB = {
 	},
 	[7] = {
 		["Leather"] = {
+			["Legwraps of Meticulous Planning"] = 55109,
+
 			["Ferine Leggings"] = 6690,
 			["Dark Heart Pants"] = 20627,
 			["Dokebi Leggings"] = 14585,
@@ -3835,6 +3886,15 @@ TmogGearDB = {
 			["Legionnaire's Leather Legguards"] = 22880,
 		},
 		["Cloth"] = {
+			["Magispark Leggings"] = 55085,
+			["Crimson Silk Skirt"] = 41515,
+			["Mint Silk Skirt"] = 41520,
+			["White Silk Skirt"] = 41526,
+			["Azure Silk Skirt"] = 41514,
+			["Mummy Legwraps"] = 41511,
+			["Indigo Silk Skirt"] = 41518,
+			["Yellow Silk Skirt"] = 41527,
+			["Sapphire Silk Skirt"] = 41523,
 			["Aurora Pants"] = 4044,
 			--["Darkmaster's Pants"] = 50502,
 			["Mooncloth Leggings"] = 14137,
@@ -3994,7 +4054,7 @@ TmogGearDB = {
 			["Felheart Pants"] = 16810,
 			["Torn Pants"] = 80102,
 			["Stamped Trousers"] = 3457,
-			["Chausses of the Templar"] = 51015,
+			--["Chausses of the Templar"] = 51015,
 			["Black Mageweave Leggings"] = 9999,
 			["Calico Pants"] = 1499,
 			["Cross-stitched Pants"] = 1784,
@@ -4136,6 +4196,8 @@ TmogGearDB = {
 			["Urchin's Pants"] = 2238,
 		},
 		["Plate"] = {
+			["Leysteel Legplates"] = 55099,
+
 			["Maul'ogg Thighguards"] = 60274,
 			["Leggings of Shrouding Winds"] = 61244,
 			["Jouster's Legplates"] = 8162,
@@ -4221,7 +4283,7 @@ TmogGearDB = {
 			["Icebane Leggings"] = 22699,
 			["Revenant Leggings"] = 10133,
 			["Sentinel's Plate Legguards"] = 22672,
-			["Chausses of the Damned"] = 80183,
+			--["Chausses of the Damned"] = 80183,
 			["Platemail Leggings"] = 8093,
 			["Legplates of Heroism"] = 22000,
 			["Flamewaker Legplates"] = 18861,
@@ -4272,6 +4334,8 @@ TmogGearDB = {
 			["Titanic Leggings"] = 22385,
 		},
 		["Mail"] = {
+			["Earthquake Leggings"] = 55122,
+
 			["Enduring Breeches"] = 14766,
 			["Stromgarde Cavalry Leggings"] = 4741,
 			["Malleable Chain Leggings"] = 2545,
@@ -4492,6 +4556,8 @@ TmogGearDB = {
 	},
 	[8] = {
 		["Leather"] = {
+			["Pawn's Advance"] = 55104,
+			["Manahide Slippers"] = 55092,
 			["Warden's Footpads"] = 14599,
 			["Grand Boots"] = 15189,
 			["Supreme Shoes"] = 15435,
@@ -5049,7 +5115,7 @@ TmogGearDB = {
 			["Marshal's Plate Boots"] = 16483,
 			["Shinkicker Boots"] = 9637,
 			["Master Cannoneer Boots"] = 13381,
-			["Sabatons of the Damned"] = 80182,
+			--["Sabatons of the Damned"] = 80182,
 			["Slime Kickers"] = 21490,
 			["Heavy Mithril Boots"] = 7933,
 			["Sludge-drenched Sabatons"] = 80670,
@@ -5088,6 +5154,15 @@ TmogGearDB = {
 			["Gnomish Water Sinking Device"] = 9646,
 		},
 		["Cloth"] = {
+			["Slippers of Scarlet Zeal"] = 41546,
+			["Manadrenched Feather Slippers"] = 55081,
+			["Bomarn's Lucky Socks"] = 60988,
+			["Tread of the Black Rose"] = 41488,
+			["Slippers of Three Virtues"] = 41543,
+			["Mummy Footwraps"] = 41512,
+			["Black Widow's Treads"] = 41492,
+			["Thirty-Two Fouette Pointe Shoes"] = 41508,
+
 			["Boots of Epiphany"] = 21600,
 			["Stormcloth Boots"] = 10039,
 			["Argent Boots"] = 19056,
@@ -5188,7 +5263,7 @@ TmogGearDB = {
 			["Arcanist Boots"] = 16800,
 			["Darkmist Boots"] = 14238,
 			["Enigma Slippers"] = 47098,
-			["Sabatons of the Templar"] = 51016,
+			--["Sabatons of the Templar"] = 51016,
 			["Imperial Red Boots"] = 8246,
 			["Goblin Rocket Boots"] = 7189,
 			["Furen's Boots"] = 13100,
@@ -5423,6 +5498,8 @@ TmogGearDB = {
 	},
 	[9] = {
 		["Leather"] = {
+			["Bands of the Surgebreaker"] = 55089,
+
 			["Forest Stalker's Bracers"] = 19590,
 			["Superior Bracers"] = 9803,
 			["Forest Leather Bracers"] = 3202,
@@ -5621,6 +5698,9 @@ TmogGearDB = {
 			["Warped Leather Bracers"] = 1504,
 		},
 		["Cloth"] = {
+			["Bands of the Black Rose"] = 41490,
+			["Bindings of Contained Magic"] = 55106,
+			["Wristwraps of Exiled Radiance"] = 55130,
 			["Mistscape Bracers"] = 4045,
 			["Thistlefur Bands"] = 14197,
 			["Enchanted Stonecloth Bracers"] = 4979,
@@ -6129,6 +6209,8 @@ TmogGearDB = {
 	},
 	[10] = {
 		["Leather"] = {
+			["Handwraps of Dead Winds"] = 55125,
+
 			["Emblazoned Gloves"] = 6397,
 			["Doomhide Gauntlets"] = 18544,
 			["Blood Guard's Dragonhide Grips"] = 22863,
@@ -6396,6 +6478,17 @@ TmogGearDB = {
 			["Veiled Grips"] = 4940,
 		},
 		["Cloth"] = {
+			["White Dress Gloves"] = 41540,
+			["Lady Cavatica's Clutch"] = 41506,
+			["Black Dress Gloves"] = 41536,
+			["Fingerguards of Three Virtues"] = 41542,
+			["White Evening Gloves"] = 41535,
+			["Gloves of Leyline Convergence"] = 55107,
+			["Grip of the Black Rose"] = 41489,
+			["Fingerguards of Scarlet Zeal"] = 41545,
+			["Mummy Handwraps"] = 41513,
+			["Black Widow's Clutch"] = 41493,
+			["Black Evening Gloves"] = 41534,
 			["Evergreen Gloves"] = 7738,
 			--["Kul'Tiras Guard's Gauntlets"] = 50320,
 			["Gold-flecked Gloves"] = 5195,
@@ -6423,7 +6516,7 @@ TmogGearDB = {
 			["Conjurer's Gloves"] = 9848,
 			["Gloves of Shadowy Mist"] = 18306,
 			["Handguards of Prophecy"] = 47202,
-			["Gauntlets of the Templar "] = 51017,
+			--["Gauntlets of the Templar "] = 51017,
 			["Opulent Gloves"] = 14282,
 			["Shadowy Laced Handwraps"] = 18730,
 			["Arachnidian Gloves"] = 14294,
@@ -6664,6 +6757,8 @@ TmogGearDB = {
 			["Disciple's Gloves"] = 6515,
 		},
 		["Plate"] = {
+			["Dragonclaw Gauntlets"] = 55088,
+
 			["Plated Fist of Hakoo"] = 13071,
 			["Slagplate Gauntlets"] = 19126,
 			["Ornate Mithril Gloves"] = 7927,
@@ -6682,7 +6777,7 @@ TmogGearDB = {
 			["Dark Iron Gauntlets"] = 19164,
 			["Knight-Lieutenant's Lamellar Gauntlets"] = 23274,
 			["Razor Gauntlets"] = 18326,
-			["Grasps of the Damned"] = 80185,
+			--["Grasps of the Damned"] = 80185,
 			["Boneclenched Gauntlets"] = 14525,
 			["Gauntlets of Force"] = 70062,
 			["Valorous Gauntlets"] = 8276,
@@ -7010,6 +7105,10 @@ TmogGearDB = {
 	},
 	[15] = {
 		["Cloth"] = {
+			["Kum'isha's Tattered Drape"] = 55118,
+			["Cloak of the Bloody Ravager"] = 55095,
+			["Torn Wings of Midnight"] = 55084,
+
 			["Shroud of the Exile"] = 15421,
 			["Scout's Cloak"] = 5618,
 			["Phalanx Cloak"] = 7419,
@@ -7565,6 +7664,7 @@ TmogGearDB = {
 	},
 	[16] = {
 		["Two-Handed Maces"] = {
+			["Checkmate"] = 55100,
 			["Trogg Beater"] = 3571,
 			["Kobold Mining Shovel"] = 1195,
 			["Shadowhide Maul"] = 1458,
@@ -7721,6 +7821,8 @@ TmogGearDB = {
 			["Spiked Club"] = 4564,
 		},
 		["Daggers"] = {
+			["Riftcarver's Implement"] = 55115,
+
 			["Sacrificial Kris"] = 3187,
 			["Big Bronze Knife"] = 3848,
 			["Dagger of Quel'Danil"] = 51767,
@@ -7869,7 +7971,8 @@ TmogGearDB = {
 			["Talon of Vultros"] = 4454,
 			["Sageclaw"] = 20070,
 			["Hookfang Shanker"] = 11635,
-			["Camping Knife"] = 80211,
+			--["Camping Knife"] = 80211, --deprecated quest reward?
+			["Camping Knife"] = 10547,
 			["Lifeforce Dirk"] = 10750,
 			["Fang of Venoxis"] = 19903,
 			["Blade of the New Moon"] = 18372,
@@ -8044,7 +8147,7 @@ TmogGearDB = {
 			["Moonsteel Broadsword"] = 3853,
 			["Blackblade of Shahram"] = 12592,
 			["Broad Claymore"] = 3781,
-			["Claymore of the Templar"] = 51040,
+			--["Claymore of the Templar"] = 51040,
 			["Worn Thalassian Sword"] = 23556,
 			["Forsaken Bastard Sword"] = 5779,
 			["Rusted Bastard Sword"] = 80206,
@@ -8128,6 +8231,8 @@ TmogGearDB = {
 			["Shadowbringer"] = 61247,
 		},
 		["One-Handed Swords"] = {
+			["Desecration"] = 55129,
+
 			["Flesh Cutter"] = 80601,
 			["Skeletal Longsword"] = 2018,
 			["Sorrowguard Shortsword"] = 60169,
@@ -8169,7 +8274,7 @@ TmogGearDB = {
 			["Captain's Moonglaive"] = 61166,
 			--["Warglaive of Azzinoth (Left)"] = 18584,
 			["Mechanist's Bonechopper Replica"] = 81288,
-			["Falchion of the Templar"] = 51041,
+			--["Falchion of the Templar"] = 51041,
 			["Feeble Sword"] = 1413,
 			["Defias Rapier"] = 1925,
 			["Ravenholdt Slicer"] = 22378,
@@ -8386,6 +8491,8 @@ TmogGearDB = {
 			["Twisted Sabre"] = 2011,
 		},
 		["One-Handed Axes"] = {
+			["Bloodmoon, Sickle of the Murderous Flight"] = 55080,
+
 			["Frostmane Hand Axe"] = 2260,
 			["Hatchet of Sundered Bone"] = 22816,
 			["Blitzcleaver"] = 15862,
@@ -8811,6 +8918,7 @@ TmogGearDB = {
 			["Blacksmith Hammer"] = 5956,
 		},
 		["Fist Weapons"] = {
+			["Al'Kazeth, Claw of Ruptured Elements"] = 55120,
 			["Hurd Smasher"] = 13198,
 			["Satyr Claw"] = 80834,
 			["Claw of the Wildshifter"] = 51797,
@@ -8864,6 +8972,8 @@ TmogGearDB = {
 			["Strong Fishing Pole"] = 6365,
 		},
 		["Polearms"] = {
+			["Raka'shishi, Spear of the Adrift Hunt"] = 55116,
+
 			["Rusty Spear"] = 80814,
 			["Armor Piercer"] = 6679,
 			["Chillpike"] = 13148,
@@ -8940,6 +9050,8 @@ TmogGearDB = {
 			["Bonechewer"] = 13055,
 		},
 		["One-Handed Maces"] = {
+			["Comet Signaller"] = 55128,
+
 			["Shadowhide Mace"] = 1457,
 			["Steelscale Crushfish"] = 6360,
 			["Ornamental Mace"] = 1815,
@@ -9179,6 +9291,7 @@ TmogGearDB = {
 			["Skeletal Club"] = 2256,
 		},
 		["Two-Handed Axes"] = {
+			["Shar'tateth, the Shattered Edge"] = 55127,
 			["Copper Battle Axe"] = 3488,
 			["Brave's Axe"] = 5777,
 			["Crude Battle Axe"] = 1512,
@@ -9381,6 +9494,8 @@ TmogGearDB = {
 	},
 	[17] = {
 		["One-Handed Axes"] = {
+			["Bloodmoon, Sickle of the Murderous Flight"] = 55080,
+
 			["Sickle of Unyielding Strength"] = 21392,
 			["Hatchet of Sundered Bone"] = 22816,
 			["Blitzcleaver"] = 15862,
@@ -9453,6 +9568,8 @@ TmogGearDB = {
 			["Sickle Axe"] = 1602,
 		},
 		["Shields"] = {
+			["Scaleshield of Azure Flight"] = 55090,
+			["Bulwark of Enduring Earth"] = 55121,
 			["Sacred Protector"] = 16998,
 			["Banded Shield"] = 9843,
 			["Hulking Shield"] = 15891,
@@ -9588,7 +9705,7 @@ TmogGearDB = {
 			["Observer's Shield"] = 18485,
 			["Banded Buckler"] = 17187,
 			["Ironhide Shield"] = 15648,
-			["Heater Shield of the Templar"] = 51042,
+			--["Heater Shield of the Templar"] = 51042,
 			["Battered Buckler"] = 2210,
 			["Headhunter's Buckler"] = 15352,
 			["Warstrike Buckler"] = 14812,
@@ -9800,6 +9917,8 @@ TmogGearDB = {
 			["Inscribed Buckler"] = 6380,
 		},
 		["Daggers"] = {
+			["Riftcarver's Implement"] = 55115,
+
 			["Sacrificial Kris"] = 3187,
 			["Big Bronze Knife"] = 3848,
 			["Bite of Serra'kis"] = 6904,
@@ -10140,7 +10259,7 @@ TmogGearDB = {
 			["Blackwater Cutlass"] = 1951,
 			["Notched Shortsword"] = 727,
 			["Night Watch Shortsword"] = 935,
-			["Falchion of the Templar"] = 51041,
+			--["Falchion of the Templar"] = 51041,
 			["Blazing Rapier"] = 12777,
 			["Reforged Blade of Heroes"] = 9718,
 			["Fine Scimitar"] = 4560,
@@ -10166,6 +10285,8 @@ TmogGearDB = {
 			["Dal'Rend's Tribal Guardian"] = 12939,
 		},
 		["Fist Weapons"] = {
+			["Al'Kazeth, Claw of Ruptured Elements"] = 55120,
+
 			["Left-Handed Claw"] = 15907,
 			["Claw of Celebras"] = 17738,
 			["Claw of the Mageweaver"] = 55133,
@@ -10194,11 +10315,9 @@ TmogGearDB = {
 			["Left-Handed Brass Knuckles"] = 15906,
 			["Rockfist"] = 11743,
 		},
-		["Cloth"] = {
-			--["Stormwind Guard's Shield"] = 50315,
-		},
-
 		["One-Handed Maces"] = {
+			["Comet Signaller"] = 55128,
+
 			["Stonevault Bonebreaker"] = 9427,
 			["Steelscale Crushfish"] = 6360,
 			["Galgann's Firehammer"] = 9419,
@@ -10805,6 +10924,8 @@ TmogGearDB = {
 			["Moonstone Wand"] = 15204,
 		},
 		["Crossbows"] = {
+			["Phase-shifting Crossbow"] = 55096,
+
 			["Bloodseeker"] = 19107,
 			["Stoneshatter"] = 18388,
 			["Battered Arbalest"] = 61683,

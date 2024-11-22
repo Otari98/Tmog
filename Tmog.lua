@@ -4,7 +4,9 @@
 
 -- adapted from https://github.com/Zebouski/MoPGearTooltips/tree/masterturtle
 local GAME_YELLOW = "|cffffd200"
-
+local RED = "|cffff0000";
+local GREEN = "|cff1eff00";
+local GREY = "|cff999999"
 local t_debug = false
 
 TRANSMOG_CACHE = TRANSMOG_CACHE or {
@@ -649,6 +651,7 @@ end)
 -------------------------------
 ------- ITEM BROWSER ----------
 -------------------------------
+
 -- Modified CosminPOP's Turtle_TransmogUI
 TMOG_CURRENT_GEAR = {}
 TMOG_PREVIEW_BUTTONS = {}
@@ -780,10 +783,8 @@ end
 
 function OutfitsDropDown_Initialize()
     if Tmog:tableSize(TMOG_PLAYER_OUTFITS) < 30 then
-        local _, _, _, color = GetItemQualityColor(2)
-
         local newOutfit = {}
-        newOutfit.text = color .. "+ New Outfit"
+        newOutfit.text = GREEN .. "+ New Outfit"
         newOutfit.value = 1
         newOutfit.arg1 = 1
         newOutfit.checked = false
@@ -798,9 +799,33 @@ function OutfitsDropDown_Initialize()
         info.arg1 = name
         info.checked = Tmog.currentOutfit == name
         info.func = Tmog_LoadOutfit
+        info.tooltipTitle = name
+        local descText, slotName = "", ""
+        for slot, itemID in data do
+            Tmog:CacheItem(itemID)
+            for k,v in Tmog.inventorySlots do
+                if v == slot then
+                    slotName = k
+                end
+            end
+            if slotName then
+                slotName = TEXT(getglobal(strupper(slotName)))
+                local itemName, _, quality = GetItemInfo(itemID)
+                if quality then
+                    local _, _, _, color = GetItemQualityColor(quality)
+                    if color then
+                        descText = descText..GAME_YELLOW..slotName..":|r "..color.. itemName.."|r\n"
+                    else
+                        descText = descText..GAME_YELLOW..slotName..":|r ".. itemName.."|r\n"
+                    end
+                else
+                    descText = descText..GAME_YELLOW..slotName..":|r ".. itemName.."|r\n"
+                end
+            end
+        end
+        info.tooltipText = descText
         UIDropDownMenu_AddButton(info)
     end
-
 end
 
 function TypeDropDown_Initialize()
@@ -1353,8 +1378,9 @@ end
 
 function TmogSlot_OnClick(InventorySlotId, rightClick)
     CloseDropDownMenus()
-
-    if rightClick then
+    if IsShiftKeyDown() then
+        Tmog_LinkItem(TMOG_CURRENT_GEAR[InventorySlotId])
+    elseif rightClick then
         if TMOG_CURRENT_GEAR[InventorySlotId] == 0 then
             TmogFramePlayerModel:TryOn(Tmog.actualGear[InventorySlotId])
             TMOG_CURRENT_GEAR[InventorySlotId] = Tmog.actualGear[InventorySlotId]
@@ -1530,14 +1556,33 @@ end
 function TmogTry(itemId)
     CloseDropDownMenus()
     if Tmog.currentTab == 'items' then
-        TmogFramePlayerModel:TryOn(itemId)
-        TMOG_CURRENT_GEAR[Tmog.currentSlot] = itemId
-        Tmog:EnableOutfitSaveButton()
-        Tmog:UpdateItemTextures()
+        if IsShiftKeyDown() then
+            Tmog_LinkItem(itemId)
+        else
+            TmogFramePlayerModel:TryOn(itemId)
+            TMOG_CURRENT_GEAR[Tmog.currentSlot] = itemId
+            Tmog:EnableOutfitSaveButton()
+            Tmog:UpdateItemTextures()
+        end
     elseif Tmog.currentTab == 'outfits' then
         local outfit = TMOG_PREVIEW_BUTTONS[this:GetID()].name
         Tmog.currentOutfit = outfit
         Tmog_LoadOutfit(outfit)
+    end
+end
+
+function Tmog_LinkItem(itemId)
+    if not itemId or itemId == 0 then
+        return
+    end
+
+    Tmog:CacheItem(itemId)
+    local itemName, _, quality = GetItemInfo(itemId)
+    local _, _, _, color = GetItemQualityColor(quality)
+    if WIM_EditBoxInFocus then
+        WIM_EditBoxInFocus:Insert(color.."|Hitem:"..itemId..":0:0:0|h["..itemName.."]|h|r");
+    elseif ChatFrameEditBox:IsVisible() then
+        ChatFrameEditBox:Insert(color.."|Hitem:"..itemId..":0:0:0|h["..itemName.."]|h|r");
     end
 end
 
@@ -1547,6 +1592,7 @@ function Tmog_RemoveCurrentGear()
         TMOG_CURRENT_GEAR[InventorySlotId] = 0
     end
     Tmog:UpdateItemTextures()
+    Tmog:EnableOutfitSaveButton()
 end
 
 function Tmog_ResetPosition()
@@ -1667,10 +1713,25 @@ function Tmog_AddOutfitTooltip(frame, outfit)
                         slotName = TEXT(getglobal(strupper(slotName)))
                         local itemName, _, quality = GetItemInfo(itemID)
                         local _, _, _, color = GetItemQualityColor(quality)
-                        if color then
-                            TmogTooltip:AddLine(slotName..": "..color..itemName)
+                        if slot ~= 4 and slot ~= 19 then
+                            local collected = SetContains(TRANSMOG_CACHE[slot], itemName)
+                            local status = ""
+                            if collected then
+                                status = GAME_YELLOW.."Collected"
+                            else
+                                status = GREY.."Not collected"
+                            end
+                            if color then
+                                TmogTooltip:AddDoubleLine(slotName..": "..color..itemName, status)
+                            else
+                                TmogTooltip:AddDoubleLine(slotName..": "..itemName, status)
+                            end
                         else
-                            TmogTooltip:AddLine(slotName..": "..itemName)
+                            if color then
+                                TmogTooltip:AddLine(slotName..": "..color..itemName)
+                            else
+                                TmogTooltip:AddLine(slotName..": "..itemName)
+                            end
                         end
                     end
                 end
@@ -1925,6 +1986,8 @@ function Tmog_Search(inputText)
 end
 
 function Tmog_switchTab(which)
+    CloseDropDownMenus()
+
     if Tmog.currentTab == which then
         return
     end
@@ -1966,5 +2029,27 @@ function Tmog_switchTab(which)
         TmogFrameSearchButton:Hide()
 
         Tmog:DrawPreviews(Tmog.currentSlot)
+    end
+end
+
+function Tmog_PlayerSlotOnEnter()
+    TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT", 0, 0)
+    Tmog:CacheItem(TMOG_CURRENT_GEAR[this:GetID()])
+    local name, _, quality = GetItemInfo(TMOG_CURRENT_GEAR[this:GetID()])
+    if name and quality then
+        local r, g, b = GetItemQualityColor(quality)
+        TmogTooltip:SetText(name, r, g, b)
+        if SetContains(TRANSMOG_CACHE[this:GetID()], name) then
+            TmogTooltip:AddLine("In your collection")
+        else
+            TmogTooltip:AddLine("Not collected")
+        end
+        TmogTooltip:AddLine(GAME_YELLOW.."\nItemID: "..TMOG_CURRENT_GEAR[this:GetID()].."|r", 1, 1, 1)
+        TmogTooltip:Show()
+    end
+    if not name then
+        local text = TEXT(getglobal(strupper(strsub(this:GetName(), 10))))
+        TmogTooltip:SetText(text)
+        TmogTooltip:Show()
     end
 end

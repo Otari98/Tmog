@@ -1,20 +1,52 @@
--- items that share Display ID (this is not full list, only stuff relevant for the Tmog addon) 
---(for example alliance epic warrior pvp set and pala blue pvp sets are not included even tho they share Display ID)
--- some of these items are unobtainable but I cba to check that
+-- Items that share Display ID or just look the same
+
+-- some of these items might be unobtainable
+
 DisplayIdDB= {
     -- head
-    ["Mistwood Tiara"]={"Sunburst Tiara","Holy Diadem"},
-    ["Sunburst Tiara"]={"Mistwood Tiara","Holy Diadem"},
-    ["Holy Diadem"]={"Mistwood Tiara","Sunburst Tiara"},
+    ["Swiftcaster's Chapeau"] = {"Ethereal Frostspark Crown"},
+    ["Ethereal Frostspark Crown"] = {"Swiftcaster's Chapeau"},
 
-    ["Gurubashi Helm"] = {"Savage Helmet"},
-    ["Savage Helmet"] = {"Gurubashi Helm"},
+    ["Imperial Red Circlet"] = {"Circlet of the Living Volcano"},
+    ["Circlet of the Living Volcano"] = {"Imperial Red Circlet"},
+
+    ["Elder's Hat"] = {"Emissary's Cap"},
+    ["Emissary's Cap"] = {"Elder's Hat"},
+
+    ["Zulian Headdress"] = {"Gnomish Turban of Psychic Might"},
+    ["Gnomish Turban of Psychic Might"] = {"Zulian Headdress"},
+
+    ["Cowskin Chapeau"] = {"Cap of the Cow Savant"},
+    ["Cap of the Cow Savant"] = {"Cowskin Chapeau"},
+
+    ["Windchaser Coronet"] = {"High Councillor's Circlet","Sage's Circlet"},
+    ["High Councillor's Circlet"] = {"Windchaser Coronet","Sage's Circlet"},
+    ["Sage's Circlet"] = {"High Councillor's Circlet","Windchaser Coronet"},
+
+    ["Crystal Adorned Crown"] = {"Crown of the Illustrious Queen","Enfused Moon Crown","Gemburst Circlet","Eternal Crown"},
+    ["Crown of the Illustrious Queen"] = {"Crystal Adorned Crown","Enfused Moon Crown","Gemburst Circlet","Eternal Crown"},
+    ["Enfused Moon Crown"] = {"Crown of the Illustrious Queen","Crystal Adorned Crown","Gemburst Circlet","Eternal Crown"},
+    ["Gemburst Circlet"] = {"Crown of the Illustrious Queen","Enfused Moon Crown","Crystal Adorned Crown","Eternal Crown"},
+    ["Eternal Crown"] = {"Crown of the Illustrious Queen","Enfused Moon Crown","Gemburst Circlet","Crystal Adorned Crown"},
+
+    ["Flimsy Male Troll Mask"]={"Winterax Disguise"},
+    ["Winterax Disguise"]={"Flimsy Male Troll Mask"},
+
+    ["Reveler's Hat"]={"Red Winter Hat"},
+    ["Red Winter Hat"]={"Reveler's Hat"},
+
+    ["Mistwood Tiara"]={"Sunburst Tiara","Holy Diadem","Starfire Tiara"},
+    ["Sunburst Tiara"]={"Mistwood Tiara","Holy Diadem","Starfire Tiara"},
+    ["Holy Diadem"]={"Mistwood Tiara","Sunburst Tiara","Starfire Tiara"},
+    ["Starfire Tiara"]={"Mistwood Tiara","Sunburst Tiara","Holy Diadem"},
+
+    ["Councillor's Circlet"] = {"'Queen Azshara's Crown'","Eye of Theradras","Venomspire Diadem"},
+    ["'Queen Azshara's Crown'"] = {"Councillor's Circlet","Eye of Theradras","Venomspire Diadem"},
+    ["Eye of Theradras"] = {"Councillor's Circlet","'Queen Azshara's Crown'","Venomspire Diadem"},
+    ["Venomspire Diadem"] = {"Councillor's Circlet","'Queen Azshara's Crown'","Eye of Theradras"},
 
     ["Sailor's Headband"] = {"Vital Headband"},
     ["Vital Headband"] = {"Sailor's Headband"},
-
-    ["Crown of Unstable Nature"] = {"Huntsman's Cap"},
-    ["Huntsman's Cap"] = {"Crown of Unstable Nature"},
 
     ["Crochet Hat"] = {"Hat of Loruk"},
     ["Hat of Loruk"] = {"Crochet Hat"},
@@ -24,23 +56,12 @@ DisplayIdDB= {
     ["X-53 Ranger Ocular Implants"] = {"X-51 Arcane Ocular Implants","X-52 Stealth Ocular Implants","X-54 Guardian Ocular Implants"},
     ["X-54 Guardian Ocular Implants"] = {"X-51 Arcane Ocular Implants","X-52 Stealth Ocular Implants","X-53 Ranger Ocular Implants"},
 
-    ["Emerald Helm"] = {"Tel Co. Protective Helmet"},
-    ["Tel Co. Protective Helmet"] = {"Emerald Helm"},
-
-    ["Feathermoon Headdress"] = {"Headband of a Hundred Feathers"},
-    ["Headband of a Hundred Feathers"] = {"Feathermoon Headdress"},
-
-    ["Cowl of Memento"] = {"Aurora Cowl"},
-    ["Aurora Cowl"] = {"Cowl of Memento"},
-
-    ["Gaea's Circlet"] = {"Whelpling Tiara"},
-    ["Whelpling Tiara"] = {"Gaea's Circlet"},
+    ["Cowl of Memento"] = {"Aurora Cowl","Diviner's Cowl"},
+    ["Aurora Cowl"] = {"Cowl of Memento","Diviner's Cowl"},
+    ["Diviner's Cowl"] = {"Cowl of Memento","Aurora Cowl"},
 
     ["Moonshadow Hood"] = {"Energyseekers Cover"},
     ["Energyseekers Cover"] = {"Moonshadow Hood"},
-    
-    ["Darkmist Wizard Hat"] = {"Dalaran Wizard's Hat"},
-    ["Dalaran Wizard's Hat"] = {"Darkmist Wizard Hat"},
     
     ["High Bergg Helm"] = {"Kul Tiras Marine Helmet"},
     ["Kul Tiras Marine Helmet"] = {"High Bergg Helm"},
@@ -48,70 +69,29 @@ DisplayIdDB= {
     ["Zorbin's Water Resistant Hat"] = {"Scruffy Cloth Hat"},
     ["Scruffy Cloth Hat"] = {"Zorbin's Water Resistant Hat"},
 
-    ["Chief Brigadier Coif"] = {"Vagrant Coif","Wreath of Worgen Blood"},
-    ["Vagrant Coif"] = {"Chief Brigadier Coif","Wreath of Worgen Blood"},
-    ["Wreath of Worgen Blood"] = {"Chief Brigadier Coif","Vagrant Coif"},
-
-    ["Whisperwind Headdress"] = {"Hawkspear's Ceremonial Headdress"},
-    ["Hawkspear's Ceremonial Headdress"] = {"Whisperwind Headdress"},
-
-    ["First Mate Hat"] = {"Grayson’s Hat"},
-    ["Grayson’s Hat"] = {"First Mate Hat"},
-
     ["Enchanter's Cowl"] = {"Woolen Cowl"},
     ["Woolen Cowl"] = {"Enchanter's Cowl"},
 
-    ["Crown of the Ogre King"] = {"Crown of Corthan"},
-    ["Crown of Corthan"] = {"Crown of the Ogre King"},
-
-    ["Feathered Headdress"] = {"Hazzuri Primalist Headdress"},
-    ["Hazzuri Primalist Headdress"] = {"Feathered Headdress"},
-
-    ["Chromite Barbute"] = {"Scrapforged Helmet"},
-    ["Scrapforged Helmet"] = {"Chromite Barbute"},
-
-    ["Wanderer's Hat"] = {"Crab Catcher's Hat"},
-    ["Crab Catcher's Hat"] = {"Wanderer's Hat"},
-
-    ["Raging Berserker's Helm"] = {"Helm of Nethergarde"},
-    ["Helm of Nethergarde"] = {"Raging Berserker's Helm"},
-
-    ["Ebonhold Helmet"] = {"The Crown of Shattering"},
-    ["The Crown of Shattering"] = {"Ebonhold Helmet"},
-	
     ["Crown of Lost Memories"] = {"Ancient Crown"},
     ["Ancient Crown"] = {"Crown of Lost Memories"},
-    
-	["Brutish Helmet"] = {"Old Champion's Helmet"},
-    ["Old Champion's Helmet"] = {"Brutish Helmet"},
-	
-	["Frostreaver Crown"] = {"Timeloop Headguard"},
-    ["Timeloop Headguard"] = {"Frostreaver Crown"},
 
-    ["Venomshroud Mask"] = {"Thornweave Mask","Mask of Denatharion"},
-    ["Thornweave Mask"] = {"Venomshroud Mask","Mask of Denatharion"},
-    ["Mask of Denatharion"] = {"Venomshroud Mask","Thornweave Mask"},
-	
-	["Avenguard Helm"] = {"Monolith Headguard"},
-    ["Monolith Headguard"] = {"Avenguard Helm"},
+    ["Venomshroud Mask"] = {"Thornweave Mask","Mask of Denatharion","Venomsight Mask"},
+    ["Thornweave Mask"] = {"Venomshroud Mask","Mask of Denatharion","Venomsight Mask"},
+    ["Mask of Denatharion"] = {"Venomshroud Mask","Thornweave Mask","Venomsight Mask"},
+    ["Venomsight Mask"] = {"Thornweave Mask","Mask of Denatharion","Venomshroud Mask"},
+
+    ["Big Voodoo Mask"] = {"Bad Mojo Mask","Witch Doctor's Mask"},
+    ["Bad Mojo Mask"] = {"Big Voodoo Mask","Witch Doctor's Mask"},
+    ["Witch Doctor's Mask"] = {"Big Voodoo Mask","Bad Mojo Mask"},
 	
 	["Imperial Plate Helm"] = {"Helmet of the Elite Guard"},
     ["Helmet of the Elite Guard"] = {"Imperial Plate Helm"},
 
-    ["Lunar Coronet"] = {"Circlet of the Crescent Moon"},
-    ["Circlet of the Crescent Moon"] = {"Lunar Coronet"},
-
     ["Dragonskin Cowl"] = {"Cowl of the Fang"},
     ["Cowl of the Fang"] = {"Dragonskin Cowl"},
 
-    ["Visor of Command"] = {"Brigade Circlet"},
-    ["Brigade Circlet"] = {"Visor of Command"},
-
     ["Bright-Eye Goggles"] = {"The Creator's Goggles"},
     ["The Creator's Goggles"] = {"Bright-Eye Goggles"},
-
-    ["Helm of Awareness"] = {"Ragereaver's Helm"},
-    ["Ragereaver's Helm"] = {"Helm of Awareness"},
 
     ["Ghostshroud"] = {"Cowl of Mivax","Wraps of the Transmogrified"},
     ["Cowl of Mivax"] = {"Ghostshroud","Wraps of the Transmogrified"},
@@ -120,32 +100,14 @@ DisplayIdDB= {
     ["Gossamer Headpiece"] = {"Circlet of Forlorn Spirits"},
     ["Circlet of Forlorn Spirits"] = {"Gossamer Headpiece"},
 
-    ["Enigma Circlet"] = {"Crown of Skittering Shadows"},
-    ["Crown of Skittering Shadows"] = {"Enigma Circlet"},
-
-    ["Regal Wizard Hat"] = {"Dalarani Conjurer's Hat"},
-    ["Dalarani Conjurer's Hat"] = {"Regal Wizard Hat"},
-
     ["Hakkari Shroud"] = {"Dreambreeze Cowl"},
     ["Dreambreeze Cowl"] = {"Hakkari Shroud"},
-
-    ["Living Cowl"] = {"Hood of Delusional Power"},
-    ["Hood of Delusional Power"] = {"Living Cowl"},
 
     ["Green Lens"] = {"Intricate Gyroscope Goggles"},
     ["Intricate Gyroscope Goggles"] = {"Green Lens"},
 
     ["Wizardweave Turban"] = {"Turban of Veiled Mists"},
     ["Turban of Veiled Mists"] = {"Wizardweave Turban"},
-
-    ["Blood-Spattered Helm"] = {"Drakefire Headguard"},
-    ["Drakefire Headguard"] = {"Blood-Spattered Helm"},
-
-    ["Wicked Leather Headband"] = {"Bloody Gladiator's Headband"},
-    ["Bloody Gladiator's Headband"] = {"Wicked Leather Headband"},
-
-    ["Traveler's Helm"] = {"Crown of Corruption"},
-    ["Crown of Corruption"] = {"Traveler's Helm"},
 
     ["Sanctified Leather Helm"] = {"Depthstalker Helm"},
     ["Depthstalker Helm"] = {"Sanctified Leather Helm"},
@@ -154,28 +116,16 @@ DisplayIdDB= {
     ["Hooded Cowl"] = {"Flamescorched Hood","Searing Cowl"},
     ["Searing Cowl"] = {"Flamescorched Hood","Hooded Cowl"},
 
-    ["The Night Watchman"] = {"Tattered Leather Hood","Sightless Leather Hood"},
-    ["Tattered Leather Hood"] = {"The Night Watchman","Sightless Leather Hood"},
-    ["Sightless Leather Hood"] = {"The Night Watchman","Tattered Leather Hood"},
-
-    ["Visage of the Forgotten"] = {"Ebon Mask"},
-    ["Ebon Mask"] = {"Visage of the Forgotten"},
-
-    ["Heroic Skullcap"] = {"Bloody Gladiator's Helm"},
-    ["Bloody Gladiator's Helm"] = {"Heroic Skullcap"},
+    ["Visage of the Forgotten"] = {"Ebon Mask","Black Rogue Mask"},
+    ["Ebon Mask"] = {"Visage of the Forgotten","Black Rogue Mask"},
+    ["Black Rogue Mask"]={"Ebon Mask","Visage of the Forgotten"},
 
     ["Ornate Mithril Helm"] = {"Core Forged Helmet"},
     ["Core Forged Helmet"] = {"Ornate Mithril Helm"},
 
-    ["Crown of Divine Justice"] = {"Brigandine Helm"},
-    ["Brigandine Helm"] = {"Crown of Divine Justice"},
-
     ["Blademaster's Blindfold"] = {"Satin Blindfold","Demon Hunter's Blindfold"},
     ["Demon Hunter's Blindfold"] = {"Satin Blindfold","Blademaster's Blindfold"},
     ["Satin Blindfold"] = {"Demon Hunter's Blindfold","Blademaster's Blindfold"},
-
-    ["Jazeraint Helm"] = {"Towerforge Crown"},
-    ["Towerforge Crown"] = {"Jazeraint Helm"},
 
     ["Azure Silk Hood"] = {"Raincaller Cap","Outland Exile Hood"},
     ["Raincaller Cap"] = {"Azure Silk Hood","Outland Exile Hood"},
@@ -184,21 +134,15 @@ DisplayIdDB= {
     ["Cowl of Necromancy"] = {"Thistlefur Cap"},
     ["Thistlefur Cap"] = {"Cowl of Necromancy"},
 
-    ["Lucky Fishing Hat"] = {"Worn Fishing Hat","Blump Family Fishing Hat"},
-    ["Worn Fishing Hat"] = {"Lucky Fishing Hat","Blump Family Fishing Hat"},
-    ["Blump Family Fishing Hat"] = {"Worn Fishing Hat","Lucky Fishing Hat"},
+    ["Lucky Fishing Hat"] = {"Worn Fishing Hat","Russet Hat"},
+    ["Worn Fishing Hat"] = {"Lucky Fishing Hat","Russet Hat"},
+    ["Russet Hat"] = {"Worn Fishing Hat","Lucky Fishing Hat"},
 
     ["Hibernal Cowl"] = {"Conjurer's Hood"},
     ["Conjurer's Hood"] = {"Hibernal Cowl"},
 
     ["Spellpower Goggles Xtreme Plus"] = {"Bloodvine Goggles"},
     ["Bloodvine Goggles"] = {"Spellpower Goggles Xtreme Plus"},
-
-    ["Royal Headband"] = {"Mooncloth Circlet"},
-    ["Mooncloth Circlet"] = {"Royal Headband"},
-
-    ["Rageclaw Helm"] = {"Tribal War Feathers"},
-    ["Tribal War Feathers"] = {"Rageclaw Helm"},
 
     ["Foror's Eyepatch"] = {"Ragefury Eyepatch", "Pirate's Eye Patch","Bloodsail Eyepatch","Swamphunter's Eye"},
     ["Pirate's Eye Patch"] = {"Ragefury Eyepatch", "Foror's Eyepatch","Bloodsail Eyepatch","Swamphunter's Eye"},
@@ -211,21 +155,6 @@ DisplayIdDB= {
 
     ["Hardened Leather Helm"] = {"Infiltrator Cap"},
     ["Infiltrator Cap"] = {"Hardened Leather Helm"},
-
-    ["Indomitable Headdress"] = {"Serpentskin Helm"},
-    ["Serpentskin Helm"] = {"Indomitable Headdress"},
-
-    ["Fire Hardened Coif"] = {"Dragoneye Coif"},
-    ["Dragoneye Coif"] = {"Fire Hardened Coif"},
-
-    ["Glimmering Mail Coif"] = {"Sparkleshell Headwrap"},
-    ["Sparkleshell Headwrap"] = {"Glimmering Mail Coif"},
-
-    ["Knight's Headguard"] = {"Marauder's Circlet"},
-    ["Marauder's Circlet"] = {"Knight's Headguard"},
-
-    ["Phalanx Headguard"] = {"Thick Scale Crown"},
-    ["Thick Scale Crown"] = {"Phalanx Headguard"},
 
     ["Champion's Helmet"] = {"Bonelink Helmet","Bloody Gladiator's Helmet"},
     ["Bonelink Helmet"] = {"Champion's Helmet","Bloody Gladiator's Helmet"},
@@ -240,26 +169,15 @@ DisplayIdDB= {
     ["Cryptstone Circlet"] = {"Lord's Crown","Formidable Circlet","Crown of Grobi"},
     ["Crown of Grobi"] = {"Lord's Crown","Formidable Circlet","Cryptstone Circlet"},
 
-    ["Khan's Helmet"] = {"Triumphant Skullcap"},
-    ["Triumphant Skullcap"] = {"Khan's Helmet"},
-
-    ["Hyperion Helm"] = {"Bloodforged Helmet"},
-    ["Bloodforged Helmet"] = {"Hyperion Helm"},
-
     ["Cloaked Hood"] = {"Nightsky Cowl","Cowl of Terror"},
     ["Nightsky Cowl"] = {"Cloaked Hood","Cowl of Terror"},
     ["Cowl of Terror"] = {"Cloaked Hood","Nightsky Cowl"},
 
-    ["Red Defias Mask"] = {"Bloodwoven Mask","Blackened Defias Mask","Tattered Defias Mask"},
-    ["Bloodwoven Mask"] = {"Red Defias Mask","Blackened Defias Mask","Tattered Defias Mask"},
-    ["Blackened Defias Mask"] = {"Red Defias Mask","Bloodwoven Mask","Tattered Defias Mask"},
-    ["Tattered Defias Mask"] = {"Red Defias Mask","Bloodwoven Mask","Blackened Defias Mask"},
-
-    ["Shadow Hood"] = {"Wildheart Cowl"},
-    ["Wildheart Cowl"] = {"Shadow Hood"},
-
-    ["Skullsplitter Helm"] = {"Platemail Helm"},
-    ["Platemail Helm"] = {"Skullsplitter Helm"},
+    ["Red Defias Mask"] = {"Bloodwoven Mask","Blackened Defias Mask","Tattered Defias Mask","Blooddrenched Mask"},
+    ["Bloodwoven Mask"] = {"Red Defias Mask","Blackened Defias Mask","Tattered Defias Mask","Blooddrenched Mask"},
+    ["Blackened Defias Mask"] = {"Red Defias Mask","Bloodwoven Mask","Tattered Defias Mask","Blooddrenched Mask"},
+    ["Tattered Defias Mask"] = {"Red Defias Mask","Bloodwoven Mask","Blackened Defias Mask","Blooddrenched Mask"},
+    ["Blooddrenched Mask"] = {"Bloodwoven Mask","Blackened Defias Mask","Tattered Defias Mask","Red Defias Mask"},
 
     ["Clever Hat"] = {"Don Rigoberto's Lost Hat"},
     ["Don Rigoberto's Lost Hat"] = {"Clever Hat"},
@@ -297,9 +215,6 @@ DisplayIdDB= {
     ["Warmonger's Pauldrons"] = {"Blatarg's Mantle"},
     ["Blatarg's Mantle"] = {"Warmonger's Pauldrons"},
 
-    ["Runic Leather Shoulders"] = {"Mantle of the Ogre Slayer"},
-    ["Mantle of the Ogre Slayer"] = {"Runic Leather Shoulders"},
-
     ["Phytoskin Spaulders"] = {"Dreamwind Spaulders"},
     ["Dreamwind Spaulders"] = {"Phytoskin Spaulders"},
 
@@ -322,14 +237,8 @@ DisplayIdDB= {
     ["Defiler's Epaulets"] = {"Highlander's Epaulets","Epaulets of the Forgotten Past"},
     ["Epaulets of the Forgotten Past"] = {"Highlander's Epaulets","Defiler's Epaulets"},
     
-	["Darkmantle Spaulders"] = {"Nexus Shoulderpads"},
-    ["Nexus Shoulderpads"] = {"Darkmantle Spaulders"},
-	
 	["Mooncloth Shoulders"] = {"Dragonbane Pauldrons"},
     ["Dragonbane Pauldrons"] = {"Mooncloth Shoulders"},
-
-    ["Amice of the Webweaver"] = {"Animist's Spaulders"},
-    ["Animist's Spaulders"] = {"Amice of the Webweaver"},
 
     ["Ternary Mantle"] = {"Attuned Shoulders"},
     ["Attuned Shoulders"] = {"Ternary Mantle"},
@@ -428,21 +337,11 @@ DisplayIdDB= {
     ["Black Mageweave Shoulders"] = {"Mantle of the Blackwing Cabal"},
     ["Mantle of the Blackwing Cabal"] = {"Black Mageweave Shoulders"},
 
-    ["Wyrmtongue Shoulders"] = {"Flamescarred Shoulders","Highlander's Leather Shoulders","Highlander's Lizardhide Shoulders","Defiler's Lizardhide Shoulders","Defiler's Leather Shoulders"},
-    ["Flamescarred Shoulders"] = {"Wyrmtongue Shoulders","Highlander's Leather Shoulders","Highlander's Lizardhide Shoulders","Defiler's Lizardhide Shoulders","Defiler's Leather Shoulders"},
-    ["Highlander's Leather Shoulders"] = {"Wyrmtongue Shoulders","Flamescarred Shoulders","Highlander's Lizardhide Shoulders","Defiler's Lizardhide Shoulders","Defiler's Leather Shoulders"},
-    ["Highlander's Lizardhide Shoulders"] = {"Wyrmtongue Shoulders","Flamescarred Shoulders","Highlander's Leather Shoulders","Defiler's Lizardhide Shoulders","Defiler's Leather Shoulders"},
-    ["Defiler's Lizardhide Shoulders"] = {"Wyrmtongue Shoulders","Flamescarred Shoulders","Highlander's Leather Shoulders","Highlander's Lizardhide Shoulders","Defiler's Leather Shoulders"},
-    ["Defiler's Leather Shoulders"] = {"Wyrmtongue Shoulders","Flamescarred Shoulders","Highlander's Leather Shoulders","Highlander's Lizardhide Shoulders","Defiler's Lizardhide Shoulders"},
-
     ["Swashbuckler's Shoulderpads"] = {"Wolf Rider's Shoulder Pads"},
     ["Wolf Rider's Shoulder Pads"] = {"Swashbuckler's Shoulderpads"},
 
     ["Watcher's Mantle"] = {"Talbar Mantle"},
     ["Talbar Mantle"] = {"Watcher's Mantle"},
-
-    ["Boreal Mantle"] = {"Azure Moon Amice"},
-    ["Azure Moon Amice"] = {"Boreal Mantle"},
 
     ["Mercurial Pauldrons"] = {"Runic Plate Shoulders","Bloodlust Epaulets"},
     ["Runic Plate Shoulders"] = {"Mercurial Pauldrons","Bloodlust Epaulets"},
@@ -453,10 +352,6 @@ DisplayIdDB= {
 
     ["Thistlefur Mantle"] = {"Desert Shoulders"},
     ["Desert Shoulders"] = {"Thistlefur Mantle"},
-
-    ["Champion's Pauldrons"] = {"Bonelink Epaulets","Pauldrons of Elusiveness"},
-    ["Bonelink Epaulets"] = {"Champion's Pauldrons","Pauldrons of Elusiveness"},
-    ["Pauldrons of Elusiveness"] = {"Champion's Pauldrons","Bonelink Epaulets"},
 
     ["Praetorian Pauldrons"] = {"Fireguard Shoulders","Bloodfang Spaulders","Incendosaur Skin Pauldrons"},
     ["Bloodfang Spaulders"] = {"Praetorian Pauldrons","Fireguard Shoulders","Incendosaur Skin Pauldrons"},
@@ -796,9 +691,6 @@ DisplayIdDB= {
     ["Emblazoned Chestpiece"] = {"Labor Union Tunic"},
     ["Labor Union Tunic"] = {"Emblazoned Chestpiece"},
 
-    ["Gahz'rilla Scale Armor"] = {"Swamplink Harness"},
-    ["Swamplink Harness"] = {"Gahz'rilla Scale Armor"},
-
     ["Heavy Lamellar Chestpiece"] = {"Gladeforge Breastplate"},
     ["Gladeforge Breastplate"] = {"Heavy Lamellar Chestpiece"},
 
@@ -911,15 +803,9 @@ DisplayIdDB= {
 	["Runecloth Robe"] = {"Robe of Light's Ambassador"},
     ["Robe of Light's Ambassador"] = {"Runecloth Robe"},
 
-    ["Chan's Imperial Robes"] = {"Regal Robes of the Regent"},
-    ["Regal Robes of the Regent"] = {"Chan's Imperial Robes"},
-
     ["Mechbuilder's Overalls"] = {"Figgle's Coveralls","Gigno's Overalls"},
     ["Figgle's Coveralls"] = {"Mechbuilder's Overalls","Gigno's Overalls"},
     ["Gigno's Overalls"] = {"Mechbuilder's Overalls","Figgle's Coveralls"},
-
-    ["Primal Batskin Jerkin"] = {"Carapace of the Spider Queen"},
-    ["Carapace of the Spider Queen"] = {"Primal Batskin Jerkin"},
 
     ["Mutant Scale Breastplate"] = {"Cadaverlink Vest"},
     ["Cadaverlink Vest"] = {"Mutant Scale Breastplate"},
@@ -962,9 +848,6 @@ DisplayIdDB= {
     ["Breastplate of Earthen Might"] = {"Marauder's Tunic"},
     ["Marauder's Tunic"] = {"Breastplate of Earthen Might"},
 
-    ["Cryptbone Hauberk"] = {"Ebonhold Armor"},
-    ["Ebonhold Armor"] = {"Cryptbone Hauberk"},
-
     ["Fiery Chain Breastplate"] = {"Hyperion Armor"},
     ["Hyperion Armor"] = {"Fiery Chain Breastplate"},
 
@@ -975,21 +858,9 @@ DisplayIdDB= {
     ["Ancient Corroded Chainmail"] = {"Forest Chain","Naturecaller's Tunic"},
     ["Naturecaller's Tunic"] = {"Forest Chain","Ancient Corroded Chainmail"},
 
-    ["Worn Mail Vest"] = {"Laced Mail Vest","Linked Chain Vest","Reinforced Chain Vest","Frostmane Chain Vest","Double Mail Vest","Rough Copper Vest"},
-    ["Laced Mail Vest"] = {"Worn Mail Vest","Linked Chain Vest","Reinforced Chain Vest","Frostmane Chain Vest","Double Mail Vest","Rough Copper Vest"},
-    ["Linked Chain Vest"] = {"Worn Mail Vest","Laced Mail Vest","Reinforced Chain Vest","Frostmane Chain Vest","Double Mail Vest","Rough Copper Vest"},
-    ["Reinforced Chain Vest"] = {"Worn Mail Vest","Laced Mail Vest","Linked Chain Vest","Frostmane Chain Vest","Double Mail Vest","Rough Copper Vest"},
-    ["Frostmane Chain Vest"] = {"Worn Mail Vest","Laced Mail Vest","Linked Chain Vest","Reinforced Chain Vest","Double Mail Vest","Rough Copper Vest"},
-    ["Double Mail Vest"] = {"Worn Mail Vest","Laced Mail Vest","Linked Chain Vest","Reinforced Chain Vest","Frostmane Chain Vest","Rough Copper Vest"},
-    ["Rough Copper Vest"] = {"Worn Mail Vest","Laced Mail Vest","Linked Chain Vest","Reinforced Chain Vest","Frostmane Chain Vest","Double Mail Vest"},
-
     ["Chainmail Armor"] = {"Deputy Chain Coat","Fortified Chain"},
     ["Deputy Chain Coat"] = {"Chainmail Armor","Fortified Chain"},
     ["Fortified Chain"] = {"Chainmail Armor","Deputy Chain Coat"},
-
-    ["Tarnished Chain Vest"] = {"Loose Chain Vest","Flimsy Chain Vest"},
-    ["Loose Chain Vest"] = {"Tarnished Chain Vest","Flimsy Chain Vest"},
-    ["Flimsy Chain Vest"] = {"Tarnished Chain Vest","Loose Chain Vest"},
 
     ["Mountaineer Chestpiece"] = {"Rugged Mail Vest","Jagged Chain Vest"},
     ["Rugged Mail Vest"] = {"Mountaineer Chestpiece","Jagged Chain Vest"},
@@ -1000,9 +871,6 @@ DisplayIdDB= {
 
     ["Feathered Breastplate"] = {"Feathered Armor"},
     ["Feathered Armor"] = {"Feathered Breastplate"},
-
-    ["Polished Jazeraint Armor"] = {"Polished Scale Vest"},
-    ["Polished Scale Vest"] = {"Polished Jazeraint Armor"},
 
     ["Slarkskin"] = {"Explorer's Vest","Goblin Chain Hauberk","Westfall Hauberk"},
     ["Explorer's Vest"] = {"Slarkskin","Goblin Chain Hauberk","Westfall Hauberk"},
@@ -1018,14 +886,6 @@ DisplayIdDB= {
 
     ["Avenger's Armor"] = {"Double Link Tunic"},
     ["Double Link Tunic"] = {"Avenger's Armor"},
-
-    ["Dargol's Hauberk"] = {"Martyr's Chain","Lavadrenched Chainmail"},
-    ["Martyr's Chain"] = {"Dargol's Hauberk","Lavadrenched Chainmail"},
-    ["Lavadrenched Chainmail"] = {"Dargol's Hauberk","Martyr's Chain"},
-
-    ["Gelkis Marauder Chain"] = {"Brutal Hauberk","Raider's Chestpiece"},
-    ["Brutal Hauberk"] = {"Gelkis Marauder Chain","Raider's Chestpiece"},
-    ["Raider's Chestpiece"] = {"Gelkis Marauder Chain","Brutal Hauberk"},
 
     ["Tuxedo Jacket"] = {"Black Tuxedo"},
     ["Black Tuxedo"] = {"Tuxedo Jacket"},
@@ -2215,6 +2075,9 @@ DisplayIdDB= {
     ["Sentinel's Leather Pants"] = {"Outrider's Leather Pants"},
 
     -- feet
+    ["Recomposed Boots"] = {"Councillor's Boots"},
+    ["Councillor's Boots"] = {"Recomposed Boots"},
+
     ["Excelsior Boots"] = {"Sternrock Trudgers"},
     ["Sternrock Trudgers"] = {"Excelsior Boots"},
 
@@ -2802,9 +2665,9 @@ DisplayIdDB= {
     ["Deft Stiletto"] = {"Deadly Bronze Poniard"},
     ["Deadly Bronze Poniard"] = {"Deft Stiletto"},
 
-    ["Small Hand Blade"] = {"Camping Knife","Balanced Hand Blade"},
-    ["Camping Knife"] = {"Small Hand Blade","Balanced Hand Blade"},
-    ["Balanced Hand Blade"] = {"Small Hand Blade","Camping Knife"},
+    ["Small Hand Blade"] = {--[["Camping Knife",]]"Balanced Hand Blade"},
+    --["Camping Knife"] = {"Small Hand Blade","Balanced Hand Blade"},
+    ["Balanced Hand Blade"] = {"Small Hand Blade"--[[,"Camping Knife"]]},
 
     ["Torturing Poker"] = {"Flarethorn","Half-O-Staff"},
     ["Flarethorn"] = {"Torturing Poker","Half-O-Staff"},
@@ -3604,4 +3467,2564 @@ DisplayIdDB= {
         
     ["Blackfire Orb"] = {"Orb of Fire"},
     ["Orb of Fire"] = {"Blackfire Orb"},
+
+    ["Felhide Cap"] = {
+		[1] = "The Night Watchman",
+		[2] = "Tattered Leather Hood",
+		[3] = "Sightless Leather Hood",
+	},
+	["Gaea's Circlet"] = {
+		[1] = "Mooncloth Circlet",
+		[2] = "Circlet of the Crescent Moon",
+		[3] = "Royal Headband",
+		[4] = "Lunar Coronet",
+        [5] = "Whelpling Tiara",
+	},
+	["Dalaran Wizard's Hat"] = {
+		[1] = "Dalarani Conjurer's Hat",
+		[2] = "Darkmist Wizard Hat",
+		[3] = "Regal Wizard Hat",
+	},
+	["Dread Mage Hat"] = {
+		[1] = "Preceptor's Hat",
+	},
+	["Tusken Helm"] = {
+		[1] = "Gothic Plate Helmet",
+		[2] = "Brutish Helmet",
+		[3] = "Old Champion's Helmet",
+	},
+	["Tribal Worg Helm"] = {
+		[1] = "Soothsayer's Headdress",
+		[2] = "Rageclaw Helm",
+		[3] = "Wolf Rider's Headgear",
+		[4] = "Tribal War Feathers",
+	},
+	["Circlet of Dampening"] = {
+		[1] = "Mastercrafted Diamond Crown",
+	},
+	["Gothic Plate Helmet"] = {
+		[1] = "Brutish Helmet",
+		[2] = "Old Champion's Helmet",
+		[3] = "Tusken Helm",
+	},
+	["Frostfire Circlet"] = {
+		[1] = "Frostfire Crown",
+	},
+	["Preceptor's Hat"] = {
+		[1] = "Dread Mage Hat",
+	},
+	["Swashbuckler Captain's Hat"] = {
+		[1] = "Raider Captain's Hat",
+		[2] = "Enforcer Captain's Hat",
+		[3] = "Pillager Captain's Hat",
+		[4] = "Bloodsail Admiral's Hat",
+	},
+	["Dreadnaught Helmet"] = {
+		[1] = "Dreadnaught Crown",
+	},
+	["Plagueheart Boots"] = {
+		[1] = "Plagueheart Sandals",
+	},
+	["Mistscape Wizard Hat"] = {
+		[1] = "Sorcerer Hat",
+		[2] = "Augerer's Hat",
+	},
+	["Avenger's Helmet"] = {
+		[1] = "Avenger's Helm",
+		[2] = "Avenger's Crown",
+	},
+	["Wanderer's Hat"] = {
+		[1] = "Dokebi Hat",
+		[2] = "Crab Catcher's Hat",
+		[3] = "Studded Hat",
+	},
+	["Redemption Crown"] = {
+		[1] = "Redemption Helmet",
+		[2] = "Redemption Helm",
+	},
+	["Dokebi Hat"] = {
+		[1] = "Wanderer's Hat",
+		[2] = "Crab Catcher's Hat",
+		[3] = "Studded Hat",
+	},
+	["Enforcer Captain's Hat"] = {
+		[1] = "Raider Captain's Hat",
+		[2] = "Swashbuckler Captain's Hat",
+		[3] = "Pillager Captain's Hat",
+		[4] = "Bloodsail Admiral's Hat",
+	},
+	["Nocturnal Cap"] = {
+		[1] = "Engineer's Guild Headpiece",
+		[2] = "Comfortable Leather Hat",
+	},
+	["Mooncloth Circlet"] = {
+		[1] = "Circlet of the Crescent Moon",
+		[2] = "Gaea's Circlet",
+		[3] = "Royal Headband",
+		[4] = "Lunar Coronet",
+        [5] = "Whelpling Tiara",
+	},
+	["Lunar Coronet"] = {
+		[1] = "Mooncloth Circlet",
+		[2] = "Circlet of the Crescent Moon",
+		[3] = "Gaea's Circlet",
+		[4] = "Royal Headband",
+        [5] = "Whelpling Tiara",
+	},
+	["Brutish Helmet"] = {
+		[1] = "Gothic Plate Helmet",
+		[2] = "Old Champion's Helmet",
+		[3] = "Tusken Helm",
+	},
+	["Sightless Leather Hood"] = {
+		[1] = "Felhide Cap",
+		[2] = "The Night Watchman",
+		[3] = "Tattered Leather Hood",
+	},
+	["Lionheart Helmet"] = {
+		[1] = "Lionheart Crown",
+		[2] = "Lionheart Headpiece",
+	},
+	["Plagueheart Crown"] = {
+		[1] = "Plagueheart Circlet",
+	},
+	["Crab Catcher's Hat"] = {
+		[1] = "Wanderer's Hat",
+		[2] = "Dokebi Hat",
+		[3] = "Studded Hat",
+	},
+	["Pillager Captain's Hat"] = {
+		[1] = "Raider Captain's Hat",
+		[2] = "Enforcer Captain's Hat",
+		[3] = "Swashbuckler Captain's Hat",
+		[4] = "Bloodsail Admiral's Hat",
+	},
+	["Dreadnaught Crown"] = {
+		[1] = "Dreadnaught Helmet",
+	},
+	["Redemption Helmet"] = {
+		[1] = "Redemption Helm",
+		[2] = "Redemption Crown",
+	},
+	["Lionheart Headpiece"] = {
+		[1] = "Lionheart Crown",
+		[2] = "Lionheart Helmet",
+	},
+	["Bloodsail Admiral's Hat"] = {
+		[1] = "Raider Captain's Hat",
+		[2] = "Enforcer Captain's Hat",
+		[3] = "Swashbuckler Captain's Hat",
+		[4] = "Pillager Captain's Hat",
+	},
+	["Frostfire Crown"] = {
+		[1] = "Frostfire Circlet",
+	},
+	["Plagueheart Circlet"] = {
+		[1] = "Plagueheart Crown",
+	},
+	["Royal Headband"] = {
+		[1] = "Mooncloth Circlet",
+		[2] = "Circlet of the Crescent Moon",
+		[3] = "Gaea's Circlet",
+		[4] = "Lunar Coronet",
+        [5] = "Whelpling Tiara",
+	},
+	["Feathermoon Headdress"] = {
+		[1] = "Hazzuri Primalist Headdress",
+		[2] = "Tracker's Headband",
+		[3] = "Feathered Headdress",
+		[4] = "Headband of a Hundred Feathers",
+	},
+	["Crown of the Penitent"] = {
+		[1] = "Ornate Mithril Crown",
+		[2] = "Circlet of the Order",
+	},
+	["Tribal War Feathers"] = {
+		[1] = "Tribal Worg Helm",
+		[2] = "Soothsayer's Headdress",
+		[3] = "Rageclaw Helm",
+		[4] = "Wolf Rider's Headgear",
+	},
+	["Timeskipper's Helm of Alacrity"] = {
+		[1] = "Imbued Plate Helmet",
+		[2] = "Darkrune Helm",
+	},
+	["Avenger's Crown"] = {
+		[1] = "Avenger's Helm",
+		[2] = "Avenger's Helmet",
+	},
+	["Lionheart Crown"] = {
+		[1] = "Lionheart Headpiece",
+		[2] = "Lionheart Helmet",
+	},
+	["Imbued Plate Helmet"] = {
+		[1] = "Darkrune Helm",
+		[2] = "Timeskipper's Helm of Alacrity",
+	},
+	["The Night Watchman"] = {
+		[1] = "Felhide Cap",
+		[2] = "Tattered Leather Hood",
+		[3] = "Sightless Leather Hood",
+	},
+	["Wolf Rider's Headgear"] = {
+		[1] = "Tribal Worg Helm",
+		[2] = "Soothsayer's Headdress",
+		[3] = "Rageclaw Helm",
+		[4] = "Tribal War Feathers",
+	},
+	["Mastercrafted Diamond Crown"] = {
+		[1] = "Circlet of Dampening",
+	},
+
+	["Avenger's Helm"] = {
+		[1] = "Avenger's Crown",
+		[2] = "Avenger's Helmet",
+	},
+	["Augerer's Hat"] = {
+		[1] = "Sorcerer Hat",
+		[2] = "Mistscape Wizard Hat",
+	},
+	["Ornate Mithril Crown"] = {
+		[1] = "Circlet of the Order",
+		[2] = "Crown of the Penitent",
+	},
+	["Redemption Helm"] = {
+		[1] = "Redemption Helmet",
+		[2] = "Redemption Crown",
+	},
+
+	["Headband of a Hundred Feathers"] = {
+		[1] = "Hazzuri Primalist Headdress",
+		[2] = "Tracker's Headband",
+		[3] = "Feathermoon Headdress",
+		[4] = "Feathered Headdress",
+	},
+
+	["Rageclaw Helm"] = {
+		[1] = "Tribal Worg Helm",
+		[2] = "Soothsayer's Headdress",
+		[3] = "Wolf Rider's Headgear",
+		[4] = "Tribal War Feathers",
+	},
+	["Circlet of the Order"] = {
+		[1] = "Ornate Mithril Crown",
+		[2] = "Crown of the Penitent",
+	},
+	["Tattered Leather Hood"] = {
+		[1] = "Felhide Cap",
+		[2] = "The Night Watchman",
+		[3] = "Sightless Leather Hood",
+	},
+	["Feathered Headdress"] = {
+		[1] = "Hazzuri Primalist Headdress",
+		[2] = "Tracker's Headband",
+		[3] = "Feathermoon Headdress",
+		[4] = "Headband of a Hundred Feathers",
+	},
+	["Crown of Pestilence"] = {
+		[1] = "Coronet of Pestilence",
+	},
+	["Soothsayer's Headdress"] = {
+		[1] = "Tribal Worg Helm",
+		[2] = "Rageclaw Helm",
+		[3] = "Wolf Rider's Headgear",
+		[4] = "Tribal War Feathers",
+	},
+	["Darkmist Wizard Hat"] = {
+		[1] = "Dalarani Conjurer's Hat",
+		[2] = "Regal Wizard Hat",
+		[3] = "Dalaran Wizard's Hat",
+	},
+	["Darkrune Helm"] = {
+		[1] = "Imbued Plate Helmet",
+		[2] = "Timeskipper's Helm of Alacrity",
+	},
+	["Regal Wizard Hat"] = {
+		[1] = "Dalarani Conjurer's Hat",
+		[2] = "Darkmist Wizard Hat",
+		[3] = "Dalaran Wizard's Hat",
+	},
+	["Engineer's Guild Headpiece"] = {
+		[1] = "Nocturnal Cap",
+		[2] = "Comfortable Leather Hat",
+	},
+	["Comfortable Leather Hat"] = {
+		[1] = "Engineer's Guild Headpiece",
+		[2] = "Nocturnal Cap",
+	},
+	["Dreamwalker Helmet"] = {
+		[1] = "Dreamwalker Headpiece",
+		[2] = "Dreamwalker Circlet",
+	},
+	["Sorcerer Hat"] = {
+		[1] = "Augerer's Hat",
+		[2] = "Mistscape Wizard Hat",
+	},
+	["Raider Captain's Hat"] = {
+		[1] = "Enforcer Captain's Hat",
+		[2] = "Swashbuckler Captain's Hat",
+		[3] = "Pillager Captain's Hat",
+		[4] = "Bloodsail Admiral's Hat",
+	},
+	["Dalarani Conjurer's Hat"] = {
+		[1] = "Darkmist Wizard Hat",
+		[2] = "Regal Wizard Hat",
+		[3] = "Dalaran Wizard's Hat",
+	},
+	["Dreamwalker Headpiece"] = {
+		[1] = "Dreamwalker Circlet",
+		[2] = "Dreamwalker Helmet",
+	},
+	["Plagueheart Sandals"] = {
+		[1] = "Plagueheart Boots",
+	},
+	["Hazzuri Primalist Headdress"] = {
+		[1] = "Tracker's Headband",
+		[2] = "Feathermoon Headdress",
+		[3] = "Feathered Headdress",
+		[4] = "Headband of a Hundred Feathers",
+	},
+	["Tracker's Headband"] = {
+		[1] = "Hazzuri Primalist Headdress",
+		[2] = "Feathermoon Headdress",
+		[3] = "Feathered Headdress",
+		[4] = "Headband of a Hundred Feathers",
+	},
+
+	["Dreamwalker Circlet"] = {
+		[1] = "Dreamwalker Headpiece",
+		[2] = "Dreamwalker Helmet",
+	},
+	["Studded Hat"] = {
+		[1] = "Wanderer's Hat",
+		[2] = "Dokebi Hat",
+		[3] = "Crab Catcher's Hat",
+	},
+	["Circlet of the Crescent Moon"] = {
+		[1] = "Mooncloth Circlet",
+		[2] = "Gaea's Circlet",
+		[3] = "Royal Headband",
+		[4] = "Lunar Coronet",
+        [5] = "Whelpling Tiara",
+	},
+    ["Whelpling Tiara"] = {
+		[1] = "Mooncloth Circlet",
+		[2] = "Gaea's Circlet",
+		[3] = "Royal Headband",
+		[4] = "Lunar Coronet",
+        [5] = "Circlet of the Crescent Moon",
+	},
+	["Old Champion's Helmet"] = {
+		[1] = "Gothic Plate Helmet",
+		[2] = "Brutish Helmet",
+		[3] = "Tusken Helm",
+	},
+	["Coronet of Pestilence"] = {
+		[1] = "Crown of Pestilence",
+	},
+	["Trickster's Headdress"] = {
+		[1] = "Whisperwind Headdress",
+		[2] = "Hawkspear's Ceremonial Headdress",
+	},
+	["Sunscale Helmet"] = {
+		[1] = "Sanctified Helm",
+		[2] = "Lionheart Helm",
+		[3] = "Crusader's Helm",
+	},
+	["Whisperwind Headdress"] = {
+		[1] = "Trickster's Headdress",
+		[2] = "Hawkspear's Ceremonial Headdress",
+	},
+	["Sanctified Helm"] = {
+		[1] = "Sunscale Helmet",
+		[2] = "Lionheart Helm",
+		[3] = "Crusader's Helm",
+	},
+	["Lionheart Helm"] = {
+		[1] = "Sanctified Helm",
+		[2] = "Sunscale Helmet",
+		[3] = "Crusader's Helm",
+	},
+	["Hawkspear's Ceremonial Headdress"] = {
+		[1] = "Whisperwind Headdress",
+		[2] = "Trickster's Headdress",
+	},
+	["Crusader's Helm"] = {
+		[1] = "Sanctified Helm",
+		[2] = "Sunscale Helmet",
+		[3] = "Lionheart Helm",
+	},
+	["Grand Crusader's Helm"] = {
+		[1] = "Helm of the Mountain",
+		[2] = "Golem Skull Helm",
+		[3] = "Braincage",
+	},
+	["Field Marshal's Lamellar Faceguard"] = {
+		[1] = "Field Marshal's Plate Helm",
+		[2] = "Lieutenant Commander's Lamellar Headguard",
+	},
+	["Helm of the Mountain"] = {
+		[1] = "Grand Crusader's Helm",
+		[2] = "Golem Skull Helm",
+		[3] = "Braincage",
+	},
+	["Golem Skull Helm"] = {
+		[1] = "Helm of the Mountain",
+		[2] = "Grand Crusader's Helm",
+		[3] = "Braincage",
+	},
+	["Braincage"] = {
+		[1] = "Helm of the Mountain",
+		[2] = "Grand Crusader's Helm",
+		[3] = "Golem Skull Helm",
+	},
+	["Field Marshal's Plate Helm"] = {
+		[1] = "Lieutenant Commander's Lamellar Headguard",
+		[2] = "Field Marshal's Lamellar Faceguard",
+	},
+	["Lieutenant Commander's Lamellar Headguard"] = {
+		[1] = "Field Marshal's Plate Helm",
+		[2] = "Field Marshal's Lamellar Faceguard",
+	},
+    ["Bloodforged Helmet"] = {
+		[1] = "Triumphant Skullcap",
+		[2] = "Khan's Helmet",
+		[3] = "Magnificent Helmet",
+		[4] = "Hyperion Helm",
+	},
+	["Magnificent Helmet"] = {
+		[1] = "Triumphant Skullcap",
+		[2] = "Khan's Helmet",
+		[3] = "Hyperion Helm",
+		[4] = "Bloodforged Helmet",
+	},
+	["Khan's Helmet"] = {
+		[1] = "Triumphant Skullcap",
+		[2] = "Magnificent Helmet",
+		[3] = "Hyperion Helm",
+		[4] = "Bloodforged Helmet",
+	},
+	["Hyperion Helm"] = {
+		[1] = "Triumphant Skullcap",
+		[2] = "Khan's Helmet",
+		[3] = "Magnificent Helmet",
+		[4] = "Bloodforged Helmet",
+	},
+	["Triumphant Skullcap"] = {
+		[1] = "Khan's Helmet",
+		[2] = "Magnificent Helmet",
+		[3] = "Hyperion Helm",
+		[4] = "Bloodforged Helmet",
+	},
+	["Sentinel's Guard"] = {
+		[1] = "Ragereaver's Helm",
+		[2] = "Timeloop Headguard",
+		[3] = "Frostreaver Crown",
+		[4] = "Blackstone Crown",
+		[5] = "Helm of Awareness",
+	},
+	["Timeloop Headguard"] = {
+		[1] = "Ragereaver's Helm",
+		[2] = "Sentinel's Guard",
+		[3] = "Frostreaver Crown",
+		[4] = "Blackstone Crown",
+		[5] = "Helm of Awareness",
+	},
+	["Blackstone Crown"] = {
+		[1] = "Ragereaver's Helm",
+		[2] = "Sentinel's Guard",
+		[3] = "Timeloop Headguard",
+		[4] = "Frostreaver Crown",
+		[5] = "Helm of Awareness",
+	},
+	["Frostreaver Crown"] = {
+		[1] = "Ragereaver's Helm",
+		[2] = "Sentinel's Guard",
+		[3] = "Timeloop Headguard",
+		[4] = "Blackstone Crown",
+		[5] = "Helm of Awareness",
+	},
+	["Ragereaver's Helm"] = {
+		[1] = "Sentinel's Guard",
+		[2] = "Timeloop Headguard",
+		[3] = "Frostreaver Crown",
+		[4] = "Blackstone Crown",
+		[5] = "Helm of Awareness",
+	},
+	["Helm of Awareness"] = {
+		[1] = "Ragereaver's Helm",
+		[2] = "Sentinel's Guard",
+		[3] = "Timeloop Headguard",
+		[4] = "Frostreaver Crown",
+		[5] = "Blackstone Crown",
+	},
+    ["Helm of the Talon"] = {
+		[1] = "Circlet of the Talon",
+		[2] = "Helmet of the Talon",
+	},
+	["Scarab Plate Helm"] = {
+		[1] = "Scrapmetal Helm",
+		[2] = "Embossed Plate Helmet",
+	},
+	["Circlet of the Talon"] = {
+		[1] = "Helmet of the Talon",
+		[2] = "Helm of the Talon",
+	},
+	["Embossed Plate Helmet"] = {
+		[1] = "Scrapmetal Helm",
+		[2] = "Scarab Plate Helm",
+	},
+	["Helmet of the Talon"] = {
+		[1] = "Circlet of the Talon",
+		[2] = "Helm of the Talon",
+	},
+	["Scrapmetal Helm"] = {
+		[1] = "Embossed Plate Helmet",
+		[2] = "Scarab Plate Helm",
+	},
+    ["Helm of the Executioner"] = {
+		[1] = "Darkflame Helm",
+		[2] = "Ironhide Helmet",
+	},
+	["Ironhide Helmet"] = {
+		[1] = "Darkflame Helm",
+		[2] = "Helm of the Executioner",
+	},
+	["Darkflame Helm"] = {
+		[1] = "Helm of the Executioner",
+		[2] = "Ironhide Helmet",
+	},
+    ["Visor of Command"] = {
+		[1] = "Barbaric Iron Helm",
+		[2] = "Drakefire Headguard",
+		[3] = "Coif of Elemental Fury",
+		[4] = "Brigade Circlet",
+		[5] = "Carrion Scorpid Helm",
+		[6] = "Blood-Spattered Helm",
+		[7] = "Bloodstained Coif",
+	},
+	["Carrion Scorpid Helm"] = {
+		[1] = "Visor of Command",
+		[2] = "Barbaric Iron Helm",
+		[3] = "Drakefire Headguard",
+		[4] = "Coif of Elemental Fury",
+		[5] = "Brigade Circlet",
+		[6] = "Blood-Spattered Helm",
+		[7] = "Bloodstained Coif",
+	},
+	["Brigade Circlet"] = {
+		[1] = "Visor of Command",
+		[2] = "Barbaric Iron Helm",
+		[3] = "Drakefire Headguard",
+		[4] = "Coif of Elemental Fury",
+		[5] = "Carrion Scorpid Helm",
+		[6] = "Blood-Spattered Helm",
+		[7] = "Bloodstained Coif",
+	},
+	["Coif of Elemental Fury"] = {
+		[1] = "Visor of Command",
+		[2] = "Barbaric Iron Helm",
+		[3] = "Drakefire Headguard",
+		[4] = "Brigade Circlet",
+		[5] = "Carrion Scorpid Helm",
+		[6] = "Blood-Spattered Helm",
+		[7] = "Bloodstained Coif",
+	},
+	["Barbaric Iron Helm"] = {
+		[1] = "Visor of Command",
+		[2] = "Drakefire Headguard",
+		[3] = "Coif of Elemental Fury",
+		[4] = "Brigade Circlet",
+		[5] = "Carrion Scorpid Helm",
+		[6] = "Blood-Spattered Helm",
+		[7] = "Bloodstained Coif",
+	},
+	["Blood-Spattered Helm"] = {
+		[1] = "Visor of Command",
+		[2] = "Barbaric Iron Helm",
+		[3] = "Drakefire Headguard",
+		[4] = "Coif of Elemental Fury",
+		[5] = "Brigade Circlet",
+		[6] = "Carrion Scorpid Helm",
+		[7] = "Bloodstained Coif",
+	},
+	["Bloodstained Coif"] = {
+		[1] = "Visor of Command",
+		[2] = "Barbaric Iron Helm",
+		[3] = "Drakefire Headguard",
+		[4] = "Coif of Elemental Fury",
+		[5] = "Brigade Circlet",
+		[6] = "Carrion Scorpid Helm",
+		[7] = "Blood-Spattered Helm",
+	},
+	["Drakefire Headguard"] = {
+		[1] = "Visor of Command",
+		[2] = "Barbaric Iron Helm",
+		[3] = "Coif of Elemental Fury",
+		[4] = "Brigade Circlet",
+		[5] = "Carrion Scorpid Helm",
+		[6] = "Blood-Spattered Helm",
+		[7] = "Bloodstained Coif",
+	},
+    ["Huntsman's Cap"] = {
+		[1] = "Crown of Unstable Nature",
+		[2] = "Vinebound Headband",
+	},
+	["Crown of Unstable Nature"] = {
+		[1] = "Huntsman's Cap",
+		[2] = "Vinebound Headband",
+	},
+	["Vinebound Headband"] = {
+		[1] = "Huntsman's Cap",
+		[2] = "Crown of Unstable Nature",
+	},
+	["Undercity Bucket Hat"] = {
+		[1] = "Southsea Head Bucket",
+		[2] = "Avenguard Helm",
+		[3] = "Monolith Headguard",
+	},
+	["Monolith Headguard"] = {
+		[1] = "Southsea Head Bucket",
+		[2] = "Avenguard Helm",
+		[3] = "Undercity Bucket Hat",
+	},
+	["Southsea Head Bucket"] = {
+		[1] = "Avenguard Helm",
+		[2] = "Undercity Bucket Hat",
+		[3] = "Monolith Headguard",
+	},
+	["Avenguard Helm"] = {
+		[1] = "Southsea Head Bucket",
+		[2] = "Undercity Bucket Hat",
+		[3] = "Monolith Headguard",
+	},
+    ["Light Plate Helmet"] = {
+		[1] = "Helm of the Holy Avenger",
+		[2] = "Platemail Helm",
+		[3] = "Field Plate Helmet",
+		[4] = "Skullsplitter Helm",
+		[5] = "Impenetrable Helmet",
+	},
+	["Skullsplitter Helm"] = {
+		[1] = "Helm of the Holy Avenger",
+		[2] = "Platemail Helm",
+		[3] = "Light Plate Helmet",
+		[4] = "Field Plate Helmet",
+		[5] = "Impenetrable Helmet",
+	},
+	["Field Plate Helmet"] = {
+		[1] = "Helm of the Holy Avenger",
+		[2] = "Platemail Helm",
+		[3] = "Light Plate Helmet",
+		[4] = "Skullsplitter Helm",
+		[5] = "Impenetrable Helmet",
+	},
+	["Helm of the Holy Avenger"] = {
+		[1] = "Platemail Helm",
+		[2] = "Light Plate Helmet",
+		[3] = "Field Plate Helmet",
+		[4] = "Skullsplitter Helm",
+		[5] = "Impenetrable Helmet",
+	},
+	["Platemail Helm"] = {
+		[1] = "Helm of the Holy Avenger",
+		[2] = "Light Plate Helmet",
+		[3] = "Field Plate Helmet",
+		[4] = "Skullsplitter Helm",
+		[5] = "Impenetrable Helmet",
+	},
+	["Impenetrable Helmet"] = {
+		[1] = "Helm of the Holy Avenger",
+		[2] = "Platemail Helm",
+		[3] = "Light Plate Helmet",
+		[4] = "Field Plate Helmet",
+		[5] = "Skullsplitter Helm",
+	},
+    ["Stormcaller's Diadem"] = {
+		[1] = "Stormcaller's Crown",
+		[2] = "Stormcaller's Helmet",
+	},
+	["Helm of the Great Chief"] = {
+		[1] = "Lost Defender's Helmet",
+	},
+	["Earthshatter Headpiece"] = {
+		[1] = "Earthshatter Crown",
+		[2] = "Earthshatter Helmet",
+	},
+	["Stormcaller's Helmet"] = {
+		[1] = "Stormcaller's Diadem",
+		[2] = "Stormcaller's Crown",
+	},
+	["Earthshatter Crown"] = {
+		[1] = "Earthshatter Headpiece",
+		[2] = "Earthshatter Helmet",
+	},
+	["Stormcaller's Crown"] = {
+		[1] = "Stormcaller's Diadem",
+		[2] = "Stormcaller's Helmet",
+	},
+	["Lost Defender's Helmet"] = {
+		[1] = "Helm of the Great Chief",
+	},
+	["Earthshatter Helmet"] = {
+		[1] = "Earthshatter Crown",
+		[2] = "Earthshatter Headpiece",
+	},
+    ["Brigandine Helm"] = {
+		[1] = "Crown of Divine Justice",
+		[2] = "Glorious Headdress",
+	},
+	["Crown of Divine Justice"] = {
+		[1] = "Brigandine Helm",
+		[2] = "Glorious Headdress",
+	},
+	["Glorious Headdress"] = {
+		[1] = "Crown of Divine Justice",
+		[2] = "Brigandine Helm",
+	},
+    ["Tel Co. Protective Helmet"] = {
+		[1] = "Emerald Helm",
+		[2] = "Green Iron Helm",
+	},
+	["Green Iron Helm"] = {
+		[1] = "Tel Co. Protective Helmet",
+		[2] = "Emerald Helm",
+	},
+	["Emerald Helm"] = {
+		[1] = "Tel Co. Protective Helmet",
+		[2] = "Green Iron Helm",
+	},
+    ["Enchanted Thorium Helm"] = {
+		[1] = "Alabaster Plate Helmet",
+	},
+	["Alabaster Plate Helmet"] = {
+		[1] = "Enchanted Thorium Helm",
+	},
+    ["The Crown of Shattering"] = {
+		[1] = "Heavy Mithril Helm",
+		[2] = "Scrapforged Helmet",
+		[3] = "Hateforge Helmet",
+		[4] = "Ebonhold Helmet",
+		[5] = "Chromite Barbute",
+	},
+	["Ebonhold Helmet"] = {
+		[1] = "Heavy Mithril Helm",
+		[2] = "Scrapforged Helmet",
+		[3] = "Hateforge Helmet",
+		[4] = "The Crown of Shattering",
+		[5] = "Chromite Barbute",
+	},
+	["Hateforge Helmet"] = {
+		[1] = "Heavy Mithril Helm",
+		[2] = "Scrapforged Helmet",
+		[3] = "Ebonhold Helmet",
+		[4] = "The Crown of Shattering",
+		[5] = "Chromite Barbute",
+	},
+	["Chromite Barbute"] = {
+		[1] = "Heavy Mithril Helm",
+		[2] = "Scrapforged Helmet",
+		[3] = "Hateforge Helmet",
+		[4] = "Ebonhold Helmet",
+		[5] = "The Crown of Shattering",
+	},
+	["Heavy Mithril Helm"] = {
+		[1] = "Scrapforged Helmet",
+		[2] = "Hateforge Helmet",
+		[3] = "Ebonhold Helmet",
+		[4] = "The Crown of Shattering",
+		[5] = "Chromite Barbute",
+	},
+	["Scrapforged Helmet"] = {
+		[1] = "Heavy Mithril Helm",
+		[2] = "Hateforge Helmet",
+		[3] = "Ebonhold Helmet",
+		[4] = "The Crown of Shattering",
+		[5] = "Chromite Barbute",
+	},
+    ["Crown of Tyranny"] = {
+		[1] = "Dark Iron Helm",
+	},
+	["Dark Iron Helm"] = {
+		[1] = "Crown of Tyranny",
+	},
+    ["Helm of Nethergarde"] = {
+		[1] = "Commander's Helm",
+		[2] = "Engraved Helm",
+		[3] = "Raging Berserker's Helm",
+		[4] = "Runic Plate Helm",
+	},
+	["Commander's Helm"] = {
+		[1] = "Engraved Helm",
+		[2] = "Raging Berserker's Helm",
+		[3] = "Helm of Nethergarde",
+		[4] = "Runic Plate Helm",
+	},
+	["Engraved Helm"] = {
+		[1] = "Commander's Helm",
+		[2] = "Raging Berserker's Helm",
+		[3] = "Helm of Nethergarde",
+		[4] = "Runic Plate Helm",
+	},
+	["Runic Plate Helm"] = {
+		[1] = "Commander's Helm",
+		[2] = "Engraved Helm",
+		[3] = "Raging Berserker's Helm",
+		[4] = "Helm of Nethergarde",
+	},
+	["Raging Berserker's Helm"] = {
+		[1] = "Commander's Helm",
+		[2] = "Engraved Helm",
+		[3] = "Helm of Nethergarde",
+		[4] = "Runic Plate Helm",
+	},
+    ["Lofty Helm"] = {
+		[1] = "Valorous Helm",
+	},
+	["Valorous Helm"] = {
+		[1] = "Lofty Helm",
+	},
+    ["Bloody Gladiator's Helm"] = {
+		[1] = "Heroic Skullcap",
+		[2] = "Horns of Eranikus",
+	},
+	["Horns of Eranikus"] = {
+		[1] = "Bloody Gladiator's Helm",
+		[2] = "Heroic Skullcap",
+	},
+	["Heroic Skullcap"] = {
+		[1] = "Bloody Gladiator's Helm",
+		[2] = "Horns of Eranikus",
+	},
+    ["Chief Brigadier Coif"] = {
+		[1] = "Dragoneye Coif",
+		[2] = "Fervent Helm",
+		[3] = "Mithril Coif",
+		[4] = "Vagrant Coif",
+		[5] = "Brutal Helm",
+		[6] = "Coif of the Lost Soul",
+		[7] = "Overlinked Coif",
+		[8] = "Fire Hardened Coif",
+		[9] = "Wreath of Worgen Blood",
+	},
+	["Overlinked Coif"] = {
+		[1] = "Dragoneye Coif",
+		[2] = "Chief Brigadier Coif",
+		[3] = "Fervent Helm",
+		[4] = "Mithril Coif",
+		[5] = "Vagrant Coif",
+		[6] = "Brutal Helm",
+		[7] = "Coif of the Lost Soul",
+		[8] = "Fire Hardened Coif",
+		[9] = "Wreath of Worgen Blood",
+	},
+	["Mithril Coif"] = {
+		[1] = "Dragoneye Coif",
+		[2] = "Chief Brigadier Coif",
+		[3] = "Fervent Helm",
+		[4] = "Vagrant Coif",
+		[5] = "Brutal Helm",
+		[6] = "Coif of the Lost Soul",
+		[7] = "Overlinked Coif",
+		[8] = "Fire Hardened Coif",
+		[9] = "Wreath of Worgen Blood",
+	},
+	["Fire Hardened Coif"] = {
+		[1] = "Dragoneye Coif",
+		[2] = "Chief Brigadier Coif",
+		[3] = "Fervent Helm",
+		[4] = "Mithril Coif",
+		[5] = "Vagrant Coif",
+		[6] = "Brutal Helm",
+		[7] = "Coif of the Lost Soul",
+		[8] = "Overlinked Coif",
+		[9] = "Wreath of Worgen Blood",
+	},
+	["Wreath of Worgen Blood"] = {
+		[1] = "Dragoneye Coif",
+		[2] = "Chief Brigadier Coif",
+		[3] = "Fervent Helm",
+		[4] = "Mithril Coif",
+		[5] = "Vagrant Coif",
+		[6] = "Brutal Helm",
+		[7] = "Coif of the Lost Soul",
+		[8] = "Overlinked Coif",
+		[9] = "Fire Hardened Coif",
+	},
+	["Dragoneye Coif"] = {
+		[1] = "Chief Brigadier Coif",
+		[2] = "Fervent Helm",
+		[3] = "Mithril Coif",
+		[4] = "Vagrant Coif",
+		[5] = "Brutal Helm",
+		[6] = "Coif of the Lost Soul",
+		[7] = "Overlinked Coif",
+		[8] = "Fire Hardened Coif",
+		[9] = "Wreath of Worgen Blood",
+	},
+	["Coif of the Lost Soul"] = {
+		[1] = "Dragoneye Coif",
+		[2] = "Chief Brigadier Coif",
+		[3] = "Fervent Helm",
+		[4] = "Mithril Coif",
+		[5] = "Vagrant Coif",
+		[6] = "Brutal Helm",
+		[7] = "Overlinked Coif",
+		[8] = "Fire Hardened Coif",
+		[9] = "Wreath of Worgen Blood",
+	},
+	["Brutal Helm"] = {
+		[1] = "Dragoneye Coif",
+		[2] = "Chief Brigadier Coif",
+		[3] = "Fervent Helm",
+		[4] = "Mithril Coif",
+		[5] = "Vagrant Coif",
+		[6] = "Coif of the Lost Soul",
+		[7] = "Overlinked Coif",
+		[8] = "Fire Hardened Coif",
+		[9] = "Wreath of Worgen Blood",
+	},
+	["Fervent Helm"] = {
+		[1] = "Dragoneye Coif",
+		[2] = "Chief Brigadier Coif",
+		[3] = "Mithril Coif",
+		[4] = "Vagrant Coif",
+		[5] = "Brutal Helm",
+		[6] = "Coif of the Lost Soul",
+		[7] = "Overlinked Coif",
+		[8] = "Fire Hardened Coif",
+		[9] = "Wreath of Worgen Blood",
+	},
+	["Vagrant Coif"] = {
+		[1] = "Dragoneye Coif",
+		[2] = "Chief Brigadier Coif",
+		[3] = "Fervent Helm",
+		[4] = "Mithril Coif",
+		[5] = "Brutal Helm",
+		[6] = "Coif of the Lost Soul",
+		[7] = "Overlinked Coif",
+		[8] = "Fire Hardened Coif",
+		[9] = "Wreath of Worgen Blood",
+	},
+    ["Nathrezim Skullcap"] = {
+		[1] = "Nathrezim Crown",
+	},
+	["Nathrezim Crown"] = {
+		[1] = "Nathrezim Skullcap",
+	},
+	["Crown of the Guardian"] = {
+		[1] = "Circlet of the Guardian",
+	},
+	["Circlet of the Guardian"] = {
+		[1] = "Crown of the Guardian",
+	},
+    ["Steel Plate Barbute"] = {
+		[1] = "Savage Helmet",
+		[2] = "Gurubashi Helm",
+		[3] = "Helm of Exile",
+	},
+	["Helm of Exile"] = {
+		[1] = "Steel Plate Barbute",
+		[2] = "Savage Helmet",
+		[3] = "Gurubashi Helm",
+	},
+	["Glimmering Mail Coif"] = {
+		[1] = "Golden Scale Coif",
+		[2] = "Sunblaze Coif",
+		[3] = "Sparkleshell Headwrap",
+	},
+	["Sparkleshell Headwrap"] = {
+		[1] = "Golden Scale Coif",
+		[2] = "Sunblaze Coif",
+		[3] = "Glimmering Mail Coif",
+	},
+	["Golden Scale Coif"] = {
+		[1] = "Sunblaze Coif",
+		[2] = "Sparkleshell Headwrap",
+		[3] = "Glimmering Mail Coif",
+	},
+	["Gurubashi Helm"] = {
+		[1] = "Steel Plate Barbute",
+		[2] = "Savage Helmet",
+		[3] = "Helm of Exile",
+	},
+	["Revenant Helmet"] = {
+		[1] = "Helm of Domination",
+	},
+	["Savage Helmet"] = {
+		[1] = "Steel Plate Barbute",
+		[2] = "Gurubashi Helm",
+		[3] = "Helm of Exile",
+	},
+	["Helm of Domination"] = {
+		[1] = "Revenant Helmet",
+	},
+	["Sunblaze Coif"] = {
+		[1] = "Golden Scale Coif",
+		[2] = "Sparkleshell Headwrap",
+		[3] = "Glimmering Mail Coif",
+	},
+    ["Gryphon Mail Crown"] = {
+		[1] = "Backwood Helm",
+	},
+	["Double Mail Coif"] = {
+		[1] = "Sparkmetal Coif",
+		[2] = "Warstrike Helmet",
+	},
+	["Backwood Helm"] = {
+		[1] = "Gryphon Mail Crown",
+	},
+	["Warstrike Helmet"] = {
+		[1] = "Double Mail Coif",
+		[2] = "Sparkmetal Coif",
+	},
+	["Sparkmetal Coif"] = {
+		[1] = "Double Mail Coif",
+		[2] = "Warstrike Helmet",
+	},
+	["Resilient Cap"] = {
+		[1] = "Hood of Delusional Power",
+		[2] = "Living Cowl",
+	},
+	["Living Cowl"] = {
+		[1] = "Hood of Delusional Power",
+		[2] = "Resilient Cap",
+	},
+	["Hood of Delusional Power"] = {
+		[1] = "Resilient Cap",
+		[2] = "Living Cowl",
+	},
+    ["Scaled Leather Headband"] = {
+		[1] = "Peerless Headband",
+	},
+	["Helm of Latent Power"] = {
+		[1] = "Bloomsprout Headpiece",
+	},
+	["Peerless Headband"] = {
+		[1] = "Scaled Leather Headband",
+	},
+	["Bloomsprout Headpiece"] = {
+		[1] = "Helm of Latent Power",
+	},
+    ["Outlaw's Pirate Hat"] = {
+		[1] = "Grayson’s Hat",
+		[2] = "Freebooter's Pirate Hat",
+		[3] = "First Mate Hat",
+		[4] = "Westwind's Bicorne",
+	},
+	["Grayson’s Hat"] = {
+		[1] = "Freebooter's Pirate Hat",
+		[2] = "Outlaw's Pirate Hat",
+		[3] = "First Mate Hat",
+		[4] = "Westwind's Bicorne",
+	},
+	["First Mate Hat"] = {
+		[1] = "Grayson’s Hat",
+		[2] = "Freebooter's Pirate Hat",
+		[3] = "Outlaw's Pirate Hat",
+		[4] = "Westwind's Bicorne",
+	},
+	["Westwind's Bicorne"] = {
+		[1] = "Grayson’s Hat",
+		[2] = "Freebooter's Pirate Hat",
+		[3] = "Outlaw's Pirate Hat",
+		[4] = "First Mate Hat",
+	},
+	["Freebooter's Pirate Hat"] = {
+		[1] = "Grayson’s Hat",
+		[2] = "Outlaw's Pirate Hat",
+		[3] = "First Mate Hat",
+		[4] = "Westwind's Bicorne",
+	},
+    ["Stormhowl Headpiece"] = {
+		[1] = "Stormhowl Crown",
+		[2] = "Stormhowl Helmet",
+	},
+	["Icemetal Barbute"] = {
+		[1] = "Jouster's Visor",
+	},
+	["Jouster's Visor"] = {
+		[1] = "Icemetal Barbute",
+	},
+	["Resplendent Circlet"] = {
+		[1] = "Mercurial Circlet",
+		[2] = "Radiant Circlet",
+		[3] = "Merciless Crown",
+		[4] = "Elegant Circlet",
+	},
+	["Radiant Circlet"] = {
+		[1] = "Mercurial Circlet",
+		[2] = "Merciless Crown",
+		[3] = "Resplendent Circlet",
+		[4] = "Elegant Circlet",
+	},
+	["Merciless Crown"] = {
+		[1] = "Mercurial Circlet",
+		[2] = "Radiant Circlet",
+		[3] = "Resplendent Circlet",
+		[4] = "Elegant Circlet",
+	},
+	["Elegant Circlet"] = {
+		[1] = "Mercurial Circlet",
+		[2] = "Radiant Circlet",
+		[3] = "Merciless Crown",
+		[4] = "Resplendent Circlet",
+	},
+	["Stormhowl Helmet"] = {
+		[1] = "Stormhowl Crown",
+		[2] = "Stormhowl Headpiece",
+	},
+	["Mercurial Circlet"] = {
+		[1] = "Radiant Circlet",
+		[2] = "Merciless Crown",
+		[3] = "Resplendent Circlet",
+		[4] = "Elegant Circlet",
+	},
+	["Stormhowl Crown"] = {
+		[1] = "Stormhowl Helmet",
+		[2] = "Stormhowl Headpiece",
+	},
+    ["Marauder's Circlet"] = {
+		[1] = "Towerforge Crown",
+		[2] = "Infernal Headcage",
+		[3] = "Augmented Chain Helm",
+		[4] = "Knight's Headguard",
+		[5] = "Jazeraint Helm",
+	},
+	["Jazeraint Helm"] = {
+		[1] = "Towerforge Crown",
+		[2] = "Marauder's Circlet",
+		[3] = "Infernal Headcage",
+		[4] = "Augmented Chain Helm",
+		[5] = "Knight's Headguard",
+	},
+	["Wolfshead Helm"] = {
+		[1] = "Wolf's Skull",
+		[2] = "Embrace of the Lycan",
+	},
+	["Augmented Chain Helm"] = {
+		[1] = "Towerforge Crown",
+		[2] = "Marauder's Circlet",
+		[3] = "Infernal Headcage",
+		[4] = "Knight's Headguard",
+		[5] = "Jazeraint Helm",
+	},
+	["Wolf's Skull"] = {
+		[1] = "Wolfshead Helm",
+		[2] = "Embrace of the Lycan",
+	},
+	["Knight's Headguard"] = {
+		[1] = "Towerforge Crown",
+		[2] = "Marauder's Circlet",
+		[3] = "Infernal Headcage",
+		[4] = "Augmented Chain Helm",
+		[5] = "Jazeraint Helm",
+	},
+	["Embrace of the Lycan"] = {
+		[1] = "Wolf's Skull",
+		[2] = "Wolfshead Helm",
+	},
+	["Towerforge Crown"] = {
+		[1] = "Marauder's Circlet",
+		[2] = "Infernal Headcage",
+		[3] = "Augmented Chain Helm",
+		[4] = "Knight's Headguard",
+		[5] = "Jazeraint Helm",
+	},
+	["Infernal Headcage"] = {
+		[1] = "Towerforge Crown",
+		[2] = "Marauder's Circlet",
+		[3] = "Augmented Chain Helm",
+		[4] = "Knight's Headguard",
+		[5] = "Jazeraint Helm",
+	},
+    ["Righteous Helmet"] = {
+		[1] = "Insightful Hood",
+		[2] = "Ringed Helm",
+		[3] = "Sprightring Helm",
+		[4] = "Humbert's Helm",
+		[5] = "Thick Leather Hat",
+	},
+	["Ringed Helm"] = {
+		[1] = "Righteous Helmet",
+		[2] = "Insightful Hood",
+		[3] = "Sprightring Helm",
+		[4] = "Humbert's Helm",
+		[5] = "Thick Leather Hat",
+	},
+	["Thick Scale Crown"] = {
+		[1] = "Helm of the Lifegiver",
+		[2] = "Phalanx Headguard",
+	},
+	["Helm of the Lifegiver"] = {
+		[1] = "Phalanx Headguard",
+		[2] = "Thick Scale Crown",
+	},
+	["Sprightring Helm"] = {
+		[1] = "Righteous Helmet",
+		[2] = "Insightful Hood",
+		[3] = "Ringed Helm",
+		[4] = "Humbert's Helm",
+		[5] = "Thick Leather Hat",
+	},
+	["Thick Leather Hat"] = {
+		[1] = "Righteous Helmet",
+		[2] = "Insightful Hood",
+		[3] = "Ringed Helm",
+		[4] = "Sprightring Helm",
+		[5] = "Humbert's Helm",
+	},
+	["Insightful Hood"] = {
+		[1] = "Righteous Helmet",
+		[2] = "Ringed Helm",
+		[3] = "Sprightring Helm",
+		[4] = "Humbert's Helm",
+		[5] = "Thick Leather Hat",
+	},
+	["Phalanx Headguard"] = {
+		[1] = "Helm of the Lifegiver",
+		[2] = "Thick Scale Crown",
+	},
+	["Humbert's Helm"] = {
+		[1] = "Righteous Helmet",
+		[2] = "Insightful Hood",
+		[3] = "Ringed Helm",
+		[4] = "Sprightring Helm",
+		[5] = "Thick Leather Hat",
+	},
+    ["Pridelord Halo"] = {
+		[1] = "Heraldic Headpiece",
+		[2] = "Mighty Helmet",
+	},
+	["Mighty Helmet"] = {
+		[1] = "Pridelord Halo",
+		[2] = "Heraldic Headpiece",
+	},
+	["Cutthroat's Hat"] = {
+		[1] = "Helm of Fire",
+		[2] = "Bloodlust Helm",
+	},
+	["Heraldic Headpiece"] = {
+		[1] = "Pridelord Halo",
+		[2] = "Mighty Helmet",
+	},
+	["Bloodlust Helm"] = {
+		[1] = "Helm of Fire",
+		[2] = "Cutthroat's Hat",
+	},
+	["Circle of Flame"] = {
+		[1] = "Crown of Destruction",
+	},
+	["Helm of Fire"] = {
+		[1] = "Cutthroat's Hat",
+		[2] = "Bloodlust Helm",
+	},
+	["Crown of Destruction"] = {
+		[1] = "Circle of Flame",
+	},
+    ["Goldenshade Quartz Crown"] = {
+		[1] = "Ravager's Crown",
+	},
+	["Cassandra's Grace"] = {
+		[1] = "Masterwork Circlet",
+		[2] = "Crown of Corthan",
+		[3] = "Crown of Elegance",
+		[4] = "Bloodfire Circlet",
+		[5] = "Crown of the Ogre King",
+	},
+	["Crown of Corthan"] = {
+		[1] = "Masterwork Circlet",
+		[2] = "Crown of Elegance",
+		[3] = "Cassandra's Grace",
+		[4] = "Bloodfire Circlet",
+		[5] = "Crown of the Ogre King",
+	},
+	["Crown of the Ogre King"] = {
+		[1] = "Masterwork Circlet",
+		[2] = "Crown of Corthan",
+		[3] = "Crown of Elegance",
+		[4] = "Cassandra's Grace",
+		[5] = "Bloodfire Circlet",
+	},
+	["Ravager's Crown"] = {
+		[1] = "Goldenshade Quartz Crown",
+	},
+	["Bloodfire Circlet"] = {
+		[1] = "Masterwork Circlet",
+		[2] = "Crown of Corthan",
+		[3] = "Crown of Elegance",
+		[4] = "Cassandra's Grace",
+		[5] = "Crown of the Ogre King",
+	},
+	["Crown of Elegance"] = {
+		[1] = "Masterwork Circlet",
+		[2] = "Crown of Corthan",
+		[3] = "Cassandra's Grace",
+		[4] = "Bloodfire Circlet",
+		[5] = "Crown of the Ogre King",
+	},
+	["Masterwork Circlet"] = {
+		[1] = "Crown of Corthan",
+		[2] = "Crown of Elegance",
+		[3] = "Cassandra's Grace",
+		[4] = "Bloodfire Circlet",
+		[5] = "Crown of the Ogre King",
+	},
+    ["Embalmed Shroud"] = {
+		[1] = "Felcloth Hood",
+		[2] = "Pillager's Hood",
+	},
+	["Felcloth Hood"] = {
+		[1] = "Embalmed Shroud",
+		[2] = "Pillager's Hood",
+	},
+	["Pillager's Hood"] = {
+		[1] = "Embalmed Shroud",
+		[2] = "Felcloth Hood",
+	},
+    ["Genesis Helm"] = {
+		[1] = "Genesis Helmet",
+		[2] = "Genesis Circlet",
+	},
+	["Genesis Circlet"] = {
+		[1] = "Genesis Helmet",
+		[2] = "Genesis Helm",
+	},
+	["Genesis Helmet"] = {
+		[1] = "Genesis Helm",
+		[2] = "Genesis Circlet",
+	},
+    ["Doomcaller's Circlet"] = {
+		[1] = "Doomcaller's Crown",
+	},
+	["Crown of Skittering Shadows"] = {
+		[1] = "Enigma Crown",
+		[2] = "Enigma Circlet",
+	},
+	["Enigma Crown"] = {
+		[1] = "Enigma Circlet",
+		[2] = "Crown of Skittering Shadows",
+	},
+	["Enigma Circlet"] = {
+		[1] = "Enigma Crown",
+		[2] = "Crown of Skittering Shadows",
+	},
+	["Doomcaller's Crown"] = {
+		[1] = "Doomcaller's Circlet",
+	},
+    ["Arachnidian Circlet"] = {
+		[1] = "Dreamweave Circlet",
+		[2] = "Elunarian Diadem",
+	},
+	["Crown of Caer Darrow"] = {
+		[1] = "Jade Circlet",
+	},
+	["Jade Circlet"] = {
+		[1] = "Crown of Caer Darrow",
+	},
+	["Tiara of the Oracle"] = {
+		[1] = "Coronet of the Oracle",
+	},
+	["Coronet of the Oracle"] = {
+		[1] = "Tiara of the Oracle",
+	},
+	["Elunarian Diadem"] = {
+		[1] = "Arachnidian Circlet",
+		[2] = "Dreamweave Circlet",
+	},
+	["Dreamweave Circlet"] = {
+		[1] = "Arachnidian Circlet",
+		[2] = "Elunarian Diadem",
+	},
+    ["Black Mageweave Headband"] = {
+		[1] = "Bloody Gladiator's Headband",
+		[2] = "Wicked Leather Headband",
+	},
+	["Bloody Gladiator's Headband"] = {
+		[1] = "Wicked Leather Headband",
+		[2] = "Black Mageweave Headband",
+	},
+	["Wicked Leather Headband"] = {
+		[1] = "Bloody Gladiator's Headband",
+		[2] = "Black Mageweave Headband",
+	},
+    ["Corpseshroud"] = {
+		[1] = "Forgotten Veil",
+	},
+	["White Drakeskin Cap"] = {
+		[1] = "Undercity Reservist's Cap",
+		[2] = "Ghostwalker Crown",
+	},
+	["Forgotten Veil"] = {
+		[1] = "Corpseshroud",
+	},
+	["Undercity Reservist's Cap"] = {
+		[1] = "White Drakeskin Cap",
+		[2] = "Ghostwalker Crown",
+	},
+	["Ghostwalker Crown"] = {
+		[1] = "Undercity Reservist's Cap",
+		[2] = "White Drakeskin Cap",
+	},
+    ["Indomitable Headdress"] = {
+		[1] = "Serpentskin Helm",
+		[2] = "Imperial Leather Helm",
+	},
+	["Imperial Leather Helm"] = {
+		[1] = "Serpentskin Helm",
+		[2] = "Indomitable Headdress",
+	},
+	["Serpentskin Helm"] = {
+		[1] = "Indomitable Headdress",
+		[2] = "Imperial Leather Helm",
+	},
+    ["Keeper's Wreath"] = {
+		[1] = "Traveler's Helm",
+		[2] = "Crown of Corruption",
+		[3] = "Creeping Vine Helm",
+	},
+	["Traveler's Helm"] = {
+		[1] = "Keeper's Wreath",
+		[2] = "Crown of Corruption",
+		[3] = "Creeping Vine Helm",
+	},
+	["Crown of Corruption"] = {
+		[1] = "Traveler's Helm",
+		[2] = "Keeper's Wreath",
+		[3] = "Creeping Vine Helm",
+	},
+	["Pathfinder Hat"] = {
+		[1] = "Jadefire Cap",
+	},
+	["Creeping Vine Helm"] = {
+		[1] = "Traveler's Helm",
+		[2] = "Keeper's Wreath",
+		[3] = "Crown of Corruption",
+	},
+	["Jadefire Cap"] = {
+		[1] = "Pathfinder Hat",
+	},
+    ["Field Marshal's Dragonhide Helmet"] = {
+		[1] = "Field Marshal's Leather Mask",
+		[2] = "Lieutenant Commander's Leather Helm",
+	},
+	["Lieutenant Commander's Leather Helm"] = {
+		[1] = "Field Marshal's Dragonhide Helmet",
+		[2] = "Field Marshal's Leather Mask",
+	},
+	["Field Marshal's Leather Mask"] = {
+		[1] = "Field Marshal's Dragonhide Helmet",
+		[2] = "Lieutenant Commander's Leather Helm",
+	},
+	["Ruffled Chaplet"] = {
+		[1] = "Spirit Hunter Headdress",
+		[2] = "Primalist's Headdress",
+	},
+	["Nimar's Tribal Headdress"] = {
+		[1] = "Chieftain's Headdress",
+	},
+	["Goblin Construction Helmet"] = {
+		[1] = "Expert Goldminer's Helmet",
+	},
+	["Circlet of Restless Dreams"] = {
+		[1] = "Chieftain's Ceremonial Headdress",
+	},
+	["Chieftain's Headdress"] = {
+		[1] = "Nimar's Tribal Headdress",
+	},
+	["Expert Goldminer's Helmet"] = {
+		[1] = "Goblin Construction Helmet",
+	},
+	["Primalist's Headdress"] = {
+		[1] = "Spirit Hunter Headdress",
+		[2] = "Ruffled Chaplet",
+	},
+	["Spirit Hunter Headdress"] = {
+		[1] = "Ruffled Chaplet",
+		[2] = "Primalist's Headdress",
+	},
+	["Chieftain's Ceremonial Headdress"] = {
+		[1] = "Circlet of Restless Dreams",
+	},
+
+    ["Dreamwalker Shoulderpads"] = {
+		[1] = "Dreamwalker Mantle",
+		[2] = "Dreamwalker Spaulders",
+	},
+	["Mantle of the Scarlet Crusade"] = {
+		[1] = "Imperial Red Mantle",
+	},
+	["Heavy Lamellar Pauldrons"] = {
+		[1] = "Emerald Peak Spaulders",
+		[2] = "Atal'ai Spaulders",
+	},
+	["Emerald Peak Spaulders"] = {
+		[1] = "Heavy Lamellar Pauldrons",
+		[2] = "Atal'ai Spaulders",
+	},
+	["Imperial Red Mantle"] = {
+		[1] = "Mantle of the Scarlet Crusade",
+	},
+	["Hidden Leather Shoulders"] = {
+		[1] = "Hidden Plate Shoulders",
+		[2] = "Hidden Mail Shoulders",
+		[3] = "Hidden Cloth Shoulders",
+	},
+	["Enigma Shoulderpads"] = {
+		[1] = "Enigma Epaulets",
+	},
+	["Enigma Epaulets"] = {
+		[1] = "Enigma Shoulderpads",
+	},
+	["Spaulders of the Oracle"] = {
+		[1] = "Mantle of the Oracle",
+	},
+	["Emerald Pauldrons"] = {
+		[1] = "Pauldrons of the Timbermaw",
+		[2] = "Vileplate Pauldrons",
+	},
+	["Helm of Regrowth"] = {
+		[1] = "Bramblewood Helm",
+	},
+	["Vileplate Pauldrons"] = {
+		[1] = "Pauldrons of the Timbermaw",
+		[2] = "Emerald Pauldrons",
+	},
+	["Mantle of the Talon"] = {
+		[1] = "Spaulders of the Talon",
+		[2] = "Shoulderpads of the Talon",
+	},
+	["Warden's Wizard Hat"] = {
+		[1] = "Reinforced Leather Cap",
+	},
+	["Hidden Plate Shoulders"] = {
+		[1] = "Hidden Mail Shoulders",
+		[2] = "Hidden Leather Shoulders",
+		[3] = "Hidden Cloth Shoulders",
+	},
+	["Reinforced Leather Cap"] = {
+		[1] = "Warden's Wizard Hat",
+	},
+	["Avenger's Spaulders"] = {
+		[1] = "Avenger's Shoulderguards",
+		[2] = "Avenger's Pauldrons",
+	},
+	["Earthshatter Pauldrons"] = {
+		[1] = "Earthshatter Epaulets",
+		[2] = "Earthshatter Spaulders",
+	},
+	["Bramblewood Helm"] = {
+		[1] = "Helm of Regrowth",
+	},
+	["Hidden Mail Shoulders"] = {
+		[1] = "Hidden Plate Shoulders",
+		[2] = "Hidden Leather Shoulders",
+		[3] = "Hidden Cloth Shoulders",
+	},
+	["Earthshatter Spaulders"] = {
+		[1] = "Earthshatter Epaulets",
+		[2] = "Earthshatter Pauldrons",
+	},
+	["Mixologist Goggles"] = {
+		[1] = "Green Tinted Goggles",
+	},
+	["Hidden Cloth Shoulders"] = {
+		[1] = "Hidden Plate Shoulders",
+		[2] = "Hidden Mail Shoulders",
+		[3] = "Hidden Leather Shoulders",
+	},
+	["Shoulderpads of the Talon"] = {
+		[1] = "Spaulders of the Talon",
+		[2] = "Mantle of the Talon",
+	},
+	["Earthshatter Epaulets"] = {
+		[1] = "Earthshatter Pauldrons",
+		[2] = "Earthshatter Spaulders",
+	},
+	["Avenger's Pauldrons"] = {
+		[1] = "Avenger's Shoulderguards",
+		[2] = "Avenger's Spaulders",
+	},
+	["Spaulders of the Talon"] = {
+		[1] = "Mantle of the Talon",
+		[2] = "Shoulderpads of the Talon",
+	},
+	["Atal'ai Spaulders"] = {
+		[1] = "Heavy Lamellar Pauldrons",
+		[2] = "Emerald Peak Spaulders",
+	},
+	["Dreamwalker Spaulders"] = {
+		[1] = "Dreamwalker Mantle",
+		[2] = "Dreamwalker Shoulderpads",
+	},
+	["Avenger's Shoulderguards"] = {
+		[1] = "Avenger's Pauldrons",
+		[2] = "Avenger's Spaulders",
+	},
+	["Pauldrons of the Timbermaw"] = {
+		[1] = "Vileplate Pauldrons",
+		[2] = "Emerald Pauldrons",
+	},
+	["Mantle of the Oracle"] = {
+		[1] = "Spaulders of the Oracle",
+	},
+	["Green Tinted Goggles"] = {
+		[1] = "Mixologist Goggles",
+	},
+	["Dreamwalker Mantle"] = {
+		[1] = "Dreamwalker Spaulders",
+		[2] = "Dreamwalker Shoulderpads",
+	},
+    ["Plagueheart Shoulderpads"] = {
+		[1] = "Plagueheart Mantle",
+	},
+	["Lionheart Shoulderguards"] = {
+		[1] = "Lionheart Spaulders",
+		[2] = "Lionheart Pauldrons",
+	},
+	["Mantle of the Guardian"] = {
+		[1] = "Epaulets of the Guardian",
+	},
+	["Frostfire Shoulderpads"] = {
+		[1] = "Frostfire Epaulets",
+	},
+	["Lionheart Pauldrons"] = {
+		[1] = "Lionheart Spaulders",
+		[2] = "Lionheart Shoulderguards",
+	},
+	["Plagueheart Mantle"] = {
+		[1] = "Plagueheart Shoulderpads",
+	},
+	["Frostfire Epaulets"] = {
+		[1] = "Frostfire Shoulderpads",
+	},
+	["Epaulets of the Guardian"] = {
+		[1] = "Mantle of the Guardian",
+	},
+	["Nexus Shoulderpads"] = {
+		[1] = "Darkmantle Spaulders",
+	},
+	["Lionheart Spaulders"] = {
+		[1] = "Lionheart Shoulderguards",
+		[2] = "Lionheart Pauldrons",
+	},
+	["Nathrezim Mantle"] = {
+		[1] = "Nathrezim Spaulders",
+	},
+	["Redemption Spaulders"] = {
+		[1] = "Redemption Shoulderguards",
+		[2] = "Redemption Pauldrons",
+	},
+	["Darkmantle Spaulders"] = {
+		[1] = "Nexus Shoulderpads",
+	},
+	["Redemption Shoulderguards"] = {
+		[1] = "Redemption Pauldrons",
+		[2] = "Redemption Spaulders",
+	},
+	["Highlander's Plate Spaulders"] = {
+		[1] = "Defiler's Plate Spaulders",
+		[2] = "Highlander's Lamellar Spaulders",
+	},
+	["Highlander's Lamellar Spaulders"] = {
+		[1] = "Defiler's Plate Spaulders",
+		[2] = "Highlander's Plate Spaulders",
+	},
+	["Redemption Pauldrons"] = {
+		[1] = "Redemption Shoulderguards",
+		[2] = "Redemption Spaulders",
+	},
+	["Defiler's Plate Spaulders"] = {
+		[1] = "Highlander's Lamellar Spaulders",
+		[2] = "Highlander's Plate Spaulders",
+	},
+	["Nathrezim Spaulders"] = {
+		[1] = "Nathrezim Mantle",
+	},
+    ["Blue Dragonscale Shoulders"] = {
+		[1] = "Pauldrons of Sealed Magics",
+	},
+	["Cutthroat's Mantle"] = {
+		[1] = "Rageclaw Shoulder Pads",
+		[2] = "Bloodsoaked Pauldrons",
+	},
+	["Field Marshal's Plate Shoulderguards"] = {
+		[1] = "Field Marshal's Lamellar Pauldrons",
+	},
+	["Bloodsoaked Pauldrons"] = {
+		[1] = "Rageclaw Shoulder Pads",
+		[2] = "Cutthroat's Mantle",
+	},
+	["Stonehewn Pauldrons"] = {
+		[1] = "Alabaster Plate Pauldrons",
+		[2] = "Harborage Defender Pauldrons",
+	},
+	["Rageclaw Shoulder Pads"] = {
+		[1] = "Cutthroat's Mantle",
+		[2] = "Bloodsoaked Pauldrons",
+	},
+	["Pauldrons of Sealed Magics"] = {
+		[1] = "Blue Dragonscale Shoulders",
+	},
+	["Alabaster Plate Pauldrons"] = {
+		[1] = "Stonehewn Pauldrons",
+		[2] = "Harborage Defender Pauldrons",
+	},
+	["Red Dragonscale Shoulders"] = {
+		[1] = "Drakesfire Epaulets",
+	},
+	["Harborage Defender Pauldrons"] = {
+		[1] = "Alabaster Plate Pauldrons",
+		[2] = "Stonehewn Pauldrons",
+	},
+	["Drakesfire Epaulets"] = {
+		[1] = "Red Dragonscale Shoulders",
+	},
+	["Field Marshal's Lamellar Pauldrons"] = {
+		[1] = "Field Marshal's Plate Shoulderguards",
+	},
+    ["Maraudine Oath Pauldrons"] = {
+		[1] = "Lofty Shoulder Pads",
+	},
+	["Stormcaller's Epaulets"] = {
+		[1] = "Stormcaller's Pauldrons",
+		[2] = "Stormcaller's Spaulders",
+	},
+	["Stormhowl Pauldrons"] = {
+		[1] = "Stormhowl Spaulders",
+		[2] = "Stormhowl Epaulets",
+	},
+	["Stormcaller's Pauldrons"] = {
+		[1] = "Stormcaller's Spaulders",
+		[2] = "Stormcaller's Epaulets",
+	},
+	["Stormhowl Epaulets"] = {
+		[1] = "Stormhowl Pauldrons",
+		[2] = "Stormhowl Spaulders",
+	},
+	["Lofty Shoulder Pads"] = {
+		[1] = "Maraudine Oath Pauldrons",
+	},
+	["Stormcaller's Spaulders"] = {
+		[1] = "Stormcaller's Pauldrons",
+		[2] = "Stormcaller's Epaulets",
+	},
+	["Stormhowl Spaulders"] = {
+		[1] = "Stormhowl Pauldrons",
+		[2] = "Stormhowl Epaulets",
+	},
+    ["Wyrmtongue Shoulders"] = {
+		[1] = "Zandalar Madcap's Mantle",
+		[2] = "Flamescarred Shoulders",
+		[3] = "Stormshroud Shoulders",
+		[4] = "Defiler's Lizardhide Shoulders",
+		[5] = "Highlander's Lizardhide Shoulders",
+		[6] = "Defiler's Leather Shoulders",
+		[7] = "Highlander's Leather Shoulders",
+	},
+	["Stormshroud Shoulders"] = {
+		[1] = "Zandalar Madcap's Mantle",
+		[2] = "Flamescarred Shoulders",
+		[3] = "Defiler's Lizardhide Shoulders",
+		[4] = "Highlander's Lizardhide Shoulders",
+		[5] = "Wyrmtongue Shoulders",
+		[6] = "Defiler's Leather Shoulders",
+		[7] = "Highlander's Leather Shoulders",
+	},
+	["Zandalar Madcap's Mantle"] = {
+		[1] = "Flamescarred Shoulders",
+		[2] = "Stormshroud Shoulders",
+		[3] = "Defiler's Lizardhide Shoulders",
+		[4] = "Highlander's Lizardhide Shoulders",
+		[5] = "Wyrmtongue Shoulders",
+		[6] = "Defiler's Leather Shoulders",
+		[7] = "Highlander's Leather Shoulders",
+	},
+	["Flamescarred Shoulders"] = {
+		[1] = "Zandalar Madcap's Mantle",
+		[2] = "Stormshroud Shoulders",
+		[3] = "Defiler's Lizardhide Shoulders",
+		[4] = "Highlander's Lizardhide Shoulders",
+		[5] = "Wyrmtongue Shoulders",
+		[6] = "Defiler's Leather Shoulders",
+		[7] = "Highlander's Leather Shoulders",
+	},
+	["Highlander's Leather Shoulders"] = {
+		[1] = "Zandalar Madcap's Mantle",
+		[2] = "Flamescarred Shoulders",
+		[3] = "Stormshroud Shoulders",
+		[4] = "Defiler's Lizardhide Shoulders",
+		[5] = "Highlander's Lizardhide Shoulders",
+		[6] = "Wyrmtongue Shoulders",
+		[7] = "Defiler's Leather Shoulders",
+	},
+	["Defiler's Leather Shoulders"] = {
+		[1] = "Zandalar Madcap's Mantle",
+		[2] = "Flamescarred Shoulders",
+		[3] = "Stormshroud Shoulders",
+		[4] = "Defiler's Lizardhide Shoulders",
+		[5] = "Highlander's Lizardhide Shoulders",
+		[6] = "Wyrmtongue Shoulders",
+		[7] = "Highlander's Leather Shoulders",
+	},
+	["Highlander's Lizardhide Shoulders"] = {
+		[1] = "Zandalar Madcap's Mantle",
+		[2] = "Flamescarred Shoulders",
+		[3] = "Stormshroud Shoulders",
+		[4] = "Defiler's Lizardhide Shoulders",
+		[5] = "Wyrmtongue Shoulders",
+		[6] = "Defiler's Leather Shoulders",
+		[7] = "Highlander's Leather Shoulders",
+	},
+	["Defiler's Lizardhide Shoulders"] = {
+		[1] = "Zandalar Madcap's Mantle",
+		[2] = "Flamescarred Shoulders",
+		[3] = "Stormshroud Shoulders",
+		[4] = "Highlander's Lizardhide Shoulders",
+		[5] = "Wyrmtongue Shoulders",
+		[6] = "Defiler's Leather Shoulders",
+		[7] = "Highlander's Leather Shoulders",
+	},
+    ["Highborne Pauldrons"] = {
+		[1] = "Diabolic Mantle",
+		[2] = "Runecloth Shoulders",
+	},
+	["Kentic Amice"] = {
+		[1] = "Eternal Spaulders",
+	},
+	["Eternal Spaulders"] = {
+		[1] = "Kentic Amice",
+	},
+	["Runecloth Shoulders"] = {
+		[1] = "Highborne Pauldrons",
+		[2] = "Diabolic Mantle",
+	},
+	["Mantle of Doan"] = {
+		[1] = "Felcloth Shoulders",
+	},
+	["Augerer's Mantle"] = {
+		[1] = "Azure Moon Amice",
+		[2] = "Boreal Mantle",
+	},
+	["Diabolic Mantle"] = {
+		[1] = "Highborne Pauldrons",
+		[2] = "Runecloth Shoulders",
+	},
+	["Felcloth Shoulders"] = {
+		[1] = "Mantle of Doan",
+	},
+	["Azure Moon Amice"] = {
+		[1] = "Augerer's Mantle",
+		[2] = "Boreal Mantle",
+	},
+	["Boreal Mantle"] = {
+		[1] = "Augerer's Mantle",
+		[2] = "Azure Moon Amice",
+	},
+    ["Highlander's Chain Pauldrons"] = {
+		[1] = "Defiler's Chain Pauldrons",
+	},
+	["Mantle of Centaur Authority"] = {
+		[1] = "Exalted Epaulets",
+	},
+	["Big Bad Pauldrons"] = {
+		[1] = "Cabalist Spaulders",
+	},
+	["Genesis Spaulders"] = {
+		[1] = "Genesis Mantle",
+		[2] = "Genesis Shoulderpads",
+	},
+	["Defiler's Chain Pauldrons"] = {
+		[1] = "Highlander's Chain Pauldrons",
+	},
+	["Genesis Shoulderpads"] = {
+		[1] = "Genesis Spaulders",
+		[2] = "Genesis Mantle",
+	},
+	["Genesis Mantle"] = {
+		[1] = "Genesis Spaulders",
+		[2] = "Genesis Shoulderpads",
+	},
+	["Cabalist Spaulders"] = {
+		[1] = "Big Bad Pauldrons",
+	},
+	["Exalted Epaulets"] = {
+		[1] = "Mantle of Centaur Authority",
+	},
+    ["Field Marshal's Leather Epaulets"] = {
+		[1] = "Field Marshal's Dragonhide Spaulders",
+		[2] = "Lieutenant Commander's Leather Shoulders",
+	},
+	["Taut Dragonhide Shoulderpads"] = {
+		[1] = "Wyrmhide Spaulders",
+	},
+	["Wyrmhide Spaulders"] = {
+		[1] = "Taut Dragonhide Shoulderpads",
+	},
+	["Field Marshal's Dragonhide Spaulders"] = {
+		[1] = "Field Marshal's Leather Epaulets",
+		[2] = "Lieutenant Commander's Leather Shoulders",
+	},
+	["Lieutenant Commander's Leather Shoulders"] = {
+		[1] = "Field Marshal's Dragonhide Spaulders",
+		[2] = "Field Marshal's Leather Epaulets",
+	},
+    ["Ornate Mithril Shoulder"] = {
+		[1] = "Revenant Shoulders",
+		[2] = "Abyssal Plate Epaulets",
+	},
+	["Pauldrons of Elusiveness"] = {
+		[1] = "Golem Fitted Pauldrons",
+		[2] = "Sentry's Shoulderguards",
+		[3] = "Bonelink Epaulets",
+		[4] = "Champion's Pauldrons",
+	},
+	["Abyssal Plate Epaulets"] = {
+		[1] = "Revenant Shoulders",
+		[2] = "Ornate Mithril Shoulder",
+	},
+	["Bonelink Epaulets"] = {
+		[1] = "Golem Fitted Pauldrons",
+		[2] = "Sentry's Shoulderguards",
+		[3] = "Pauldrons of Elusiveness",
+		[4] = "Champion's Pauldrons",
+	},
+	["Golem Fitted Pauldrons"] = {
+		[1] = "Sentry's Shoulderguards",
+		[2] = "Bonelink Epaulets",
+		[3] = "Pauldrons of Elusiveness",
+		[4] = "Champion's Pauldrons",
+	},
+	["Sentry's Shoulderguards"] = {
+		[1] = "Golem Fitted Pauldrons",
+		[2] = "Bonelink Epaulets",
+		[3] = "Pauldrons of Elusiveness",
+		[4] = "Champion's Pauldrons",
+	},
+	["Fiery Chain Shoulders"] = {
+		[1] = "Hyperion Pauldrons",
+	},
+	["Hyperion Pauldrons"] = {
+		[1] = "Fiery Chain Shoulders",
+	},
+	["Revenant Shoulders"] = {
+		[1] = "Ornate Mithril Shoulder",
+		[2] = "Abyssal Plate Epaulets",
+	},
+	["Champion's Pauldrons"] = {
+		[1] = "Golem Fitted Pauldrons",
+		[2] = "Sentry's Shoulderguards",
+		[3] = "Bonelink Epaulets",
+		[4] = "Pauldrons of Elusiveness",
+	},
+    ["Golden Mantle of the Dawn"] = {
+		[1] = "Amice of the Webweaver",
+		[2] = "Animist's Spaulders",
+	},
+	["Runic Leather Shoulders"] = {
+		[1] = "Mighty Spaulders",
+		[2] = "Mantle of the Ogre Slayer",
+	},
+	["Ghostwalker Pads"] = {
+		[1] = "Stonecloth Epaulets",
+		[2] = "Duskwing Mantle",
+	},
+	["Chieftain's Mantle"] = {
+		[1] = "Hermit's Mantle",
+		[2] = "Hexed Voodoo Pads",
+	},
+	["Mighty Spaulders"] = {
+		[1] = "Runic Leather Shoulders",
+		[2] = "Mantle of the Ogre Slayer",
+	},
+	["Stonecloth Epaulets"] = {
+		[1] = "Duskwing Mantle",
+		[2] = "Ghostwalker Pads",
+	},
+	["Mantle of the Ogre Slayer"] = {
+		[1] = "Mighty Spaulders",
+		[2] = "Runic Leather Shoulders",
+	},
+	["Duskwing Mantle"] = {
+		[1] = "Stonecloth Epaulets",
+		[2] = "Ghostwalker Pads",
+	},
+	["Amice of the Webweaver"] = {
+		[1] = "Golden Mantle of the Dawn",
+		[2] = "Animist's Spaulders",
+	},
+	["Hexed Voodoo Pads"] = {
+		[1] = "Hermit's Mantle",
+		[2] = "Chieftain's Mantle",
+	},
+	["Hermit's Mantle"] = {
+		[1] = "Chieftain's Mantle",
+		[2] = "Hexed Voodoo Pads",
+	},
+	["Traveler's Spaulders"] = {
+		[1] = "Dampener's Pauldrons",
+	},
+	["Dampener's Pauldrons"] = {
+		[1] = "Traveler's Spaulders",
+	},
+	["Animist's Spaulders"] = {
+		[1] = "Amice of the Webweaver",
+		[2] = "Golden Mantle of the Dawn",
+	},
+    ["Avenger's Breastplate"] = {
+		[1] = "Avenger's Chestguard",
+		[2] = "Avenger's Chestplate",
+	},
+	["Raiments of the Talon"] = {
+		[1] = "Vestments of the Talon",
+		[2] = "Vest of the Talon",
+	},
+	["Robes of Pestilence"] = {
+		[1] = "Raiments of Pestilence",
+	},
+	["Genesis Raiments"] = {
+		[1] = "Genesis Vestments",
+		[2] = "Genesis Vest",
+	},
+	["Dreadnaught Breastplate"] = {
+		[1] = "Dreadnaught Chestplate",
+	},
+	["Dreamwalker Vest"] = {
+		[1] = "Dreamwalker Tunic",
+		[2] = "Dreamwalker Raiments",
+	},
+	["Vestments of the Talon"] = {
+		[1] = "Vest of the Talon",
+		[2] = "Raiments of the Talon",
+	},
+	["Chan's Imperial Robes"] = {
+		[1] = "Regal Robes of the Regent",
+		[2] = "Crystal Webbed Robe",
+	},
+	["Stormhowl Tunic"] = {
+		[1] = "Stormhowl Breastplate",
+		[2] = "Stormhowl Raiments",
+	},
+	["Stormcaller's Breastplate"] = {
+		[1] = "Stormcaller's Chestpiece",
+		[2] = "Stormcaller's Hauberk",
+	},
+	["Raiments of Pestilence"] = {
+		[1] = "Robes of Pestilence",
+	},
+	["Regal Robes of the Regent"] = {
+		[1] = "Chan's Imperial Robes",
+		[2] = "Crystal Webbed Robe",
+	},
+	["Earthshatter Tunic"] = {
+		[1] = "Earthshatter Raiments",
+		[2] = "Earthshatter Breastplate",
+	},
+	["Robe of Faith"] = {
+		[1] = "Raiments of Faith",
+	},
+	["Genesis Vestments"] = {
+		[1] = "Genesis Raiments",
+		[2] = "Genesis Vest",
+	},
+	["Lionheart Chestplate"] = {
+		[1] = "Lionheart Chestguard",
+		[2] = "Lionheart Breastplate",
+	},
+	["Raiments of Faith"] = {
+		[1] = "Robe of Faith",
+	},
+	["Crystal Webbed Robe"] = {
+		[1] = "Regal Robes of the Regent",
+		[2] = "Chan's Imperial Robes",
+	},
+	["Doomcaller's Raiments"] = {
+		[1] = "Doomcaller's Robes",
+	},
+	["Otherworldly Robe"] = {
+		[1] = "Revantusk Mystic's Robe",
+	},
+	["Vest of the Talon"] = {
+		[1] = "Vestments of the Talon",
+		[2] = "Raiments of the Talon",
+	},
+	["Frostfire Robe"] = {
+		[1] = "Frostfire Vestments",
+	},
+	["Stormcaller's Hauberk"] = {
+		[1] = "Stormcaller's Chestpiece",
+		[2] = "Stormcaller's Breastplate",
+	},
+	["Elegant Robes"] = {
+		[1] = "Robe of the Custodian",
+	},
+	["Vestments of the Guardian"] = {
+		[1] = "Robes of the Guardian",
+	},
+	["Nathrezim Robes"] = {
+		[1] = "Nathrezim Raiments",
+	},
+	["Lionheart Chestguard"] = {
+		[1] = "Lionheart Breastplate",
+		[2] = "Lionheart Chestplate",
+	},
+	["Robes of the Guardian"] = {
+		[1] = "Vestments of the Guardian",
+	},
+	["Nathrezim Raiments"] = {
+		[1] = "Nathrezim Robes",
+	},
+	["Lionheart Breastplate"] = {
+		[1] = "Lionheart Chestguard",
+		[2] = "Lionheart Chestplate",
+	},
+	["Stormhowl Raiments"] = {
+		[1] = "Stormhowl Breastplate",
+		[2] = "Stormhowl Tunic",
+	},
+	["Avenger's Chestguard"] = {
+		[1] = "Avenger's Breastplate",
+		[2] = "Avenger's Chestplate",
+	},
+	["Avenger's Chestplate"] = {
+		[1] = "Avenger's Breastplate",
+		[2] = "Avenger's Chestguard",
+	},
+	["Robe of the Custodian"] = {
+		[1] = "Elegant Robes",
+	},
+	["Plagueheart Robe"] = {
+		[1] = "Plagueheart Raiments",
+	},
+	["Dreamwalker Raiments"] = {
+		[1] = "Dreamwalker Tunic",
+		[2] = "Dreamwalker Vest",
+	},
+	["Earthshatter Breastplate"] = {
+		[1] = "Earthshatter Raiments",
+		[2] = "Earthshatter Tunic",
+	},
+	["Redemption Chestguard"] = {
+		[1] = "Redemption Chestplate",
+		[2] = "Redemption Tunic",
+	},
+	["Redemption Tunic"] = {
+		[1] = "Redemption Chestplate",
+		[2] = "Redemption Chestguard",
+	},
+	["Genesis Vest"] = {
+		[1] = "Genesis Raiments",
+		[2] = "Genesis Vestments",
+	},
+	["Frostfire Vestments"] = {
+		[1] = "Frostfire Robe",
+	},
+	["Plagueheart Raiments"] = {
+		[1] = "Plagueheart Robe",
+	},
+	["Enigma Vestments"] = {
+		[1] = "Enigma Robes",
+	},
+	["Doomcaller's Robes"] = {
+		[1] = "Doomcaller's Raiments",
+	},
+	["Earthshatter Raiments"] = {
+		[1] = "Earthshatter Tunic",
+		[2] = "Earthshatter Breastplate",
+	},
+	["Enigma Robes"] = {
+		[1] = "Enigma Vestments",
+	},
+	["Revantusk Mystic's Robe"] = {
+		[1] = "Otherworldly Robe",
+	},
+	["Dreamwalker Tunic"] = {
+		[1] = "Dreamwalker Raiments",
+		[2] = "Dreamwalker Vest",
+	},
+	["Redemption Chestplate"] = {
+		[1] = "Redemption Tunic",
+		[2] = "Redemption Chestguard",
+	},
+	["Stormhowl Breastplate"] = {
+		[1] = "Stormhowl Tunic",
+		[2] = "Stormhowl Raiments",
+	},
+	["Stormcaller's Chestpiece"] = {
+		[1] = "Stormcaller's Breastplate",
+		[2] = "Stormcaller's Hauberk",
+	},
+	["Dreadnaught Chestplate"] = {
+		[1] = "Dreadnaught Breastplate",
+	},
+    ["Beer-Stained Tunic"] = {
+		[1] = "Champion's Armor",
+		[2] = "Gahz'rilla Scale Armor",
+		[3] = "Swamplink Harness",
+		[4] = "Icemail Jerkin",
+	},
+	["Champion's Armor"] = {
+		[1] = "Beer-Stained Tunic",
+		[2] = "Gahz'rilla Scale Armor",
+		[3] = "Swamplink Harness",
+		[4] = "Icemail Jerkin",
+	},
+	["Polished Scale Vest"] = {
+		[1] = "Drake-scale Vest",
+		[2] = "Polished Jazeraint Armor",
+	},
+	["Warrior's Embrace"] = {
+		[1] = "Warder's Chestplate",
+	},
+	["Icemail Jerkin"] = {
+		[1] = "Beer-Stained Tunic",
+		[2] = "Champion's Armor",
+		[3] = "Gahz'rilla Scale Armor",
+		[4] = "Swamplink Harness",
+	},
+	["Gahz'rilla Scale Armor"] = {
+		[1] = "Beer-Stained Tunic",
+		[2] = "Champion's Armor",
+		[3] = "Swamplink Harness",
+		[4] = "Icemail Jerkin",
+	},
+	["Swamplink Harness"] = {
+		[1] = "Beer-Stained Tunic",
+		[2] = "Champion's Armor",
+		[3] = "Gahz'rilla Scale Armor",
+		[4] = "Icemail Jerkin",
+	},
+	["Warder's Chestplate"] = {
+		[1] = "Warrior's Embrace",
+	},
+	["Polished Jazeraint Armor"] = {
+		[1] = "Drake-scale Vest",
+		[2] = "Polished Scale Vest",
+	},
+	["Drake-scale Vest"] = {
+		[1] = "Polished Jazeraint Armor",
+		[2] = "Polished Scale Vest",
+	},
+    ["Onyx Shredder Plate"] = {
+		[1] = "Tel Co. Chestguard",
+		[2] = "Heavy Mithril Breastplate",
+	},
+	["Primal Batskin Jerkin"] = {
+		[1] = "Ebonhold Armor",
+		[2] = "Savage Gladiator Chain",
+		[3] = "Cryptbone Hauberk",
+		[4] = "Carapace of the Spider Queen",
+	},
+	["Cryptbone Hauberk"] = {
+		[1] = "Ebonhold Armor",
+		[2] = "Savage Gladiator Chain",
+		[3] = "Carapace of the Spider Queen",
+		[4] = "Primal Batskin Jerkin",
+	},
+	["Knight-Captain's Lamellar Breastplate"] = {
+		[1] = "Field Marshal's Plate Armor",
+	},
+	["Heavy Mithril Breastplate"] = {
+		[1] = "Tel Co. Chestguard",
+		[2] = "Onyx Shredder Plate",
+	},
+	["Ursa's Embrace"] = {
+		[1] = "Kromcrush's Chestplate",
+	},
+	["Field Marshal's Plate Armor"] = {
+		[1] = "Knight-Captain's Lamellar Breastplate",
+	},
+	["Savage Gladiator Chain"] = {
+		[1] = "Ebonhold Armor",
+		[2] = "Cryptbone Hauberk",
+		[3] = "Carapace of the Spider Queen",
+		[4] = "Primal Batskin Jerkin",
+	},
+	["Emerald Breastplate"] = {
+		[1] = "Zandalar Augur's Hauberk",
+		[2] = "Ironvine Breastplate",
+	},
+	["Ironvine Breastplate"] = {
+		[1] = "Zandalar Augur's Hauberk",
+		[2] = "Emerald Breastplate",
+	},
+	["Kromcrush's Chestplate"] = {
+		[1] = "Ursa's Embrace",
+	},
+	["Carapace of the Spider Queen"] = {
+		[1] = "Ebonhold Armor",
+		[2] = "Savage Gladiator Chain",
+		[3] = "Cryptbone Hauberk",
+		[4] = "Primal Batskin Jerkin",
+	},
+	["Zandalar Augur's Hauberk"] = {
+		[1] = "Emerald Breastplate",
+		[2] = "Ironvine Breastplate",
+	},
+	["Tel Co. Chestguard"] = {
+		[1] = "Heavy Mithril Breastplate",
+		[2] = "Onyx Shredder Plate",
+	},
+	["Ebonhold Armor"] = {
+		[1] = "Savage Gladiator Chain",
+		[2] = "Cryptbone Hauberk",
+		[3] = "Carapace of the Spider Queen",
+		[4] = "Primal Batskin Jerkin",
+	},
+    ["Grizzled Pelt"] = {
+		[1] = "Black Bear Hide Vest",
+	},
+
+	["Carapace of Anub'shiah"] = {
+		[1] = "Saltstone Surcoat",
+	},
+	["Chestplate of the Dark Reaver"] = {
+		[1] = "Breastplate of the Dark Reaver",
+	},
+	["Saltstone Surcoat"] = {
+		[1] = "Carapace of Anub'shiah",
+	},
+	["Breastplate of the Dark Reaver"] = {
+		[1] = "Chestplate of the Dark Reaver",
+	},
+	["Black Bear Hide Vest"] = {
+		[1] = "Grizzled Pelt",
+	},
+
+	["Dargol's Hauberk"] = {
+		[1] = "Gelkis Marauder Chain",
+		[2] = "Brutal Hauberk",
+		[3] = "Lavadrenched Chainmail",
+		[4] = "Martyr's Chain",
+		[5] = "Raider's Chestpiece",
+	},
+	["Martyr's Chain"] = {
+		[1] = "Gelkis Marauder Chain",
+		[2] = "Brutal Hauberk",
+		[3] = "Dargol's Hauberk",
+		[4] = "Lavadrenched Chainmail",
+		[5] = "Raider's Chestpiece",
+	},
+	["Lavadrenched Chainmail"] = {
+		[1] = "Gelkis Marauder Chain",
+		[2] = "Brutal Hauberk",
+		[3] = "Dargol's Hauberk",
+		[4] = "Martyr's Chain",
+		[5] = "Raider's Chestpiece",
+	},
+	["Gelkis Marauder Chain"] = {
+		[1] = "Brutal Hauberk",
+		[2] = "Dargol's Hauberk",
+		[3] = "Lavadrenched Chainmail",
+		[4] = "Martyr's Chain",
+		[5] = "Raider's Chestpiece",
+	},
+	["Raider's Chestpiece"] = {
+		[1] = "Gelkis Marauder Chain",
+		[2] = "Brutal Hauberk",
+		[3] = "Dargol's Hauberk",
+		[4] = "Lavadrenched Chainmail",
+		[5] = "Martyr's Chain",
+	},
+	["Brutal Hauberk"] = {
+		[1] = "Gelkis Marauder Chain",
+		[2] = "Dargol's Hauberk",
+		[3] = "Lavadrenched Chainmail",
+		[4] = "Martyr's Chain",
+		[5] = "Raider's Chestpiece",
+	},
+    ["Reinforced Chain Vest"] = {
+		[1] = "Tarnished Chain Vest",
+		[2] = "Double Mail Vest",
+		[3] = "Rough Copper Vest",
+		[4] = "Loose Chain Vest",
+		[5] = "Linked Chain Vest",
+		[6] = "Frostmane Chain Vest",
+		[7] = "Laced Mail Vest",
+		[8] = "Worn Mail Vest",
+		[9] = "Flimsy Chain Vest",
+	},
+	["Dervish Tunic"] = {
+		[1] = "Hawkeye's Tunic",
+	},
+	["Tarnished Chain Vest"] = {
+		[1] = "Double Mail Vest",
+		[2] = "Rough Copper Vest",
+		[3] = "Loose Chain Vest",
+		[4] = "Linked Chain Vest",
+		[5] = "Reinforced Chain Vest",
+		[6] = "Frostmane Chain Vest",
+		[7] = "Laced Mail Vest",
+		[8] = "Worn Mail Vest",
+		[9] = "Flimsy Chain Vest",
+	},
+	["Linked Chain Vest"] = {
+		[1] = "Tarnished Chain Vest",
+		[2] = "Double Mail Vest",
+		[3] = "Rough Copper Vest",
+		[4] = "Loose Chain Vest",
+		[5] = "Reinforced Chain Vest",
+		[6] = "Frostmane Chain Vest",
+		[7] = "Laced Mail Vest",
+		[8] = "Worn Mail Vest",
+		[9] = "Flimsy Chain Vest",
+	},
+	["Red Dragonscale Breastplate"] = {
+		[1] = "Mercurial Breastplate",
+	},
+	["Laced Mail Vest"] = {
+		[1] = "Tarnished Chain Vest",
+		[2] = "Double Mail Vest",
+		[3] = "Rough Copper Vest",
+		[4] = "Loose Chain Vest",
+		[5] = "Linked Chain Vest",
+		[6] = "Reinforced Chain Vest",
+		[7] = "Frostmane Chain Vest",
+		[8] = "Worn Mail Vest",
+		[9] = "Flimsy Chain Vest",
+	},
+	["Royalist Chain Armor"] = {
+		[1] = "Autumnal Chestplate",
+	},
+	["Grizzly Tunic"] = {
+		[1] = "Archer's Jerkin",
+	},
+	["Hawkeye's Tunic"] = {
+		[1] = "Dervish Tunic",
+	},
+	["Double Mail Vest"] = {
+		[1] = "Tarnished Chain Vest",
+		[2] = "Rough Copper Vest",
+		[3] = "Loose Chain Vest",
+		[4] = "Linked Chain Vest",
+		[5] = "Reinforced Chain Vest",
+		[6] = "Frostmane Chain Vest",
+		[7] = "Laced Mail Vest",
+		[8] = "Worn Mail Vest",
+		[9] = "Flimsy Chain Vest",
+	},
+	["Flimsy Chain Vest"] = {
+		[1] = "Tarnished Chain Vest",
+		[2] = "Double Mail Vest",
+		[3] = "Rough Copper Vest",
+		[4] = "Loose Chain Vest",
+		[5] = "Linked Chain Vest",
+		[6] = "Reinforced Chain Vest",
+		[7] = "Frostmane Chain Vest",
+		[8] = "Laced Mail Vest",
+		[9] = "Worn Mail Vest",
+	},
+	["Worn Mail Vest"] = {
+		[1] = "Tarnished Chain Vest",
+		[2] = "Double Mail Vest",
+		[3] = "Rough Copper Vest",
+		[4] = "Loose Chain Vest",
+		[5] = "Linked Chain Vest",
+		[6] = "Reinforced Chain Vest",
+		[7] = "Frostmane Chain Vest",
+		[8] = "Laced Mail Vest",
+		[9] = "Flimsy Chain Vest",
+	},
+	["Loose Chain Vest"] = {
+		[1] = "Tarnished Chain Vest",
+		[2] = "Double Mail Vest",
+		[3] = "Rough Copper Vest",
+		[4] = "Linked Chain Vest",
+		[5] = "Reinforced Chain Vest",
+		[6] = "Frostmane Chain Vest",
+		[7] = "Laced Mail Vest",
+		[8] = "Worn Mail Vest",
+		[9] = "Flimsy Chain Vest",
+	},
+	["Frostmane Chain Vest"] = {
+		[1] = "Tarnished Chain Vest",
+		[2] = "Double Mail Vest",
+		[3] = "Rough Copper Vest",
+		[4] = "Loose Chain Vest",
+		[5] = "Linked Chain Vest",
+		[6] = "Reinforced Chain Vest",
+		[7] = "Laced Mail Vest",
+		[8] = "Worn Mail Vest",
+		[9] = "Flimsy Chain Vest",
+	},
+	["Archer's Jerkin"] = {
+		[1] = "Grizzly Tunic",
+	},
+	["Mercurial Breastplate"] = {
+		[1] = "Red Dragonscale Breastplate",
+	},
+	["Autumnal Chestplate"] = {
+		[1] = "Royalist Chain Armor",
+	},
+	["Rough Copper Vest"] = {
+		[1] = "Tarnished Chain Vest",
+		[2] = "Double Mail Vest",
+		[3] = "Loose Chain Vest",
+		[4] = "Linked Chain Vest",
+		[5] = "Reinforced Chain Vest",
+		[6] = "Frostmane Chain Vest",
+		[7] = "Laced Mail Vest",
+		[8] = "Worn Mail Vest",
+		[9] = "Flimsy Chain Vest",
+	},
+    ["Nature's Gift"] = {
+		[1] = "Lok'delar, Stave of the Ancient Keepers",
+	},
+	["Lok'delar, Stave of the Ancient Keepers"] = {
+		[1] = "Nature's Gift",
+	},
+	["Magram Hunter's Belt"] = {
+		[1] = "Girdle of Beastial Fury",
+	},
+	["Deviate Scale Belt"] = {
+		[1] = "Archer's Belt",
+	},
+	["Warden's Waistband"] = {
+		[1] = "Sentinel Girdle",
+	},
+	["Sentinel Girdle"] = {
+		[1] = "Warden's Waistband",
+	},
+	["Archer's Belt"] = {
+		[1] = "Deviate Scale Belt",
+	},
+	["Girdle of Beastial Fury"] = {
+		[1] = "Magram Hunter's Belt",
+	},
+	["Coronet of Faith"] = {
+		[1] = "Circlet of Faith",
+	},
+	["Pants of Faith"] = {
+		[1] = "Leggings of Faith",
+	},
+	["Bindings of Faith"] = {
+		[1] = "Bracers of Faith",
+	},
+	["Sash of Faith"] = {
+		[1] = "Belt of Faith",
+	},
+	["Mantle of Faith"] = {
+		[1] = "Shoulderpads of Faith",
+	},
+	["Bracers of Faith"] = {
+		[1] = "Bindings of Faith",
+	},
+	["Gloves of Faith"] = {
+		[1] = "Handguards of Faith",
+	},
+	["Shoulderpads of Faith"] = {
+		[1] = "Mantle of Faith",
+	},
+	["Circlet of Faith"] = {
+		[1] = "Coronet of Faith",
+	},
+	["Leggings of Faith"] = {
+		[1] = "Pants of Faith",
+	},
+	["Belt of Faith"] = {
+		[1] = "Sash of Faith",
+	},
+	["Handguards of Faith"] = {
+		[1] = "Gloves of Faith",
+	},
 }

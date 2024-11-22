@@ -272,19 +272,7 @@
                 end
             </OnMouseDown>
             <OnEnter>
-                TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT", 0, 0)
-                local name, linkString, quality, _, _, _, _, _, tex = GetItemInfo(TMOG_CURRENT_GEAR[this:GetID()])
-                if name and quality then
-                    local r, g, b, color = GetItemQualityColor(quality)
-                    TmogTooltip:SetText(name, r, g, b)
-                    TmogTooltip:AddLine("|cffffd200ItemID: "..TMOG_CURRENT_GEAR[this:GetID()].."|r", 1, 1, 1)
-                    TmogTooltip:Show()
-                end
-                if not name then
-                    local text = TEXT(getglobal(strupper(strsub(this:GetName(), 10))))
-                    TmogTooltip:SetText(text)
-                    TmogTooltip:Show()
-                end
+                Tmog_PlayerSlotOnEnter()
             </OnEnter>
             <OnLeave>
                 TmogTooltip:Hide()
@@ -370,7 +358,7 @@
                         </Anchor>
                     </Anchors>
                 </FontString>
-                <FontString name="$parentTitleText" inherits="GameFontNormal" text="Tmog v1.6">
+                <FontString name="$parentTitleText" inherits="GameFontNormal" text="Tmog v1.7">
                     <Size>
                         <AbsDimension x="512" y="14" />
                     </Size>
@@ -945,6 +933,9 @@
                                 box:SetText("");
                                 box:SetFocus();
                                 box:ClearFocus();
+                                if not TMOG_SEARCH_STRING then
+                                    return
+                                end
                                 TMOG_SEARCH_STRING = nil
                                 getglobal(box:GetParent():GetName().."SearchButton"):Click()
                             </OnClick>

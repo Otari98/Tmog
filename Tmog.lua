@@ -1,12 +1,12 @@
 -------------------------------
 ----------- TOOLTIP -----------
 -------------------------------
-
 -- adapted from https://github.com/Zebouski/MoPGearTooltips/tree/masterturtle
+
 local GAME_YELLOW = "|cffffd200"
-local RED = "|cffff0000";
 local GREEN = "|cff1eff00";
 local GREY = "|cff999999"
+
 local t_debug = false
 
 TRANSMOG_CACHE = TRANSMOG_CACHE or {
@@ -72,7 +72,6 @@ local tmog_paladin = {
     ["Leather"]=true,
     ["Mail"]=true,
     ["Plate"]=true,
-    ["Staff"]=true,
     ["Mace"]=true,
     ["Sword"]=true,
     ["Axe"]=true,
@@ -182,7 +181,9 @@ local function tmog_print(a)
 end
 
 local function tmog_debug(a)
-    if t_debug ~= true then return end
+    if t_debug ~= true then
+        return
+    end
     if type(a) == 'boolean' then
         if a then
             tmog_print('|cff0070de[DEBUG]|cffffffff[true]')
@@ -207,13 +208,21 @@ local function strsplit(str, delimiter)
     return result
 end
 
+local function strtrim(s)
+	return (string.gsub(s or "", "^%s*(.-)%s*$", "%1"))
+end
+
 local function AddToSet(set, key)
-    if not set or not key then return end
+    if not set or not key then
+        return
+    end
     set[key] = true
 end
 
 local function SetContains(set, key)
-    if not set or not key then return end
+    if not set or not key then
+        return
+    end
     return set[key] ~= nil
 end
 
@@ -221,7 +230,7 @@ local function InvenotySlotFromItemID(itemID)
     if not itemID then
         return
     end
-    local name, itemstring, quality, level, class, subclass, max_stack, slot  = GetItemInfo(itemID)
+    local _, _, _, _, _, _, _, slot  = GetItemInfo(itemID)
     local id = nil
     if slot == "INVTYPE_HEAD"
         then id = 1
@@ -267,7 +276,9 @@ SetItemRef = function(link, text, button)
 end
 
 local function FixName(name)
-    if not name then return end
+    if not name then
+        return
+    end
     local suffix = ""
     for k,v in pairs(suffixes) do
         if string.find(name, k, 1, true) then
@@ -429,7 +440,7 @@ local function GetTableForClass(class)
 end
 
 -- return true and slot if this is gear and we can equip it
-function IsGear(tooltipTypeStr)
+local function IsGear(tooltipTypeStr)
     local originalTooltip = {}
     local isGear = false
     local slot = nil
@@ -558,7 +569,9 @@ function TmogTip.extendTooltip(tooltip, tooltipTypeStr)
     local itemName = getglobal(tooltip:GetName() .. "TextLeft1"):GetText()
     local isGear, slot = IsGear(tooltipTypeStr)
     local tLabel = getglobal(tooltip:GetName() .. "TextLeft2")
-    if not isGear or not itemName or not tLabel then return end
+    if not isGear or not itemName or not tLabel then
+        return
+    end
     -- get rid of suffixes
     itemName = FixName(itemName)
     if itemName == LastItemName then
@@ -738,7 +751,7 @@ Tmog.inventorySlots = {
 function Tmog_OnLoad()
     TmogFrameRaceBackground:SetTexture("Interface\\TransmogFrame\\transmogbackground"..Tmog.race)
 
-    UIDropDownMenu_Initialize(TmogFrameTypeDropDown, TypeDropDown_Initialize)
+    UIDropDownMenu_Initialize(TmogFrameTypeDropDown, Tmog_TypeDropDown_Initialize)
     UIDropDownMenu_SetWidth(100, TmogFrameTypeDropDown)
 
     if not TMOG_PLAYER_OUTFITS then
@@ -752,7 +765,7 @@ function Tmog_OnLoad()
         TMOG_CURRENT_GEAR = {}
     end
 
-    UIDropDownMenu_Initialize(TmogFrameOutfitsDropDown, OutfitsDropDown_Initialize)
+    UIDropDownMenu_Initialize(TmogFrameOutfitsDropDown, Tmog_OutfitsDropDown_Initialize)
     UIDropDownMenu_SetWidth(115, TmogFrameOutfitsDropDown)
     TmogFrameSaveOutfit:Disable()
     TmogFrameDeleteOutfit:Disable()
@@ -781,7 +794,7 @@ function Tmog:CacheAllGearSlots()
     end
 end
 
-function OutfitsDropDown_Initialize()
+function Tmog_OutfitsDropDown_Initialize()
     if Tmog:tableSize(TMOG_PLAYER_OUTFITS) < 30 then
         local newOutfit = {}
         newOutfit.text = GREEN .. "+ New Outfit"
@@ -828,7 +841,7 @@ function OutfitsDropDown_Initialize()
     end
 end
 
-function TypeDropDown_Initialize()
+function Tmog_TypeDropDown_Initialize()
     if Tmog.currentSlot == 1 or Tmog.currentSlot == 5 or Tmog.currentSlot == 8 then
         Tmog.currentTypesList = Tmog.typesMisc
     elseif Tmog.currentSlot == 15 then
@@ -1341,7 +1354,9 @@ function Tmog:HidePagination()
 end
 
 function Tmog_ChangePage(dir)
-    if not Tmog.currentPage or not Tmog.totalPages then return end
+    if not Tmog.currentPage or not Tmog.totalPages then
+        return
+    end
     if (Tmog.currentPage + dir < 1) or (Tmog.currentPage + dir > Tmog.totalPages) then
         return
     end
@@ -1413,7 +1428,7 @@ function TmogSlot_OnClick(InventorySlotId, rightClick)
         Tmog:HidePreviews()
         Tmog:HidePagination()
 
-        UIDropDownMenu_Initialize(TmogFrameTypeDropDown, TypeDropDown_Initialize)
+        UIDropDownMenu_Initialize(TmogFrameTypeDropDown, Tmog_TypeDropDown_Initialize)
         TmogFrameSearchBox:Show()
         TmogFrameSearchButton:Show()
 
@@ -1430,16 +1445,16 @@ function TmogSlot_OnClick(InventorySlotId, rightClick)
         if not getglobal(this:GetName().."BorderFull"):IsVisible() then
             Tmog:HideBorders()
             getglobal(this:GetName().."BorderFull"):Show()
-            if InventorySlotId == 4 or InventorySlotId == 19 then
+            if InventorySlotId == 4 or InventorySlotId == 19 then --shirt/tabard
                 Tmog.currentType = "Miscellaneous"
                 TmogFrameTypeDropDown:Hide()
-            elseif (InventorySlotId == 16 or InventorySlotId == 17) and not found then
+            elseif (InventorySlotId == 16 or InventorySlotId == 17) and not found then --main hand/off hand
                 Tmog.currentType = "Daggers"
                 TmogFrameTypeDropDown:Show()
-            elseif InventorySlotId == 18 then
+            elseif InventorySlotId == 18 then --ranged
                 Tmog.currentType = "Bows"
                 TmogFrameTypeDropDown:Show()
-            elseif InventorySlotId == 15 then
+            elseif InventorySlotId == 15 then --cloak
                 Tmog.currentType = "Cloth"
                 TmogFrameTypeDropDown:Hide()
             else
@@ -1967,12 +1982,10 @@ function TmogFrame_Toggle()
 	end
 end
 
-function strtrim(s)
-	return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
-end
-
 function Tmog_Search(inputText)
-    if not inputText then return end
+    if not inputText then
+        return
+    end
 	inputText = strtrim(inputText)
 	if inputText == "" then
         Tmog_SelectType(Tmog.currentType)

@@ -460,9 +460,6 @@ DisplayIdDB= {
     ["Shawl of the Forgotten"] = {"Bonelink Cape","Cloak of Atonement"},
     ["Cloak of Atonement"] = {"Shawl of the Forgotten","Bonelink Cape"},
 
-    ["Pale Moon Cloak"] = {"Silken Mantle of Dying Hope"},
-    ["Silken Mantle of Dying Hope"] = {"Pale Moon Cloak"},
-
     ["Hide of the Wild"] = {"Venom Covered Cloak"},
     ["Venom Covered Cloak"] = {"Hide of the Wild"},
 
@@ -520,10 +517,6 @@ DisplayIdDB= {
 
     ["Hide of Lupos"] = {"Fenrus' Hide"},
     ["Fenrus' Hide"] = {"Hide of Lupos"},
-
-    ["Glyphed Cloak"] = {"Gaea's Cloak","Shroud of the Archlich"},
-    ["Gaea's Cloak"] = {"Glyphed Cloak","Shroud of the Archlich"},
-    ["Shroud of the Archlich"] = {"Glyphed Cloak","Gaea's Cloak"},
 
     ["Swashbuckler's Cape"] = {"Hameya's Cloak","Shawl of Nerubian Silk"},
     ["Hameya's Cloak"] = {"Swashbuckler's Cape","Shawl of Nerubian Silk"},
@@ -1816,18 +1809,12 @@ DisplayIdDB= {
     ["Dark Leather Pants"] = {"Nomadic Pants"},
     ["Nomadic Pants"] = {"Dark Leather Pants"},
 
-    ["Protector Legguards"] = {"Sandmoon Greaves"},
-    ["Sandmoon Greaves"] = {"Protector Legguards"},
-
     ["Guardian Pants"] = {"Firecracker Trousers","Old Venture Co. Pants"},
     ["Firecracker Trousers"] = {"Guardian Pants","Old Venture Co. Pants"},
     ["Old Venture Co. Pants"] = {"Guardian Pants","Firecracker Trousers"},
 
     ["Lace Pants"] = {"Island Dungarees"},
     ["Island Dungarees"] = {"Lace Pants"},
-
-    ["Durable Pants"] = {"Hollow-Thread Trousers"},
-    ["Hollow-Thread Trousers"] = {"Durable Pants"},
 
     ["Cadet Leggings"] = {"Deepfrond Leggings"},
     ["Deepfrond Leggings"] = {"Cadet Leggings"},
@@ -1852,9 +1839,6 @@ DisplayIdDB= {
 	
 	["Searingscale Leggings"] = {"Quilguard Legguards"},
     ["Quilguard Legguards"] = {"Searingscale Leggings"},
-
-    ["Nightscape Pants"] = {"Conspirator's Trickpockets"},
-    ["Conspirator's Trickpockets"] = {"Nightscape Pants"},
 	
 	["Bright Pants"] = {"Darkwatch Pants"},
     ["Darkwatch Pants"] = {"Bright Pants"},
@@ -1936,9 +1920,6 @@ DisplayIdDB= {
     ["Ceremonial Leather Loincloth"] = {"Warbear Woolies"},
     ["Warbear Woolies"] = {"Ceremonial Leather Loincloth"},
 
-    ["Heraldic Leggings"] = {"Potent Pants"},
-    ["Potent Pants"] = {"Heraldic Leggings"},
-
     ["Interlaced Pants"] = {"Simple Britches"},
     ["Simple Britches"] = {"Interlaced Pants"},
 
@@ -1982,12 +1963,6 @@ DisplayIdDB= {
     ["Trickster's Leggings"] = {"Thick Leather Pants","Lightstep Leggings"},
     ["Lightstep Leggings"] = {"Thick Leather Pants","Trickster's Leggings"},
 
-    ["Barbaric Leggings"] = {"Barbaric Kilt"},
-    ["Barbaric Kilt"] = {"Barbaric Leggings"},
-
-    ["Arcane Leggings"] = {"Mooncloth Leggings"},
-    ["Mooncloth Leggings"] = {"Arcane Leggings"},
-
     ["Serpentskin Leggings"] = {"Indomitable Leggings"},
     ["Indomitable Leggings"] = {"Serpentskin Leggings"},
 
@@ -1997,10 +1972,6 @@ DisplayIdDB= {
     ["Wild Leather Leggings"] = {"Tracker's Leggings","Tanglemoss Leggings"},
     ["Tracker's Leggings"] = {"Wild Leather Leggings","Tanglemoss Leggings"},
     ["Tanglemoss Leggings"] = {"Wild Leather Leggings","Tracker's Leggings"},
-
-    ["Mighty Leggings"] = {"Outrider's Lizardhide Pants","Sentinel's Lizardhide Pants"},
-    ["Outrider's Lizardhide Pants"] = {"Mighty Leggings","Sentinel's Lizardhide Pants"},
-    ["Sentinel's Lizardhide Pants"] = {"Mighty Leggings","Outrider's Lizardhide Pants"},
 
     ["Ebonhold Leggings"] = {"Savage Gladiator Leggings"},
     ["Savage Gladiator Leggings"] = {"Ebonhold Leggings"},
@@ -2014,18 +1985,9 @@ DisplayIdDB= {
 
     ["Legguards of the Chromatic Defier"] = {"Legplates of the Chromatic Defier"},
     ["Legplates of the Chromatic Defier"] = {"Legguards of the Chromatic Defier"},
-
-    ["Black Mageweave Leggings"] = {"Leggings of Torment"},
-    ["Leggings of Torment"] = {"Black Mageweave Leggings"},
-
-    ["Frostweave Pants"] = {"Leggings of Arcane Supremacy"},
-    ["Leggings of Arcane Supremacy"] = {"Frostweave Pants"},
     
     ["Deathbone Legguards"] = {"Wraithplate Leggings"},
     ["Wraithplate Leggings"] = {"Deathbone Legguards"},
-
-    ["Vital Leggings"] = {"General's Satin Leggings"},
-    ["General's Satin Leggings"] = {"Vital Leggings"},
 
     ["Gaea's Leggings"] = {"Legionnaire's Silk Legguards"},
     ["Legionnaire's Silk Legguards"] = {"Gaea's Leggings"},
@@ -2050,18 +2012,11 @@ DisplayIdDB= {
     ["Abomination Skin Leggings"] = {"Darkweave Breeches","Nightwind Leggings"},
     ["Nightwind Leggings"] = {"Darkweave Breeches","Abomination Skin Leggings"},
 
-    ["Skullsmoke Pants"] = {"Marshal's Silk Leggings"},
-    ["Marshal's Silk Leggings"] = {"Skullsmoke Pants"},
-
     ["Arcanist Leggings"] = {"Shadowhide Leggings"},
     ["Shadowhide Leggings"] = {"Arcanist Leggings"},
 
     ["Blue Dragonscale Leggings"] = {"Scaled Leggings of Qiraji Fury"},
     ["Scaled Leggings of Qiraji Fury"] = {"Blue Dragonscale Leggings"},
-
-    ["Runed Stygian Leggings"] = {"Outrider's Silk Leggings","Sentinel's Silk Leggings"},
-    ["Outrider's Silk Leggings"] = {"Runed Stygian Leggings","Sentinel's Silk Leggings"},
-    ["Sentinel's Silk Leggings"] = {"Runed Stygian Leggings","Outrider's Silk Leggings"},
 
     ["Outrider's Plate Legguards"] = {"Sentinel's Plate Legguards","Baneforged Leggings"},
     ["Sentinel's Plate Legguards"] = {"Outrider's Plate Legguards","Baneforged Leggings"},
@@ -2070,9 +2025,6 @@ DisplayIdDB= {
     ["Outrider's Chain Leggings"] = {"Outrider's Mail Leggings","Sentinel's Chain Leggings"},
     ["Outrider's Mail Leggings"] = {"Outrider's Chain Leggings","Sentinel's Chain Leggings"},
     ["Sentinel's Chain Leggings"] = {"Outrider's Chain Leggings","Outrider's Mail Leggings"},
-
-    ["Outrider's Leather Pants"] = {"Sentinel's Leather Pants"},
-    ["Sentinel's Leather Pants"] = {"Outrider's Leather Pants"},
 
     -- feet
     ["Recomposed Boots"] = {"Councillor's Boots"},
@@ -6026,5 +5978,727 @@ DisplayIdDB= {
 	},
 	["Handguards of Faith"] = {
 		[1] = "Gloves of Faith",
+	},
+	["Runed Stygian Leggings"] = {
+		[1] = "Leggings of Torment",
+		[2] = "Fel Infused Leggings",
+		[3] = "Outrider's Silk Leggings",
+		[4] = "Black Mageweave Leggings",
+		[5] = "Abyssal Cloth Pants",
+		[6] = "Sentinel's Silk Leggings",
+	},
+	["Fel Infused Leggings"] = {
+		[1] = "Leggings of Torment",
+		[2] = "Outrider's Silk Leggings",
+		[3] = "Runed Stygian Leggings",
+		[4] = "Black Mageweave Leggings",
+		[5] = "Abyssal Cloth Pants",
+		[6] = "Sentinel's Silk Leggings",
+	},
+	["Barbaric Leggings"] = {
+		[1] = "Devilsaur Leggings",
+		[2] = "Cutthroat's Pants",
+	},
+	["Chieftain's Leggings"] = {
+		[1] = "Pridelord Pants",
+	},
+	["Sentinel's Silk Leggings"] = {
+		[1] = "Leggings of Torment",
+		[2] = "Fel Infused Leggings",
+		[3] = "Outrider's Silk Leggings",
+		[4] = "Runed Stygian Leggings",
+		[5] = "Black Mageweave Leggings",
+		[6] = "Abyssal Cloth Pants",
+	},
+	["Abyssal Cloth Pants"] = {
+		[1] = "Leggings of Torment",
+		[2] = "Fel Infused Leggings",
+		[3] = "Outrider's Silk Leggings",
+		[4] = "Runed Stygian Leggings",
+		[5] = "Black Mageweave Leggings",
+		[6] = "Sentinel's Silk Leggings",
+	},
+	["Wicked Leather Pants"] = {
+		[1] = "Warstrife Leggings",
+		[2] = "Kargron's Leggings",
+	},
+	["Cutthroat's Pants"] = {
+		[1] = "Barbaric Leggings",
+		[2] = "Devilsaur Leggings",
+	},
+	["Black Mageweave Leggings"] = {
+		[1] = "Leggings of Torment",
+		[2] = "Fel Infused Leggings",
+		[3] = "Outrider's Silk Leggings",
+		[4] = "Runed Stygian Leggings",
+		[5] = "Abyssal Cloth Pants",
+		[6] = "Sentinel's Silk Leggings",
+	},
+	["Kargron's Leggings"] = {
+		[1] = "Wicked Leather Pants",
+		[2] = "Warstrife Leggings",
+	},
+	["Knight-Captain's Satin Legguards"] = {
+		[1] = "Elegant Leggings",
+	},
+	["Elegant Leggings"] = {
+		[1] = "Knight-Captain's Satin Legguards",
+	},
+	["Pridelord Pants"] = {
+		[1] = "Chieftain's Leggings",
+	},
+	["Warstrife Leggings"] = {
+		[1] = "Wicked Leather Pants",
+		[2] = "Kargron's Leggings",
+	},
+	["Leggings of Torment"] = {
+		[1] = "Fel Infused Leggings",
+		[2] = "Outrider's Silk Leggings",
+		[3] = "Runed Stygian Leggings",
+		[4] = "Black Mageweave Leggings",
+		[5] = "Abyssal Cloth Pants",
+		[6] = "Sentinel's Silk Leggings",
+	},
+	["Devilsaur Leggings"] = {
+		[1] = "Barbaric Leggings",
+		[2] = "Cutthroat's Pants",
+	},
+	["Outrider's Silk Leggings"] = {
+		[1] = "Leggings of Torment",
+		[2] = "Fel Infused Leggings",
+		[3] = "Runed Stygian Leggings",
+		[4] = "Black Mageweave Leggings",
+		[5] = "Abyssal Cloth Pants",
+		[6] = "Sentinel's Silk Leggings",
+	},
+	["Dreadnaught Legplates"] = {
+		[1] = "Dreadnaught Leggings",
+	},
+	["Frostfire Gloves"] = {
+		[1] = "Frostfire Handwraps",
+	},
+	["Slippers of the Guardian"] = {
+		[1] = "Boots of the Guardian",
+	},
+	["Dreadnaught Leggings"] = {
+		[1] = "Dreadnaught Legplates",
+	},
+	["Dreadnaught Gloves"] = {
+		[1] = "Dreadnaught Gauntlets",
+	},
+	["Dreadnaught Waistguard"] = {
+		[1] = "Dreadnaught Girdle",
+	},
+	["Redemption Wristguards"] = {
+		[1] = "Redemption Bindings",
+		[2] = "Redemption Bracers",
+	},
+	["Redemption Bracers"] = {
+		[1] = "Redemption Bindings",
+		[2] = "Redemption Wristguards",
+	},
+	["Frostfire Trousers"] = {
+		[1] = "Frostfire Leggings",
+	},
+	["Frostfire Sandals"] = {
+		[1] = "Frostfire Slippers",
+	},
+	["Trousers of the Guardian"] = {
+		[1] = "Leggings of the Guardian",
+	},
+	["Frostfire Cord"] = {
+		[1] = "Frostfire Belt",
+	},
+	["Redemption Bindings"] = {
+		[1] = "Redemption Bracers",
+		[2] = "Redemption Wristguards",
+	},
+	["Frostfire Belt"] = {
+		[1] = "Frostfire Cord",
+	},
+	["Dreadnaught Gauntlets"] = {
+		[1] = "Dreadnaught Gloves",
+	},
+	["Frostfire Bracers"] = {
+		[1] = "Frostfire Bindings",
+	},
+	["Dreadnaught Bracers"] = {
+		[1] = "Dreadnaught Bindings",
+	},
+	["Frostfire Leggings"] = {
+		[1] = "Frostfire Trousers",
+	},
+	["Frostfire Bindings"] = {
+		[1] = "Frostfire Bracers",
+	},
+	["Dreadnaught Bindings"] = {
+		[1] = "Dreadnaught Bracers",
+	},
+	["Dreadnaught Girdle"] = {
+		[1] = "Dreadnaught Waistguard",
+	},
+	["Frostfire Slippers"] = {
+		[1] = "Frostfire Sandals",
+	},
+	["Leggings of the Guardian"] = {
+		[1] = "Trousers of the Guardian",
+	},
+	["Frostfire Handwraps"] = {
+		[1] = "Frostfire Gloves",
+	},
+	["Boots of the Guardian"] = {
+		[1] = "Slippers of the Guardian",
+	},
+	["Earthshatter Belt"] = {
+		[1] = "Earthshatter Girdle",
+		[2] = "Earthshatter Sash",
+	},
+	["Earthshatter Sash"] = {
+		[1] = "Earthshatter Belt",
+		[2] = "Earthshatter Girdle",
+	},
+	["Redemption Belt"] = {
+		[1] = "Redemption Girdle",
+		[2] = "Redemption Waistguard",
+	},
+	["Dreamwalker Handguards"] = {
+		[1] = "Dreamwalker Handwraps",
+	},
+	["Dreamwalker Wristbands"] = {
+		[1] = "Dreamwalker Bracers",
+		[2] = "Dreamwalker Wristguards",
+	},
+	["Dreamwalker Boots"] = {
+		[1] = "Dreamwalker Slippers",
+		[2] = "Dreamwalker Treads",
+	},
+	["Plagueheart Bracers"] = {
+		[1] = "Plagueheart Bindings",
+	},
+	["Dreamwalker Legguards"] = {
+		[1] = "Dreamwalker Pants",
+		[2] = "Dreamwalker Trousers",
+	},
+	["Redemption Waistguard"] = {
+		[1] = "Redemption Belt",
+		[2] = "Redemption Girdle",
+	},
+	["Redemption Handguards"] = {
+		[1] = "Redemption Gloves",
+		[2] = "Redemption Gauntlets",
+	},
+	["Redemption Boots"] = {
+		[1] = "Redemption Greaves",
+		[2] = "Redemption Sabatons",
+	},
+	["Dreamwalker Belt"] = {
+		[1] = "Dreamwalker Girdle",
+		[2] = "Dreamwalker Sash",
+	},
+	["Earthshatter Sabatons"] = {
+		[1] = "Earthshatter Greaves",
+		[2] = "Earthshatter Boots",
+	},
+	["Dreamwalker Girdle"] = {
+		[1] = "Dreamwalker Belt",
+		[2] = "Dreamwalker Sash",
+	},
+	["Earthshatter Leggings"] = {
+		[1] = "Earthshatter Legplates",
+		[2] = "Earthshatter Legguards",
+	},
+	["Redemption Sabatons"] = {
+		[1] = "Redemption Boots",
+		[2] = "Redemption Greaves",
+	},
+	["Plagueheart Handwraps"] = {
+		[1] = "Plagueheart Gloves",
+	},
+	["Redemption Gauntlets"] = {
+		[1] = "Redemption Gloves",
+		[2] = "Redemption Handguards",
+	},
+	["Earthshatter Fists"] = {
+		[1] = "Earthshatter Gauntlets",
+		[2] = "Earthshatter Handguards",
+	},
+	["Plagueheart Gloves"] = {
+		[1] = "Plagueheart Handwraps",
+	},
+	["Redemption Gloves"] = {
+		[1] = "Redemption Gauntlets",
+		[2] = "Redemption Handguards",
+	},
+	["Earthshatter Gauntlets"] = {
+		[1] = "Earthshatter Fists",
+		[2] = "Earthshatter Handguards",
+	},
+	["Earthshatter Bracelets"] = {
+		[1] = "Earthshatter Bindings",
+		[2] = "Earthshatter Wristguards",
+	},
+	["Plagueheart Sash"] = {
+		[1] = "Plagueheart Belt",
+	},
+	["Plagueheart Bindings"] = {
+		[1] = "Plagueheart Bracers",
+	},
+	["Dreamwalker Handwraps"] = {
+		[1] = "Dreamwalker Handguards",
+	},
+	["Dreamwalker Wristguards"] = {
+		[1] = "Dreamwalker Bracers",
+		[2] = "Dreamwalker Wristbands",
+	},
+	["Dreamwalker Bracers"] = {
+		[1] = "Dreamwalker Wristguards",
+		[2] = "Dreamwalker Wristbands",
+	},
+	["Earthshatter Bindings"] = {
+		[1] = "Earthshatter Bracelets",
+		[2] = "Earthshatter Wristguards",
+	},
+	["Dreamwalker Treads"] = {
+		[1] = "Dreamwalker Boots",
+		[2] = "Dreamwalker Slippers",
+	},
+	["Dreamwalker Slippers"] = {
+		[1] = "Dreamwalker Boots",
+		[2] = "Dreamwalker Treads",
+	},
+	["Dreamwalker Trousers"] = {
+		[1] = "Dreamwalker Pants",
+		[2] = "Dreamwalker Legguards",
+	},
+	["Dreamwalker Sash"] = {
+		[1] = "Dreamwalker Belt",
+		[2] = "Dreamwalker Girdle",
+	},
+	["Dreamwalker Pants"] = {
+		[1] = "Dreamwalker Trousers",
+		[2] = "Dreamwalker Legguards",
+	},
+	["Redemption Greaves"] = {
+		[1] = "Redemption Boots",
+		[2] = "Redemption Sabatons",
+	},
+	["Redemption Girdle"] = {
+		[1] = "Redemption Belt",
+		[2] = "Redemption Waistguard",
+	},
+	["Earthshatter Handguards"] = {
+		[1] = "Earthshatter Fists",
+		[2] = "Earthshatter Gauntlets",
+	},
+	["Redemption Pants"] = {
+		[1] = "Redemption Legguards",
+		[2] = "Redemption Leggings",
+	},
+	["Plagueheart Belt"] = {
+		[1] = "Plagueheart Sash",
+	},
+	["Redemption Legguards"] = {
+		[1] = "Redemption Leggings",
+		[2] = "Redemption Pants",
+	},
+	["Earthshatter Girdle"] = {
+		[1] = "Earthshatter Belt",
+		[2] = "Earthshatter Sash",
+	},
+	["Earthshatter Greaves"] = {
+		[1] = "Earthshatter Sabatons",
+		[2] = "Earthshatter Boots",
+	},
+	["Earthshatter Wristguards"] = {
+		[1] = "Earthshatter Bracelets",
+		[2] = "Earthshatter Bindings",
+	},
+	["Earthshatter Legguards"] = {
+		[1] = "Earthshatter Legplates",
+		[2] = "Earthshatter Leggings",
+	},
+	["Earthshatter Legplates"] = {
+		[1] = "Earthshatter Legguards",
+		[2] = "Earthshatter Leggings",
+	},
+	["Earthshatter Boots"] = {
+		[1] = "Earthshatter Sabatons",
+		[2] = "Earthshatter Greaves",
+	},
+	["Redemption Leggings"] = {
+		[1] = "Redemption Legguards",
+		[2] = "Redemption Pants",
+	},
+	["Cloak of Concentrated Hatred"] = {
+		[1] = "Nightfall Drape",
+	},
+	["Glyphed Cloak"] = {
+		[1] = "Sapphiron Drape",
+		[2] = "Shroud of the Archlich",
+		[3] = "Gaea's Cloak",
+	},
+	["Phantasmal Cloak"] = {
+		[1] = "Cloak of Veiled Shadows",
+		[2] = "Pale Moon Cloak",
+		[3] = "Dark Hooded Cape",
+		[4] = "Silken Mantle of Dying Hope",
+	},
+	["Pale Moon Cloak"] = {
+		[1] = "Cloak of Veiled Shadows",
+		[2] = "Phantasmal Cloak",
+		[3] = "Dark Hooded Cape",
+		[4] = "Silken Mantle of Dying Hope",
+	},
+	["Sapphiron Drape"] = {
+		[1] = "Shroud of the Archlich",
+		[2] = "Glyphed Cloak",
+		[3] = "Gaea's Cloak",
+	},
+	["Shroud of the Archlich"] = {
+		[1] = "Sapphiron Drape",
+		[2] = "Glyphed Cloak",
+		[3] = "Gaea's Cloak",
+	},
+	["Cloak of Veiled Shadows"] = {
+		[1] = "Phantasmal Cloak",
+		[2] = "Pale Moon Cloak",
+		[3] = "Dark Hooded Cape",
+		[4] = "Silken Mantle of Dying Hope",
+	},
+	["Gaea's Cloak"] = {
+		[1] = "Sapphiron Drape",
+		[2] = "Shroud of the Archlich",
+		[3] = "Glyphed Cloak",
+	},
+	["Silken Mantle of Dying Hope"] = {
+		[1] = "Cloak of Veiled Shadows",
+		[2] = "Phantasmal Cloak",
+		[3] = "Pale Moon Cloak",
+		[4] = "Dark Hooded Cape",
+	},
+	["Nightfall Drape"] = {
+		[1] = "Cloak of Concentrated Hatred",
+	},
+	["Dark Hooded Cape"] = {
+		[1] = "Cloak of Veiled Shadows",
+		[2] = "Phantasmal Cloak",
+		[3] = "Pale Moon Cloak",
+		[4] = "Silken Mantle of Dying Hope",
+	},
+	["Potent Pants"] = {
+		[1] = "Heraldic Leggings",
+		[2] = "Blooddrenched Leggings",
+	},
+	["Heavy Desert Leggings"] = {
+		[1] = "Runic Leather Pants",
+		[2] = "Mighty Leggings",
+		[3] = "Outrider's Lizardhide Pants",
+		[4] = "Sentinel's Lizardhide Pants",
+	},
+	["Blooddrenched Leggings"] = {
+		[1] = "Heraldic Leggings",
+		[2] = "Potent Pants",
+	},
+	["Conspirator's Trickpockets"] = {
+		[1] = "Nightscape Pants",
+		[2] = "Triprunner Dungarees",
+	},
+	["Sentinel's Lizardhide Pants"] = {
+		[1] = "Heavy Desert Leggings",
+		[2] = "Runic Leather Pants",
+		[3] = "Mighty Leggings",
+		[4] = "Outrider's Lizardhide Pants",
+	},
+	["Supreme Leggings"] = {
+		[1] = "Unbridled Leggings",
+	},
+	["Heraldic Leggings"] = {
+		[1] = "Blooddrenched Leggings",
+		[2] = "Potent Pants",
+	},
+	["Outrider's Lizardhide Pants"] = {
+		[1] = "Heavy Desert Leggings",
+		[2] = "Runic Leather Pants",
+		[3] = "Mighty Leggings",
+		[4] = "Sentinel's Lizardhide Pants",
+	},
+	["Mighty Leggings"] = {
+		[1] = "Heavy Desert Leggings",
+		[2] = "Runic Leather Pants",
+		[3] = "Outrider's Lizardhide Pants",
+		[4] = "Sentinel's Lizardhide Pants",
+	},
+	["Runic Leather Pants"] = {
+		[1] = "Heavy Desert Leggings",
+		[2] = "Mighty Leggings",
+		[3] = "Outrider's Lizardhide Pants",
+		[4] = "Sentinel's Lizardhide Pants",
+	},
+	["Nightscape Pants"] = {
+		[1] = "Triprunner Dungarees",
+		[2] = "Conspirator's Trickpockets",
+	},
+	["Unbridled Leggings"] = {
+		[1] = "Supreme Leggings",
+	},
+	["Triprunner Dungarees"] = {
+		[1] = "Nightscape Pants",
+		[2] = "Conspirator's Trickpockets",
+	},
+	["High Councillor's Pants"] = {
+		[1] = "Quel'dorei Magister's Leggings",
+		[2] = "Doomcaller's Trousers",
+		[3] = "Skullsmoke Pants",
+		[4] = "Marshal's Silk Leggings",
+		[5] = "Doomcaller's Leggings",
+	},
+	["Frostweave Pants"] = {
+		[1] = "Enigma Trousers",
+		[2] = "Augerer's Trousers",
+		[3] = "Mistscape Pants",
+		[4] = "Enigma Leggings",
+		[5] = "Leggings of Arcane Supremacy",
+	},
+	["Revantusk Mystic's Leggings"] = {
+		[1] = "Mooncloth Leggings",
+		[2] = "Arcane Leggings",
+	},
+	["Marshal's Silk Leggings"] = {
+		[1] = "Quel'dorei Magister's Leggings",
+		[2] = "Doomcaller's Trousers",
+		[3] = "Skullsmoke Pants",
+		[4] = "High Councillor's Pants",
+		[5] = "Doomcaller's Leggings",
+	},
+	["Quel'dorei Magister's Leggings"] = {
+		[1] = "Doomcaller's Trousers",
+		[2] = "Skullsmoke Pants",
+		[3] = "High Councillor's Pants",
+		[4] = "Marshal's Silk Leggings",
+		[5] = "Doomcaller's Leggings",
+	},
+	["Mooncloth Leggings"] = {
+		[1] = "Revantusk Mystic's Leggings",
+		[2] = "Arcane Leggings",
+	},
+	["Doomcaller's Leggings"] = {
+		[1] = "Quel'dorei Magister's Leggings",
+		[2] = "Doomcaller's Trousers",
+		[3] = "Skullsmoke Pants",
+		[4] = "High Councillor's Pants",
+		[5] = "Marshal's Silk Leggings",
+	},
+	["Skullsmoke Pants"] = {
+		[1] = "Quel'dorei Magister's Leggings",
+		[2] = "Doomcaller's Trousers",
+		[3] = "High Councillor's Pants",
+		[4] = "Marshal's Silk Leggings",
+		[5] = "Doomcaller's Leggings",
+	},
+	["Doomcaller's Trousers"] = {
+		[1] = "Quel'dorei Magister's Leggings",
+		[2] = "Skullsmoke Pants",
+		[3] = "High Councillor's Pants",
+		[4] = "Marshal's Silk Leggings",
+		[5] = "Doomcaller's Leggings",
+	},
+	["Mistscape Pants"] = {
+		[1] = "Enigma Trousers",
+		[2] = "Augerer's Trousers",
+		[3] = "Frostweave Pants",
+		[4] = "Enigma Leggings",
+		[5] = "Leggings of Arcane Supremacy",
+	},
+	["Arcane Leggings"] = {
+		[1] = "Revantusk Mystic's Leggings",
+		[2] = "Mooncloth Leggings",
+	},
+	["Enigma Leggings"] = {
+		[1] = "Enigma Trousers",
+		[2] = "Enigma Trousers",
+		[3] = "Augerer's Trousers",
+		[4] = "Mistscape Pants",
+		[5] = "Frostweave Pants",
+		[6] = "Leggings of Arcane Supremacy",
+	},
+	["Enigma Trousers"] = {
+		[1] = "Enigma Leggings",
+		[2] = "Augerer's Trousers",
+		[3] = "Mistscape Pants",
+		[4] = "Frostweave Pants",
+		[5] = "Enigma Leggings",
+		[6] = "Leggings of Arcane Supremacy",
+	},
+	["Leggings of Arcane Supremacy"] = {
+		[1] = "Enigma Trousers",
+		[2] = "Augerer's Trousers",
+		[3] = "Mistscape Pants",
+		[4] = "Frostweave Pants",
+		[5] = "Enigma Leggings",
+	},
+	["Enigma Slippers"] = {
+		[1] = "Enigma Boots",
+	},
+	["Enigma Boots"] = {
+		[1] = "Enigma Slippers",
+	},
+	["Augerer's Trousers"] = {
+		[1] = "Enigma Trousers",
+		[2] = "Mistscape Pants",
+		[3] = "Frostweave Pants",
+		[4] = "Enigma Leggings",
+		[5] = "Leggings of Arcane Supremacy",
+	},
+	["Skyshroud Leggings"] = {
+		[1] = "Marshal's Dreadweave Leggings",
+		[2] = "Runecloth Pants",
+	},
+	["Nathrezim Slippers"] = {
+		[1] = "Nathrezim Boots",
+	},
+	["Marshal's Dreadweave Leggings"] = {
+		[1] = "Skyshroud Leggings",
+		[2] = "Runecloth Pants",
+	},
+	["Nathrezim Boots"] = {
+		[1] = "Nathrezim Slippers",
+	},
+	["Nathrezim Pants"] = {
+		[1] = "Nathrezim Leggings",
+	},
+	["Nathrezim Leggings"] = {
+		[1] = "Nathrezim Pants",
+	},
+	["Watcher's Leggings"] = {
+		[1] = "Swampland Trousers",
+		[2] = "General's Satin Leggings",
+		[3] = "Vital Leggings",
+	},
+	["Durable Pants"] = {
+		[1] = "Humbert's Pants",
+		[2] = "Hollow-Thread Trousers",
+	},
+	["Runecloth Pants"] = {
+		[1] = "Marshal's Dreadweave Leggings",
+		[2] = "Skyshroud Leggings",
+	},
+	["Swampland Trousers"] = {
+		[1] = "Watcher's Leggings",
+		[2] = "General's Satin Leggings",
+		[3] = "Vital Leggings",
+	},
+	["Hollow-Thread Trousers"] = {
+		[1] = "Humbert's Pants",
+		[2] = "Durable Pants",
+	},
+	["Humbert's Pants"] = {
+		[1] = "Hollow-Thread Trousers",
+		[2] = "Durable Pants",
+	},
+	["Cracked Leather Pants"] = {
+		[1] = "Wildkeeper Leggings",
+	},
+	["Wildkeeper Leggings"] = {
+		[1] = "Cracked Leather Pants",
+	},
+	["Vital Leggings"] = {
+		[1] = "Swampland Trousers",
+		[2] = "Watcher's Leggings",
+		[3] = "General's Satin Leggings",
+	},
+	["General's Satin Leggings"] = {
+		[1] = "Swampland Trousers",
+		[2] = "Watcher's Leggings",
+		[3] = "Vital Leggings",
+	},
+	["Venomshroud Leggings"] = {
+		[1] = "Hibernal Pants",
+	},
+	["Leggings of the Black Blizzard"] = {
+		[1] = "Pants of the Oracle",
+		[2] = "Trousers of the Oracle",
+	},
+	["Sandals of Pestilence"] = {
+		[1] = "Boots of Pestilence",
+	},
+	["Pants of the Oracle"] = {
+		[1] = "Trousers of the Oracle",
+		[2] = "Leggings of the Black Blizzard",
+	},
+	["Pants of Pestilence"] = {
+		[1] = "Leggings of Pestilence",
+	},
+	["The Postmaster's Trousers"] = {
+		[1] = "Empowered Leggings",
+	},
+	["Stormshroud Pants"] = {
+		[1] = "Outrider's Leather Pants",
+		[2] = "Sentinel's Leather Pants",
+	},
+	["Leggings of Pestilence"] = {
+		[1] = "Pants of Pestilence",
+	},
+	["Cenarion Reservist's Pants"] = {
+		[1] = "Councillor's Pants",
+		[2] = "Treetop Leggings",
+	},
+	["Arachnidian Legguards"] = {
+		[1] = "Spellshock Leggings",
+	},
+	["Treetop Leggings"] = {
+		[1] = "Councillor's Pants",
+		[2] = "Cenarion Reservist's Pants",
+	},
+	["Impenetrable Legguards"] = {
+		[1] = "Elemental Rockridge Leggings",
+	},
+	["Elemental Rockridge Leggings"] = {
+		[1] = "Impenetrable Legguards",
+	},
+	["Sandmoon Greaves"] = {
+		[1] = "Dreamhide Leggings",
+		[2] = "Protector Legguards",
+	},
+	["Protector Legguards"] = {
+		[1] = "Dreamhide Leggings",
+		[2] = "Sandmoon Greaves",
+	},
+	["Boots of Pestilence"] = {
+		[1] = "Sandals of Pestilence",
+	},
+	["Dreamhide Leggings"] = {
+		[1] = "Sandmoon Greaves",
+		[2] = "Protector Legguards",
+	},
+	["Empowered Leggings"] = {
+		[1] = "The Postmaster's Trousers",
+	},
+	["Leggings of the Fang"] = {
+		[1] = "Big Voodoo Pants",
+	},
+	["Big Voodoo Pants"] = {
+		[1] = "Leggings of the Fang",
+	},
+	["Sentinel's Leather Pants"] = {
+		[1] = "Outrider's Leather Pants",
+		[2] = "Stormshroud Pants",
+	},
+	["Trousers of the Oracle"] = {
+		[1] = "Pants of the Oracle",
+		[2] = "Leggings of the Black Blizzard",
+	},
+	["Outrider's Leather Pants"] = {
+		[1] = "Stormshroud Pants",
+		[2] = "Sentinel's Leather Pants",
+	},
+	["Councillor's Pants"] = {
+		[1] = "Cenarion Reservist's Pants",
+		[2] = "Treetop Leggings",
+	},
+	["Hibernal Pants"] = {
+		[1] = "Venomshroud Leggings",
+	},
+	["Spellshock Leggings"] = {
+		[1] = "Arachnidian Legguards",
 	},
 }

@@ -358,7 +358,7 @@
                         </Anchor>
                     </Anchors>
                 </FontString>
-                <FontString name="$parentTitleText" inherits="GameFontNormal" text="Tmog v1.7">
+                <FontString name="$parentTitleText" inherits="GameFontNormal" text="Tmog v1.8">
                     <Size>
                         <AbsDimension x="512" y="14" />
                     </Size>
@@ -988,7 +988,7 @@
 				</Scripts>
 			</Button>
 
-            <Button name="TmogButton" movable="true" parent="UIParent" enableMouse="true" toplevel="true"
+            <Button name="TmogButton" movable="true" parent="Minimap" enableMouse="true" toplevel="true"
                     frameStrata="LOW">
                 <Size x="33" y="33"/>
                 <Anchors>

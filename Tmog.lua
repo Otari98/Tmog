@@ -671,6 +671,7 @@ TMOG_PREVIEW_BUTTONS = {}
 TMOG_SEARCH_STRING = nil
 
 local _, race = UnitRace('player')
+Tmog.sex = UnitSex("player") -- 3 - female, 2 - male
 Tmog.race = string.lower(race)
 Tmog.currentType = "Cloth"
 Tmog.currentSlot = nil
@@ -1020,7 +1021,10 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                 model:SetRotation(0.61)
 
                 local Z, X, Y = model:GetPosition(Z, X, Y)
-                if self.race == 'nightelf' or self.race == "bloodelf" then
+                if self.race == 'nightelf' then
+                    Z = Z + 3
+                end
+                if self.race == 'bloodelf' and self.sex ~= 3 then
                     Z = Z + 3
                 end
                 if self.race == 'gnome' then
@@ -1039,13 +1043,32 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                 end
                 -- head
                 if InventorySlotId == 1 then
-                    if self.race == 'tauren' or self.race == "troll"  then
-                        model:SetRotation(0.3)
-                        X = X - 0.5
+                    if self.race == 'tauren' then
                         Z = Z + 2
+                        X = X - 0.5
+                        if self.sex ~= 3 then
+                            model:SetRotation(0.3)
+                        else
+                            Y = Y + 0.5
+                        end
+                    end
+                    if self.race == "troll" then
+                        if self.sex == 2 then
+                            model:SetRotation(0.3)
+                            X = X - 0.5
+                            Z = Z + 2
+                        else
+                            Y = Y - 0.8
+                            Z = Z + 2.3
+                        end
                     end
                     if self.race == "orc" then
-                        model:SetRotation(0.2)
+                        if self.sex == 2 then
+                            model:SetRotation(0.2)
+                        else
+                            model:SetRotation(0.6)
+                            Z = Z + 0.3
+                        end
                         Z = Z + 2
                         Y = Y - 0.5
                     end
@@ -1054,14 +1077,23 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                     end
                     if self.race == 'dwarf' then
                         Z = Z + 0.5
+                        if self.sex == 3 then
+                            Y = Y - 0.5
+                        end
                     end
                     if self.race == 'nightelf' then
                         Z = Z + 2
                         Y = Y - 1
                     end
                     if self.race == "bloodelf" then
-                        Z = Z + 1
-                        Y = Y - 1.2
+                        if self.sex ~= 3 then
+                            Z = Z + 1
+                            Y = Y - 1.2
+                        else
+                            Z = Z + 2
+                            X = X + 0.2
+                            Y = Y - 0.5
+                        end
                     end
                     if self.race == "human" then
                         Z = Z + 1
@@ -1070,10 +1102,28 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                     if self.race == "gnome" then
                         Y = Y - 0.3
                     end
+                    if self.race == "undead" then
+                        if self .sex == 3 then
+                            Z = Z + 1
+                            Y = Y - 0.5
+                            X = X - 0.5
+                        end
+                    end
                     model:SetPosition(Z + 6.8, X, Y - 2.2)
                 end
                 -- shoulder
                 if InventorySlotId == 3 then
+                    if self.race == "tauren" then
+                        if self.sex == 2 then
+                            Z = Z - 0.5
+                            Y = Y - 0.5
+                        end
+                    end
+                    if self.race == "troll" then
+                        if self.sex == 3 then
+                            Z = Z + 1.3
+                        end
+                    end
                     if self.race == 'dwarf' then
                         Y = Y - 0.2
                     end
@@ -1081,7 +1131,25 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                         Y = Y + 1.5
                         Z = Z - 0.5
                     end
-
+                    if self.race == "bloodelf" then
+                        if self.sex == 3 then
+                            Z = Z + 2
+                        end
+                        Y = Y - 0.5
+                    end
+                    if self.race == "orc" then
+                        if self.sex == 3 then
+                            Z = Z + 0.5
+                        else
+                            Z = Z - 0.5
+                        end
+                    end
+                    if self.race == "undead" then
+                        if self .sex == 3 then
+                            Z = Z + 1
+                            X = X - 0.5
+                        end
+                    end
                     model:SetPosition(Z + 5.8, X + 0.5, Y - 1.7)
                 end
                 -- cloak
@@ -1090,44 +1158,50 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                     if self.race == 'goblin' then
                         Y = Y + 1.5
                     end
+                    if self.race == "orc" and self.sex == 3 then
+                        Y = Y + 0.8
+                    end
+                    if self.race == "undead" then
+                        if self .sex == 3 then
+                            Z = Z + 1
+                            Y = Y + 1
+                        end
+                    end
+                    if self.race == 'tauren' then
+                        Y = Y + 1.2
+                        Z = Z + 0.8
+                    end
+                    if self.race == "troll" then
+                        if self.sex == 3 then
+                            Z = Z + 1
+                            Y = Y + 1
+                        end
+                    end
                     model:SetPosition(Z + 4.8, X, Y - 1)
                 end
-                -- chest
+                -- chest / shirt / tabard
                 if InventorySlotId == 5 or InventorySlotId == 4 or InventorySlotId == 19 then
+                    if self.race == "bloodelf" then
+                        if self.sex == 3 then
+                            Z = Z + 1
+                        end
+                    end
                     if self.race == 'tauren' or self.race == "troll" then
                         model:SetRotation(0.3)
                         X = X - 0.2
-                        Y = Y + 0.5
+                        Y = Y + 1
                     end
                     if self.race == 'goblin' then
                         Y = Y + 1.5
                         Z = Z - 0.5
                     end
+                    if self.race == "orc" and self.sex == 3 then
+                        Y = Y + 0.5
+                    end
                     model:SetRotation(0.61)
                     model:SetPosition(Z + 5.8, X + 0.1, Y - 1.2)
                 end
-                -- bracer
-                if InventorySlotId == 9 then
-                    model:SetRotation(1.5)
-                    if self.race == 'tauren' then
-                        X = X - 0.2
-                    end
-                    if self.race == 'gnome' then
-                        Z = Z + 1
-                    end
-                    if self.race == 'dwarf' then
-                        X = X - 0.3
-                        Y = Y - 0.4
-                    end
-                    if self.race == 'troll' then
-                        Y = Y + 0.6
-                    end
-                    if self.race == 'goblin' then
-                        Z = Z - 0.5
-                    end
-                    model:SetPosition(Z + 5.8, X + 0.4, Y - 0.3)
-                end
-                -- hands
+                -- hands / bracer
                 if InventorySlotId == 10 or InventorySlotId == 9 then
                     model:SetRotation(1.5)
                     if self.race == 'gnome' then
@@ -1136,6 +1210,10 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                     end
                     if self.race == 'tauren' then
                         X = X - 0.2
+                        if self.sex == 3 then
+                            Y = Y + 1.3
+                            Z = Z + 1.3
+                        end
                     end
                     if self.race == 'dwarf' then
                         Z = Z - 0.2
@@ -1144,6 +1222,9 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                     end
                     if self.race == 'troll' then
                         Y = Y + 0.9
+                        if self.sex == 3 then
+                            Z = Z + 2
+                        end
                     end
                     if self.race == 'goblin' then
                         Y = Y + 1.5
@@ -1152,6 +1233,20 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                     if self.race == 'nightelf' then
                         Z = Z + 2
                     end
+                    if self.race == "bloodelf" then
+                        if self.sex == 3 then
+                            Z = Z + 1.5
+                        end
+                    end
+                    if self.race == "orc" and self.sex == 3 then
+                        Z = Z + 0.5
+                    end
+                    if self.race == "undead" then
+                        if self .sex == 3 then
+                            Z = Z + 1.3
+                            X = X - 0.5
+                        end
+                    end
                     model:SetPosition(Z + 5.8, X + 0.4, Y - 0.3)
                 end
                 -- belt
@@ -1159,8 +1254,12 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                     model:SetRotation(0.31)
 
                     if self.race == 'tauren' then
-                        Z = Z + 1
-                        Y = Y + 0.3
+                        if self.sex == 3 then
+                            Y = Y + 2
+                        else
+                            Z = Z + 1
+                            Y = Y + 0.3
+                        end
                     end
                     if self.race == 'goblin' then
                         Y = Y + 1.5
@@ -1169,8 +1268,18 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                     if self.race == 'dwarf' then
                         Z = Z - 2
                     end
-                    if self.race == 'nightelf' or self.race == "bloodelf" then
+                    if self.race == 'gnome' then
                         Z = Z - 1
+                    end
+                    if self.race == 'nightelf' then
+                        Z = Z - 1
+                    end
+                    if self.race == "bloodelf" then
+                        if self.sex == 3 then
+                            Z = Z + 0.3
+                        else
+                            Z = Z - 1
+                        end
                     end
                     if self.race == "human" then
                         Z = Z - 1
@@ -1182,14 +1291,28 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                 if InventorySlotId == 7 then
                     model:SetRotation(0.31)
                     if self.race == 'gnome' then
-                        Z = Z + 2
+                        Z = Z + 1
                         Y = Y - 1.3
                     end
                     if self.race == 'dwarf' then
                         Y = Y - 0.9
                     end
                     if self.race == 'tauren' then
-                        Z = Z + 1
+                        if self.sex == 3 then
+                            Y = Y + 1
+                        else
+                            Z = Z + 1
+                        end
+                    end
+                    if self.race == "undead" then
+                        if self .sex == 3 then
+                            Z = Z + 1.3
+                        end
+                    end
+                    if self.race == "troll" then
+                        if self.sex == 3 then
+                            Y = Y + 1
+                        end
                     end
                     model:SetPosition(Z + 5.8, X, Y + 0.9)
                 end
@@ -1197,14 +1320,33 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                 if InventorySlotId == 8 then
                     model:SetRotation(0.61)
                     if self.race == 'gnome' then
-                        Z = Z + 2
+                        Z = Z + 1
                         Y = Y - 1.6
                     end
                     if self.race == 'dwarf' then
                         Y = Y - 0.6
                     end
                     if self.race == 'tauren' then
-                        Z = Z + 1
+                        if self.sex == 3 then
+                            Y = Y + 1
+                            Z = Z + 1
+                        else
+                            Z = Z + 1
+                        end
+                    end
+                    if self.race == "undead" then
+                        if self .sex == 3 then
+                            Z = Z + 1.3
+                        end
+                    end
+                    if self.race == "troll" then
+                        if self.sex == 3 then
+                            Z = Z + 1
+                            Y = Y + 1
+                        end
+                    end
+                    if self.race == "nightelf" then
+                        Y = Y + 0.3
                     end
                     model:SetPosition(Z + 5.8, X, Y + 1.5)
                 end

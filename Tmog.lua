@@ -266,9 +266,129 @@ local function InvenotySlotFromItemID(itemID)
     return id
 end
 
+local lastSearchName = nil
+local lastSearchLink = nil
+local function GetItemLinkByName(name)
+	if name ~= lastSearchName then
+    	for itemID = 1, 99999 do
+      		local itemName, hyperLink, itemQuality = GetItemInfo(itemID)
+      		if (itemName and itemName == name) then
+        		local _, _, _, hex = GetItemQualityColor(tonumber(itemQuality))
+        		lastSearchLink = hex.. "|H"..hyperLink.."|h["..itemName.."]|h|r"
+     		end
+    	end
+		lastSearchName = name
+  	end
+	return lastSearchLink
+end
+
+local HookSetHyperlink = GameTooltip.SetHyperlink
+function GameTooltip.SetHyperlink(self, arg1)
+  if arg1 then
+    local _, _, linktype = string.find(arg1, "^(.-):(.+)$")
+    if linktype == "item" then
+        local _, _, id = string.find(arg1,"item:(%d+):.*")
+  		GameTooltip.itemID = id
+    end
+  end
+  return HookSetHyperlink(self, arg1)
+end
+
+local HookSetBagItem = GameTooltip.SetBagItem
+function GameTooltip.SetBagItem(self, container, slot)
+	if GetContainerItemLink(container, slot) then
+		local _, _, id = string.find(GetContainerItemLink(container, slot) or "","item:(%d+):.*")
+		GameTooltip.itemID = id
+	end
+  return HookSetBagItem(self, container, slot)
+end
+
+local HookSetInboxItem = GameTooltip.SetInboxItem
+function GameTooltip.SetInboxItem(self, mailID, attachmentIndex)
+	local itemName = GetInboxItem(mailID)
+	if itemName then
+		local _, _, id = string.find(GetItemLinkByName(itemName) or "","item:(%d+):.*")
+		GameTooltip.itemID = id
+	end
+	return HookSetInboxItem(self, mailID, attachmentIndex)
+end
+
+local HookSetInventoryItem = GameTooltip.SetInventoryItem
+function GameTooltip.SetInventoryItem(self, unit, slot)
+	if GetInventoryItemLink(unit, slot) then
+		local _, _, id = string.find(GetInventoryItemLink(unit, slot) or "","item:(%d+):.*")
+		GameTooltip.itemID = id
+	end
+	return HookSetInventoryItem(self, unit, slot)
+end
+
+local HookSetCraftItem = GameTooltip.SetCraftItem
+function GameTooltip.SetCraftItem(self, skill, slot)
+	if GetCraftReagentItemLink(skill, slot) then
+		local _, _, id = string.find(GetCraftReagentItemLink(skill, slot) or "","item:(%d+):.*")
+		GameTooltip.itemID = id
+	end
+	return HookSetCraftItem(self, skill, slot)
+end
+
+local HookSetTradeSkillItem = GameTooltip.SetTradeSkillItem
+function GameTooltip.SetTradeSkillItem(self, skillIndex, reagentIndex)
+	if reagentIndex then
+		if GetTradeSkillReagentItemLink(skillIndex, reagentIndex) then
+			local _, _, id = string.find(GetTradeSkillReagentItemLink(skillIndex, reagentIndex) or "","item:(%d+):.*")
+			GameTooltip.itemID = id
+		end
+	else
+		if GetTradeSkillItemLink(skillIndex) then
+			local _, _, id = string.find(GetTradeSkillItemLink(skillIndex) or "","item:(%d+):.*")
+			GameTooltip.itemID = id
+		end
+	end
+	return HookSetTradeSkillItem(self, skillIndex, reagentIndex)
+end
+
+local HookSetAuctionItem = GameTooltip.SetAuctionItem
+function GameTooltip.SetAuctionItem(self, atype, index)
+	local itemName = GetAuctionItemInfo(atype, index)
+	if itemName then
+		local _, _, id = string.find(GetItemLinkByName(itemName) or "","item:(%d+):.*")
+		GameTooltip.itemID = id
+	end
+	return HookSetAuctionItem(self, atype, index)
+end
+
+local HookSetAuctionSellItem = GameTooltip.SetAuctionSellItem
+function GameTooltip.SetAuctionSellItem(self)
+	local itemName = GetAuctionSellItemInfo()
+	if itemName then
+		local _, _, id = string.find(GetItemLinkByName(itemName) or "","item:(%d+):.*")
+		GameTooltip.itemID = id
+	end
+	return HookSetAuctionSellItem(self)
+end
+
+local HookSetTradePlayerItem = GameTooltip.SetTradePlayerItem
+function GameTooltip.SetTradePlayerItem(self, index)
+	if GetTradePlayerItemLink(index) then
+		local _, _, id = string.find(GetTradePlayerItemLink(index) or "","item:(%d+):.*")
+		GameTooltip.itemID = id
+	end
+	return HookSetTradePlayerItem(self, index)
+end
+
+local HookSetTradeTargetItem = GameTooltip.SetTradeTargetItem
+function GameTooltip.SetTradeTargetItem(self, index)
+	if GetTradeTargetItemLink(index) then
+		local _, _, id = string.find(GetTradeTargetItemLink(index) or "","item:(%d+):.*")
+		GameTooltip.itemID = id
+	end
+	return HookSetTradeTargetItem(self, index)
+end
+
 local HookSetItemRef = SetItemRef
 SetItemRef = function(link, text, button)
-    local item = string.find(link, "item:.*")
+    local item, _, id = string.find(link, "item:(%d+):.*")
+	ItemRefTooltip.itemID = id
     HookSetItemRef(link, text, button)
     if not IsShiftKeyDown() and not IsControlKeyDown() and item then
         TmogTip.extendTooltip(ItemRefTooltip, "ItemRefTooltip")
@@ -292,9 +412,7 @@ end
 local Tmog = CreateFrame("Frame")
 local TmogTip = CreateFrame("Frame", "TmogTip", GameTooltip)
 local TmogTooltip = getglobal("TmogTooltip") or CreateFrame("GameTooltip", "TmogTooltip", nil, "GameTooltipTemplate")
-local TmogScanTooltip = getglobal("TmogScanTooltip") or CreateFrame("GameTooltip", "TmogScanTooltip", nil, "GameTooltipTemplate")
 TmogTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
-TmogScanTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
 
 Tmog:RegisterEvent("UNIT_INVENTORY_CHANGED")
 Tmog:RegisterEvent("CHAT_MSG_ADDON")
@@ -328,14 +446,22 @@ Tmog:SetScript("OnEvent", function()
                     if itemID then
                         local itemName = GetItemInfo(itemID)
                         if itemName then
+                            if not SetContains(TRANSMOG_CACHE[InventorySlotId], itemID) then
+                                AddToSet(TRANSMOG_CACHE[InventorySlotId], itemID)
+                            end
                             if not SetContains(TRANSMOG_CACHE[InventorySlotId], itemName) then
                                 AddToSet(TRANSMOG_CACHE[InventorySlotId], itemName)
                             end
-                            -- check if it shares Display ID with other items and add those if it does
-                            if SetContains(DisplayIdDB, itemName) then
-                                for k,v in pairs(DisplayIdDB[itemName]) do
-                                    if not SetContains(TRANSMOG_CACHE[InventorySlotId], v) then
-                                        AddToSet(TRANSMOG_CACHE[InventorySlotId], v)
+                            -- check if it shares appearance with other items and add those if it does
+                            if SetContains(DisplayIdDB, itemID) then
+                                for _,id in DisplayIdDB[itemID] do
+                                    Tmog:CacheItem(id)
+                                    local name = GetItemInfo(id)
+                                    if not SetContains(TRANSMOG_CACHE[InventorySlotId], id) then
+                                        AddToSet(TRANSMOG_CACHE[InventorySlotId], id)
+                                    end
+                                    if not SetContains(TRANSMOG_CACHE[InventorySlotId], name) then
+                                        AddToSet(TRANSMOG_CACHE[InventorySlotId], name)
                                     end
                                 end
                             end
@@ -352,12 +478,18 @@ Tmog:SetScript("OnEvent", function()
             local itemName = GetItemInfo(ex[2])
             if slot and itemName then
                 tmog_debug("slot: "..slot)
+                AddToSet(TRANSMOG_CACHE[slot], ex[2])
                 AddToSet(TRANSMOG_CACHE[slot], itemName)
-                -- check if it shares Display ID with other items and add those if it does
-                if SetContains(DisplayIdDB, itemName) then
-                    for k,v in pairs(DisplayIdDB[itemName]) do
-                        if not SetContains(TRANSMOG_CACHE[slot], v) then
-                            AddToSet(TRANSMOG_CACHE[slot], v)
+                -- check if it shares appearance with other items and add those if it does
+                if SetContains(DisplayIdDB, ex[2]) then
+                    for _, id in pairs(DisplayIdDB[ex[2]]) do
+                        Tmog:CacheItem(id)
+                        local name = GetItemInfo(id)
+                        if not SetContains(TRANSMOG_CACHE[slot], id) then
+                            AddToSet(TRANSMOG_CACHE[slot], id)
+                        end
+                        if not SetContains(TRANSMOG_CACHE[slot], name) then
+                            AddToSet(TRANSMOG_CACHE[slot], name)
                         end
                     end
                 end
@@ -395,21 +527,31 @@ Tmog:SetScript("OnEvent", function()
     elseif event == "UNIT_INVENTORY_CHANGED" and arg1 == "player" then
         tmog_debug(event)
         tmog_debug(arg1)
-        for k,v in pairs(TRANSMOG_CACHE) do
-            if TmogScanTooltip:SetInventoryItem("player", k) then
-                local itemName = getglobal(TmogScanTooltip:GetName() .. "TextLeft1"):GetText()
-                -- get rid of suffixes
-                itemName = FixName(itemName)
-                --tmog_debug(itemName)
-                if itemName then
-                    if not SetContains(TRANSMOG_CACHE[k], itemName) then
-                        AddToSet(TRANSMOG_CACHE[k], itemName)
+        for slot, data in TRANSMOG_CACHE do
+            local link = GetInventoryItemLink("player", slot)
+            if link then
+                tmog_debug(link)
+                local itemID = Tmog:IDFromLink(link)
+                if itemID then
+                    Tmog:CacheItem(itemID)
+                    local itemName = GetItemInfo(itemID)
+                    tmog_debug(itemID)
+                    if not SetContains(TRANSMOG_CACHE[slot], itemID) then
+                        AddToSet(TRANSMOG_CACHE[slot], itemID)
                     end
-                    -- check if it shares Display ID with other items and add those if it does
-                    if SetContains(DisplayIdDB, itemName) then
-                        for _,v2 in pairs(DisplayIdDB[itemName]) do
-                            if not SetContains(TRANSMOG_CACHE[k], v) then
-                                AddToSet(TRANSMOG_CACHE[k], v2)
+                    if not SetContains(TRANSMOG_CACHE[slot], itemName) then
+                        AddToSet(TRANSMOG_CACHE[slot], itemName)
+                    end
+                    -- check if it shares appearance with other items and add those if it does
+                    if SetContains(DisplayIdDB, itemID) then
+                        for _, id in DisplayIdDB[itemID] do
+                            Tmog:CacheItem(id)
+                            local name = GetItemInfo(id)
+                            if not SetContains(TRANSMOG_CACHE[slot], id) then
+                                AddToSet(TRANSMOG_CACHE[slot], id)
+                            end
+                            if not SetContains(TRANSMOG_CACHE[slot], name) then
+                                AddToSet(TRANSMOG_CACHE[slot], name)
                             end
                         end
                     end
@@ -567,9 +709,8 @@ local LastItemName = nil
 local LastSlot = nil
 function TmogTip.extendTooltip(tooltip, tooltipTypeStr)
     local itemName = getglobal(tooltip:GetName() .. "TextLeft1"):GetText()
-    local isGear, slot = IsGear(tooltipTypeStr)
     local tLabel = getglobal(tooltip:GetName() .. "TextLeft2")
-    if not isGear or not itemName or not tLabel then
+    if not itemName or not tLabel then
         return
     end
     -- get rid of suffixes
@@ -577,8 +718,11 @@ function TmogTip.extendTooltip(tooltip, tooltipTypeStr)
     if itemName == LastItemName then
         if tLabel then
             if tLabel:GetText() then
+                tmog_debug(tooltip.itemID)
                 -- tooltips have max 30 lines so dont just AddLine, insert into 2nd line of the tooltip instead to avoid hitting lines cap
-                if SetContains(TRANSMOG_CACHE[LastSlot], LastItemName) then
+                if SetContains(TRANSMOG_CACHE[LastSlot], tonumber(tooltip.itemID)) then
+                    tLabel:SetText(GAME_YELLOW..'In your collection|r\n'..tLabel:GetText())
+                elseif SetContains(TRANSMOG_CACHE[LastSlot], LastItemName) then
                     tLabel:SetText(GAME_YELLOW..'In your collection|r\n'..tLabel:GetText())
                 else
                     tLabel:SetText(GAME_YELLOW..'Not collected|r\n'..tLabel:GetText())
@@ -586,12 +730,18 @@ function TmogTip.extendTooltip(tooltip, tooltipTypeStr)
             end
         end
     else
+        local isGear, slot = IsGear(tooltipTypeStr)
+        if not isGear or not slot then
+            return
+        end
         LastItemName = itemName
         LastSlot = slot
         if tLabel then
             if tLabel:GetText() then
                 -- tooltips have max 30 lines so dont just AddLine, insert into 2nd line of the tooltip instead to avoid hitting lines cap
-                if SetContains(TRANSMOG_CACHE[slot], itemName) then
+                if SetContains(TRANSMOG_CACHE[slot], tonumber(tooltip.itemID)) then
+                    tLabel:SetText(GAME_YELLOW..'In your collection|r\n'..tLabel:GetText())
+                elseif SetContains(TRANSMOG_CACHE[slot], itemName) then
                     tLabel:SetText(GAME_YELLOW..'In your collection|r\n'..tLabel:GetText())
                 else
                     tLabel:SetText(GAME_YELLOW..'Not collected|r\n'..tLabel:GetText())
@@ -607,12 +757,14 @@ ItemRefTooltip:SetScript("OnHide", function()
     for row=1, 30 do
         getglobal("ItemRefTooltipTextRight" .. row):SetText("")
     end
+    ItemRefTooltip.itemID = nil
 end)
 
 TmogTip:SetScript("OnHide", function()
     for row=1, 30 do
         getglobal("GameTooltipTextRight" .. row):SetText("")
     end
+    GameTooltip.itemID = nil
 end)
 
 TmogTip:SetScript("OnShow", function()
@@ -623,6 +775,7 @@ TmogTooltip:SetScript("OnHide", function()
     for row=1, 30 do
         getglobal("TmogTooltipTextRight" .. row):SetText("")
     end
+    TmogTooltip.itemID = nil
 end)
 
 -- adapted from http://shagu.org/ShaguTweaks/
@@ -919,19 +1072,19 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
         if Tmog.collected and not Tmog.notCollected then
             if searchStr then
                 for k, _ in pairs(TmogGearDB[InventorySlotId]) do
-                    for itemName, itemID in pairs(TmogGearDB[InventorySlotId][k]) do
-                        if SetContains(TRANSMOG_CACHE[InventorySlotId], itemName) then
+                    for itemID, itemName in pairs(TmogGearDB[InventorySlotId][k]) do
+                        if SetContains(TRANSMOG_CACHE[InventorySlotId], itemID) then
                             local name = string.lower(itemName)
                             if string.find(name, searchStr, 1 ,true) then
-                                t[InventorySlotId][type][itemName] = itemID
+                                t[InventorySlotId][type][itemID] = itemName
                             end
                         end
                     end
                 end
-            else
-                for name, itemID in pairs(TmogGearDB[InventorySlotId][type]) do
-                    if SetContains(TRANSMOG_CACHE[InventorySlotId], name) then
-                        t[InventorySlotId][type][name] = itemID
+            elseif TmogGearDB[InventorySlotId][type] then
+                for itemID, name in pairs(TmogGearDB[InventorySlotId][type]) do
+                    if SetContains(TRANSMOG_CACHE[InventorySlotId], itemID) then
+                        t[InventorySlotId][type][itemID] = name
                     end
                 end
             end
@@ -939,19 +1092,19 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
         elseif Tmog.notCollected and not Tmog.collected then
             if searchStr then
                 for k, _ in pairs(TmogGearDB[InventorySlotId]) do
-                    for itemName, itemID in pairs(TmogGearDB[InventorySlotId][k]) do
-                        if not SetContains(TRANSMOG_CACHE[InventorySlotId], itemName) then
+                    for itemID, itemName in pairs(TmogGearDB[InventorySlotId][k]) do
+                        if not SetContains(TRANSMOG_CACHE[InventorySlotId], itemID) then
                             local name = string.lower(itemName)
                             if string.find(name, searchStr, 1 ,true) then
-                                t[InventorySlotId][type][itemName] = itemID
+                                t[InventorySlotId][type][itemID] = itemName
                             end
                         end
                     end
                 end
-            else
-                for name, itemID in pairs(TmogGearDB[InventorySlotId][type]) do
-                    if not SetContains(TRANSMOG_CACHE[InventorySlotId], name) then
-                        t[InventorySlotId][type][name] = itemID
+            elseif TmogGearDB[InventorySlotId][type] then
+                for itemID, name in pairs(TmogGearDB[InventorySlotId][type]) do
+                    if not SetContains(TRANSMOG_CACHE[InventorySlotId], itemID) then
+                        t[InventorySlotId][type][itemID] = name
                     end
                 end
             end
@@ -959,10 +1112,10 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
         elseif Tmog.collected and Tmog.notCollected then
             if searchStr then
                 for k, _ in pairs(TmogGearDB[InventorySlotId]) do
-                    for itemName, itemID in pairs(TmogGearDB[InventorySlotId][k]) do
+                    for itemID, itemName in pairs(TmogGearDB[InventorySlotId][k]) do
                         local name = string.lower(itemName)
                         if itemName and string.find(name, searchStr, 1 ,true) then
-                            t[InventorySlotId][type][itemName] = itemID
+                            t[InventorySlotId][type][itemID] = itemName
                         end
                     end
                 end
@@ -979,7 +1132,7 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
             return
         end
 
-        for name, itemID in next, t[InventorySlotId][type] do
+        for itemID, name in next, t[InventorySlotId][type] do
 
             if index >= (self.currentPage - 1) * self.ipp and index < self.currentPage * self.ipp then
                 if not TMOG_PREVIEW_BUTTONS[itemIndex] then
@@ -992,7 +1145,7 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                 
                 Tmog:CacheItem(itemID)
 
-                if SetContains(TRANSMOG_CACHE[InventorySlotId], name) then
+                if SetContains(TRANSMOG_CACHE[InventorySlotId], itemID) then
                     getglobal('TmogFramePreview' .. itemIndex .. 'ButtonCheck'):Show()
                 else
                     getglobal('TmogFramePreview' .. itemIndex .. 'ButtonCheck'):Hide()
@@ -1350,7 +1503,6 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                     end
                     model:SetPosition(Z + 5.8, X, Y + 1.5)
                 end
-
                 -- mh
                 if InventorySlotId == 16 then
                     model:SetRotation(0.61)
@@ -1363,7 +1515,6 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                     model:SetPosition(Z + 3.8, X, Y + 0.4)
 
                 end
-
                 -- oh
                 if InventorySlotId == 17 then
                     model:SetRotation(-0.61)
@@ -1376,7 +1527,6 @@ function Tmog:DrawPreviews(InventorySlotId, searchStr)
                     end
                     model:SetPosition(Z + 3.8, X, Y + 0.4)
                 end
-
                 -- ranged
                 if InventorySlotId == 18 then
                     model:SetRotation(-0.61)
@@ -1666,10 +1816,7 @@ function TmogFrame_OnShow()
 
     Tmog:UpdateItemTextures()
     Tmog:HidePreviews()
-
-    if Tmog.currentSlot then
-        Tmog:DrawPreviews(Tmog.currentSlot)
-    end
+    Tmog:DrawPreviews(Tmog.currentSlot)
 end
 
 function Tmog:UpdateItemTextures()
@@ -1810,7 +1957,7 @@ end
 function Tmog:GetItemIDByName(name)
     for k, v in pairs(TmogGearDB) do
         for k2,v2 in pairs(TmogGearDB[k]) do
-            for itemName, itemID in pairs(TmogGearDB[k][k2]) do
+            for itemID, itemName in pairs(TmogGearDB[k][k2]) do
                 if itemName == name then
                     return itemID
                 end
@@ -1871,7 +2018,7 @@ function Tmog_AddOutfitTooltip(frame, outfit)
                         local itemName, _, quality = GetItemInfo(itemID)
                         local _, _, _, color = GetItemQualityColor(quality)
                         if slot ~= 4 and slot ~= 19 then
-                            local collected = SetContains(TRANSMOG_CACHE[slot], itemName)
+                            local collected = SetContains(TRANSMOG_CACHE[slot], itemID)
                             local status = ""
                             if collected then
                                 status = GAME_YELLOW.."Collected"
@@ -1904,38 +2051,40 @@ end
 
 function Tmog_AddItemTooltip(frame, text)
     frame:SetScript("OnEnter", function()
-
         TmogTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 4) + 15, -(this:GetHeight() / 4) + 20)
 
         if text then
             TmogTooltip:AddLine(HIGHLIGHT_FONT_COLOR_CODE .. text)
         end
 
-        Tmog:CacheItem(this:GetID())
-        TmogTooltip.itemID = this:GetID()
-        TmogTooltip:SetHyperlink("item:"..tostring(this:GetID()))
+        local itemID = this:GetID()
+        Tmog:CacheItem(itemID)
+        TmogTooltip.itemID = itemID
+        TmogTooltip:SetHyperlink("item:"..tostring(itemID))
         TmogTip.extendTooltip(TmogTooltip, "TmogTooltip")
 
         local numLines = TmogTooltip:NumLines()
+
         if numLines and numLines > 0 then
             local lastLine = getglobal("TmogTooltipTextLeft"..numLines)
+
             if lastLine:GetText() then
-                lastLine:SetText(lastLine:GetText().."\n\n"..GAME_YELLOW.."ItemID: "..this:GetID())
-                local name = GetItemInfo(this:GetID())
-                if name and SetContains(DisplayIdDB, name) then
+                lastLine:SetText(lastLine:GetText().."\n\n"..GAME_YELLOW.."ItemID: "..itemID)
+                local name = GetItemInfo(itemID)
+
+                if name and SetContains(DisplayIdDB, itemID) then
                     lastLine:SetText(lastLine:GetText().."\n\n"..GAME_YELLOW.."Shares Appearance With:")
-                    for k,v in DisplayIdDB[name] do
-                        local id = Tmog:GetItemIDByName(v)
-                        if id then
-                            Tmog:CacheItem(id)
-                            local _, _, quality = GetItemInfo(id)
-                            if quality then
-                                local _, _, _, color = GetItemQualityColor(quality)
-                                if color then
-                                    lastLine:SetText(lastLine:GetText().."\n"..color..v)
-                                else
-                                    lastLine:SetText(lastLine:GetText().."\n"..v)
-                                end
+
+                    for _, id in DisplayIdDB[itemID] do
+                        Tmog:CacheItem(id)
+                        local similarItem, _, quality = GetItemInfo(id)
+
+                        if similarItem and quality then
+                            local _, _, _, color = GetItemQualityColor(quality)
+                            if color then
+                                lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
+                            else
+                                lastLine:SetText(lastLine:GetText().."\n"..similarItem)
                             end
                         end
                     end
@@ -2189,17 +2338,19 @@ end
 
 function Tmog_PlayerSlotOnEnter()
     TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT", 0, 0)
-    Tmog:CacheItem(TMOG_CURRENT_GEAR[this:GetID()])
-    local name, _, quality = GetItemInfo(TMOG_CURRENT_GEAR[this:GetID()])
+    local slot = this:GetID()
+    local itemID = TMOG_CURRENT_GEAR[this:GetID()]
+    Tmog:CacheItem(itemID)
+    local name, _, quality = GetItemInfo(itemID)
     if name and quality then
         local r, g, b = GetItemQualityColor(quality)
         TmogTooltip:SetText(name, r, g, b)
-        if SetContains(TRANSMOG_CACHE[this:GetID()], name) then
+        if SetContains(TRANSMOG_CACHE[slot], itemID) then
             TmogTooltip:AddLine("In your collection")
         else
             TmogTooltip:AddLine("Not collected")
         end
-        TmogTooltip:AddLine(GAME_YELLOW.."\nItemID: "..TMOG_CURRENT_GEAR[this:GetID()].."|r", 1, 1, 1)
+        TmogTooltip:AddLine(GAME_YELLOW.."\nItemID: "..itemID.."|r", 1, 1, 1)
         TmogTooltip:Show()
     end
     if not name then

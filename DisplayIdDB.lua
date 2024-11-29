@@ -3,6702 +3,11201 @@
 -- some of these items might be unobtainable
 
 DisplayIdDB= {
-    -- head
-    ["Swiftcaster's Chapeau"] = {"Ethereal Frostspark Crown"},
-    ["Ethereal Frostspark Crown"] = {"Swiftcaster's Chapeau"},
-
-    ["Imperial Red Circlet"] = {"Circlet of the Living Volcano"},
-    ["Circlet of the Living Volcano"] = {"Imperial Red Circlet"},
-
-    ["Elder's Hat"] = {"Emissary's Cap"},
-    ["Emissary's Cap"] = {"Elder's Hat"},
-
-    ["Zulian Headdress"] = {"Gnomish Turban of Psychic Might"},
-    ["Gnomish Turban of Psychic Might"] = {"Zulian Headdress"},
-
-    ["Cowskin Chapeau"] = {"Cap of the Cow Savant"},
-    ["Cap of the Cow Savant"] = {"Cowskin Chapeau"},
-
-    ["Windchaser Coronet"] = {"High Councillor's Circlet","Sage's Circlet"},
-    ["High Councillor's Circlet"] = {"Windchaser Coronet","Sage's Circlet"},
-    ["Sage's Circlet"] = {"High Councillor's Circlet","Windchaser Coronet"},
-
-    ["Crystal Adorned Crown"] = {"Crown of the Illustrious Queen","Enfused Moon Crown","Gemburst Circlet","Eternal Crown"},
-    ["Crown of the Illustrious Queen"] = {"Crystal Adorned Crown","Enfused Moon Crown","Gemburst Circlet","Eternal Crown"},
-    ["Enfused Moon Crown"] = {"Crown of the Illustrious Queen","Crystal Adorned Crown","Gemburst Circlet","Eternal Crown"},
-    ["Gemburst Circlet"] = {"Crown of the Illustrious Queen","Enfused Moon Crown","Crystal Adorned Crown","Eternal Crown"},
-    ["Eternal Crown"] = {"Crown of the Illustrious Queen","Enfused Moon Crown","Gemburst Circlet","Crystal Adorned Crown"},
-
-    ["Flimsy Male Troll Mask"]={"Winterax Disguise"},
-    ["Winterax Disguise"]={"Flimsy Male Troll Mask"},
-
-    ["Reveler's Hat"]={"Red Winter Hat"},
-    ["Red Winter Hat"]={"Reveler's Hat"},
-
-    ["Mistwood Tiara"]={"Sunburst Tiara","Holy Diadem","Starfire Tiara"},
-    ["Sunburst Tiara"]={"Mistwood Tiara","Holy Diadem","Starfire Tiara"},
-    ["Holy Diadem"]={"Mistwood Tiara","Sunburst Tiara","Starfire Tiara"},
-    ["Starfire Tiara"]={"Mistwood Tiara","Sunburst Tiara","Holy Diadem"},
-
-    ["Councillor's Circlet"] = {"'Queen Azshara's Crown'","Eye of Theradras","Venomspire Diadem"},
-    ["'Queen Azshara's Crown'"] = {"Councillor's Circlet","Eye of Theradras","Venomspire Diadem"},
-    ["Eye of Theradras"] = {"Councillor's Circlet","'Queen Azshara's Crown'","Venomspire Diadem"},
-    ["Venomspire Diadem"] = {"Councillor's Circlet","'Queen Azshara's Crown'","Eye of Theradras"},
-
-    ["Sailor's Headband"] = {"Vital Headband"},
-    ["Vital Headband"] = {"Sailor's Headband"},
-
-    ["Crochet Hat"] = {"Hat of Loruk"},
-    ["Hat of Loruk"] = {"Crochet Hat"},
-
-    ["X-51 Arcane Ocular Implants"] = {"X-52 Stealth Ocular Implants","X-53 Ranger Ocular Implants","X-54 Guardian Ocular Implants"},
-    ["X-52 Stealth Ocular Implants"] = {"X-51 Arcane Ocular Implants","X-53 Ranger Ocular Implants","X-54 Guardian Ocular Implants"},
-    ["X-53 Ranger Ocular Implants"] = {"X-51 Arcane Ocular Implants","X-52 Stealth Ocular Implants","X-54 Guardian Ocular Implants"},
-    ["X-54 Guardian Ocular Implants"] = {"X-51 Arcane Ocular Implants","X-52 Stealth Ocular Implants","X-53 Ranger Ocular Implants"},
-
-    ["Cowl of Memento"] = {"Aurora Cowl","Diviner's Cowl"},
-    ["Aurora Cowl"] = {"Cowl of Memento","Diviner's Cowl"},
-    ["Diviner's Cowl"] = {"Cowl of Memento","Aurora Cowl"},
-
-    ["Moonshadow Hood"] = {"Energyseekers Cover"},
-    ["Energyseekers Cover"] = {"Moonshadow Hood"},
-    
-    ["High Bergg Helm"] = {"Kul Tiras Marine Helmet"},
-    ["Kul Tiras Marine Helmet"] = {"High Bergg Helm"},
-    
-    ["Zorbin's Water Resistant Hat"] = {"Scruffy Cloth Hat"},
-    ["Scruffy Cloth Hat"] = {"Zorbin's Water Resistant Hat"},
-
-    ["Enchanter's Cowl"] = {"Woolen Cowl"},
-    ["Woolen Cowl"] = {"Enchanter's Cowl"},
-
-    ["Crown of Lost Memories"] = {"Ancient Crown"},
-    ["Ancient Crown"] = {"Crown of Lost Memories"},
-
-    ["Venomshroud Mask"] = {"Thornweave Mask","Mask of Denatharion","Venomsight Mask"},
-    ["Thornweave Mask"] = {"Venomshroud Mask","Mask of Denatharion","Venomsight Mask"},
-    ["Mask of Denatharion"] = {"Venomshroud Mask","Thornweave Mask","Venomsight Mask"},
-    ["Venomsight Mask"] = {"Thornweave Mask","Mask of Denatharion","Venomshroud Mask"},
-
-    ["Big Voodoo Mask"] = {"Bad Mojo Mask","Witch Doctor's Mask"},
-    ["Bad Mojo Mask"] = {"Big Voodoo Mask","Witch Doctor's Mask"},
-    ["Witch Doctor's Mask"] = {"Big Voodoo Mask","Bad Mojo Mask"},
-	
-	["Imperial Plate Helm"] = {"Helmet of the Elite Guard"},
-    ["Helmet of the Elite Guard"] = {"Imperial Plate Helm"},
-
-    ["Dragonskin Cowl"] = {"Cowl of the Fang"},
-    ["Cowl of the Fang"] = {"Dragonskin Cowl"},
-
-    ["Bright-Eye Goggles"] = {"The Creator's Goggles"},
-    ["The Creator's Goggles"] = {"Bright-Eye Goggles"},
-
-    ["Ghostshroud"] = {"Cowl of Mivax","Wraps of the Transmogrified"},
-    ["Cowl of Mivax"] = {"Ghostshroud","Wraps of the Transmogrified"},
-    ["Wraps of the Transmogrified"] = {"Ghostshroud","Cowl of Mivax"},
-
-    ["Gossamer Headpiece"] = {"Circlet of Forlorn Spirits"},
-    ["Circlet of Forlorn Spirits"] = {"Gossamer Headpiece"},
-
-    ["Hakkari Shroud"] = {"Dreambreeze Cowl"},
-    ["Dreambreeze Cowl"] = {"Hakkari Shroud"},
-
-    ["Green Lens"] = {"Intricate Gyroscope Goggles"},
-    ["Intricate Gyroscope Goggles"] = {"Green Lens"},
-
-    ["Wizardweave Turban"] = {"Turban of Veiled Mists"},
-    ["Turban of Veiled Mists"] = {"Wizardweave Turban"},
-
-    ["Sanctified Leather Helm"] = {"Depthstalker Helm"},
-    ["Depthstalker Helm"] = {"Sanctified Leather Helm"},
-
-    ["Flamescorched Hood"] = {"Hooded Cowl","Searing Cowl"},
-    ["Hooded Cowl"] = {"Flamescorched Hood","Searing Cowl"},
-    ["Searing Cowl"] = {"Flamescorched Hood","Hooded Cowl"},
-
-    ["Visage of the Forgotten"] = {"Ebon Mask","Black Rogue Mask"},
-    ["Ebon Mask"] = {"Visage of the Forgotten","Black Rogue Mask"},
-    ["Black Rogue Mask"]={"Ebon Mask","Visage of the Forgotten"},
-
-    ["Ornate Mithril Helm"] = {"Core Forged Helmet"},
-    ["Core Forged Helmet"] = {"Ornate Mithril Helm"},
-
-    ["Blademaster's Blindfold"] = {"Satin Blindfold","Demon Hunter's Blindfold"},
-    ["Demon Hunter's Blindfold"] = {"Satin Blindfold","Blademaster's Blindfold"},
-    ["Satin Blindfold"] = {"Demon Hunter's Blindfold","Blademaster's Blindfold"},
-
-    ["Azure Silk Hood"] = {"Raincaller Cap","Outland Exile Hood"},
-    ["Raincaller Cap"] = {"Azure Silk Hood","Outland Exile Hood"},
-    ["Outland Exile Hood"] = {"Azure Silk Hood","Raincaller Cap"},
-
-    ["Cowl of Necromancy"] = {"Thistlefur Cap"},
-    ["Thistlefur Cap"] = {"Cowl of Necromancy"},
-
-    ["Lucky Fishing Hat"] = {"Worn Fishing Hat","Russet Hat"},
-    ["Worn Fishing Hat"] = {"Lucky Fishing Hat","Russet Hat"},
-    ["Russet Hat"] = {"Worn Fishing Hat","Lucky Fishing Hat"},
-
-    ["Hibernal Cowl"] = {"Conjurer's Hood"},
-    ["Conjurer's Hood"] = {"Hibernal Cowl"},
-
-    ["Spellpower Goggles Xtreme Plus"] = {"Bloodvine Goggles"},
-    ["Bloodvine Goggles"] = {"Spellpower Goggles Xtreme Plus"},
-
-    ["Foror's Eyepatch"] = {"Ragefury Eyepatch", "Pirate's Eye Patch","Bloodsail Eyepatch","Swamphunter's Eye"},
-    ["Pirate's Eye Patch"] = {"Ragefury Eyepatch", "Foror's Eyepatch","Bloodsail Eyepatch","Swamphunter's Eye"},
-    ["Ragefury Eyepatch"] = {"Foror's Eyepatch","Pirate's Eye Patch","Bloodsail Eyepatch","Swamphunter's Eye"},
-    ["Bloodsail Eyepatch"] = {"Foror's Eyepatch","Pirate's Eye Patch","Ragefury Eyepatch","Swamphunter's Eye"},
-    ["Swamphunter's Eye"] = {"Foror's Eyepatch","Pirate's Eye Patch","Ragefury Eyepatch","Bloodsail Eyepatch"},
-
-    ["Hawkeye's Helm"] = {"Sentinel Cap"},
-    ["Sentinel Cap"] = {"Hawkeye's Helm"},
-
-    ["Hardened Leather Helm"] = {"Infiltrator Cap"},
-    ["Infiltrator Cap"] = {"Hardened Leather Helm"},
-
-    ["Champion's Helmet"] = {"Bonelink Helmet","Bloody Gladiator's Helmet"},
-    ["Bonelink Helmet"] = {"Champion's Helmet","Bloody Gladiator's Helmet"},
-    ["Bloody Gladiator's Helmet"] = {"Champion's Helmet","Bonelink Helmet"},
-
-    ["Myrmidon's Helm"] = {"Protector Helm","Battlemaster Helm"},
-    ["Protector Helm"] = {"Myrmidon's Helm","Battlemaster Helm"},
-    ["Battlemaster Helm"] = {"Myrmidon's Helm","Protector Helm"},
-
-    ["Lord's Crown"] = {"Formidable Circlet","Cryptstone Circlet","Crown of Grobi"},
-    ["Formidable Circlet"] = {"Lord's Crown","Cryptstone Circlet","Crown of Grobi"},
-    ["Cryptstone Circlet"] = {"Lord's Crown","Formidable Circlet","Crown of Grobi"},
-    ["Crown of Grobi"] = {"Lord's Crown","Formidable Circlet","Cryptstone Circlet"},
-
-    ["Cloaked Hood"] = {"Nightsky Cowl","Cowl of Terror"},
-    ["Nightsky Cowl"] = {"Cloaked Hood","Cowl of Terror"},
-    ["Cowl of Terror"] = {"Cloaked Hood","Nightsky Cowl"},
-
-    ["Red Defias Mask"] = {"Bloodwoven Mask","Blackened Defias Mask","Tattered Defias Mask","Blooddrenched Mask"},
-    ["Bloodwoven Mask"] = {"Red Defias Mask","Blackened Defias Mask","Tattered Defias Mask","Blooddrenched Mask"},
-    ["Blackened Defias Mask"] = {"Red Defias Mask","Bloodwoven Mask","Tattered Defias Mask","Blooddrenched Mask"},
-    ["Tattered Defias Mask"] = {"Red Defias Mask","Bloodwoven Mask","Blackened Defias Mask","Blooddrenched Mask"},
-    ["Blooddrenched Mask"] = {"Bloodwoven Mask","Blackened Defias Mask","Tattered Defias Mask","Red Defias Mask"},
-
-    ["Clever Hat"] = {"Don Rigoberto's Lost Hat"},
-    ["Don Rigoberto's Lost Hat"] = {"Clever Hat"},
-
-    -- shoulder
-    ["Greyshire Pauldrons"] = {"Insignia Mantle"},
-    ["Insignia Mantle"] = {"Greyshire Pauldrons"},
-
-    ["Ebonhold Girdle"] = {"Ravenwood Belt","Dark Footpad Belt"},
-    ["Ravenwood Belt"] = {"Ebonhold Girdle","Dark Footpad Belt"},
-    ["Dark Footpad Belt"] = {"Ebonhold Girdle","Ravenwood Belt"},
-
-    ["Runic Stone Shoulders"] = {"Tel Co. Huntsman Pauldrons"},
-    ["Tel Co. Huntsman Pauldrons"] = {"Runic Stone Shoulders"},
-
-    ["Earthslag Shoulders"] = {"Ogre-Head Pauldrons"},
-    ["Ogre-Head Pauldrons"] = {"Earthslag Shoulders"},
-
-    ["Razorsteel Shoulders"] = {"Fleet Pauldrons","Mantle of Dag'grak"},
-    ["Fleet Pauldrons"] = {"Razorsteel Shoulders","Mantle of Dag'grak"},
-    ["Mantle of Dag'grak"] = {"Razorsteel Shoulders","Fleet Pauldrons"},
-
-    ["Lead Surveyor's Mantle"] = {"Shoulderpads of Gazzirik"},
-    ["Shoulderpads of Gazzirik"] = {"Lead Surveyor's Mantle"},
-    
-    ["Heraldic Spaulders"] = {"The Ogre Mantle"},
-    ["The Ogre Mantle"] = {"Heraldic Spaulders"},
-
-    ["Crystal Breeze Mantle"] = {"Archivist Mantle"},
-    ["Archivist Mantle"] = {"Crystal Breeze Mantle"},
-
-    ["Steadfast Shoulders"] = {"Defias Enforcer Shoulderguards"},
-    ["Defias Enforcer Shoulderguards"] = {"Steadfast Shoulders"},
-
-    ["Warmonger's Pauldrons"] = {"Blatarg's Mantle"},
-    ["Blatarg's Mantle"] = {"Warmonger's Pauldrons"},
-
-    ["Phytoskin Spaulders"] = {"Dreamwind Spaulders"},
-    ["Dreamwind Spaulders"] = {"Phytoskin Spaulders"},
-
-    ["Tough Scorpid Shoulders"] = {"Shoulders of Loruk"},
-    ["Shoulders of Loruk"] = {"Tough Scorpid Shoulders"},
-
-    ["Imperial Leather Spaulders"] = {"Epaulets of Denatharion"},
-    ["Epaulets of Denatharion"] = {"Imperial Leather Spaulders"},
-
-    ["Captain's Shoulderguards"] = {"Turtle Scale Shoulderguards"},
-    ["Turtle Scale Shoulderguards"] = {"Captain's Shoulderguards"},
-	
-	["Shadowskin Spaulders"] = {"Sacrosanct Epaulets"},
-    ["Sacrosanct Epaulets"] = {"Shadowskin Spaulders"},
-	
-	["Grand Shoulders"] = {"Gravewalker Pauldrons"},
-    ["Gravewalker Pauldrons"] = {"Grand Shoulders"},
-
-    ["Highlander's Epaulets"] = {"Defiler's Epaulets","Epaulets of the Forgotten Past"},
-    ["Defiler's Epaulets"] = {"Highlander's Epaulets","Epaulets of the Forgotten Past"},
-    ["Epaulets of the Forgotten Past"] = {"Highlander's Epaulets","Defiler's Epaulets"},
-    
-	["Mooncloth Shoulders"] = {"Dragonbane Pauldrons"},
-    ["Dragonbane Pauldrons"] = {"Mooncloth Shoulders"},
-
-    ["Ternary Mantle"] = {"Attuned Shoulders"},
-    ["Attuned Shoulders"] = {"Ternary Mantle"},
-
-    ["Jazeraint Pauldrons"] = {"Towerforge Pauldrons"},
-    ["Towerforge Pauldrons"] = {"Jazeraint Pauldrons"},
-    
-    ["Spaulders of Insight"] = {"Feathered Mantle","Moontouched Shoulders"},
-    ["Feathered Mantle"] = {"Spaulders of Insight","Moontouched Shoulders"},
-    ["Moontouched Shoulders"] = {"Feathered Mantle","Spaulders of Insight"},
-
-    ["Nocturnal Shoulder Pads"] = {"Ash Explorer Pauldrons"},
-    ["Ash Explorer Pauldrons"] = {"Nocturnal Shoulder Pads"},
-
-    ["Silver-thread Amice"] = {"Bloody Gladiator's Amice"},
-    ["Bloody Gladiator's Amice"] = {"Silver-thread Amice"},
-
-    ["Deadwalker Mantle"] = {"Necrotic Wake Mantle"},
-    ["Necrotic Wake Mantle"] = {"Deadwalker Mantle"},
-
-    ["Bloody Gladiator's Shoulders"] = {"Pridelord Pauldrons"},
-    ["Pridelord Pauldrons"] = {"Bloody Gladiator's Shoulders"},
-
-    ["Templar Pauldrons"] = {"Shoulderguards of the Lightbringer"},
-    ["Shoulderguards of the Lightbringer"] = {"Templar Pauldrons"},
-
-    ["Bloody Gladiator's Pauldrons"] = {"Impenetrable Pauldrons"},
-    ["Impenetrable Pauldrons"] = {"Bloody Gladiator's Pauldrons"},
-
-    ["Shoulderpads of True Flight"] = {"Crusader's Pauldrons","Truthkeeper Mantle"},
-    ["Crusader's Pauldrons"] = {"Shoulderpads of True Flight","Truthkeeper Mantle"},
-    ["Truthkeeper Mantle"] = {"Shoulderpads of True Flight","Crusader's Pauldrons"},
-
-    ["Bloody Gladiator's Spaulders"] = {"Overlord's Spaulders"},
-    ["Overlord's Spaulders"] = {"Bloody Gladiator's Spaulders"},
-
-    ["Sage's Mantle"] = {"Windchaser Amice"},
-    ["Windchaser Amice"] = {"Sage's Mantle"},
-
-    ["Batwing Mantle"] = {"Flameseer Mantle"},
-    ["Flameseer Mantle"] = {"Batwing Mantle"},
-
-    ["Laced Mail Shoulderpads"] = {"Linked Chain Shoulderpads","Reinforced Chain Shoulderpads","Double Mail Shoulderpads"},
-    ["Linked Chain Shoulderpads"] = {"Laced Mail Shoulderpads","Reinforced Chain Shoulderpads","Double Mail Shoulderpads"},
-    ["Reinforced Chain Shoulderpads"] = {"Linked Chain Shoulderpads","Laced Mail Shoulderpads","Double Mail Shoulderpads"},
-    ["Double Mail Shoulderpads"] = {"Linked Chain Shoulderpads","Reinforced Chain Shoulderpads","Laced Mail Shoulderpads"},
-
-    ["Forest Leather Mantle"] = {"Archer's Shoulderpads"},
-    ["Archer's Shoulderpads"] = {"Forest Leather Mantle"},
-
-    ["Rugged Spaulders"] = {"Dokebi Mantle"},
-    ["Dokebi Mantle"] = {"Rugged Spaulders"},
-
-    ["Hardened Leather Shoulderpads"] = {"Infiltrator Shoulders"},
-    ["Infiltrator Shoulders"] = {"Hardened Leather Shoulderpads"},
-
-    ["Hillman's Shoulders"] = {"Rigid Shoulders"},
-    ["Rigid Shoulders"] = {"Hillman's Shoulders"},
-
-    ["Mantle of Thieves"] = {"Trickster's Pauldrons"},
-    ["Trickster's Pauldrons"] = {"Mantle of Thieves"},
-
-    ["Berylline Pads"] = {"Conjurer's Mantle"},
-    ["Conjurer's Mantle"] = {"Berylline Pads"},
-
-    ["Crimson Silk Shoulders"] = {"Shroud of the Nathrezim"},
-    ["Shroud of the Nathrezim"] = {"Crimson Silk Shoulders"},
-
-    ["Aurora Mantle"] = {"Moonlit Amice"},
-    ["Moonlit Amice"] = {"Aurora Mantle"},
-
-    ["Regal Mantle"] = {"Thuzadin Mantle"},
-    ["Thuzadin Mantle"] = {"Regal Mantle"},
-
-    ["Shimmering Amice"] = {"Greenweave Mantle"},
-    ["Greenweave Mantle"] = {"Shimmering Amice"},
-
-    ["Khan's Mantle"] = {"Triumphant Shoulder Pads"},
-    ["Triumphant Shoulder Pads"] = {"Khan's Mantle"},
-
-    ["Hibernal Mantle"] = {"Venomshroud Mantle"},
-    ["Venomshroud Mantle"] = {"Hibernal Mantle"},
-
-    ["Reinforced Woolen Shoulders"] = {"Rose Mantle"},
-    ["Rose Mantle"] = {"Reinforced Woolen Shoulders"},
-
-    ["Forest Tracker Epaulets"] = {"Jadefire Epaulets"},
-    ["Jadefire Epaulets"] = {"Forest Tracker Epaulets"},
-
-    ["Scouting Spaulders"] = {"Bandit Shoulders"},
-    ["Bandit Shoulders"] = {"Scouting Spaulders"},
-
-    ["Serpentskin Spaulders"] = {"Indomitable Epaulets"},
-    ["Indomitable Epaulets"] = {"Serpentskin Spaulders"},
-
-    ["Black Mageweave Shoulders"] = {"Mantle of the Blackwing Cabal"},
-    ["Mantle of the Blackwing Cabal"] = {"Black Mageweave Shoulders"},
-
-    ["Swashbuckler's Shoulderpads"] = {"Wolf Rider's Shoulder Pads"},
-    ["Wolf Rider's Shoulder Pads"] = {"Swashbuckler's Shoulderpads"},
-
-    ["Watcher's Mantle"] = {"Talbar Mantle"},
-    ["Talbar Mantle"] = {"Watcher's Mantle"},
-
-    ["Mercurial Pauldrons"] = {"Runic Plate Shoulders","Bloodlust Epaulets"},
-    ["Runic Plate Shoulders"] = {"Mercurial Pauldrons","Bloodlust Epaulets"},
-    ["Bloodlust Epaulets"] = {"Mercurial Pauldrons","Runic Plate Shoulders"},
-
-    ["Knight's Pauldrons"] = {"Marauder's Shoulder Pads"},
-    ["Marauder's Shoulder Pads"] = {"Knight's Pauldrons"},
-
-    ["Thistlefur Mantle"] = {"Desert Shoulders"},
-    ["Desert Shoulders"] = {"Thistlefur Mantle"},
-
-    ["Praetorian Pauldrons"] = {"Fireguard Shoulders","Bloodfang Spaulders","Incendosaur Skin Pauldrons"},
-    ["Bloodfang Spaulders"] = {"Praetorian Pauldrons","Fireguard Shoulders","Incendosaur Skin Pauldrons"},
-    ["Fireguard Shoulders"] = {"Praetorian Pauldrons","Bloodfang Spaulders","Incendosaur Skin Pauldrons"},
-    ["Incendosaur Skin Pauldrons"] = {"Praetorian Pauldrons","Bloodfang Spaulders","Fireguard Shoulders"},
-
-    ["Bristlebark Amice"] = {"Lupine Mantle"},
-    ["Lupine Mantle"] = {"Bristlebark Amice"},
-
-    ["Green Silken Shoulders"] = {"Vital Shoulders"},
-    ["Vital Shoulders"] = {"Green Silken Shoulders"},
-
-    ["Stratholme Militia Shoulderguard"] = {"Black Brood Pauldrons"},
-    ["Black Brood Pauldrons"] = {"Stratholme Militia Shoulderguard"},
-
-    -- cloaks
-    ["Infiltrator Cloak"] = {"Anvilrage Shroud"},
-    ["Anvilrage Shroud"] = {"Infiltrator Cloak"},
-
-    ["Dark Leather Cloak"] = {"Ash Shawl"},
-    ["Ash Shawl"] = {"Dark Leather Cloak"},
-
-    ["Ghostwalker Cloak"] = {"Windfeather Poncho"},
-    ["Windfeather Poncho"] = {"Ghostwalker Cloak"},
-
-    ["Tiger Hunter Gloves"] = {"Golemslayer Mitts"},
-    ["Golemslayer Mitts"] = {"Tiger Hunter Gloves"},
-
-    ["Cloak of Blight"] = {"Glaymore Shawl"},
-    ["Glaymore Shawl"] = {"Cloak of Blight"},
-
-    ["Crusader's Cloak"] = {"Drape of Westfall"},
-    ["Drape of Westfall"] = {"Crusader's Cloak"},
-
-    ["Thick Cloak"] = {"Ashenvale Shawl"},
-    ["Ashenvale Shawl"] = {"Thick Cloak"},
-
-    ["Bristlebark Cape"] = {"Highmane Shawl"},
-    ["Highmane Shawl"] = {"Bristlebark Cape"},
-
-    ["Wendigo Fur Cloak"] = {"Deepmurk Cloak"},
-    ["Deepmurk Cloak"] = {"Wendigo Fur Cloak"},
-
-    ["Embossed Leather Cloak"] = {"Ashpaw Mantle"},
-    ["Ashpaw Mantle"] = {"Embossed Leather Cloak"},
-
-    ["Combat Cloak"] = {"Drape of Flickering Flame"},
-    ["Drape of Flickering Flame"] = {"Combat Cloak"},
-
-    ["Worn Hide Cloak"] = {"Mana Wyrm Cape"},
-    ["Mana Wyrm Cape"] = {"Worn Hide Cloak"},
-
-    ["Durable Cape"] = {"Warm Woolen Drape"},
-    ["Warm Woolen Drape"] = {"Durable Cape"},
-
-    ["Glowing Thresher Cape"] = {"Quagmire Shawl"},
-    ["Quagmire Shawl"] = {"Glowing Thresher Cape"},
-
-    ["Marauder's Cloak"] = {"Woven Ivy Cloak"},
-    ["Woven Ivy Cloak"] = {"Marauder's Cloak"},
-
-    ["Yeti Fur Cloak"] = {"Fur of Navakesh"},
-    ["Fur of Navakesh"] = {"Yeti Fur Cloak"},
-
-    ["Elunarian Cloak"] = {"Windtalker Cape"},
-    ["Windtalker Cape"] = {"Elunarian Cloak"},
-
-    ["Frostweaver Cape"] = {"Cloak of Loruk"},
-    ["Cloak of Loruk"] = {"Frostweaver Cape"},
-
-    ["Forest Cloak"] = {"Cloak of Denatharion"},
-    ["Cloak of Denatharion"] = {"Forest Cloak"},
-
-    ["Dark Phantom Cape"] = {"Shroud of Haunted Torment"},
-    ["Shroud of Haunted Torment"] = {"Dark Phantom Cape"},
-	
-	["Glacial Cloak"] = {"Magic-infused Cloak"},
-    ["Magic-infused Cloak"] = {"Glacial Cloak"},
-	
-	["Big Voodoo Cloak"] = {"Cloak of Elemental Warding","Kirin Tor Shawl of Potency","Kirin Tor Shawl of Authority","Kirin Tor Shawl of Persecution","Kirin Tor Shawl of Oppresion"},
-    ["Cloak of Elemental Warding"] = {"Big Voodoo Cloak","Kirin Tor Shawl of Potency","Kirin Tor Shawl of Authority","Kirin Tor Shawl of Persecution","Kirin Tor Shawl of Oppresion"},
-    ["Kirin Tor Shawl of Potency"] = {"Big Voodoo Cloak","Cloak of Elemental Warding","Kirin Tor Shawl of Authority","Kirin Tor Shawl of Persecution","Kirin Tor Shawl of Oppresion"},
-    ["Kirin Tor Shawl of Authority"] = {"Big Voodoo Cloak","Cloak of Elemental Warding","Kirin Tor Shawl of Potency","Kirin Tor Shawl of Persecution","Kirin Tor Shawl of Oppresion"},
-    ["Kirin Tor Shawl of Persecution"] = {"Big Voodoo Cloak","Cloak of Elemental Warding","Kirin Tor Shawl of Authority","Kirin Tor Shawl of Potency","Kirin Tor Shawl of Oppresion"},
-    ["Kirin Tor Shawl of Oppresion"] = {"Big Voodoo Cloak","Cloak of Elemental Warding","Kirin Tor Shawl of Authority","Kirin Tor Shawl of Potency","Kirin Tor Shawl of Persecution"},
-
-    ["Conjurer's Cloak"] = {"Canopy Cloak"},
-    ["Canopy Cloak"] = {"Conjurer's Cloak"},
-
-    ["Wicked Chain Cloak"] = {"Chainlinked Cloak"},
-    ["Chainlinked Cloak"] = {"Wicked Chain Cloak"},
-
-    ["Shroud of Domination"] = {"Cloak of the Dark Veil"},
-    ["Cloak of the Dark Veil"] = {"Shroud of Domination"},
-
-    ["Long Silken Cloak"] = {"Shawl of End Times"},
-    ["Shawl of End Times"] = {"Long Silken Cloak"},
-
-    ["Stoneshield Cloak"] = {"Cloak of the Protector"},
-    ["Cloak of the Protector"] = {"Stoneshield Cloak"},
-
-    ["Tattered Cloak of the Insurgency"] = {"Sergeant's Cape"},
-    ["Sergeant's Cape"] = {"Tattered Cloak of the Insurgency"},
-
-    ["Bonelink Cape"] = {"Shawl of the Forgotten","Cloak of Atonement"},
-    ["Shawl of the Forgotten"] = {"Bonelink Cape","Cloak of Atonement"},
-    ["Cloak of Atonement"] = {"Shawl of the Forgotten","Bonelink Cape"},
-
-    ["Hide of the Wild"] = {"Venom Covered Cloak"},
-    ["Venom Covered Cloak"] = {"Hide of the Wild"},
-
-    ["Cape of Eternal Justice"] = {"Wing of the Time-Lord"},
-    ["Wing of the Time-Lord"] = {"Cape of Eternal Justice"},
-
-    ["Armswake Cloak"] = {"Banshee's Veil","Shadowthread Cloak"},
-    ["Banshee's Veil"] = {"Armswake Cloak","Shadowthread Cloak"},
-    ["Shadowthread Cloak"] = {"Armswake Cloak","Banshee's Veil"},
-
-    ["Earthweave Cloak"] = {"Sandstalker's Shroud"},
-    ["Sandstalker's Shroud"] = {"Earthweave Cloak"},
-
-    ["Cloak of Untold Secrets"] = {"Shadow-Weaver's Cape"},
-    ["Shadow-Weaver's Cape"] = {"Cloak of Untold Secrets"},
-
-    ["Redoubt Cloak"] = {"Shawl of Haunted Memories","Shade of Reminisce"},
-    ["Shawl of Haunted Memories"] = {"Redoubt Cloak","Shade of Reminisce"},
-    ["Shade of Reminisce"] = {"Redoubt Cloak","Shawl of Haunted Memories"},
-
-    ["Demon Scarred Cloak"] = {"Pelt of the Great Howler","Horse Rustler Drape"},
-    ["Pelt of the Great Howler"] = {"Demon Scarred Cloak","Horse Rustler Drape"},
-    ["Horse Rustler Drape"] = {"Demon Scarred Cloak","Pelt of the Great Howler"},
-
-    ["Ranger Cloak"] = {"Drape of Nordrassil","Veil of Nightmare"},
-    ["Drape of Nordrassil"] = {"Ranger Cloak","Veil of Nightmare"},
-    ["Veil of Nightmare"] = {"Ranger Cloak","Drape of Nordrassil"},
-
-    ["Prelacy Cape"] = {"Stormpike Sage's Cloak"},
-    ["Stormpike Sage's Cloak"] = {"Prelacy Cape"},
-
-    ["Sylvan Cloak"] = {"Cloak of the Cosmos"},
-    ["Cloak of the Cosmos"] = {"Sylvan Cloak"},
-
-    ["Icy Cloak"] = {"Drape of Benediction"},
-    ["Drape of Benediction"] = {"Icy Cloak"},
-
-    ["Silky Spider Cape"] = {"Mantle of Lady Falther'ess"},
-    ["Mantle of Lady Falther'ess"] = {"Silky Spider Cape"},
-
-    ["Featherskin Cape"] = {"Mageflame Cloak"},
-    ["Mageflame Cloak"] = {"Featherskin Cape"},
-
-    ["Deviate Scale Cloak"] = {"Black Whelp Cloak"},
-    ["Black Whelp Cloak"] = {"Deviate Scale Cloak"},
-
-    ["Harvest Cloak"] = {"Boar Hunter's Cape"},
-    ["Boar Hunter's Cape"] = {"Harvest Cloak"},
-
-    ["Wispy Cloak"] = {"Burnt Cloak"},
-    ["Burnt Cloak"] = {"Wispy Cloak"},
-
-    ["Chieftain's Cloak"] = {"Rageclaw Cloak"},
-    ["Rageclaw Cloak"] = {"Chieftain's Cloak"},
-
-    ["Hide of Lupos"] = {"Fenrus' Hide"},
-    ["Fenrus' Hide"] = {"Hide of Lupos"},
-
-    ["Swashbuckler's Cape"] = {"Hameya's Cloak","Shawl of Nerubian Silk"},
-    ["Hameya's Cloak"] = {"Swashbuckler's Cape","Shawl of Nerubian Silk"},
-    ["Shawl of Nerubian Silk"] = {"Swashbuckler's Cape","Hameya's Cloak"},
-
-    ["Nightshade Cloak"] = {"Nocturnal Cloak","Peerless Cloak"},
-    ["Nocturnal Cloak"] = {"Nightshade Cloak","Peerless Cloak"},
-    ["Peerless Cloak"] = {"Nightshade Cloak","Nocturnal Cloak"},
-
-    ["Patched Cloak"] = {"Lupine Cloak"},
-    ["Lupine Cloak"] = {"Patched Cloak"},
-
-    ["Ragged Cloak"] = {"Old Blanchy's Blanket","Grizzly Cape"},
-    ["Old Blanchy's Blanket"] = {"Ragged Cloak","Grizzly Cape"},
-    ["Grizzly Cape"] = {"Ragged Cloak","Old Blanchy's Blanket"},
-
-    ["Wild Leather Cloak"] = {"Frightmaw Hide"},
-    ["Frightmaw Hide"] = {"Wild Leather Cloak"},
-
-    ["Crochet Cloak"] = {"Pagan Cape","Fisherman's Shawl"},
-    ["Pagan Cape"] = {"Crochet Cloak","Fisherman's Shawl"},
-    ["Fisherman's Shawl"] = {"Crochet Cloak","Pagan Cape"},
- 
-    ["Enchanted Moonstalker Cloak"] = {"Superior Cloak"},
-    ["Superior Cloak"] = {"Enchanted Moonstalker Cloak"},
-
-    ["Shimmering Cloak"] = {"Watcher's Cape","Hydromancer's Peak"},
-    ["Watcher's Cape"] = {"Shimmering Cloak","Hydromancer's Peak"},
-    ["Hydromancer's Peak"] = {"Shimmering Cloak","Watcher's Cape"},
-
-    ["Finely Woven Cloak"] = {"Spellbinder Cloak"},
-    ["Spellbinder Cloak"] = {"Finely Woven Cloak"},
-
-    ["Oil-stained Cloak"] = {"Short Duskbat Cape"},
-    ["Short Duskbat Cape"] = {"Oil-stained Cloak"},
-
-    ["Spirit Cloak"] = {"Pearl-clasped Cloak"},
-    ["Pearl-clasped Cloak"] = {"Spirit Cloak"},
-
-    ["Rat Cloth Cloak"] = {"Beaded Cloak"},
-    ["Beaded Cloak"] = {"Rat Cloth Cloak"},
-
-    ["Sage's Cloak"] = {"Raincaller Cloak"},
-    ["Raincaller Cloak"] = {"Sage's Cloak"},
-
-    ["Silver-thread Cloak"] = {"Deathguard's Cloak","Cloak of the Honor Guard"},
-    ["Deathguard's Cloak"] = {"Silver-thread Cloak","Cloak of the Honor Guard"},
-    ["Cloak of the Honor Guard"] = {"Silver-thread Cloak","Deathguard's Cloak"},
-
-    ["Cindercloth Cloak"] = {"Cloak of Firemaw"},
-    ["Cloak of Firemaw"] = {"Cindercloth Cloak"},
-
-    ["Cape of the Black Baron"] = {"Drape of Unyielding Strength","Shadow Prowler's Cloak"},
-    ["Drape of Unyielding Strength"] = {"Cape of the Black Baron","Shadow Prowler's Cloak"},
-    ["Shadow Prowler's Cloak"] = {"Cape of the Black Baron","Drape of Unyielding Strength"},
-
-    ["Praetorian Cloak"] = {"Fireproof Cloak","Battlescarred Cloak","Bloodfallen Cloak"},
-    ["Fireproof Cloak"] = {"Praetorian Cloak","Battlescarred Cloak","Bloodfallen Cloak"},
-    ["Battlescarred Cloak"] = {"Praetorian Cloak","Fireproof Cloak","Bloodfallen Cloak"},
-    ["Bloodfallen Cloak"] = {"Praetorian Cloak","Fireproof Cloak","Battlescarred Cloak"},
-
-    ["Sanguine Cape"] = {"Cerise Drape"},
-    ["Cerise Drape"] = {"Sanguine Cape"},
-
-    ["Mercurial Cloak"] = {"Ravager's Cloak","Magnificent Cloak"},
-    ["Ravager's Cloak"] = {"Mercurial Cloak","Magnificent Cloak"},
-    ["Magnificent Cloak"] = {"Mercurial Cloak","Ravager's Cloak"},
-    
-    ["Spritecaster Cape"] = {"Opulent Cape","Windshear Cape"},
-    ["Opulent Cape"] = {"Spritecaster Cape","Windshear Cape"},
-    ["Windshear Cape"] = {"Spritecaster Cape","Opulent Cape"},
-
-    ["Warmonger's Cloak"] = {"Shroud of Unspoken Names"},
-    ["Shroud of Unspoken Names"] = {"Warmonger's Cloak"},
-
-    ["Masterwork Cape"] = {"Triumphant Cloak"},
-    ["Triumphant Cloak"] = {"Masterwork Cape"},
-
-    ["Bonecaster's Cape"] = {"Supreme Cape"},
-    ["Supreme Cape"] = {"Bonecaster's Cape"},
-
-    ["Engraved Cape"] = {"Blackveil Cape"},
-    ["Blackveil Cape"] = {"Engraved Cape"},
-
-    ["Deep River Cloak"] = {"Frostwolf Legionnaire's Cloak"},
-    ["Frostwolf Legionnaire's Cloak"] = {"Deep River Cloak"},
-
-    ["Sentry's Cape"] = {"Ancient Cloak"},
-    ["Ancient Cloak"] = {"Sentry's Cape"},
-
-    ["Bloodlust Cape"] = {"Stormpike Soldier's Cloak"},
-    ["Stormpike Soldier's Cloak"] = {"Bloodlust Cape"},
-
-    ["Rigid Cape"] = {"Wildhunter Cloak"},
-    ["Wildhunter Cloak"] = {"Rigid Cape"},
-
-    ["Keeper's Cloak"] = {"Indomitable Cloak"},
-    ["Indomitable Cloak"] = {"Keeper's Cloak"},
-
-    ["Dokebi Cape"] = {"Scorpashi Cape"},
-    ["Scorpashi Cape"] = {"Dokebi Cape"},
-
-    ["Feral Cloak"] = {"Battle Healer's Cloak"},
-    ["Battle Healer's Cloak"] = {"Feral Cloak"},
-
-    ["Juno's Shadow"] = {"Cloak of the Brood Lord"},
-    ["Cloak of the Brood Lord"] = {"Juno's Shadow"},
-
-    ["Amy's Blanket"] = {"Cloak of the Savior"},
-    ["Cloak of the Savior"] = {"Amy's Blanket"},
-
-    ["Crystalline Threaded Cape"] = {"Drape of Vaulted Secrets","Shadow Silk Cloak"},
-    ["Drape of Vaulted Secrets"] = {"Crystalline Threaded Cape","Shadow Silk Cloak"},
-    ["Shadow Silk Cloak"] = {"Crystalline Threaded Cape","Drape of Vaulted Secrets"},
-
-    -- chest
-    ["Captain's Overcoat"] = {"Jacket of the Scarlet Admiral"},
-    ["Jacket of the Scarlet Admiral"] = {"Captain's Overcoat"},
-
-    ["Chromatic Robe"] = {"Robe of the Obedient"},
-    ["Robe of the Obedient"] = {"Chromatic Robe"},
-
-    ["Burnt Leather Vest"] = {"Tanned Hide Vest"},
-    ["Tanned Hide Vest"] = {"Burnt Leather Vest"},
-
-    ["Feral Harness"] = {"Chainmail Harness"},
-    ["Chainmail Harness"] = {"Feral Harness"},
-
-    ["Red Linen Robe"] = {"Bloodstained Robe"},
-    ["Bloodstained Robe"] = {"Red Linen Robe"},
-
-    ["Wolffear Harness"] = {"Thornmantle Harness"},
-    ["Thornmantle Harness"] = {"Wolffear Harness"},
-
-    ["Brawnhide Armor"] = {"Vest of the Messenger"},
-    ["Vest of the Messenger"] = {"Brawnhide Armor"},
-
-    ["Warped Leather Vest"] = {"Blue Summer Shirt"},
-    ["Blue Summer Shirt"] = {"Warped Leather Vest"},
-
-    ["Interlaced Vest"] = {"Red Summer Shirt"},
-    ["Red Summer Shirt"] = {"Interlaced Vest"},
-
-    ["Heroic Armor"] = {"Spark-Charged Cuirass"},
-    ["Spark-Charged Cuirass"] = {"Heroic Armor"},
-
-    ["Orcish War Chain"] = {"Cuirass of the Kirin-Eye"},
-    ["Cuirass of the Kirin-Eye"] = {"Orcish War Chain"},
-
-    ["Husk of Naraxis"] = {"Glaymore Family Breastplate"},
-    ["Glaymore Family Breastplate"] = {"Husk of Naraxis"},
-
-    ["Robes of Ravenshire"] = {"Black Velvet Robes"},
-    ["Black Velvet Robes"] = {"Robes of Ravenshire"},
-
-    ["Brown Lumberjack Vest"] = {"Canvas Vest"},
-    ["Canvas Vest"] = {"Brown Lumberjack Vest"},
-
-    ["Neophyte's Robe"] = {"Dust-covered Robe"},
-    ["Dust-covered Robe"] = {"Neophyte's Robe"},
-
-    ["Bloodspattered Surcoat"] = {"Bruiser's Chainmail"},
-    ["Bruiser's Chainmail"] = {"Bloodspattered Surcoat"},
-
-    ["Emblazoned Chestpiece"] = {"Labor Union Tunic"},
-    ["Labor Union Tunic"] = {"Emblazoned Chestpiece"},
-
-    ["Heavy Lamellar Chestpiece"] = {"Gladeforge Breastplate"},
-    ["Gladeforge Breastplate"] = {"Heavy Lamellar Chestpiece"},
-
-    ["Imperial Leather Breastplate"] = {"Tel Co. Vest"},
-    ["Tel Co. Vest"] = {"Imperial Leather Breastplate"},
-
-    ["Laminated Scale Armor"] = {"Polished Scalemail"},
-    ["Polished Scalemail"] = {"Laminated Scale Armor"},
-
-    ["Seer's Robe"] = {"Comfy Robe"},
-    ["Comfy Robe"] = {"Seer's Robe"},
-
-    ["Flax Vest"] = {"Stitched Leather Vest"},
-    ["Stitched Leather Vest"] = {"Flax Vest"},
-
-    ["Ragged Leather Vest"] = {"Ragged Cloth Vest"},
-    ["Ragged Cloth Vest"] = {"Ragged Leather Vest"},
-
-    ["Ogre Forged Hauberk"] = {"Chain of Denatharion"},
-    ["Chain of Denatharion"] = {"Ogre Forged Hauberk"},
-
-    ["Chillwind Armor"] = {"Blue Dragonscale Breastplate"},
-    ["Blue Dragonscale Breastplate"] = {"Chillwind Armor"},
-
-    ["Quel'dorei Ranger's Hauberk"] = {"Vest of the Covenant"},
-    ["Vest of the Covenant"] = {"Quel'dorei Ranger's Hauberk"},
-
-    ["Ironspine's Ribcage"] = {"Crystaltouched Breastplate"},
-    ["Crystaltouched Breastplate"] = {"Ironspine's Ribcage"},
-
-    ["Nether-lace Robe"] = {"Darkseer Acolyte Robe"},
-    ["Darkseer Acolyte Robe"] = {"Nether-lace Robe"},
-
-    ["Hardened Leather Tunic"] = {"Timbermaw Battle Vest"},
-    ["Timbermaw Battle Vest"] = {"Hardened Leather Tunic"},
-
-    ["Nature's Embrace"] = {"Oakweave Vestments"},
-    ["Oakweave Vestments"] = {"Nature's Embrace"},
-
-    ["Burning Robes"] = {"Cook's Apron"},
-    ["Cook's Apron"] = {"Burning Robes"},
-
-    ["Apprentice's Robe"] = {"Oil-splattered Robe"},
-    ["Oil-splattered Robe"] = {"Apprentice's Robe"},
-
-    ["Worn Leather Vest"] = {"Scorched Vest"},
-    ["Scorched Vest"] = {"Worn Leather Vest"},
-
-    ["Spore-covered Tunic"] = {"Ash-covered Tunic"},
-    ["Ash-covered Tunic"] = {"Spore-covered Tunic"},
-
-    ["Relentless Chain"] = {"Chain of Loruk"},
-    ["Chain of Loruk"] = {"Relentless Chain"},
-
-    ["Camouflaged Tunic"] = {"Reedwoven Tunic"},
-    ["Reedwoven Tunic"] = {"Camouflaged Tunic"},
-
-    ["Green Dragonscale Breastplate"] = {"Ironwood Vest"},
-    ["Ironwood Vest"] = {"Green Dragonscale Breastplate"},
-
-    ["Aurora Robe"] = {"Robe of Humility"},
-    ["Robe of Humility"] = {"Aurora Robe"},
-
-    ["Runed Bloodstained Hauberk"] = {"Strom Defender's Vest"},
-    ["Strom Defender's Vest"] = {"Runed Bloodstained Hauberk"},
-
-    ["Brackwater Vest"] = {"Gowlfang's Vest"},
-    ["Gowlfang's Vest"] = {"Brackwater Vest"},
-
-    ["Brightcloth Robe"] = {"Shawl of the Hazu Leaf"},
-    ["Shawl of the Hazu Leaf"] = {"Brightcloth Robe"},
-
-    ["Templar Chestplate"] = {"Gusthewn Chestplate"},
-    ["Gusthewn Chestplate"] = {"Templar Chestplate"},
-
-    ["Hibernal Robe"] = {"Venomshroud Silk Robes","Clutchweave Robe"},
-    ["Venomshroud Silk Robes"] = {"Hibernal Robe","Clutchweave Robe"},
-	["Clutchweave Robe"] = {"Hibernal Robe","Venomshroud Silk Robes"},
-
-    ["Blackened Defias Armor"] = {"Time-blackened Chestpiece"},
-    ["Time-blackened Chestpiece"] = {"Blackened Defias Armor"},
-	
-	["Ornate Adamantium Breastplate"] = {"Breastplate of the Lost Champion"},
-    ["Breastplate of the Lost Champion"] = {"Ornate Adamantium Breastplate"},
-	
-	["Harlequin Robes"] = {"Regenerating Robe"},
-    ["Regenerating Robe"] = {"Harlequin Robes"},
-
-    ["Ghoul Skin Tunic"] = {"Damien's Sorrow"},
-    ["Damien's Sorrow"] = {"Ghoul Skin Tunic"},
-	
-	["Garb of Royal Ascension"] = {"Shadowguard Robe"},
-    ["Shadowguard Robe"] = {"Garb of Royal Ascension"},
-	
-    ["Fen Keeper Robe"] = {"Feymist Robe"},
-    ["Feymist Robe"] = {"Fen Keeper Robe"},
-	
-	["Crochet Vest"] = {"Stitched Cloth Vest"},
-    ["Stitched Cloth Vest"] = {"Crochet Vest"},
-	
-	["Shimmering Silk Robes"] = {"Cookie's Apron"},
-    ["Cookie's Apron"] = {"Shimmering Silk Robes"},
-
-    ["Mail Combat Armor"] = {"Goblin Mail Hauberk"},
-    ["Goblin Mail Hauberk"] = {"Mail Combat Armor"},
-	
-	["Adventurer's Tunic"] = {"Padded Keeper Tunic"},
-    ["Padded Keeper Tunic"] = {"Adventurer's Tunic"},
-	
-	["Runecloth Robe"] = {"Robe of Light's Ambassador"},
-    ["Robe of Light's Ambassador"] = {"Runecloth Robe"},
-
-    ["Mechbuilder's Overalls"] = {"Figgle's Coveralls","Gigno's Overalls"},
-    ["Figgle's Coveralls"] = {"Mechbuilder's Overalls","Gigno's Overalls"},
-    ["Gigno's Overalls"] = {"Mechbuilder's Overalls","Figgle's Coveralls"},
-
-    ["Mutant Scale Breastplate"] = {"Cadaverlink Vest"},
-    ["Cadaverlink Vest"] = {"Mutant Scale Breastplate"},
-
-    ["Royal Gown"] = {"Ancient Elven Robes"},
-    ["Ancient Elven Robes"] = {"Royal Gown"},
-
-    ["Astral Knot Robe"] = {"Battle Bishop's Robe"},
-    ["Battle Bishop's Robe"] = {"Astral Knot Robe"},
- 
-    ["Verdant Dreamer's Breastplate"] = {"Forest Leather Chestpiece","Breastplate of the Wild Hunt"},
-    ["Forest Leather Chestpiece"] = {"Verdant Dreamer's Breastplate","Breastplate of the Wild Hunt"},
-    ["Breastplate of the Wild Hunt"] = {"Verdant Dreamer's Breastplate","Forest Leather Chestpiece"},
-
-    ["Vestments of Eternal Autumn"] = {"Sacrificial Robes"},
-    ["Sacrificial Robes"] = {"Vestments of Eternal Autumn"},
-
-    ["Grimlok's Tribal Vestments"] = {"Bloody Gladiator's Vestments"},
-    ["Bloody Gladiator's Vestments"] = {"Grimlok's Tribal Vestments"},
-
-    ["Basaltscale Armor"] = {"Backwater Bruiser's Cuirass"},
-    ["Backwater Bruiser's Cuirass"] = {"Basaltscale Armor"},
-
-    ["Grand Breastplate"] = {"Bloody Gladiator's Tunic"},
-    ["Bloody Gladiator's Tunic"] = {"Grand Breastplate"},
-
-    ["Legionnaire's Leather Hauberk"] = {"Legionnaire's Leather Chestpiece","Tunnel Fiend Carapace"},
-    ["Legionnaire's Leather Chestpiece"] = {"Legionnaire's Leather Hauberk","Tunnel Fiend Carapace"},
-    ["Tunnel Fiend Carapace"] = {"Legionnaire's Leather Hauberk","Legionnaire's Leather Chestpiece"},
-
-    ["Thick Obsidian Breastplate"] = {"Bloody Gladiator's Breastplate"},
-    ["Bloody Gladiator's Breastplate"] = {"Thick Obsidian Breastplate"},
-
-    ["Bloody Gladiator's Armor"] = {"Sterling Chain Armor"},
-    ["Sterling Chain Armor"] = {"Bloody Gladiator's Armor"},
-
-    ["Breastplate of Beast Mastery"] = {"Fungus Shroud Armor"},
-    ["Fungus Shroud Armor"] = {"Breastplate of Beast Mastery"},
-
-    ["Breastplate of Earthen Might"] = {"Marauder's Tunic"},
-    ["Marauder's Tunic"] = {"Breastplate of Earthen Might"},
-
-    ["Fiery Chain Breastplate"] = {"Hyperion Armor"},
-    ["Hyperion Armor"] = {"Fiery Chain Breastplate"},
-
-    ["Towerforge Breastplate"] = {"Jazeraint Chestguard"},
-    ["Jazeraint Chestguard"] = {"Towerforge Breastplate"},
-
-    ["Forest Chain"] = {"Ancient Corroded Chainmail","Naturecaller's Tunic"},
-    ["Ancient Corroded Chainmail"] = {"Forest Chain","Naturecaller's Tunic"},
-    ["Naturecaller's Tunic"] = {"Forest Chain","Ancient Corroded Chainmail"},
-
-    ["Chainmail Armor"] = {"Deputy Chain Coat","Fortified Chain"},
-    ["Deputy Chain Coat"] = {"Chainmail Armor","Fortified Chain"},
-    ["Fortified Chain"] = {"Chainmail Armor","Deputy Chain Coat"},
-
-    ["Mountaineer Chestpiece"] = {"Rugged Mail Vest","Jagged Chain Vest"},
-    ["Rugged Mail Vest"] = {"Mountaineer Chestpiece","Jagged Chain Vest"},
-    ["Jagged Chain Vest"] = {"Mountaineer Chestpiece","Rugged Mail Vest"},
-
-    ["Humbert's Chestpiece"] = {"Siege Brigade Vest"},
-    ["Siege Brigade Vest"] = {"Humbert's Chestpiece"},
-
-    ["Feathered Breastplate"] = {"Feathered Armor"},
-    ["Feathered Armor"] = {"Feathered Breastplate"},
-
-    ["Slarkskin"] = {"Explorer's Vest","Goblin Chain Hauberk","Westfall Hauberk"},
-    ["Explorer's Vest"] = {"Slarkskin","Goblin Chain Hauberk","Westfall Hauberk"},
-    ["Goblin Chain Hauberk"] = {"Slarkskin","Explorer's Vest","Westfall Hauberk"},
-    ["Westfall Hauberk"] = {"Slarkskin","Explorer's Vest","Goblin Chain Hauberk"},
-
-    ["Barbaric Harness"] = {"Warbear Harness","Rageboar Harness"},
-    ["Warbear Harness"] = {"Barbaric Harness","Rageboar Harness"},
-    ["Rageboar Harness"] = {"Barbaric Harness","Warbear Harness"},
-
-    ["Wax-polished Armor"] = {"Ironforge Chain"},
-    ["Ironforge Chain"] = {"Wax-polished Armor"},
-
-    ["Avenger's Armor"] = {"Double Link Tunic"},
-    ["Double Link Tunic"] = {"Avenger's Armor"},
-
-    ["Tuxedo Jacket"] = {"Black Tuxedo"},
-    ["Black Tuxedo"] = {"Tuxedo Jacket"},
-
-    ["Twilight Armor"] = {"Lunar Vest"},
-    ["Lunar Vest"] = {"Twilight Armor"},
-
-    ["Sentinel Breastplate"] = {"Warden's Wraps"},
-    ["Warden's Wraps"] = {"Sentinel Breastplate"},
-
-    ["Elder's Padded Armor"] = {"Darkmist Armor"},
-    ["Darkmist Armor"] = {"Elder's Padded Armor"},
-
-    ["Hibernal Armor"] = {"Venomshroud Vest"},
-    ["Venomshroud Vest"] = {"Hibernal Armor"},
-
-    ["Cabalist Chestpiece"] = {"Rageclaw Chestguard"},
-    ["Rageclaw Chestguard"] = {"Cabalist Chestpiece"},
-
-    ["Ranger Tunic"] = {"Chestplate of Tranquility","Earthguard Tunic"},
-    ["Chestplate of Tranquility"] = {"Ranger Tunic","Earthguard Tunic"},
-    ["Earthguard Tunic"] = {"Ranger Tunic","Chestplate of Tranquility"},
-
-    ["Spirewind Fetter"] = {"Headhunter's Armor"},
-    ["Headhunter's Armor"] = {"Spirewind Fetter"},
-
-    ["Serpentskin Armor"] = {"Hakkari Breastplate","Indomitable Vest"},
-    ["Hakkari Breastplate"] = {"Serpentskin Armor","Indomitable Vest"},
-    ["Indomitable Vest"] = {"Serpentskin Armor","Hakkari Breastplate"},
-    
-    ["Swashbuckler's Breastplate"] = {"Blazewind Breastplate"},
-    ["Blazewind Breastplate"] = {"Swashbuckler's Breastplate"},
-
-    ["Righteous Armor"] = {"Frostsaber Tunic"},
-    ["Frostsaber Tunic"] = {"Righteous Armor"},
-
-    ["Warrior's Tunic"] = {"Battle Chain Chestguard"},
-    ["Battle Chain Chestguard"] = {"Warrior's Tunic"},
-
-    ["Veteran Armor"] = {"Brackwater Chain Surcoat"},
-    ["Brackwater Chain Surcoat"] = {"Veteran Armor"},
-
-    ["Skul's Cold Embrace"] = {"Deathbone Chestplate"},
-    ["Deathbone Chestplate"] = {"Skul's Cold Embrace"},
-
-    ["Plated Abomination Ribcage"] = {"Splintercage Breastplate"},
-    ["Splintercage Breastplate"] = {"Plated Abomination Ribcage"},
-
-    ["Volcanic Breastplate"] = {"Blood Tiger Breastplate"},
-    ["Blood Tiger Breastplate"] = {"Volcanic Breastplate"},
-
-    ["Heavy Scorpid Vest"] = {"Wicked Leather Armor"},
-    ["Wicked Leather Armor"] = {"Heavy Scorpid Vest"},
-
-    ["Wrangler's Wraps"] = {"Pathfinder Vest","Hunting Tunic"},
-    ["Pathfinder Vest"] = {"Wrangler's Wraps","Hunting Tunic"},
-    ["Hunting Tunic"] = {"Wrangler's Wraps","Pathfinder Vest"},
-
-    ["Black Dragonscale Breastplate"] = {"Onyxia Scale Breastplate"},
-    ["Onyxia Scale Breastplate"] = {"Black Dragonscale Breastplate"},
-
-    -- wrist
-    ["Grizzly Bracers"] = {"Tyrant Cuffs"},
-    ["Tyrant Cuffs"] = {"Grizzly Bracers"},
-
-    ["Blinkstrike Armguards"] = {"Bloodfist Vambraces","Ebonmere Vambraces"},
-    ["Bloodfist Vambraces"] = {"Blinkstrike Armguards","Ebonmere Vambraces"},
-    ["Ebonmere Vambraces"] = {"Blinkstrike Armguards","Bloodfist Vambraces"},
-
-    ["Gripsteel Wristguards"] = {"Sootstone Shackles"},
-    ["Sootstone Shackles"] = {"Gripsteel Wristguards"},
-
-    ["Forest Leather Bracers"] = {"Oaken Braid Bands"},
-    ["Oaken Braid Bands"] = {"Forest Leather Bracers"},
-
-    ["Chillhide Bracers"] = {"Inlaid Wristwraps"},
-    ["Inlaid Wristwraps"] = {"Chillhide Bracers"},
-
-    ["Heavy Weave Bracers"] = {"Rowdy Sailor Wraps"},
-    ["Rowdy Sailor Wraps"] = {"Heavy Weave Bracers"},
-
-    ["Fingerbone Bracers"] = {"Cuffs of Sanctitude"},
-    ["Cuffs of Sanctitude"] = {"Fingerbone Bracers"},
-
-    ["Laminated Scale Bracers"] = {"Bearbane Cuffs"},
-    ["Bearbane Cuffs"] = {"Laminated Scale Bracers"},
-
-    ["Tyrant's Armguards"] = {"Bogplate Shackles"},
-    ["Bogplate Shackles"] = {"Tyrant's Armguards"},
-
-    ["Yorgen Bracers"] = {"Hallister's Cuffs"},
-    ["Hallister's Cuffs"] = {"Yorgen Bracers"},
-
-    ["Refugee’s Bracers"] = {"Royalist Wraps"},
-    ["Royalist Wraps"] = {"Refugee’s Bracers"},
-
-    ["Canvas Bracers"] = {"Dockmaster Cuffs"},
-    ["Dockmaster Cuffs"] = {"Canvas Bracers"},
-
-    ["Light Plate Bracers"] = {"Consumer Shackles"},
-    ["Consumer Shackles"] = {"Light Plate Bracers"},
-	
-	["Bracers of Prosperity"] = {"Crochide Wrists"},
-    ["Crochide Wrists"] = {"Bracers of Prosperity"},
-	
-	["Bladebane Armguards"] = {"Shadowshifter Armguards"},
-    ["Shadowshifter Armguards"] = {"Bladebane Armguards"},
-
-    ["Magiskull Cuffs"] = {"Extremely Well Crafted Cuffs"},
-    ["Extremely Well Crafted Cuffs"] = {"Magiskull Cuffs"},
-
-    ["Archer's Bracers"] = {"Trickster's Wraps"},
-    ["Trickster's Wraps"] = {"Archer's Bracers"},
-
-    ["Bracers of Qiraji Command"] = {"Wraps of the Pauper"},
-    ["Wraps of the Pauper"] = {"Bracers of Qiraji Command"},
-
-    ["Feathered Bracers"] = {"Wildfeather Bracers"},
-    ["Wildfeather Bracers"] = {"Feathered Bracers"},
-
-    ["Mindthrust Bracers"] = {"Sutherland's Cuffs"},
-    ["Sutherland's Cuffs"] = {"Mindthrust Bracers"},
-
-    ["Champion's Bracers"] = {"Gilneas Shackles"},
-    ["Gilneas Shackles"] = {"Champion's Bracers"},
-
-    ["Ridgeback Bracers"] = {"Cuffs of Dawnfall"},
-    ["Cuffs of Dawnfall"] = {"Ridgeback Bracers"},
-
-    ["Glowing Leather Bracers"] = {"Barkskin Elder Cuffs"},
-    ["Barkskin Elder Cuffs"] = {"Glowing Leather Bracers"},
-
-    ["Primal Bands"] = {"Sandrunner Wristguards","Bands of Ranathos"},
-    ["Sandrunner Wristguards"] = {"Primal Bands","Bands of Ranathos"},
-    ["Bands of Ranathos"] = {"Primal Bands","Sandrunner Wristguards"},
-
-    ["Strapped Bracers"] = {"Bloody Gladiator's Bands"},
-    ["Bloody Gladiator's Bands"] = {"Strapped Bracers"},
-
-    ["Loamflake Bracers"] = {"Bracers of the Crescent Moon"},
-    ["Bracers of the Crescent Moon"] = {"Loamflake Bracers"},
-    
-    ["Sanctum Bark Wraps"] = {"Drakewing Bands","Naturalist Wristbands"},
-    ["Drakewing Bands"] = {"Sanctum Bark Wraps","Naturalist Wristbands"},
-    ["Naturalist Wristbands"] = {"Sanctum Bark Wraps","Drakewing Bands"},
-
-    ["Trickster's Bindings"] = {"Shadowskin Bracers","Bracers of Lost Souls"},
-    ["Shadowskin Bracers"] = {"Trickster's Bindings","Bracers of Lost Souls"},
-    ["Bracers of Lost Souls"] = {"Trickster's Bindings","Shadowskin Bracers"},
-
-    ["Sergeant Major's Chain Armguards"] = {"Infused Wildthorn Bracers","Aquis' Bindings"},
-    ["Infused Wildthorn Bracers"] = {"Sergeant Major's Chain Armguards","Aquis' Bindings"},
-    ["Aquis' Bindings"] = {"Sergeant Major's Chain Armguards","Infused Wildthorn Bracers"},
-
-    ["Arcanic Bracers"] = {"First Sergeant's Mail Wristguards","Legionnaire's Chain Bracers"},
-    ["First Sergeant's Mail Wristguards"] = {"Arcanic Bracers","Legionnaire's Chain Bracers"},
-    ["Legionnaire's Chain Bracers"] = {"Arcanic Bracers","First Sergeant's Mail Wristguards"},
-
-    ["Auric Bracers"] = {"Aurastone Bracers"},
-    ["Aurastone Bracers"] = {"Auric Bracers"},
-
-    ["Emerald Vambraces"] = {"Dreamsteel Bracers"},
-    ["Dreamsteel Bracers"] = {"Emerald Vambraces"},
-
-    ["Arcanite Shackles"] = {"Arena Vambraces"},
-    ["Arena Vambraces"] = {"Arcanite Shackles"},
-
-    ["Bloody Gladiator's Bracers"] = {"Deeprock Bracers"},
-    ["Deeprock Bracers"] = {"Bloody Gladiator's Bracers"},
-
-    ["Templar Bracers"] = {"Cloudplate Wristguards","Cuffs of Justice"},
-    ["Cloudplate Wristguards"] = {"Templar Bracers","Cuffs of Justice"},
-    ["Cuffs of Justice"] = {"Templar Bracers","Cloudplate Wristguards"},
-
-    ["Deepwood Bracers"] = {"Huntsman's Bands","Cuffs of Nordanaar"},
-    ["Huntsman's Bands"] = {"Deepwood Bracers","Cuffs of Nordanaar"},
-    ["Cuffs of Nordanaar"] = {"Deepwood Bracers","Huntsman's Bands"},
-
-    ["Silver-thread Cuffs"] = {"Necropile Cuffs"},
-    ["Necropile Cuffs"] = {"Silver-thread Cuffs"},
-
-    ["Worn Mail Bracers"] = {"Laced Mail Bracers","Linked Chain Bracers","Reinforced Chain Bracers","Tarnished Chain Bracers","Light Mail Bracers","Loose Chain Bracers","Flimsy Chain Bracers","Double Mail Bracers"},
-    ["Laced Mail Bracers"] = {"Worn Mail Bracers","Linked Chain Bracers","Reinforced Chain Bracers","Tarnished Chain Bracers","Light Mail Bracers","Loose Chain Bracers","Flimsy Chain Bracers","Double Mail Bracers"},
-    ["Linked Chain Bracers"] = {"Worn Mail Bracers","Laced Mail Bracers","Reinforced Chain Bracers","Tarnished Chain Bracers","Light Mail Bracers","Loose Chain Bracers","Flimsy Chain Bracers","Double Mail Bracers"},
-    ["Reinforced Chain Bracers"] = {"Worn Mail Bracers","Laced Mail Bracers","Linked Chain Bracers","Tarnished Chain Bracers","Light Mail Bracers","Loose Chain Bracers","Flimsy Chain Bracers","Double Mail Bracers"},
-    ["Tarnished Chain Bracers"] = {"Worn Mail Bracers","Laced Mail Bracers","Linked Chain Bracers","Reinforced Chain Bracers","Light Mail Bracers","Loose Chain Bracers","Flimsy Chain Bracers","Double Mail Bracers"},
-    ["Light Mail Bracers"] = {"Worn Mail Bracers","Laced Mail Bracers","Linked Chain Bracers","Reinforced Chain Bracers","Tarnished Chain Bracers","Loose Chain Bracers","Flimsy Chain Bracers","Double Mail Bracers"},
-    ["Loose Chain Bracers"] = {"Worn Mail Bracers","Laced Mail Bracers","Linked Chain Bracers","Reinforced Chain Bracers","Tarnished Chain Bracers","Light Mail Bracers","Flimsy Chain Bracers","Double Mail Bracers"},
-    ["Flimsy Chain Bracers"] = {"Worn Mail Bracers","Laced Mail Bracers","Linked Chain Bracers","Reinforced Chain Bracers","Tarnished Chain Bracers","Light Mail Bracers","Loose Chain Bracers","Double Mail Bracers"},
-    ["Double Mail Bracers"] = {"Worn Mail Bracers","Laced Mail Bracers","Linked Chain Bracers","Reinforced Chain Bracers","Tarnished Chain Bracers","Light Mail Bracers","Loose Chain Bracers","Flimsy Chain Bracers"},
-
-    ["Ironwrought Bracers"] = {"Deprecated Heavy Bracers"},
-    ["Deprecated Heavy Bracers"] = {"Ironwrought Bracers"},
-
-    ["Rusted Chain Bracers"] = {"Light Chain Bracers","Veteran Bracers","Brackwater Chain Bindings"},
-    ["Light Chain Bracers"] = {"Rusted Chain Bracers","Veteran Bracers","Brackwater Chain Bindings"},
-    ["Veteran Bracers"] = {"Rusted Chain Bracers","Light Chain Bracers","Brackwater Chain Bindings"},
-    ["Brackwater Chain Bindings"] = {"Rusted Chain Bracers","Light Chain Bracers","Veteran Bracers"},
-
-    ["Copper Bracers"] = {"Overlinked Chain Bracers"},
-    ["Overlinked Chain Bracers"] = {"Copper Bracers"},
-
-    ["Scalemail Bracers"] = {"Mithril Scale Bracers","Blackshackle Bracers","Energized Shackles"},
-    ["Mithril Scale Bracers"] = {"Scalemail Bracers","Blackshackle Bracers","Energized Shackles"},
-    ["Blackshackle Bracers"] = {"Scalemail Bracers","Mithril Scale Bracers","Energized Shackles"},
-    ["Energized Shackles"] = {"Scalemail Bracers","Mithril Scale Bracers","Blackshackle Bracers"},
-
-    ["Graystone Bracers"] = {"Rustmetal Bracers"},
-    ["Rustmetal Bracers"] = {"Graystone Bracers"},
-
-    ["Emblazoned Bracers"] = {"Bloodband Bracers"},
-    ["Bloodband Bracers"] = {"Emblazoned Bracers"},
-
-    ["Nightsky Wristbands"] = {"Funeral Cuffs","Opulent Bracers","Blacklight Bracer"},
-    ["Funeral Cuffs"] = {"Nightsky Wristbands","Opulent Bracers","Blacklight Bracer"},
-    ["Opulent Bracers"] = {"Nightsky Wristbands","Funeral Cuffs","Blacklight Bracer"},
-    ["Blacklight Bracer"] = {"Nightsky Wristbands","Funeral Cuffs","Opulent Bracers"},
-
-    ["Twilight Cuffs"] = {"Lunar Bindings"},
-    ["Lunar Bindings"] = {"Twilight Cuffs"},
-
-    ["Willow Bracers"] = {"Ivycloth Bracelets"},
-    ["Ivycloth Bracelets"] = {"Willow Bracers"},
-
-    ["Hardened Leather Bracers"] = {"Dusky Bracers","Infiltrator Bracers"},
-    ["Dusky Bracers"] = {"Hardened Leather Bracers","Infiltrator Bracers"},
-    ["Infiltrator Bracers"] = {"Hardened Leather Bracers","Dusky Bracers"},
-
-    ["Cabalist Bracers"] = {"Rageclaw Bracers"},
-    ["Rageclaw Bracers"] = {"Cabalist Bracers"},
-
-    ["Hibernal Bracers"] = {"Venomshroud Armguards","Dreamthread Bracers"},
-    ["Venomshroud Armguards"] = {"Hibernal Bracers","Dreamthread Bracers"},
-    ["Dreamthread Bracers"] = {"Hibernal Bracers","Venomshroud Armguards"},
-
-    ["Frayed Bracers"] = {"Ritual Bands","Owlbeard Bracers","Safety Wraps"},
-    ["Ritual Bands"] = {"Frayed Bracers","Owlbeard Bracers","Safety Wraps"},
-    ["Owlbeard Bracers"] = {"Frayed Bracers","Ritual Bands","Safety Wraps"},
-    ["Safety Wraps"] = {"Frayed Bracers","Ritual Bands","Owlbeard Bracers"},
-
-    ["Heavy Cord Bracers"] = {"Mystic's Bracelets"},
-    ["Mystic's Bracelets"] = {"Heavy Cord Bracers"},
-
-    ["Radiant Silver Bracers"] = {"Master's Bracers","Black Bark Wristbands","Dusty Cuffs"},
-    ["Master's Bracers"] = {"Radiant Silver Bracers","Black Bark Wristbands","Dusty Cuffs"},
-    ["Black Bark Wristbands"] = {"Radiant Silver Bracers","Master's Bracers","Dusty Cuffs"},
-    ["Dusty Cuffs"] = {"Radiant Silver Bracers","Master's Bracers","Black Bark Wristbands"},
-
-    ["Battered Leather Bracers"] = {"Feral Bracers","Studded Bracers","Whispering Cuffs"},
-    ["Feral Bracers"] = {"Battered Leather Bracers","Studded Bracers","Whispering Cuffs"},
-    ["Studded Bracers"] = {"Battered Leather Bracers","Feral Bracers","Whispering Cuffs"},
-    ["Whispering Cuffs"] = {"Battered Leather Bracers","Feral Bracers","Studded Bracers"},
-
-    ["Nomadic Bracers"] = {"Gypsy Bands","Groveweald Elder Cuffs"},
-    ["Gypsy Bands"] = {"Nomadic Bracers","Groveweald Elder Cuffs"},
-    ["Groveweald Elder Cuffs"] = {"Nomadic Bracers","Gypsy Bands"},
-
-    ["Imperial Red Bracers"] = {"Manacle Cuffs"},
-    ["Manacle Cuffs"] = {"Imperial Red Bracers"},
-
-    ["Serpentskin Bracers"] = {"Indomitable Armguards"},
-    ["Indomitable Armguards"] = {"Serpentskin Bracers"},
-
-    ["Arcane Bands"] = {"Gaea's Cuffs"},
-    ["Gaea's Cuffs"] = {"Arcane Bands"},
-
-    ["Skullplate Bracers"] = {"Dragonbone Wristguards"},
-    ["Dragonbone Wristguards"] = {"Skullplate Bracers"},
-
-    ["Warrior's Bracers"] = {"Battle Chain Armguards"},
-    ["Battle Chain Armguards"] = {"Warrior's Bracers"},
-
-    ["Loomguard Armbraces"] = {"Spiked Chain Wristbands","Ash Covered Shackles"},
-    ["Spiked Chain Wristbands"] = {"Loomguard Armbraces","Ash Covered Shackles"},
-    ["Ash Covered Shackles"] = {"Loomguard Armbraces","Spiked Chain Wristbands"},
-
-    ["Greenweave Bracers"] = {"Stemleaf Bracers"},
-    ["Stemleaf Bracers"] = {"Greenweave Bracers"},
-
-    ["Watcher's Cuffs"] = {"Vital Bracelets"},
-    ["Vital Bracelets"] = {"Watcher's Cuffs"},
-
-    ["Enduring Bracers"] = {"Malefic Bracers","Inscribed Runic Bracers"},
-    ["Malefic Bracers"] = {"Enduring Bracers","Inscribed Runic Bracers"},
-    ["Inscribed Runic Bracers"] = {"Enduring Bracers","Malefic Bracers"},
-
-    ["Scorpashi Wristbands"] = {"Pridelord Bands"},
-    ["Pridelord Bands"] = {"Scorpashi Wristbands"},
-
-    ["Wolf Rider's Wristbands"] = {"Flarecore Wraps"},
-    ["Flarecore Wraps"] = {"Wolf Rider's Wristbands"},
-
-    ["Pyremail Wristguards"] = {"Zandalar Predator's Bracers"},
-    ["Zandalar Predator's Bracers"] = {"Pyremail Wristguards"},
-
-    -- hands
-    ["Fletcher's Gloves"] = {"Sea Brigand's Grips"},
-    ["Sea Brigand's Grips"] = {"Fletcher's Gloves"},
-
-    ["Darkspinner Claws"] = {"Razzari Battle Gauntlets"},
-    ["Razzari Battle Gauntlets"] = {"Darkspinner Claws"},
-
-    ["Black Whelp Gloves"] = {"Oilfused Gloves"},
-    ["Oilfused Gloves"] = {"Black Whelp Gloves"},
-
-    ["Formidable Gauntlets"] = {"Ionized Metal Grips"},
-    ["Ionized Metal Grips"] = {"Formidable Gauntlets"},
-
-    ["Golden Gauntlets of Stormwind"] = {"Sunscale Gauntlets"},
-    ["Sunscale Gauntlets"] = {"Golden Gauntlets of Stormwind"},
-
-    ["Wicked Chain Gauntlets"] = {"Quick-Surge Gloves"},
-    ["Quick-Surge Gloves"] = {"Wicked Chain Gauntlets"},
-
-    ["Gordok's Gauntlets"] = {"Kirin Tor Watch Grips"},
-    ["Kirin Tor Watch Grips"] = {"Gordok's Gauntlets"},
-
-    ["Councillor's Gloves"] = {"Gladewind Gloves"},
-    ["Gladewind Gloves"] = {"Councillor's Gloves"},
-
-    ["Blackened Defias Gloves"] = {"Fizzwack's Gloves of Enforcement"},
-    ["Fizzwack's Gloves of Enforcement"] = {"Blackened Defias Gloves"},
-
-    ["Quel'dorei Guardian's Handguards"] = {"Thalassian Handguards"},
-    ["Thalassian Handguards"] = {"Quel'dorei Guardian's Handguards"},
-
-    ["Pratt's Handcrafted Gloves"] = {"Technician's Field Gloves"},
-    ["Technician's Field Gloves"] = {"Pratt's Handcrafted Gloves"},
-
-    ["Veiled Grips"] = {"Scorched Gloves"},
-    ["Scorched Gloves"] = {"Veiled Grips"},
-
-    ["Tattered Cloth Gloves"] = {"Oil Splattered Gloves"},
-    ["Oil Splattered Gloves"] = {"Tattered Cloth Gloves"},
-
-    ["Gauntlets of Insight"] = {"Dagmire Gauntlets"},
-    ["Dagmire Gauntlets"] = {"Gauntlets of Insight"},
-
-    ["Mail Combat Gauntlets"] = {"Xtra-Protective Gloves"},
-    ["Xtra-Protective Gloves"] = {"Mail Combat Gauntlets"},
-
-    ["Rabbit Handler Gloves"] = {"Deepfrond Gloves"},
-    ["Deepfrond Gloves"] = {"Rabbit Handler Gloves"},
-
-    ["Nightshade Gloves"] = {"Varlag's Clutches"},
-    ["Varlag's Clutches"] = {"Nightshade Gloves"},
-
-    ["Gloves of Undead Cleansing"] = {"Riftwatcher Gloves"},
-    ["Riftwatcher Gloves"] = {"Gloves of Undead Cleansing"},
-
-    ["Gnomish Mechanic's Gloves"] = {"Riftseeker Gloves"},
-    ["Riftseeker Gloves"] = {"Gnomish Mechanic's Gloves"},
-
-    ["Ragged Leather Gloves"] = {"Worn Gloves","Mud Covered Gloves","Stitched Leather Gloves"},
-    ["Worn Gloves"] = {"Ragged Leather Gloves","Mud Covered Gloves","Stitched Leather Gloves"},
-    ["Mud Covered Gloves"] = {"Ragged Leather Gloves","Worn Gloves","Stitched Leather Gloves"},
-    ["Stitched Leather Gloves"] = {"Ragged Leather Gloves","Worn Gloves","Mud Covered Gloves"},
-
-    ["Ironvine Gloves"] = {"Waveguard Gauntlets"},
-    ["Waveguard Gauntlets"] = {"Ironvine Gloves"},
-
-    ["Overgrown Gloves"] = {"Heavy Weave Gloves"},
-    ["Heavy Weave Gloves"] = {"Overgrown Gloves"},
-
-    ["Pulverizer Gauntlets"] = {"Marauder's Gauntlets"},
-    ["Marauder's Gauntlets"] = {"Pulverizer Gauntlets"},
-
-    ["Gloves of the Unknown"] = {"Ghostweave Gloves"},
-    ["Ghostweave Gloves"] = {"Gloves of the Unknown"},
-
-    ["Jadefire Gloves"] = {"Gauntlets of the Bogbeast"},
-    ["Gauntlets of the Bogbeast"] = {"Jadefire Gloves"},
-
-    ["Hardened Leather Gloves"] = {"Dreadskin Gloves"},
-    ["Dreadskin Gloves"] = {"Hardened Leather Gloves"},
-
-    ["Dervish Gloves"] = {"Furbolg Battle Grips"},
-    ["Furbolg Battle Grips"] = {"Dervish Gloves"},
-
-    ["Timbermaw Brawlers"] = {"Grizzlehide Brawlers"},
-    ["Grizzlehide Brawlers"] = {"Timbermaw Brawlers"},
-
-    ["Algae Fists"] = {"Living Moss Gauntlets"},
-    ["Living Moss Gauntlets"] = {"Algae Fists"},
-
-    ["Bingles' Flying Gloves"] = {"Boar Tamer Gloves"},
-    ["Boar Tamer Gloves"] = {"Bingles' Flying Gloves"},
-
-    ["Hands of Darkness"] = {"Darkcaster Gloves"},
-    ["Darkcaster Gloves"] = {"Hands of Darkness"},
-
-    ["Skeletal Gauntlets"] = {"Worgen Hunter Grips"},
-    ["Worgen Hunter Grips"] = {"Skeletal Gauntlets"},
-	
-	["Red Whelp Gloves"] = {"Incendosaur Skin Gloves","Grellskin Gloves"},
-    ["Incendosaur Skin Gloves"] = {"Red Whelp Gloves","Grellskin Gloves"},
-    ["Grellskin Gloves"] = {"Incendosaur Skin Gloves","Red Whelp Gloves"},
-
-	["Dusty Mining Gloves"] = {"Electroconductive Mitts"},
-    ["Electroconductive Mitts"] = {"Dusty Mining Gloves"},
-
-    ["Maddening Gauntlets"] = {"Gauntlets of the Myrimidon"},
-    ["Gauntlets of the Myrimidon"] = {"Maddening Gauntlets"},
-	
-	["Heavy Earthen Gloves"] = {"Rotworm Grips"},
-    ["Rotworm Grips"] = {"Heavy Earthen Gloves"},
-
-    ["Thick Leather Gloves"] = {"Arcanic Gloves"},
-    ["Arcanic Gloves"] = {"Thick Leather Gloves"},
-
-    ["Shadoweave Gloves"] = {"Befouled Handwraps"},
-    ["Befouled Handwraps"] = {"Shadoweave Gloves"},
-    
-    ["Hands of Thero-shan"] = {"Blackthorn Gauntlets","Ravenshire Gloves"},
-    ["Blackthorn Gauntlets"] = {"Hands of Thero-shan","Ravenshire Gloves"},
-    ["Ravenshire Gloves"] = {"Hands of Thero-shan","Blackthorn Gauntlets"},
-
-    ["Strapped Gloves"] = {"Bloody Gladiator's Gloves"},
-    ["Bloody Gladiator's Gloves"] = {"Strapped Gloves"},
-
-    ["Blight Leather Gloves"] = {"Gloves of Unwinding Mystery"},
-    ["Gloves of Unwinding Mystery"] = {"Blight Leather Gloves"},
-
-    ["Impenetrable Gauntlets"] = {"Talonwind Gauntlets"},
-    ["Talonwind Gauntlets"] = {"Impenetrable Gauntlets"},
-    
-    ["Handguards of Undead Slaying"] = {"Bloody Gladiator's Handguards"},
-    ["Bloody Gladiator's Handguards"] = {"Handguards of Undead Slaying"},
-
-    ["Stormfire Gauntlets"] = {"Corehound Gloves"},
-    ["Corehound Gloves"] = {"Stormfire Gauntlets"},
-    
-    ["Ancient Gauntlets"] = {"Fists of the Makers"},
-    ["Fists of the Makers"] = {"Ancient Gauntlets"},
-
-    ["Bloody Gladiator's Gauntlets"] = {"Sacrificial Gauntlets","Skullcrushing Gauntlets"},
-    ["Sacrificial Gauntlets"] = {"Bloody Gladiator's Gauntlets","Skullcrushing Gauntlets"},
-    ["Skullcrushing Gauntlets"] = {"Bloody Gladiator's Gauntlets","Sacrificial Gauntlets"},
-
-    ["Hateforge Grips"] = {"Scalemail Gloves"},
-    ["Scalemail Gloves"] = {"Hateforge Grips"},
-
-    ["Rune Infused Gauntlets"] = {"Murkwater Gauntlets"},
-    ["Murkwater Gauntlets"] = {"Rune Infused Gauntlets"},
-
-    ["Chainmail Gloves"] = {"Bridgeworker's Gloves"},
-    ["Bridgeworker's Gloves"] = {"Chainmail Gloves"},
-
-    ["Worn Mail Gloves"] = {"Laced Mail Gloves","Linked Chain Gloves","Reinforced Chain Gloves","Tarnished Chain Gloves","Boar Handler Gloves","Loose Chain Gloves","Flimsy Chain Gloves","Double Mail Gloves"},
-    ["Laced Mail Gloves"] = {"Worn Mail Gloves","Linked Chain Gloves","Reinforced Chain Gloves","Tarnished Chain Gloves","Boar Handler Gloves","Loose Chain Gloves","Flimsy Chain Gloves","Double Mail Gloves"},
-    ["Linked Chain Gloves"] = {"Worn Mail Gloves","Laced Mail Gloves","Reinforced Chain Gloves","Tarnished Chain Gloves","Boar Handler Gloves","Loose Chain Gloves","Flimsy Chain Gloves","Double Mail Gloves"},
-    ["Reinforced Chain Gloves"] = {"Worn Mail Gloves","Laced Mail Gloves","Linked Chain Gloves","Tarnished Chain Gloves","Boar Handler Gloves","Loose Chain Gloves","Flimsy Chain Gloves","Double Mail Gloves"},
-    ["Tarnished Chain Gloves"] = {"Worn Mail Gloves","Laced Mail Gloves","Linked Chain Gloves","Reinforced Chain Gloves","Boar Handler Gloves","Loose Chain Gloves","Flimsy Chain Gloves","Double Mail Gloves"},
-    ["Boar Handler Gloves"] = {"Worn Mail Gloves","Laced Mail Gloves","Linked Chain Gloves","Reinforced Chain Gloves","Tarnished Chain Gloves","Loose Chain Gloves","Flimsy Chain Gloves","Double Mail Gloves"},
-    ["Loose Chain Gloves"] = {"Worn Mail Gloves","Laced Mail Gloves","Linked Chain Gloves","Reinforced Chain Gloves","Tarnished Chain Gloves","Boar Handler Gloves","Flimsy Chain Gloves","Double Mail Gloves"},
-    ["Flimsy Chain Gloves"] = {"Worn Mail Gloves","Laced Mail Gloves","Linked Chain Gloves","Reinforced Chain Gloves","Tarnished Chain Gloves","Boar Handler Gloves","Loose Chain Gloves","Double Mail Gloves"},
-    ["Double Mail Gloves"] = {"Worn Mail Gloves","Laced Mail Gloves","Linked Chain Gloves","Reinforced Chain Gloves","Tarnished Chain Gloves","Boar Handler Gloves","Loose Chain Gloves","Flimsy Chain Gloves"},
-
-    ["Rusted Chain Gloves"] = {"Light Chain Gloves","Cold Steel Gauntlets"},
-    ["Light Chain Gloves"] = {"Rusted Chain Gloves","Cold Steel Gauntlets"},
-    ["Cold Steel Gauntlets"] = {"Rusted Chain Gloves","Light Chain Gloves"},
-
-    ["Sewing Gloves"] = {"Wolf Handler Gloves"},
-    ["Wolf Handler Gloves"] = {"Sewing Gloves"},
-
-    ["Nomadic Gloves"] = {"Grizzly Gloves","Coal Miner Gloves"},
-    ["Grizzly Gloves"] = {"Nomadic Gloves","Coal Miner Gloves"},
-    ["Coal Miner Gloves"] = {"Nomadic Gloves","Grizzly Gloves"},
-
-    ["Veteran Gloves"] = {"Brackwater Chain Handgrips"},
-    ["Brackwater Chain Handgrips"] = {"Veteran Gloves"},
-
-    ["Sentinel Gloves"] = {"Warden's Gloves"},
-    ["Warden's Gloves"] = {"Sentinel Gloves"},
-
-    ["Cabalist Gloves"] = {"Rageclaw Gloves"},
-    ["Rageclaw Gloves"] = {"Cabalist Gloves"},
-
-    ["Ebon Vise"] = {"Shadowskin Gloves"},
-    ["Shadowskin Gloves"] = {"Ebon Vise"},
-    ["Knife Juggler Gloves"] = {"Shadowskin Gloves","Ebon Vise"},
-
-    ["Flax Gloves"] = {"Native Handwraps","Ragged Cloth Gloves"},
-    ["Native Handwraps"] = {"Flax Gloves","Ragged Cloth Gloves"},
-    ["Ragged Cloth Gloves"] = {"Flax Gloves","Native Handwraps"},
-
-    ["Hibernal Gloves"] = {"Venomshroud Mitts","Dreamthread Gloves","Spiritual Mitts"},
-    ["Venomshroud Mitts"] = {"Hibernal Gloves","Dreamthread Gloves","Spiritual Mitts"},
-    ["Dreamthread Gloves"] = {"Hibernal Gloves","Venomshroud Mitts","Spiritual Mitts"},
-    ["Spiritual Mitts"] = {"Hibernal Gloves","Venomshroud Mitts","Dreamthread Gloves"},
-
-    ["Silver-thread Gloves"] = {"Master's Gloves","Magefist Gloves"},
-    ["Master's Gloves"] = {"Silver-thread Gloves","Magefist Gloves"},
-    ["Magefist Gloves"] = {"Silver-thread Gloves","Master's Gloves"},
-
-    ["Frayed Gloves"] = {"Ritual Gloves","Pyrehand Gloves"},
-    ["Ritual Gloves"] = {"Frayed Gloves","Pyrehand Gloves"},
-    ["Pyrehand Gloves"] = {"Frayed Gloves","Ritual Gloves"},
-
-    ["Salma's Oven Mitts"] = {"Gordok's Handwraps","Farmer's Gloves"},
-    ["Gordok's Handwraps"] = {"Salma's Oven Mitts","Farmer's Gloves"},
-    ["Farmer's Gloves"] = {"Salma's Oven Mitts","Gordok's Handwraps"},
-
-    ["Burnished Gloves"] = {"Dragonscale Gauntlets"},
-    ["Dragonscale Gauntlets"] = {"Burnished Gloves"},
-
-    ["Thick Cloth Gloves"] = {"Brightcloth Gloves"},
-    ["Brightcloth Gloves"] = {"Thick Cloth Gloves"},
-
-    ["Azure Silk Gloves"] = {"Abjurer's Gloves"},
-    ["Abjurer's Gloves"] = {"Azure Silk Gloves"},
-
-    ["Shepherd's Gloves"] = {"Gloves of Insight","Packmaster Gloves"},
-    ["Gloves of Insight"] = {"Shepherd's Gloves","Packmaster Gloves"},
-    ["Packmaster Gloves"] = {"Shepherd's Gloves","Gloves of Insight"},
-
-    ["Imperial Red Gloves"] = {"Felcloth Gloves"},
-    ["Felcloth Gloves"] = {"Imperial Red Gloves"},
-    
-    ["Serpentskin Gloves"] = {"Ogreseer Fists","Indomitable Gauntlets"},
-    ["Ogreseer Fists"] = {"Serpentskin Gloves","Indomitable Gauntlets"},
-    ["Indomitable Gauntlets"] = {"Serpentskin Gloves","Ogreseer Fists"},
-
-    ["Gloves of Old"] = {"Earth Warder's Gloves"},
-    ["Earth Warder's Gloves"] = {"Gloves of Old"},
-
-    ["Reticulated Bone Gauntlets"] = {"The Frozen Clutch"},
-    ["The Frozen Clutch"] = {"Reticulated Bone Gauntlets"},
-
-    ["Serpent Gloves"] = {"Gloves of Dark Wisdom"},
-    ["Gloves of Dark Wisdom"] = {"Serpent Gloves"},
-
-    ["Warrior's Gloves"] = {"Battle Chain Gloves"},
-    ["Battle Chain Gloves"] = {"Warrior's Gloves"},
-
-    ["Chimeric Gloves"] = {"Stonebark Gauntlets"},
-    ["Stonebark Gauntlets"] = {"Chimeric Gloves"},
-
-    ["Banded Gauntlets"] = {"Thorbia's Gauntlets"},
-    ["Thorbia's Gauntlets"] = {"Banded Gauntlets"},
-
-    ["Toughened Leather Gloves"] = {"Robust Gloves"},
-    ["Robust Gloves"] = {"Toughened Leather Gloves"},
-
-    ["Palestrider Gloves"] = {"Sandspire Gloves","Frostchain Gauntlets"},
-    ["Sandspire Gloves"] = {"Palestrider Gloves","Frostchain Gauntlets"},
-    ["Frostchain Gauntlets"] = {"Palestrider Gloves","Sandspire Gloves"},
-
-    ["Mooncloth Gloves"] = {"Mana Shaping Handwraps"},
-    ["Mana Shaping Handwraps"] = {"Mooncloth Gloves"},
-
-    ["Wastewalker's Gauntlets"] = {"Desertstalkers's Gauntlets","Handguards of Savagery"},
-    ["Desertstalkers's Gauntlets"] = {"Wastewalker's Gauntlets","Handguards of Savagery"},
-    ["Handguards of Savagery"] = {"Wastewalker's Gauntlets","Desertstalkers's Gauntlets"},
-
-    ["Sandworm Skin Gloves"] = {"Desert Bloom Gloves"},
-    ["Desert Bloom Gloves"] = {"Sandworm Skin Gloves"},
-
-    -- waist
-    ["Battle Chain Girdle"] = {"Charred Belt"},
-    ["Charred Belt"] = {"Battle Chain Girdle"},
-
-    ["Frayed Sash"] = {"Trickster's Sash"},
-    ["Trickster's Sash"] = {"Frayed Sash"},
-
-    ["Gold Link Belt"] = {"Wolfwood Sash"},
-    ["Wolfwood Sash"] = {"Gold Link Belt"},
-
-    ["Tapered Belt"] = {"Thin Cloth Belt"},
-    ["Thin Cloth Belt"] = {"Tapered Belt"},
-
-    ["Bright Belt"] = {"Hauling Belt"},
-    ["Hauling Belt"] = {"Bright Belt"},
-
-    ["Engraved Girdle"] = {"Speckled Sapphire Sash"},
-    ["Speckled Sapphire Sash"] = {"Engraved Girdle"},
-
-    ["Twill Belt"] = {"Hydromancer Sash"},
-    ["Hydromancer Sash"] = {"Twill Belt"},
-
-    ["Hillman's Belt"] = {"Tinkering Belt"},
-    ["Tinkering Belt"] = {"Hillman's Belt"},
-
-    ["Cutthroat's Belt"] = {"Sorrowguard Clutch"},
-    ["Sorrowguard Clutch"] = {"Cutthroat's Belt"},
-
-    ["Nomadic Belt"] = {"Scorched Belt"},
-    ["Scorched Belt"] = {"Nomadic Belt"},
-
-    ["Quel'dorei Guardian's Girdle"] = {"Thalassian Sentinel Belt"},
-    ["Thalassian Sentinel Belt"] = {"Quel'dorei Guardian's Girdle"},
-
-    ["Dokebi Cord"] = {"Mort's Backup Belt"},
-    ["Mort's Backup Belt"] = {"Dokebi Cord"},
-
-    ["Clutch of Andros"] = {"Clutch of Joshua"},
-    ["Clutch of Joshua"] = {"Clutch of Andros"},
-
-    ["Runescale Girdle"] = {"Girdle of Galron"},
-    ["Girdle of Galron"] = {"Runescale Girdle"},
-
-    ["Councillor's Sash"] = {"Flaxwhisker Sash","Sash of Goblin Luck","Greenweave Sash","Sash of Upperson"},
-    ["Flaxwhisker Sash"] = {"Councillor's Sash","Sash of Goblin Luck","Greenweave Sash","Sash of Upperson"},
-    ["Sash of Goblin Luck"] = {"Councillor's Sash","Flaxwhisker Sash","Greenweave Sash","Sash of Upperson"},
-    ["Greenweave Sash"] = {"Councillor's Sash","Flaxwhisker Sash","Sash of Goblin Luck","Sash of Upperson"},
-    ["Sash of Upperson"] = {"Councillor's Sash","Flaxwhisker Sash","Sash of Goblin Luck","Greenweave Sash"},
-
-    ["Hawkeye's Cord"] = {"Dunewind Sash"},
-    ["Dunewind Sash"] = {"Hawkeye's Cord"},
-
-    ["Prospector's Sash"] = {"Smuggler's Sash"},
-    ["Smuggler's Sash"] = {"Prospector's Sash"},
-
-    ["Journeyman's Belt"] = {"Sash of Innocent Blood"},
-    ["Sash of Innocent Blood"] = {"Journeyman's Belt"},
-
-    ["Darkmist Girdle"] = {"Violet Sash"},
-    ["Violet Sash"] = {"Darkmist Girdle"},
-
-    ["Razorblade Buckler"] = {"Oscilation Inhibited Disk"},
-    ["Oscilation Inhibited Disk"] = {"Razorblade Buckler"},
-
-    ["Dark Leather Belt"] = {"Gnomish Chemistry Belt"},
-    ["Gnomish Chemistry Belt"] = {"Dark Leather Belt"},
-
-    ["Flax Belt"] = {"Ragged Cloth Sash"},
-    ["Ragged Cloth Sash"] = {"Flax Belt"},
-
-    ["Aurora Sash"] = {"Farmer's Sash"},
-    ["Farmer's Sash"] = {"Aurora Sash"},
-
-    ["Tidehunter Girdle"] = {"Infantry Belt"},
-    ["Infantry Belt"] = {"Tidehunter Girdle"},
-
-    ["Cinched Belt"] = {"Rusty Chain Belt"},
-    ["Rusty Chain Belt"] = {"Cinched Belt"},
-
-    ["Foreman Belt"] = {"Powder Town Sash"},
-    ["Powder Town Sash"] = {"Foreman Belt"},
-
-    ["Raincaller Cord"] = {"Isle Watcher's Sash"},
-    ["Isle Watcher's Sash"] = {"Raincaller Cord"},
-
-    ["Nightwoven Belt"] = {"Runecloth Belt"},
-    ["Runecloth Belt"] = {"Nightwoven Belt"},
-
-    ["Zephyrian Girdle"] = {"Templar Girdle"},
-    ["Templar Girdle"] = {"Zephyrian Girdle"},
-
-    ["Field Plate Girdle"] = {"Deathforge Belt"},
-    ["Deathforge Belt"] = {"Field Plate Girdle"},
-	
-	["Foresight Girdle"] = {"Corroded Plate Belt"},
-    ["Corroded Plate Belt"] = {"Foresight Girdle"},
-	
-	["Marshal's Chain Girdle"] = {"Imbued Planar Belt"},
-    ["Imbued Planar Belt"] = {"Marshal's Chain Girdle"},
-
-    ["Crystallized Girdle"] = {"Girdle of Distant Stars"},
-    ["Girdle of Distant Stars"] = {"Crystallized Girdle"},
-
-    ["Grizzlehide Belt"] = {"Might of the Timbermaw","Greenpaw's Sash"},
-    ["Might of the Timbermaw"] = {"Grizzlehide Belt","Greenpaw's Sash"},
-    ["Greenpaw's Sash"] = {"Grizzlehide Belt","Might of the Timbermaw"},
-	
-	["Lava Belt"] = {"Torturer's Girdle"},
-    ["Torturer's Girdle"] = {"Lava Belt"},
-	
-	["Grizzly Belt"] = {"Horsemaster Belt"},
-    ["Horsemaster Belt"] = {"Grizzly Belt"},
-
-    ["Mesh Belt"] = {"Sash of Conviction"},
-    ["Sash of Conviction"] = {"Mesh Belt"},
-	
-	["Support Girdle"] = {"Shadowruned Girdle"},
-    ["Shadowruned Girdle"] = {"Support Girdle"},
-	
-	["General's Silk Sash"] = {"General's Dreadweave Belt","General's Satin Cinch","Girdle of Fading Hope"},
-    ["General's Dreadweave Belt"] = {"General's Silk Sash","General's Satin Cinch","Girdle of Fading Hope"},
-    ["General's Satin Cinch"] = {"General's Silk Sash","General's Dreadweave Belt","Girdle of Fading Hope"},
-    ["Girdle of Fading Hope"] = {"General's Silk Sash","General's Dreadweave Belt","General's Satin Cinch"},
-
-    ["Stonecloth Circlet"] = {"Bloody Gladiator's Circlet"},
-    ["Bloody Gladiator's Circlet"] = {"Stonecloth Circlet"},
-
-    ["Arena Sash"] = {"Serenity Belt","Regal Goldthreaded Sash"},
-    ["Serenity Belt"] = {"Arena Sash","Regal Goldthreaded Sash"},
-    ["Regal Goldthreaded Sash"] = {"Serenity Belt","Arena Sash"},
-
-    ["Imperial Leather Belt"] = {"Grug'thok's Sash"},
-    ["Grug'thok's Sash"] = {"Imperial Leather Belt"},
-
-    ["Green Leather Belt"] = {"Blackcowl Sash"},
-    ["Blackcowl Sash"] = {"Green Leather Belt"},
-
-    ["Reinforced Leather Belt"] = {"Bloody Gladiator's Belt","Belt of Forgiving"},
-    ["Bloody Gladiator's Belt"] = {"Reinforced Leather Belt","Belt of Forgiving"},
-    ["Belt of Forgiving"] = {"Reinforced Leather Belt","Bloody Gladiator's Belt"},
-
-    ["Belt of Archaic Power"] = {"Marshal's Silk Sash","Marshal's Dreadweave Sash","Marshal's Satin Sash","Overcharged Belt"},
-    ["Marshal's Silk Sash"] = {"Belt of Archaic Power","Marshal's Dreadweave Sash","Marshal's Satin Sash","Overcharged Belt"},
-    ["Marshal's Dreadweave Sash"] = {"Belt of Archaic Power","Marshal's Silk Sash","Marshal's Satin Sash","Overcharged Belt"},
-    ["Marshal's Satin Sash"] = {"Belt of Archaic Power","Marshal's Silk Sash","Marshal's Dreadweave Sash","Overcharged Belt"},
-    ["Overcharged Belt"] = {"Belt of Archaic Power","Marshal's Silk Sash","Marshal's Dreadweave Sash","Marshal's Satin Sash"},
-
-    ["Binding Chain"] = {"Highlander's Mail Girdle","Highlander's Chain Girdle","Defiler's Chain Girdle","Defiler's Mail Girdle"},
-    ["Highlander's Mail Girdle"] = {"Binding Chain","Highlander's Chain Girdle","Defiler's Chain Girdle","Defiler's Mail Girdle"},
-    ["Highlander's Chain Girdle"] = {"Binding Chain","Highlander's Mail Girdle","Defiler's Chain Girdle","Defiler's Mail Girdle"},
-    ["Defiler's Chain Girdle"] = {"Binding Chain","Highlander's Mail Girdle","Highlander's Chain Girdle","Defiler's Mail Girdle"},
-    ["Defiler's Mail Girdle"] = {"Binding Chain","Highlander's Mail Girdle","Highlander's Chain Girdle","Defiler's Chain Girdle"},
-
-    ["Bloody Gladiator's Cord"] = {"Seapost Girdle"},
-    ["Seapost Girdle"] = {"Bloody Gladiator's Cord"},
-
-    ["Bonelink Belt"] = {"Stoneslate Belt","Swampguard Girdle"},
-    ["Stoneslate Belt"] = {"Bonelink Belt","Swampguard Girdle"},
-    ["Swampguard Girdle"] = {"Bonelink Belt","Stoneslate Belt"},
-
-    ["Belt of the Gladiator"] = {"Arena Belt"},
-    ["Arena Belt"] = {"Belt of the Gladiator"},
-
-    ["Stonewall Girdle"] = {"Dragonbone Waistguard"},
-    ["Dragonbone Waistguard"] = {"Stonewall Girdle"},
-
-    ["Ancient Clutch"] = {"Belt of the Stars"},
-    ["Belt of the Stars"] = {"Ancient Clutch"},
-
-    ["Arena Girdle"] = {"Belt of the Ordained"},
-    ["Belt of the Ordained"] = {"Arena Girdle"},
-
-    ["Bloody Gladiator's Girdle"] = {"Deathbone Girdle"},
-    ["Deathbone Girdle"] = {"Bloody Gladiator's Girdle"},
-
-    ["Brackwater Girdle"] = {"Cloverlink Belt"},
-    ["Cloverlink Belt"] = {"Brackwater Girdle"},
-
-    ["Marauder's Belt"] = {"Earthbreaker Belt"},
-    ["Earthbreaker Belt"] = {"Marauder's Belt"},
-
-    ["Righteous Waistguard"] = {"Ashskin Belt"},
-    ["Ashskin Belt"] = {"Righteous Waistguard"},
-
-    ["Steadfast Cinch"] = {"Infiltrator Cord"},
-    ["Infiltrator Cord"] = {"Steadfast Cinch"},
-
-    ["Worn Mail Belt"] = {"Laced Mail Belt","Linked Chain Belt","Reinforced Chain Belt","Tarnished Chain Belt","Rusted Chain Belt","Light Mail Belt","Light Chain Belt","Loose Chain Belt","Flimsy Chain Belt","Crusader Belt","Double Mail Belt"},
-    ["Laced Mail Belt"] = {"Worn Mail Belt","Linked Chain Belt","Reinforced Chain Belt","Tarnished Chain Belt","Rusted Chain Belt","Light Mail Belt","Light Chain Belt","Loose Chain Belt","Flimsy Chain Belt","Crusader Belt","Double Mail Belt"},
-    ["Linked Chain Belt"] = {"Worn Mail Belt","Laced Mail Belt","Reinforced Chain Belt","Tarnished Chain Belt","Rusted Chain Belt","Light Mail Belt","Light Chain Belt","Loose Chain Belt","Flimsy Chain Belt","Crusader Belt","Double Mail Belt"},
-    ["Reinforced Chain Belt"] = {"Worn Mail Belt","Laced Mail Belt","Linked Chain Belt","Tarnished Chain Belt","Rusted Chain Belt","Light Mail Belt","Light Chain Belt","Loose Chain Belt","Flimsy Chain Belt","Crusader Belt","Double Mail Belt"},
-    ["Tarnished Chain Belt"] = {"Worn Mail Belt","Laced Mail Belt","Linked Chain Belt","Reinforced Chain Belt","Rusted Chain Belt","Light Mail Belt","Light Chain Belt","Loose Chain Belt","Flimsy Chain Belt","Crusader Belt","Double Mail Belt"},
-    ["Rusted Chain Belt"] = {"Worn Mail Belt","Laced Mail Belt","Linked Chain Belt","Reinforced Chain Belt","Tarnished Chain Belt","Light Mail Belt","Light Chain Belt","Loose Chain Belt","Flimsy Chain Belt","Crusader Belt","Double Mail Belt"},
-    ["Light Mail Belt"] = {"Worn Mail Belt","Laced Mail Belt","Linked Chain Belt","Reinforced Chain Belt","Tarnished Chain Belt","Rusted Chain Belt","Light Chain Belt","Loose Chain Belt","Flimsy Chain Belt","Crusader Belt","Double Mail Belt"},
-    ["Light Chain Belt"] = {"Worn Mail Belt","Laced Mail Belt","Linked Chain Belt","Reinforced Chain Belt","Tarnished Chain Belt","Rusted Chain Belt","Light Mail Belt","Loose Chain Belt","Flimsy Chain Belt","Crusader Belt","Double Mail Belt"},
-    ["Loose Chain Belt"] = {"Worn Mail Belt","Laced Mail Belt","Linked Chain Belt","Reinforced Chain Belt","Tarnished Chain Belt","Rusted Chain Belt","Light Mail Belt","Light Chain Belt","Flimsy Chain Belt","Crusader Belt","Double Mail Belt"},
-    ["Flimsy Chain Belt"] = {"Worn Mail Belt","Laced Mail Belt","Linked Chain Belt","Reinforced Chain Belt","Tarnished Chain Belt","Rusted Chain Belt","Light Mail Belt","Light Chain Belt","Loose Chain Belt","Crusader Belt","Double Mail Belt"},
-    ["Crusader Belt"] = {"Worn Mail Belt","Laced Mail Belt","Linked Chain Belt","Reinforced Chain Belt","Tarnished Chain Belt","Rusted Chain Belt","Light Mail Belt","Light Chain Belt","Loose Chain Belt","Flimsy Chain Belt","Double Mail Belt"},
-    ["Double Mail Belt"] = {"Worn Mail Belt","Laced Mail Belt","Linked Chain Belt","Reinforced Chain Belt","Tarnished Chain Belt","Rusted Chain Belt","Light Mail Belt","Light Chain Belt","Loose Chain Belt","Flimsy Chain Belt","Crusader Belt"},
-
-    ["Polished Scale Belt"] = {"Champion's Girdle"},
-    ["Champion's Girdle"] = {"Polished Scale Belt"},
-
-    ["Shackled Girdle"] = {"Breakwater Girdle"},
-    ["Breakwater Girdle"] = {"Shackled Girdle"},
-
-    ["Jewel-encrusted Sash"] = {"Dreamer's Belt"},
-    ["Dreamer's Belt"] = {"Jewel-encrusted Sash"},
-
-    ["Warrior's Girdle"] = {"Battle Chain Belt"},
-    ["Battle Chain Belt"] = {"Warrior's Girdle"},
-
-    ["Azure Silk Belt"] = {"Abjurer's Sash"},
-    ["Abjurer's Sash"] = {"Azure Silk Belt"},
-
-    ["Blackened Defias Belt"] = {"Belt of the Trickster"},
-    ["Belt of the Trickster"] = {"Blackened Defias Belt"},
-    
-    ["Native Sash"] = {"Pagan Belt"},
-    ["Pagan Belt"] = {"Native Sash"},
-
-    ["Woven Belt"] = {"Satyrmane Sash"},
-    ["Satyrmane Sash"] = {"Woven Belt"},
-
-    ["Mistscape Sash"] = {"Frostwolf Cloth Belt"},
-    ["Frostwolf Cloth Belt"] = {"Mistscape Sash"},
-
-    ["Chieftain's Belt"] = {"Rageclaw Belt"},
-    ["Rageclaw Belt"] = {"Chieftain's Belt"},
-
-    ["Dusky Belt"] = {"Gnomish Harm Prevention Belt"},
-    ["Gnomish Harm Prevention Belt"] = {"Dusky Belt"},
-
-    ["Cabalist Belt"] = {"Serpentskin Girdle","Indomitable Belt","Clutch of Hivaxxis"},
-    ["Serpentskin Girdle"] = {"Cabalist Belt","Indomitable Belt","Clutch of Hivaxxis"},
-    ["Indomitable Belt"] = {"Cabalist Belt","Serpentskin Girdle","Clutch of Hivaxxis"},
-    ["Clutch of Hivaxxis"] = {"Cabalist Belt","Serpentskin Girdle","Indomitable Belt"},
-
-    ["Burnt Leather Belt"] = {"Tribal Belt","Greatfather Winter's Belt"},
-    ["Tribal Belt"] = {"Burnt Leather Belt","Greatfather Winter's Belt"},
-    ["Greatfather Winter's Belt"] = {"Burnt Leather Belt","Tribal Belt"},
-
-    ["Warped Leather Belt"] = {"Aquarius Belt","Unstable Belt"},
-    ["Aquarius Belt"] = {"Warped Leather Belt","Unstable Belt"},
-    ["Unstable Belt"] = {"Warped Leather Belt","Aquarius Belt"},
-
-    ["Battered Leather Belt"] = {"Feral Cord"},
-    ["Feral Cord"] = {"Battered Leather Belt"},
-
-    ["Belt of Corruption"] = {"Tracker's Belt","Clutch of Mending Winds"},
-    ["Tracker's Belt"] = {"Belt of Corruption","Clutch of Mending Winds"},
-    ["Clutch of Mending Winds"] = {"Belt of Corruption","Tracker's Belt"},
-
-    ["Insignia Belt"] = {"Excavator's Utility Belt"},
-    ["Excavator's Utility Belt"] = {"Insignia Belt"},
-    
-    ["Shepherd's Girdle"] = {"Huntsman's Belt"},
-    ["Huntsman's Belt"] = {"Shepherd's Girdle"},
-    
-    ["Raptor Hide Belt"] = {"Tharg's Shoelace","Wolf Rider's Belt"},
-    ["Tharg's Shoelace"] = {"Raptor Hide Belt","Wolf Rider's Belt"},
-    ["Wolf Rider's Belt"] = {"Raptor Hide Belt","Tharg's Shoelace"},
-
-    ["Nightshade Girdle"] = {"Imposing Belt","Grand Belt","Worg Rider Sash"},
-    ["Imposing Belt"] = {"Nightshade Girdle","Grand Belt","Worg Rider Sash"},
-    ["Grand Belt"] = {"Nightshade Girdle","Imposing Belt","Worg Rider Sash"},
-    ["Worg Rider Sash"] = {"Nightshade Girdle","Imposing Belt","Grand Belt"},
-
-    ["Hibernal Sash"] = {"Venomshroud Belt"},
-    ["Venomshroud Belt"] = {"Hibernal Sash"},
-
-    ["Veteran Girdle"] = {"Brackwater Chain Girdle"},
-    ["Brackwater Chain Girdle"] = {"Veteran Girdle"},
-
-    ["Grimgore Noose"] = {"Geomancer's Cord"},
-    ["Geomancer's Cord"] = {"Grimgore Noose"},
-
-    ["Sorcerer Sash"] = {"Turquoise Sash"},
-    ["Turquoise Sash"] = {"Sorcerer Sash"},
-
-    ["Slayer's Sash"] = {"Bloodspattered Sash"},
-    ["Bloodspattered Sash"] = {"Slayer's Sash"},
-
-    ["Outrunner's Cord"] = {"Gryphon Mail Belt"},
-    ["Gryphon Mail Belt"] = {"Outrunner's Cord"},
-
-    ["Warstrike Belt"] = {"Seared Mail Girdle","Abyssal Mail Clutch"},
-    ["Seared Mail Girdle"] = {"Warstrike Belt","Abyssal Mail Clutch"},
-    ["Abyssal Mail Clutch"] = {"Warstrike Belt","Seared Mail Girdle"},
-
-    ["Scorpashi Sash"] = {"Pridelord Girdle"},
-    ["Pridelord Girdle"] = {"Scorpashi Sash"},
-
-    ["Bristlebark Belt"] = {"Lupine Cord"},
-    ["Lupine Cord"] = {"Bristlebark Belt"},
-
-    ["Bandit Cinch"] = {"Shadowcraft Belt"},
-    ["Shadowcraft Belt"] = {"Bandit Cinch"},
-
-    ["Valconian Sash"] = {"Dawnspire Cord"},
-    ["Dawnspire Cord"] = {"Valconian Sash"},
-
-    ["Girdle of the Mentor"] = {"Omokk's Girth Restrainer"},
-    ["Omokk's Girth Restrainer"] = {"Girdle of the Mentor"},
-
-    ["Eyestalk Cord"] = {"Shadow Panther Hide Belt"},
-    ["Shadow Panther Hide Belt"] = {"Eyestalk Cord"},
-
-    ["Girdle of Insight"] = {"Frostwolf Leather Belt"},
-    ["Frostwolf Leather Belt"] = {"Girdle of Insight"},
-
-    ["Grasp of the Fallen Emperor"] = {"Girdle of Elemental Fury"},
-    ["Girdle of Elemental Fury"] = {"Grasp of the Fallen Emperor"},
-
-    -- legs
-    ["Copper Scale Leggings"] = {"Copper Chain Pants"},
-    ["Copper Chain Pants"] = {"Copper Scale Leggings"},
-
-    ["Jinxed Hoodoo Kilt"] = {"Prancing Dryad Dress-Skirt"},
-    ["Prancing Dryad Dress-Skirt"] = {"Jinxed Hoodoo Kilt"},
-
-    ["Turtle Scale Leggings"] = {"Leggings of Stonard"},
-    ["Leggings of Stonard"] = {"Turtle Scale Leggings"},
-
-    ["Fire Hardened Leggings"] = {"Legplates of the Raider"},
-    ["Legplates of the Raider"] = {"Fire Hardened Leggings"},
-
-    ["Firepike's Lucky Trousers"] = {"Blackened Defias Leggings"},
-    ["Blackened Defias Leggings"] = {"Firepike's Lucky Trousers"},
-
-    ["Handstitched Linen Britches"] = {"Flame-retardant Britches"},
-    ["Flame-retardant Britches"] = {"Handstitched Linen Britches"},
-
-    ["Patchwork Pants"] = {"Torn Pants"},
-    ["Torn Pants"] = {"Patchwork Pants"},
-
-    ["Ebony Flame Gloves"] = {"Fusemaster Mitts"},
-    ["Fusemaster Mitts"] = {"Ebony Flame Gloves"},
-
-    ["Elunarian Sarong"] = {"Swampseeker's Kilt"},
-    ["Swampseeker's Kilt"] = {"Elunarian Sarong"},
-
-    ["Ranger Leggings"] = {"Tel Co. Jungle Pants"},
-    ["Tel Co. Jungle Pants"] = {"Ranger Leggings"},
-
-    ["Wizardweave Leggings"] = {"Breaches of Commitment"},
-    ["Breaches of Commitment"] = {"Wizardweave Leggings"},
-
-    ["Brown Linen Pants"] = {"Ragged Cloth Pants"},
-    ["Ragged Cloth Pants"] = {"Brown Linen Pants"},
-
-    ["Lord's Legguards"] = {"Maul'ogg Thighguards"},
-    ["Maul'ogg Thighguards"] = {"Lord's Legguards"},
-
-    ["Greenweave Leggings"] = {"Aquaweave Leggings"},
-    ["Aquaweave Leggings"] = {"Greenweave Leggings"},
-
-    ["Phalanx Leggings"] = {"Corsair's Leggings"},
-    ["Corsair's Leggings"] = {"Phalanx Leggings"},
-
-    ["Cross-stitched Pants"] = {"Dirty Trousers"},
-    ["Dirty Trousers"] = {"Cross-stitched Pants"},
-
-    ["Stonemason Trousers"] = {"Prospect Leggings"},
-    ["Prospect Leggings"] = {"Stonemason Trousers"},
-
-    ["Brambleweed Leggings"] = {"Razzari Tribal Slacks"},
-    ["Razzari Tribal Slacks"] = {"Brambleweed Leggings"},
-
-    ["Dark Leather Pants"] = {"Nomadic Pants"},
-    ["Nomadic Pants"] = {"Dark Leather Pants"},
-
-    ["Guardian Pants"] = {"Firecracker Trousers","Old Venture Co. Pants"},
-    ["Firecracker Trousers"] = {"Guardian Pants","Old Venture Co. Pants"},
-    ["Old Venture Co. Pants"] = {"Guardian Pants","Firecracker Trousers"},
-
-    ["Lace Pants"] = {"Island Dungarees"},
-    ["Island Dungarees"] = {"Lace Pants"},
-
-    ["Cadet Leggings"] = {"Deepfrond Leggings"},
-    ["Deepfrond Leggings"] = {"Cadet Leggings"},
-
-    ["Augmented Chain Leggings"] = {"Gilneas Brigade Leggings"},
-    ["Gilneas Brigade Leggings"] = {"Augmented Chain Leggings"},
-
-    ["Bloodstained Legplates"] = {"Crimson Defender's Leggings"},
-    ["Crimson Defender's Leggings"] = {"Bloodstained Legplates"},
-	
-	["Bejeweled Legguards"] = {"Leggings of the Nullifier"},
-    ["Leggings of the Nullifier"] = {"Bejeweled Legguards"},
-	
-	["Foreman's Leggings"] = {"Leggings of Alacrity"},
-    ["Leggings of Alacrity"] = {"Foreman's Leggings"},
-
-    ["Prospector's Woolies"] = {"Dusty Leather Pants"},
-    ["Dusty Leather Pants"] = {"Prospector's Woolies"},
-	
-	["Night Watch Pantaloons"] = {"Charged Leggings"},
-    ["Charged Leggings"] = {"Night Watch Pantaloons"},
-	
-	["Searingscale Leggings"] = {"Quilguard Legguards"},
-    ["Quilguard Legguards"] = {"Searingscale Leggings"},
-	
-	["Bright Pants"] = {"Darkwatch Pants"},
-    ["Darkwatch Pants"] = {"Bright Pants"},
-	
-	["Captain's Leggings"] = {"Murkwater Leggings"},
-    ["Murkwater Leggings"] = {"Captain's Leggings"},
-
-    ["Malleable Chain Leggings"] = {"Azurite Legguards"},
-    ["Azurite Legguards"] = {"Malleable Chain Leggings"},
-
-    ["Blackened Scale Leggings"] = {"Obsidian Scaled Leggings"},
-    ["Obsidian Scaled Leggings"] = {"Blackened Scale Leggings"},
-
-    ["Ghostloom Leggings"] = {"Plagued Mind Leggings","Blighted Mind Leggings","Deathrune Leggings"},
-    ["Plagued Mind Leggings"] = {"Ghostloom Leggings","Blighted Mind Leggings","Deathrune Leggings"},
-    ["Blighted Mind Leggings"] = {"Ghostloom Leggings","Plagued Mind Leggings","Deathrune Leggings"},
-    ["Deathrune Leggings"] = {"Ghostloom Leggings","Plagued Mind Leggings","Blighted Mind Leggings"},
-
-    ["Emerald Legplates"] = {"Ancient Jade Leggings","Dreamsteel Leggings"},
-    ["Ancient Jade Leggings"] = {"Emerald Legplates","Dreamsteel Leggings"},
-    ["Dreamsteel Leggings"] = {"Ancient Jade Leggings","Emerald Legplates"},
-
-    ["Worn Mail Pants"] = {"Laced Mail Pants","Linked Chain Pants","Reinforced Chain Pants","Double Mail Pants"},
-    ["Laced Mail Pants"] = {"Worn Mail Pants","Linked Chain Pants","Reinforced Chain Pants","Double Mail Pants"},
-    ["Linked Chain Pants"] = {"Worn Mail Pants","Laced Mail Pants","Reinforced Chain Pants","Double Mail Pants"},
-    ["Reinforced Chain Pants"] = {"Worn Mail Pants","Laced Mail Pants","Linked Chain Pants","Double Mail Pants"},
-    ["Double Mail Pants"] = {"Worn Mail Pants","Laced Mail Pants","Linked Chain Pants","Reinforced Chain Pants"},
-
-    ["Chainmail Pants"] = {"Goblin Mail Leggings","Mighty Chain Pants","Fortified Leggings"},
-    ["Goblin Mail Leggings"] = {"Chainmail Pants","Mighty Chain Pants","Fortified Leggings"},
-    ["Mighty Chain Pants"] = {"Chainmail Pants","Goblin Mail Leggings","Fortified Leggings"},
-    ["Fortified Leggings"] = {"Chainmail Pants","Goblin Mail Leggings","Mighty Chain Pants"},
-
-    ["Smelting Pants"] = {"Rigid Leggings"},
-    ["Rigid Leggings"] = {"Smelting Pants"},
-
-    ["Tarnished Chain Leggings"] = {"Light Mail Leggings","Loose Chain Pants","Flimsy Chain Pants"},
-    ["Light Mail Leggings"] = {"Tarnished Chain Leggings","Loose Chain Pants","Flimsy Chain Pants"},
-    ["Loose Chain Pants"] = {"Tarnished Chain Leggings","Light Mail Leggings","Flimsy Chain Pants"},
-    ["Flimsy Chain Pants"] = {"Tarnished Chain Leggings","Light Mail Leggings","Loose Chain Pants"},
-
-    ["Darkshire Mail Leggings"] = {"Gargoyle Leggings"},
-    ["Gargoyle Leggings"] = {"Darkshire Mail Leggings"},
-
-    ["Blackforge Leggings"] = {"Mithril Scale Pants"},
-    ["Mithril Scale Pants"] = {"Blackforge Leggings"},
-
-    ["Zombie Skin Leggings"] = {"Ghostwalker Legguards"},
-    ["Ghostwalker Legguards"] = {"Zombie Skin Leggings"},
-
-    ["Brutal Legguards"] = {"Raider's Legguards"},
-    ["Raider's Legguards"] = {"Brutal Legguards"},
-
-    ["Rough Bronze Leggings"] = {"Overlinked Chain Pants"},
-    ["Overlinked Chain Pants"] = {"Rough Bronze Leggings"},
-
-    ["Laminated Scale Pants"] = {"Brass Scale Pants","Crystalforged Leggings"},
-    ["Brass Scale Pants"] = {"Laminated Scale Pants","Crystalforged Leggings"},
-    ["Crystalforged Leggings"] = {"Laminated Scale Pants","Brass Scale Pants"},
-
-    ["Sea Dog Britches"] = {"Beaded Britches"},
-    ["Beaded Britches"] = {"Sea Dog Britches"},
-
-    ["Ghostweave Pants"] = {"Sacred Burial Trousers","Stonecloth Britches","Bloody Gladiator's Britches"},
-    ["Sacred Burial Trousers"] = {"Ghostweave Pants","Stonecloth Britches","Bloody Gladiator's Britches"},
-    ["Stonecloth Britches"] = {"Ghostweave Pants","Sacred Burial Trousers","Bloody Gladiator's Britches"},
-    ["Bloody Gladiator's Britches"] = {"Ghostweave Pants","Sacred Burial Trousers","Stonecloth Britches"},
-
-    ["Black Tuxedo Pants"] = {"Tuxedo Pants"},
-    ["Tuxedo Pants"] = {"Black Tuxedo Pants"},
-
-    ["Crimson Silk Pantaloons"] = {"Felcloth Pants","Buccaneer's Pants"},
-    ["Felcloth Pants"] = {"Crimson Silk Pantaloons","Buccaneer's Pants"},
-    ["Buccaneer's Pants"] = {"Crimson Silk Pantaloons","Felcloth Pants"},
-
-    ["Knitted Pants"] = {"Simple Linen Pants"},
-    ["Simple Linen Pants"] = {"Knitted Pants"},
-
-    ["Ceremonial Leather Loincloth"] = {"Warbear Woolies"},
-    ["Warbear Woolies"] = {"Ceremonial Leather Loincloth"},
-
-    ["Interlaced Pants"] = {"Simple Britches"},
-    ["Simple Britches"] = {"Interlaced Pants"},
-
-    ["Dervish Leggings"] = {"Atal'ai Leggings"},
-    ["Atal'ai Leggings"] = {"Dervish Leggings"},
-
-    ["Regal Leggings"] = {"Stormcloth Pants"},
-    ["Stormcloth Pants"] = {"Regal Leggings"},
-
-    ["Plaguehound Leggings"] = {"Leggings of Thero-shan"},
-    ["Leggings of Thero-shan"] = {"Plaguehound Leggings"},
-
-    ["Frayed Pants"] = {"Ritual Leggings"},
-    ["Ritual Leggings"] = {"Frayed Pants"},
-
-    ["Crochet Pants"] = {"Thistlefur Pants"},
-    ["Thistlefur Pants"] = {"Crochet Pants"},
-
-    ["Imperial Red Pants"] = {"Red Mageweave Pants","Cindercloth Leggings"},
-    ["Red Mageweave Pants"] = {"Imperial Red Pants","Cindercloth Leggings"},
-    ["Cindercloth Leggings"] = {"Imperial Red Pants","Red Mageweave Pants"},
-
-    ["Stamped Trousers"] = {"Ghastly Trousers"},
-    ["Ghastly Trousers"] = {"Stamped Trousers"},
-    
-    ["Studded Pants"] = {"Troll's Bane Leggings"},
-    ["Troll's Bane Leggings"] = {"Studded Pants"},
-    
-    ["Basilisk Hide Pants"] = {"Swashbuckler's Leggings","Flamewrath Leggings"},
-    ["Swashbuckler's Leggings"] = {"Basilisk Hide Pants","Flamewrath Leggings"},
-    ["Flamewrath Leggings"] = {"Basilisk Hide Pants","Swashbuckler's Leggings"},
-    
-    ["Ferine Leggings"] = {"Shaggy Leggings"},
-    ["Shaggy Leggings"] = {"Ferine Leggings"},
-    
-    ["Saber Leggings"] = {"Imposing Pants","Wolf Rider's Leggings"},
-    ["Imposing Pants"] = {"Saber Leggings","Wolf Rider's Leggings"},
-    ["Wolf Rider's Leggings"] = {"Saber Leggings","Imposing Pants"},
-
-    ["Thick Leather Pants"] = {"Trickster's Leggings","Lightstep Leggings"},
-    ["Trickster's Leggings"] = {"Thick Leather Pants","Lightstep Leggings"},
-    ["Lightstep Leggings"] = {"Thick Leather Pants","Trickster's Leggings"},
-
-    ["Serpentskin Leggings"] = {"Indomitable Leggings"},
-    ["Indomitable Leggings"] = {"Serpentskin Leggings"},
-
-    ["Raincaller Pants"] = {"Lunar Leggings"},
-    ["Lunar Leggings"] = {"Raincaller Pants"},
-
-    ["Wild Leather Leggings"] = {"Tracker's Leggings","Tanglemoss Leggings"},
-    ["Tracker's Leggings"] = {"Wild Leather Leggings","Tanglemoss Leggings"},
-    ["Tanglemoss Leggings"] = {"Wild Leather Leggings","Tracker's Leggings"},
-
-    ["Ebonhold Leggings"] = {"Savage Gladiator Leggings"},
-    ["Savage Gladiator Leggings"] = {"Ebonhold Leggings"},
-
-    ["Golem Shard Leggings"] = {"Legplates of Vigilance","Legplates of the Eternal Guardian"},
-    ["Legplates of Vigilance"] = {"Golem Shard Leggings","Legplates of the Eternal Guardian"},
-    ["Legplates of the Eternal Guardian"] = {"Golem Shard Leggings","Legplates of Vigilance"},
-
-    ["Veteran Leggings"] = {"Brackwater Chain Legguards"},
-    ["Brackwater Chain Legguards"] = {"Veteran Leggings"},
-
-    ["Legguards of the Chromatic Defier"] = {"Legplates of the Chromatic Defier"},
-    ["Legplates of the Chromatic Defier"] = {"Legguards of the Chromatic Defier"},
-    
-    ["Deathbone Legguards"] = {"Wraithplate Leggings"},
-    ["Wraithplate Leggings"] = {"Deathbone Legguards"},
-
-    ["Gaea's Leggings"] = {"Legionnaire's Silk Legguards"},
-    ["Legionnaire's Silk Legguards"] = {"Gaea's Leggings"},
-
-    ["Jazeraint Leggings"] = {"Crusader's Leggings","Wraithscale Leggings"},
-    ["Crusader's Leggings"] = {"Jazeraint Leggings","Wraithscale Leggings"},
-    ["Wraithscale Leggings"] = {"Jazeraint Leggings","Crusader's Leggings"},
-
-    ["Brackwater Leggings"] = {"Barkmail Leggings"},
-    ["Barkmail Leggings"] = {"Brackwater Leggings"},
-
-    ["Outrunner's Legguards"] = {"Cobalt Legguards"},
-    ["Cobalt Legguards"] = {"Outrunner's Legguards"},
-
-    ["Keeper's Woolies"] = {"Jadefire Pants"},
-    ["Jadefire Pants"] = {"Keeper's Woolies"},
-
-    ["Banded Leggings"] = {"Outrider Leggings"},
-    ["Outrider Leggings"] = {"Banded Leggings"},
-
-    ["Darkweave Breeches"] = {"Abomination Skin Leggings","Nightwind Leggings"},
-    ["Abomination Skin Leggings"] = {"Darkweave Breeches","Nightwind Leggings"},
-    ["Nightwind Leggings"] = {"Darkweave Breeches","Abomination Skin Leggings"},
-
-    ["Arcanist Leggings"] = {"Shadowhide Leggings"},
-    ["Shadowhide Leggings"] = {"Arcanist Leggings"},
-
-    ["Blue Dragonscale Leggings"] = {"Scaled Leggings of Qiraji Fury"},
-    ["Scaled Leggings of Qiraji Fury"] = {"Blue Dragonscale Leggings"},
-
-    ["Outrider's Plate Legguards"] = {"Sentinel's Plate Legguards","Baneforged Leggings"},
-    ["Sentinel's Plate Legguards"] = {"Outrider's Plate Legguards","Baneforged Leggings"},
-    ["Baneforged Leggings"] = {"Outrider's Plate Legguards","Sentinel's Plate Legguards"},
-
-    ["Outrider's Chain Leggings"] = {"Outrider's Mail Leggings","Sentinel's Chain Leggings"},
-    ["Outrider's Mail Leggings"] = {"Outrider's Chain Leggings","Sentinel's Chain Leggings"},
-    ["Sentinel's Chain Leggings"] = {"Outrider's Chain Leggings","Outrider's Mail Leggings"},
-
-    -- feet
-    ["Recomposed Boots"] = {"Councillor's Boots"},
-    ["Councillor's Boots"] = {"Recomposed Boots"},
-
-    ["Excelsior Boots"] = {"Sternrock Trudgers"},
-    ["Sternrock Trudgers"] = {"Excelsior Boots"},
-
-    ["Burnt Leather Boots"] = {"Charred Boots"},
-    ["Charred Boots"] = {"Burnt Leather Boots"},
-
-    ["Feet of the Lynx"] = {"Horseskin Boots"},
-    ["Horseskin Boots"] = {"Feet of the Lynx"},
-
-    ["Blackrock Boots"] = {"Blackstone Work Boots","Goblin Mail Boots"},
-    ["Blackstone Work Boots"] = {"Blackrock Boots","Goblin Mail Boots"},
-    ["Goblin Mail Boots"] = {"Blackrock Boots","Blackstone Work Boots"},
-
-    ["Primal Boots"] = {"Demon Skin Boots"},
-    ["Demon Skin Boots"] = {"Primal Boots"},
-
-    ["Quel'dorei Guardian's Boots"] = {"Thalassian Sentinel Boots"},
-    ["Thalassian Sentinel Boots"] = {"Quel'dorei Guardian's Boots"},
-
-    ["Embossed Leather Boots"] = {"Lightkeeping Boots"},
-    ["Lightkeeping Boots"] = {"Embossed Leather Boots"},
-
-    ["Nocturnal Shoes"] = {"Oil Splattered Boots"},
-    ["Oil Splattered Boots"] = {"Nocturnal Shoes"},
-
-    ["Gray Fur Booties"] = {"Oilrag Boots"},
-    ["Oilrag Boots"] = {"Gray Fur Booties"},
-
-    ["Interlaced Boots"] = {"Westfall Rancher Boots"},
-    ["Westfall Rancher Boots"] = {"Interlaced Boots"},
-
-    ["Infantry Boots"] = {"Prospector Battle Boots"},
-    ["Prospector Battle Boots"] = {"Infantry Boots"},
-
-    ["Inscribed Leather Boots"] = {"Lighthouse Keeper Boots"},
-    ["Lighthouse Keeper Boots"] = {"Inscribed Leather Boots"},
-
-    ["Dark Leather Boots"] = {"Stormlight Boots"},
-    ["Stormlight Boots"] = {"Dark Leather Boots"},
-
-    ["Platemail Boots"] = {"Inlaid Plate Boots"},
-    ["Inlaid Plate Boots"] = {"Platemail Boots"},
-
-    ["Patchwork Shoes"] = {"Wet Socks"},
-    ["Wet Socks"] = {"Patchwork Shoes"},
-
-    ["Cadet Boots"] = {"Painted Chain Boots"},
-    ["Painted Chain Boots"] = {"Cadet Boots"},
-
-    ["Coal Drudgers"] = {"Bard's Boots"},
-    ["Bard's Boots"] = {"Coal Drudgers"},
-
-    ["Phalanx Boots"] = {"Tidehunter Greaves"},
-    ["Tidehunter Greaves"] = {"Phalanx Boots"},
-
-    ["Soft Fur-lined Shoes"] = {"Woodland Boots"},
-    ["Woodland Boots"] = {"Soft Fur-lined Shoes"},
-
-    ["Durable Boots"] = {"Blackheart Boots"},
-    ["Blackheart Boots"] = {"Durable Boots"},
-
-    ["Thin Cloth Shoes"] = {"Web Covered Shoes"},
-    ["Web Covered Shoes"] = {"Thin Cloth Shoes"},
-
-    ["Ragged Leather Boots"] = {"Ranger Training Boots","Stitched Leather Boots"},
-    ["Ranger Training Boots"] = {"Ragged Leather Boots","Stitched Leather Boots"},
-    ["Stitched Leather Boots"] = {"Ragged Leather Boots","Ranger Training Boots"},
-
-    ["Trailblazer Boots"] = {"Verdant Boots"},
-    ["Verdant Boots"] = {"Trailblazer Boots"},
-
-    ["Verdant Dreamer's Boots"] = {"Marshtreader Slippers"},
-    ["Marshtreader Slippers"] = {"Verdant Dreamer's Boots"},
-
-    ["Brackwater Boots"] = {"Treads of the Keeper"},
-    ["Treads of the Keeper"] = {"Brackwater Boots"},
-
-    ["Rigid Moccasins"] = {"Operator Boots"},
-    ["Operator Boots"] = {"Rigid Moccasins"},
-
-    ["Dusty Mail Boots"] = {"Commander's Greaves"},
-    ["Commander's Greaves"] = {"Dusty Mail Boots"},
-
-    ["Deep Striders"] = {"Warsong Boots"},
-    ["Warsong Boots"] = {"Deep Striders"},
-
-    ["Boots of Darkness"] = {"Gravedigger Boots"},
-    ["Gravedigger Boots"] = {"Boots of Darkness"},
-    
-    ["Ambassador's Boots"] = {"Convict Moccasins"},
-    ["Convict Moccasins"] = {"Ambassador's Boots"},
-    
-    ["Darkstalker Boots"] = {"Boots of Espionage"},
-    ["Boots of Espionage"] = {"Darkstalker Boots"},
-
-    ["Cindercloth Boots"] = {"Shaderun Boots"},
-    ["Shaderun Boots"] = {"Cindercloth Boots"},
-    
-    ["Jouster's Greaves"] = {"Frostchain Greaves"},
-    ["Frostchain Greaves"] = {"Jouster's Greaves"},
-    
-    ["Nimbus Boots"] = {"Boots of the Holy Mentor"},
-    ["Boots of the Holy Mentor"] = {"Nimbus Boots"},
-    
-    ["Faith Healer's Boots"] = {"Boots of Crying Rivers"},
-    ["Boots of Crying Rivers"] = {"Faith Healer's Boots"},
-
-    ["Eternal Boots"] = {"Arcanoweave Boots"},
-    ["Arcanoweave Boots"] = {"Eternal Boots"},
-
-    ["Maleki's Footwraps"] = {"Bloody Gladiator's Footwraps"},
-    ["Bloody Gladiator's Footwraps"] = {"Maleki's Footwraps"},
-
-    ["Strapped Boots"] = {"Bloody Gladiator's Boots"},
-    ["Bloody Gladiator's Boots"] = {"Strapped Boots"},
-
-    ["Hellion Boots"] = {"Boots of Blistering Flames"},
-    ["Boots of Blistering Flames"] = {"Hellion Boots"},
-
-    ["Sandals of the Insurgent"] = {"Sandals of Inner Peace"},
-    ["Sandals of Inner Peace"] = {"Sandals of the Insurgent"},
-
-    ["Junglewalker Sandals"] = {"Sandals of Lucidity","Sootwalker Sandals"},
-    ["Sandals of Lucidity"] = {"Junglewalker Sandals","Sootwalker Sandals"},
-    ["Sootwalker Sandals"] = {"Junglewalker Sandals","Sandals of Lucidity"},
-
-    ["Bramblewood Boots"] = {"Dragonspur Boots"},
-    ["Dragonspur Boots"] = {"Bramblewood Boots"},
-
-    ["Frostsaber Boots"] = {"Windwalker Boots"},
-    ["Windwalker Boots"] = {"Frostsaber Boots"},
-
-    ["Laminated Scale Boots"] = {"Basilisk Scale Boots","Polished Scale Boots"},
-    ["Basilisk Scale Boots"] = {"Laminated Scale Boots","Polished Scale Boots"},
-    ["Polished Scale Boots"] = {"Laminated Scale Boots","Basilisk Scale Boots"},
-
-    ["Savage Gladiator Greaves"] = {"Blackstone Stompers","Greaves of the Elusive"},
-    ["Blackstone Stompers"] = {"Savage Gladiator Greaves","Greaves of the Elusive"},
-    ["Greaves of the Elusive"] = {"Savage Gladiator Greaves","Blackstone Stompers"},
-
-    ["Highlander's Plate Greaves"] = {"Highlander's Lamellar Greaves","Defiler's Plate Greaves","Defiler's Lamellar Greaves","Bloody Gladiator's Greaves"},
-    ["Highlander's Lamellar Greaves"] = {"Highlander's Plate Greaves","Defiler's Plate Greaves","Defiler's Lamellar Greaves","Bloody Gladiator's Greaves"},
-    ["Defiler's Plate Greaves"] = {"Highlander's Plate Greaves","Highlander's Lamellar Greaves","Defiler's Lamellar Greaves","Bloody Gladiator's Greaves"},
-    ["Defiler's Lamellar Greaves"] = {"Highlander's Plate Greaves","Highlander's Lamellar Greaves","Defiler's Plate Greaves","Bloody Gladiator's Greaves"},
-    ["Bloody Gladiator's Greaves"] = {"Highlander's Plate Greaves","Highlander's Lamellar Greaves","Defiler's Plate Greaves","Defiler's Lamellar Greaves"},
-
-    ["Boots of the Fiery Sands"] = {"Uldum Construct Stompers"},
-    ["Uldum Construct Stompers"] = {"Boots of the Fiery Sands"},
-
-    ["Emerald Sabatons"] = {"Dreamsteel Boots","Sludge-drenched Sabatons"},
-    ["Dreamsteel Boots"] = {"Emerald Sabatons","Sludge-drenched Sabatons"},
-    ["Sludge-drenched Sabatons"] = {"Emerald Sabatons","Dreamsteel Boots"},
-
-    ["Azure-Scale Sabatons"] = {"General's Mail Boots"},
-    ["General's Mail Boots"] = {"Azure-Scale Sabatons"},
-
-    ["Temporal Bronze Boots"] = {"Templar Boots","Aurious Boots"},
-    ["Templar Boots"] = {"Temporal Bronze Boots","Aurious Boots"},
-    ["Aurious Boots"] = {"Temporal Bronze Boots","Templar Boots"},
-
-    ["Dark Runner Boots"] = {"Master's Boots","Hazecover Boots"},
-    ["Master's Boots"] = {"Dark Runner Boots","Hazecover Boots"},
-    ["Hazecover Boots"] = {"Dark Runner Boots","Master's Boots"},
-
-    ["Swashbuckler's Boots"] = {"Firemoss Boots"},
-    ["Firemoss Boots"] = {"Swashbuckler's Boots"},
-
-    ["Weather-worn Boots"] = {"Stable Boots","Rugged Boots"},
-    ["Stable Boots"] = {"Weather-worn Boots","Rugged Boots"},
-    ["Rugged Boots"] = {"Weather-worn Boots","Stable Boots"},
-
-    ["Chainmail Boots"] = {"Fortified Boots"},
-    ["Fortified Boots"] = {"Chainmail Boots"},
-
-    ["Lightweight Boots"] = {"Cliff Runner Boots"},
-    ["Cliff Runner Boots"] = {"Lightweight Boots"},
-
-    ["Darkspear Boots"] = {"Rough Bronze Boots"},
-    ["Rough Bronze Boots"] = {"Darkspear Boots"},
-
-    ["Worn Mail Boots"] = {"Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
-    ["Laced Mail Boots"] = {"Worn Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
-    ["Linked Chain Boots"] = {"Worn Mail Boots","Laced Mail Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
-    ["Reinforced Chain Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
-    ["Tarnished Chain Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
-    ["Light Mail Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Loose Chain Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
-    ["Loose Chain Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Flimsy Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
-    ["Flimsy Chain Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Outfitter Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
-    ["Outfitter Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Flimsy Chain Boots","Double Mail Boots","Scrapmetal Boots","Hardlink Boots"},
-    ["Double Mail Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Outfitter Boots","Flimsy Chain Boots","Scrapmetal Boots","Hardlink Boots"},
-    ["Scrapmetal Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Outfitter Boots","Flimsy Chain Boots","Double Mail Boots","Hardlink Boots"},
-    ["Hardlink Boots"] = {"Worn Mail Boots","Laced Mail Boots","Linked Chain Boots","Reinforced Chain Boots","Tarnished Chain Boots","Light Mail Boots","Loose Chain Boots","Outfitter Boots","Flimsy Chain Boots","Double Mail Boots","Scrapmetal Boots"},
-
-    ["Gold Militia Boots"] = {"Soldier's Boots"},
-    ["Soldier's Boots"] = {"Gold Militia Boots"},
-
-    ["Rusted Chain Boots"] = {"Light Chain Boots"},
-    ["Light Chain Boots"] = {"Rusted Chain Boots"},
-
-    ["Perrine's Boots"] = {"Raider's Boots"},
-    ["Raider's Boots"] = {"Perrine's Boots"},
-
-    ["Trouncing Boots"] = {"Shadowy Mail Greaves"},
-    ["Shadowy Mail Greaves"] = {"Trouncing Boots"},
-
-    ["Padded Lamellar Boots"] = {"Greaves of the People's Militia"},
-    ["Greaves of the People's Militia"] = {"Padded Lamellar Boots"},
-
-    ["Watcher's Boots"] = {"Vital Boots"},
-    ["Vital Boots"] = {"Watcher's Boots"},
-
-    ["Boots of the Shrieker"] = {"Boots of Ferocity"},
-    ["Boots of Ferocity"] = {"Boots of the Shrieker"},
-
-    ["Wandering Boots"] = {"Royal Boots"},
-    ["Royal Boots"] = {"Wandering Boots"},
-
-    ["Silver-thread Boots"] = {"Cadaverous Walkers"},
-    ["Cadaverous Walkers"] = {"Silver-thread Boots"},
-
-    ["Regal Boots"] = {"Stormcloth Boots"},
-    ["Stormcloth Boots"] = {"Regal Boots"},
-
-    ["Nightsky Boots"] = {"Dragonrider Boots"},
-    ["Dragonrider Boots"] = {"Nightsky Boots"},
-
-    ["Twilight Boots"] = {"Raincaller Boots"},
-    ["Raincaller Boots"] = {"Twilight Boots"},
-
-    ["Cabalist Boots"] = {"Rageclaw Boots","Incendosaur Skin Boots"},
-    ["Rageclaw Boots"] = {"Cabalist Boots","Incendosaur Skin Boots"},
-    ["Incendosaur Skin Boots"] = {"Cabalist Boots","Rageclaw Boots"},
-
-    ["Hibernal Boots"] = {"Venomshroud Boots"},
-    ["Venomshroud Boots"] = {"Hibernal Boots"},
-
-    ["Crochet Boots"] = {"Geomancer's Boots"},
-    ["Geomancer's Boots"] = {"Crochet Boots"},
-
-    ["Imperial Red Boots"] = {"Rancor Boots"},
-    ["Rancor Boots"] = {"Imperial Red Boots"},
-
-    ["Soft Wool Boots"] = {"Mystic's Slippers","Wolfskin Boots"},
-    ["Mystic's Slippers"] = {"Soft Wool Boots","Wolfskin Boots"},
-    ["Wolfskin Boots"] = {"Soft Wool Boots","Mystic's Slippers"},
-
-    ["Web-covered Boots"] = {"Simple Linen Boots"},
-    ["Simple Linen Boots"] = {"Web-covered Boots"},
-
-    ["Shimmering Boots"] = {"Ivycloth Boots"},
-    ["Ivycloth Boots"] = {"Shimmering Boots"},
-
-    ["Black Whelp Boots"] = {"Bandit Boots"},
-    ["Bandit Boots"] = {"Black Whelp Boots"},
-
-    ["Tiger Hide Boots"] = {"Bristlebark Boots"},
-    ["Bristlebark Boots"] = {"Tiger Hide Boots"},
-
-    ["Arcane Boots"] = {"Mooncloth Boots"},
-    ["Mooncloth Boots"] = {"Arcane Boots"},
-
-    ["Serpentskin Boots"] = {"Indomitable Boots"},
-    ["Indomitable Boots"] = {"Serpentskin Boots"},
-
-    ["Necropile Boots"] = {"Runed Stygian Boots","Southsea Mojo Boots","Flarecore Boots","Runewarder's Boots"},
-    ["Runed Stygian Boots"] = {"Necropile Boots","Southsea Mojo Boots","Flarecore Boots","Runewarder's Boots"},
-    ["Southsea Mojo Boots"] = {"Necropile Boots","Runed Stygian Boots","Flarecore Boots","Runewarder's Boots"},
-    ["Flarecore Boots"] = {"Necropile Boots","Runed Stygian Boots","Southsea Mojo Boots","Runewarder's Boots"},
-    ["Runewarder's Boots"] = {"Necropile Boots","Runed Stygian Boots","Southsea Mojo Boots","Flarecore Boots"},
-
-    ["Chieftain's Boots"] = {"Scorpashi Slippers","Pridelord Boots"},
-    ["Scorpashi Slippers"] = {"Chieftain's Boots","Pridelord Boots"},
-    ["Pridelord Boots"] = {"Chieftain's Boots","Scorpashi Slippers"},
-
-    ["Hardened Leather Boots"] = {"Infiltrator Boots"},
-    ["Infiltrator Boots"] = {"Hardened Leather Boots"},
-
-    ["Sage's Boots"] = {"Boots of the Full Moon"},
-    ["Boots of the Full Moon"] = {"Sage's Boots"},
-
-    ["Mistwalker Boots"] = {"Buccaneer's Boots","Bloodsail Boots"},
-    ["Buccaneer's Boots"] = {"Mistwalker Boots","Bloodsail Boots"},
-    ["Bloodsail Boots"] = {"Mistwalker Boots","Buccaneer's Boots"},
-
-    ["Warrior's Boots"] = {"Battle Chain Boots","Deathguard Boots"},
-    ["Battle Chain Boots"] = {"Warrior's Boots","Deathguard Boots"},
-    ["Deathguard Boots"] = {"Warrior's Boots","Battle Chain Boots"},
-
-    ["Veteran Boots"] = {"Brackwater Chain Greaves"},
-    ["Brackwater Chain Greaves"] = {"Veteran Boots"},
-
-    ["Stonecloth Boots"] = {"Windseeker Boots"},
-    ["Windseeker Boots"] = {"Stonecloth Boots"},
-
-    ["Silksand Boots"] = {"Lightheel Boots"},
-    ["Lightheel Boots"] = {"Silksand Boots"},
-
-    ["Battlechaser's Greaves"] = {"Heroic Greaves"},
-    ["Heroic Greaves"] = {"Battlechaser's Greaves"},
-
-    ["Verdant Footpads"] = {"Drudge Boots"},
-    ["Drudge Boots"] = {"Verdant Footpads"},
-
-    ["Swift Boots"] = {"Tromping Miner's Boots","Archer's Boots"},
-    ["Tromping Miner's Boots"] = {"Swift Boots","Archer's Boots"},
-    ["Archer's Boots"] = {"Swift Boots","Tromping Miner's Boots"},
-
-    ["Ash Covered Boots"] = {"Boots of the Vanguard","Miasma Walkers"},
-    ["Boots of the Vanguard"] = {"Ash Covered Boots","Miasma Walkers"},
-    ["Miasma Walkers"] = {"Ash Covered Boots","Boots of the Vanguard"},
-
-    ["Crystal Lined Greaves"] = {"Crystal Encrusted Greaves"},
-    ["Crystal Encrusted Greaves"] = {"Crystal Lined Greaves"},
-
-    ["Sandstorm Boots"] = {"Dunestalker's Boots"},
-    ["Dunestalker's Boots"] = {"Sandstorm Boots"},
-
-    -- bow
-    ["Lunaris Bow"] = {"Bow of Alah’Thalas"},
-    ["Bow of Alah’Thalas"] = {"Lunaris Bow"},
-
-    ["Cliffrunner's Aim"] = {"'Jadewood' Longbow"},
-    ["'Jadewood' Longbow"] = {"Cliffrunner's Aim"},
-
-    ["Primitive Bow"] = {"Worn Wooden Bow"},
-    ["Worn Wooden Bow"] = {"Primitive Bow"},
-
-    ["Laminated Recurve Bow"] = {"Bow of the Night Huntress"},
-    ["Bow of the Night Huntress"] = {"Laminated Recurve Bow"},
-
-    ["Ranger Bow"] = {"Bow of the Grove"},
-    ["Bow of the Grove"] = {"Ranger Bow"},
-
-    ["Long Battle Bow"] = {"Windbreaker"},
-    ["Windbreaker"] = {"Long Battle Bow"},
-
-    ["Gorewood Bow"] = {"Nature's Call"},
-    ["Nature's Call"] = {"Gorewood Bow"},
-
-    ["Fine Shortbow"] = {"Longbow","Brackenwall Longbow"},
-    ["Longbow"] = {"Fine Shortbow","Brackenwall Longbow"},
-    ["Brackenwall Longbow"] = {"Fine Shortbow","Longbow"},
-
-    ["Worn Shortbow"] = {"Ogre Toothpick Shooter"},
-    ["Ogre Toothpick Shooter"] = {"Worn Shortbow"},
-
-    ["Balanced Long Bow"] = {"Fine Longbow","Recurve Long Bow","Bloodscalp Longbow"},
-    ["Fine Longbow"] = {"Balanced Long Bow","Recurve Long Bow","Bloodscalp Longbow"},
-    ["Recurve Long Bow"] = {"Balanced Long Bow","Fine Longbow","Bloodscalp Longbow"},
-    ["Bloodscalp Longbow"] = {"Balanced Long Bow","Fine Longbow","Recurve Long Bow"},
-
-    ["Sturdy Recurve"] = {"Centaur Longbow"},
-    ["Centaur Longbow"] = {"Sturdy Recurve"},
-
-    ["Polished Shortbow"] = {"Thistlewood Bow"},
-    ["Thistlewood Bow"] = {"Polished Shortbow"},
-
-    ["Quillfire Bow"] = {"Deep Strike Bow"},
-    ["Deep Strike Bow"] = {"Quillfire Bow"},
-    
-    -- gun
-    ["Owlsight Rifle"] = {"Brave's Rifle"},
-    ["Brave's Rifle"] = {"Owlsight Rifle"},
-
-    ["Beasthunter's Blunderbuss"] = {"Brigade Rifle"},
-    ["Brigade Rifle"] = {"Beasthunter's Blunderbuss"},
-
-    ["Skorn's Rifle"] = {"Miscalibrated Rifle"},
-    ["Miscalibrated Rifle"] = {"Skorn's Rifle"},
-
-    ["Rough Boomstick"] = {"Polished Boomstick"},
-    ["Polished Boomstick"] = {"Rough Boomstick"},
-
-    ["Light Hunting Rifle"] = {"Hawkwind Rifle"},
-    ["Hawkwind Rifle"] = {"Light Hunting Rifle"},
-
-    ["Blastershot Launcher"] = {"Flintlocke's Hand Cannon"},
-    ["Flintlocke's Hand Cannon"] = {"Blastershot Launcher"},
-
-    ["Toxin Injector"] = {"Ghoulslayer Shotgun"},
-    ["Ghoulslayer Shotgun"] = {"Toxin Injector"},
-
-    ["Ricochet Blunderbuss"] = {"Compact Shotgun"},
-    ["Compact Shotgun"] = {"Ricochet Blunderbuss"},
-
-    ["Solid Blunderbuss"] = {"Lovingly Crafted Boomstick"},
-    ["Lovingly Crafted Boomstick"] = {"Solid Blunderbuss"},
-
-    ["Moonsight Rifle"] = {"Burstshot Harquebus","Wobblefree Fizz-rifle"},
-    ["Burstshot Harquebus"] = {"Moonsight Rifle","Wobblefree Fizz-rifle"},
-    ["Wobblefree Fizz-rifle"] = {"Moonsight Rifle","Burstshot Harquebus"},
-
-    ["Precisely Calibrated Boomstick"] = {"Sharpshooter Harquebus"},
-    ["Sharpshooter Harquebus"] = {"Precisely Calibrated Boomstick"},
-
-    ["Blasting Hackbut"] = {"Farmer Dalson's Shotgun"},
-    ["Farmer Dalson's Shotgun"] = {"Blasting Hackbut"},
-
-    ["Galgann's Fireblaster"] = {"Mithril Blunderbuss","Willey's Portable Howitzer"},
-    ["Mithril Blunderbuss"] = {"Galgann's Fireblaster","Willey's Portable Howitzer"},
-    ["Willey's Portable Howitzer"] = {"Galgann's Fireblaster","Mithril Blunderbuss"},
-
-    ["Rust-covered Blunderbuss"] = {"Cheap Blunderbuss","Water-logged Musket"},
-    ["Cheap Blunderbuss"] = {"Rust-covered Blunderbuss","Water-logged Musket"},
-    ["Water-logged Musket"] = {"Rust-covered Blunderbuss","Cheap Blunderbuss"},
-
-    ["Shoddy Blunderbuss"] = {"Long-barreled Musket"},
-    ["Long-barreled Musket"] = {"Shoddy Blunderbuss"},
-
-    ["Hunter's Boomstick"] = {"Hunting Rifle","Otherworldly Rifle"},
-    ["Hunting Rifle"] = {"Hunter's Boomstick","Otherworldly Rifle"},
-    ["Otherworldly Rifle"] = {"Hunter's Boomstick","Hunting Rifle"},
-
-    ["Ironweaver"] = {"Smokey's Explosive Launcher"},
-    ["Smokey's Explosive Launcher"] = {"Ironweaver"},
-
-    ["Xorothian Firestick"] = {"Crystal Slugthrower"},
-    ["Crystal Slugthrower"] = {"Xorothian Firestick"},
-
-    -- crossbow
-    ["Stoneshatter"] = {"Stunning Crossbow"},
-    ["Stunning Crossbow"] = {"Stoneshatter"},
-
-    ["Steelarrow Crossbow"] = {"Lordaeron Rusty Crossbow"},
-    ["Lordaeron Rusty Crossbow"] = {"Steelarrow Crossbow"},
-
-    ["Heavy Crossbow"] = {"Goldplated Royal Crossbow"},
-    ["Goldplated Royal Crossbow"] = {"Heavy Crossbow"},
-
-    ["Light Crossbow"] = {"Fine Light Crossbow","Theramore Arbalest"},
-    ["Fine Light Crossbow"] = {"Light Crossbow","Theramore Arbalest"},
-    ["Theramore Arbalest"] = {"Light Crossbow","Fine Light Crossbow"},
-
-    ["Carapace Spine Crossbow"] = {"Abomination Crossbow"},
-    ["Abomination Crossbow"] = {"Carapace Spine Crossbow"},
-
-    ["Blackcrow"] = {"Crystalpine Stinger","Heartseeking Crossbow","Fahrad's Reloading Repeater"},
-    ["Crystalpine Stinger"] = {"Blackcrow","Heartseeking Crossbow","Fahrad's Reloading Repeater"},
-    ["Heartseeking Crossbow"] = {"Blackcrow","Crystalpine Stinger","Fahrad's Reloading Repeater"},
-    ["Fahrad's Reloading Repeater"] = {"Blackcrow","Crystalpine Stinger","Heartseeking Crossbow"},
-
-    -- wand
-    ["Dancing Flame"] = {"Crackling Zapper"},
-    ["Crackling Zapper"] = {"Dancing Flame"},
-
-    ["Gloom Wand"] = {"Webwood Branch","Withered Wand"},
-    ["Webwood Branch"] = {"Gloom Wand","Withered Wand"},
-    ["Withered Wand"] = {"Gloom Wand","Webwood Branch"},
-
-    ["Primitive Walking Stick"] = {"Crooked Tree Branch"},
-    ["Crooked Tree Branch"] = {"Primitive Walking Stick"},
-
-    ["Cryptwatcher's Call"] = {"Plaguerot Sprig"},
-    ["Plaguerot Sprig"] = {"Cryptwatcher's Call"},
-	
-	["Stormrager"] = {"Wand of the Eclipse"},
-    ["Wand of the Eclipse"] = {"Stormrager"},
-	
-	["Skul's Ghastly Touch"] = {"Skullrattler"},
-    ["Skullrattler"] = {"Skul's Ghastly Touch"},
-
-    ["Skycaller"] = {"Lodestone"},
-    ["Lodestone"] = {"Skycaller"},
-
-    ["Blazing Wand"] = {"Alchemist's Wand"},
-    ["Alchemist's Wand"] = {"Blazing Wand"},
-
-    ["Cinder Wand"] = {"Excavation Rod","Sizzle Stick"},
-    ["Excavation Rod"] = {"Cinder Wand","Sizzle Stick"},
-    ["Sizzle Stick"] = {"Cinder Wand","Excavation Rod"},
-
-    ["Fire Wand"] = {"Dwarven Flamestick","Flaring Baton","Chilton Wand"},
-    ["Dwarven Flamestick"] = {"Fire Wand","Flaring Baton","Chilton Wand"},
-    ["Flaring Baton"] = {"Fire Wand","Dwarven Flamestick","Chilton Wand"},
-    ["Chilton Wand"] = {"Fire Wand","Dwarven Flamestick","Flaring Baton"},
-
-    ["Charred Razormane Wand"] = {"Torchlight Wand"},
-    ["Torchlight Wand"] = {"Charred Razormane Wand"},
-
-    ["Burning Wand"] = {"Pitchwood Wand"},
-    ["Pitchwood Wand"] = {"Burning Wand"},
-
-    ["Wand of Decay"] = {"Necrotic Wand","Diathorus' Claw"},
-    ["Necrotic Wand"] = {"Wand of Decay","Diathorus' Claw"},
-    ["Diathorus' Claw"] = {"Wand of Decay","Necrotic Wand"},
-
-    ["Gnomish Zapper"] = {"Wand of Arcane Potency"},
-    ["Wand of Arcane Potency"] = {"Gnomish Zapper"},
-
-    ["Icefury Wand"] = {"Mana Channeling Wand"},
-    ["Mana Channeling Wand"] = {"Icefury Wand"},
-
-    ["Wand of Fates"] = {"Wand of the Whispering Dead"},
-    ["Wand of the Whispering Dead"] = {"Wand of Fates"},
-
-    -- dagger
-    ["Sharp Kitchen Knife"] = {"Rusted Pirate Dagger"},
-    ["Rusted Pirate Dagger"] = {"Sharp Kitchen Knife"},
-
-    ["Sharpened Letter Opener"] = {"Jeweled Letter Opener"},
-    ["Jeweled Letter Opener"] = {"Sharpened Letter Opener"},
-
-    ["War Knife"] = {"Shadowforge Skinner"},
-    ["Shadowforge Skinner"] = {"War Knife"},
-
-    ["Thun'grim's Dagger"] = {"Bleaktalon","Agal's Ambusher"},
-    ["Bleaktalon"] = {"Thun'grim's Dagger","Agal's Ambusher"},
-    ["Agal's Ambusher"] = {"Thun'grim's Dagger","Bleaktalon"},
-
-    ["Relic Blade"] = {"Blade of Caliban"},
-    ["Blade of Caliban"] = {"Relic Blade"},
-
-    ["Ritual Blade"] = {"The Dark Knife"},
-    ["The Dark Knife"] = {"Ritual Blade"},
-
-    ["Hunting Knife"] = {"Ornate Dagger of Jalvan"},
-    ["Ornate Dagger of Jalvan"] = {"Hunting Knife"},
-
-    ["Simple Dagger"] = {"Pocket Knife"},
-    ["Pocket Knife"] = {"Simple Dagger"},
-
-    ["Sentinel's Blade"] = {"Kaldorei Side-Blade"},
-    ["Kaldorei Side-Blade"] = {"Sentinel's Blade"},
-
-    ["Vampiric Kris"] = {"Chanting Blade"},
-    ["Chanting Blade"] = {"Vampiric Kris"},
-
-    ["Barman Shanker"] = {"Broken Bottle"},
-    ["Broken Bottle"] = {"Barman Shanker"},
-	
-	["Brackclaw"] = {"Toxic Ripper"},
-    ["Toxic Ripper"] = {"Brackclaw"},
-	
-	["Dire Nail"] = {"Venom's Touch","Leeching Fang"},
-    ["Venom's Touch"] = {"Dire Nail","Leeching Fang"},
-	["Leeching Fang"] = {"Dire Nail","Venom's Touch"},
-
-    ["Hookfang Shanker"] = {"Windchanneler"},
-    ["Windchanneler"] = {"Hookfang Shanker"},
-	
-	["Bite of Serra'kis"] = {"Rotmaw's Tooth"},
-    ["Rotmaw's Tooth"] = {"Bite of Serra'kis"},
-
-    ["Gift of the Elven Magi"] = {"Coldheart Icicle"},
-    ["Coldheart Icicle"] = {"Gift of the Elven Magi"},
-
-    ["Emerald Dragonfang"] = {"Lucid Nightmare"},
-    ["Lucid Nightmare"] = {"Emerald Dragonfang"},
-
-    ["Gutwrencher"] = {"The Ripper"},
-    ["The Ripper"] = {"Gutwrencher"},
-
-    ["Black Crystal Dagger"] = {"Betrayer"},
-    ["Betrayer"] = {"Black Crystal Dagger"},
-
-    ["Small Green Dagger"] = {"Compact Fighting Knife"},
-    ["Compact Fighting Knife"] = {"Small Green Dagger"},
-
-    ["Fine Pointed Dagger"] = {"Glinting Steel Dagger","Spiked Dagger"},
-    ["Glinting Steel Dagger"] = {"Fine Pointed Dagger","Spiked Dagger"},
-    ["Spiked Dagger"] = {"Fine Pointed Dagger","Glinting Steel Dagger"},
-
-    ["Anvilmar Knife"] = {"Militia Dagger","Forsaken Dagger","Thistlewood Dagger","Camping Knife"},
-    ["Militia Dagger"] = {"Anvilmar Knife","Forsaken Dagger","Thistlewood Dagger","Camping Knife"},
-    ["Forsaken Dagger"] = {"Anvilmar Knife","Militia Dagger","Thistlewood Dagger","Camping Knife"},
-    ["Thistlewood Dagger"] = {"Anvilmar Knife","Militia Dagger","Forsaken Dagger","Camping Knife"},
-    ["Camping Knife"] = {"Anvilmar Knife","Militia Dagger","Forsaken Dagger","Thistlewood Dagger"},
-
-    ["Whittling Knife"] = {"Fisherman Knife","Bloodstained Knife"},
-    ["Fisherman Knife"] = {"Whittling Knife","Bloodstained Knife"},
-    ["Bloodstained Knife"] = {"Whittling Knife","Fisherman Knife"},
-
-    ["Worn Dagger"] = {"Deadman Dagger","Small Knife","The 'Slip' Dagger"},
-    ["Deadman Dagger"] = {"Worn Dagger","Small Knife","The 'Slip' Dagger"},
-    ["Small Knife"] = {"Worn Dagger","Deadman Dagger","The 'Slip' Dagger"},
-    ["The 'Slip' Dagger"] = {"Worn Dagger","Deadman Dagger","Small Knife"},
-
-    ["Cross Dagger"] = {"Distracting Dagger"},
-    ["Distracting Dagger"] = {"Cross Dagger"},
-
-    ["Small Dagger"] = {"Scuffed Dagger","Arcanist Dagger"},
-    ["Scuffed Dagger"] = {"Small Dagger","Arcanist Dagger"},
-    ["Arcanist Dagger"] = {"Small Dagger","Scuffed Dagger"},
-
-    ["Deft Stiletto"] = {"Deadly Bronze Poniard"},
-    ["Deadly Bronze Poniard"] = {"Deft Stiletto"},
-
-    ["Small Hand Blade"] = {--[["Camping Knife",]]"Balanced Hand Blade"},
-    --["Camping Knife"] = {"Small Hand Blade","Balanced Hand Blade"},
-    ["Balanced Hand Blade"] = {"Small Hand Blade"--[[,"Camping Knife"]]},
-
-    ["Torturing Poker"] = {"Flarethorn","Half-O-Staff"},
-    ["Flarethorn"] = {"Torturing Poker","Half-O-Staff"},
-    ["Half-O-Staff"] = {"Torturing Poker","Flarethorn"},
-
-    ["Ebon Shiv"] = {"Thorium Stiletto"},
-    ["Thorium Stiletto"] = {"Ebon Shiv"},
-
-    ["Serrated Knife"] = {"Battle Knife","Demonblood Dirk"},
-    ["Battle Knife"] = {"Serrated Knife","Demonblood Dirk"},
-    ["Demonblood Dirk"] = {"Serrated Knife","Battle Knife"},
-
-    ["Lifeforce Dirk"] = {"Gemstone Dagger"},
-    ["Gemstone Dagger"] = {"Lifeforce Dirk"},
-
-    ["Silent Hunter"] = {"Specter's Blade"},
-    ["Specter's Blade"] = {"Silent Hunter"},
-
-    ["Talon of Vultros"] = {"Frightalon"},
-    ["Frightalon"] = {"Talon of Vultros"},
-
-    ["Blade of the New Moon"] = {"The Shadowfoot Stabber"},
-    ["The Shadowfoot Stabber"] = {"Blade of the New Moon"},
-
-    ["Sageclaw"] = {"Mindfang"},
-    ["Mindfang"] = {"Sageclaw"},
-
-    ["Dagger of Veiled Shadows"] = {"Kris of Unspoken Names","Sandswept Obsidian Dagger"},
-    ["Kris of Unspoken Names"] = {"Dagger of Veiled Shadows","Sandswept Obsidian Dagger"},
-    ["Sandswept Obsidian Dagger"] = {"Kris of Unspoken Names","Dagger of Veiled Shadows"},
-
-    -- fist
-    ["Vilerend Slicer"] = {"Thornwood Claw","Serpent's Bite"},
-    ["Thornwood Claw"] = {"Vilerend Slicer","Serpent's Bite"},
-    ["Serpent's Bite"] = {"Vilerend Slicer","Thornwood Claw"},
-
-	["Rockfist"] = {"Pummeler Gauntlet"},
-    ["Pummeler Gauntlet"] = {"Rockfist"},
-	
-	["Willey's Back Scratcher"] = {"Willbreaker"},
-    ["Willbreaker"] = {"Willey's Back Scratcher"},
-
-    ["Eskhandar's Right Claw"] = {"Claw of Senthos"},
-    ["Claw of Senthos"] = {"Eskhandar's Right Claw"},
-
-    ["Right-Handed Blades"] = {"Letashaz's Right Claw"},
-    ["Letashaz's Right Claw"] = {"Right-Handed Blades"},
-
-    ["Blood Talon"] = {"Bloodhowler","Claw of the Worgen"},
-    ["Bloodhowler"] = {"Blood Talon","Claw of the Worgen"},
-    ["Claw of the Worgen"] = {"Blood Talon","Bloodhowler"},
-
-    ["Hurd Smasher"] = {"Lefty's Brass Knuckle","Stormfist"},
-    ["Lefty's Brass Knuckle"] = {"Hurd Smasher","Stormfist"},
-    ["Stormfist"] = {"Hurd Smasher","Lefty's Brass Knuckle"},
-
-    ["Right-Handed Brass Knuckles"] = {"Left-Handed Brass Knuckles"},
-    ["Left-Handed Brass Knuckles"] = {"Right-Handed Brass Knuckles"},
-
-    -- staff
-    ["Priestess of Elune's Staff"] = {"Tyrande's Staff"},
-    ["Tyrande's Staff"] = {"Priestess of Elune's Staff"},
-
-    ["Arcane Staff"] = {"Pearltip Staff"},
-    ["Pearltip Staff"] = {"Arcane Staff"},
-
-    ["Dreamwatcher Staff"] = {"Femur Staff"},
-    ["Femur Staff"] = {"Dreamwatcher Staff"},
-
-    ["Frostmane Staff"] = {"Powered Iron Staff"},
-    ["Powered Iron Staff"] = {"Frostmane Staff"},
-
-    ["Witching Stave"] = {"Infused Briarwood Staff"},
-    ["Infused Briarwood Staff"] = {"Witching Stave"},
-
-    ["Battle Staff"] = {"Telraz's Jeweled Staff"},
-    ["Telraz's Jeweled Staff"] = {"Battle Staff"},
-
-    ["Long Bo Staff"] = {"Staff of Shackled Lightning"},
-    ["Staff of Shackled Lightning"] = {"Long Bo Staff"},
-
-    ["Crescent Staff"] = {"Moonseeker Staff"},
-    ["Moonseeker Staff"] = {"Crescent Staff"},
-
-    ["Gnarled Short Staff"] = {"Staff of Insom'ni"},
-    ["Staff of Insom'ni"] = {"Gnarled Short Staff"},
-
-    ["Foamspittle Staff"] = {"Staff of the Arcane Path","Staff of the Ogre Seer"},
-    ["Staff of the Arcane Path"] = {"Foamspittle Staff","Staff of the Ogre Seer"},
-    ["Staff of the Ogre Seer"] = {"Foamspittle Staff","Staff of the Arcane Path"},
-
-    ["Magus Long Staff"] = {"Sealbreaker Staff"},
-    ["Sealbreaker Staff"] = {"Magus Long Staff"},
-	
-    ["Diviner Long Staff"] = {"Verdant Cane","Evermoon Staff"},
-    ["Verdant Cane"] = {"Diviner Long Staff","Evermoon Staff"},
-    ["Evermoon Staff"] = {"Diviner Long Staff","Verdant Cane"},
-
-	["Cryptbone Staff"] = {"Plaguerot Staff"},
-    ["Plaguerot Staff"] = {"Cryptbone Staff"},
-	
-	["Farmer's Broom"] = {"Stablehand Broom"},
-    ["Stablehand Broom"] = {"Farmer's Broom"},
-
-    ["Enchanted Azsharite Felbane Staff"] = {"Doomcaller Staff","Varimathras' Cunning"},
-    ["Doomcaller Staff"] = {"Enchanted Azsharite Felbane Staff","Varimathras' Cunning"},
-    ["Varimathras' Cunning"] = {"Enchanted Azsharite Felbane Staff","Doomcaller Staff"},
-	
-	["Lord Valthalak's Staff of Command"] = {"Timewarper's Staff"},
-    ["Timewarper's Staff"] = {"Lord Valthalak's Staff of Command"},
-	
-	["Staff of Balzaphon"] = {"Riftweaver"},
-    ["Riftweaver"] = {"Staff of Balzaphon"},
-
-    ["Windweaver Staff"] = {"Batu'kar of the Second Khan"},
-    ["Batu'kar of the Second Khan"] = {"Windweaver Staff"},
-
-    ["Balanced Fighting Stick"] = {"Oakthrush Staff","Smooth Wooden Staff"},
-    ["Oakthrush Staff"] = {"Balanced Fighting Stick","Smooth Wooden Staff"},
-    ["Smooth Wooden Staff"] = {"Balanced Fighting Stick","Oakthrush Staff"},
-
-    ["Spellforce Rod"] = {"Lorekeeper's Staff","Moonshadow Stave","Guardian Staff","Staff of Ushered Ruination","Hexxer Staff"},
-    ["Lorekeeper's Staff"] = {"Spellforce Rod","Moonshadow Stave","Guardian Staff","Staff of Ushered Ruination","Hexxer Staff"},
-    ["Moonshadow Stave"] = {"Spellforce Rod","Lorekeeper's Staff","Guardian Staff","Staff of Ushered Ruination","Hexxer Staff"},
-    ["Guardian Staff"] = {"Spellforce Rod","Lorekeeper's Staff","Moonshadow Stave","Staff of Ushered Ruination","Hexxer Staff"},
-    ["Staff of Ushered Ruination"] = {"Spellforce Rod","Lorekeeper's Staff","Moonshadow Stave","Guardian Staff","Hexxer Staff"},
-    ["Hexxer Staff"] = {"Spellforce Rod","Lorekeeper's Staff","Moonshadow Stave","Guardian Staff","Staff of Ushered Ruination"},
-
-    ["Heavy War Staff"] = {"Stout War Staff"},
-    ["Stout War Staff"] = {"Heavy War Staff"},
-    
-    ["Staff of the Shade"] = {"Advisor's Gnarled Staff"},
-    ["Advisor's Gnarled Staff"] = {"Staff of the Shade"},
-
-    ["Staff of the Purifier"] = {"Redemption","Cleric's Bent Staff"},
-    ["Redemption"] = {"Staff of the Purifier","Cleric's Bent Staff"},
-    ["Cleric's Bent Staff"] = {"Redemption","Staff of the Purifier"},
-
-    -- polearm
-    ["Pitchfork"] = {"Livingstone Pitchfork"},
-    ["Livingstone Pitchfork"] = {"Pitchfork"},
-
-    ["Eyegouger"] = {"Garran's Pike"},
-    ["Garran's Pike"] = {"Eyegouger"},
-
-    ["Bloodpike"] = {"Krog's Pike","Savage Spear"},
-    ["Krog's Pike"] = {"Bloodpike","Savage Spear"},
-    ["Savage Spear"] = {"Bloodpike","Krog's Pike"},
-
-    ["Diabolic Skiver"] = {"Halberd of the Bronze Defender"},
-    ["Halberd of the Bronze Defender"] = {"Diabolic Skiver"},
-
-    ["The Needler"] = {"Satyr Poker"},
-    ["Satyr Poker"] = {"The Needler"},
-	
-	["Bonechewer"] = {"Stormwind Guard Spear"},
-    ["Stormwind Guard Spear"] = {"Bonechewer"},
-	
-	["Monstrous Glaive"] = {"Defender's Glaive"},
-    ["Defender's Glaive"] = {"Monstrous Glaive"},
-
-    ["Headspike"] = {"Cryptkeeper's Pike","Ceremonial Gilnean Pike"},
-    ["Cryptkeeper's Pike"] = {"Headspike","Ceremonial Gilnean Pike"},
-    ["Ceremonial Gilnean Pike"] = {"Headspike","Cryptkeeper's Pike"},
-	
-	["Gargoyle's Bite"] = {"Sharpened Iron Bar"},
-    ["Sharpened Iron Bar"] = {"Gargoyle's Bite"},
-	
-    ["Jadestone Skewer"] = {"Hunting Spear"},
-    ["Hunting Spear"] = {"Jadestone Skewer"},
-
-    -- 2h sword
-    ["X'caliboar"] = {"Blade of Marauder Kings"},
-    ["Blade of Marauder Kings"] = {"X'caliboar"},
-
-    ["Combatant Claymore"] = {"Sword of Laneron"},
-    ["Sword of Laneron"] = {"Combatant Claymore"},
-
-    ["Rusted Claymore"] = {"Rusted Bastard Sword"},
-    ["Rusted Bastard Sword"] = {"Rusted Claymore"},
-
-    ["Huge Ogre Sword"] = {"Garalon's Might"},
-    ["Garalon's Might"] = {"Huge Ogre Sword"},
-
-	["Wolfblood"] = {"Untempered Runeblade"},
-    ["Untempered Runeblade"] = {"Wolfblood"},
-
-    ["Drakefang Butcher"] = {"Chronobreaker"},
-    ["Chronobreaker"] = {"Drakefang Butcher"},
-
-    ["Copper Claymore"] = {"Searing Blade"},
-    ["Searing Blade"] = {"Copper Claymore"},
-
-    ["Whetted Claymore"] = {"Tapered Greatsword"},
-    ["Tapered Greatsword"] = {"Whetted Claymore"},
-
-    -- 2h mace
-    ["The Pacifier"] = {"The Skull Smasher"},
-    ["The Skull Smasher"] = {"The Pacifier"},
-
-    ["Crushing Maul"] = {"Blackstone Basher"},
-    ["Blackstone Basher"] = {"Crushing Maul"},
-
-    ["Bonecracker"] = {"Harvest Golem Arm"},
-    ["Harvest Golem Arm"] = {"Bonecracker"},
-
-    ["Steamrigged Servohammer"] = {"Spiked Club"},
-    ["Spiked Club"] = {"Steamrigged Servohammer"},
-	
-	["Gavel of Qiraji Authority"] = {"Gavel of the Northwind"},
-    ["Gavel of the Northwind"] = {"Gavel of Qiraji Authority"},
-
-    ["Glacial Stone"] = {"Boneshatter Maul"},
-    ["Boneshatter Maul"] = {"Glacial Stone"},
-
-    ["Manual Crowd Pummeler"] = {"Battery-Powered Crowd Pummeler"},
-    ["Battery-Powered Crowd Pummeler"] = {"Manual Crowd Pummeler"},
-
-    ["Tok'kar's Murloc Basher"] = {"Skullcracking Mace"},
-    ["Skullcracking Mace"] = {"Tok'kar's Murloc Basher"},
-
-    ["Kobold Mining Shovel"] = {"Farmer's Shovel","Burrowing Shovel","Rusty Shovel","Garden Shovel"},
-    ["Farmer's Shovel"] = {"Kobold Mining Shovel","Burrowing Shovel","Rusty Shovel","Garden Shovel"},
-    ["Burrowing Shovel"] = {"Kobold Mining Shovel","Farmer's Shovel","Rusty Shovel","Garden Shovel"},
-    ["Rusty Shovel"] = {"Kobold Mining Shovel","Farmer's Shovel","Burrowing Shovel","Garden Shovel"},
-    ["Garden Shovel"] = {"Kobold Mining Shovel","Farmer's Shovel","Burrowing Shovel","Rusty Shovel"},
-
-    ["Goblin Power Shovel"] = {"Silver Spade","The Shoveler"},
-    ["Silver Spade"] = {"Goblin Power Shovel","The Shoveler"},
-    ["The Shoveler"] = {"Goblin Power Shovel","Silver Spade"},
-
-    ["Goblin Smasher"] = {"Militia Warhammer","Anvilmar Sledge","Bruiser Club"},
-    ["Militia Warhammer"] = {"Goblin Smasher","Anvilmar Sledge","Bruiser Club"},
-    ["Anvilmar Sledge"] = {"Goblin Smasher","Militia Warhammer","Bruiser Club"},
-    ["Bruiser Club"] = {"Goblin Smasher","Militia Warhammer","Anvilmar Sledge"},
-
-    ["Kazon's Maul"] = {"Demolition Hammer","Thornroot Maul"},
-    ["Demolition Hammer"] = {"Kazon's Maul","Thornroot Maul"},
-    ["Thornroot Maul"] = {"Demolition Hammer","Kazon's Maul"},
-
-    -- 2h axe
-    ["Massive Battle Axe"] = {"The Reaver"},
-    ["The Reaver"] = {"Massive Battle Axe"},
-
-    ["Midnight Axe"] = {"Baneful Edge"},
-    ["Baneful Edge"] = {"Midnight Axe"},
-
-    ["Vile Fin Battle Axe"] = {"Foe Chopper"},
-    ["Foe Chopper"] = {"Vile Fin Battle Axe"},
-
-    ["Death Striker"] = {"Scrapforged Greataxe"},
-    ["Scrapforged Greataxe"] = {"Death Striker"},
-
-    ["Corpsemaker"] = {"Shadowcaller Axe"},
-    ["Shadowcaller Axe"] = {"Corpsemaker"},
-	
-    ["Tabar"] = {"Dar'kar of the Third Khan"},
-    ["Dar'kar of the Third Khan"] = {"Tabar"},
-
-    ["Shadow Crescent Axe"] = {"Heavy Mithril Axe","Hateforged Cleaver"},
-    ["Heavy Mithril Axe"] = {"Shadow Crescent Axe","Hateforged Cleaver"},
-    ["Hateforged Cleaver"] = {"Heavy Mithril Axe","Shadow Crescent Axe"},
-
-    ["Splintering Battle Axe"] = {"Balanced War Axe","Fleshslasher"},
-    ["Balanced War Axe"] = {"Splintering Battle Axe","Fleshslasher"},
-    ["Fleshslasher"] = {"Splintering Battle Axe","Splintering Battle Axe"},
-
-    ["Prospector Axe"] = {"The Axe of Severing"},
-    ["The Axe of Severing"] = {"Prospector Axe"},
-
-    -- axe
-    ["Nathrezim Wedge"] = {"Wraith Scythe"},
-    ["Wraith Scythe"] = {"Nathrezim Wedge"},
-
-    ["Guillotine Axe"] = {"Axe of Fargosh"},
-    ["Axe of Fargosh"] = {"Guillotine Axe"},
-
-    ["Fish Gutter"] = {"Troll Hunter's Axe"},
-    ["Troll Hunter's Axe"] = {"Fish Gutter"},
-
-    ["Hedgecutter"] = {"Axe of the Wildtusk"},
-    ["Axe of the Wildtusk"] = {"Hedgecutter"},
-
-    ["Greater Scythe"] = {"Skystormer Axe"},
-    ["Skystormer Axe"] = {"Greater Scythe"},
-
-    ["Callous Axe"] = {"Dustwrought Cleaver"},
-    ["Dustwrought Cleaver"] = {"Callous Axe"},
-
-    ["Guerrilla Cleaver"] = {"Worgen Cleaver"},
-    ["Worgen Cleaver"] = {"Guerrilla Cleaver"},
-
-    ["Worn Axe"] = {"Ebonmere Reaver"},
-    ["Ebonmere Reaver"] = {"Worn Axe"},
-
-    ["Orcish Cleaver"] = {"Ebonmere Axe"},
-    ["Ebonmere Axe"] = {"Orcish Cleaver"},
-
-    ["Shadowreaper"] = {"Gloom Reaper"},
-    ["Gloom Reaper"] = {"Shadowreaper"},
-	
-    ["Marauder Axe"] = {"Lavashard Axe"},
-    ["Lavashard Axe"] = {"Marauder Axe"},
-
-    ["Ichor Spitter"] = {"Axe of Dormant Slumber"},
-    ["Axe of Dormant Slumber"] = {"Ichor Spitter"},
-
-    ["Butcher's Cleaver"] = {"Glutton's Cleaver"},
-    ["Glutton's Cleaver"] = {"Butcher's Cleaver"},
-
-    ["Heavy Flint Axe"] = {"Jagged Axe"},
-    ["Jagged Axe"] = {"Heavy Flint Axe"},
-
-    ["Crescent Axe"] = {"Pointed Axe"},
-    ["Pointed Axe"] = {"Crescent Axe"},
-        
-    ["Stone Tomahawk"] = {"Rusty Hatchet","Unbalanced Axe","Ceremonial Tomahawk"},
-    ["Rusty Hatchet"] = {"Stone Tomahawk","Unbalanced Axe","Ceremonial Tomahawk"},
-    ["Unbalanced Axe"] = {"Stone Tomahawk","Rusty Hatchet","Ceremonial Tomahawk"},
-    ["Ceremonial Tomahawk"] = {"Stone Tomahawk","Rusty Hatchet","Unbalanced Axe"},
-
-    ["Worn Hatchet"] = {"Primitive Hatchet"},
-    ["Primitive Hatchet"] = {"Worn Hatchet"},
-
-    ["Force of the Hippogryph"] = {"Axe of the Ebon Drake"},
-    ["Axe of the Ebon Drake"] = {"Force of the Hippogryph"},
-
-    ["Cleaver"] = {"Deadmines Cleaver","Velden's Backup Cleaver"},
-    ["Deadmines Cleaver"] = {"Cleaver","Velden's Backup Cleaver"},
-    ["Velden's Backup Cleaver"] = {"Cleaver","Deadmines Cleaver"},
-
-    ["Stonesplinter Axe"] = {"Rodentia Flint Axe"},
-    ["Rodentia Flint Axe"] = {"Stonesplinter Axe"},
-
-    ["Trogg Hand Axe"] = {"Scalping Tomahawk","Small Tomahawk"},
-    ["Scalping Tomahawk"] = {"Trogg Hand Axe","Small Tomahawk"},
-    ["Small Tomahawk"] = {"Trogg Hand Axe","Scalping Tomahawk"},
-
-    ["Windreaper"] = {"Zulian Hacker"},
-    ["Zulian Hacker"] = {"Windreaper"},
-
-    ["Sickle of Unyielding Strength"] = {"Scythe of the Unseen Path"},
-    ["Scythe of the Unseen Path"] = {"Sickle of Unyielding Strength"},
-
-    -- mace
-    ["Scarlet Pillar"] = {"The Jackhammer"},
-    ["The Jackhammer"] = {"Scarlet Pillar"},
-
-    ["Blackrock Mace"] = {"Lightgraced Mallet"},
-    ["Lightgraced Mallet"] = {"Blackrock Mace"},
-
-    ["Deckman's Cudgel"] = {"Heavy Spiked Mace"},
-    ["Heavy Spiked Mace"] = {"Deckman's Cudgel"},
-
-    ["Leaden Mace"] = {"Enforcer's Fist"},
-    ["Enforcer's Fist"] = {"Leaden Mace"},
-
-    ["Heaven's Light"] = {"Rubyheart Mallet"},
-    ["Rubyheart Mallet"] = {"Heaven's Light"},
-
-    ["Carpenter's Mallet"] = {"Gnoll Slammer"},
-    ["Gnoll Slammer"] = {"Carpenter's Mallet"},
-
-    ["Tempered Argus Mace"] = {"Dawnshield Mace"},
-    ["Dawnshield Mace"] = {"Tempered Argus Mace"},
-
-    ["Mace"] = {"The Murloc Clubber"},
-    ["The Murloc Clubber"] = {"Mace"},
-
-    ["Bulky Maul"] = {"Enforcer's Maul"},
-    ["Enforcer's Maul"] = {"Bulky Maul"},
-
-    ["Wicked Spiked Mace"] = {"Dwarven Battle Bludgeon"},
-    ["Dwarven Battle Bludgeon"] = {"Wicked Spiked Mace"},
-
-    ["Copper Mace"] = {"Copper Infused Bludgeon"},
-    ["Copper Infused Bludgeon"] = {"Copper Mace"},
-
-    ["Stonesplinter Mace"] = {"Blackrock Authority"},
-    ["Blackrock Authority"] = {"Stonesplinter Mace"},
-
-    ["Priest's Mace"] = {"Stonemaul Seer Club"},
-    ["Stonemaul Seer Club"] = {"Priest's Mace"},
-
-    ["Petrified Shinbone"] = {"Tribal Trogg Club"},
-    ["Tribal Trogg Club"] = {"Petrified Shinbone"},
-	
-	["Wrench of Creation"] = {"Shoni's Disarming Tool","Gigno's Spanner"},
-    ["Shoni's Disarming Tool"] = {"Wrench of Creation","Gigno's Spanner"},
-    ["Gigno's Spanner"] = {"Wrench of Creation","Shoni's Disarming Tool"},
-	
-	["Midnight Mace"] = {"Skull of Grarr"},
-    ["Skull of Grarr"] = {"Midnight Mace"},
-
-    ["Large Bear Bone"] = {"Femur Club"},
-    ["Femur Club"] = {"Large Bear Bone"},
-
-    ["Wicked Blackjack"] = {"Bookmaker's Scepter","Blackthorn's Blackjack"},
-    ["Bookmaker's Scepter"] = {"Wicked Blackjack","Blackthorn's Blackjack"},
-    ["Blackthorn's Blackjack"] = {"Wicked Blackjack","Bookmaker's Scepter"},
-
-    ["Jadestone Mallet"] = {"Hammer of Bestial Fury"},
-    ["Hammer of Bestial Fury"] = {"Jadestone Mallet"},
-
-    ["Studded Blackjack"] = {"Stinging Mace"},
-    ["Stinging Mace"] = {"Studded Blackjack"},
-
-    ["Driftwood Club"] = {"Spiked Wooden Plank","Nail on a Plank"},
-    ["Spiked Wooden Plank"] = {"Driftwood Club","Nail on a Plank"},
-    ["Nail on a Plank"] = {"Driftwood Club","Spiked Wooden Plank"},
-    
-    ["Murphstar"] = {"Big Black Mace"},
-    ["Big Black Mace"] = {"Murphstar"},
-
-    ["Bludgeoning Cudgel"] = {"Noboru's Cudgel","Giant Club","Winter Veil Branch"},
-    ["Noboru's Cudgel"] = {"Bludgeoning Cudgel","Giant Club","Winter Veil Branch"},
-    ["Giant Club"] = {"Bludgeoning Cudgel","Noboru's Cudgel","Winter Veil Branch"},
-    ["Winter Veil Branch"] = {"Bludgeoning Cudgel","Noboru's Cudgel","Giant Club"},
-
-    ["Truncheon"] = {"Hardwood Cudgel"},
-    ["Hardwood Cudgel"] = {"Truncheon"},
-
-    ["Runed Mithril Hammer"] = {"Changuk Smasher"},
-    ["Changuk Smasher"] = {"Runed Mithril Hammer"},
-
-    ["Blunting Mace"] = {"Clout Mace"},
-    ["Clout Mace"] = {"Blunting Mace"},
-
-    ["Hand of Righteousness"] = {"Blesswind Hammer"},
-    ["Blesswind Hammer"] = {"Hand of Righteousness"},
-
-    ["Hammer of the Gathering Storm"] = {"Mace of Unending Life","Gavel of Infinite Wisdom"},
-    ["Mace of Unending Life"] = {"Hammer of the Gathering Storm","Gavel of Infinite Wisdom"},
-    ["Gavel of Infinite Wisdom"] = {"Hammer of the Gathering Storm","Mace of Unending Life"},
-
-    -- sword
-    ["Militant Shortsword"] = {"Sorrowguard Shortsword"},
-    ["Sorrowguard Shortsword"] = {"Militant Shortsword"},
-
-    ["Fine Scimitar"] = {"Brightwater Cutlass","Barnacle-covered Scimitar"},
-    ["Brightwater Cutlass"] = {"Fine Scimitar","Barnacle-covered Scimitar"},
-    ["Barnacle-covered Scimitar"] = {"Fine Scimitar","Brightwater Cutlass"},
-
-    ["Broadsword"] = {"Lynx Sword"},
-    ["Lynx Sword"] = {"Broadsword"},
-
-    ["Mercenary Blade"] = {"The Dune Blade"},
-    ["The Dune Blade"] = {"Mercenary Blade"},
-
-    ["Captain's Moonglaive"] = {"Sentinel's Glaive"},
-    ["Sentinel's Glaive"] = {"Captain's Moonglaive"},
-
-    ["Well-used Sword"] = {"Marauder Blade"},
-    ["Marauder Blade"] = {"Well-used Sword"},
-
-    ["Enamelled Broadsword"] = {"Blade of Sentinel Hill"},
-    ["Blade of Sentinel Hill"] = {"Enamelled Broadsword"},
-
-    ["Cursed Thornblade"] = {"Skeletal Longsword"},
-    ["Skeletal Longsword"] = {"Cursed Thornblade"},
-	
-	["Sageblade"] = {"Magus Blade"},
-    ["Magus Blade"] = {"Sageblade"},
-
-    ["Brushwood Blade"] = {"Blade of Rotting","Sharpened Bastard Sword"},
-    ["Blade of Rotting"] = {"Brushwood Blade","Sharpened Bastard Sword"},
-    ["Sharpened Bastard Sword"] = {"Brushwood Blade","Blade of Rotting"},
-
-    ["Blade of Infinite Mysteries"] = {"Elemental Attuned Blade"},
-    ["Elemental Attuned Blade"] = {"Blade of Infinite Mysteries"},
-
-    ["Crystal Sword of the Blossom"] = {"Wushoolay's Poker"},
-    ["Wushoolay's Poker"] = {"Crystal Sword of the Blossom"},
-
-    ["The Butcher"] = {"Slayer's Edge"},
-    ["Slayer's Edge"] = {"The Butcher"},
-
-    ["Fire Sword of Crippling"] = {"Shadow Sword","Nature Sword"},
-    ["Shadow Sword"] = {"Fire Sword of Crippling","Nature Sword"},
-    ["Nature Sword"] = {"Fire Sword of Crippling","Shadow Sword"},
-
-    ["Feeble Sword"] = {"Thistlewood Blade"},
-    ["Thistlewood Blade"] = {"Feeble Sword"},
-    
-    ["Warped Blade"] = {"Daryl's Shortsword"},
-    ["Daryl's Shortsword"] = {"Warped Blade"},
-
-    ["Blackwater Cutlass"] = {"Pale Skinner"},
-    ["Pale Skinner"] = {"Blackwater Cutlass"},
-
-    ["Dragonmaw Shortsword"] = {"Darkwater Talwar","Runed Hookblade","Hookblade Cleaver"},
-    ["Darkwater Talwar"] = {"Dragonmaw Shortsword","Runed Hookblade","Hookblade Cleaver"},
-    ["Runed Hookblade"] = {"Dragonmaw Shortsword","Darkwater Talwar","Hookblade Cleaver"},
-    ["Hookblade Cleaver"] = {"Dragonmaw Shortsword","Darkwater Talwar","Runed Hookblade"},
-
-    ["Sharp Shortsword"] = {"Fine Longsword"},
-    ["Fine Longsword"] = {"Sharp Shortsword"},
-
-    ["Bluegill Kukri"] = {"Decapitating Sword"},
-    ["Decapitating Sword"] = {"Bluegill Kukri"},
-
-    ["Maladath, Runed Blade of the Black Flight"] = {"Ravencrest's Legacy"},
-    ["Ravencrest's Legacy"] = {"Maladath, Runed Blade of the Black Flight"},
-
-    ["Blade of Eternal Justice"] = {"Blade of Vaulted Secrets"},
-    ["Blade of Vaulted Secrets"] = {"Blade of Eternal Justice"},
-
-    -- shield
-    ["Furen's Favor"] = {"Shield of Mathela"},
-    ["Shield of Mathela"] = {"Furen's Favor"},
-
-    ["Razormane War Shield"] = {"Labor Union Defender"},
-    ["Labor Union Defender"] = {"Razormane War Shield"},
-
-    ["Collection Plate"] = {"The People's Defender"},
-    ["The People's Defender"] = {"Collection Plate"},
-
-    ["Vault's Defender"] = {"The Green Tower"},
-    ["The Green Tower"] = {"Vault's Defender"},
-	
-    ["Husk of Nerub'enkan"] = {"Bonewall"},
-    ["Bonewall"] = {"Husk of Nerub'enkan"},
-	
-    ["Worn Turtle Shell Shield"] = {"Jade Deflector","Shell of the Great Sleeper"},
-    ["Jade Deflector"] = {"Worn Turtle Shell Shield","Shell of the Great Sleeper"},
-    ["Shell of the Great Sleeper"] = {"Worn Turtle Shell Shield","Jade Deflector"},
-
-    ["Shield of Consuming Darkness"] = {"Lord Blackwood's Buckler"},
-    ["Lord Blackwood's Buckler"] = {"Shield of Consuming Darkness"},
-
-    ["Captain Rackmore's Wheel"] = {"Time-Shifting Wheel"},
-    ["Time-Shifting Wheel"] = {"Captain Rackmore's Wheel"},
-    
-    ["Ceremonial Buckler"] = {"Inscribed Buckler"},
-    ["Inscribed Buckler"] = {"Ceremonial Buckler"},
-
-    ["Ward of the Vale"] = {"Superior Buckler"},
-    ["Superior Buckler"] = {"Ward of the Vale"},
-
-    ["Fire Hardened Buckler"] = {"Bard's Buckler"},
-    ["Bard's Buckler"] = {"Fire Hardened Buckler"},
-    
-    ["Militia Buckler"] = {"Infiltrator Buckler"},
-    ["Infiltrator Buckler"] = {"Militia Buckler"},
-
-    ["Insignia Buckler"] = {"Sentinel Buckler","Nimble Buckler"},
-    ["Sentinel Buckler"] = {"Insignia Buckler","Nimble Buckler"},
-    ["Nimble Buckler"] = {"Insignia Buckler","Sentinel Buckler"},
-
-    ["Lunar Buckler"] = {"Glyphed Buckler"},
-    ["Glyphed Buckler"] = {"Lunar Buckler"},
-
-    ["Seedcloud Buckler"] = {"Scaled Shield"},
-    ["Scaled Shield"] = {"Seedcloud Buckler"},
-
-    ["Welding Shield"] = {"Quel'dorai Guard","Dustwallow Defender"},
-    ["Quel'dorai Guard"] = {"Welding Shield","Dustwallow Defender"},
-    ["Dustwallow Defender"] = {"Welding Shield","Quel'dorai Guard"},
-
-    ["Crag Buckler"] = {"Techbot CPU Shell"},
-    ["Techbot CPU Shell"] = {"Crag Buckler"},
-
-    ["Sunscale Shield"] = {"Brutish Shield"},
-    ["Brutish Shield"] = {"Sunscale Shield"},
-
-    ["Dervish Buckler"] = {"Robust Buckler"},
-    ["Robust Buckler"] = {"Dervish Buckler"},
-
-    ["Cobalt Buckler"] = {"Captain's Buckler"},
-    ["Captain's Buckler"] = {"Cobalt Buckler"},
-
-    ["Marbled Buckler"] = {"Gypsy Buckler"},
-    ["Gypsy Buckler"] = {"Marbled Buckler"},
-
-    ["Forest Buckler"] = {"Bristlebark Buckler"},
-    ["Bristlebark Buckler"] = {"Forest Buckler"},
-    ["Emblazoned Buckler"] = {"Dokebi Buckler"},
-    ["Dokebi Buckler"] = {"Emblazoned Buckler"},
-
-    ["Hunting Buckler"] = {"Archer's Buckler","Rounded Petrified Bark"},
-    ["Archer's Buckler"] = {"Hunting Buckler","Rounded Petrified Bark"},
-    ["Rounded Petrified Bark"] = {"Hunting Buckler","Archer's Buckler"},
-
-    ["Scouting Buckler"] = {"Wrangler's Buckler"},
-    ["Wrangler's Buckler"] = {"Scouting Buckler"},
-
-    ["Pioneer Buckler"] = {"Primal Buckler"},
-    ["Primal Buckler"] = {"Pioneer Buckler"},
-    
-    ["Brackwater Shield"] = {"Raider's Shield"},
-    ["Raider's Shield"] = {"Brackwater Shield"},
-
-    ["Gothic Shield"] = {"Spiked Chain Shield","Warleader's Shield"},
-    ["Spiked Chain Shield"] = {"Gothic Shield","Warleader's Shield"},
-    ["Warleader's Shield"] = {"Gothic Shield","Spiked Chain Shield"},
-
-    ["Valorous Shield"] = {"Skullance Shield","Intricately Runed Shield","Draconian Aegis of the Legion"},
-    ["Skullance Shield"] = {"Valorous Shield","Intricately Runed Shield","Draconian Aegis of the Legion"},
-    ["Intricately Runed Shield"] = {"Valorous Shield","Skullance Shield","Draconian Aegis of the Legion"},
-    ["Draconian Aegis of the Legion"] = {"Valorous Shield","Skullance Shield","Intricately Runed Shield"},
-    
-    ["Protective Pavise"] = {"Rock Golem Bulwark"},
-    ["Rock Golem Bulwark"] = {"Protective Pavise"},
-
-    ["Bandit Buckler"] = {"Feral Buckler"},
-    ["Feral Buckler"] = {"Bandit Buckler"},
-
-    ["Earthclasp Barrier"] = {"Observer's Shield"},
-    ["Observer's Shield"] = {"Earthclasp Barrier"},
-
-    ["Savage Boar's Guard"] = {"Lofty Shield","Wattapo's Bulwark"},
-    ["Lofty Shield"] = {"Savage Boar's Guard","Wattapo's Bulwark"},
-    ["Wattapo's Bulwark"] = {"Savage Boar's Guard","Lofty Shield"},
-
-    ["Draconian Deflector"] = {"High Chief's Shield"},
-    ["High Chief's Shield"] = {"Draconian Deflector"},
-
-    ["Rhombeard Protector"] = {"Bloodspattered Shield","Sen’jin Buckler"},
-    ["Bloodspattered Shield"] = {"Rhombeard Protector","Sen’jin Buckler"},
-    ["Sen’jin Buckler"] = {"Rhombeard Protector","Bloodspattered Shield"},
-
-    ["Crest of Retribution"] = {"Warbringer's Shield","Hulking Shield"},
-    ["Warbringer's Shield"] = {"Crest of Retribution","Hulking Shield"},
-    ["Hulking Shield"] = {"Crest of Retribution","Warbringer's Shield"},
-
-    ["Kresh's Back"] = {"War Paint Shield","Ghamoo-ra's Guard"},
-    ["War Paint Shield"] = {"Kresh's Back","Ghamoo-ra's Guard"},
-    ["Ghamoo-ra's Guard"] = {"Kresh's Back","War Paint Shield"},
-	
-    ["Astral Guard"] = {"Saltstone Shield","Hazzuri Primalist Defender"},
-    ["Saltstone Shield"] = {"Astral Guard","Hazzuri Primalist Defender"},
-    ["Hazzuri Primalist Defender"] = {"Astral Guard"},
-
-    ["Garrett Family Crest"] = {"Argent Defender"},
-    ["Argent Defender"] = {"Garrett Family Crest"},
-
-    ["Mountainside Buckler"] = {"Symbolic Crest"},
-    ["Symbolic Crest"] = {"Mountainside Buckler"},
-
-    ["Jazeraint Shield"] = {"Sparkleshell Shield"},
-    ["Sparkleshell Shield"] = {"Jazeraint Shield"},
-
-    ["Banded Shield"] = {"Wicked Chain Shield","Rakklan's Targe"},
-    ["Wicked Chain Shield"] = {"Banded Shield","Rakklan's Targe"},
-    ["Rakklan's Targe"] = {"Banded Shield","Wicked Chain Shield"},
-
-    ["Champion's Wall Shield"] = {"Bonelink Wall Shield"},
-    ["Bonelink Wall Shield"] = {"Champion's Wall Shield"},
-
-    ["Myrmidon's Defender"] = {"Triumphant Shield"},
-    ["Triumphant Shield"] = {"Myrmidon's Defender"},
-
-    ["Mercurial Guard"] = {"Magnificent Guard"},
-    ["Magnificent Guard"] = {"Mercurial Guard"},
-
-    ["Outrunner's Shield"] = {"Vanguard Shield"},
-    ["Vanguard Shield"] = {"Outrunner's Shield"},
-
-    ["Headhunter's Buckler"] = {"Clink Shield"},
-    ["Clink Shield"] = {"Headhunter's Buckler"},
-
-    -- off hand holdables
-    ["Opulent Scepter"] = {"Darkbrow Scepter","Scepter of Aka'sha"},
-    ["Darkbrow Scepter"] = {"Opulent Scepter","Scepter of Aka'sha"},
-    ["Scepter of Aka'sha"] = {"Opulent Scepter","Darkbrow Scepter"},
-
-    ["Tear of Grief"] = {"Waters of Vision"},
-    ["Waters of Vision"] = {"Tear of Grief"},
-
-    ["Everglow Lantern"] = {"Shining Electro-lantern"},
-    ["Shining Electro-lantern"] = {"Everglow Lantern"},
-
-    ["Mistscape Stave"] = {"Pennyworth Cane"},
-    ["Pennyworth Cane"] = {"Mistscape Stave"},
-
-    ["Tome of Knowledge"] = {"Tome of Dark Powers"},
-    ["Tome of Dark Powers"] = {"Tome of Knowledge"},
-
-    ["Beautiful Wildflowers"] = {"Darkmoon Boquet"},
-    ["Darkmoon Boquet"] = {"Beautiful Wildflowers"},
-
-    ["Eerie Stable Lantern"] = {"Beacon of Hope","Explorer's League Lodestar","Pyreflame Lantern"},
-    ["Beacon of Hope"] = {"Eerie Stable Lantern","Explorer's League Lodestar","Pyreflame Lantern"},
-    ["Explorer's League Lodestar"] = {"Eerie Stable Lantern","Beacon of Hope","Pyreflame Lantern"},
-    ["Pyreflame Lantern"] = {"Explorer's League Lodestar","Beacon of Hope","Eerie Stable Lantern"},
-
-    ["Dim Torch"] = {"Smoky Torch","Cell Heater","Smoldering Brand"},
-    ["Smoky Torch"] = {"Dim Torch","Cell Heater","Smoldering Brand"},
-    ["Cell Heater"] = {"Dim Torch","Smoky Torch","Smoldering Brand"},
-    ["Smoldering Brand"] = {"Dim Torch","Smoky Torch","Cell Heater"},
-
-    ["Tome of Arcane Domination"] = {"Tome of Riftmancy"},
-    ["Tome of Riftmancy"] = {"Tome of Arcane Domination"},
-
-    ["Oblivion Orb"] = {"Skull of Tham"},
-    ["Skull of Tham"] = {"Oblivion Orb"},
-
-    ["42 Pound Redgill"] = {"45 Pound Redgill","49 Pound Redgill","34 Pound Redgill","37 Pound Redgill","52 Pound Redgill"},
-    ["45 Pound Redgill"] = {"42 Pound Redgill","49 Pound Redgill","34 Pound Redgill","37 Pound Redgill","52 Pound Redgill"},
-    ["49 Pound Redgill"] = {"42 Pound Redgill","45 Pound Redgill","34 Pound Redgill","37 Pound Redgill","52 Pound Redgill"},
-    ["34 Pound Redgill"] = {"42 Pound Redgill","45 Pound Redgill","49 Pound Redgill","37 Pound Redgill","52 Pound Redgill"},
-    ["37 Pound Redgill"] = {"42 Pound Redgill","45 Pound Redgill","49 Pound Redgill","34 Pound Redgill","52 Pound Redgill"},
-    ["52 Pound Redgill"] = {"42 Pound Redgill","45 Pound Redgill","49 Pound Redgill","34 Pound Redgill","37 Pound Redgill"},
-
-    ["15 Pound Salmon"] = {"18 Pound Salmon","22 Pound Salmon","25 Pound Salmon","29 Pound Salmon","32 Pound Salmon"},
-    ["18 Pound Salmon"] = {"15 Pound Salmon","22 Pound Salmon","25 Pound Salmon","29 Pound Salmon","32 Pound Salmon"},
-    ["22 Pound Salmon"] = {"15 Pound Salmon","18 Pound Salmon","25 Pound Salmon","29 Pound Salmon","32 Pound Salmon"},
-    ["25 Pound Salmon"] = {"15 Pound Salmon","18 Pound Salmon","22 Pound Salmon","29 Pound Salmon","32 Pound Salmon"},
-    ["29 Pound Salmon"] = {"15 Pound Salmon","18 Pound Salmon","22 Pound Salmon","25 Pound Salmon","32 Pound Salmon"},
-    ["32 Pound Salmon"] = {"15 Pound Salmon","18 Pound Salmon","22 Pound Salmon","25 Pound Salmon","29 Pound Salmon"},
-
-    ["Skullspell Orb"] = {"Mordresh's Lifeless Skull"},
-    ["Mordresh's Lifeless Skull"] = {"Skullspell Orb"},
-
-    ["Omega Orb"] = {"Enthralled Sphere"},
-    ["Enthralled Sphere"] = {"Omega Orb"},
-
-    ["Cursed Eye of Paleth"] = {"Twilight Orb","Felflame Shard"},
-    ["Twilight Orb"] = {"Cursed Eye of Paleth","Felflame Shard"},
-    ["Felflame Shard"] = {"Cursed Eye of Paleth","Twilight Orb"},
-
-    ["Morbent's Bane"] = {"Torch of Holy Flame","Lost Crusader's Artifact"},
-    ["Torch of Holy Flame"] = {"Morbent's Bane","Lost Crusader's Artifact"},
-    ["Lost Crusader's Artifact"] = {"Morbent's Bane","Torch of Holy Flame"},
-
-    ["Spellstone"] = {"Greater Spellstone","Major Spellstone"},
-    ["Greater Spellstone"] = {"Spellstone","Major Spellstone"},
-    ["Major Spellstone"] = {"Spellstone","Greater Spellstone"},
-    
-    ["Arcane Orb"] = {"Ley Orb"},
-    ["Ley Orb"] = {"Arcane Orb"},
-
-    ["Book of the Dead"] = {"Tome of Shadow Force"},
-    ["Tome of Shadow Force"] = {"Book of the Dead"},
-
-    ["Umbral Crystal"] = {"Glowing Black Orb","Obsidian Bauble","Orb of Aka'thar"},
-    ["Glowing Black Orb"] = {"Umbral Crystal","Obsidian Bauble","Orb of Aka'thar"},
-    ["Obsidian Bauble"] = {"Umbral Crystal","Glowing Black Orb","Orb of Aka'thar"},
-    ["Orb of Aka'thar"] = {"Umbral Crystal","Glowing Black Orb","Obsidian Bauble"},
-
-    ["Lesser Firestone"] = {"Firestone","Greater Firestone","Major Firestone"},
-    ["Firestone"] = {"Lesser Firestone","Greater Firestone","Major Firestone"},
-    ["Greater Firestone"] = {"Lesser Firestone","Firestone","Major Firestone"},
-    ["Major Firestone"] = {"Lesser Firestone","Firestone","Greater Firestone"},
-
-    ["10 Pound Mud Snapper"] = {"12 Pound Mud Snapper","15 Pound Mud Snapper"},
-    ["12 Pound Mud Snapper"] = {"10 Pound Mud Snapper","15 Pound Mud Snapper"},
-    ["15 Pound Mud Snapper"] = {"10 Pound Mud Snapper","12 Pound Mud Snapper"},
-
-    ["17 Pound Catfish"] = {"19 Pound Catfish","22 Pound Catfish","26 Pound Catfish","32 Pound Catfish"},
-    ["19 Pound Catfish"] = {"17 Pound Catfish","22 Pound Catfish","26 Pound Catfish","32 Pound Catfish"},
-    ["22 Pound Catfish"] = {"17 Pound Catfish","19 Pound Catfish","26 Pound Catfish","32 Pound Catfish"},
-    ["26 Pound Catfish"] = {"17 Pound Catfish","19 Pound Catfish","22 Pound Catfish","32 Pound Catfish"},
-    ["32 Pound Catfish"] = {"17 Pound Catfish","19 Pound Catfish","22 Pound Catfish","26 Pound Catfish"},
-
-    ["70 Pound Mightfish"] = {"85 Pound Mightfish","92 Pound Mightfish","103 Pound Mightfish","Feralas Ahi"},
-    ["85 Pound Mightfish"] = {"70 Pound Mightfish","92 Pound Mightfish","103 Pound Mightfish","Feralas Ahi"},
-    ["92 Pound Mightfish"] = {"70 Pound Mightfish","85 Pound Mightfish","103 Pound Mightfish","Feralas Ahi"},
-    ["103 Pound Mightfish"] = {"70 Pound Mightfish","85 Pound Mightfish","92 Pound Mightfish","Feralas Ahi"},
-    ["Feralas Ahi"] = {"70 Pound Mightfish","85 Pound Mightfish","92 Pound Mightfish","103 Pound Mightfish"},
-
-    ["Celestial Orb"] = {"Orb of Noh'Orahil","Orb of Dar'Orahil","Inquisitor's Orb"},
-    ["Orb of Noh'Orahil"] = {"Celestial Orb","Orb of Dar'Orahil","Inquisitor's Orb"},
-    ["Orb of Dar'Orahil"] = {"Celestial Orb","Orb of Noh'Orahil","Inquisitor's Orb"},
-    ["Inquisitor's Orb"] = {"Celestial Orb","Orb of Noh'Orahil","Orb of Dar'Orahil"},
-
-    ["Basilisk Bone"] = {"Blackwood's Thigh"},
-    ["Blackwood's Thigh"] = {"Basilisk Bone"},
-
-    ["Milli's Lexicon"] = {"Tome of Sacrifice"},
-    ["Tome of Sacrifice"] = {"Milli's Lexicon"},
-
-    ["Spellbound Tome"] = {"Tome of the Lost","Almanac of Savagery"},
-    ["Tome of the Lost"] = {"Spellbound Tome","Almanac of Savagery"},
-    ["Almanac of Savagery"] = {"Spellbound Tome","Tome of the Lost"},
-
-    ["Distress Signal Pulser"] = {"Red Sparkler"},
-    ["Red Sparkler"] = {"Distress Signal Pulser"},
-
-    ["Eternal Rod"] = {"Emerald Rod"},
-    ["Emerald Rod"] = {"Eternal Rod"},
-
-    ["Failsafe Activation Key"] = {"Royal Scepter"},
-    ["Royal Scepter"] = {"Failsafe Activation Key"},
-
-    ["Orb of Purified Light"] = {"Bright Sphere"},
-    ["Bright Sphere"] = {"Orb of Purified Light"},
-    
-    ["Pearl of the Tides"] = {"Blue Pearl"},
-    ["Blue Pearl"] = {"Pearl of the Tides"},
-
-    ["Tome of Divine Right"] = {"Tome of Infalliable Truth"},
-    ["Tome of Infalliable Truth"] = {"Tome of Divine Right"},
-
-    ["Arcane Core"] = {"Eye of Paleth"},
-    ["Eye of Paleth"] = {"Arcane Core"},
-        
-    ["Blackfire Orb"] = {"Orb of Fire"},
-    ["Orb of Fire"] = {"Blackfire Orb"},
-
-    ["Felhide Cap"] = {
-		[1] = "The Night Watchman",
-		[2] = "Tattered Leather Hood",
-		[3] = "Sightless Leather Hood",
-	},
-	["Gaea's Circlet"] = {
-		[1] = "Mooncloth Circlet",
-		[2] = "Circlet of the Crescent Moon",
-		[3] = "Royal Headband",
-		[4] = "Lunar Coronet",
-        [5] = "Whelpling Tiara",
-	},
-	["Dalaran Wizard's Hat"] = {
-		[1] = "Dalarani Conjurer's Hat",
-		[2] = "Darkmist Wizard Hat",
-		[3] = "Regal Wizard Hat",
-	},
-	["Dread Mage Hat"] = {
-		[1] = "Preceptor's Hat",
-	},
-	["Tusken Helm"] = {
-		[1] = "Gothic Plate Helmet",
-		[2] = "Brutish Helmet",
-		[3] = "Old Champion's Helmet",
-	},
-	["Tribal Worg Helm"] = {
-		[1] = "Soothsayer's Headdress",
-		[2] = "Rageclaw Helm",
-		[3] = "Wolf Rider's Headgear",
-		[4] = "Tribal War Feathers",
-	},
-	["Circlet of Dampening"] = {
-		[1] = "Mastercrafted Diamond Crown",
-	},
-	["Gothic Plate Helmet"] = {
-		[1] = "Brutish Helmet",
-		[2] = "Old Champion's Helmet",
-		[3] = "Tusken Helm",
-	},
-	["Frostfire Circlet"] = {
-		[1] = "Frostfire Crown",
-	},
-	["Preceptor's Hat"] = {
-		[1] = "Dread Mage Hat",
-	},
-	["Swashbuckler Captain's Hat"] = {
-		[1] = "Raider Captain's Hat",
-		[2] = "Enforcer Captain's Hat",
-		[3] = "Pillager Captain's Hat",
-		[4] = "Bloodsail Admiral's Hat",
-	},
-	["Dreadnaught Helmet"] = {
-		[1] = "Dreadnaught Crown",
-	},
-	["Plagueheart Boots"] = {
-		[1] = "Plagueheart Sandals",
-	},
-	["Mistscape Wizard Hat"] = {
-		[1] = "Sorcerer Hat",
-		[2] = "Augerer's Hat",
-	},
-	["Avenger's Helmet"] = {
-		[1] = "Avenger's Helm",
-		[2] = "Avenger's Crown",
-	},
-	["Wanderer's Hat"] = {
-		[1] = "Dokebi Hat",
-		[2] = "Crab Catcher's Hat",
-		[3] = "Studded Hat",
-	},
-	["Redemption Crown"] = {
-		[1] = "Redemption Helmet",
-		[2] = "Redemption Helm",
-	},
-	["Dokebi Hat"] = {
-		[1] = "Wanderer's Hat",
-		[2] = "Crab Catcher's Hat",
-		[3] = "Studded Hat",
-	},
-	["Enforcer Captain's Hat"] = {
-		[1] = "Raider Captain's Hat",
-		[2] = "Swashbuckler Captain's Hat",
-		[3] = "Pillager Captain's Hat",
-		[4] = "Bloodsail Admiral's Hat",
-	},
-	["Nocturnal Cap"] = {
-		[1] = "Engineer's Guild Headpiece",
-		[2] = "Comfortable Leather Hat",
-	},
-	["Mooncloth Circlet"] = {
-		[1] = "Circlet of the Crescent Moon",
-		[2] = "Gaea's Circlet",
-		[3] = "Royal Headband",
-		[4] = "Lunar Coronet",
-        [5] = "Whelpling Tiara",
-	},
-	["Lunar Coronet"] = {
-		[1] = "Mooncloth Circlet",
-		[2] = "Circlet of the Crescent Moon",
-		[3] = "Gaea's Circlet",
-		[4] = "Royal Headband",
-        [5] = "Whelpling Tiara",
-	},
-	["Brutish Helmet"] = {
-		[1] = "Gothic Plate Helmet",
-		[2] = "Old Champion's Helmet",
-		[3] = "Tusken Helm",
-	},
-	["Sightless Leather Hood"] = {
-		[1] = "Felhide Cap",
-		[2] = "The Night Watchman",
-		[3] = "Tattered Leather Hood",
-	},
-	["Lionheart Helmet"] = {
-		[1] = "Lionheart Crown",
-		[2] = "Lionheart Headpiece",
-	},
-	["Plagueheart Crown"] = {
-		[1] = "Plagueheart Circlet",
-	},
-	["Crab Catcher's Hat"] = {
-		[1] = "Wanderer's Hat",
-		[2] = "Dokebi Hat",
-		[3] = "Studded Hat",
-	},
-	["Pillager Captain's Hat"] = {
-		[1] = "Raider Captain's Hat",
-		[2] = "Enforcer Captain's Hat",
-		[3] = "Swashbuckler Captain's Hat",
-		[4] = "Bloodsail Admiral's Hat",
-	},
-	["Dreadnaught Crown"] = {
-		[1] = "Dreadnaught Helmet",
-	},
-	["Redemption Helmet"] = {
-		[1] = "Redemption Helm",
-		[2] = "Redemption Crown",
-	},
-	["Lionheart Headpiece"] = {
-		[1] = "Lionheart Crown",
-		[2] = "Lionheart Helmet",
-	},
-	["Bloodsail Admiral's Hat"] = {
-		[1] = "Raider Captain's Hat",
-		[2] = "Enforcer Captain's Hat",
-		[3] = "Swashbuckler Captain's Hat",
-		[4] = "Pillager Captain's Hat",
-	},
-	["Frostfire Crown"] = {
-		[1] = "Frostfire Circlet",
-	},
-	["Plagueheart Circlet"] = {
-		[1] = "Plagueheart Crown",
-	},
-	["Royal Headband"] = {
-		[1] = "Mooncloth Circlet",
-		[2] = "Circlet of the Crescent Moon",
-		[3] = "Gaea's Circlet",
-		[4] = "Lunar Coronet",
-        [5] = "Whelpling Tiara",
-	},
-	["Feathermoon Headdress"] = {
-		[1] = "Hazzuri Primalist Headdress",
-		[2] = "Tracker's Headband",
-		[3] = "Feathered Headdress",
-		[4] = "Headband of a Hundred Feathers",
-	},
-	["Crown of the Penitent"] = {
-		[1] = "Ornate Mithril Crown",
-		[2] = "Circlet of the Order",
-	},
-	["Tribal War Feathers"] = {
-		[1] = "Tribal Worg Helm",
-		[2] = "Soothsayer's Headdress",
-		[3] = "Rageclaw Helm",
-		[4] = "Wolf Rider's Headgear",
-	},
-	["Timeskipper's Helm of Alacrity"] = {
-		[1] = "Imbued Plate Helmet",
-		[2] = "Darkrune Helm",
-	},
-	["Avenger's Crown"] = {
-		[1] = "Avenger's Helm",
-		[2] = "Avenger's Helmet",
-	},
-	["Lionheart Crown"] = {
-		[1] = "Lionheart Headpiece",
-		[2] = "Lionheart Helmet",
-	},
-	["Imbued Plate Helmet"] = {
-		[1] = "Darkrune Helm",
-		[2] = "Timeskipper's Helm of Alacrity",
-	},
-	["The Night Watchman"] = {
-		[1] = "Felhide Cap",
-		[2] = "Tattered Leather Hood",
-		[3] = "Sightless Leather Hood",
-	},
-	["Wolf Rider's Headgear"] = {
-		[1] = "Tribal Worg Helm",
-		[2] = "Soothsayer's Headdress",
-		[3] = "Rageclaw Helm",
-		[4] = "Tribal War Feathers",
-	},
-	["Mastercrafted Diamond Crown"] = {
-		[1] = "Circlet of Dampening",
-	},
-
-	["Avenger's Helm"] = {
-		[1] = "Avenger's Crown",
-		[2] = "Avenger's Helmet",
-	},
-	["Augerer's Hat"] = {
-		[1] = "Sorcerer Hat",
-		[2] = "Mistscape Wizard Hat",
-	},
-	["Ornate Mithril Crown"] = {
-		[1] = "Circlet of the Order",
-		[2] = "Crown of the Penitent",
-	},
-	["Redemption Helm"] = {
-		[1] = "Redemption Helmet",
-		[2] = "Redemption Crown",
-	},
-
-	["Headband of a Hundred Feathers"] = {
-		[1] = "Hazzuri Primalist Headdress",
-		[2] = "Tracker's Headband",
-		[3] = "Feathermoon Headdress",
-		[4] = "Feathered Headdress",
-	},
-
-	["Rageclaw Helm"] = {
-		[1] = "Tribal Worg Helm",
-		[2] = "Soothsayer's Headdress",
-		[3] = "Wolf Rider's Headgear",
-		[4] = "Tribal War Feathers",
-	},
-	["Circlet of the Order"] = {
-		[1] = "Ornate Mithril Crown",
-		[2] = "Crown of the Penitent",
-	},
-	["Tattered Leather Hood"] = {
-		[1] = "Felhide Cap",
-		[2] = "The Night Watchman",
-		[3] = "Sightless Leather Hood",
-	},
-	["Feathered Headdress"] = {
-		[1] = "Hazzuri Primalist Headdress",
-		[2] = "Tracker's Headband",
-		[3] = "Feathermoon Headdress",
-		[4] = "Headband of a Hundred Feathers",
-	},
-	["Crown of Pestilence"] = {
-		[1] = "Coronet of Pestilence",
-	},
-	["Soothsayer's Headdress"] = {
-		[1] = "Tribal Worg Helm",
-		[2] = "Rageclaw Helm",
-		[3] = "Wolf Rider's Headgear",
-		[4] = "Tribal War Feathers",
-	},
-	["Darkmist Wizard Hat"] = {
-		[1] = "Dalarani Conjurer's Hat",
-		[2] = "Regal Wizard Hat",
-		[3] = "Dalaran Wizard's Hat",
-	},
-	["Darkrune Helm"] = {
-		[1] = "Imbued Plate Helmet",
-		[2] = "Timeskipper's Helm of Alacrity",
-	},
-	["Regal Wizard Hat"] = {
-		[1] = "Dalarani Conjurer's Hat",
-		[2] = "Darkmist Wizard Hat",
-		[3] = "Dalaran Wizard's Hat",
-	},
-	["Engineer's Guild Headpiece"] = {
-		[1] = "Nocturnal Cap",
-		[2] = "Comfortable Leather Hat",
-	},
-	["Comfortable Leather Hat"] = {
-		[1] = "Engineer's Guild Headpiece",
-		[2] = "Nocturnal Cap",
-	},
-	["Dreamwalker Helmet"] = {
-		[1] = "Dreamwalker Headpiece",
-		[2] = "Dreamwalker Circlet",
-	},
-	["Sorcerer Hat"] = {
-		[1] = "Augerer's Hat",
-		[2] = "Mistscape Wizard Hat",
-	},
-	["Raider Captain's Hat"] = {
-		[1] = "Enforcer Captain's Hat",
-		[2] = "Swashbuckler Captain's Hat",
-		[3] = "Pillager Captain's Hat",
-		[4] = "Bloodsail Admiral's Hat",
-	},
-	["Dalarani Conjurer's Hat"] = {
-		[1] = "Darkmist Wizard Hat",
-		[2] = "Regal Wizard Hat",
-		[3] = "Dalaran Wizard's Hat",
-	},
-	["Dreamwalker Headpiece"] = {
-		[1] = "Dreamwalker Circlet",
-		[2] = "Dreamwalker Helmet",
-	},
-	["Plagueheart Sandals"] = {
-		[1] = "Plagueheart Boots",
-	},
-	["Hazzuri Primalist Headdress"] = {
-		[1] = "Tracker's Headband",
-		[2] = "Feathermoon Headdress",
-		[3] = "Feathered Headdress",
-		[4] = "Headband of a Hundred Feathers",
-	},
-	["Tracker's Headband"] = {
-		[1] = "Hazzuri Primalist Headdress",
-		[2] = "Feathermoon Headdress",
-		[3] = "Feathered Headdress",
-		[4] = "Headband of a Hundred Feathers",
-	},
-
-	["Dreamwalker Circlet"] = {
-		[1] = "Dreamwalker Headpiece",
-		[2] = "Dreamwalker Helmet",
-	},
-	["Studded Hat"] = {
-		[1] = "Wanderer's Hat",
-		[2] = "Dokebi Hat",
-		[3] = "Crab Catcher's Hat",
-	},
-	["Circlet of the Crescent Moon"] = {
-		[1] = "Mooncloth Circlet",
-		[2] = "Gaea's Circlet",
-		[3] = "Royal Headband",
-		[4] = "Lunar Coronet",
-        [5] = "Whelpling Tiara",
-	},
-    ["Whelpling Tiara"] = {
-		[1] = "Mooncloth Circlet",
-		[2] = "Gaea's Circlet",
-		[3] = "Royal Headband",
-		[4] = "Lunar Coronet",
-        [5] = "Circlet of the Crescent Moon",
-	},
-	["Old Champion's Helmet"] = {
-		[1] = "Gothic Plate Helmet",
-		[2] = "Brutish Helmet",
-		[3] = "Tusken Helm",
-	},
-	["Coronet of Pestilence"] = {
-		[1] = "Crown of Pestilence",
-	},
-	["Trickster's Headdress"] = {
-		[1] = "Whisperwind Headdress",
-		[2] = "Hawkspear's Ceremonial Headdress",
-	},
-	["Sunscale Helmet"] = {
-		[1] = "Sanctified Helm",
-		[2] = "Lionheart Helm",
-		[3] = "Crusader's Helm",
-	},
-	["Whisperwind Headdress"] = {
-		[1] = "Trickster's Headdress",
-		[2] = "Hawkspear's Ceremonial Headdress",
-	},
-	["Sanctified Helm"] = {
-		[1] = "Sunscale Helmet",
-		[2] = "Lionheart Helm",
-		[3] = "Crusader's Helm",
-	},
-	["Lionheart Helm"] = {
-		[1] = "Sanctified Helm",
-		[2] = "Sunscale Helmet",
-		[3] = "Crusader's Helm",
-	},
-	["Hawkspear's Ceremonial Headdress"] = {
-		[1] = "Whisperwind Headdress",
-		[2] = "Trickster's Headdress",
-	},
-	["Crusader's Helm"] = {
-		[1] = "Sanctified Helm",
-		[2] = "Sunscale Helmet",
-		[3] = "Lionheart Helm",
-	},
-	["Grand Crusader's Helm"] = {
-		[1] = "Helm of the Mountain",
-		[2] = "Golem Skull Helm",
-		[3] = "Braincage",
-	},
-	["Field Marshal's Lamellar Faceguard"] = {
-		[1] = "Field Marshal's Plate Helm",
-		[2] = "Lieutenant Commander's Lamellar Headguard",
-	},
-	["Helm of the Mountain"] = {
-		[1] = "Grand Crusader's Helm",
-		[2] = "Golem Skull Helm",
-		[3] = "Braincage",
-	},
-	["Golem Skull Helm"] = {
-		[1] = "Helm of the Mountain",
-		[2] = "Grand Crusader's Helm",
-		[3] = "Braincage",
-	},
-	["Braincage"] = {
-		[1] = "Helm of the Mountain",
-		[2] = "Grand Crusader's Helm",
-		[3] = "Golem Skull Helm",
-	},
-	["Field Marshal's Plate Helm"] = {
-		[1] = "Lieutenant Commander's Lamellar Headguard",
-		[2] = "Field Marshal's Lamellar Faceguard",
-	},
-	["Lieutenant Commander's Lamellar Headguard"] = {
-		[1] = "Field Marshal's Plate Helm",
-		[2] = "Field Marshal's Lamellar Faceguard",
-	},
-    ["Bloodforged Helmet"] = {
-		[1] = "Triumphant Skullcap",
-		[2] = "Khan's Helmet",
-		[3] = "Magnificent Helmet",
-		[4] = "Hyperion Helm",
-	},
-	["Magnificent Helmet"] = {
-		[1] = "Triumphant Skullcap",
-		[2] = "Khan's Helmet",
-		[3] = "Hyperion Helm",
-		[4] = "Bloodforged Helmet",
-	},
-	["Khan's Helmet"] = {
-		[1] = "Triumphant Skullcap",
-		[2] = "Magnificent Helmet",
-		[3] = "Hyperion Helm",
-		[4] = "Bloodforged Helmet",
-	},
-	["Hyperion Helm"] = {
-		[1] = "Triumphant Skullcap",
-		[2] = "Khan's Helmet",
-		[3] = "Magnificent Helmet",
-		[4] = "Bloodforged Helmet",
-	},
-	["Triumphant Skullcap"] = {
-		[1] = "Khan's Helmet",
-		[2] = "Magnificent Helmet",
-		[3] = "Hyperion Helm",
-		[4] = "Bloodforged Helmet",
-	},
-	["Sentinel's Guard"] = {
-		[1] = "Ragereaver's Helm",
-		[2] = "Timeloop Headguard",
-		[3] = "Frostreaver Crown",
-		[4] = "Blackstone Crown",
-		[5] = "Helm of Awareness",
-	},
-	["Timeloop Headguard"] = {
-		[1] = "Ragereaver's Helm",
-		[2] = "Sentinel's Guard",
-		[3] = "Frostreaver Crown",
-		[4] = "Blackstone Crown",
-		[5] = "Helm of Awareness",
-	},
-	["Blackstone Crown"] = {
-		[1] = "Ragereaver's Helm",
-		[2] = "Sentinel's Guard",
-		[3] = "Timeloop Headguard",
-		[4] = "Frostreaver Crown",
-		[5] = "Helm of Awareness",
-	},
-	["Frostreaver Crown"] = {
-		[1] = "Ragereaver's Helm",
-		[2] = "Sentinel's Guard",
-		[3] = "Timeloop Headguard",
-		[4] = "Blackstone Crown",
-		[5] = "Helm of Awareness",
-	},
-	["Ragereaver's Helm"] = {
-		[1] = "Sentinel's Guard",
-		[2] = "Timeloop Headguard",
-		[3] = "Frostreaver Crown",
-		[4] = "Blackstone Crown",
-		[5] = "Helm of Awareness",
-	},
-	["Helm of Awareness"] = {
-		[1] = "Ragereaver's Helm",
-		[2] = "Sentinel's Guard",
-		[3] = "Timeloop Headguard",
-		[4] = "Frostreaver Crown",
-		[5] = "Blackstone Crown",
-	},
-    ["Helm of the Talon"] = {
-		[1] = "Circlet of the Talon",
-		[2] = "Helmet of the Talon",
-	},
-	["Scarab Plate Helm"] = {
-		[1] = "Scrapmetal Helm",
-		[2] = "Embossed Plate Helmet",
-	},
-	["Circlet of the Talon"] = {
-		[1] = "Helmet of the Talon",
-		[2] = "Helm of the Talon",
-	},
-	["Embossed Plate Helmet"] = {
-		[1] = "Scrapmetal Helm",
-		[2] = "Scarab Plate Helm",
-	},
-	["Helmet of the Talon"] = {
-		[1] = "Circlet of the Talon",
-		[2] = "Helm of the Talon",
-	},
-	["Scrapmetal Helm"] = {
-		[1] = "Embossed Plate Helmet",
-		[2] = "Scarab Plate Helm",
-	},
-    ["Helm of the Executioner"] = {
-		[1] = "Darkflame Helm",
-		[2] = "Ironhide Helmet",
-	},
-	["Ironhide Helmet"] = {
-		[1] = "Darkflame Helm",
-		[2] = "Helm of the Executioner",
-	},
-	["Darkflame Helm"] = {
-		[1] = "Helm of the Executioner",
-		[2] = "Ironhide Helmet",
-	},
-    ["Visor of Command"] = {
-		[1] = "Barbaric Iron Helm",
-		[2] = "Drakefire Headguard",
-		[3] = "Coif of Elemental Fury",
-		[4] = "Brigade Circlet",
-		[5] = "Carrion Scorpid Helm",
-		[6] = "Blood-Spattered Helm",
-		[7] = "Bloodstained Coif",
-	},
-	["Carrion Scorpid Helm"] = {
-		[1] = "Visor of Command",
-		[2] = "Barbaric Iron Helm",
-		[3] = "Drakefire Headguard",
-		[4] = "Coif of Elemental Fury",
-		[5] = "Brigade Circlet",
-		[6] = "Blood-Spattered Helm",
-		[7] = "Bloodstained Coif",
-	},
-	["Brigade Circlet"] = {
-		[1] = "Visor of Command",
-		[2] = "Barbaric Iron Helm",
-		[3] = "Drakefire Headguard",
-		[4] = "Coif of Elemental Fury",
-		[5] = "Carrion Scorpid Helm",
-		[6] = "Blood-Spattered Helm",
-		[7] = "Bloodstained Coif",
-	},
-	["Coif of Elemental Fury"] = {
-		[1] = "Visor of Command",
-		[2] = "Barbaric Iron Helm",
-		[3] = "Drakefire Headguard",
-		[4] = "Brigade Circlet",
-		[5] = "Carrion Scorpid Helm",
-		[6] = "Blood-Spattered Helm",
-		[7] = "Bloodstained Coif",
-	},
-	["Barbaric Iron Helm"] = {
-		[1] = "Visor of Command",
-		[2] = "Drakefire Headguard",
-		[3] = "Coif of Elemental Fury",
-		[4] = "Brigade Circlet",
-		[5] = "Carrion Scorpid Helm",
-		[6] = "Blood-Spattered Helm",
-		[7] = "Bloodstained Coif",
-	},
-	["Blood-Spattered Helm"] = {
-		[1] = "Visor of Command",
-		[2] = "Barbaric Iron Helm",
-		[3] = "Drakefire Headguard",
-		[4] = "Coif of Elemental Fury",
-		[5] = "Brigade Circlet",
-		[6] = "Carrion Scorpid Helm",
-		[7] = "Bloodstained Coif",
-	},
-	["Bloodstained Coif"] = {
-		[1] = "Visor of Command",
-		[2] = "Barbaric Iron Helm",
-		[3] = "Drakefire Headguard",
-		[4] = "Coif of Elemental Fury",
-		[5] = "Brigade Circlet",
-		[6] = "Carrion Scorpid Helm",
-		[7] = "Blood-Spattered Helm",
-	},
-	["Drakefire Headguard"] = {
-		[1] = "Visor of Command",
-		[2] = "Barbaric Iron Helm",
-		[3] = "Coif of Elemental Fury",
-		[4] = "Brigade Circlet",
-		[5] = "Carrion Scorpid Helm",
-		[6] = "Blood-Spattered Helm",
-		[7] = "Bloodstained Coif",
-	},
-    ["Huntsman's Cap"] = {
-		[1] = "Crown of Unstable Nature",
-		[2] = "Vinebound Headband",
-	},
-	["Crown of Unstable Nature"] = {
-		[1] = "Huntsman's Cap",
-		[2] = "Vinebound Headband",
-	},
-	["Vinebound Headband"] = {
-		[1] = "Huntsman's Cap",
-		[2] = "Crown of Unstable Nature",
-	},
-	["Undercity Bucket Hat"] = {
-		[1] = "Southsea Head Bucket",
-		[2] = "Avenguard Helm",
-		[3] = "Monolith Headguard",
-	},
-	["Monolith Headguard"] = {
-		[1] = "Southsea Head Bucket",
-		[2] = "Avenguard Helm",
-		[3] = "Undercity Bucket Hat",
-	},
-	["Southsea Head Bucket"] = {
-		[1] = "Avenguard Helm",
-		[2] = "Undercity Bucket Hat",
-		[3] = "Monolith Headguard",
-	},
-	["Avenguard Helm"] = {
-		[1] = "Southsea Head Bucket",
-		[2] = "Undercity Bucket Hat",
-		[3] = "Monolith Headguard",
-	},
-    ["Light Plate Helmet"] = {
-		[1] = "Helm of the Holy Avenger",
-		[2] = "Platemail Helm",
-		[3] = "Field Plate Helmet",
-		[4] = "Skullsplitter Helm",
-		[5] = "Impenetrable Helmet",
-	},
-	["Skullsplitter Helm"] = {
-		[1] = "Helm of the Holy Avenger",
-		[2] = "Platemail Helm",
-		[3] = "Light Plate Helmet",
-		[4] = "Field Plate Helmet",
-		[5] = "Impenetrable Helmet",
-	},
-	["Field Plate Helmet"] = {
-		[1] = "Helm of the Holy Avenger",
-		[2] = "Platemail Helm",
-		[3] = "Light Plate Helmet",
-		[4] = "Skullsplitter Helm",
-		[5] = "Impenetrable Helmet",
-	},
-	["Helm of the Holy Avenger"] = {
-		[1] = "Platemail Helm",
-		[2] = "Light Plate Helmet",
-		[3] = "Field Plate Helmet",
-		[4] = "Skullsplitter Helm",
-		[5] = "Impenetrable Helmet",
-	},
-	["Platemail Helm"] = {
-		[1] = "Helm of the Holy Avenger",
-		[2] = "Light Plate Helmet",
-		[3] = "Field Plate Helmet",
-		[4] = "Skullsplitter Helm",
-		[5] = "Impenetrable Helmet",
-	},
-	["Impenetrable Helmet"] = {
-		[1] = "Helm of the Holy Avenger",
-		[2] = "Platemail Helm",
-		[3] = "Light Plate Helmet",
-		[4] = "Field Plate Helmet",
-		[5] = "Skullsplitter Helm",
-	},
-    ["Stormcaller's Diadem"] = {
-		[1] = "Stormcaller's Crown",
-		[2] = "Stormcaller's Helmet",
-	},
-	["Helm of the Great Chief"] = {
-		[1] = "Lost Defender's Helmet",
-	},
-	["Earthshatter Headpiece"] = {
-		[1] = "Earthshatter Crown",
-		[2] = "Earthshatter Helmet",
-	},
-	["Stormcaller's Helmet"] = {
-		[1] = "Stormcaller's Diadem",
-		[2] = "Stormcaller's Crown",
-	},
-	["Earthshatter Crown"] = {
-		[1] = "Earthshatter Headpiece",
-		[2] = "Earthshatter Helmet",
-	},
-	["Stormcaller's Crown"] = {
-		[1] = "Stormcaller's Diadem",
-		[2] = "Stormcaller's Helmet",
-	},
-	["Lost Defender's Helmet"] = {
-		[1] = "Helm of the Great Chief",
-	},
-	["Earthshatter Helmet"] = {
-		[1] = "Earthshatter Crown",
-		[2] = "Earthshatter Headpiece",
-	},
-    ["Brigandine Helm"] = {
-		[1] = "Crown of Divine Justice",
-		[2] = "Glorious Headdress",
-	},
-	["Crown of Divine Justice"] = {
-		[1] = "Brigandine Helm",
-		[2] = "Glorious Headdress",
-	},
-	["Glorious Headdress"] = {
-		[1] = "Crown of Divine Justice",
-		[2] = "Brigandine Helm",
-	},
-    ["Tel Co. Protective Helmet"] = {
-		[1] = "Emerald Helm",
-		[2] = "Green Iron Helm",
-	},
-	["Green Iron Helm"] = {
-		[1] = "Tel Co. Protective Helmet",
-		[2] = "Emerald Helm",
-	},
-	["Emerald Helm"] = {
-		[1] = "Tel Co. Protective Helmet",
-		[2] = "Green Iron Helm",
-	},
-    ["Enchanted Thorium Helm"] = {
-		[1] = "Alabaster Plate Helmet",
-	},
-	["Alabaster Plate Helmet"] = {
-		[1] = "Enchanted Thorium Helm",
-	},
-    ["The Crown of Shattering"] = {
-		[1] = "Heavy Mithril Helm",
-		[2] = "Scrapforged Helmet",
-		[3] = "Hateforge Helmet",
-		[4] = "Ebonhold Helmet",
-		[5] = "Chromite Barbute",
-	},
-	["Ebonhold Helmet"] = {
-		[1] = "Heavy Mithril Helm",
-		[2] = "Scrapforged Helmet",
-		[3] = "Hateforge Helmet",
-		[4] = "The Crown of Shattering",
-		[5] = "Chromite Barbute",
-	},
-	["Hateforge Helmet"] = {
-		[1] = "Heavy Mithril Helm",
-		[2] = "Scrapforged Helmet",
-		[3] = "Ebonhold Helmet",
-		[4] = "The Crown of Shattering",
-		[5] = "Chromite Barbute",
-	},
-	["Chromite Barbute"] = {
-		[1] = "Heavy Mithril Helm",
-		[2] = "Scrapforged Helmet",
-		[3] = "Hateforge Helmet",
-		[4] = "Ebonhold Helmet",
-		[5] = "The Crown of Shattering",
-	},
-	["Heavy Mithril Helm"] = {
-		[1] = "Scrapforged Helmet",
-		[2] = "Hateforge Helmet",
-		[3] = "Ebonhold Helmet",
-		[4] = "The Crown of Shattering",
-		[5] = "Chromite Barbute",
-	},
-	["Scrapforged Helmet"] = {
-		[1] = "Heavy Mithril Helm",
-		[2] = "Hateforge Helmet",
-		[3] = "Ebonhold Helmet",
-		[4] = "The Crown of Shattering",
-		[5] = "Chromite Barbute",
-	},
-    ["Crown of Tyranny"] = {
-		[1] = "Dark Iron Helm",
-	},
-	["Dark Iron Helm"] = {
-		[1] = "Crown of Tyranny",
-	},
-    ["Helm of Nethergarde"] = {
-		[1] = "Commander's Helm",
-		[2] = "Engraved Helm",
-		[3] = "Raging Berserker's Helm",
-		[4] = "Runic Plate Helm",
-	},
-	["Commander's Helm"] = {
-		[1] = "Engraved Helm",
-		[2] = "Raging Berserker's Helm",
-		[3] = "Helm of Nethergarde",
-		[4] = "Runic Plate Helm",
-	},
-	["Engraved Helm"] = {
-		[1] = "Commander's Helm",
-		[2] = "Raging Berserker's Helm",
-		[3] = "Helm of Nethergarde",
-		[4] = "Runic Plate Helm",
-	},
-	["Runic Plate Helm"] = {
-		[1] = "Commander's Helm",
-		[2] = "Engraved Helm",
-		[3] = "Raging Berserker's Helm",
-		[4] = "Helm of Nethergarde",
-	},
-	["Raging Berserker's Helm"] = {
-		[1] = "Commander's Helm",
-		[2] = "Engraved Helm",
-		[3] = "Helm of Nethergarde",
-		[4] = "Runic Plate Helm",
-	},
-    ["Lofty Helm"] = {
-		[1] = "Valorous Helm",
-	},
-	["Valorous Helm"] = {
-		[1] = "Lofty Helm",
-	},
-    ["Bloody Gladiator's Helm"] = {
-		[1] = "Heroic Skullcap",
-		[2] = "Horns of Eranikus",
-	},
-	["Horns of Eranikus"] = {
-		[1] = "Bloody Gladiator's Helm",
-		[2] = "Heroic Skullcap",
-	},
-	["Heroic Skullcap"] = {
-		[1] = "Bloody Gladiator's Helm",
-		[2] = "Horns of Eranikus",
-	},
-    ["Chief Brigadier Coif"] = {
-		[1] = "Dragoneye Coif",
-		[2] = "Fervent Helm",
-		[3] = "Mithril Coif",
-		[4] = "Vagrant Coif",
-		[5] = "Brutal Helm",
-		[6] = "Coif of the Lost Soul",
-		[7] = "Overlinked Coif",
-		[8] = "Fire Hardened Coif",
-		[9] = "Wreath of Worgen Blood",
-	},
-	["Overlinked Coif"] = {
-		[1] = "Dragoneye Coif",
-		[2] = "Chief Brigadier Coif",
-		[3] = "Fervent Helm",
-		[4] = "Mithril Coif",
-		[5] = "Vagrant Coif",
-		[6] = "Brutal Helm",
-		[7] = "Coif of the Lost Soul",
-		[8] = "Fire Hardened Coif",
-		[9] = "Wreath of Worgen Blood",
-	},
-	["Mithril Coif"] = {
-		[1] = "Dragoneye Coif",
-		[2] = "Chief Brigadier Coif",
-		[3] = "Fervent Helm",
-		[4] = "Vagrant Coif",
-		[5] = "Brutal Helm",
-		[6] = "Coif of the Lost Soul",
-		[7] = "Overlinked Coif",
-		[8] = "Fire Hardened Coif",
-		[9] = "Wreath of Worgen Blood",
-	},
-	["Fire Hardened Coif"] = {
-		[1] = "Dragoneye Coif",
-		[2] = "Chief Brigadier Coif",
-		[3] = "Fervent Helm",
-		[4] = "Mithril Coif",
-		[5] = "Vagrant Coif",
-		[6] = "Brutal Helm",
-		[7] = "Coif of the Lost Soul",
-		[8] = "Overlinked Coif",
-		[9] = "Wreath of Worgen Blood",
-	},
-	["Wreath of Worgen Blood"] = {
-		[1] = "Dragoneye Coif",
-		[2] = "Chief Brigadier Coif",
-		[3] = "Fervent Helm",
-		[4] = "Mithril Coif",
-		[5] = "Vagrant Coif",
-		[6] = "Brutal Helm",
-		[7] = "Coif of the Lost Soul",
-		[8] = "Overlinked Coif",
-		[9] = "Fire Hardened Coif",
-	},
-	["Dragoneye Coif"] = {
-		[1] = "Chief Brigadier Coif",
-		[2] = "Fervent Helm",
-		[3] = "Mithril Coif",
-		[4] = "Vagrant Coif",
-		[5] = "Brutal Helm",
-		[6] = "Coif of the Lost Soul",
-		[7] = "Overlinked Coif",
-		[8] = "Fire Hardened Coif",
-		[9] = "Wreath of Worgen Blood",
-	},
-	["Coif of the Lost Soul"] = {
-		[1] = "Dragoneye Coif",
-		[2] = "Chief Brigadier Coif",
-		[3] = "Fervent Helm",
-		[4] = "Mithril Coif",
-		[5] = "Vagrant Coif",
-		[6] = "Brutal Helm",
-		[7] = "Overlinked Coif",
-		[8] = "Fire Hardened Coif",
-		[9] = "Wreath of Worgen Blood",
-	},
-	["Brutal Helm"] = {
-		[1] = "Dragoneye Coif",
-		[2] = "Chief Brigadier Coif",
-		[3] = "Fervent Helm",
-		[4] = "Mithril Coif",
-		[5] = "Vagrant Coif",
-		[6] = "Coif of the Lost Soul",
-		[7] = "Overlinked Coif",
-		[8] = "Fire Hardened Coif",
-		[9] = "Wreath of Worgen Blood",
-	},
-	["Fervent Helm"] = {
-		[1] = "Dragoneye Coif",
-		[2] = "Chief Brigadier Coif",
-		[3] = "Mithril Coif",
-		[4] = "Vagrant Coif",
-		[5] = "Brutal Helm",
-		[6] = "Coif of the Lost Soul",
-		[7] = "Overlinked Coif",
-		[8] = "Fire Hardened Coif",
-		[9] = "Wreath of Worgen Blood",
-	},
-	["Vagrant Coif"] = {
-		[1] = "Dragoneye Coif",
-		[2] = "Chief Brigadier Coif",
-		[3] = "Fervent Helm",
-		[4] = "Mithril Coif",
-		[5] = "Brutal Helm",
-		[6] = "Coif of the Lost Soul",
-		[7] = "Overlinked Coif",
-		[8] = "Fire Hardened Coif",
-		[9] = "Wreath of Worgen Blood",
-	},
-    ["Nathrezim Skullcap"] = {
-		[1] = "Nathrezim Crown",
-	},
-	["Nathrezim Crown"] = {
-		[1] = "Nathrezim Skullcap",
-	},
-	["Crown of the Guardian"] = {
-		[1] = "Circlet of the Guardian",
-	},
-	["Circlet of the Guardian"] = {
-		[1] = "Crown of the Guardian",
-	},
-    ["Steel Plate Barbute"] = {
-		[1] = "Savage Helmet",
-		[2] = "Gurubashi Helm",
-		[3] = "Helm of Exile",
-	},
-	["Helm of Exile"] = {
-		[1] = "Steel Plate Barbute",
-		[2] = "Savage Helmet",
-		[3] = "Gurubashi Helm",
-	},
-	["Glimmering Mail Coif"] = {
-		[1] = "Golden Scale Coif",
-		[2] = "Sunblaze Coif",
-		[3] = "Sparkleshell Headwrap",
-	},
-	["Sparkleshell Headwrap"] = {
-		[1] = "Golden Scale Coif",
-		[2] = "Sunblaze Coif",
-		[3] = "Glimmering Mail Coif",
-	},
-	["Golden Scale Coif"] = {
-		[1] = "Sunblaze Coif",
-		[2] = "Sparkleshell Headwrap",
-		[3] = "Glimmering Mail Coif",
-	},
-	["Gurubashi Helm"] = {
-		[1] = "Steel Plate Barbute",
-		[2] = "Savage Helmet",
-		[3] = "Helm of Exile",
-	},
-	["Revenant Helmet"] = {
-		[1] = "Helm of Domination",
-	},
-	["Savage Helmet"] = {
-		[1] = "Steel Plate Barbute",
-		[2] = "Gurubashi Helm",
-		[3] = "Helm of Exile",
-	},
-	["Helm of Domination"] = {
-		[1] = "Revenant Helmet",
-	},
-	["Sunblaze Coif"] = {
-		[1] = "Golden Scale Coif",
-		[2] = "Sparkleshell Headwrap",
-		[3] = "Glimmering Mail Coif",
-	},
-    ["Gryphon Mail Crown"] = {
-		[1] = "Backwood Helm",
-	},
-	["Double Mail Coif"] = {
-		[1] = "Sparkmetal Coif",
-		[2] = "Warstrike Helmet",
-	},
-	["Backwood Helm"] = {
-		[1] = "Gryphon Mail Crown",
-	},
-	["Warstrike Helmet"] = {
-		[1] = "Double Mail Coif",
-		[2] = "Sparkmetal Coif",
-	},
-	["Sparkmetal Coif"] = {
-		[1] = "Double Mail Coif",
-		[2] = "Warstrike Helmet",
-	},
-	["Resilient Cap"] = {
-		[1] = "Hood of Delusional Power",
-		[2] = "Living Cowl",
-	},
-	["Living Cowl"] = {
-		[1] = "Hood of Delusional Power",
-		[2] = "Resilient Cap",
-	},
-	["Hood of Delusional Power"] = {
-		[1] = "Resilient Cap",
-		[2] = "Living Cowl",
-	},
-    ["Scaled Leather Headband"] = {
-		[1] = "Peerless Headband",
-	},
-	["Helm of Latent Power"] = {
-		[1] = "Bloomsprout Headpiece",
-	},
-	["Peerless Headband"] = {
-		[1] = "Scaled Leather Headband",
-	},
-	["Bloomsprout Headpiece"] = {
-		[1] = "Helm of Latent Power",
-	},
-    ["Outlaw's Pirate Hat"] = {
-		[1] = "Grayson’s Hat",
-		[2] = "Freebooter's Pirate Hat",
-		[3] = "First Mate Hat",
-		[4] = "Westwind's Bicorne",
-	},
-	["Grayson’s Hat"] = {
-		[1] = "Freebooter's Pirate Hat",
-		[2] = "Outlaw's Pirate Hat",
-		[3] = "First Mate Hat",
-		[4] = "Westwind's Bicorne",
-	},
-	["First Mate Hat"] = {
-		[1] = "Grayson’s Hat",
-		[2] = "Freebooter's Pirate Hat",
-		[3] = "Outlaw's Pirate Hat",
-		[4] = "Westwind's Bicorne",
-	},
-	["Westwind's Bicorne"] = {
-		[1] = "Grayson’s Hat",
-		[2] = "Freebooter's Pirate Hat",
-		[3] = "Outlaw's Pirate Hat",
-		[4] = "First Mate Hat",
-	},
-	["Freebooter's Pirate Hat"] = {
-		[1] = "Grayson’s Hat",
-		[2] = "Outlaw's Pirate Hat",
-		[3] = "First Mate Hat",
-		[4] = "Westwind's Bicorne",
-	},
-    ["Stormhowl Headpiece"] = {
-		[1] = "Stormhowl Crown",
-		[2] = "Stormhowl Helmet",
-	},
-	["Icemetal Barbute"] = {
-		[1] = "Jouster's Visor",
-	},
-	["Jouster's Visor"] = {
-		[1] = "Icemetal Barbute",
-	},
-	["Resplendent Circlet"] = {
-		[1] = "Mercurial Circlet",
-		[2] = "Radiant Circlet",
-		[3] = "Merciless Crown",
-		[4] = "Elegant Circlet",
-	},
-	["Radiant Circlet"] = {
-		[1] = "Mercurial Circlet",
-		[2] = "Merciless Crown",
-		[3] = "Resplendent Circlet",
-		[4] = "Elegant Circlet",
-	},
-	["Merciless Crown"] = {
-		[1] = "Mercurial Circlet",
-		[2] = "Radiant Circlet",
-		[3] = "Resplendent Circlet",
-		[4] = "Elegant Circlet",
-	},
-	["Elegant Circlet"] = {
-		[1] = "Mercurial Circlet",
-		[2] = "Radiant Circlet",
-		[3] = "Merciless Crown",
-		[4] = "Resplendent Circlet",
-	},
-	["Stormhowl Helmet"] = {
-		[1] = "Stormhowl Crown",
-		[2] = "Stormhowl Headpiece",
-	},
-	["Mercurial Circlet"] = {
-		[1] = "Radiant Circlet",
-		[2] = "Merciless Crown",
-		[3] = "Resplendent Circlet",
-		[4] = "Elegant Circlet",
-	},
-	["Stormhowl Crown"] = {
-		[1] = "Stormhowl Helmet",
-		[2] = "Stormhowl Headpiece",
-	},
-    ["Marauder's Circlet"] = {
-		[1] = "Towerforge Crown",
-		[2] = "Infernal Headcage",
-		[3] = "Augmented Chain Helm",
-		[4] = "Knight's Headguard",
-		[5] = "Jazeraint Helm",
-	},
-	["Jazeraint Helm"] = {
-		[1] = "Towerforge Crown",
-		[2] = "Marauder's Circlet",
-		[3] = "Infernal Headcage",
-		[4] = "Augmented Chain Helm",
-		[5] = "Knight's Headguard",
-	},
-	["Wolfshead Helm"] = {
-		[1] = "Wolf's Skull",
-		[2] = "Embrace of the Lycan",
-	},
-	["Augmented Chain Helm"] = {
-		[1] = "Towerforge Crown",
-		[2] = "Marauder's Circlet",
-		[3] = "Infernal Headcage",
-		[4] = "Knight's Headguard",
-		[5] = "Jazeraint Helm",
-	},
-	["Wolf's Skull"] = {
-		[1] = "Wolfshead Helm",
-		[2] = "Embrace of the Lycan",
-	},
-	["Knight's Headguard"] = {
-		[1] = "Towerforge Crown",
-		[2] = "Marauder's Circlet",
-		[3] = "Infernal Headcage",
-		[4] = "Augmented Chain Helm",
-		[5] = "Jazeraint Helm",
-	},
-	["Embrace of the Lycan"] = {
-		[1] = "Wolf's Skull",
-		[2] = "Wolfshead Helm",
-	},
-	["Towerforge Crown"] = {
-		[1] = "Marauder's Circlet",
-		[2] = "Infernal Headcage",
-		[3] = "Augmented Chain Helm",
-		[4] = "Knight's Headguard",
-		[5] = "Jazeraint Helm",
-	},
-	["Infernal Headcage"] = {
-		[1] = "Towerforge Crown",
-		[2] = "Marauder's Circlet",
-		[3] = "Augmented Chain Helm",
-		[4] = "Knight's Headguard",
-		[5] = "Jazeraint Helm",
-	},
-    ["Righteous Helmet"] = {
-		[1] = "Insightful Hood",
-		[2] = "Ringed Helm",
-		[3] = "Sprightring Helm",
-		[4] = "Humbert's Helm",
-		[5] = "Thick Leather Hat",
-	},
-	["Ringed Helm"] = {
-		[1] = "Righteous Helmet",
-		[2] = "Insightful Hood",
-		[3] = "Sprightring Helm",
-		[4] = "Humbert's Helm",
-		[5] = "Thick Leather Hat",
-	},
-	["Thick Scale Crown"] = {
-		[1] = "Helm of the Lifegiver",
-		[2] = "Phalanx Headguard",
-	},
-	["Helm of the Lifegiver"] = {
-		[1] = "Phalanx Headguard",
-		[2] = "Thick Scale Crown",
-	},
-	["Sprightring Helm"] = {
-		[1] = "Righteous Helmet",
-		[2] = "Insightful Hood",
-		[3] = "Ringed Helm",
-		[4] = "Humbert's Helm",
-		[5] = "Thick Leather Hat",
-	},
-	["Thick Leather Hat"] = {
-		[1] = "Righteous Helmet",
-		[2] = "Insightful Hood",
-		[3] = "Ringed Helm",
-		[4] = "Sprightring Helm",
-		[5] = "Humbert's Helm",
-	},
-	["Insightful Hood"] = {
-		[1] = "Righteous Helmet",
-		[2] = "Ringed Helm",
-		[3] = "Sprightring Helm",
-		[4] = "Humbert's Helm",
-		[5] = "Thick Leather Hat",
-	},
-	["Phalanx Headguard"] = {
-		[1] = "Helm of the Lifegiver",
-		[2] = "Thick Scale Crown",
-	},
-	["Humbert's Helm"] = {
-		[1] = "Righteous Helmet",
-		[2] = "Insightful Hood",
-		[3] = "Ringed Helm",
-		[4] = "Sprightring Helm",
-		[5] = "Thick Leather Hat",
-	},
-    ["Pridelord Halo"] = {
-		[1] = "Heraldic Headpiece",
-		[2] = "Mighty Helmet",
-	},
-	["Mighty Helmet"] = {
-		[1] = "Pridelord Halo",
-		[2] = "Heraldic Headpiece",
-	},
-	["Cutthroat's Hat"] = {
-		[1] = "Helm of Fire",
-		[2] = "Bloodlust Helm",
-	},
-	["Heraldic Headpiece"] = {
-		[1] = "Pridelord Halo",
-		[2] = "Mighty Helmet",
-	},
-	["Bloodlust Helm"] = {
-		[1] = "Helm of Fire",
-		[2] = "Cutthroat's Hat",
-	},
-	["Circle of Flame"] = {
-		[1] = "Crown of Destruction",
-	},
-	["Helm of Fire"] = {
-		[1] = "Cutthroat's Hat",
-		[2] = "Bloodlust Helm",
-	},
-	["Crown of Destruction"] = {
-		[1] = "Circle of Flame",
-	},
-    ["Goldenshade Quartz Crown"] = {
-		[1] = "Ravager's Crown",
-	},
-	["Cassandra's Grace"] = {
-		[1] = "Masterwork Circlet",
-		[2] = "Crown of Corthan",
-		[3] = "Crown of Elegance",
-		[4] = "Bloodfire Circlet",
-		[5] = "Crown of the Ogre King",
-	},
-	["Crown of Corthan"] = {
-		[1] = "Masterwork Circlet",
-		[2] = "Crown of Elegance",
-		[3] = "Cassandra's Grace",
-		[4] = "Bloodfire Circlet",
-		[5] = "Crown of the Ogre King",
-	},
-	["Crown of the Ogre King"] = {
-		[1] = "Masterwork Circlet",
-		[2] = "Crown of Corthan",
-		[3] = "Crown of Elegance",
-		[4] = "Cassandra's Grace",
-		[5] = "Bloodfire Circlet",
-	},
-	["Ravager's Crown"] = {
-		[1] = "Goldenshade Quartz Crown",
-	},
-	["Bloodfire Circlet"] = {
-		[1] = "Masterwork Circlet",
-		[2] = "Crown of Corthan",
-		[3] = "Crown of Elegance",
-		[4] = "Cassandra's Grace",
-		[5] = "Crown of the Ogre King",
-	},
-	["Crown of Elegance"] = {
-		[1] = "Masterwork Circlet",
-		[2] = "Crown of Corthan",
-		[3] = "Cassandra's Grace",
-		[4] = "Bloodfire Circlet",
-		[5] = "Crown of the Ogre King",
-	},
-	["Masterwork Circlet"] = {
-		[1] = "Crown of Corthan",
-		[2] = "Crown of Elegance",
-		[3] = "Cassandra's Grace",
-		[4] = "Bloodfire Circlet",
-		[5] = "Crown of the Ogre King",
-	},
-    ["Embalmed Shroud"] = {
-		[1] = "Felcloth Hood",
-		[2] = "Pillager's Hood",
-	},
-	["Felcloth Hood"] = {
-		[1] = "Embalmed Shroud",
-		[2] = "Pillager's Hood",
-	},
-	["Pillager's Hood"] = {
-		[1] = "Embalmed Shroud",
-		[2] = "Felcloth Hood",
-	},
-    ["Genesis Helm"] = {
-		[1] = "Genesis Helmet",
-		[2] = "Genesis Circlet",
-	},
-	["Genesis Circlet"] = {
-		[1] = "Genesis Helmet",
-		[2] = "Genesis Helm",
-	},
-	["Genesis Helmet"] = {
-		[1] = "Genesis Helm",
-		[2] = "Genesis Circlet",
-	},
-    ["Doomcaller's Circlet"] = {
-		[1] = "Doomcaller's Crown",
-	},
-	["Crown of Skittering Shadows"] = {
-		[1] = "Enigma Crown",
-		[2] = "Enigma Circlet",
-	},
-	["Enigma Crown"] = {
-		[1] = "Enigma Circlet",
-		[2] = "Crown of Skittering Shadows",
-	},
-	["Enigma Circlet"] = {
-		[1] = "Enigma Crown",
-		[2] = "Crown of Skittering Shadows",
-	},
-	["Doomcaller's Crown"] = {
-		[1] = "Doomcaller's Circlet",
-	},
-    ["Arachnidian Circlet"] = {
-		[1] = "Dreamweave Circlet",
-		[2] = "Elunarian Diadem",
-	},
-	["Crown of Caer Darrow"] = {
-		[1] = "Jade Circlet",
-	},
-	["Jade Circlet"] = {
-		[1] = "Crown of Caer Darrow",
-	},
-	["Tiara of the Oracle"] = {
-		[1] = "Coronet of the Oracle",
-	},
-	["Coronet of the Oracle"] = {
-		[1] = "Tiara of the Oracle",
-	},
-	["Elunarian Diadem"] = {
-		[1] = "Arachnidian Circlet",
-		[2] = "Dreamweave Circlet",
-	},
-	["Dreamweave Circlet"] = {
-		[1] = "Arachnidian Circlet",
-		[2] = "Elunarian Diadem",
-	},
-    ["Black Mageweave Headband"] = {
-		[1] = "Bloody Gladiator's Headband",
-		[2] = "Wicked Leather Headband",
-	},
-	["Bloody Gladiator's Headband"] = {
-		[1] = "Wicked Leather Headband",
-		[2] = "Black Mageweave Headband",
-	},
-	["Wicked Leather Headband"] = {
-		[1] = "Bloody Gladiator's Headband",
-		[2] = "Black Mageweave Headband",
-	},
-    ["Corpseshroud"] = {
-		[1] = "Forgotten Veil",
-	},
-	["White Drakeskin Cap"] = {
-		[1] = "Undercity Reservist's Cap",
-		[2] = "Ghostwalker Crown",
-	},
-	["Forgotten Veil"] = {
-		[1] = "Corpseshroud",
-	},
-	["Undercity Reservist's Cap"] = {
-		[1] = "White Drakeskin Cap",
-		[2] = "Ghostwalker Crown",
-	},
-	["Ghostwalker Crown"] = {
-		[1] = "Undercity Reservist's Cap",
-		[2] = "White Drakeskin Cap",
-	},
-    ["Indomitable Headdress"] = {
-		[1] = "Serpentskin Helm",
-		[2] = "Imperial Leather Helm",
-	},
-	["Imperial Leather Helm"] = {
-		[1] = "Serpentskin Helm",
-		[2] = "Indomitable Headdress",
-	},
-	["Serpentskin Helm"] = {
-		[1] = "Indomitable Headdress",
-		[2] = "Imperial Leather Helm",
-	},
-    ["Keeper's Wreath"] = {
-		[1] = "Traveler's Helm",
-		[2] = "Crown of Corruption",
-		[3] = "Creeping Vine Helm",
-	},
-	["Traveler's Helm"] = {
-		[1] = "Keeper's Wreath",
-		[2] = "Crown of Corruption",
-		[3] = "Creeping Vine Helm",
-	},
-	["Crown of Corruption"] = {
-		[1] = "Traveler's Helm",
-		[2] = "Keeper's Wreath",
-		[3] = "Creeping Vine Helm",
-	},
-	["Pathfinder Hat"] = {
-		[1] = "Jadefire Cap",
-	},
-	["Creeping Vine Helm"] = {
-		[1] = "Traveler's Helm",
-		[2] = "Keeper's Wreath",
-		[3] = "Crown of Corruption",
-	},
-	["Jadefire Cap"] = {
-		[1] = "Pathfinder Hat",
-	},
-    ["Field Marshal's Dragonhide Helmet"] = {
-		[1] = "Field Marshal's Leather Mask",
-		[2] = "Lieutenant Commander's Leather Helm",
-	},
-	["Lieutenant Commander's Leather Helm"] = {
-		[1] = "Field Marshal's Dragonhide Helmet",
-		[2] = "Field Marshal's Leather Mask",
-	},
-	["Field Marshal's Leather Mask"] = {
-		[1] = "Field Marshal's Dragonhide Helmet",
-		[2] = "Lieutenant Commander's Leather Helm",
-	},
-	["Ruffled Chaplet"] = {
-		[1] = "Spirit Hunter Headdress",
-		[2] = "Primalist's Headdress",
-	},
-	["Nimar's Tribal Headdress"] = {
-		[1] = "Chieftain's Headdress",
-	},
-	["Goblin Construction Helmet"] = {
-		[1] = "Expert Goldminer's Helmet",
-	},
-	["Circlet of Restless Dreams"] = {
-		[1] = "Chieftain's Ceremonial Headdress",
-	},
-	["Chieftain's Headdress"] = {
-		[1] = "Nimar's Tribal Headdress",
-	},
-	["Expert Goldminer's Helmet"] = {
-		[1] = "Goblin Construction Helmet",
-	},
-	["Primalist's Headdress"] = {
-		[1] = "Spirit Hunter Headdress",
-		[2] = "Ruffled Chaplet",
-	},
-	["Spirit Hunter Headdress"] = {
-		[1] = "Ruffled Chaplet",
-		[2] = "Primalist's Headdress",
-	},
-	["Chieftain's Ceremonial Headdress"] = {
-		[1] = "Circlet of Restless Dreams",
-	},
-
-    ["Dreamwalker Shoulderpads"] = {
-		[1] = "Dreamwalker Mantle",
-		[2] = "Dreamwalker Spaulders",
-	},
-	["Mantle of the Scarlet Crusade"] = {
-		[1] = "Imperial Red Mantle",
-	},
-	["Heavy Lamellar Pauldrons"] = {
-		[1] = "Emerald Peak Spaulders",
-		[2] = "Atal'ai Spaulders",
-	},
-	["Emerald Peak Spaulders"] = {
-		[1] = "Heavy Lamellar Pauldrons",
-		[2] = "Atal'ai Spaulders",
-	},
-	["Imperial Red Mantle"] = {
-		[1] = "Mantle of the Scarlet Crusade",
-	},
-	["Hidden Leather Shoulders"] = {
-		[1] = "Hidden Plate Shoulders",
-		[2] = "Hidden Mail Shoulders",
-		[3] = "Hidden Cloth Shoulders",
-	},
-	["Enigma Shoulderpads"] = {
-		[1] = "Enigma Epaulets",
-	},
-	["Enigma Epaulets"] = {
-		[1] = "Enigma Shoulderpads",
-	},
-	["Spaulders of the Oracle"] = {
-		[1] = "Mantle of the Oracle",
-	},
-	["Emerald Pauldrons"] = {
-		[1] = "Pauldrons of the Timbermaw",
-		[2] = "Vileplate Pauldrons",
-	},
-	["Helm of Regrowth"] = {
-		[1] = "Bramblewood Helm",
-	},
-	["Vileplate Pauldrons"] = {
-		[1] = "Pauldrons of the Timbermaw",
-		[2] = "Emerald Pauldrons",
-	},
-	["Mantle of the Talon"] = {
-		[1] = "Spaulders of the Talon",
-		[2] = "Shoulderpads of the Talon",
-	},
-	["Warden's Wizard Hat"] = {
-		[1] = "Reinforced Leather Cap",
-	},
-	["Hidden Plate Shoulders"] = {
-		[1] = "Hidden Mail Shoulders",
-		[2] = "Hidden Leather Shoulders",
-		[3] = "Hidden Cloth Shoulders",
-	},
-	["Reinforced Leather Cap"] = {
-		[1] = "Warden's Wizard Hat",
-	},
-	["Avenger's Spaulders"] = {
-		[1] = "Avenger's Shoulderguards",
-		[2] = "Avenger's Pauldrons",
-	},
-	["Earthshatter Pauldrons"] = {
-		[1] = "Earthshatter Epaulets",
-		[2] = "Earthshatter Spaulders",
-	},
-	["Bramblewood Helm"] = {
-		[1] = "Helm of Regrowth",
-	},
-	["Hidden Mail Shoulders"] = {
-		[1] = "Hidden Plate Shoulders",
-		[2] = "Hidden Leather Shoulders",
-		[3] = "Hidden Cloth Shoulders",
-	},
-	["Earthshatter Spaulders"] = {
-		[1] = "Earthshatter Epaulets",
-		[2] = "Earthshatter Pauldrons",
-	},
-	["Mixologist Goggles"] = {
-		[1] = "Green Tinted Goggles",
-	},
-	["Hidden Cloth Shoulders"] = {
-		[1] = "Hidden Plate Shoulders",
-		[2] = "Hidden Mail Shoulders",
-		[3] = "Hidden Leather Shoulders",
-	},
-	["Shoulderpads of the Talon"] = {
-		[1] = "Spaulders of the Talon",
-		[2] = "Mantle of the Talon",
-	},
-	["Earthshatter Epaulets"] = {
-		[1] = "Earthshatter Pauldrons",
-		[2] = "Earthshatter Spaulders",
-	},
-	["Avenger's Pauldrons"] = {
-		[1] = "Avenger's Shoulderguards",
-		[2] = "Avenger's Spaulders",
-	},
-	["Spaulders of the Talon"] = {
-		[1] = "Mantle of the Talon",
-		[2] = "Shoulderpads of the Talon",
-	},
-	["Atal'ai Spaulders"] = {
-		[1] = "Heavy Lamellar Pauldrons",
-		[2] = "Emerald Peak Spaulders",
-	},
-	["Dreamwalker Spaulders"] = {
-		[1] = "Dreamwalker Mantle",
-		[2] = "Dreamwalker Shoulderpads",
-	},
-	["Avenger's Shoulderguards"] = {
-		[1] = "Avenger's Pauldrons",
-		[2] = "Avenger's Spaulders",
-	},
-	["Pauldrons of the Timbermaw"] = {
-		[1] = "Vileplate Pauldrons",
-		[2] = "Emerald Pauldrons",
-	},
-	["Mantle of the Oracle"] = {
-		[1] = "Spaulders of the Oracle",
-	},
-	["Green Tinted Goggles"] = {
-		[1] = "Mixologist Goggles",
-	},
-	["Dreamwalker Mantle"] = {
-		[1] = "Dreamwalker Spaulders",
-		[2] = "Dreamwalker Shoulderpads",
-	},
-    ["Plagueheart Shoulderpads"] = {
-		[1] = "Plagueheart Mantle",
-	},
-	["Lionheart Shoulderguards"] = {
-		[1] = "Lionheart Spaulders",
-		[2] = "Lionheart Pauldrons",
-	},
-	["Mantle of the Guardian"] = {
-		[1] = "Epaulets of the Guardian",
-	},
-	["Frostfire Shoulderpads"] = {
-		[1] = "Frostfire Epaulets",
-	},
-	["Lionheart Pauldrons"] = {
-		[1] = "Lionheart Spaulders",
-		[2] = "Lionheart Shoulderguards",
-	},
-	["Plagueheart Mantle"] = {
-		[1] = "Plagueheart Shoulderpads",
-	},
-	["Frostfire Epaulets"] = {
-		[1] = "Frostfire Shoulderpads",
-	},
-	["Epaulets of the Guardian"] = {
-		[1] = "Mantle of the Guardian",
-	},
-	["Nexus Shoulderpads"] = {
-		[1] = "Darkmantle Spaulders",
-	},
-	["Lionheart Spaulders"] = {
-		[1] = "Lionheart Shoulderguards",
-		[2] = "Lionheart Pauldrons",
-	},
-	["Nathrezim Mantle"] = {
-		[1] = "Nathrezim Spaulders",
-	},
-	["Redemption Spaulders"] = {
-		[1] = "Redemption Shoulderguards",
-		[2] = "Redemption Pauldrons",
-	},
-	["Darkmantle Spaulders"] = {
-		[1] = "Nexus Shoulderpads",
-	},
-	["Redemption Shoulderguards"] = {
-		[1] = "Redemption Pauldrons",
-		[2] = "Redemption Spaulders",
-	},
-	["Highlander's Plate Spaulders"] = {
-		[1] = "Defiler's Plate Spaulders",
-		[2] = "Highlander's Lamellar Spaulders",
-	},
-	["Highlander's Lamellar Spaulders"] = {
-		[1] = "Defiler's Plate Spaulders",
-		[2] = "Highlander's Plate Spaulders",
-	},
-	["Redemption Pauldrons"] = {
-		[1] = "Redemption Shoulderguards",
-		[2] = "Redemption Spaulders",
-	},
-	["Defiler's Plate Spaulders"] = {
-		[1] = "Highlander's Lamellar Spaulders",
-		[2] = "Highlander's Plate Spaulders",
-	},
-	["Nathrezim Spaulders"] = {
-		[1] = "Nathrezim Mantle",
-	},
-    ["Blue Dragonscale Shoulders"] = {
-		[1] = "Pauldrons of Sealed Magics",
-	},
-	["Cutthroat's Mantle"] = {
-		[1] = "Rageclaw Shoulder Pads",
-		[2] = "Bloodsoaked Pauldrons",
-	},
-	["Field Marshal's Plate Shoulderguards"] = {
-		[1] = "Field Marshal's Lamellar Pauldrons",
-	},
-	["Bloodsoaked Pauldrons"] = {
-		[1] = "Rageclaw Shoulder Pads",
-		[2] = "Cutthroat's Mantle",
-	},
-	["Stonehewn Pauldrons"] = {
-		[1] = "Alabaster Plate Pauldrons",
-		[2] = "Harborage Defender Pauldrons",
-	},
-	["Rageclaw Shoulder Pads"] = {
-		[1] = "Cutthroat's Mantle",
-		[2] = "Bloodsoaked Pauldrons",
-	},
-	["Pauldrons of Sealed Magics"] = {
-		[1] = "Blue Dragonscale Shoulders",
-	},
-	["Alabaster Plate Pauldrons"] = {
-		[1] = "Stonehewn Pauldrons",
-		[2] = "Harborage Defender Pauldrons",
-	},
-	["Red Dragonscale Shoulders"] = {
-		[1] = "Drakesfire Epaulets",
-	},
-	["Harborage Defender Pauldrons"] = {
-		[1] = "Alabaster Plate Pauldrons",
-		[2] = "Stonehewn Pauldrons",
-	},
-	["Drakesfire Epaulets"] = {
-		[1] = "Red Dragonscale Shoulders",
-	},
-	["Field Marshal's Lamellar Pauldrons"] = {
-		[1] = "Field Marshal's Plate Shoulderguards",
-	},
-    ["Maraudine Oath Pauldrons"] = {
-		[1] = "Lofty Shoulder Pads",
-	},
-	["Stormcaller's Epaulets"] = {
-		[1] = "Stormcaller's Pauldrons",
-		[2] = "Stormcaller's Spaulders",
-	},
-	["Stormhowl Pauldrons"] = {
-		[1] = "Stormhowl Spaulders",
-		[2] = "Stormhowl Epaulets",
-	},
-	["Stormcaller's Pauldrons"] = {
-		[1] = "Stormcaller's Spaulders",
-		[2] = "Stormcaller's Epaulets",
-	},
-	["Stormhowl Epaulets"] = {
-		[1] = "Stormhowl Pauldrons",
-		[2] = "Stormhowl Spaulders",
-	},
-	["Lofty Shoulder Pads"] = {
-		[1] = "Maraudine Oath Pauldrons",
-	},
-	["Stormcaller's Spaulders"] = {
-		[1] = "Stormcaller's Pauldrons",
-		[2] = "Stormcaller's Epaulets",
-	},
-	["Stormhowl Spaulders"] = {
-		[1] = "Stormhowl Pauldrons",
-		[2] = "Stormhowl Epaulets",
-	},
-    ["Wyrmtongue Shoulders"] = {
-		[1] = "Zandalar Madcap's Mantle",
-		[2] = "Flamescarred Shoulders",
-		[3] = "Stormshroud Shoulders",
-		[4] = "Defiler's Lizardhide Shoulders",
-		[5] = "Highlander's Lizardhide Shoulders",
-		[6] = "Defiler's Leather Shoulders",
-		[7] = "Highlander's Leather Shoulders",
-	},
-	["Stormshroud Shoulders"] = {
-		[1] = "Zandalar Madcap's Mantle",
-		[2] = "Flamescarred Shoulders",
-		[3] = "Defiler's Lizardhide Shoulders",
-		[4] = "Highlander's Lizardhide Shoulders",
-		[5] = "Wyrmtongue Shoulders",
-		[6] = "Defiler's Leather Shoulders",
-		[7] = "Highlander's Leather Shoulders",
-	},
-	["Zandalar Madcap's Mantle"] = {
-		[1] = "Flamescarred Shoulders",
-		[2] = "Stormshroud Shoulders",
-		[3] = "Defiler's Lizardhide Shoulders",
-		[4] = "Highlander's Lizardhide Shoulders",
-		[5] = "Wyrmtongue Shoulders",
-		[6] = "Defiler's Leather Shoulders",
-		[7] = "Highlander's Leather Shoulders",
-	},
-	["Flamescarred Shoulders"] = {
-		[1] = "Zandalar Madcap's Mantle",
-		[2] = "Stormshroud Shoulders",
-		[3] = "Defiler's Lizardhide Shoulders",
-		[4] = "Highlander's Lizardhide Shoulders",
-		[5] = "Wyrmtongue Shoulders",
-		[6] = "Defiler's Leather Shoulders",
-		[7] = "Highlander's Leather Shoulders",
-	},
-	["Highlander's Leather Shoulders"] = {
-		[1] = "Zandalar Madcap's Mantle",
-		[2] = "Flamescarred Shoulders",
-		[3] = "Stormshroud Shoulders",
-		[4] = "Defiler's Lizardhide Shoulders",
-		[5] = "Highlander's Lizardhide Shoulders",
-		[6] = "Wyrmtongue Shoulders",
-		[7] = "Defiler's Leather Shoulders",
-	},
-	["Defiler's Leather Shoulders"] = {
-		[1] = "Zandalar Madcap's Mantle",
-		[2] = "Flamescarred Shoulders",
-		[3] = "Stormshroud Shoulders",
-		[4] = "Defiler's Lizardhide Shoulders",
-		[5] = "Highlander's Lizardhide Shoulders",
-		[6] = "Wyrmtongue Shoulders",
-		[7] = "Highlander's Leather Shoulders",
-	},
-	["Highlander's Lizardhide Shoulders"] = {
-		[1] = "Zandalar Madcap's Mantle",
-		[2] = "Flamescarred Shoulders",
-		[3] = "Stormshroud Shoulders",
-		[4] = "Defiler's Lizardhide Shoulders",
-		[5] = "Wyrmtongue Shoulders",
-		[6] = "Defiler's Leather Shoulders",
-		[7] = "Highlander's Leather Shoulders",
-	},
-	["Defiler's Lizardhide Shoulders"] = {
-		[1] = "Zandalar Madcap's Mantle",
-		[2] = "Flamescarred Shoulders",
-		[3] = "Stormshroud Shoulders",
-		[4] = "Highlander's Lizardhide Shoulders",
-		[5] = "Wyrmtongue Shoulders",
-		[6] = "Defiler's Leather Shoulders",
-		[7] = "Highlander's Leather Shoulders",
-	},
-    ["Highborne Pauldrons"] = {
-		[1] = "Diabolic Mantle",
-		[2] = "Runecloth Shoulders",
-	},
-	["Kentic Amice"] = {
-		[1] = "Eternal Spaulders",
-	},
-	["Eternal Spaulders"] = {
-		[1] = "Kentic Amice",
-	},
-	["Runecloth Shoulders"] = {
-		[1] = "Highborne Pauldrons",
-		[2] = "Diabolic Mantle",
-	},
-	["Mantle of Doan"] = {
-		[1] = "Felcloth Shoulders",
-	},
-	["Augerer's Mantle"] = {
-		[1] = "Azure Moon Amice",
-		[2] = "Boreal Mantle",
-	},
-	["Diabolic Mantle"] = {
-		[1] = "Highborne Pauldrons",
-		[2] = "Runecloth Shoulders",
-	},
-	["Felcloth Shoulders"] = {
-		[1] = "Mantle of Doan",
-	},
-	["Azure Moon Amice"] = {
-		[1] = "Augerer's Mantle",
-		[2] = "Boreal Mantle",
-	},
-	["Boreal Mantle"] = {
-		[1] = "Augerer's Mantle",
-		[2] = "Azure Moon Amice",
-	},
-    ["Highlander's Chain Pauldrons"] = {
-		[1] = "Defiler's Chain Pauldrons",
-	},
-	["Mantle of Centaur Authority"] = {
-		[1] = "Exalted Epaulets",
-	},
-	["Big Bad Pauldrons"] = {
-		[1] = "Cabalist Spaulders",
-	},
-	["Genesis Spaulders"] = {
-		[1] = "Genesis Mantle",
-		[2] = "Genesis Shoulderpads",
-	},
-	["Defiler's Chain Pauldrons"] = {
-		[1] = "Highlander's Chain Pauldrons",
-	},
-	["Genesis Shoulderpads"] = {
-		[1] = "Genesis Spaulders",
-		[2] = "Genesis Mantle",
-	},
-	["Genesis Mantle"] = {
-		[1] = "Genesis Spaulders",
-		[2] = "Genesis Shoulderpads",
-	},
-	["Cabalist Spaulders"] = {
-		[1] = "Big Bad Pauldrons",
-	},
-	["Exalted Epaulets"] = {
-		[1] = "Mantle of Centaur Authority",
-	},
-    ["Field Marshal's Leather Epaulets"] = {
-		[1] = "Field Marshal's Dragonhide Spaulders",
-		[2] = "Lieutenant Commander's Leather Shoulders",
-	},
-	["Taut Dragonhide Shoulderpads"] = {
-		[1] = "Wyrmhide Spaulders",
-	},
-	["Wyrmhide Spaulders"] = {
-		[1] = "Taut Dragonhide Shoulderpads",
-	},
-	["Field Marshal's Dragonhide Spaulders"] = {
-		[1] = "Field Marshal's Leather Epaulets",
-		[2] = "Lieutenant Commander's Leather Shoulders",
-	},
-	["Lieutenant Commander's Leather Shoulders"] = {
-		[1] = "Field Marshal's Dragonhide Spaulders",
-		[2] = "Field Marshal's Leather Epaulets",
-	},
-    ["Ornate Mithril Shoulder"] = {
-		[1] = "Revenant Shoulders",
-		[2] = "Abyssal Plate Epaulets",
-	},
-	["Pauldrons of Elusiveness"] = {
-		[1] = "Golem Fitted Pauldrons",
-		[2] = "Sentry's Shoulderguards",
-		[3] = "Bonelink Epaulets",
-		[4] = "Champion's Pauldrons",
-	},
-	["Abyssal Plate Epaulets"] = {
-		[1] = "Revenant Shoulders",
-		[2] = "Ornate Mithril Shoulder",
-	},
-	["Bonelink Epaulets"] = {
-		[1] = "Golem Fitted Pauldrons",
-		[2] = "Sentry's Shoulderguards",
-		[3] = "Pauldrons of Elusiveness",
-		[4] = "Champion's Pauldrons",
-	},
-	["Golem Fitted Pauldrons"] = {
-		[1] = "Sentry's Shoulderguards",
-		[2] = "Bonelink Epaulets",
-		[3] = "Pauldrons of Elusiveness",
-		[4] = "Champion's Pauldrons",
-	},
-	["Sentry's Shoulderguards"] = {
-		[1] = "Golem Fitted Pauldrons",
-		[2] = "Bonelink Epaulets",
-		[3] = "Pauldrons of Elusiveness",
-		[4] = "Champion's Pauldrons",
-	},
-	["Fiery Chain Shoulders"] = {
-		[1] = "Hyperion Pauldrons",
-	},
-	["Hyperion Pauldrons"] = {
-		[1] = "Fiery Chain Shoulders",
-	},
-	["Revenant Shoulders"] = {
-		[1] = "Ornate Mithril Shoulder",
-		[2] = "Abyssal Plate Epaulets",
-	},
-	["Champion's Pauldrons"] = {
-		[1] = "Golem Fitted Pauldrons",
-		[2] = "Sentry's Shoulderguards",
-		[3] = "Bonelink Epaulets",
-		[4] = "Pauldrons of Elusiveness",
-	},
-    ["Golden Mantle of the Dawn"] = {
-		[1] = "Amice of the Webweaver",
-		[2] = "Animist's Spaulders",
-	},
-	["Runic Leather Shoulders"] = {
-		[1] = "Mighty Spaulders",
-		[2] = "Mantle of the Ogre Slayer",
-	},
-	["Ghostwalker Pads"] = {
-		[1] = "Stonecloth Epaulets",
-		[2] = "Duskwing Mantle",
-	},
-	["Chieftain's Mantle"] = {
-		[1] = "Hermit's Mantle",
-		[2] = "Hexed Voodoo Pads",
-	},
-	["Mighty Spaulders"] = {
-		[1] = "Runic Leather Shoulders",
-		[2] = "Mantle of the Ogre Slayer",
-	},
-	["Stonecloth Epaulets"] = {
-		[1] = "Duskwing Mantle",
-		[2] = "Ghostwalker Pads",
-	},
-	["Mantle of the Ogre Slayer"] = {
-		[1] = "Mighty Spaulders",
-		[2] = "Runic Leather Shoulders",
-	},
-	["Duskwing Mantle"] = {
-		[1] = "Stonecloth Epaulets",
-		[2] = "Ghostwalker Pads",
-	},
-	["Amice of the Webweaver"] = {
-		[1] = "Golden Mantle of the Dawn",
-		[2] = "Animist's Spaulders",
-	},
-	["Hexed Voodoo Pads"] = {
-		[1] = "Hermit's Mantle",
-		[2] = "Chieftain's Mantle",
-	},
-	["Hermit's Mantle"] = {
-		[1] = "Chieftain's Mantle",
-		[2] = "Hexed Voodoo Pads",
-	},
-	["Traveler's Spaulders"] = {
-		[1] = "Dampener's Pauldrons",
-	},
-	["Dampener's Pauldrons"] = {
-		[1] = "Traveler's Spaulders",
-	},
-	["Animist's Spaulders"] = {
-		[1] = "Amice of the Webweaver",
-		[2] = "Golden Mantle of the Dawn",
-	},
-    ["Avenger's Breastplate"] = {
-		[1] = "Avenger's Chestguard",
-		[2] = "Avenger's Chestplate",
-	},
-	["Raiments of the Talon"] = {
-		[1] = "Vestments of the Talon",
-		[2] = "Vest of the Talon",
-	},
-	["Robes of Pestilence"] = {
-		[1] = "Raiments of Pestilence",
-	},
-	["Genesis Raiments"] = {
-		[1] = "Genesis Vestments",
-		[2] = "Genesis Vest",
-	},
-	["Dreadnaught Breastplate"] = {
-		[1] = "Dreadnaught Chestplate",
-	},
-	["Dreamwalker Vest"] = {
-		[1] = "Dreamwalker Tunic",
-		[2] = "Dreamwalker Raiments",
-	},
-	["Vestments of the Talon"] = {
-		[1] = "Vest of the Talon",
-		[2] = "Raiments of the Talon",
-	},
-	["Chan's Imperial Robes"] = {
-		[1] = "Regal Robes of the Regent",
-		[2] = "Crystal Webbed Robe",
-	},
-	["Stormhowl Tunic"] = {
-		[1] = "Stormhowl Breastplate",
-		[2] = "Stormhowl Raiments",
-	},
-	["Stormcaller's Breastplate"] = {
-		[1] = "Stormcaller's Chestpiece",
-		[2] = "Stormcaller's Hauberk",
-	},
-	["Raiments of Pestilence"] = {
-		[1] = "Robes of Pestilence",
-	},
-	["Regal Robes of the Regent"] = {
-		[1] = "Chan's Imperial Robes",
-		[2] = "Crystal Webbed Robe",
-	},
-	["Earthshatter Tunic"] = {
-		[1] = "Earthshatter Raiments",
-		[2] = "Earthshatter Breastplate",
-	},
-	["Robe of Faith"] = {
-		[1] = "Raiments of Faith",
-	},
-	["Genesis Vestments"] = {
-		[1] = "Genesis Raiments",
-		[2] = "Genesis Vest",
-	},
-	["Lionheart Chestplate"] = {
-		[1] = "Lionheart Chestguard",
-		[2] = "Lionheart Breastplate",
-	},
-	["Raiments of Faith"] = {
-		[1] = "Robe of Faith",
-	},
-	["Crystal Webbed Robe"] = {
-		[1] = "Regal Robes of the Regent",
-		[2] = "Chan's Imperial Robes",
-	},
-	["Doomcaller's Raiments"] = {
-		[1] = "Doomcaller's Robes",
-	},
-	["Otherworldly Robe"] = {
-		[1] = "Revantusk Mystic's Robe",
-	},
-	["Vest of the Talon"] = {
-		[1] = "Vestments of the Talon",
-		[2] = "Raiments of the Talon",
-	},
-	["Frostfire Robe"] = {
-		[1] = "Frostfire Vestments",
-	},
-	["Stormcaller's Hauberk"] = {
-		[1] = "Stormcaller's Chestpiece",
-		[2] = "Stormcaller's Breastplate",
-	},
-	["Elegant Robes"] = {
-		[1] = "Robe of the Custodian",
-	},
-	["Vestments of the Guardian"] = {
-		[1] = "Robes of the Guardian",
-	},
-	["Nathrezim Robes"] = {
-		[1] = "Nathrezim Raiments",
-	},
-	["Lionheart Chestguard"] = {
-		[1] = "Lionheart Breastplate",
-		[2] = "Lionheart Chestplate",
-	},
-	["Robes of the Guardian"] = {
-		[1] = "Vestments of the Guardian",
-	},
-	["Nathrezim Raiments"] = {
-		[1] = "Nathrezim Robes",
-	},
-	["Lionheart Breastplate"] = {
-		[1] = "Lionheart Chestguard",
-		[2] = "Lionheart Chestplate",
-	},
-	["Stormhowl Raiments"] = {
-		[1] = "Stormhowl Breastplate",
-		[2] = "Stormhowl Tunic",
-	},
-	["Avenger's Chestguard"] = {
-		[1] = "Avenger's Breastplate",
-		[2] = "Avenger's Chestplate",
-	},
-	["Avenger's Chestplate"] = {
-		[1] = "Avenger's Breastplate",
-		[2] = "Avenger's Chestguard",
-	},
-	["Robe of the Custodian"] = {
-		[1] = "Elegant Robes",
-	},
-	["Plagueheart Robe"] = {
-		[1] = "Plagueheart Raiments",
-	},
-	["Dreamwalker Raiments"] = {
-		[1] = "Dreamwalker Tunic",
-		[2] = "Dreamwalker Vest",
-	},
-	["Earthshatter Breastplate"] = {
-		[1] = "Earthshatter Raiments",
-		[2] = "Earthshatter Tunic",
-	},
-	["Redemption Chestguard"] = {
-		[1] = "Redemption Chestplate",
-		[2] = "Redemption Tunic",
-	},
-	["Redemption Tunic"] = {
-		[1] = "Redemption Chestplate",
-		[2] = "Redemption Chestguard",
-	},
-	["Genesis Vest"] = {
-		[1] = "Genesis Raiments",
-		[2] = "Genesis Vestments",
-	},
-	["Frostfire Vestments"] = {
-		[1] = "Frostfire Robe",
-	},
-	["Plagueheart Raiments"] = {
-		[1] = "Plagueheart Robe",
-	},
-	["Enigma Vestments"] = {
-		[1] = "Enigma Robes",
-	},
-	["Doomcaller's Robes"] = {
-		[1] = "Doomcaller's Raiments",
-	},
-	["Earthshatter Raiments"] = {
-		[1] = "Earthshatter Tunic",
-		[2] = "Earthshatter Breastplate",
-	},
-	["Enigma Robes"] = {
-		[1] = "Enigma Vestments",
-	},
-	["Revantusk Mystic's Robe"] = {
-		[1] = "Otherworldly Robe",
-	},
-	["Dreamwalker Tunic"] = {
-		[1] = "Dreamwalker Raiments",
-		[2] = "Dreamwalker Vest",
-	},
-	["Redemption Chestplate"] = {
-		[1] = "Redemption Tunic",
-		[2] = "Redemption Chestguard",
-	},
-	["Stormhowl Breastplate"] = {
-		[1] = "Stormhowl Tunic",
-		[2] = "Stormhowl Raiments",
-	},
-	["Stormcaller's Chestpiece"] = {
-		[1] = "Stormcaller's Breastplate",
-		[2] = "Stormcaller's Hauberk",
-	},
-	["Dreadnaught Chestplate"] = {
-		[1] = "Dreadnaught Breastplate",
-	},
-    ["Beer-Stained Tunic"] = {
-		[1] = "Champion's Armor",
-		[2] = "Gahz'rilla Scale Armor",
-		[3] = "Swamplink Harness",
-		[4] = "Icemail Jerkin",
-	},
-	["Champion's Armor"] = {
-		[1] = "Beer-Stained Tunic",
-		[2] = "Gahz'rilla Scale Armor",
-		[3] = "Swamplink Harness",
-		[4] = "Icemail Jerkin",
-	},
-	["Polished Scale Vest"] = {
-		[1] = "Drake-scale Vest",
-		[2] = "Polished Jazeraint Armor",
-	},
-	["Warrior's Embrace"] = {
-		[1] = "Warder's Chestplate",
-	},
-	["Icemail Jerkin"] = {
-		[1] = "Beer-Stained Tunic",
-		[2] = "Champion's Armor",
-		[3] = "Gahz'rilla Scale Armor",
-		[4] = "Swamplink Harness",
-	},
-	["Gahz'rilla Scale Armor"] = {
-		[1] = "Beer-Stained Tunic",
-		[2] = "Champion's Armor",
-		[3] = "Swamplink Harness",
-		[4] = "Icemail Jerkin",
-	},
-	["Swamplink Harness"] = {
-		[1] = "Beer-Stained Tunic",
-		[2] = "Champion's Armor",
-		[3] = "Gahz'rilla Scale Armor",
-		[4] = "Icemail Jerkin",
-	},
-	["Warder's Chestplate"] = {
-		[1] = "Warrior's Embrace",
-	},
-	["Polished Jazeraint Armor"] = {
-		[1] = "Drake-scale Vest",
-		[2] = "Polished Scale Vest",
-	},
-	["Drake-scale Vest"] = {
-		[1] = "Polished Jazeraint Armor",
-		[2] = "Polished Scale Vest",
-	},
-    ["Onyx Shredder Plate"] = {
-		[1] = "Tel Co. Chestguard",
-		[2] = "Heavy Mithril Breastplate",
-	},
-	["Primal Batskin Jerkin"] = {
-		[1] = "Ebonhold Armor",
-		[2] = "Savage Gladiator Chain",
-		[3] = "Cryptbone Hauberk",
-		[4] = "Carapace of the Spider Queen",
-	},
-	["Cryptbone Hauberk"] = {
-		[1] = "Ebonhold Armor",
-		[2] = "Savage Gladiator Chain",
-		[3] = "Carapace of the Spider Queen",
-		[4] = "Primal Batskin Jerkin",
-	},
-	["Knight-Captain's Lamellar Breastplate"] = {
-		[1] = "Field Marshal's Plate Armor",
-	},
-	["Heavy Mithril Breastplate"] = {
-		[1] = "Tel Co. Chestguard",
-		[2] = "Onyx Shredder Plate",
-	},
-	["Ursa's Embrace"] = {
-		[1] = "Kromcrush's Chestplate",
-	},
-	["Field Marshal's Plate Armor"] = {
-		[1] = "Knight-Captain's Lamellar Breastplate",
-	},
-	["Savage Gladiator Chain"] = {
-		[1] = "Ebonhold Armor",
-		[2] = "Cryptbone Hauberk",
-		[3] = "Carapace of the Spider Queen",
-		[4] = "Primal Batskin Jerkin",
-	},
-	["Emerald Breastplate"] = {
-		[1] = "Zandalar Augur's Hauberk",
-		[2] = "Ironvine Breastplate",
-	},
-	["Ironvine Breastplate"] = {
-		[1] = "Zandalar Augur's Hauberk",
-		[2] = "Emerald Breastplate",
-	},
-	["Kromcrush's Chestplate"] = {
-		[1] = "Ursa's Embrace",
-	},
-	["Carapace of the Spider Queen"] = {
-		[1] = "Ebonhold Armor",
-		[2] = "Savage Gladiator Chain",
-		[3] = "Cryptbone Hauberk",
-		[4] = "Primal Batskin Jerkin",
-	},
-	["Zandalar Augur's Hauberk"] = {
-		[1] = "Emerald Breastplate",
-		[2] = "Ironvine Breastplate",
-	},
-	["Tel Co. Chestguard"] = {
-		[1] = "Heavy Mithril Breastplate",
-		[2] = "Onyx Shredder Plate",
-	},
-	["Ebonhold Armor"] = {
-		[1] = "Savage Gladiator Chain",
-		[2] = "Cryptbone Hauberk",
-		[3] = "Carapace of the Spider Queen",
-		[4] = "Primal Batskin Jerkin",
-	},
-    ["Grizzled Pelt"] = {
-		[1] = "Black Bear Hide Vest",
-	},
-
-	["Carapace of Anub'shiah"] = {
-		[1] = "Saltstone Surcoat",
-	},
-	["Chestplate of the Dark Reaver"] = {
-		[1] = "Breastplate of the Dark Reaver",
-	},
-	["Saltstone Surcoat"] = {
-		[1] = "Carapace of Anub'shiah",
-	},
-	["Breastplate of the Dark Reaver"] = {
-		[1] = "Chestplate of the Dark Reaver",
-	},
-	["Black Bear Hide Vest"] = {
-		[1] = "Grizzled Pelt",
-	},
-
-	["Dargol's Hauberk"] = {
-		[1] = "Gelkis Marauder Chain",
-		[2] = "Brutal Hauberk",
-		[3] = "Lavadrenched Chainmail",
-		[4] = "Martyr's Chain",
-		[5] = "Raider's Chestpiece",
-	},
-	["Martyr's Chain"] = {
-		[1] = "Gelkis Marauder Chain",
-		[2] = "Brutal Hauberk",
-		[3] = "Dargol's Hauberk",
-		[4] = "Lavadrenched Chainmail",
-		[5] = "Raider's Chestpiece",
-	},
-	["Lavadrenched Chainmail"] = {
-		[1] = "Gelkis Marauder Chain",
-		[2] = "Brutal Hauberk",
-		[3] = "Dargol's Hauberk",
-		[4] = "Martyr's Chain",
-		[5] = "Raider's Chestpiece",
-	},
-	["Gelkis Marauder Chain"] = {
-		[1] = "Brutal Hauberk",
-		[2] = "Dargol's Hauberk",
-		[3] = "Lavadrenched Chainmail",
-		[4] = "Martyr's Chain",
-		[5] = "Raider's Chestpiece",
-	},
-	["Raider's Chestpiece"] = {
-		[1] = "Gelkis Marauder Chain",
-		[2] = "Brutal Hauberk",
-		[3] = "Dargol's Hauberk",
-		[4] = "Lavadrenched Chainmail",
-		[5] = "Martyr's Chain",
-	},
-	["Brutal Hauberk"] = {
-		[1] = "Gelkis Marauder Chain",
-		[2] = "Dargol's Hauberk",
-		[3] = "Lavadrenched Chainmail",
-		[4] = "Martyr's Chain",
-		[5] = "Raider's Chestpiece",
-	},
-    ["Reinforced Chain Vest"] = {
-		[1] = "Tarnished Chain Vest",
-		[2] = "Double Mail Vest",
-		[3] = "Rough Copper Vest",
-		[4] = "Loose Chain Vest",
-		[5] = "Linked Chain Vest",
-		[6] = "Frostmane Chain Vest",
-		[7] = "Laced Mail Vest",
-		[8] = "Worn Mail Vest",
-		[9] = "Flimsy Chain Vest",
-	},
-	["Dervish Tunic"] = {
-		[1] = "Hawkeye's Tunic",
-	},
-	["Tarnished Chain Vest"] = {
-		[1] = "Double Mail Vest",
-		[2] = "Rough Copper Vest",
-		[3] = "Loose Chain Vest",
-		[4] = "Linked Chain Vest",
-		[5] = "Reinforced Chain Vest",
-		[6] = "Frostmane Chain Vest",
-		[7] = "Laced Mail Vest",
-		[8] = "Worn Mail Vest",
-		[9] = "Flimsy Chain Vest",
-	},
-	["Linked Chain Vest"] = {
-		[1] = "Tarnished Chain Vest",
-		[2] = "Double Mail Vest",
-		[3] = "Rough Copper Vest",
-		[4] = "Loose Chain Vest",
-		[5] = "Reinforced Chain Vest",
-		[6] = "Frostmane Chain Vest",
-		[7] = "Laced Mail Vest",
-		[8] = "Worn Mail Vest",
-		[9] = "Flimsy Chain Vest",
-	},
-	["Red Dragonscale Breastplate"] = {
-		[1] = "Mercurial Breastplate",
-	},
-	["Laced Mail Vest"] = {
-		[1] = "Tarnished Chain Vest",
-		[2] = "Double Mail Vest",
-		[3] = "Rough Copper Vest",
-		[4] = "Loose Chain Vest",
-		[5] = "Linked Chain Vest",
-		[6] = "Reinforced Chain Vest",
-		[7] = "Frostmane Chain Vest",
-		[8] = "Worn Mail Vest",
-		[9] = "Flimsy Chain Vest",
-	},
-	["Royalist Chain Armor"] = {
-		[1] = "Autumnal Chestplate",
-	},
-	["Grizzly Tunic"] = {
-		[1] = "Archer's Jerkin",
-	},
-	["Hawkeye's Tunic"] = {
-		[1] = "Dervish Tunic",
-	},
-	["Double Mail Vest"] = {
-		[1] = "Tarnished Chain Vest",
-		[2] = "Rough Copper Vest",
-		[3] = "Loose Chain Vest",
-		[4] = "Linked Chain Vest",
-		[5] = "Reinforced Chain Vest",
-		[6] = "Frostmane Chain Vest",
-		[7] = "Laced Mail Vest",
-		[8] = "Worn Mail Vest",
-		[9] = "Flimsy Chain Vest",
-	},
-	["Flimsy Chain Vest"] = {
-		[1] = "Tarnished Chain Vest",
-		[2] = "Double Mail Vest",
-		[3] = "Rough Copper Vest",
-		[4] = "Loose Chain Vest",
-		[5] = "Linked Chain Vest",
-		[6] = "Reinforced Chain Vest",
-		[7] = "Frostmane Chain Vest",
-		[8] = "Laced Mail Vest",
-		[9] = "Worn Mail Vest",
-	},
-	["Worn Mail Vest"] = {
-		[1] = "Tarnished Chain Vest",
-		[2] = "Double Mail Vest",
-		[3] = "Rough Copper Vest",
-		[4] = "Loose Chain Vest",
-		[5] = "Linked Chain Vest",
-		[6] = "Reinforced Chain Vest",
-		[7] = "Frostmane Chain Vest",
-		[8] = "Laced Mail Vest",
-		[9] = "Flimsy Chain Vest",
-	},
-	["Loose Chain Vest"] = {
-		[1] = "Tarnished Chain Vest",
-		[2] = "Double Mail Vest",
-		[3] = "Rough Copper Vest",
-		[4] = "Linked Chain Vest",
-		[5] = "Reinforced Chain Vest",
-		[6] = "Frostmane Chain Vest",
-		[7] = "Laced Mail Vest",
-		[8] = "Worn Mail Vest",
-		[9] = "Flimsy Chain Vest",
-	},
-	["Frostmane Chain Vest"] = {
-		[1] = "Tarnished Chain Vest",
-		[2] = "Double Mail Vest",
-		[3] = "Rough Copper Vest",
-		[4] = "Loose Chain Vest",
-		[5] = "Linked Chain Vest",
-		[6] = "Reinforced Chain Vest",
-		[7] = "Laced Mail Vest",
-		[8] = "Worn Mail Vest",
-		[9] = "Flimsy Chain Vest",
-	},
-	["Archer's Jerkin"] = {
-		[1] = "Grizzly Tunic",
-	},
-	["Mercurial Breastplate"] = {
-		[1] = "Red Dragonscale Breastplate",
-	},
-	["Autumnal Chestplate"] = {
-		[1] = "Royalist Chain Armor",
-	},
-	["Rough Copper Vest"] = {
-		[1] = "Tarnished Chain Vest",
-		[2] = "Double Mail Vest",
-		[3] = "Loose Chain Vest",
-		[4] = "Linked Chain Vest",
-		[5] = "Reinforced Chain Vest",
-		[6] = "Frostmane Chain Vest",
-		[7] = "Laced Mail Vest",
-		[8] = "Worn Mail Vest",
-		[9] = "Flimsy Chain Vest",
-	},
-    ["Nature's Gift"] = {
-		[1] = "Lok'delar, Stave of the Ancient Keepers",
-	},
-	["Lok'delar, Stave of the Ancient Keepers"] = {
-		[1] = "Nature's Gift",
-	},
-	["Magram Hunter's Belt"] = {
-		[1] = "Girdle of Beastial Fury",
-	},
-	["Deviate Scale Belt"] = {
-		[1] = "Archer's Belt",
-	},
-	["Warden's Waistband"] = {
-		[1] = "Sentinel Girdle",
-	},
-	["Sentinel Girdle"] = {
-		[1] = "Warden's Waistband",
-	},
-	["Archer's Belt"] = {
-		[1] = "Deviate Scale Belt",
-	},
-	["Girdle of Beastial Fury"] = {
-		[1] = "Magram Hunter's Belt",
-	},
-	["Coronet of Faith"] = {
-		[1] = "Circlet of Faith",
-	},
-	["Pants of Faith"] = {
-		[1] = "Leggings of Faith",
-	},
-	["Bindings of Faith"] = {
-		[1] = "Bracers of Faith",
-	},
-	["Sash of Faith"] = {
-		[1] = "Belt of Faith",
-	},
-	["Mantle of Faith"] = {
-		[1] = "Shoulderpads of Faith",
-	},
-	["Bracers of Faith"] = {
-		[1] = "Bindings of Faith",
-	},
-	["Gloves of Faith"] = {
-		[1] = "Handguards of Faith",
-	},
-	["Shoulderpads of Faith"] = {
-		[1] = "Mantle of Faith",
-	},
-	["Circlet of Faith"] = {
-		[1] = "Coronet of Faith",
-	},
-	["Leggings of Faith"] = {
-		[1] = "Pants of Faith",
-	},
-	["Belt of Faith"] = {
-		[1] = "Sash of Faith",
-	},
-	["Handguards of Faith"] = {
-		[1] = "Gloves of Faith",
-	},
-	["Runed Stygian Leggings"] = {
-		[1] = "Leggings of Torment",
-		[2] = "Fel Infused Leggings",
-		[3] = "Outrider's Silk Leggings",
-		[4] = "Black Mageweave Leggings",
-		[5] = "Abyssal Cloth Pants",
-		[6] = "Sentinel's Silk Leggings",
-	},
-	["Fel Infused Leggings"] = {
-		[1] = "Leggings of Torment",
-		[2] = "Outrider's Silk Leggings",
-		[3] = "Runed Stygian Leggings",
-		[4] = "Black Mageweave Leggings",
-		[5] = "Abyssal Cloth Pants",
-		[6] = "Sentinel's Silk Leggings",
-	},
-	["Barbaric Leggings"] = {
-		[1] = "Devilsaur Leggings",
-		[2] = "Cutthroat's Pants",
-	},
-	["Chieftain's Leggings"] = {
-		[1] = "Pridelord Pants",
-	},
-	["Sentinel's Silk Leggings"] = {
-		[1] = "Leggings of Torment",
-		[2] = "Fel Infused Leggings",
-		[3] = "Outrider's Silk Leggings",
-		[4] = "Runed Stygian Leggings",
-		[5] = "Black Mageweave Leggings",
-		[6] = "Abyssal Cloth Pants",
-	},
-	["Abyssal Cloth Pants"] = {
-		[1] = "Leggings of Torment",
-		[2] = "Fel Infused Leggings",
-		[3] = "Outrider's Silk Leggings",
-		[4] = "Runed Stygian Leggings",
-		[5] = "Black Mageweave Leggings",
-		[6] = "Sentinel's Silk Leggings",
-	},
-	["Wicked Leather Pants"] = {
-		[1] = "Warstrife Leggings",
-		[2] = "Kargron's Leggings",
-	},
-	["Cutthroat's Pants"] = {
-		[1] = "Barbaric Leggings",
-		[2] = "Devilsaur Leggings",
-	},
-	["Black Mageweave Leggings"] = {
-		[1] = "Leggings of Torment",
-		[2] = "Fel Infused Leggings",
-		[3] = "Outrider's Silk Leggings",
-		[4] = "Runed Stygian Leggings",
-		[5] = "Abyssal Cloth Pants",
-		[6] = "Sentinel's Silk Leggings",
-	},
-	["Kargron's Leggings"] = {
-		[1] = "Wicked Leather Pants",
-		[2] = "Warstrife Leggings",
-	},
-	["Knight-Captain's Satin Legguards"] = {
-		[1] = "Elegant Leggings",
-	},
-	["Elegant Leggings"] = {
-		[1] = "Knight-Captain's Satin Legguards",
-	},
-	["Pridelord Pants"] = {
-		[1] = "Chieftain's Leggings",
-	},
-	["Warstrife Leggings"] = {
-		[1] = "Wicked Leather Pants",
-		[2] = "Kargron's Leggings",
-	},
-	["Leggings of Torment"] = {
-		[1] = "Fel Infused Leggings",
-		[2] = "Outrider's Silk Leggings",
-		[3] = "Runed Stygian Leggings",
-		[4] = "Black Mageweave Leggings",
-		[5] = "Abyssal Cloth Pants",
-		[6] = "Sentinel's Silk Leggings",
-	},
-	["Devilsaur Leggings"] = {
-		[1] = "Barbaric Leggings",
-		[2] = "Cutthroat's Pants",
-	},
-	["Outrider's Silk Leggings"] = {
-		[1] = "Leggings of Torment",
-		[2] = "Fel Infused Leggings",
-		[3] = "Runed Stygian Leggings",
-		[4] = "Black Mageweave Leggings",
-		[5] = "Abyssal Cloth Pants",
-		[6] = "Sentinel's Silk Leggings",
-	},
-	["Dreadnaught Legplates"] = {
-		[1] = "Dreadnaught Leggings",
-	},
-	["Frostfire Gloves"] = {
-		[1] = "Frostfire Handwraps",
-	},
-	["Slippers of the Guardian"] = {
-		[1] = "Boots of the Guardian",
-	},
-	["Dreadnaught Leggings"] = {
-		[1] = "Dreadnaught Legplates",
-	},
-	["Dreadnaught Gloves"] = {
-		[1] = "Dreadnaught Gauntlets",
-	},
-	["Dreadnaught Waistguard"] = {
-		[1] = "Dreadnaught Girdle",
-	},
-	["Redemption Wristguards"] = {
-		[1] = "Redemption Bindings",
-		[2] = "Redemption Bracers",
-	},
-	["Redemption Bracers"] = {
-		[1] = "Redemption Bindings",
-		[2] = "Redemption Wristguards",
-	},
-	["Frostfire Trousers"] = {
-		[1] = "Frostfire Leggings",
-	},
-	["Frostfire Sandals"] = {
-		[1] = "Frostfire Slippers",
-	},
-	["Trousers of the Guardian"] = {
-		[1] = "Leggings of the Guardian",
-	},
-	["Frostfire Cord"] = {
-		[1] = "Frostfire Belt",
-	},
-	["Redemption Bindings"] = {
-		[1] = "Redemption Bracers",
-		[2] = "Redemption Wristguards",
-	},
-	["Frostfire Belt"] = {
-		[1] = "Frostfire Cord",
-	},
-	["Dreadnaught Gauntlets"] = {
-		[1] = "Dreadnaught Gloves",
-	},
-	["Frostfire Bracers"] = {
-		[1] = "Frostfire Bindings",
-	},
-	["Dreadnaught Bracers"] = {
-		[1] = "Dreadnaught Bindings",
-	},
-	["Frostfire Leggings"] = {
-		[1] = "Frostfire Trousers",
-	},
-	["Frostfire Bindings"] = {
-		[1] = "Frostfire Bracers",
-	},
-	["Dreadnaught Bindings"] = {
-		[1] = "Dreadnaught Bracers",
-	},
-	["Dreadnaught Girdle"] = {
-		[1] = "Dreadnaught Waistguard",
-	},
-	["Frostfire Slippers"] = {
-		[1] = "Frostfire Sandals",
-	},
-	["Leggings of the Guardian"] = {
-		[1] = "Trousers of the Guardian",
-	},
-	["Frostfire Handwraps"] = {
-		[1] = "Frostfire Gloves",
-	},
-	["Boots of the Guardian"] = {
-		[1] = "Slippers of the Guardian",
-	},
-	["Earthshatter Belt"] = {
-		[1] = "Earthshatter Girdle",
-		[2] = "Earthshatter Sash",
-	},
-	["Earthshatter Sash"] = {
-		[1] = "Earthshatter Belt",
-		[2] = "Earthshatter Girdle",
-	},
-	["Redemption Belt"] = {
-		[1] = "Redemption Girdle",
-		[2] = "Redemption Waistguard",
-	},
-	["Dreamwalker Handguards"] = {
-		[1] = "Dreamwalker Handwraps",
-	},
-	["Dreamwalker Wristbands"] = {
-		[1] = "Dreamwalker Bracers",
-		[2] = "Dreamwalker Wristguards",
-	},
-	["Dreamwalker Boots"] = {
-		[1] = "Dreamwalker Slippers",
-		[2] = "Dreamwalker Treads",
-	},
-	["Plagueheart Bracers"] = {
-		[1] = "Plagueheart Bindings",
-	},
-	["Dreamwalker Legguards"] = {
-		[1] = "Dreamwalker Pants",
-		[2] = "Dreamwalker Trousers",
-	},
-	["Redemption Waistguard"] = {
-		[1] = "Redemption Belt",
-		[2] = "Redemption Girdle",
-	},
-	["Redemption Handguards"] = {
-		[1] = "Redemption Gloves",
-		[2] = "Redemption Gauntlets",
-	},
-	["Redemption Boots"] = {
-		[1] = "Redemption Greaves",
-		[2] = "Redemption Sabatons",
-	},
-	["Dreamwalker Belt"] = {
-		[1] = "Dreamwalker Girdle",
-		[2] = "Dreamwalker Sash",
-	},
-	["Earthshatter Sabatons"] = {
-		[1] = "Earthshatter Greaves",
-		[2] = "Earthshatter Boots",
-	},
-	["Dreamwalker Girdle"] = {
-		[1] = "Dreamwalker Belt",
-		[2] = "Dreamwalker Sash",
-	},
-	["Earthshatter Leggings"] = {
-		[1] = "Earthshatter Legplates",
-		[2] = "Earthshatter Legguards",
-	},
-	["Redemption Sabatons"] = {
-		[1] = "Redemption Boots",
-		[2] = "Redemption Greaves",
-	},
-	["Plagueheart Handwraps"] = {
-		[1] = "Plagueheart Gloves",
-	},
-	["Redemption Gauntlets"] = {
-		[1] = "Redemption Gloves",
-		[2] = "Redemption Handguards",
-	},
-	["Earthshatter Fists"] = {
-		[1] = "Earthshatter Gauntlets",
-		[2] = "Earthshatter Handguards",
-	},
-	["Plagueheart Gloves"] = {
-		[1] = "Plagueheart Handwraps",
-	},
-	["Redemption Gloves"] = {
-		[1] = "Redemption Gauntlets",
-		[2] = "Redemption Handguards",
-	},
-	["Earthshatter Gauntlets"] = {
-		[1] = "Earthshatter Fists",
-		[2] = "Earthshatter Handguards",
-	},
-	["Earthshatter Bracelets"] = {
-		[1] = "Earthshatter Bindings",
-		[2] = "Earthshatter Wristguards",
-	},
-	["Plagueheart Sash"] = {
-		[1] = "Plagueheart Belt",
-	},
-	["Plagueheart Bindings"] = {
-		[1] = "Plagueheart Bracers",
-	},
-	["Dreamwalker Handwraps"] = {
-		[1] = "Dreamwalker Handguards",
-	},
-	["Dreamwalker Wristguards"] = {
-		[1] = "Dreamwalker Bracers",
-		[2] = "Dreamwalker Wristbands",
-	},
-	["Dreamwalker Bracers"] = {
-		[1] = "Dreamwalker Wristguards",
-		[2] = "Dreamwalker Wristbands",
-	},
-	["Earthshatter Bindings"] = {
-		[1] = "Earthshatter Bracelets",
-		[2] = "Earthshatter Wristguards",
-	},
-	["Dreamwalker Treads"] = {
-		[1] = "Dreamwalker Boots",
-		[2] = "Dreamwalker Slippers",
-	},
-	["Dreamwalker Slippers"] = {
-		[1] = "Dreamwalker Boots",
-		[2] = "Dreamwalker Treads",
-	},
-	["Dreamwalker Trousers"] = {
-		[1] = "Dreamwalker Pants",
-		[2] = "Dreamwalker Legguards",
-	},
-	["Dreamwalker Sash"] = {
-		[1] = "Dreamwalker Belt",
-		[2] = "Dreamwalker Girdle",
-	},
-	["Dreamwalker Pants"] = {
-		[1] = "Dreamwalker Trousers",
-		[2] = "Dreamwalker Legguards",
-	},
-	["Redemption Greaves"] = {
-		[1] = "Redemption Boots",
-		[2] = "Redemption Sabatons",
-	},
-	["Redemption Girdle"] = {
-		[1] = "Redemption Belt",
-		[2] = "Redemption Waistguard",
-	},
-	["Earthshatter Handguards"] = {
-		[1] = "Earthshatter Fists",
-		[2] = "Earthshatter Gauntlets",
-	},
-	["Redemption Pants"] = {
-		[1] = "Redemption Legguards",
-		[2] = "Redemption Leggings",
-	},
-	["Plagueheart Belt"] = {
-		[1] = "Plagueheart Sash",
-	},
-	["Redemption Legguards"] = {
-		[1] = "Redemption Leggings",
-		[2] = "Redemption Pants",
-	},
-	["Earthshatter Girdle"] = {
-		[1] = "Earthshatter Belt",
-		[2] = "Earthshatter Sash",
-	},
-	["Earthshatter Greaves"] = {
-		[1] = "Earthshatter Sabatons",
-		[2] = "Earthshatter Boots",
-	},
-	["Earthshatter Wristguards"] = {
-		[1] = "Earthshatter Bracelets",
-		[2] = "Earthshatter Bindings",
-	},
-	["Earthshatter Legguards"] = {
-		[1] = "Earthshatter Legplates",
-		[2] = "Earthshatter Leggings",
-	},
-	["Earthshatter Legplates"] = {
-		[1] = "Earthshatter Legguards",
-		[2] = "Earthshatter Leggings",
-	},
-	["Earthshatter Boots"] = {
-		[1] = "Earthshatter Sabatons",
-		[2] = "Earthshatter Greaves",
-	},
-	["Redemption Leggings"] = {
-		[1] = "Redemption Legguards",
-		[2] = "Redemption Pants",
-	},
-	["Cloak of Concentrated Hatred"] = {
-		[1] = "Nightfall Drape",
-	},
-	["Glyphed Cloak"] = {
-		[1] = "Sapphiron Drape",
-		[2] = "Shroud of the Archlich",
-		[3] = "Gaea's Cloak",
-	},
-	["Phantasmal Cloak"] = {
-		[1] = "Cloak of Veiled Shadows",
-		[2] = "Pale Moon Cloak",
-		[3] = "Dark Hooded Cape",
-		[4] = "Silken Mantle of Dying Hope",
-	},
-	["Pale Moon Cloak"] = {
-		[1] = "Cloak of Veiled Shadows",
-		[2] = "Phantasmal Cloak",
-		[3] = "Dark Hooded Cape",
-		[4] = "Silken Mantle of Dying Hope",
-	},
-	["Sapphiron Drape"] = {
-		[1] = "Shroud of the Archlich",
-		[2] = "Glyphed Cloak",
-		[3] = "Gaea's Cloak",
-	},
-	["Shroud of the Archlich"] = {
-		[1] = "Sapphiron Drape",
-		[2] = "Glyphed Cloak",
-		[3] = "Gaea's Cloak",
-	},
-	["Cloak of Veiled Shadows"] = {
-		[1] = "Phantasmal Cloak",
-		[2] = "Pale Moon Cloak",
-		[3] = "Dark Hooded Cape",
-		[4] = "Silken Mantle of Dying Hope",
-	},
-	["Gaea's Cloak"] = {
-		[1] = "Sapphiron Drape",
-		[2] = "Shroud of the Archlich",
-		[3] = "Glyphed Cloak",
-	},
-	["Silken Mantle of Dying Hope"] = {
-		[1] = "Cloak of Veiled Shadows",
-		[2] = "Phantasmal Cloak",
-		[3] = "Pale Moon Cloak",
-		[4] = "Dark Hooded Cape",
-	},
-	["Nightfall Drape"] = {
-		[1] = "Cloak of Concentrated Hatred",
-	},
-	["Dark Hooded Cape"] = {
-		[1] = "Cloak of Veiled Shadows",
-		[2] = "Phantasmal Cloak",
-		[3] = "Pale Moon Cloak",
-		[4] = "Silken Mantle of Dying Hope",
-	},
-	["Potent Pants"] = {
-		[1] = "Heraldic Leggings",
-		[2] = "Blooddrenched Leggings",
-	},
-	["Heavy Desert Leggings"] = {
-		[1] = "Runic Leather Pants",
-		[2] = "Mighty Leggings",
-		[3] = "Outrider's Lizardhide Pants",
-		[4] = "Sentinel's Lizardhide Pants",
-	},
-	["Blooddrenched Leggings"] = {
-		[1] = "Heraldic Leggings",
-		[2] = "Potent Pants",
-	},
-	["Conspirator's Trickpockets"] = {
-		[1] = "Nightscape Pants",
-		[2] = "Triprunner Dungarees",
-	},
-	["Sentinel's Lizardhide Pants"] = {
-		[1] = "Heavy Desert Leggings",
-		[2] = "Runic Leather Pants",
-		[3] = "Mighty Leggings",
-		[4] = "Outrider's Lizardhide Pants",
-	},
-	["Supreme Leggings"] = {
-		[1] = "Unbridled Leggings",
-	},
-	["Heraldic Leggings"] = {
-		[1] = "Blooddrenched Leggings",
-		[2] = "Potent Pants",
-	},
-	["Outrider's Lizardhide Pants"] = {
-		[1] = "Heavy Desert Leggings",
-		[2] = "Runic Leather Pants",
-		[3] = "Mighty Leggings",
-		[4] = "Sentinel's Lizardhide Pants",
-	},
-	["Mighty Leggings"] = {
-		[1] = "Heavy Desert Leggings",
-		[2] = "Runic Leather Pants",
-		[3] = "Outrider's Lizardhide Pants",
-		[4] = "Sentinel's Lizardhide Pants",
-	},
-	["Runic Leather Pants"] = {
-		[1] = "Heavy Desert Leggings",
-		[2] = "Mighty Leggings",
-		[3] = "Outrider's Lizardhide Pants",
-		[4] = "Sentinel's Lizardhide Pants",
-	},
-	["Nightscape Pants"] = {
-		[1] = "Triprunner Dungarees",
-		[2] = "Conspirator's Trickpockets",
-	},
-	["Unbridled Leggings"] = {
-		[1] = "Supreme Leggings",
-	},
-	["Triprunner Dungarees"] = {
-		[1] = "Nightscape Pants",
-		[2] = "Conspirator's Trickpockets",
-	},
-	["High Councillor's Pants"] = {
-		[1] = "Quel'dorei Magister's Leggings",
-		[2] = "Doomcaller's Trousers",
-		[3] = "Skullsmoke Pants",
-		[4] = "Marshal's Silk Leggings",
-		[5] = "Doomcaller's Leggings",
-	},
-	["Frostweave Pants"] = {
-		[1] = "Enigma Trousers",
-		[2] = "Augerer's Trousers",
-		[3] = "Mistscape Pants",
-		[4] = "Enigma Leggings",
-		[5] = "Leggings of Arcane Supremacy",
-	},
-	["Revantusk Mystic's Leggings"] = {
-		[1] = "Mooncloth Leggings",
-		[2] = "Arcane Leggings",
-	},
-	["Marshal's Silk Leggings"] = {
-		[1] = "Quel'dorei Magister's Leggings",
-		[2] = "Doomcaller's Trousers",
-		[3] = "Skullsmoke Pants",
-		[4] = "High Councillor's Pants",
-		[5] = "Doomcaller's Leggings",
-	},
-	["Quel'dorei Magister's Leggings"] = {
-		[1] = "Doomcaller's Trousers",
-		[2] = "Skullsmoke Pants",
-		[3] = "High Councillor's Pants",
-		[4] = "Marshal's Silk Leggings",
-		[5] = "Doomcaller's Leggings",
-	},
-	["Mooncloth Leggings"] = {
-		[1] = "Revantusk Mystic's Leggings",
-		[2] = "Arcane Leggings",
-	},
-	["Doomcaller's Leggings"] = {
-		[1] = "Quel'dorei Magister's Leggings",
-		[2] = "Doomcaller's Trousers",
-		[3] = "Skullsmoke Pants",
-		[4] = "High Councillor's Pants",
-		[5] = "Marshal's Silk Leggings",
-	},
-	["Skullsmoke Pants"] = {
-		[1] = "Quel'dorei Magister's Leggings",
-		[2] = "Doomcaller's Trousers",
-		[3] = "High Councillor's Pants",
-		[4] = "Marshal's Silk Leggings",
-		[5] = "Doomcaller's Leggings",
-	},
-	["Doomcaller's Trousers"] = {
-		[1] = "Quel'dorei Magister's Leggings",
-		[2] = "Skullsmoke Pants",
-		[3] = "High Councillor's Pants",
-		[4] = "Marshal's Silk Leggings",
-		[5] = "Doomcaller's Leggings",
-	},
-	["Mistscape Pants"] = {
-		[1] = "Enigma Trousers",
-		[2] = "Augerer's Trousers",
-		[3] = "Frostweave Pants",
-		[4] = "Enigma Leggings",
-		[5] = "Leggings of Arcane Supremacy",
-	},
-	["Arcane Leggings"] = {
-		[1] = "Revantusk Mystic's Leggings",
-		[2] = "Mooncloth Leggings",
-	},
-	["Enigma Leggings"] = {
-		[1] = "Enigma Trousers",
-		[2] = "Enigma Trousers",
-		[3] = "Augerer's Trousers",
-		[4] = "Mistscape Pants",
-		[5] = "Frostweave Pants",
-		[6] = "Leggings of Arcane Supremacy",
-	},
-	["Enigma Trousers"] = {
-		[1] = "Enigma Leggings",
-		[2] = "Augerer's Trousers",
-		[3] = "Mistscape Pants",
-		[4] = "Frostweave Pants",
-		[5] = "Enigma Leggings",
-		[6] = "Leggings of Arcane Supremacy",
-	},
-	["Leggings of Arcane Supremacy"] = {
-		[1] = "Enigma Trousers",
-		[2] = "Augerer's Trousers",
-		[3] = "Mistscape Pants",
-		[4] = "Frostweave Pants",
-		[5] = "Enigma Leggings",
-	},
-	["Enigma Slippers"] = {
-		[1] = "Enigma Boots",
-	},
-	["Enigma Boots"] = {
-		[1] = "Enigma Slippers",
-	},
-	["Augerer's Trousers"] = {
-		[1] = "Enigma Trousers",
-		[2] = "Mistscape Pants",
-		[3] = "Frostweave Pants",
-		[4] = "Enigma Leggings",
-		[5] = "Leggings of Arcane Supremacy",
-	},
-	["Skyshroud Leggings"] = {
-		[1] = "Marshal's Dreadweave Leggings",
-		[2] = "Runecloth Pants",
-	},
-	["Nathrezim Slippers"] = {
-		[1] = "Nathrezim Boots",
-	},
-	["Marshal's Dreadweave Leggings"] = {
-		[1] = "Skyshroud Leggings",
-		[2] = "Runecloth Pants",
-	},
-	["Nathrezim Boots"] = {
-		[1] = "Nathrezim Slippers",
-	},
-	["Nathrezim Pants"] = {
-		[1] = "Nathrezim Leggings",
-	},
-	["Nathrezim Leggings"] = {
-		[1] = "Nathrezim Pants",
-	},
-	["Watcher's Leggings"] = {
-		[1] = "Swampland Trousers",
-		[2] = "General's Satin Leggings",
-		[3] = "Vital Leggings",
-	},
-	["Durable Pants"] = {
-		[1] = "Humbert's Pants",
-		[2] = "Hollow-Thread Trousers",
-	},
-	["Runecloth Pants"] = {
-		[1] = "Marshal's Dreadweave Leggings",
-		[2] = "Skyshroud Leggings",
-	},
-	["Swampland Trousers"] = {
-		[1] = "Watcher's Leggings",
-		[2] = "General's Satin Leggings",
-		[3] = "Vital Leggings",
-	},
-	["Hollow-Thread Trousers"] = {
-		[1] = "Humbert's Pants",
-		[2] = "Durable Pants",
-	},
-	["Humbert's Pants"] = {
-		[1] = "Hollow-Thread Trousers",
-		[2] = "Durable Pants",
-	},
-	["Cracked Leather Pants"] = {
-		[1] = "Wildkeeper Leggings",
-	},
-	["Wildkeeper Leggings"] = {
-		[1] = "Cracked Leather Pants",
-	},
-	["Vital Leggings"] = {
-		[1] = "Swampland Trousers",
-		[2] = "Watcher's Leggings",
-		[3] = "General's Satin Leggings",
-	},
-	["General's Satin Leggings"] = {
-		[1] = "Swampland Trousers",
-		[2] = "Watcher's Leggings",
-		[3] = "Vital Leggings",
-	},
-	["Venomshroud Leggings"] = {
-		[1] = "Hibernal Pants",
-	},
-	["Leggings of the Black Blizzard"] = {
-		[1] = "Pants of the Oracle",
-		[2] = "Trousers of the Oracle",
-	},
-	["Sandals of Pestilence"] = {
-		[1] = "Boots of Pestilence",
-	},
-	["Pants of the Oracle"] = {
-		[1] = "Trousers of the Oracle",
-		[2] = "Leggings of the Black Blizzard",
-	},
-	["Pants of Pestilence"] = {
-		[1] = "Leggings of Pestilence",
-	},
-	["The Postmaster's Trousers"] = {
-		[1] = "Empowered Leggings",
-	},
-	["Stormshroud Pants"] = {
-		[1] = "Outrider's Leather Pants",
-		[2] = "Sentinel's Leather Pants",
-	},
-	["Leggings of Pestilence"] = {
-		[1] = "Pants of Pestilence",
-	},
-	["Cenarion Reservist's Pants"] = {
-		[1] = "Councillor's Pants",
-		[2] = "Treetop Leggings",
-	},
-	["Arachnidian Legguards"] = {
-		[1] = "Spellshock Leggings",
-	},
-	["Treetop Leggings"] = {
-		[1] = "Councillor's Pants",
-		[2] = "Cenarion Reservist's Pants",
-	},
-	["Impenetrable Legguards"] = {
-		[1] = "Elemental Rockridge Leggings",
-	},
-	["Elemental Rockridge Leggings"] = {
-		[1] = "Impenetrable Legguards",
-	},
-	["Sandmoon Greaves"] = {
-		[1] = "Dreamhide Leggings",
-		[2] = "Protector Legguards",
-	},
-	["Protector Legguards"] = {
-		[1] = "Dreamhide Leggings",
-		[2] = "Sandmoon Greaves",
-	},
-	["Boots of Pestilence"] = {
-		[1] = "Sandals of Pestilence",
-	},
-	["Dreamhide Leggings"] = {
-		[1] = "Sandmoon Greaves",
-		[2] = "Protector Legguards",
-	},
-	["Empowered Leggings"] = {
-		[1] = "The Postmaster's Trousers",
-	},
-	["Leggings of the Fang"] = {
-		[1] = "Big Voodoo Pants",
-	},
-	["Big Voodoo Pants"] = {
-		[1] = "Leggings of the Fang",
-	},
-	["Sentinel's Leather Pants"] = {
-		[1] = "Outrider's Leather Pants",
-		[2] = "Stormshroud Pants",
-	},
-	["Trousers of the Oracle"] = {
-		[1] = "Pants of the Oracle",
-		[2] = "Leggings of the Black Blizzard",
-	},
-	["Outrider's Leather Pants"] = {
-		[1] = "Stormshroud Pants",
-		[2] = "Sentinel's Leather Pants",
-	},
-	["Councillor's Pants"] = {
-		[1] = "Cenarion Reservist's Pants",
-		[2] = "Treetop Leggings",
-	},
-	["Hibernal Pants"] = {
-		[1] = "Venomshroud Leggings",
-	},
-	["Spellshock Leggings"] = {
-		[1] = "Arachnidian Legguards",
+	[61318] = {
+		[1] = 4020,
+		[2] = 13819,
+	},
+	[14437] = {
+		[1] = 8106,
+	},
+	[82951] = {
+		[1] = 82950,
+		[2] = 82952,
+		[3] = 82953,
+	},
+	[10406] = {
+		[1] = 15430,
+	},
+	[83463] = {
+		[1] = 7359,
+	},
+	[14565] = {
+		[1] = 80701,
+	},
+	[14629] = {
+		[1] = 4036,
+	},
+	[7411] = {
+		[1] = 60675,
+	},
+	[10758] = {
+		[1] = 60947,
+	},
+	[7443] = {
+		[1] = 14606,
+	},
+	[7459] = {
+		[1] = 15574,
+	},
+	[14981] = {
+		[1] = 60908,
+	},
+	[7507] = {
+		[1] = 7508,
+	},
+	[15045] = {
+		[1] = 61765,
+	},
+	[60423] = {
+		[1] = 15360,
+		[2] = 51783,
+	},
+	[15141] = {
+		[1] = 15050,
+	},
+	[60679] = {
+		[1] = 3793,
+	},
+	[15205] = {
+		[1] = 51862,
+	},
+	[15269] = {
+		[1] = 51892,
+	},
+	[61319] = {
+		[1] = 17050,
+		[2] = 23220,
+	},
+	[61575] = {
+		[1] = 10574,
+	},
+	[15461] = {
+		[1] = 14418,
+	},
+	[18698] = {
+		[1] = 18325,
+		[2] = 60786,
+		[3] = 60436,
+	},
+	[83465] = {
+		[1] = 13122,
+	},
+	[11686] = {
+		[1] = 6788,
+	},
+	[15813] = {
+		[1] = 61727,
+	},
+	[47115] = {
+		[1] = 47109,
+	},
+	[7955] = {
+		[1] = 12992,
+	},
+	[11910] = {
+		[1] = 61058,
+	},
+	[83466] = {
+		[1] = 22651,
+	},
+	[60424] = {
+		[1] = 60582,
+		[2] = 7284,
+	},
+	[8083] = {
+		[1] = 83459,
+	},
+	[8115] = {
+		[1] = 9849,
+	},
+	[8131] = {
+		[1] = 14795,
+		[2] = 60736,
+	},
+	[61448] = {
+		[1] = 17002,
+	},
+	[2058] = {
+		[1] = 5322,
+		[2] = 83221,
+	},
+	[8263] = {
+		[1] = 14688,
+	},
+	[83211] = {
+		[2] = 51787,
+	},
+	[83467] = {
+		[1] = 10766,
+	},
+	[2138] = {
+		[1] = 60828,
+	},
+	[21322] = {
+		[1] = 18503,
+	},
+	[47116] = {
+		[1] = 47110,
+	},
+	[4372] = {
+		[1] = 2510,
+	},
+	[47372] = {
+		[1] = 22490,
+		[2] = 47381,
+	},
+	[4436] = {
+		[1] = 4829,
+	},
+	[60169] = {
+		[1] = 15211,
+	},
+	[13030] = {
+		[1] = 23156,
+	},
+	[60425] = {
+		[1] = 21838,
+	},
+	[4564] = {
+		[1] = 60560,
+	},
+	[13254] = {
+		[1] = 14902,
+		[2] = 60234,
+	},
+	[18507] = {
+		[1] = 6612,
+	},
+	[4676] = {
+		[1] = 61306,
+	},
+	[83213] = {
+		[1] = 9857,
+	},
+	[4708] = {
+		[1] = 41020,
+	},
+	[4724] = {
+		[1] = 10073,
+		[2] = 18490,
+		[3] = 3392,
+		[4] = 17776,
+		[5] = 8750,
+	},
+	[50188] = {
+		[1] = 9288,
+	},
+	[19083] = {
+		[1] = 15789,
+	},
+	[2394] = {
+		[1] = 2381,
+		[2] = 2646,
+		[3] = 2654,
+	},
+	[2402] = {
+		[1] = 2390,
+		[2] = 3213,
+	},
+	[2418] = {
+		[1] = 61471,
+	},
+	[47117] = {
+		[1] = 47111,
+	},
+	[47373] = {
+		[1] = 22491,
+		[2] = 47382,
+	},
+	[9863] = {
+		[1] = 4709,
+	},
+	[4948] = {
+		[1] = 1913,
+	},
+	[83470] = {
+		[1] = 9903,
+		[2] = 10199,
+	},
+	[9959] = {
+		[1] = 21418,
+	},
+	[10023] = {
+		[1] = 80755,
+	},
+	[2522] = {
+		[1] = 5344,
+	},
+	[60938] = {
+		[1] = 4716,
+	},
+	[14246] = {
+		[1] = 60724,
+		[2] = 7470,
+		[3] = 60116,
+	},
+	[5092] = {
+		[1] = 5240,
+	},
+	[10215] = {
+		[1] = 61002,
+	},
+	[10247] = {
+		[1] = 2232,
+		[2] = 12050,
+	},
+	[41103] = {
+		[1] = 41193,
+	},
+	[20683] = {
+		[1] = 10134,
+		[2] = 7928,
+	},
+	[5252] = {
+		[1] = 7708,
+		[2] = 81290,
+	},
+	[2642] = {
+		[1] = 1731,
+		[2] = 1739,
+		[3] = 1747,
+		[4] = 1755,
+		[5] = 2383,
+		[6] = 2395,
+		[7] = 2650,
+		[8] = 2691,
+		[9] = 3809,
+		[10] = 80118,
+		[11] = 51881,
+	},
+	[2650] = {
+		[1] = 1731,
+		[2] = 1739,
+		[3] = 1747,
+		[4] = 1755,
+		[5] = 2383,
+		[6] = 2395,
+		[7] = 2642,
+		[8] = 2691,
+		[9] = 3809,
+		[10] = 80118,
+		[11] = 51881,
+	},
+	[10631] = {
+		[1] = 61266,
+	},
+	[21387] = {
+		[1] = 47037,
+		[2] = 47032,
+	},
+	[47118] = {
+		[1] = 47112,
+	},
+	[47374] = {
+		[1] = 22488,
+		[2] = 47383,
+	},
+	[17740] = {
+		[1] = 6204,
+		[2] = 15384,
+		[3] = 15373,
+		[4] = 12960,
+	},
+	[60427] = {
+		[1] = 13396,
+	},
+	[2778] = {
+		[1] = 2774,
+		[2] = 41023,
+	},
+	[22347] = {
+		[1] = 12651,
+		[2] = 13037,
+		[3] = 13040,
+	},
+	[22411] = {
+		[1] = 61291,
+		[2] = 15645,
+	},
+	[61323] = {
+		[1] = 55267,
+	},
+	[15366] = {
+		[1] = 3966,
+		[2] = 15456,
+	},
+	[11303] = {
+		[1] = 60953,
+		[2] = 60953,
+	},
+	[15430] = {
+		[1] = 10406,
+	},
+	[15462] = {
+		[1] = 83532,
+	},
+	[15494] = {
+		[1] = 13205,
+		[2] = 60523,
+	},
+	[15526] = {
+		[1] = 15603,
+	},
+	[718] = {
+		[1] = 60577,
+	},
+	[50190] = {
+		[1] = 6998,
+	},
+	[19084] = {
+		[1] = 14801,
+	},
+	[19148] = {
+		[1] = 13359,
+	},
+	[2954] = {
+		[1] = 80712,
+	},
+	[47375] = {
+		[1] = 22495,
+		[2] = 47384,
+	},
+	[11911] = {
+		[1] = 10141,
+		[2] = 20705,
+	},
+	[83218] = {
+		[1] = 13203,
+		[2] = 60409,
+	},
+	[3018] = {
+		[1] = 6340,
+	},
+	[60684] = {
+		[1] = 4250,
+	},
+	[65035] = {
+		[1] = 14631,
+		[2] = 20537,
+		[3] = 20641,
+		[4] = 60430,
+	},
+	[6116] = {
+		[1] = 80109,
+	},
+	[6148] = {
+		[1] = 10046,
+	},
+	[61580] = {
+		[1] = 8345,
+		[2] = 9479,
+	},
+	[61708] = {
+		[1] = 17749,
+	},
+	[6196] = {
+		[1] = 1823,
+		[2] = 15226,
+		[3] = 61087,
+	},
+	[83219] = {
+		[1] = 8226,
+	},
+	[12551] = {
+		[1] = 80759,
+	},
+	[6340] = {
+		[1] = 3018,
+	},
+	[794] = {
+		[1] = 10045,
+	},
+	[3202] = {
+		[1] = 60920,
+	},
+	[12903] = {
+		[1] = 12945,
+	},
+	[6468] = {
+		[1] = 9855,
+	},
+	[17741] = {
+		[1] = 51300,
+	},
+	[12999] = {
+		[1] = 61212,
+		[2] = 60795,
+	},
+	[816] = {
+		[1] = 80129,
+	},
+	[13127] = {
+		[1] = 60562,
+		[3] = 61053,
+		[4] = 83565,
+		[5] = 18313,
+	},
+	[6612] = {
+		[1] = 18507,
+	},
+	[22412] = {
+		[1] = 7473,
+	},
+	[3322] = {
+		[1] = 4665,
+	},
+	[3330] = {
+		[1] = 6773,
+		[2] = 7133,
+		[3] = 80704,
+		[4] = 3416,
+		[5] = 9783,
+	},
+	[41106] = {
+		[1] = 1367,
+		[2] = 80217,
+	},
+	[9288] = {
+		[1] = 50188,
+	},
+	[83221] = {
+		[1] = 5322,
+		[2] = 2058,
+	},
+	[9480] = {
+		[1] = 60818,
+	},
+	[850] = {
+		[1] = 1303,
+	},
+	[19149] = {
+		[1] = 80741,
+	},
+	[9608] = {
+		[1] = 60543,
+		[2] = 60152,
+	},
+	[9768] = {
+		[1] = 11187,
+	},
+	[47377] = {
+		[1] = 22494,
+		[2] = 47386,
+	},
+	[13959] = {
+		[1] = 23219,
+	},
+	[83222] = {
+		[1] = 4908,
+		[2] = 9752,
+	},
+	[60430] = {
+		[1] = 14631,
+		[2] = 20537,
+		[3] = 20641,
+		[4] = 65035,
+	},
+	[10024] = {
+		[1] = 83436,
+		[2] = 15086,
+	},
+	[60686] = {
+		[1] = 3440,
+	},
+	[14183] = {
+		[1] = 4505,
+		[2] = 17625,
+		[3] = 14207,
+	},
+	[10152] = {
+		[1] = 50025,
+		[2] = 15095,
+		[3] = 22741,
+	},
+	[14279] = {
+		[1] = 6407,
+		[2] = 12626,
+		[3] = 19135,
+	},
+	[61326] = {
+		[1] = 13858,
+	},
+	[10248] = {
+		[1] = 4545,
+		[2] = 20626,
+		[3] = 41074,
+	},
+	[10280] = {
+		[1] = 61239,
+		[2] = 61365,
+	},
+	[14439] = {
+		[1] = 8108,
+		[2] = 61362,
+	},
+	[83223] = {
+		[1] = 6605,
+	},
+	[7284] = {
+		[1] = 60582,
+		[2] = 60424,
+	},
+	[50193] = {
+		[1] = 15693,
+	},
+	[14631] = {
+		[1] = 20537,
+		[2] = 20641,
+		[3] = 65035,
+		[4] = 60430,
+	},
+	[84503] = {
+		[1] = 18715,
+	},
+	[7348] = {
+		[1] = 60480,
+	},
+	[920] = {
+		[1] = 61349,
+	},
+	[14759] = {
+		[1] = 18700,
+		[2] = 61188,
+	},
+	[21389] = {
+		[1] = 47039,
+		[2] = 47034,
+	},
+	[21517] = {
+		[1] = 22720,
+	},
+	[14919] = {
+		[1] = 13986,
+	},
+	[936] = {
+		[1] = 60416,
+	},
+	[3754] = {
+		[1] = 9698,
+		[2] = 61300,
+	},
+	[83480] = {
+		[1] = 22319,
+	},
+	[7540] = {
+		[1] = 15615,
+		[2] = 60357,
+	},
+	[15111] = {
+		[1] = 80707,
+	},
+	[3802] = {
+		[1] = 7378,
+		[2] = 7410,
+	},
+	[65038] = {
+		[1] = 6794,
+	},
+	[11304] = {
+		[1] = 4025,
+		[2] = 13824,
+		[3] = 60440,
+	},
+	[15463] = {
+		[1] = 16986,
+		[2] = 50191,
+	},
+	[18702] = {
+		[1] = 80845,
+	},
+	[83225] = {
+		[1] = 3021,
+	},
+	[83481] = {
+		[1] = 21597,
+	},
+	[15623] = {
+		[1] = 18421,
+	},
+	[19086] = {
+		[1] = 7004,
+	},
+	[11624] = {
+		[1] = 14335,
+	},
+	[15815] = {
+		[1] = 10185,
+		[2] = 51730,
+	},
+	[7924] = {
+		[1] = 1852,
+		[2] = 81368,
+		[3] = 41126,
+	},
+	[11848] = {
+		[1] = 80204,
+	},
+	[3994] = {
+		[1] = 61723,
+	},
+	[4002] = {
+		[1] = 2854,
+	},
+	[83226] = {
+		[1] = 15005,
+		[2] = 4928,
+	},
+	[83482] = {
+		[1] = 8624,
+	},
+	[1008] = {
+		[1] = 41111,
+	},
+	[1010] = {
+		[1] = 83513,
+	},
+	[20110] = {
+		[1] = 20048,
+		[2] = 20209,
+		[4] = 60361,
+	},
+	[4066] = {
+		[1] = 7463,
+	},
+	[4074] = {
+		[1] = 80803,
+	},
+	[61328] = {
+		[1] = 60293,
+	},
+	[8201] = {
+		[1] = 9470,
+		[2] = 61548,
+	},
+	[41109] = {
+		[1] = 2764,
+	},
+	[8265] = {
+		[1] = 11726,
+		[2] = 51741,
+		[3] = 80758,
+		[4] = 19685,
+	},
+	[4197] = {
+		[1] = 9850,
+	},
+	[4309] = {
+		[1] = 41150,
+	},
+	[21454] = {
+		[1] = 60975,
+	},
+	[51219] = {
+		[1] = 4322,
+	},
+	[51731] = {
+		[1] = 18510,
+	},
+	[83228] = {
+		[1] = 3302,
+	},
+	[1121] = {
+		[1] = 60524,
+	},
+	[13128] = {
+		[1] = 60451,
+	},
+	[4565] = {
+		[1] = 80113,
+	},
+	[18319] = {
+		[1] = 12953,
+		[2] = 4078,
+		[3] = 7931,
+		[4] = 61481,
+		[5] = 7130,
+		[6] = 83258,
+		[7] = 8751,
+		[8] = 6971,
+		[9] = 61420,
+	},
+	[1173] = {
+		[1] = 4789,
+	},
+	[4709] = {
+		[1] = 9863,
+	},
+	[9449] = {
+		[1] = 60099,
+	},
+	[84509] = {
+		[1] = 15989,
+	},
+	[4789] = {
+		[1] = 1173,
+	},
+	[19407] = {
+		[1] = 60876,
+	},
+	[47381] = {
+		[1] = 22490,
+		[2] = 47372,
+	},
+	[51732] = {
+		[1] = 21406,
+		[2] = 18689,
+		[3] = 18734,
+		[4] = 5257,
+	},
+	[9897] = {
+		[1] = 60008,
+	},
+	[83486] = {
+		[1] = 21187,
+	},
+	[14088] = {
+		[1] = 2284,
+	},
+	[60562] = {
+		[2] = 61053,
+		[3] = 13127,
+		[4] = 83565,
+		[5] = 18313,
+	},
+	[20175] = {
+		[1] = 19835,
+		[2] = 18374,
+		[3] = 15058,
+		[4] = 20060,
+		[5] = 13358,
+		[6] = 20194,
+		[7] = 20059,
+	},
+	[60946] = {
+		[1] = 10272,
+		[2] = 56069,
+		[3] = 13102,
+		[4] = 55339,
+		[5] = 18526,
+	},
+	[10153] = {
+		[1] = 15096,
+		[2] = 60228,
+	},
+	[14280] = {
+		[1] = 11623,
+		[2] = 20691,
+	},
+	[10217] = {
+		[1] = 23302,
+	},
+	[10281] = {
+		[1] = 61649,
+		[2] = 80753,
+	},
+	[14408] = {
+		[1] = 16985,
+	},
+	[14568] = {
+		[1] = 4942,
+	},
+	[80672] = {
+		[1] = 61060,
+		[2] = 60183,
+		[3] = 14441,
+	},
+	[21391] = {
+		[1] = 47033,
+		[2] = 47038,
+	},
+	[47382] = {
+		[1] = 47373,
+		[2] = 22491,
+	},
+	[14952] = {
+		[1] = 15684,
+		[2] = 14785,
+		[3] = 15670,
+		[4] = 10388,
+	},
+	[51733] = {
+		[1] = 21627,
+	},
+	[51861] = {
+		[1] = 5611,
+	},
+	[83488] = {
+		[1] = 21482,
+	},
+	[60307] = {
+		[1] = 2092,
+		[2] = 3296,
+	},
+	[1377] = {
+		[1] = 14124,
+		[2] = 60771,
+	},
+	[60563] = {
+		[1] = 11731,
+		[2] = 61024,
+	},
+	[15176] = {
+		[1] = 8123,
+		[2] = 19889,
+	},
+	[60819] = {
+		[1] = 5325,
+	},
+	[60947] = {
+		[1] = 10758,
+	},
+	[61331] = {
+		[1] = 4257,
+	},
+	[15368] = {
+		[1] = 2264,
+	},
+	[1413] = {
+		[1] = 5586,
+	},
+	[1421] = {
+		[1] = 41156,
+	},
+	[1425] = {
+		[1] = 80110,
+	},
+	[11625] = {
+		[1] = 7749,
+	},
+	[15784] = {
+		[1] = 81342,
+	},
+	[11785] = {
+		[1] = 3986,
+	},
+	[47383] = {
+		[1] = 22488,
+		[2] = 47374,
+	},
+	[5941] = {
+		[1] = 3997,
+		[2] = 61609,
+	},
+	[51734] = {
+		[1] = 18495,
+		[2] = 60804,
+	},
+	[51862] = {
+		[1] = 15205,
+	},
+	[83490] = {
+		[1] = 83492,
+		[2] = 83493,
+		[3] = 83491,
+		[4] = 12185,
+	},
+	[60308] = {
+		[1] = 1302,
+	},
+	[19984] = {
+		[1] = 51788,
+		[2] = 91761,
+	},
+	[1509] = {
+		[1] = 81113,
+	},
+	[60692] = {
+		[1] = 4107,
+	},
+	[60820] = {
+		[1] = 2765,
+	},
+	[61076] = {
+		[1] = 10144,
+		[2] = 60161,
+		[3] = 9766,
+		[4] = 60380,
+	},
+	[8202] = {
+		[1] = 10410,
+	},
+	[41113] = {
+		[1] = 41188,
+	},
+	[83491] = {
+		[1] = 83492,
+		[2] = 83493,
+		[3] = 83490,
+		[4] = 12185,
+	},
+	[16977] = {
+		[1] = 80720,
+	},
+	[6341] = {
+		[1] = 9393,
+		[2] = 9627,
+		[3] = 61025,
+	},
+	[21392] = {
+		[1] = 21401,
+	},
+	[6389] = {
+		[1] = 3837,
+		[2] = 5819,
+		[3] = 15580,
+	},
+	[21520] = {
+		[1] = 19351,
+	},
+	[21648] = {
+		[1] = 10137,
+	},
+	[83492] = {
+		[1] = 83493,
+		[2] = 83491,
+		[3] = 83490,
+		[4] = 12185,
+	},
+	[60309] = {
+		[1] = 6739,
+	},
+	[60565] = {
+		[1] = 7941,
+		[2] = 3856,
+	},
+	[60821] = {
+		[1] = 15807,
+		[2] = 15808,
+	},
+	[61077] = {
+		[1] = 9600,
+	},
+	[22416] = {
+		[1] = 47263,
+	},
+	[61333] = {
+		[1] = 753,
+		[2] = 11121,
+		[3] = 80731,
+	},
+	[18449] = {
+		[1] = 84505,
+		[2] = 61528,
+	},
+	[13353] = {
+		[1] = 19309,
+	},
+	[13385] = {
+		[1] = 60801,
+	},
+	[1677] = {
+		[1] = 1715,
+		[2] = 2153,
+	},
+	[6725] = {
+		[1] = 9753,
+	},
+	[83493] = {
+		[1] = 83492,
+		[2] = 83491,
+		[3] = 83490,
+		[4] = 12185,
+	},
+	[6773] = {
+		[1] = 7133,
+		[2] = 3330,
+		[3] = 80704,
+		[4] = 3416,
+		[5] = 9783,
+	},
+	[9514] = {
+		[1] = 80128,
+	},
+	[19089] = {
+		[1] = 18504,
+	},
+	[23312] = {
+		[1] = 16451,
+		[2] = 16455,
+	},
+	[1717] = {
+		[1] = 1488,
+	},
+	[6901] = {
+		[1] = 60929,
+	},
+	[51224] = {
+		[1] = 9822,
+	},
+	[13865] = {
+		[1] = 17579,
+		[2] = 13170,
+	},
+	[1737] = {
+		[1] = 2379,
+		[2] = 3815,
+		[3] = 10421,
+		[4] = 2648,
+		[5] = 1753,
+		[6] = 1761,
+		[7] = 2109,
+		[8] = 1745,
+		[9] = 2656,
+	},
+	[1745] = {
+		[1] = 2379,
+		[2] = 3815,
+		[3] = 10421,
+		[4] = 2648,
+		[5] = 1753,
+		[6] = 1761,
+		[7] = 2109,
+		[8] = 1737,
+		[9] = 2656,
+	},
+	[1753] = {
+		[1] = 2379,
+		[2] = 3815,
+		[3] = 10421,
+		[4] = 2648,
+		[5] = 1761,
+		[6] = 2109,
+		[7] = 1745,
+		[8] = 1737,
+		[9] = 2656,
+	},
+	[19921] = {
+		[1] = 15853,
+	},
+	[1761] = {
+		[1] = 2379,
+		[2] = 3815,
+		[3] = 10421,
+		[4] = 2648,
+		[5] = 1753,
+		[6] = 2109,
+		[7] = 1745,
+		[8] = 1737,
+		[9] = 2656,
+	},
+	[60566] = {
+		[1] = 7915,
+		[2] = 10743,
+		[3] = 21804,
+		[4] = 9932,
+		[5] = 18479,
+		[6] = 83216,
+		[7] = 19875,
+	},
+	[60694] = {
+		[1] = 10083,
+		[2] = 15634,
+		[3] = 83469,
+	},
+	[10090] = {
+		[1] = 14907,
+		[2] = 61570,
+		[3] = 6686,
+	},
+	[60950] = {
+		[1] = 10767,
+		[2] = 14930,
+	},
+	[14249] = {
+		[1] = 7429,
+	},
+	[61334] = {
+		[1] = 22337,
+	},
+	[61590] = {
+		[1] = 12427,
+	},
+	[14441] = {
+		[1] = 61060,
+		[2] = 60183,
+		[3] = 80672,
+	},
+	[16658] = {
+		[1] = 15114,
+	},
+	[10410] = {
+		[1] = 8202,
+	},
+	[1821] = {
+		[1] = 3572,
+	},
+	[14601] = {
+		[1] = 7439,
+	},
+	[14665] = {
+		[1] = 14683,
+	},
+	[14729] = {
+		[1] = 13245,
+		[2] = 80718,
+	},
+	[10698] = {
+		[1] = 60546,
+		[2] = 61661,
+	},
+	[7413] = {
+		[1] = 8747,
+	},
+	[7429] = {
+		[1] = 14249,
+	},
+	[47386] = {
+		[1] = 22494,
+		[2] = 47377,
+	},
+	[7477] = {
+		[1] = 18373,
+		[2] = 65024,
+	},
+	[51737] = {
+		[1] = 16607,
+	},
+	[15049] = {
+		[1] = 60727,
+	},
+	[60439] = {
+		[1] = 83514,
+		[2] = 83064,
+	},
+	[22225] = {
+		[1] = 81006,
+	},
+	[60951] = {
+		[1] = 13057,
+		[2] = 61154,
+	},
+	[61079] = {
+		[1] = 15048,
+	},
+	[22417] = {
+		[1] = 47267,
+	},
+	[15337] = {
+		[1] = 15346,
+		[2] = 2973,
+	},
+	[15369] = {
+		[1] = 4456,
+		[2] = 9705,
+	},
+	[11306] = {
+		[1] = 5748,
+	},
+	[22673] = {
+		[1] = 22676,
+	},
+	[15497] = {
+		[1] = 15619,
+	},
+	[19090] = {
+		[1] = 4736,
+	},
+	[11626] = {
+		[1] = 10231,
+	},
+	[23313] = {
+		[1] = 16449,
+		[2] = 16457,
+	},
+	[1981] = {
+		[1] = 51825,
+		[2] = 7538,
+		[3] = 9469,
+		[4] = 60284,
+	},
+	[7941] = {
+		[1] = 3856,
+		[2] = 60565,
+	},
+	[11850] = {
+		[1] = 3153,
+	},
+	[11882] = {
+		[1] = 9841,
+	},
+	[51738] = {
+		[2] = 22879,
+	},
+	[56089] = {
+		[1] = 5624,
+		[2] = 13216,
+	},
+	[60440] = {
+		[1] = 4025,
+		[2] = 11304,
+		[3] = 13824,
+	},
+	[60568] = {
+		[1] = 7531,
+		[2] = 15379,
+	},
+	[60696] = {
+		[1] = 13026,
+	},
+	[2033] = {
+		[1] = 80730,
+	},
+	[61336] = {
+		[1] = 18238,
+		[2] = 7690,
+	},
+	[61592] = {
+		[1] = 16532,
+	},
+	[20626] = {
+		[1] = 4545,
+		[2] = 10248,
+		[3] = 41074,
+	},
+	[8299] = {
+		[1] = 14667,
+		[2] = 60258,
+		[3] = 21669,
+	},
+	[12522] = {
+		[1] = 80732,
+	},
+	[4326] = {
+		[1] = 60549,
+	},
+	[8747] = {
+		[1] = 7413,
+	},
+	[47388] = {
+		[1] = 22492,
+		[2] = 47379,
+	},
+	[83244] = {
+		[1] = 70070,
+		[2] = 61535,
+		[3] = 2955,
+		[4] = 60385,
+	},
+	[4454] = {
+		[1] = 14024,
+	},
+	[2235] = {
+		[1] = 80671,
+	},
+	[2267] = {
+		[1] = 60773,
+	},
+	[60953] = {
+		[1] = 11303,
+		[2] = 60953,
+	},
+	[22418] = {
+		[1] = 47261,
+	},
+	[61593] = {
+		[1] = 20697,
+		[2] = 21415,
+	},
+	[4710] = {
+		[1] = 60181,
+	},
+	[2371] = {
+		[1] = 15308,
+	},
+	[2379] = {
+		[1] = 3815,
+		[2] = 10421,
+		[3] = 2648,
+		[4] = 1753,
+		[5] = 1761,
+		[6] = 2109,
+		[7] = 1745,
+		[8] = 1737,
+		[9] = 2656,
+	},
+	[2387] = {
+		[1] = 1730,
+		[2] = 1738,
+		[3] = 1746,
+		[4] = 1754,
+		[5] = 2380,
+		[6] = 2393,
+		[7] = 2399,
+		[8] = 2635,
+		[9] = 2649,
+		[10] = 3758,
+		[11] = 3808,
+	},
+	[2395] = {
+		[1] = 1731,
+		[2] = 1739,
+		[3] = 1747,
+		[4] = 1755,
+		[5] = 2383,
+		[6] = 2642,
+		[7] = 2650,
+		[8] = 2691,
+		[9] = 3809,
+		[10] = 80118,
+		[11] = 51881,
+	},
+	[2403] = {
+		[1] = 2391,
+		[2] = 6063,
+	},
+	[4854] = {
+		[1] = 61249,
+		[2] = 61736,
+	},
+	[47261] = {
+		[1] = 22418,
+	},
+	[51740] = {
+		[1] = 47094,
+		[2] = 21347,
+	},
+	[9899] = {
+		[1] = 15584,
+	},
+	[14090] = {
+		[1] = 5310,
+	},
+	[14122] = {
+		[1] = 3365,
+		[2] = 16981,
+		[3] = 60685,
+	},
+	[14218] = {
+		[1] = 3937,
+	},
+	[2547] = {
+		[1] = 1734,
+		[2] = 1742,
+		[3] = 1750,
+		[4] = 1758,
+		[5] = 2385,
+		[6] = 2645,
+		[7] = 2653,
+		[8] = 3812,
+	},
+	[10219] = {
+		[1] = 10160,
+		[2] = 12417,
+		[3] = 15651,
+		[4] = 14322,
+	},
+	[10251] = {
+		[1] = 6393,
+		[2] = 12977,
+	},
+	[61594] = {
+		[1] = 22383,
+	},
+	[16532] = {
+		[1] = 61592,
+	},
+	[14442] = {
+		[1] = 8110,
+		[2] = 61363,
+		[3] = 60406,
+	},
+	[10379] = {
+		[1] = 10235,
+		[2] = 7719,
+		[3] = 60636,
+		[4] = 12612,
+	},
+	[16788] = {
+		[1] = 61009,
+	},
+	[5238] = {
+		[1] = 5210,
+	},
+	[5254] = {
+		[1] = 14587,
+	},
+	[2635] = {
+		[1] = 1730,
+		[2] = 1738,
+		[3] = 1746,
+		[4] = 1754,
+		[5] = 2380,
+		[6] = 2387,
+		[7] = 2393,
+		[8] = 2399,
+		[9] = 2649,
+		[10] = 3758,
+		[11] = 3808,
+	},
+	[2643] = {
+		[1] = 1732,
+		[2] = 1740,
+		[3] = 1748,
+		[4] = 1756,
+		[5] = 2384,
+		[6] = 2396,
+		[7] = 2651,
+		[8] = 3810,
+	},
+	[2651] = {
+		[1] = 1732,
+		[2] = 1740,
+		[3] = 1748,
+		[4] = 1756,
+		[5] = 2384,
+		[6] = 2396,
+		[7] = 2643,
+		[8] = 3810,
+	},
+	[21395] = {
+		[1] = 21413,
+	},
+	[2691] = {
+		[1] = 1731,
+		[2] = 1739,
+		[3] = 1747,
+		[4] = 1755,
+		[5] = 2383,
+		[6] = 2395,
+		[7] = 2642,
+		[8] = 2650,
+		[9] = 3809,
+		[10] = 80118,
+		[11] = 51881,
+	},
+	[47390] = {
+		[1] = 47396,
+		[2] = 47402,
+	},
+	[51741] = {
+		[1] = 8265,
+		[2] = 11726,
+		[3] = 80758,
+		[4] = 19685,
+	},
+	[15050] = {
+		[1] = 15141,
+	},
+	[15114] = {
+		[1] = 16658,
+	},
+	[2763] = {
+		[1] = 2137,
+		[2] = 3225,
+	},
+	[60699] = {
+		[1] = 10225,
+	},
+	[60827] = {
+		[1] = 83265,
+		[2] = 60414,
+	},
+	[15274] = {
+		[1] = 83200,
+		[2] = 60112,
+	},
+	[61211] = {
+		[1] = 4139,
+		[2] = 60718,
+	},
+	[18388] = {
+		[1] = 51844,
+	},
+	[2819] = {
+		[1] = 18392,
+	},
+	[61595] = {
+		[1] = 12989,
+	},
+	[61723] = {
+		[1] = 3994,
+	},
+	[15466] = {
+		[1] = 15352,
+	},
+	[2955] = {
+		[1] = 70070,
+		[2] = 83244,
+		[3] = 61535,
+		[4] = 60385,
+	},
+	[47391] = {
+		[1] = 47397,
+		[2] = 47403,
+	},
+	[2987] = {
+		[1] = 60596,
+	},
+	[60316] = {
+		[1] = 81264,
+		[2] = 10200,
+	},
+	[3011] = {
+		[1] = 60233,
+		[2] = 9921,
+		[3] = 13113,
+		[4] = 61156,
+	},
+	[60572] = {
+		[1] = 15187,
+		[2] = 16832,
+		[3] = 19139,
+	},
+	[60700] = {
+		[1] = 7934,
+		[2] = 60573,
+		[3] = 8270,
+		[4] = 83443,
+		[5] = 8142,
+	},
+	[60828] = {
+		[1] = 2138,
+	},
+	[61212] = {
+		[1] = 12999,
+		[2] = 60795,
+	},
+	[3067] = {
+		[1] = 61305,
+	},
+	[61596] = {
+		[1] = 18502,
+	},
+	[6182] = {
+		[2] = 80724,
+		[3] = 70047,
+	},
+	[12427] = {
+		[1] = 61590,
+	},
+	[12555] = {
+		[1] = 14932,
+	},
+	[16981] = {
+		[1] = 3365,
+		[2] = 14122,
+		[3] = 60685,
+	},
+	[12651] = {
+		[1] = 13037,
+		[2] = 13040,
+		[3] = 22347,
+	},
+	[21460] = {
+		[1] = 10132,
+	},
+	[6406] = {
+		[1] = 18102,
+	},
+	[8748] = {
+		[1] = 1282,
+		[2] = 14814,
+	},
+	[47392] = {
+		[1] = 47398,
+		[2] = 47404,
+	},
+	[17749] = {
+		[1] = 61708,
+	},
+	[60317] = {
+		[1] = 1296,
+	},
+	[60573] = {
+		[1] = 7934,
+		[2] = 60700,
+		[3] = 8270,
+		[4] = 83443,
+		[5] = 8142,
+	},
+	[6566] = {
+		[1] = 10287,
+	},
+	[6598] = {
+		[1] = 15123,
+	},
+	[18325] = {
+		[1] = 60786,
+		[2] = 18698,
+		[3] = 60436,
+	},
+	[18389] = {
+		[1] = 4793,
+	},
+	[61597] = {
+		[1] = 8193,
+		[2] = 9624,
+	},
+	[22676] = {
+		[1] = 22673,
+	},
+	[22740] = {
+		[1] = 15057,
+	},
+	[9484] = {
+		[1] = 14295,
+	},
+	[6806] = {
+		[1] = 81320,
+	},
+	[3443] = {
+		[1] = 1383,
+		[2] = 1416,
+		[3] = 1816,
+	},
+	[9772] = {
+		[1] = 60223,
+	},
+	[9804] = {
+		[1] = 5357,
+	},
+	[6998] = {
+		[1] = 50190,
+	},
+	[9932] = {
+		[1] = 60566,
+		[2] = 7915,
+		[3] = 10743,
+		[4] = 21804,
+		[5] = 18479,
+		[6] = 83216,
+		[7] = 19875,
+	},
+	[60318] = {
+		[1] = 15136,
+	},
+	[7062] = {
+		[1] = 14107,
+		[2] = 14171,
+	},
+	[61086] = {
+		[1] = 21524,
+	},
+	[10188] = {
+		[1] = 1718,
+		[2] = 65025,
+	},
+	[61598] = {
+		[1] = 21496,
+	},
+	[14443] = {
+		[1] = 8111,
+	},
+	[14571] = {
+		[1] = 60650,
+	},
+	[10508] = {
+		[1] = 9412,
+		[2] = 13380,
+	},
+	[14667] = {
+		[1] = 8299,
+		[2] = 60258,
+		[3] = 21669,
+	},
+	[10636] = {
+		[1] = 15300,
+		[2] = 41019,
+	},
+	[21397] = {
+		[1] = 61010,
+	},
+	[21461] = {
+		[1] = 70735,
+		[2] = 21352,
+	},
+	[47266] = {
+		[1] = 22422,
+	},
+	[10828] = {
+		[1] = 83446,
+		[2] = 61571,
+	},
+	[7478] = {
+		[1] = 60972,
+	},
+	[3755] = {
+		[1] = 60657,
+	},
+	[3763] = {
+		[1] = 4067,
+	},
+	[15147] = {
+		[1] = 51829,
+	},
+	[15211] = {
+		[1] = 60169,
+	},
+	[61087] = {
+		[1] = 1823,
+		[2] = 6196,
+		[3] = 15226,
+	},
+	[22421] = {
+		[1] = 47265,
+	},
+	[15339] = {
+		[1] = 15391,
+	},
+	[61471] = {
+		[1] = 2418,
+	},
+	[15403] = {
+		[1] = 60548,
+	},
+	[61727] = {
+		[1] = 15813,
+	},
+	[22741] = {
+		[1] = 50025,
+		[2] = 15095,
+		[3] = 10152,
+	},
+	[15531] = {
+		[1] = 22212,
+		[2] = 15617,
+		[3] = 60792,
+		[4] = 7543,
+	},
+	[3891] = {
+		[1] = 60007,
+		[2] = 15572,
+		[3] = 18546,
+		[4] = 7456,
+		[5] = 9902,
+	},
+	[3939] = {
+		[1] = 14161,
+		[2] = 61492,
+	},
+	[47267] = {
+		[1] = 22417,
+	},
+	[11884] = {
+		[1] = 4729,
+	},
+	[83258] = {
+		[1] = 12953,
+		[2] = 4078,
+		[3] = 18319,
+		[4] = 7931,
+		[5] = 61481,
+		[6] = 7130,
+		[7] = 8751,
+		[8] = 6971,
+		[9] = 61420,
+	},
+	[4019] = {
+		[1] = 13818,
+	},
+	[12108] = {
+		[1] = 81310,
+	},
+	[4067] = {
+		[1] = 3763,
+	},
+	[4075] = {
+		[1] = 61399,
+	},
+	[61472] = {
+		[1] = 61248,
+	},
+	[41125] = {
+		[1] = 14132,
+	},
+	[8301] = {
+		[1] = 81361,
+	},
+	[12620] = {
+		[1] = 8317,
+	},
+	[80700] = {
+		[1] = 1958,
+	},
+	[21334] = {
+		[1] = 47294,
+	},
+	[4327] = {
+		[1] = 18208,
+	},
+	[4343] = {
+		[1] = 80203,
+	},
+	[8749] = {
+		[1] = 60216,
+	},
+	[47396] = {
+		[1] = 47402,
+		[2] = 47390,
+	},
+	[51875] = {
+		[1] = 3599,
+	},
+	[60577] = {
+		[1] = 718,
+	},
+	[80701] = {
+		[1] = 14565,
+	},
+	[18263] = {
+		[1] = 15377,
+	},
+	[22422] = {
+		[1] = 47266,
+	},
+	[18391] = {
+		[1] = 20261,
+	},
+	[61601] = {
+		[1] = 4949,
+	},
+	[61729] = {
+		[1] = 767,
+	},
+	[4663] = {
+		[1] = 61419,
+	},
+	[80702] = {
+		[1] = 3943,
+	},
+	[19351] = {
+		[1] = 21520,
+	},
+	[47397] = {
+		[1] = 47391,
+		[2] = 47403,
+	},
+	[51876] = {
+		[1] = 4915,
+		[2] = 14364,
+	},
+	[9965] = {
+		[1] = 60275,
+	},
+	[20055] = {
+		[1] = 20158,
+	},
+	[14188] = {
+		[1] = 19086,
+	},
+	[14252] = {
+		[1] = 14140,
+		[2] = 83208,
+		[3] = 14271,
+		[4] = 9915,
+		[5] = 60888,
+	},
+	[10189] = {
+		[1] = 15375,
+	},
+	[10221] = {
+		[1] = 15161,
+		[2] = 15191,
+		[3] = 60717,
+	},
+	[41127] = {
+		[1] = 2471,
+		[2] = 83429,
+	},
+	[61730] = {
+		[1] = 2844,
+	},
+	[14444] = {
+		[1] = 8112,
+	},
+	[14604] = {
+		[1] = 3893,
+	},
+	[14668] = {
+		[1] = 15394,
+	},
+	[80704] = {
+		[1] = 6773,
+		[2] = 7133,
+		[3] = 3330,
+		[4] = 3416,
+		[5] = 9783,
+	},
+	[14796] = {
+		[1] = 61358,
+		[2] = 60765,
+	},
+	[47398] = {
+		[1] = 47392,
+		[2] = 47404,
+	},
+	[51877] = {
+		[1] = 2852,
+	},
+	[60451] = {
+		[1] = 13128,
+	},
+	[80705] = {
+		[1] = 13060,
+	},
+	[15276] = {
+		[1] = 60418,
+	},
+	[15308] = {
+		[1] = 2371,
+	},
+	[18392] = {
+		[1] = 2819,
+	},
+	[15404] = {
+		[1] = 5592,
+	},
+	[18712] = {
+		[1] = 60429,
+	},
+	[83265] = {
+		[1] = 60827,
+		[2] = 60414,
+	},
+	[11469] = {
+		[1] = 4049,
+	},
+	[5815] = {
+		[1] = 83440,
+	},
+	[11821] = {
+		[1] = 15087,
+		[2] = 81365,
+	},
+	[19928] = {
+		[1] = 83448,
+		[2] = 19058,
+	},
+	[60452] = {
+		[1] = 6564,
+		[2] = 14179,
+	},
+	[12109] = {
+		[1] = 83290,
+		[2] = 11782,
+	},
+	[80707] = {
+		[1] = 15111,
+	},
+	[61348] = {
+		[1] = 8089,
+	},
+	[61476] = {
+		[1] = 2309,
+	},
+	[20568] = {
+		[1] = 50744,
+	},
+	[8270] = {
+		[1] = 7934,
+		[2] = 60700,
+		[3] = 60573,
+		[4] = 83443,
+		[5] = 8142,
+	},
+	[6215] = {
+		[1] = 15397,
+		[2] = 80107,
+	},
+	[16985] = {
+		[1] = 14408,
+	},
+	[80708] = {
+		[1] = 2616,
+	},
+	[21336] = {
+		[1] = 80516,
+		[2] = 14577,
+		[3] = 10141,
+		[4] = 16442,
+		[5] = 47295,
+	},
+	[6407] = {
+		[1] = 12626,
+		[2] = 14279,
+		[3] = 19135,
+	},
+	[8750] = {
+		[1] = 10073,
+		[2] = 18490,
+		[3] = 3392,
+		[4] = 17776,
+		[5] = 4724,
+	},
+	[17625] = {
+		[1] = 4505,
+		[2] = 14183,
+		[3] = 14207,
+	},
+	[13005] = {
+		[1] = 21470,
+	},
+	[13037] = {
+		[1] = 12651,
+		[2] = 13040,
+		[3] = 22347,
+	},
+	[60453] = {
+		[1] = 14208,
+	},
+	[6551] = {
+		[1] = 2910,
+	},
+	[13133] = {
+		[1] = 65001,
+	},
+	[60837] = {
+		[1] = 14588,
+	},
+	[22424] = {
+		[1] = 47054,
+		[2] = 47045,
+	},
+	[22488] = {
+		[1] = 47383,
+		[2] = 47374,
+	},
+	[13389] = {
+		[1] = 19385,
+	},
+	[22744] = {
+		[1] = 10629,
+		[2] = 14174,
+	},
+	[23000] = {
+		[1] = 83441,
+	},
+	[84037] = {
+		[1] = 20640,
+		[2] = 10749,
+		[3] = 61047,
+	},
+	[80710] = {
+		[1] = 7491,
+	},
+	[9678] = {
+		[1] = 18481,
+	},
+	[9902] = {
+		[1] = 60007,
+		[2] = 15572,
+		[3] = 18546,
+		[4] = 3891,
+		[5] = 7456,
+	},
+	[7047] = {
+		[1] = 80743,
+	},
+	[60582] = {
+		[1] = 7284,
+		[2] = 60424,
+	},
+	[14189] = {
+		[1] = 7048,
+		[2] = 36017,
+	},
+	[81223] = {
+		[1] = 20623,
+	},
+	[16474] = {
+		[1] = 16478,
+		[2] = 23276,
+	},
+	[61734] = {
+		[1] = 15302,
+	},
+	[20697] = {
+		[1] = 21415,
+		[2] = 61593,
+	},
+	[16794] = {
+		[1] = 41148,
+	},
+	[14573] = {
+		[1] = 15019,
+	},
+	[16986] = {
+		[1] = 15463,
+		[2] = 50191,
+	},
+	[10574] = {
+		[1] = 61575,
+	},
+	[80712] = {
+		[1] = 2954,
+	},
+	[21337] = {
+		[1] = 47292,
+	},
+	[21401] = {
+		[1] = 21392,
+	},
+	[10766] = {
+		[1] = 83467,
+	},
+	[47402] = {
+		[1] = 47396,
+		[2] = 47390,
+	},
+	[7495] = {
+		[1] = 5302,
+	},
+	[51881] = {
+		[1] = 1731,
+		[2] = 1739,
+		[3] = 1747,
+		[4] = 1755,
+		[5] = 2383,
+		[6] = 2395,
+		[7] = 2642,
+		[8] = 2691,
+		[9] = 2650,
+		[10] = 3809,
+		[11] = 80118,
+	},
+	[15053] = {
+		[1] = 19688,
+	},
+	[7543] = {
+		[1] = 22212,
+		[2] = 15531,
+		[3] = 15617,
+		[4] = 60792,
+	},
+	[15117] = {
+		[1] = 5199,
+	},
+	[15213] = {
+		[1] = 60764,
+	},
+	[22425] = {
+		[1] = 47053,
+		[2] = 47044,
+	},
+	[22489] = {
+		[1] = 47387,
+		[2] = 47378,
+	},
+	[15373] = {
+		[1] = 6204,
+		[2] = 17740,
+		[3] = 15384,
+		[4] = 12960,
+	},
+	[11310] = {
+		[1] = 6697,
+	},
+	[61735] = {
+		[1] = 3335,
+	},
+	[70732] = {
+		[1] = 47214,
+	},
+	[15597] = {
+		[1] = 70037,
+	},
+	[80202] = {
+		[1] = 1368,
+		[2] = 80101,
+		[3] = 80220,
+	},
+	[15693] = {
+		[1] = 50193,
+	},
+	[80714] = {
+		[2] = 20090,
+		[3] = 20152,
+		[4] = 20197,
+	},
+	[15789] = {
+		[1] = 19083,
+	},
+	[11726] = {
+		[1] = 8265,
+		[2] = 51741,
+		[3] = 80758,
+		[4] = 19685,
+	},
+	[15853] = {
+		[1] = 19921,
+	},
+	[55337] = {
+		[1] = 55266,
+		[2] = 2623,
+		[3] = 12604,
+	},
+	[47403] = {
+		[1] = 47391,
+		[2] = 47397,
+	},
+	[51754] = {
+		[1] = 12984,
+	},
+	[51882] = {
+		[1] = 15004,
+	},
+	[83530] = {
+		[1] = 14130,
+	},
+	[8071] = {
+		[1] = 5242,
+		[2] = 5246,
+	},
+	[80203] = {
+		[1] = 4343,
+	},
+	[8207] = {
+		[1] = 60215,
+	},
+	[61608] = {
+		[1] = 7688,
+	},
+	[8271] = {
+		[1] = 11728,
+	},
+	[20698] = {
+		[1] = 61006,
+	},
+	[2092] = {
+		[1] = 3296,
+		[3] = 60307,
+	},
+	[83531] = {
+		[1] = 4131,
+		[2] = 9916,
+	},
+	[80204] = {
+		[1] = 11848,
+	},
+	[80716] = {
+		[1] = 12795,
+	},
+	[2148] = {
+		[1] = 7546,
+	},
+	[55338] = {
+		[1] = 10139,
+		[2] = 81304,
+		[3] = 17715,
+	},
+	[8751] = {
+		[1] = 12953,
+		[2] = 4078,
+		[3] = 18319,
+		[4] = 7931,
+		[5] = 61481,
+		[6] = 7130,
+		[7] = 83258,
+		[8] = 6971,
+		[9] = 61420,
+	},
+	[47404] = {
+		[1] = 47392,
+		[2] = 47398,
+	},
+	[70735] = {
+		[1] = 21352,
+		[2] = 21461,
+	},
+	[17755] = {
+		[1] = 3606,
+	},
+	[83532] = {
+		[1] = 15462,
+	},
+	[13102] = {
+		[1] = 10272,
+		[2] = 60946,
+		[3] = 56069,
+		[4] = 55339,
+		[5] = 18526,
+	},
+	[13134] = {
+		[1] = 80846,
+	},
+	[80717] = {
+		[1] = 19509,
+	},
+	[18203] = {
+		[1] = 61740,
+	},
+	[2284] = {
+		[1] = 14088,
+	},
+	[22426] = {
+		[1] = 47055,
+		[2] = 47046,
+	},
+	[22490] = {
+		[1] = 47372,
+		[2] = 47381,
+	},
+	[61481] = {
+		[1] = 12953,
+		[2] = 4078,
+		[3] = 18319,
+		[4] = 7931,
+		[5] = 7130,
+		[6] = 83258,
+		[7] = 8751,
+		[8] = 6971,
+		[9] = 61420,
+	},
+	[2316] = {
+		[1] = 41018,
+	},
+	[22810] = {
+		[1] = 51780,
+	},
+	[9391] = {
+		[1] = 1991,
+		[2] = 4128,
+	},
+	[9423] = {
+		[1] = 51834,
+	},
+	[2380] = {
+		[1] = 1730,
+		[2] = 1738,
+		[3] = 1746,
+		[4] = 1754,
+		[5] = 2387,
+		[6] = 2393,
+		[7] = 2399,
+		[8] = 2635,
+		[9] = 2649,
+		[10] = 3758,
+		[11] = 3808,
+	},
+	[2396] = {
+		[1] = 1732,
+		[2] = 1740,
+		[3] = 1748,
+		[4] = 1756,
+		[5] = 2384,
+		[6] = 2643,
+		[7] = 2651,
+		[8] = 3810,
+	},
+	[37] = {
+		[1] = 61627,
+	},
+	[55339] = {
+		[1] = 10272,
+		[2] = 60946,
+		[3] = 56069,
+		[4] = 13102,
+		[5] = 18526,
+	},
+	[9775] = {
+		[1] = 16713,
+	},
+	[9839] = {
+		[1] = 12994,
+	},
+	[2468] = {
+		[1] = 2374,
+		[2] = 5419,
+		[3] = 60379,
+	},
+	[83278] = {
+		[1] = 15158,
+	},
+	[9999] = {
+		[1] = 22342,
+		[2] = 19133,
+		[3] = 22747,
+		[4] = 20538,
+		[5] = 20674,
+	},
+	[20059] = {
+		[1] = 19835,
+		[2] = 18374,
+		[3] = 15058,
+		[4] = 20175,
+		[5] = 20060,
+		[6] = 13358,
+		[7] = 20194,
+	},
+	[2524] = {
+		[1] = 5757,
+	},
+	[60970] = {
+		[1] = 10401,
+	},
+	[10159] = {
+		[1] = 14771,
+		[2] = 15671,
+	},
+	[5112] = {
+		[1] = 51842,
+	},
+	[16476] = {
+		[1] = 16480,
+	},
+	[14446] = {
+		[1] = 8114,
+	},
+	[6144] = {
+		[1] = 41017,
+	},
+	[5240] = {
+		[1] = 5092,
+	},
+	[14606] = {
+		[1] = 7443,
+	},
+	[80208] = {
+		[1] = 5778,
+	},
+	[80720] = {
+		[1] = 16977,
+	},
+	[5320] = {
+		[1] = 5944,
+	},
+	[10767] = {
+		[1] = 14930,
+		[2] = 60950,
+	},
+	[10799] = {
+		[1] = 83461,
+		[2] = 61621,
+	},
+	[51757] = {
+		[1] = 15568,
+	},
+	[51885] = {
+		[1] = 2117,
+	},
+	[15086] = {
+		[1] = 83436,
+		[2] = 10024,
+	},
+	[2764] = {
+		[2] = 41109,
+	},
+	[60843] = {
+		[1] = 10194,
+	},
+	[5592] = {
+		[1] = 15404,
+	},
+	[22427] = {
+		[1] = 47048,
+		[2] = 47057,
+	},
+	[22491] = {
+		[1] = 47373,
+		[2] = 47382,
+	},
+	[61483] = {
+		[1] = 1292,
+		[2] = 1927,
+	},
+	[41136] = {
+		[1] = 5094,
+	},
+	[2844] = {
+		[1] = 61730,
+	},
+	[18716] = {
+		[1] = 21493,
+		[2] = 83442,
+	},
+	[15662] = {
+		[1] = 61213,
+	},
+	[15822] = {
+		[1] = 51047,
+	},
+	[5944] = {
+		[1] = 5320,
+	},
+	[83282] = {
+		[1] = 61725,
+		[2] = 4041,
+	},
+	[20060] = {
+		[1] = 19835,
+		[2] = 18374,
+		[3] = 15058,
+		[4] = 20175,
+		[5] = 13358,
+		[6] = 20194,
+		[7] = 20059,
+	},
+	[80723] = {
+		[1] = 1394,
+		[2] = 3329,
+	},
+	[60972] = {
+		[1] = 7478,
+	},
+	[16477] = {
+		[1] = 23272,
+	},
+	[61740] = {
+		[1] = 18203,
+	},
+	[12463] = {
+		[1] = 61049,
+	},
+	[80212] = {
+		[1] = 3999,
+	},
+	[80724] = {
+		[1] = 6182,
+		[3] = 70047,
+	},
+	[8624] = {
+		[1] = 83482,
+	},
+	[21404] = {
+		[1] = 21416,
+		[2] = 81004,
+	},
+	[21532] = {
+		[1] = 13954,
+	},
+	[51887] = {
+		[1] = 5961,
+	},
+	[83540] = {
+		[1] = 83543,
+		[2] = 83542,
+		[3] = 83541,
+	},
+	[3268] = {
+		[1] = 2195,
+		[2] = 2224,
+		[3] = 5392,
+		[4] = 10547,
+	},
+	[80213] = {
+		[1] = 2981,
+	},
+	[60717] = {
+		[1] = 10221,
+		[2] = 15161,
+		[3] = 15191,
+	},
+	[60845] = {
+		[1] = 4765,
+	},
+	[60973] = {
+		[1] = 6430,
+	},
+	[22428] = {
+		[1] = 5613,
+		[2] = 61690,
+	},
+	[22492] = {
+		[1] = 47379,
+		[2] = 47388,
+	},
+	[3332] = {
+		[1] = 9784,
+	},
+	[13359] = {
+		[1] = 19148,
+	},
+	[83541] = {
+		[1] = 83543,
+		[2] = 83542,
+		[3] = 83540,
+	},
+	[80214] = {
+		[1] = 3270,
+	},
+	[80726] = {
+		[1] = 7027,
+	},
+	[6904] = {
+		[1] = 61063,
+	},
+	[47153] = {
+		[1] = 47158,
+		[2] = 21376,
+	},
+	[9776] = {
+		[1] = 6092,
+	},
+	[83286] = {
+		[1] = 9878,
+		[2] = 6429,
+	},
+	[83542] = {
+		[1] = 83543,
+		[2] = 83541,
+		[3] = 83540,
+	},
+	[7048] = {
+		[1] = 14189,
+		[2] = 36017,
+	},
+	[60590] = {
+		[1] = 14194,
+	},
+	[60718] = {
+		[1] = 4139,
+		[2] = 61211,
+	},
+	[80727] = {
+		[1] = 12791,
+	},
+	[60974] = {
+		[1] = 10279,
+		[2] = 3836,
+	},
+	[10160] = {
+		[1] = 12417,
+		[2] = 15651,
+		[3] = 14322,
+		[4] = 10219,
+	},
+	[3572] = {
+		[1] = 1821,
+	},
+	[10224] = {
+		[1] = 15153,
+		[2] = 15427,
+	},
+	[61486] = {
+		[1] = 14245,
+	},
+	[16478] = {
+		[1] = 23276,
+		[2] = 16474,
+	},
+	[14415] = {
+		[1] = 14144,
+		[2] = 6282,
+		[3] = 83423,
+	},
+	[10384] = {
+		[1] = 65039,
+	},
+	[83543] = {
+		[1] = 83542,
+		[2] = 83541,
+		[3] = 83540,
+	},
+	[3652] = {
+		[1] = 9858,
+		[2] = 91765,
+	},
+	[14671] = {
+		[1] = 9948,
+		[2] = 14653,
+	},
+	[80728] = {
+		[1] = 13055,
+	},
+	[47154] = {
+		[1] = 47159,
+		[2] = 21374,
+	},
+	[14895] = {
+		[1] = 11678,
+	},
+	[3732] = {
+		[1] = 61260,
+		[2] = 80742,
+	},
+	[3740] = {
+		[1] = 2046,
+	},
+	[7512] = {
+		[1] = 60742,
+	},
+	[15087] = {
+		[1] = 11821,
+		[2] = 81365,
+	},
+	[3780] = {
+		[1] = 2783,
+	},
+	[15151] = {
+		[1] = 3272,
+	},
+	[15183] = {
+		[1] = 18811,
+		[2] = 61261,
+		[3] = 81122,
+	},
+	[60847] = {
+		[1] = 15984,
+		[2] = 60131,
+	},
+	[60975] = {
+		[1] = 21454,
+	},
+	[22429] = {
+		[1] = 47043,
+		[2] = 47052,
+	},
+	[22493] = {
+		[1] = 47385,
+	},
+	[15375] = {
+		[1] = 10189,
+	},
+	[18526] = {
+		[1] = 10272,
+		[2] = 60946,
+		[3] = 56069,
+		[4] = 13102,
+		[5] = 55339,
+	},
+	[15471] = {
+		[1] = 60609,
+	},
+	[15503] = {
+		[1] = 17006,
+	},
+	[15567] = {
+		[1] = 61275,
+	},
+	[80218] = {
+		[1] = 3993,
+		[2] = 80738,
+	},
+	[80730] = {
+		[1] = 2033,
+	},
+	[15791] = {
+		[1] = 9875,
+	},
+	[11728] = {
+		[1] = 8271,
+	},
+	[7928] = {
+		[1] = 10134,
+		[2] = 20683,
+	},
+	[11920] = {
+		[1] = 51832,
+	},
+	[83290] = {
+		[1] = 12109,
+		[2] = 11782,
+	},
+	[4020] = {
+		[1] = 13819,
+		[2] = 61318,
+	},
+	[4036] = {
+		[1] = 14629,
+	},
+	[80219] = {
+		[1] = 3275,
+		[2] = 14102,
+	},
+	[80731] = {
+		[1] = 753,
+		[2] = 11121,
+		[3] = 61333,
+	},
+	[4084] = {
+		[1] = 7920,
+	},
+	[41013] = {
+		[1] = 6557,
+	},
+	[16607] = {
+		[1] = 51737,
+	},
+	[83291] = {
+		[1] = 47097,
+		[2] = 4046,
+		[3] = 13871,
+		[4] = 21346,
+		[5] = 18545,
+	},
+	[4249] = {
+		[1] = 61398,
+	},
+	[17055] = {
+		[1] = 7946,
+	},
+	[80732] = {
+		[1] = 12522,
+	},
+	[21406] = {
+		[1] = 18689,
+		[2] = 18734,
+		[3] = 5257,
+		[4] = 51732,
+	},
+	[21470] = {
+		[1] = 13005,
+	},
+	[83292] = {
+		[1] = 7691,
+		[2] = 14111,
+	},
+	[60209] = {
+		[1] = 20517,
+		[2] = 60405,
+	},
+	[13040] = {
+		[1] = 12651,
+		[2] = 13037,
+		[3] = 22347,
+	},
+	[4505] = {
+		[1] = 14183,
+		[2] = 17625,
+		[3] = 14207,
+	},
+	[80733] = {
+		[1] = 2018,
+	},
+	[22430] = {
+		[1] = 47049,
+		[2] = 47058,
+	},
+	[22494] = {
+		[1] = 47386,
+		[2] = 47377,
+	},
+	[41014] = {
+		[1] = 13969,
+		[2] = 15517,
+	},
+	[13360] = {
+		[1] = 60806,
+	},
+	[4665] = {
+		[1] = 3322,
+	},
+	[4681] = {
+		[1] = 61758,
+	},
+	[9393] = {
+		[1] = 6341,
+		[2] = 9627,
+		[3] = 61025,
+	},
+	[4713] = {
+		[2] = 20073,
+	},
+	[4729] = {
+		[1] = 11884,
+	},
+	[19039] = {
+		[1] = 70032,
+	},
+	[80734] = {
+		[1] = 11749,
+	},
+	[4825] = {
+		[1] = 4950,
+	},
+	[47157] = {
+		[1] = 21372,
+		[2] = 47152,
+	},
+	[9841] = {
+		[1] = 11882,
+	},
+	[51892] = {
+		[1] = 15269,
+	},
+	[60210] = {
+		[1] = 3944,
+	},
+	[9969] = {
+		[1] = 61573,
+		[2] = 18480,
+	},
+	[19999] = {
+		[1] = 15999,
+	},
+	[24222] = {
+		[1] = 18372,
+	},
+	[1270] = {
+		[1] = 4683,
+	},
+	[61362] = {
+		[1] = 8108,
+		[2] = 14439,
+	},
+	[1282] = {
+		[1] = 8748,
+		[2] = 14814,
+	},
+	[16480] = {
+		[1] = 16476,
+	},
+	[80] = {
+		[1] = 51817,
+	},
+	[1302] = {
+		[1] = 60308,
+	},
+	[5241] = {
+		[1] = 5069,
+		[2] = 5326,
+		[3] = 12468,
+	},
+	[5257] = {
+		[1] = 21406,
+		[2] = 18689,
+		[3] = 18734,
+		[4] = 51732,
+	},
+	[16992] = {
+		[1] = 13137,
+	},
+	[14672] = {
+		[1] = 14654,
+	},
+	[80736] = {
+		[1] = 5739,
+		[2] = 15064,
+	},
+	[21343] = {
+		[1] = 47096,
+	},
+	[21407] = {
+		[1] = 21398,
+		[2] = 21410,
+	},
+	[47158] = {
+		[1] = 47153,
+		[2] = 21376,
+	},
+	[10833] = {
+		[1] = 60357,
+		[2] = 14935,
+	},
+	[60211] = {
+		[1] = 3590,
+	},
+	[1378] = {
+		[1] = 14125,
+	},
+	[15152] = {
+		[1] = 80122,
+	},
+	[11121] = {
+		[1] = 753,
+		[2] = 80731,
+		[3] = 61333,
+	},
+	[1394] = {
+		[1] = 3329,
+		[2] = 80723,
+	},
+	[5593] = {
+		[1] = 9444,
+	},
+	[22431] = {
+		[1] = 47056,
+		[2] = 47047,
+	},
+	[61363] = {
+		[1] = 8110,
+		[2] = 14442,
+		[3] = 60406,
+	},
+	[41016] = {
+		[1] = 5962,
+		[2] = 60872,
+	},
+	[61619] = {
+		[1] = 4126,
+	},
+	[15440] = {
+		[1] = 18298,
+	},
+	[15504] = {
+		[1] = 15890,
+	},
+	[22879] = {
+		[2] = 51738,
+	},
+	[15568] = {
+		[1] = 51757,
+	},
+	[5753] = {
+		[1] = 6720,
+		[2] = 81063,
+	},
+	[15664] = {
+		[1] = 21803,
+		[2] = 8092,
+		[3] = 8755,
+		[4] = 9290,
+		[5] = 1624,
+	},
+	[80738] = {
+		[1] = 3993,
+		[2] = 80218,
+	},
+	[11665] = {
+		[1] = 8260,
+		[2] = 14685,
+	},
+	[47159] = {
+		[1] = 47154,
+		[2] = 21374,
+	},
+	[15984] = {
+		[1] = 60847,
+		[2] = 60131,
+	},
+	[5961] = {
+		[1] = 51887,
+	},
+	[1502] = {
+		[1] = 16608,
+		[2] = 60502,
+	},
+	[60596] = {
+		[1] = 2987,
+	},
+	[60724] = {
+		[1] = 14246,
+		[2] = 7470,
+		[3] = 60116,
+	},
+	[41017] = {
+		[1] = 6144,
+	},
+	[61620] = {
+		[1] = 4448,
+	},
+	[20640] = {
+		[1] = 10749,
+		[2] = 84037,
+		[3] = 61047,
+	},
+	[12465] = {
+		[1] = 21701,
+	},
+	[80740] = {
+		[1] = 11743,
+	},
+	[21344] = {
+		[1] = 47098,
+	},
+	[47032] = {
+		[1] = 47037,
+		[2] = 21387,
+	},
+	[6409] = {
+		[1] = 11909,
+	},
+	[12945] = {
+		[1] = 12903,
+	},
+	[12977] = {
+		[1] = 6393,
+		[2] = 10251,
+	},
+	[60213] = {
+		[1] = 17777,
+	},
+	[13137] = {
+		[1] = 16992,
+	},
+	[80741] = {
+		[1] = 19149,
+	},
+	[6617] = {
+		[1] = 14432,
+	},
+	[22496] = {
+		[1] = 47101,
+	},
+	[41018] = {
+		[1] = 2316,
+	},
+	[61621] = {
+		[1] = 10799,
+		[2] = 83461,
+	},
+	[6697] = {
+		[1] = 11310,
+	},
+	[6793] = {
+		[1] = 84604,
+	},
+	[80742] = {
+		[1] = 61260,
+		[2] = 3732,
+	},
+	[50744] = {
+		[1] = 20568,
+	},
+	[1718] = {
+		[1] = 10188,
+		[2] = 65025,
+	},
+	[47033] = {
+		[1] = 21391,
+		[2] = 47038,
+	},
+	[1730] = {
+		[1] = 1738,
+		[2] = 1746,
+		[3] = 1754,
+		[4] = 2380,
+		[5] = 2387,
+		[6] = 2393,
+		[7] = 2399,
+		[8] = 2635,
+		[9] = 2649,
+		[10] = 3758,
+		[11] = 3808,
+	},
+	[9778] = {
+		[1] = 15307,
+	},
+	[9810] = {
+		[1] = 849,
+	},
+	[1742] = {
+		[1] = 1734,
+		[2] = 1750,
+		[3] = 1758,
+		[4] = 2385,
+		[5] = 2547,
+		[6] = 2645,
+		[7] = 2653,
+		[8] = 3812,
+	},
+	[1746] = {
+		[1] = 1730,
+		[2] = 1738,
+		[3] = 1754,
+		[4] = 2380,
+		[5] = 2387,
+		[6] = 2393,
+		[7] = 2399,
+		[8] = 2635,
+		[9] = 2649,
+		[10] = 3758,
+		[11] = 3808,
+	},
+	[1750] = {
+		[1] = 1734,
+		[2] = 1742,
+		[3] = 1758,
+		[4] = 2385,
+		[5] = 2547,
+		[6] = 2645,
+		[7] = 2653,
+		[8] = 3812,
+	},
+	[1754] = {
+		[1] = 1730,
+		[2] = 1738,
+		[3] = 1746,
+		[4] = 2380,
+		[5] = 2387,
+		[6] = 2393,
+		[7] = 2399,
+		[8] = 2635,
+		[9] = 2649,
+		[10] = 3758,
+		[11] = 3808,
+	},
+	[1758] = {
+		[1] = 1734,
+		[2] = 1742,
+		[3] = 1750,
+		[4] = 2385,
+		[5] = 2547,
+		[6] = 2645,
+		[7] = 2653,
+		[8] = 3812,
+	},
+	[1770] = {
+		[1] = 51403,
+	},
+	[80743] = {
+		[1] = 7047,
+	},
+	[14257] = {
+		[1] = 14193,
+	},
+	[10194] = {
+		[1] = 60843,
+	},
+	[1790] = {
+		[1] = 15015,
+	},
+	[41019] = {
+		[1] = 10636,
+		[2] = 15300,
+	},
+	[61622] = {
+		[1] = 6832,
+	},
+	[20641] = {
+		[1] = 14631,
+		[2] = 20537,
+		[3] = 65035,
+		[4] = 60430,
+	},
+	[20705] = {
+		[1] = 10141,
+		[2] = 11911,
+	},
+	[14545] = {
+		[1] = 51776,
+		[3] = 83454,
+	},
+	[14577] = {
+		[1] = 80516,
+		[2] = 21336,
+		[3] = 10141,
+		[4] = 16442,
+		[5] = 47295,
+	},
+	[14641] = {
+		[1] = 6394,
+	},
+	[7353] = {
+		[1] = 14237,
+	},
+	[21345] = {
+		[1] = 47095,
+	},
+	[14801] = {
+		[1] = 19084,
+	},
+	[47034] = {
+		[1] = 47039,
+		[2] = 21389,
+	},
+	[10770] = {
+		[1] = 10708,
+	},
+	[55480] = {
+		[1] = 8319,
+		[2] = 61510,
+	},
+	[14929] = {
+		[1] = 60904,
+	},
+	[51897] = {
+		[1] = 19945,
+		[2] = 19986,
+		[3] = 11735,
+		[4] = 60283,
+	},
+	[15057] = {
+		[1] = 22740,
+	},
+	[7545] = {
+		[1] = 61304,
+	},
+	[15153] = {
+		[1] = 10224,
+		[2] = 15427,
+	},
+	[60727] = {
+		[1] = 15049,
+	},
+	[80745] = {
+		[1] = 18738,
+	},
+	[61239] = {
+		[1] = 10280,
+		[2] = 61365,
+	},
+	[22497] = {
+		[1] = 47105,
+	},
+	[41020] = {
+		[1] = 4708,
+	},
+	[18530] = {
+		[1] = 60180,
+	},
+	[22689] = {
+		[1] = 65026,
+	},
+	[1934] = {
+		[1] = 60933,
+	},
+	[15537] = {
+		[1] = 61316,
+	},
+	[23009] = {
+		[1] = 22820,
+	},
+	[1958] = {
+		[1] = 80700,
+	},
+	[1974] = {
+		[1] = 61311,
+	},
+	[47163] = {
+		[1] = 47172,
+		[2] = 22467,
+	},
+	[60216] = {
+		[1] = 8749,
+	},
+	[2018] = {
+		[1] = 80733,
+	},
+	[12082] = {
+		[1] = 19389,
+	},
+	[20194] = {
+		[1] = 19835,
+		[2] = 18374,
+		[3] = 15058,
+		[4] = 20175,
+		[5] = 20060,
+		[6] = 13358,
+		[7] = 20059,
+	},
+	[8185] = {
+		[1] = 60608,
+	},
+	[41021] = {
+		[1] = 1446,
+		[2] = 80802,
+	},
+	[4122] = {
+		[1] = 827,
+		[2] = 84600,
+	},
+	[2069] = {
+		[1] = 22274,
+	},
+	[12466] = {
+		[1] = 12083,
+	},
+	[2109] = {
+		[1] = 2379,
+		[2] = 3815,
+		[3] = 10421,
+		[4] = 2648,
+		[5] = 1753,
+		[6] = 1761,
+		[7] = 1745,
+		[8] = 1737,
+		[9] = 2656,
+	},
+	[2117] = {
+		[1] = 51885,
+	},
+	[16995] = {
+		[1] = 14412,
+		[2] = 15150,
+	},
+	[12626] = {
+		[1] = 6407,
+		[2] = 14279,
+		[3] = 19135,
+	},
+	[81004] = {
+		[1] = 21416,
+		[2] = 21404,
+	},
+	[81260] = {
+		[1] = 4826,
+	},
+	[21410] = {
+		[1] = 21398,
+		[2] = 21407,
+	},
+	[47164] = {
+		[1] = 47173,
+		[2] = 22464,
+	},
+	[8755] = {
+		[1] = 21803,
+		[2] = 8092,
+		[3] = 9290,
+		[4] = 1624,
+		[5] = 15664,
+	},
+	[51771] = {
+		[1] = 81052,
+	},
+	[13074] = {
+		[1] = 22328,
+		[2] = 11927,
+	},
+	[60601] = {
+		[1] = 1197,
+	},
+	[13170] = {
+		[1] = 17579,
+		[2] = 13865,
+	},
+	[81261] = {
+		[1] = 6791,
+	},
+	[22498] = {
+		[1] = 47099,
+	},
+	[2309] = {
+		[1] = 61476,
+	},
+	[41150] = {
+		[1] = 4309,
+	},
+	[61753] = {
+		[1] = 7483,
+		[2] = 61210,
+	},
+	[4666] = {
+		[1] = 4675,
+		[2] = 61088,
+	},
+	[9395] = {
+		[1] = 21318,
+	},
+	[83565] = {
+		[1] = 60562,
+		[3] = 61053,
+		[4] = 13127,
+		[5] = 18313,
+	},
+	[2381] = {
+		[1] = 2394,
+		[2] = 2646,
+		[3] = 2654,
+	},
+	[2389] = {
+		[1] = 2401,
+	},
+	[81006] = {
+		[1] = 22225,
+	},
+	[4826] = {
+		[1] = 81260,
+	},
+	[47037] = {
+		[1] = 21387,
+		[2] = 47032,
+	},
+	[47165] = {
+		[1] = 47174,
+		[2] = 22471,
+	},
+	[4922] = {
+		[1] = 2898,
+		[2] = 3273,
+	},
+	[9875] = {
+		[1] = 15791,
+	},
+	[9907] = {
+		[1] = 6095,
+	},
+	[19875] = {
+		[1] = 60566,
+		[2] = 7915,
+		[3] = 10743,
+		[4] = 21804,
+		[5] = 9932,
+		[6] = 18479,
+		[7] = 83216,
+	},
+	[60346] = {
+		[1] = 8124,
+	},
+	[10067] = {
+		[1] = 81265,
+	},
+	[14194] = {
+		[1] = 60590,
+	},
+	[81007] = {
+		[1] = 7997,
+		[2] = 14263,
+		[3] = 70036,
+		[4] = 22718,
+	},
+	[10163] = {
+		[1] = 12610,
+		[2] = 14806,
+	},
+	[2549] = {
+		[1] = 19568,
+	},
+	[14322] = {
+		[1] = 10160,
+		[2] = 12417,
+		[3] = 15651,
+		[4] = 10219,
+	},
+	[41023] = {
+		[1] = 2774,
+		[2] = 2778,
+	},
+	[20643] = {
+		[1] = 4543,
+		[2] = 15146,
+	},
+	[5210] = {
+		[1] = 5238,
+	},
+	[14578] = {
+		[1] = 41149,
+	},
+	[16996] = {
+		[1] = 61525,
+	},
+	[14674] = {
+		[1] = 14652,
+	},
+	[2653] = {
+		[1] = 1734,
+		[2] = 1742,
+		[3] = 1750,
+		[4] = 1758,
+		[5] = 2385,
+		[6] = 2547,
+		[7] = 2645,
+		[8] = 3812,
+	},
+	[5322] = {
+		[1] = 2058,
+		[2] = 83221,
+	},
+	[21347] = {
+		[1] = 47094,
+		[2] = 51740,
+	},
+	[47038] = {
+		[1] = 47033,
+		[2] = 21391,
+	},
+	[47166] = {
+		[1] = 47175,
+		[2] = 22469,
+	},
+	[47294] = {
+		[1] = 21334,
+	},
+	[14930] = {
+		[1] = 10767,
+		[2] = 60950,
+	},
+	[15058] = {
+		[1] = 19835,
+		[2] = 18374,
+		[3] = 20175,
+		[4] = 20060,
+		[5] = 13358,
+		[6] = 20194,
+		[7] = 20059,
+	},
+	[60347] = {
+		[1] = 1405,
+		[2] = 80860,
+	},
+	[2765] = {
+		[1] = 60820,
+	},
+	[80753] = {
+		[1] = 61649,
+		[2] = 10281,
+	},
+	[81265] = {
+		[1] = 10067,
+	},
+	[2805] = {
+		[1] = 60772,
+	},
+	[22499] = {
+		[1] = 47100,
+	},
+	[15378] = {
+		[1] = 9947,
+	},
+	[61627] = {
+		[1] = 37,
+	},
+	[11411] = {
+		[1] = 60800,
+	},
+	[15538] = {
+		[1] = 81330,
+	},
+	[15570] = {
+		[1] = 61274,
+	},
+	[15602] = {
+		[1] = 60408,
+	},
+	[15634] = {
+		[1] = 10083,
+		[2] = 83469,
+		[3] = 60694,
+	},
+	[19044] = {
+		[1] = 83202,
+		[2] = 51819,
+	},
+	[11603] = {
+		[1] = 83205,
+		[2] = 80807,
+	},
+	[11635] = {
+		[1] = 61566,
+	},
+	[11731] = {
+		[1] = 60563,
+		[2] = 61024,
+	},
+	[47039] = {
+		[1] = 47034,
+		[2] = 21389,
+	},
+	[15890] = {
+		[1] = 15504,
+	},
+	[47295] = {
+		[1] = 80516,
+		[2] = 21336,
+		[3] = 14577,
+		[4] = 10141,
+		[5] = 16442,
+	},
+	[2973] = {
+		[1] = 15337,
+		[2] = 15346,
+	},
+	[5962] = {
+		[1] = 60872,
+		[2] = 41016,
+	},
+	[60220] = {
+		[1] = 7417,
+	},
+	[12083] = {
+		[1] = 12466,
+	},
+	[80755] = {
+		[1] = 10023,
+	},
+	[3053] = {
+		[1] = 3151,
+	},
+	[41025] = {
+		[1] = 2225,
+	},
+	[61628] = {
+		[1] = 13956,
+	},
+	[91761] = {
+		[1] = 19984,
+		[2] = 51788,
+	},
+	[6282] = {
+		[1] = 14144,
+		[2] = 14415,
+		[3] = 83423,
+	},
+	[16997] = {
+		[1] = 61019,
+	},
+	[17061] = {
+		[1] = 19378,
+	},
+	[80756] = {
+		[1] = 9889,
+		[2] = 60394,
+	},
+	[47168] = {
+		[1] = 47177,
+		[2] = 22465,
+	},
+	[3213] = {
+		[1] = 2390,
+		[2] = 2402,
+	},
+	[21668] = {
+		[1] = 20295,
+	},
+	[60221] = {
+		[1] = 6509,
+	},
+	[203] = {
+		[1] = 14101,
+	},
+	[13107] = {
+		[1] = 50431,
+	},
+	[13203] = {
+		[1] = 60409,
+		[2] = 83218,
+	},
+	[22500] = {
+		[1] = 47106,
+	},
+	[41026] = {
+		[1] = 4778,
+	},
+	[70008] = {
+		[1] = 3964,
+	},
+	[61757] = {
+		[1] = 10782,
+	},
+	[22820] = {
+		[1] = 23009,
+	},
+	[6794] = {
+		[1] = 65038,
+	},
+	[80758] = {
+		[1] = 8265,
+		[2] = 11726,
+		[3] = 51741,
+		[4] = 19685,
+	},
+	[81014] = {
+		[1] = 10111,
+		[2] = 14584,
+		[3] = 3890,
+	},
+	[9684] = {
+		[1] = 10744,
+	},
+	[6906] = {
+		[1] = 83206,
+	},
+	[47169] = {
+		[1] = 47178,
+		[2] = 22468,
+	},
+	[47297] = {
+		[1] = 22506,
+	},
+	[6970] = {
+		[1] = 60393,
+	},
+	[51776] = {
+		[1] = 14545,
+		[3] = 83454,
+	},
+	[60350] = {
+		[1] = 15859,
+	},
+	[14099] = {
+		[1] = 14164,
+	},
+	[10036] = {
+		[1] = 6834,
+	},
+	[20197] = {
+		[1] = 80714,
+		[3] = 20090,
+		[4] = 20152,
+	},
+	[81015] = {
+		[1] = 2617,
+	},
+	[10164] = {
+		[1] = 61287,
+	},
+	[3581] = {
+		[1] = 15241,
+		[2] = 60743,
+	},
+	[20517] = {
+		[1] = 60209,
+		[2] = 60405,
+	},
+	[61630] = {
+		[1] = 15860,
+		[2] = 60395,
+	},
+	[61758] = {
+		[1] = 4681,
+	},
+	[10388] = {
+		[1] = 15684,
+		[2] = 14785,
+		[3] = 15670,
+		[4] = 14952,
+	},
+	[91765] = {
+		[1] = 3652,
+		[2] = 9858,
+	},
+	[3653] = {
+		[1] = 6380,
+	},
+	[14771] = {
+		[1] = 10159,
+		[2] = 15671,
+	},
+	[21413] = {
+		[1] = 21395,
+	},
+	[47042] = {
+		[1] = 22428,
+		[2] = 47051,
+	},
+	[10772] = {
+		[1] = 1292,
+	},
+	[47298] = {
+		[1] = 22507,
+	},
+	[14931] = {
+		[1] = 81329,
+	},
+	[83064] = {
+		[1] = 83514,
+		[2] = 60439,
+	},
+	[7514] = {
+		[1] = 18483,
+	},
+	[60223] = {
+		[1] = 9772,
+	},
+	[60351] = {
+		[1] = 23082,
+	},
+	[15123] = {
+		[1] = 6598,
+	},
+	[3797] = {
+		[1] = 9747,
+	},
+	[11124] = {
+		[1] = 83415,
+		[2] = 61513,
+		[3] = 20263,
+	},
+	[3813] = {
+		[1] = 1735,
+		[2] = 1743,
+		[3] = 1751,
+		[4] = 1759,
+	},
+	[22501] = {
+		[1] = 47103,
+	},
+	[15379] = {
+		[1] = 7531,
+		[2] = 60568,
+	},
+	[41156] = {
+		[1] = 1421,
+	},
+	[3893] = {
+		[1] = 14604,
+	},
+	[15603] = {
+		[1] = 15526,
+	},
+	[15635] = {
+		[1] = 61384,
+	},
+	[3941] = {
+		[1] = 14203,
+	},
+	[47043] = {
+		[1] = 47052,
+		[2] = 22429,
+	},
+	[7946] = {
+		[1] = 17055,
+	},
+	[47299] = {
+		[1] = 22504,
+	},
+	[3997] = {
+		[1] = 5941,
+		[2] = 61609,
+	},
+	[51778] = {
+		[1] = 7297,
+		[2] = 7344,
+	},
+	[60224] = {
+		[1] = 22763,
+	},
+	[60480] = {
+		[1] = 7348,
+	},
+	[60608] = {
+		[1] = 8185,
+	},
+	[8106] = {
+		[1] = 14437,
+	},
+	[60864] = {
+		[1] = 7682,
+		[2] = 22266,
+	},
+	[81019] = {
+		[1] = 11867,
+	},
+	[61248] = {
+		[1] = 61472,
+	},
+	[4107] = {
+		[1] = 60692,
+	},
+	[70014] = {
+		[1] = 6688,
+		[2] = 15363,
+	},
+	[4139] = {
+		[1] = 61211,
+		[2] = 60718,
+	},
+	[20710] = {
+		[1] = 20711,
+	},
+	[12468] = {
+		[1] = 5069,
+		[2] = 5241,
+		[3] = 5326,
+	},
+	[4251] = {
+		[1] = 15116,
+	},
+	[80508] = {
+		[1] = 41107,
+	},
+	[21350] = {
+		[1] = 47215,
+	},
+	[47044] = {
+		[1] = 47053,
+		[2] = 22425,
+	},
+	[47172] = {
+		[1] = 47163,
+		[2] = 22467,
+	},
+	[47300] = {
+		[1] = 22511,
+	},
+	[17767] = {
+		[1] = 18807,
+	},
+	[13012] = {
+		[1] = 60591,
+	},
+	[60481] = {
+		[1] = 7423,
+	},
+	[60609] = {
+		[1] = 15471,
+	},
+	[80509] = {
+		[1] = 41154,
+	},
+	[60865] = {
+		[1] = 6180,
+		[2] = 7229,
+		[3] = 60678,
+	},
+	[4571] = {
+		[1] = 60896,
+	},
+	[61249] = {
+		[1] = 4854,
+		[2] = 61736,
+	},
+	[18407] = {
+		[1] = 8249,
+	},
+	[61633] = {
+		[1] = 7327,
+		[2] = 51818,
+	},
+	[13396] = {
+		[1] = 60427,
+	},
+	[4683] = {
+		[1] = 1270,
+	},
+	[80510] = {
+		[1] = 41115,
+	},
+	[47045] = {
+		[1] = 47054,
+		[2] = 22424,
+	},
+	[47173] = {
+		[1] = 22464,
+		[2] = 47164,
+	},
+	[47301] = {
+		[1] = 22509,
+	},
+	[4923] = {
+		[1] = 1516,
+	},
+	[51780] = {
+		[1] = 22810,
+	},
+	[14100] = {
+		[1] = 60237,
+	},
+	[60610] = {
+		[1] = 11632,
+	},
+	[14164] = {
+		[1] = 14099,
+	},
+	[20263] = {
+		[1] = 83415,
+		[2] = 61513,
+		[3] = 11124,
+	},
+	[61250] = {
+		[1] = 3585,
+	},
+	[61634] = {
+		[1] = 9820,
+	},
+	[61762] = {
+		[1] = 10099,
+	},
+	[14452] = {
+		[1] = 18757,
+		[2] = 13867,
+	},
+	[10421] = {
+		[1] = 2379,
+		[2] = 3815,
+		[3] = 2648,
+		[4] = 1753,
+		[5] = 1761,
+		[6] = 2109,
+		[7] = 1745,
+		[8] = 1737,
+		[9] = 2656,
+	},
+	[14676] = {
+		[1] = 8122,
+		[2] = 10150,
+	},
+	[5323] = {
+		[1] = 81317,
+	},
+	[21415] = {
+		[1] = 20697,
+		[2] = 61593,
+	},
+	[47046] = {
+		[1] = 22426,
+		[2] = 47055,
+	},
+	[47174] = {
+		[1] = 47165,
+		[2] = 22471,
+	},
+	[47302] = {
+		[1] = 22510,
+	},
+	[14932] = {
+		[1] = 12555,
+	},
+	[14964] = {
+		[1] = 12602,
+	},
+	[51781] = {
+		[1] = 14538,
+	},
+	[60099] = {
+		[1] = 9449,
+	},
+	[15156] = {
+		[1] = 9534,
+		[2] = 8174,
+	},
+	[22247] = {
+		[1] = 60411,
+	},
+	[5579] = {
+		[1] = 4964,
+		[2] = 5761,
+		[3] = 80105,
+	},
+	[15284] = {
+		[1] = 83452,
+	},
+	[18344] = {
+		[1] = 15074,
+	},
+	[5627] = {
+		[1] = 61467,
+	},
+	[15380] = {
+		[1] = 7534,
+	},
+	[18536] = {
+		[1] = 18602,
+	},
+	[22759] = {
+		[1] = 21484,
+	},
+	[15572] = {
+		[1] = 60007,
+		[2] = 18546,
+		[3] = 3891,
+		[4] = 7456,
+		[5] = 9902,
+	},
+	[5755] = {
+		[1] = 61519,
+		[2] = 7930,
+	},
+	[5819] = {
+		[1] = 3837,
+		[2] = 15580,
+		[3] = 6389,
+	},
+	[15860] = {
+		[1] = 60395,
+		[2] = 61630,
+	},
+	[47175] = {
+		[1] = 47166,
+		[2] = 22469,
+	},
+	[19688] = {
+		[1] = 15053,
+	},
+	[5963] = {
+		[1] = 15062,
+		[2] = 15139,
+	},
+	[60228] = {
+		[1] = 10153,
+		[2] = 15096,
+	},
+	[60356] = {
+		[1] = 15666,
+	},
+	[60612] = {
+		[1] = 4385,
+	},
+	[8246] = {
+		[1] = 11865,
+	},
+	[20712] = {
+		[1] = 20713,
+		[2] = 22343,
+	},
+	[80516] = {
+		[1] = 21336,
+		[2] = 14577,
+		[3] = 10141,
+		[4] = 16442,
+		[5] = 47295,
+	},
+	[21352] = {
+		[1] = 70735,
+		[2] = 21461,
+	},
+	[21416] = {
+		[1] = 21404,
+		[2] = 81004,
+	},
+	[47048] = {
+		[1] = 47057,
+		[2] = 22427,
+	},
+	[47176] = {
+		[1] = 22470,
+		[2] = 47167,
+	},
+	[47304] = {
+		[1] = 22508,
+	},
+	[51783] = {
+		[1] = 15360,
+		[2] = 60423,
+	},
+	[60229] = {
+		[1] = 15297,
+	},
+	[60357] = {
+		[1] = 14935,
+		[2] = 10833,
+	},
+	[6571] = {
+		[1] = 15332,
+	},
+	[6603] = {
+		[1] = 14592,
+	},
+	[22504] = {
+		[1] = 47299,
+	},
+	[41034] = {
+		[1] = 9843,
+		[2] = 15543,
+	},
+	[61765] = {
+		[1] = 15045,
+	},
+	[22760] = {
+		[1] = 65100,
+	},
+	[19049] = {
+		[1] = 83201,
+	},
+	[23272] = {
+		[1] = 16477,
+	},
+	[47049] = {
+		[1] = 22430,
+		[2] = 47058,
+	},
+	[47177] = {
+		[1] = 22465,
+		[2] = 47168,
+	},
+	[51400] = {
+		[1] = 1479,
+		[2] = 18369,
+	},
+	[6971] = {
+		[1] = 12953,
+		[2] = 4078,
+		[3] = 18319,
+		[4] = 7931,
+		[5] = 61481,
+		[6] = 7130,
+		[7] = 83258,
+		[8] = 8751,
+		[9] = 61420,
+	},
+	[51784] = {
+		[4] = 61568,
+	},
+	[19945] = {
+		[1] = 11735,
+		[2] = 19986,
+		[3] = 51897,
+		[4] = 60283,
+	},
+	[14101] = {
+		[1] = 203,
+	},
+	[60614] = {
+		[1] = 7357,
+	},
+	[60742] = {
+		[1] = 7512,
+	},
+	[10134] = {
+		[1] = 7928,
+		[2] = 20683,
+	},
+	[10166] = {
+		[1] = 61290,
+	},
+	[14293] = {
+		[1] = 10041,
+		[2] = 14460,
+	},
+	[61510] = {
+		[1] = 8319,
+		[2] = 55480,
+	},
+	[20713] = {
+		[1] = 20712,
+		[2] = 22343,
+	},
+	[10390] = {
+		[1] = 16988,
+	},
+	[17002] = {
+		[1] = 61448,
+	},
+	[14677] = {
+		[1] = 9954,
+	},
+	[21353] = {
+		[1] = 47367,
+		[2] = 47367,
+	},
+	[55368] = {
+		[1] = 19132,
+		[2] = 81377,
+		[3] = 10751,
+		[4] = 14332,
+	},
+	[47306] = {
+		[1] = 47312,
+	},
+	[7483] = {
+		[1] = 61753,
+		[2] = 61210,
+	},
+	[51785] = {
+		[1] = 15613,
+		[2] = 60285,
+	},
+	[7515] = {
+		[1] = 15107,
+		[2] = 15108,
+		[3] = 81125,
+	},
+	[7531] = {
+		[1] = 15379,
+		[2] = 60568,
+	},
+	[60359] = {
+		[1] = 22714,
+		[2] = 60791,
+	},
+	[15125] = {
+		[1] = 4253,
+	},
+	[60743] = {
+		[1] = 3581,
+		[2] = 15241,
+	},
+	[7611] = {
+		[1] = 51843,
+	},
+	[7691] = {
+		[1] = 14111,
+		[2] = 83292,
+	},
+	[15413] = {
+		[1] = 61037,
+	},
+	[18602] = {
+		[1] = 18536,
+	},
+	[15605] = {
+		[1] = 83485,
+	},
+	[80522] = {
+		[1] = 41157,
+	},
+	[81290] = {
+		[1] = 5252,
+		[2] = 7708,
+	},
+	[19370] = {
+		[1] = 10027,
+	},
+	[47051] = {
+		[1] = 47042,
+		[2] = 22428,
+	},
+	[47307] = {
+		[1] = 47313,
+	},
+	[15989] = {
+		[1] = 84509,
+	},
+	[60616] = {
+		[1] = 6687,
+	},
+	[8107] = {
+		[1] = 14438,
+	},
+	[60872] = {
+		[1] = 5962,
+		[2] = 41016,
+	},
+	[61384] = {
+		[1] = 15635,
+	},
+	[8247] = {
+		[1] = 11962,
+	},
+	[8279] = {
+		[1] = 14925,
+	},
+	[20714] = {
+		[1] = 20715,
+	},
+	[2126] = {
+		[1] = 15202,
+	},
+	[21354] = {
+		[1] = 47363,
+		[2] = 47368,
+	},
+	[21418] = {
+		[1] = 9959,
+	},
+	[47052] = {
+		[1] = 47043,
+		[2] = 22429,
+	},
+	[47180] = {
+		[1] = 47186,
+		[2] = 47192,
+	},
+	[51403] = {
+		[1] = 1770,
+	},
+	[17579] = {
+		[1] = 13170,
+		[2] = 13865,
+	},
+	[51787] = {
+		[2] = 83211,
+	},
+	[60233] = {
+		[1] = 9921,
+		[2] = 13113,
+		[3] = 3011,
+		[4] = 61156,
+	},
+	[60361] = {
+		[1] = 20048,
+		[2] = 20110,
+		[3] = 20209,
+	},
+	[60489] = {
+		[1] = 60490,
+	},
+	[13110] = {
+		[1] = 51827,
+	},
+	[60873] = {
+		[1] = 3217,
+	},
+	[2278] = {
+		[1] = 15395,
+	},
+	[61257] = {
+		[1] = 10171,
+		[2] = 60673,
+	},
+	[22506] = {
+		[1] = 47297,
+	},
+	[61513] = {
+		[1] = 83415,
+		[2] = 20263,
+		[3] = 11124,
+	},
+	[70032] = {
+		[1] = 19039,
+	},
+	[13398] = {
+		[1] = 22472,
+	},
+	[22762] = {
+		[1] = 19828,
+		[2] = 10275,
+	},
+	[4716] = {
+		[1] = 60938,
+	},
+	[4732] = {
+		[1] = 17078,
+		[2] = 83456,
+		[3] = 14270,
+	},
+	[2374] = {
+		[1] = 5419,
+		[2] = 2468,
+		[3] = 60379,
+	},
+	[2390] = {
+		[1] = 2402,
+		[2] = 3213,
+	},
+	[81294] = {
+		[1] = 9631,
+	},
+	[47053] = {
+		[1] = 22425,
+		[2] = 47044,
+	},
+	[47181] = {
+		[1] = 47193,
+		[2] = 47187,
+	},
+	[47309] = {
+		[1] = 47315,
+	},
+	[9815] = {
+		[1] = 848,
+		[2] = 1943,
+		[3] = 4800,
+	},
+	[9847] = {
+		[1] = 83204,
+	},
+	[51788] = {
+		[1] = 19984,
+		[2] = 91761,
+	},
+	[60234] = {
+		[1] = 13254,
+	},
+	[60362] = {
+		[1] = 21184,
+	},
+	[60490] = {
+		[1] = 60489,
+	},
+	[2510] = {
+		[1] = 4372,
+	},
+	[80783] = {
+		[1] = 10845,
+	},
+	[61002] = {
+		[1] = 10215,
+	},
+	[10167] = {
+		[1] = 61007,
+		[2] = 61289,
+	},
+	[10199] = {
+		[1] = 9903,
+		[2] = 83470,
+	},
+	[10231] = {
+		[1] = 11626,
+	},
+	[20715] = {
+		[1] = 20714,
+	},
+	[14550] = {
+		[1] = 61021,
+	},
+	[14582] = {
+		[1] = 14656,
+	},
+	[14678] = {
+		[1] = 83435,
+	},
+	[2654] = {
+		[1] = 2381,
+		[2] = 2394,
+		[3] = 2646,
+	},
+	[14774] = {
+		[1] = 55145,
+	},
+	[14806] = {
+		[1] = 10163,
+		[2] = 12610,
+	},
+	[10743] = {
+		[1] = 60566,
+		[2] = 7915,
+		[3] = 21804,
+		[4] = 9932,
+		[5] = 18479,
+		[6] = 83216,
+		[7] = 19875,
+	},
+	[47182] = {
+		[1] = 47194,
+		[2] = 47188,
+	},
+	[47310] = {
+		[1] = 47316,
+	},
+	[21803] = {
+		[1] = 8092,
+		[2] = 8755,
+		[3] = 9290,
+		[4] = 1624,
+		[5] = 15664,
+	},
+	[15062] = {
+		[1] = 5963,
+		[2] = 15139,
+	},
+	[60363] = {
+		[1] = 22196,
+	},
+	[15158] = {
+		[1] = 83278,
+	},
+	[2774] = {
+		[1] = 2778,
+		[2] = 41023,
+	},
+	[61003] = {
+		[1] = 10372,
+		[2] = 20551,
+	},
+	[61259] = {
+		[1] = 1351,
+	},
+	[22507] = {
+		[1] = 47298,
+	},
+	[15382] = {
+		[1] = 9951,
+	},
+	[70036] = {
+		[1] = 7997,
+		[2] = 14263,
+		[3] = 81007,
+		[4] = 22718,
+	},
+	[22763] = {
+		[1] = 60224,
+	},
+	[2854] = {
+		[1] = 4002,
+	},
+	[15574] = {
+		[1] = 7459,
+	},
+	[719] = {
+		[1] = 60278,
+	},
+	[15670] = {
+		[1] = 15684,
+		[2] = 14785,
+		[3] = 10388,
+		[4] = 14952,
+	},
+	[2910] = {
+		[1] = 6551,
+	},
+	[19308] = {
+		[1] = 61055,
+	},
+	[11735] = {
+		[1] = 19945,
+		[2] = 19986,
+		[3] = 51897,
+		[4] = 60283,
+	},
+	[47055] = {
+		[1] = 22426,
+		[2] = 47046,
+	},
+	[15894] = {
+		[1] = 6383,
+	},
+	[70037] = {
+		[1] = 15597,
+	},
+	[11927] = {
+		[1] = 13074,
+		[2] = 22328,
+	},
+	[60364] = {
+		[1] = 10209,
+	},
+	[753] = {
+		[1] = 11121,
+		[2] = 80731,
+		[3] = 61333,
+	},
+	[60876] = {
+		[1] = 19407,
+	},
+	[6092] = {
+		[1] = 9776,
+	},
+	[61260] = {
+		[1] = 3732,
+		[2] = 80742,
+	},
+	[767] = {
+		[1] = 61729,
+	},
+	[8216] = {
+		[1] = 61018,
+		[2] = 60646,
+		[3] = 60647,
+		[4] = 60648,
+		[5] = 60649,
+	},
+	[20716] = {
+		[1] = 20717,
+	},
+	[6380] = {
+		[1] = 3653,
+	},
+	[12791] = {
+		[1] = 80727,
+	},
+	[21804] = {
+		[1] = 60566,
+		[2] = 7915,
+		[3] = 10743,
+		[4] = 9932,
+		[5] = 18479,
+		[6] = 83216,
+		[7] = 19875,
+	},
+	[60237] = {
+		[1] = 14100,
+	},
+	[3270] = {
+		[1] = 80214,
+	},
+	[13111] = {
+		[1] = 60788,
+	},
+	[6588] = {
+		[1] = 10405,
+	},
+	[3302] = {
+		[1] = 83228,
+	},
+	[827] = {
+		[1] = 4122,
+		[2] = 84600,
+	},
+	[61261] = {
+		[1] = 15183,
+		[2] = 18811,
+		[3] = 81122,
+	},
+	[22508] = {
+		[1] = 47304,
+	},
+	[3334] = {
+		[1] = 1195,
+		[2] = 6205,
+		[3] = 70045,
+		[4] = 51719,
+	},
+	[839] = {
+		[1] = 61298,
+	},
+	[6732] = {
+		[1] = 60632,
+	},
+	[9432] = {
+		[1] = 20616,
+	},
+	[847] = {
+		[1] = 1275,
+		[2] = 9818,
+	},
+	[23084] = {
+		[1] = 60631,
+	},
+	[23276] = {
+		[1] = 16478,
+		[2] = 16474,
+	},
+	[9624] = {
+		[1] = 8193,
+		[2] = 61597,
+	},
+	[19309] = {
+		[1] = 13353,
+	},
+	[19373] = {
+		[1] = 18742,
+	},
+	[47057] = {
+		[1] = 47048,
+		[2] = 22427,
+	},
+	[865] = {
+		[1] = 41134,
+	},
+	[47313] = {
+		[1] = 47307,
+	},
+	[51792] = {
+		[1] = 80612,
+	},
+	[7004] = {
+		[1] = 19086,
+	},
+	[7052] = {
+		[1] = 9945,
+	},
+	[65101] = {
+		[1] = 11703,
+	},
+	[7132] = {
+		[1] = 9789,
+	},
+	[14295] = {
+		[1] = 9484,
+	},
+	[3590] = {
+		[1] = 60211,
+	},
+	[61646] = {
+		[1] = 10240,
+	},
+	[3606] = {
+		[1] = 17755,
+	},
+	[20717] = {
+		[1] = 20716,
+	},
+	[3654] = {
+		[1] = 9790,
+	},
+	[17006] = {
+		[1] = 15503,
+	},
+	[21357] = {
+		[1] = 47369,
+		[2] = 47364,
+	},
+	[10744] = {
+		[1] = 9684,
+	},
+	[47186] = {
+		[1] = 47180,
+		[2] = 47192,
+	},
+	[47314] = {
+		[1] = 47308,
+	},
+	[14935] = {
+		[1] = 60357,
+		[2] = 10833,
+	},
+	[3758] = {
+		[1] = 1730,
+		[2] = 1738,
+		[3] = 1746,
+		[4] = 1754,
+		[5] = 2380,
+		[6] = 2387,
+		[7] = 2393,
+		[8] = 2399,
+		[9] = 2635,
+		[10] = 2649,
+		[11] = 3808,
+	},
+	[7532] = {
+		[1] = 9476,
+	},
+	[15095] = {
+		[1] = 50025,
+		[2] = 10152,
+		[3] = 22741,
+	},
+	[60495] = {
+		[1] = 2257,
+	},
+	[15191] = {
+		[1] = 10221,
+		[2] = 15161,
+		[3] = 60717,
+	},
+	[3806] = {
+		[1] = 7408,
+	},
+	[22317] = {
+		[1] = 13198,
+		[2] = 61042,
+	},
+	[22509] = {
+		[1] = 47301,
+	},
+	[15383] = {
+		[1] = 7530,
+	},
+	[7708] = {
+		[1] = 5252,
+		[2] = 81290,
+	},
+	[18734] = {
+		[1] = 21406,
+		[2] = 18689,
+		[3] = 5257,
+		[4] = 51732,
+	},
+	[15543] = {
+		[1] = 9843,
+		[2] = 41034,
+	},
+	[3894] = {
+		[1] = 83483,
+		[2] = 14969,
+	},
+	[15671] = {
+		[1] = 10159,
+		[2] = 14771,
+	},
+	[3966] = {
+		[1] = 15366,
+		[2] = 15456,
+	},
+	[47187] = {
+		[1] = 47181,
+		[2] = 47193,
+	},
+	[15927] = {
+		[1] = 60783,
+	},
+	[15991] = {
+		[1] = 7537,
+		[2] = 15522,
+	},
+	[51794] = {
+		[1] = 2511,
+		[2] = 2904,
+	},
+	[60112] = {
+		[1] = 15274,
+		[2] = 83200,
+	},
+	[4022] = {
+		[1] = 41135,
+	},
+	[8092] = {
+		[1] = 21803,
+		[2] = 8755,
+		[3] = 9290,
+		[4] = 1624,
+		[5] = 15664,
+	},
+	[8108] = {
+		[1] = 14439,
+		[2] = 61362,
+	},
+	[80795] = {
+		[1] = 4383,
+		[2] = 60165,
+	},
+	[65103] = {
+		[1] = 6447,
+		[2] = 14916,
+	},
+	[4078] = {
+		[1] = 12953,
+		[2] = 18319,
+		[3] = 7931,
+		[4] = 61481,
+		[5] = 7130,
+		[6] = 83258,
+		[7] = 8751,
+		[8] = 6971,
+		[9] = 61420,
+	},
+	[4109] = {
+		[1] = 60666,
+	},
+	[8249] = {
+		[1] = 18407,
+	},
+	[8345] = {
+		[1] = 61580,
+		[2] = 9479,
+	},
+	[4253] = {
+		[1] = 15125,
+	},
+	[80796] = {
+		[1] = 18440,
+	},
+	[81052] = {
+		[1] = 51771,
+	},
+	[47060] = {
+		[1] = 47072,
+		[2] = 47066,
+	},
+	[47188] = {
+		[1] = 47182,
+		[2] = 47194,
+	},
+	[70047] = {
+		[1] = 6182,
+		[3] = 80724,
+	},
+	[17711] = {
+		[1] = 15665,
+	},
+	[12984] = {
+		[1] = 51754,
+	},
+	[60625] = {
+		[1] = 14846,
+	},
+	[13144] = {
+		[1] = 80848,
+		[2] = 60626,
+	},
+	[61009] = {
+		[1] = 16788,
+	},
+	[22510] = {
+		[1] = 47302,
+	},
+	[18479] = {
+		[1] = 60566,
+		[2] = 7915,
+		[3] = 10743,
+		[4] = 21804,
+		[5] = 9932,
+		[6] = 83216,
+		[7] = 19875,
+	},
+	[61649] = {
+		[1] = 80753,
+		[2] = 10281,
+	},
+	[4669] = {
+		[1] = 80125,
+	},
+	[18735] = {
+		[1] = 83424,
+	},
+	[4765] = {
+		[1] = 60845,
+	},
+	[1195] = {
+		[1] = 3334,
+		[2] = 6205,
+		[3] = 70045,
+		[4] = 51719,
+	},
+	[1207] = {
+		[1] = 7945,
+	},
+	[13816] = {
+		[1] = 4017,
+	},
+	[9753] = {
+		[1] = 6725,
+	},
+	[9849] = {
+		[1] = 8115,
+	},
+	[51796] = {
+		[1] = 23139,
+	},
+	[9913] = {
+		[1] = 51848,
+	},
+	[9945] = {
+		[1] = 7052,
+	},
+	[60498] = {
+		[1] = 9475,
+	},
+	[10041] = {
+		[1] = 14293,
+		[2] = 14460,
+	},
+	[10073] = {
+		[1] = 18490,
+		[2] = 3392,
+		[3] = 17776,
+		[4] = 4724,
+		[5] = 8750,
+	},
+	[14200] = {
+		[1] = 2621,
+	},
+	[10137] = {
+		[1] = 21648,
+	},
+	[1275] = {
+		[1] = 847,
+		[2] = 9818,
+	},
+	[10233] = {
+		[1] = 60889,
+	},
+	[61650] = {
+		[1] = 20083,
+	},
+	[1303] = {
+		[1] = 850,
+	},
+	[14584] = {
+		[1] = 10111,
+		[2] = 81014,
+		[3] = 3890,
+	},
+	[14680] = {
+		[1] = 8258,
+		[2] = 10781,
+	},
+	[5325] = {
+		[2] = 60819,
+	},
+	[5341] = {
+		[1] = 80111,
+	},
+	[5357] = {
+		[1] = 9804,
+	},
+	[47062] = {
+		[1] = 47068,
+		[2] = 47074,
+	},
+	[21615] = {
+		[1] = 18308,
+	},
+	[17776] = {
+		[1] = 10073,
+		[2] = 18490,
+		[3] = 3392,
+		[4] = 4724,
+		[5] = 8750,
+	},
+	[15064] = {
+		[1] = 5739,
+		[2] = 80736,
+	},
+	[15096] = {
+		[1] = 10153,
+		[2] = 60228,
+	},
+	[1383] = {
+		[1] = 1416,
+		[2] = 1816,
+		[3] = 3443,
+	},
+	[80801] = {
+		[1] = 1280,
+		[2] = 4039,
+	},
+	[22319] = {
+		[1] = 83480,
+	},
+	[22383] = {
+		[1] = 61594,
+	},
+	[5613] = {
+		[1] = 22428,
+		[2] = 61690,
+	},
+	[22511] = {
+		[1] = 47300,
+	},
+	[18480] = {
+		[1] = 61573,
+		[2] = 9969,
+	},
+	[61651] = {
+		[1] = 20580,
+	},
+	[1431] = {
+		[1] = 15485,
+	},
+	[5757] = {
+		[1] = 2524,
+	},
+	[80802] = {
+		[1] = 1446,
+		[2] = 41021,
+	},
+	[23663] = {
+		[1] = 21607,
+	},
+	[11865] = {
+		[1] = 8246,
+	},
+	[18720] = {
+		[1] = 7059,
+	},
+	[41107] = {
+		[1] = 80508,
+	},
+	[60116] = {
+		[1] = 60724,
+		[2] = 14246,
+		[3] = 7470,
+	},
+	[10083] = {
+		[1] = 15634,
+		[2] = 83469,
+		[3] = 60694,
+	},
+	[61366] = {
+		[1] = 10282,
+	},
+	[60500] = {
+		[1] = 60802,
+		[2] = 15611,
+	},
+	[10170] = {
+		[1] = 83417,
+	},
+	[6061] = {
+		[1] = 11849,
+	},
+	[80803] = {
+		[1] = 4074,
+	},
+	[12185] = {
+		[1] = 83492,
+		[2] = 83493,
+		[3] = 83491,
+		[4] = 83490,
+	},
+	[4793] = {
+		[1] = 18389,
+	},
+	[3556] = {
+		[1] = 23035,
+	},
+	[61396] = {
+		[1] = 6415,
+	},
+	[61524] = {
+		[1] = 1273,
+		[2] = 65104,
+	},
+	[8250] = {
+		[1] = 22405,
+	},
+	[8282] = {
+		[1] = 13081,
+		[2] = 18696,
+		[3] = 22336,
+	},
+	[6205] = {
+		[1] = 1195,
+		[2] = 3334,
+		[3] = 70045,
+		[4] = 51719,
+	},
+	[60650] = {
+		[1] = 14571,
+	},
+	[863] = {
+		[1] = 61046,
+	},
+	[14124] = {
+		[1] = 1377,
+		[2] = 60771,
+	},
+	[12975] = {
+		[1] = 23171,
+	},
+	[12050] = {
+		[1] = 2232,
+		[2] = 10247,
+	},
+	[2465] = {
+		[1] = 13114,
+	},
+	[61355] = {
+		[1] = 8268,
+		[2] = 61497,
+	},
+	[80804] = {
+		[1] = 2943,
+	},
+	[6564] = {
+		[1] = 14179,
+		[2] = 60452,
+	},
+	[81316] = {
+		[1] = 3325,
+	},
+	[7945] = {
+		[1] = 1207,
+	},
+	[61492] = {
+		[1] = 3939,
+		[2] = 14161,
+	},
+	[47192] = {
+		[1] = 47180,
+		[2] = 47186,
+	},
+	[6429] = {
+		[1] = 9878,
+		[2] = 83286,
+	},
+	[5094] = {
+		[1] = 41136,
+	},
+	[61062] = {
+		[1] = 13387,
+	},
+	[12953] = {
+		[1] = 4078,
+		[2] = 18319,
+		[3] = 7931,
+		[4] = 61481,
+		[5] = 7130,
+		[6] = 83258,
+		[7] = 8751,
+		[8] = 6971,
+		[9] = 61420,
+	},
+	[17777] = {
+		[1] = 60213,
+	},
+	[6509] = {
+		[1] = 60221,
+	},
+	[80111] = {
+		[1] = 5341,
+	},
+	[13081] = {
+		[1] = 8282,
+		[2] = 18696,
+		[3] = 22336,
+	},
+	[13113] = {
+		[1] = 60233,
+		[2] = 9921,
+		[3] = 3011,
+		[4] = 61156,
+	},
+	[60757] = {
+		[1] = 80500,
+	},
+	[22256] = {
+		[1] = 18409,
+	},
+	[6605] = {
+		[1] = 83223,
+	},
+	[81317] = {
+		[1] = 5323,
+	},
+	[61269] = {
+		[1] = 8113,
+		[2] = 14445,
+	},
+	[22512] = {
+		[1] = 47221,
+	},
+	[61525] = {
+		[1] = 16996,
+	},
+	[18545] = {
+		[1] = 47097,
+		[2] = 83291,
+		[3] = 4046,
+		[4] = 13871,
+		[5] = 21346,
+	},
+	[2100] = {
+		[1] = 15325,
+	},
+	[41126] = {
+		[1] = 1852,
+		[2] = 7924,
+		[3] = 81368,
+	},
+	[51819] = {
+		[1] = 83202,
+		[2] = 19044,
+	},
+	[7530] = {
+		[1] = 15383,
+	},
+	[13529] = {
+		[1] = 83444,
+	},
+	[15651] = {
+		[1] = 10160,
+		[2] = 12417,
+		[3] = 14322,
+		[4] = 10219,
+	},
+	[18817] = {
+		[1] = 11808,
+	},
+	[83436] = {
+		[1] = 15086,
+		[2] = 10024,
+	},
+	[20152] = {
+		[1] = 80714,
+		[3] = 20090,
+		[4] = 20197,
+	},
+	[61091] = {
+		[1] = 2527,
+	},
+	[1715] = {
+		[1] = 1677,
+		[2] = 2153,
+	},
+	[61338] = {
+		[1] = 1664,
+		[2] = 19570,
+		[3] = 22458,
+		[4] = 80709,
+		[5] = 60522,
+	},
+	[4829] = {
+		[1] = 4436,
+	},
+	[13817] = {
+		[1] = 4018,
+	},
+	[1731] = {
+		[1] = 1739,
+		[2] = 1747,
+		[3] = 1755,
+		[4] = 2383,
+		[5] = 2395,
+		[6] = 2642,
+		[7] = 2650,
+		[8] = 2691,
+		[9] = 3809,
+		[10] = 80118,
+		[11] = 51881,
+	},
+	[1735] = {
+		[1] = 1743,
+		[2] = 1751,
+		[3] = 1759,
+		[4] = 3813,
+	},
+	[9818] = {
+		[1] = 847,
+		[2] = 1275,
+	},
+	[6973] = {
+		[1] = 60407,
+	},
+	[1747] = {
+		[1] = 1731,
+		[2] = 1739,
+		[3] = 1755,
+		[4] = 2383,
+		[5] = 2395,
+		[6] = 2642,
+		[7] = 2650,
+		[8] = 2691,
+		[9] = 3809,
+		[10] = 80118,
+		[11] = 51881,
+	},
+	[60118] = {
+		[1] = 18367,
+	},
+	[19889] = {
+		[1] = 8123,
+		[2] = 15176,
+	},
+	[1759] = {
+		[1] = 1735,
+		[2] = 1743,
+		[3] = 1751,
+		[4] = 3813,
+	},
+	[60502] = {
+		[1] = 1502,
+		[2] = 16608,
+	},
+	[14137] = {
+		[1] = 80616,
+		[2] = 8289,
+	},
+	[61609] = {
+		[1] = 3997,
+		[2] = 5941,
+	},
+	[14201] = {
+		[1] = 15457,
+	},
+	[81063] = {
+		[1] = 6720,
+		[2] = 5753,
+	},
+	[7133] = {
+		[1] = 6773,
+		[2] = 3330,
+		[3] = 80704,
+		[4] = 3416,
+		[5] = 9783,
+	},
+	[21462] = {
+		[1] = 5970,
+	},
+	[14329] = {
+		[1] = 61056,
+	},
+	[5209] = {
+		[1] = 51816,
+		[2] = 41117,
+	},
+	[22337] = {
+		[1] = 61334,
+	},
+	[60215] = {
+		[1] = 8207,
+	},
+	[7229] = {
+		[1] = 6180,
+		[2] = 60865,
+		[3] = 60678,
+	},
+	[21482] = {
+		[1] = 83488,
+	},
+	[15384] = {
+		[1] = 6204,
+		[2] = 17740,
+		[3] = 15373,
+		[4] = 12960,
+	},
+	[60274] = {
+		[1] = 10084,
+	},
+	[1823] = {
+		[1] = 6196,
+		[2] = 15226,
+		[3] = 61087,
+	},
+	[12994] = {
+		[1] = 9839,
+	},
+	[2800] = {
+		[1] = 61603,
+	},
+	[14681] = {
+		[1] = 8256,
+	},
+	[7357] = {
+		[1] = 60614,
+	},
+	[3416] = {
+		[1] = 6773,
+		[2] = 7133,
+		[3] = 3330,
+		[4] = 80704,
+		[5] = 9783,
+	},
+	[81320] = {
+		[1] = 6806,
+	},
+	[10185] = {
+		[1] = 15815,
+		[2] = 51730,
+	},
+	[47066] = {
+		[1] = 47072,
+		[2] = 47060,
+	},
+	[7437] = {
+		[1] = 14248,
+	},
+	[4018] = {
+		[1] = 13817,
+	},
+	[7469] = {
+		[1] = 10010,
+	},
+	[14969] = {
+		[1] = 83483,
+		[2] = 3894,
+	},
+	[60591] = {
+		[1] = 13012,
+	},
+	[2385] = {
+		[1] = 1734,
+		[2] = 1742,
+		[3] = 1750,
+		[4] = 1758,
+		[5] = 2547,
+		[6] = 2645,
+		[7] = 2653,
+		[8] = 3812,
+	},
+	[15065] = {
+		[1] = 3315,
+	},
+	[4362] = {
+		[1] = 80127,
+	},
+	[60503] = {
+		[1] = 2166,
+	},
+	[60631] = {
+		[1] = 23084,
+	},
+	[7937] = {
+		[1] = 81262,
+	},
+	[60887] = {
+		[1] = 13537,
+	},
+	[80673] = {
+		[1] = 7487,
+	},
+	[3457] = {
+		[1] = 15449,
+	},
+	[41111] = {
+		[1] = 1008,
+	},
+	[22513] = {
+		[1] = 47225,
+	},
+	[18482] = {
+		[1] = 2504,
+	},
+	[1927] = {
+		[1] = 1292,
+		[2] = 61483,
+	},
+	[15449] = {
+		[1] = 3457,
+	},
+	[80123] = {
+		[1] = 3321,
+	},
+	[18738] = {
+		[1] = 80745,
+	},
+	[1943] = {
+		[1] = 848,
+		[2] = 4800,
+		[3] = 9815,
+	},
+	[4136] = {
+		[1] = 6350,
+	},
+	[1951] = {
+		[1] = 5744,
+	},
+	[19058] = {
+		[1] = 83448,
+		[2] = 19928,
+	},
+	[15377] = {
+		[1] = 18263,
+	},
+	[80810] = {
+		[1] = 12636,
+	},
+	[61011] = {
+		[1] = 17072,
+	},
+	[61349] = {
+		[1] = 920,
+	},
+	[19378] = {
+		[1] = 17061,
+	},
+	[47067] = {
+		[1] = 47061,
+		[2] = 47073,
+	},
+	[11187] = {
+		[1] = 9768,
+	},
+	[1991] = {
+		[1] = 4128,
+		[2] = 9391,
+	},
+	[51730] = {
+		[1] = 10185,
+		[2] = 15815,
+	},
+	[7997] = {
+		[1] = 14263,
+		[2] = 81007,
+		[3] = 70036,
+		[4] = 22718,
+	},
+	[10763] = {
+		[1] = 8161,
+	},
+	[11962] = {
+		[1] = 8247,
+	},
+	[61736] = {
+		[1] = 4854,
+		[2] = 61249,
+	},
+	[18481] = {
+		[1] = 9678,
+	},
+	[60504] = {
+		[1] = 3804,
+	},
+	[60632] = {
+		[1] = 6732,
+	},
+	[47221] = {
+		[1] = 22512,
+	},
+	[60888] = {
+		[1] = 14140,
+		[2] = 14271,
+		[3] = 9915,
+		[4] = 14252,
+		[5] = 83208,
+	},
+	[47074] = {
+		[1] = 47068,
+		[2] = 47062,
+	},
+	[61603] = {
+		[1] = 2800,
+	},
+	[12250] = {
+		[1] = 70011,
+	},
+	[2649] = {
+		[1] = 1730,
+		[2] = 1738,
+		[3] = 1746,
+		[4] = 1754,
+		[5] = 2380,
+		[6] = 2387,
+		[7] = 2393,
+		[8] = 2399,
+		[9] = 2635,
+		[10] = 3758,
+		[11] = 3808,
+	},
+	[61528] = {
+		[1] = 18449,
+		[2] = 84505,
+	},
+	[8251] = {
+		[1] = 10009,
+		[2] = 12256,
+	},
+	[41194] = {
+		[1] = 3008,
+	},
+	[20722] = {
+		[1] = 18755,
+	},
+	[8347] = {
+		[1] = 2992,
+	},
+	[14849] = {
+		[1] = 61550,
+		[2] = 47066,
+		[3] = 10198,
+	},
+	[1372] = {
+		[1] = 2165,
+		[2] = 15299,
+	},
+	[15048] = {
+		[1] = 61079,
+	},
+	[7417] = {
+		[1] = 60220,
+	},
+	[12602] = {
+		[1] = 14964,
+	},
+	[60278] = {
+		[1] = 719,
+	},
+	[60736] = {
+		[1] = 8131,
+		[2] = 14795,
+	},
+	[4302] = {
+		[1] = 4974,
+	},
+	[60180] = {
+		[1] = 18530,
+	},
+	[3964] = {
+		[1] = 70008,
+	},
+	[47068] = {
+		[1] = 47062,
+		[2] = 47074,
+	},
+	[11623] = {
+		[1] = 14280,
+		[2] = 20691,
+	},
+	[61398] = {
+		[1] = 4249,
+	},
+	[15085] = {
+		[1] = 15076,
+	},
+	[7536] = {
+		[1] = 15618,
+	},
+	[17715] = {
+		[1] = 10139,
+		[2] = 81304,
+		[3] = 55338,
+	},
+	[70011] = {
+		[1] = 12250,
+	},
+	[18369] = {
+		[1] = 1479,
+		[2] = 51400,
+	},
+	[7378] = {
+		[1] = 3802,
+		[2] = 7410,
+	},
+	[13082] = {
+		[1] = 14825,
+	},
+	[13114] = {
+		[1] = 2465,
+	},
+	[8124] = {
+		[1] = 60346,
+	},
+	[60889] = {
+		[1] = 10233,
+	},
+	[3890] = {
+		[1] = 10111,
+		[2] = 14584,
+		[3] = 81014,
+	},
+	[81325] = {
+		[1] = 15234,
+	},
+	[61273] = {
+		[1] = 15571,
+	},
+	[22514] = {
+		[1] = 47219,
+	},
+	[18483] = {
+		[1] = 7514,
+	},
+	[15195] = {
+		[1] = 83434,
+	},
+	[1751] = {
+		[1] = 1735,
+		[2] = 1743,
+		[3] = 1759,
+		[4] = 3813,
+	},
+	[4949] = {
+		[1] = 61601,
+	},
+	[10276] = {
+		[1] = 61367,
+		[2] = 80670,
+	},
+	[51047] = {
+		[1] = 15822,
+	},
+	[9435] = {
+		[1] = 23170,
+	},
+	[10183] = {
+		[1] = 22275,
+	},
+	[15386] = {
+		[1] = 15140,
+		[2] = 19878,
+	},
+	[2383] = {
+		[1] = 1731,
+		[2] = 1739,
+		[3] = 1747,
+		[4] = 1755,
+		[5] = 2395,
+		[6] = 2642,
+		[7] = 2650,
+		[8] = 2691,
+		[9] = 3809,
+		[10] = 80118,
+		[11] = 51881,
+	},
+	[2391] = {
+		[1] = 2403,
+		[2] = 6063,
+	},
+	[2399] = {
+		[1] = 1730,
+		[2] = 1738,
+		[3] = 1746,
+		[4] = 1754,
+		[5] = 2380,
+		[6] = 2387,
+		[7] = 2393,
+		[8] = 2635,
+		[9] = 2649,
+		[10] = 3758,
+		[11] = 3808,
+	},
+	[9627] = {
+		[1] = 6341,
+		[2] = 9393,
+		[3] = 61025,
+	},
+	[4830] = {
+		[1] = 15168,
+		[2] = 15374,
+	},
+	[8257] = {
+		[1] = 14682,
+	},
+	[13818] = {
+		[1] = 4019,
+	},
+	[1755] = {
+		[1] = 1731,
+		[2] = 1739,
+		[3] = 1747,
+		[4] = 2383,
+		[5] = 2395,
+		[6] = 2642,
+		[7] = 2650,
+		[8] = 2691,
+		[9] = 3809,
+		[10] = 80118,
+		[11] = 51881,
+	},
+	[2572] = {
+		[1] = 80133,
+	},
+	[61210] = {
+		[1] = 7483,
+		[2] = 61753,
+	},
+	[41117] = {
+		[1] = 5209,
+		[2] = 51816,
+	},
+	[4942] = {
+		[1] = 14568,
+	},
+	[9915] = {
+		[1] = 14140,
+		[2] = 83208,
+		[3] = 14271,
+		[4] = 14252,
+		[5] = 60888,
+	},
+	[9947] = {
+		[1] = 15378,
+	},
+	[21346] = {
+		[1] = 47097,
+		[2] = 47097,
+		[3] = 83291,
+		[4] = 4046,
+		[5] = 13871,
+		[6] = 18545,
+	},
+	[22468] = {
+		[1] = 47169,
+		[2] = 47178,
+	},
+	[20083] = {
+		[1] = 61650,
+	},
+	[9784] = {
+		[1] = 3332,
+	},
+	[2527] = {
+		[1] = 61091,
+	},
+	[61018] = {
+		[1] = 8216,
+		[2] = 60646,
+		[3] = 60647,
+		[4] = 60648,
+		[5] = 60649,
+	},
+	[10171] = {
+		[1] = 61257,
+		[2] = 60673,
+	},
+	[61274] = {
+		[1] = 15570,
+	},
+	[10235] = {
+		[1] = 10379,
+		[2] = 7719,
+		[3] = 60636,
+		[4] = 12612,
+	},
+	[41055] = {
+		[1] = 6396,
+	},
+	[80129] = {
+		[1] = 816,
+	},
+	[18700] = {
+		[1] = 14759,
+		[2] = 61188,
+	},
+	[61497] = {
+		[1] = 8268,
+		[2] = 61355,
+	},
+	[18477] = {
+		[1] = 6690,
+	},
+	[14214] = {
+		[1] = 14176,
+	},
+	[2615] = {
+		[1] = 41056,
+	},
+	[5246] = {
+		[1] = 5242,
+		[2] = 8071,
+	},
+	[47178] = {
+		[1] = 47169,
+		[2] = 22468,
+	},
+	[7690] = {
+		[1] = 18238,
+	},
+	[14682] = {
+		[1] = 8257,
+	},
+	[5310] = {
+		[1] = 14090,
+	},
+	[5326] = {
+		[1] = 5069,
+		[2] = 5241,
+		[3] = 12468,
+	},
+	[47114] = {
+		[1] = 47108,
+	},
+	[14248] = {
+		[1] = 7437,
+	},
+	[7434] = {
+		[1] = 14195,
+	},
+	[9747] = {
+		[1] = 3797,
+	},
+	[10843] = {
+		[1] = 13007,
+	},
+	[51829] = {
+		[1] = 15147,
+	},
+	[2165] = {
+		[1] = 1372,
+		[2] = 15299,
+	},
+	[14438] = {
+		[1] = 8107,
+	},
+	[14902] = {
+		[1] = 13254,
+		[2] = 60234,
+	},
+	[60379] = {
+		[1] = 2374,
+		[2] = 5419,
+		[3] = 2468,
+	},
+	[9903] = {
+		[1] = 10199,
+		[2] = 83470,
+	},
+	[80207] = {
+		[1] = 12449,
+	},
+	[18374] = {
+		[1] = 19835,
+		[2] = 15058,
+		[3] = 20175,
+		[4] = 20060,
+		[5] = 13358,
+		[6] = 20194,
+		[7] = 20059,
+	},
+	[15226] = {
+		[1] = 1823,
+		[2] = 6196,
+		[3] = 61087,
+	},
+	[61019] = {
+		[1] = 16997,
+	},
+	[81329] = {
+		[1] = 14931,
+	},
+	[61275] = {
+		[1] = 15567,
+	},
+	[22515] = {
+		[1] = 47220,
+	},
+	[41056] = {
+		[1] = 2615,
+	},
+	[10776] = {
+		[1] = 23178,
+	},
+	[10272] = {
+		[1] = 60946,
+		[2] = 56069,
+		[3] = 13102,
+		[4] = 55339,
+		[5] = 18526,
+	},
+	[41054] = {
+		[1] = 15488,
+	},
+	[4800] = {
+		[1] = 848,
+		[2] = 1943,
+		[3] = 9815,
+	},
+	[10751] = {
+		[1] = 55368,
+		[2] = 81377,
+		[3] = 19132,
+		[4] = 14332,
+	},
+	[5742] = {
+		[1] = 10750,
+	},
+	[61289] = {
+		[1] = 61007,
+		[2] = 10167,
+	},
+	[13603] = {
+		[1] = 13602,
+		[2] = 13602,
+	},
+	[21597] = {
+		[1] = 83481,
+	},
+	[23219] = {
+		[1] = 13959,
+	},
+	[80500] = {
+		[1] = 60757,
+	},
+	[80671] = {
+		[1] = 2235,
+	},
+	[81330] = {
+		[1] = 15538,
+	},
+	[1427] = {
+		[1] = 60863,
+	},
+	[2943] = {
+		[1] = 80804,
+	},
+	[14130] = {
+		[1] = 83530,
+	},
+	[20209] = {
+		[1] = 20048,
+		[2] = 20110,
+		[4] = 60361,
+	},
+	[11867] = {
+		[1] = 81019,
+	},
+	[18755] = {
+		[1] = 20722,
+	},
+	[15019] = {
+		[1] = 14573,
+	},
+	[60124] = {
+		[1] = 18498,
+	},
+	[18695] = {
+		[1] = 22253,
+		[2] = 60431,
+	},
+	[60380] = {
+		[1] = 10144,
+		[2] = 60161,
+		[3] = 61076,
+		[4] = 9766,
+	},
+	[11703] = {
+		[1] = 65101,
+	},
+	[60636] = {
+		[1] = 10379,
+		[2] = 10235,
+		[3] = 7719,
+		[4] = 12612,
+	},
+	[6062] = {
+		[1] = 14366,
+	},
+	[20212] = {
+		[1] = 20058,
+		[2] = 20057,
+	},
+	[4250] = {
+		[1] = 60684,
+	},
+	[3055] = {
+		[1] = 65021,
+		[2] = 61023,
+	},
+	[14193] = {
+		[1] = 14257,
+	},
+	[60550] = {
+		[1] = 1215,
+	},
+	[3079] = {
+		[1] = 80106,
+	},
+	[61660] = {
+		[1] = 913,
+	},
+	[8284] = {
+		[1] = 15802,
+	},
+	[14132] = {
+		[1] = 41125,
+	},
+	[8348] = {
+		[1] = 15134,
+		[2] = 14804,
+	},
+	[6396] = {
+		[1] = 41055,
+	},
+	[10240] = {
+		[1] = 61646,
+	},
+	[7546] = {
+		[1] = 2148,
+	},
+	[14139] = {
+		[1] = 61335,
+	},
+	[3151] = {
+		[1] = 3053,
+	},
+	[50191] = {
+		[1] = 15463,
+		[2] = 16986,
+	},
+	[4005] = {
+		[1] = 2865,
+	},
+	[6350] = {
+		[1] = 4136,
+	},
+	[60358] = {
+		[1] = 14620,
+	},
+	[51828] = {
+		[1] = 12448,
+	},
+	[12795] = {
+		[2] = 80716,
+	},
+	[4940] = {
+		[1] = 80121,
+	},
+	[6430] = {
+		[1] = 60973,
+	},
+	[61266] = {
+		[1] = 10631,
+	},
+	[10543] = {
+		[1] = 9375,
+	},
+	[12968] = {
+		[1] = 60214,
+	},
+	[12987] = {
+		[1] = 23173,
+		[2] = 61033,
+	},
+	[81319] = {
+		[1] = 81411,
+	},
+	[5542] = {
+		[1] = 4792,
+	},
+	[13083] = {
+		[1] = 13243,
+	},
+	[3279] = {
+		[1] = 2967,
+		[2] = 51886,
+	},
+	[22196] = {
+		[1] = 60363,
+	},
+	[8113] = {
+		[1] = 14445,
+		[2] = 61269,
+	},
+	[61021] = {
+		[1] = 14550,
+	},
+	[13243] = {
+		[1] = 13083,
+	},
+	[60560] = {
+		[1] = 4564,
+	},
+	[18421] = {
+		[1] = 15623,
+	},
+	[3335] = {
+		[1] = 61735,
+	},
+	[6686] = {
+		[1] = 10090,
+		[2] = 14907,
+		[3] = 61570,
+	},
+	[13403] = {
+		[1] = 14217,
+	},
+	[9412] = {
+		[1] = 10508,
+		[2] = 13380,
+	},
+	[60117] = {
+		[1] = 3733,
+	},
+	[2511] = {
+		[1] = 2904,
+		[2] = 51794,
+	},
+	[70045] = {
+		[1] = 1195,
+		[2] = 3334,
+		[3] = 6205,
+		[4] = 51719,
+	},
+	[13602] = {
+		[1] = 13602,
+		[2] = 13603,
+	},
+	[6798] = {
+		[1] = 13474,
+	},
+	[23156] = {
+		[1] = 13030,
+	},
+	[23220] = {
+		[1] = 61319,
+		[2] = 17050,
+	},
+	[14683] = {
+		[1] = 14665,
+	},
+	[60338] = {
+		[1] = 6315,
+	},
+	[1624] = {
+		[1] = 21803,
+		[2] = 8092,
+		[3] = 8755,
+		[4] = 9290,
+		[5] = 15664,
+	},
+	[10264] = {
+		[1] = 80713,
+	},
+	[47073] = {
+		[1] = 47061,
+		[2] = 47067,
+	},
+	[19509] = {
+		[1] = 80717,
+	},
+	[21701] = {
+		[1] = 12465,
+	},
+	[9820] = {
+		[1] = 61634,
+	},
+	[1852] = {
+		[1] = 7924,
+		[2] = 81368,
+		[3] = 41126,
+	},
+	[13871] = {
+		[1] = 47097,
+		[2] = 83291,
+		[3] = 4046,
+		[4] = 21346,
+		[5] = 18545,
+	},
+	[9916] = {
+		[1] = 4131,
+		[2] = 83531,
+	},
+	[9948] = {
+		[1] = 14653,
+		[2] = 14671,
+	},
+	[3810] = {
+		[1] = 1732,
+		[2] = 1740,
+		[3] = 1748,
+		[4] = 1756,
+		[5] = 2384,
+		[6] = 2396,
+		[7] = 2643,
+		[8] = 2651,
+	},
+	[14107] = {
+		[1] = 7062,
+		[2] = 14171,
+	},
+	[10044] = {
+		[1] = 61301,
+	},
+	[14171] = {
+		[1] = 7062,
+		[2] = 14107,
+	},
+	[14203] = {
+		[1] = 3941,
+	},
+	[5242] = {
+		[1] = 5246,
+		[2] = 8071,
+	},
+	[6506] = {
+		[1] = 60934,
+	},
+	[61278] = {
+		[1] = 80629,
+	},
+	[2393] = {
+		[1] = 1730,
+		[2] = 1738,
+		[3] = 1746,
+		[4] = 1754,
+		[5] = 2380,
+		[6] = 2387,
+		[7] = 2399,
+		[8] = 2635,
+		[9] = 2649,
+		[10] = 3758,
+		[11] = 3808,
+	},
+	[81262] = {
+		[1] = 7937,
+	},
+	[3599] = {
+		[1] = 51875,
+	},
+	[3944] = {
+		[1] = 60210,
+	},
+	[14459] = {
+		[1] = 61709,
+	},
+	[1760] = {
+		[1] = 1752,
+		[2] = 1744,
+		[3] = 3814,
+	},
+	[4547] = {
+		[1] = 18338,
+	},
+	[9763] = {
+		[1] = 60277,
+	},
+	[14587] = {
+		[1] = 5254,
+	},
+	[7327] = {
+		[1] = 61633,
+		[2] = 51818,
+	},
+	[2310] = {
+		[1] = 41070,
+	},
+	[17078] = {
+		[1] = 83456,
+		[2] = 4732,
+		[3] = 14270,
+	},
+	[2225] = {
+		[1] = 41025,
+	},
+	[61044] = {
+		[1] = 21806,
+	},
+	[18510] = {
+		[1] = 51731,
+	},
+	[7406] = {
+		[1] = 5609,
+	},
+	[21493] = {
+		[1] = 18716,
+		[2] = 83442,
+	},
+	[61709] = {
+		[1] = 14459,
+	},
+	[14907] = {
+		[1] = 10090,
+		[2] = 61570,
+		[3] = 6686,
+	},
+	[7470] = {
+		[1] = 60724,
+		[2] = 14246,
+		[3] = 60116,
+	},
+	[41115] = {
+		[1] = 80510,
+	},
+	[18718] = {
+		[1] = 17734,
+		[2] = 11746,
+		[3] = 12549,
+	},
+	[14418] = {
+		[1] = 15461,
+	},
+	[7534] = {
+		[1] = 15380,
+	},
+	[50428] = {
+		[1] = 7107,
+	},
+	[9752] = {
+		[1] = 4908,
+		[2] = 83222,
+	},
+	[4974] = {
+		[1] = 4302,
+	},
+	[3799] = {
+		[1] = 81114,
+	},
+	[3807] = {
+		[1] = 61456,
+	},
+	[3815] = {
+		[1] = 2379,
+		[2] = 10421,
+		[3] = 2648,
+		[4] = 1753,
+		[5] = 1761,
+		[6] = 2109,
+		[7] = 1745,
+		[8] = 1737,
+		[9] = 2656,
+	},
+	[21398] = {
+		[1] = 21407,
+		[2] = 21410,
+	},
+	[20616] = {
+		[1] = 9432,
+	},
+	[22517] = {
+		[1] = 47223,
+	},
+	[61535] = {
+		[1] = 70070,
+		[2] = 83244,
+		[3] = 2955,
+		[4] = 60385,
+	},
+	[41188] = {
+		[1] = 41113,
+	},
+	[15451] = {
+		[1] = 2906,
+	},
+	[7463] = {
+		[1] = 4066,
+	},
+	[18742] = {
+		[1] = 19373,
+	},
+	[18870] = {
+		[1] = 7420,
+		[2] = 15550,
+	},
+	[15611] = {
+		[1] = 60802,
+		[2] = 60500,
+	},
+	[10139] = {
+		[1] = 81304,
+		[2] = 17715,
+		[3] = 55338,
+	},
+	[15675] = {
+		[1] = 10158,
+	},
+	[15302] = {
+		[1] = 61734,
+	},
+	[60181] = {
+		[1] = 4710,
+	},
+	[3943] = {
+		[1] = 80702,
+	},
+	[47263] = {
+		[1] = 22416,
+	},
+	[9850] = {
+		[1] = 4197,
+	},
+	[7934] = {
+		[1] = 60700,
+		[2] = 60573,
+		[3] = 8270,
+		[4] = 83443,
+		[5] = 8142,
+	},
+	[20261] = {
+		[1] = 18391,
+	},
+	[7423] = {
+		[1] = 60481,
+	},
+	[14376] = {
+		[1] = 15804,
+	},
+	[3999] = {
+		[1] = 80212,
+	},
+	[51810] = {
+		[1] = 1415,
+	},
+	[19135] = {
+		[1] = 6407,
+		[2] = 12626,
+		[3] = 14279,
+	},
+	[4023] = {
+		[1] = 12259,
+		[2] = 13822,
+	},
+	[60283] = {
+		[1] = 19945,
+		[2] = 19986,
+		[3] = 11735,
+		[4] = 51897,
+	},
+	[4039] = {
+		[1] = 1280,
+		[2] = 80801,
+	},
+	[14212] = {
+		[1] = 7057,
+	},
+	[8110] = {
+		[1] = 14442,
+		[2] = 61363,
+		[3] = 60406,
+	},
+	[20214] = {
+		[1] = 20070,
+	},
+	[61024] = {
+		[1] = 11731,
+		[2] = 60563,
+	},
+	[81339] = {
+		[1] = 4560,
+		[2] = 41024,
+	},
+	[8174] = {
+		[1] = 9534,
+		[2] = 15156,
+	},
+	[22253] = {
+		[1] = 18695,
+		[2] = 60431,
+	},
+	[4738] = {
+		[1] = 81384,
+	},
+	[9922] = {
+		[1] = 8212,
+		[2] = 18390,
+	},
+	[8285] = {
+		[1] = 14268,
+	},
+	[8317] = {
+		[1] = 12620,
+	},
+	[15325] = {
+		[1] = 2100,
+	},
+	[47072] = {
+		[1] = 47060,
+		[2] = 47066,
+	},
+	[51848] = {
+		[1] = 9913,
+	},
+	[20647] = {
+		[1] = 19897,
+	},
+	[12604] = {
+		[1] = 55337,
+		[2] = 55266,
+		[3] = 2623,
+	},
+	[12636] = {
+		[1] = 80810,
+	},
+	[2017] = {
+		[1] = 61440,
+	},
+	[22423] = {
+		[1] = 47264,
+	},
+	[4319] = {
+		[1] = 9939,
+	},
+	[2967] = {
+		[1] = 3279,
+		[2] = 51886,
+	},
+	[55266] = {
+		[1] = 55337,
+		[2] = 2623,
+		[3] = 12604,
+	},
+	[15161] = {
+		[1] = 10221,
+		[2] = 15191,
+		[3] = 60717,
+	},
+	[4383] = {
+		[1] = 80795,
+		[2] = 60165,
+	},
+	[14825] = {
+		[1] = 13082,
+	},
+	[21838] = {
+		[1] = 60425,
+	},
+	[2195] = {
+		[1] = 2224,
+		[2] = 3268,
+		[3] = 5392,
+		[4] = 10547,
+	},
+	[14834] = {
+		[1] = 60928,
+	},
+	[2471] = {
+		[1] = 83429,
+		[2] = 41127,
+	},
+	[60385] = {
+		[1] = 70070,
+		[2] = 83244,
+		[3] = 61535,
+		[4] = 2955,
+	},
+	[20691] = {
+		[1] = 11623,
+		[2] = 14280,
+	},
+	[14808] = {
+		[1] = 19125,
+		[2] = 20670,
+	},
+	[15146] = {
+		[1] = 20643,
+		[2] = 4543,
+	},
+	[4543] = {
+		[1] = 20643,
+		[2] = 15146,
+	},
+	[61025] = {
+		[1] = 9627,
+		[2] = 9393,
+		[3] = 6341,
+	},
+	[81341] = {
+		[1] = 3306,
+	},
+	[2766] = {
+		[1] = 3490,
+	},
+	[22518] = {
+		[1] = 47224,
+	},
+	[13340] = {
+		[1] = 21394,
+		[2] = 22269,
+	},
+	[41190] = {
+		[1] = 5817,
+	},
+	[3490] = {
+		[1] = 2766,
+	},
+	[83207] = {
+		[1] = 3558,
+	},
+	[19125] = {
+		[1] = 14808,
+		[2] = 20670,
+	},
+	[18807] = {
+		[1] = 17767,
+	},
+	[13532] = {
+		[1] = 60269,
+	},
+	[9469] = {
+		[1] = 51825,
+		[2] = 7538,
+		[3] = 60284,
+		[4] = 1981,
+	},
+	[5274] = {
+		[1] = 4315,
+	},
+	[7682] = {
+		[1] = 22266,
+		[2] = 60864,
+	},
+	[3306] = {
+		[1] = 81341,
+	},
+	[61490] = {
+		[1] = 4723,
+		[2] = 9825,
+	},
+	[6627] = {
+		[1] = 83462,
+	},
+	[81342] = {
+		[1] = 15784,
+	},
+	[6180] = {
+		[1] = 7229,
+		[2] = 60865,
+		[3] = 60678,
+	},
+	[55267] = {
+		[1] = 61323,
+	},
+	[51300] = {
+		[1] = 17741,
+	},
+	[9789] = {
+		[1] = 7132,
+	},
+	[61399] = {
+		[1] = 4075,
+	},
+	[5609] = {
+		[1] = 7406,
+	},
+	[20578] = {
+		[1] = 84500,
+	},
+	[20070] = {
+		[1] = 20214,
+	},
+	[14044] = {
+		[1] = 19398,
+	},
+	[22503] = {
+		[1] = 47102,
+	},
+	[3321] = {
+		[1] = 80123,
+	},
+	[10045] = {
+		[1] = 794,
+	},
+	[7688] = {
+		[1] = 61608,
+	},
+	[60548] = {
+		[1] = 15403,
+	},
+	[10141] = {
+		[1] = 80516,
+		[2] = 21336,
+		[3] = 14577,
+		[4] = 16442,
+		[5] = 47295,
+	},
+	[61154] = {
+		[1] = 13057,
+		[2] = 60951,
+	},
+	[14300] = {
+		[1] = 15437,
+	},
+	[14332] = {
+		[1] = 55368,
+		[2] = 81377,
+		[3] = 10751,
+		[4] = 19132,
+	},
+	[14364] = {
+		[1] = 4915,
+		[2] = 51876,
+	},
+	[14263] = {
+		[1] = 7997,
+		[2] = 81007,
+		[3] = 70036,
+		[4] = 22718,
+	},
+	[20663] = {
+		[1] = 15295,
+	},
+	[14460] = {
+		[1] = 14293,
+		[2] = 10041,
+	},
+	[5199] = {
+		[1] = 15117,
+	},
+	[20295] = {
+		[1] = 21668,
+	},
+	[13198] = {
+		[1] = 22317,
+		[2] = 61042,
+	},
+	[14588] = {
+		[1] = 60837,
+	},
+	[14620] = {
+		[1] = 60358,
+	},
+	[14652] = {
+		[1] = 14674,
+	},
+	[14684] = {
+		[1] = 7535,
+		[2] = 8255,
+		[3] = 83447,
+	},
+	[5422] = {
+		[1] = 60268,
+	},
+	[10653] = {
+		[1] = 51851,
+	},
+	[6791] = {
+		[1] = 81261,
+	},
+	[22274] = {
+		[1] = 2069,
+	},
+	[10749] = {
+		[1] = 20640,
+		[2] = 84037,
+		[3] = 61047,
+	},
+	[10781] = {
+		[1] = 8258,
+		[2] = 14680,
+	},
+	[60929] = {
+		[1] = 6901,
+	},
+	[10845] = {
+		[1] = 80783,
+	},
+	[15047] = {
+		[1] = 10157,
+	},
+	[15004] = {
+		[1] = 51882,
+	},
+	[60131] = {
+		[1] = 15984,
+		[2] = 60847,
+	},
+	[15068] = {
+		[1] = 10070,
+	},
+	[6505] = {
+		[1] = 61411,
+	},
+	[83513] = {
+		[1] = 1010,
+	},
+	[61303] = {
+		[1] = 13029,
+		[2] = 20694,
+	},
+	[60771] = {
+		[1] = 1377,
+		[2] = 14124,
+	},
+	[80115] = {
+		[1] = 15361,
+	},
+	[61027] = {
+		[1] = 20061,
+		[2] = 20176,
+	},
+	[14410] = {
+		[1] = 83428,
+	},
+	[61063] = {
+		[1] = 6904,
+	},
+	[15356] = {
+		[1] = 9406,
+	},
+	[14176] = {
+		[1] = 14214,
+	},
+	[60546] = {
+		[1] = 10698,
+		[2] = 61661,
+	},
+	[22469] = {
+		[1] = 47166,
+		[2] = 47175,
+	},
+	[6788] = {
+		[1] = 11686,
+	},
+	[4972] = {
+		[1] = 4946,
+	},
+	[61487] = {
+		[1] = 6481,
+	},
+	[15580] = {
+		[1] = 3837,
+		[2] = 5819,
+		[3] = 6389,
+	},
+	[60549] = {
+		[1] = 4326,
+	},
+	[80709] = {
+		[1] = 1664,
+		[2] = 19570,
+		[3] = 22458,
+		[4] = 61338,
+		[5] = 60522,
+	},
+	[8258] = {
+		[1] = 10781,
+		[2] = 14680,
+	},
+	[15708] = {
+		[1] = 61186,
+	},
+	[51816] = {
+		[1] = 5209,
+		[2] = 41117,
+	},
+	[60629] = {
+		[1] = 6327,
+	},
+	[15804] = {
+		[1] = 14376,
+	},
+	[60522] = {
+		[1] = 1664,
+		[2] = 19570,
+		[3] = 22458,
+		[4] = 80709,
+		[5] = 61338,
+	},
+	[36017] = {
+		[1] = 7048,
+		[2] = 14189,
+	},
+	[9415] = {
+		[1] = 83426,
+	},
+	[61499] = {
+		[2] = 61353,
+	},
+	[61353] = {
+		[2] = 61499,
+	},
+	[12610] = {
+		[1] = 10163,
+		[2] = 14806,
+	},
+	[10157] = {
+		[1] = 15047,
+	},
+	[83205] = {
+		[1] = 11603,
+		[2] = 80807,
+	},
+	[3021] = {
+		[1] = 83225,
+	},
+	[14024] = {
+		[1] = 4454,
+	},
+	[13394] = {
+		[1] = 14624,
+	},
+	[60844] = {
+		[1] = 4129,
+	},
+	[60772] = {
+		[1] = 2805,
+	},
+	[60788] = {
+		[1] = 13111,
+	},
+	[6095] = {
+		[1] = 9907,
+	},
+	[61156] = {
+		[1] = 60233,
+		[2] = 9921,
+		[3] = 13113,
+		[4] = 3011,
+	},
+	[60863] = {
+		[1] = 1427,
+	},
+	[6327] = {
+		[1] = 60629,
+	},
+	[10039] = {
+		[1] = 7472,
+	},
+	[8254] = {
+		[1] = 80850,
+	},
+	[2877] = {
+		[1] = 60392,
+	},
+	[4954] = {
+		[1] = 80124,
+	},
+	[84604] = {
+		[1] = 6793,
+	},
+	[5069] = {
+		[1] = 5241,
+		[2] = 5326,
+		[3] = 12468,
+	},
+	[913] = {
+		[1] = 61660,
+	},
+	[15299] = {
+		[1] = 1372,
+		[2] = 2165,
+	},
+	[9290] = {
+		[1] = 21803,
+		[2] = 8092,
+		[3] = 8755,
+		[4] = 1624,
+		[5] = 15664,
+	},
+	[11849] = {
+		[1] = 6061,
+	},
+	[23124] = {
+		[1] = 61031,
+	},
+	[51886] = {
+		[1] = 2967,
+		[2] = 3279,
+	},
+	[61049] = {
+		[1] = 12463,
+	},
+	[7491] = {
+		[1] = 80710,
+	},
+	[6383] = {
+		[1] = 15894,
+	},
+	[21496] = {
+		[1] = 61598,
+	},
+	[6415] = {
+		[1] = 61396,
+	},
+	[83448] = {
+		[1] = 19058,
+		[2] = 19928,
+	},
+	[6447] = {
+		[1] = 14916,
+		[2] = 65103,
+	},
+	[83434] = {
+		[1] = 15195,
+	},
+	[10287] = {
+		[1] = 6566,
+	},
+	[12989] = {
+		[1] = 61595,
+	},
+	[70010] = {
+		[1] = 1484,
+	},
+	[22008] = {
+		[1] = 61045,
+	},
+	[6543] = {
+		[1] = 9793,
+	},
+	[6559] = {
+		[1] = 1276,
+	},
+	[60773] = {
+		[1] = 2267,
+	},
+	[21806] = {
+		[1] = 61044,
+	},
+	[6607] = {
+		[1] = 10785,
+	},
+	[13245] = {
+		[1] = 14729,
+		[2] = 80718,
+	},
+	[5748] = {
+		[1] = 11306,
+	},
+	[19132] = {
+		[1] = 55368,
+		[2] = 81377,
+		[3] = 10751,
+		[4] = 14332,
+	},
+	[61541] = {
+		[1] = 15904,
+	},
+	[6687] = {
+		[1] = 60616,
+	},
+	[10009] = {
+		[1] = 8251,
+		[2] = 12256,
+	},
+	[848] = {
+		[1] = 1943,
+		[2] = 4800,
+		[3] = 9815,
+	},
+	[2646] = {
+		[1] = 2381,
+		[2] = 2394,
+		[3] = 2654,
+	},
+	[9406] = {
+		[1] = 15356,
+	},
+	[8089] = {
+		[1] = 61348,
+	},
+	[9470] = {
+		[1] = 8201,
+		[2] = 61548,
+	},
+	[13007] = {
+		[1] = 10843,
+	},
+	[9534] = {
+		[1] = 15156,
+		[2] = 8174,
+	},
+	[18546] = {
+		[1] = 60007,
+		[2] = 15572,
+		[3] = 3891,
+		[4] = 7456,
+		[5] = 9902,
+	},
+	[15571] = {
+		[1] = 61273,
+	},
+	[81411] = {
+		[1] = 81319,
+	},
+	[65100] = {
+		[1] = 22760,
+	},
+	[19385] = {
+		[1] = 13389,
+	},
+	[13821] = {
+		[1] = 61074,
+	},
+	[2507] = {
+		[1] = 61165,
+	},
+	[9790] = {
+		[1] = 3654,
+	},
+	[9822] = {
+		[1] = 51224,
+	},
+	[9854] = {
+		[1] = 7335,
+	},
+	[9886] = {
+		[1] = 3204,
+		[2] = 61647,
+	},
+	[19833] = {
+		[1] = 11765,
+	},
+	[19897] = {
+		[1] = 20647,
+	},
+	[60390] = {
+		[1] = 83494,
+	},
+	[10209] = {
+		[1] = 60364,
+	},
+	[10046] = {
+		[1] = 6148,
+	},
+	[22328] = {
+		[1] = 13074,
+		[2] = 11927,
+	},
+	[14237] = {
+		[1] = 7353,
+	},
+	[4908] = {
+		[1] = 9752,
+		[2] = 83222,
+	},
+	[10200] = {
+		[1] = 81264,
+		[2] = 60316,
+	},
+	[15273] = {
+		[1] = 60701,
+	},
+	[20537] = {
+		[1] = 14631,
+		[2] = 20641,
+		[3] = 65035,
+		[4] = 60430,
+	},
+	[60182] = {
+		[1] = 4737,
+	},
+	[22883] = {
+		[1] = 14274,
+	},
+	[60885] = {
+		[1] = 1196,
+	},
+	[60436] = {
+		[1] = 18325,
+		[2] = 60786,
+		[3] = 18698,
+	},
+	[6063] = {
+		[1] = 2391,
+		[2] = 2403,
+	},
+	[50025] = {
+		[1] = 15095,
+		[2] = 10152,
+		[3] = 22741,
+	},
+	[3275] = {
+		[1] = 14102,
+		[2] = 80219,
+	},
+	[23171] = {
+		[1] = 12975,
+	},
+	[14653] = {
+		[1] = 9948,
+		[2] = 14671,
+	},
+	[14685] = {
+		[1] = 8260,
+		[2] = 11665,
+	},
+	[7359] = {
+		[1] = 83463,
+	},
+	[47214] = {
+		[1] = 70732,
+	},
+	[7391] = {
+		[1] = 9382,
+		[2] = 9856,
+	},
+	[41148] = {
+		[1] = 16794,
+	},
+	[10750] = {
+		[1] = 5742,
+	},
+	[10782] = {
+		[1] = 61757,
+	},
+	[15397] = {
+		[1] = 6215,
+		[2] = 80107,
+	},
+	[2807] = {
+		[1] = 60719,
+	},
+	[7487] = {
+		[1] = 80673,
+	},
+	[60007] = {
+		[1] = 15572,
+		[2] = 18546,
+		[3] = 3891,
+		[4] = 7456,
+		[5] = 9902,
+	},
+	[8268] = {
+		[1] = 61497,
+		[2] = 61355,
+	},
+	[7535] = {
+		[1] = 8255,
+		[2] = 14684,
+		[3] = 83447,
+	},
+	[60719] = {
+		[1] = 2807,
+	},
+	[80713] = {
+		[1] = 10264,
+	},
+	[60647] = {
+		[1] = 8216,
+		[2] = 61018,
+		[3] = 60646,
+		[4] = 60648,
+		[5] = 60649,
+	},
+	[1446] = {
+		[1] = 41021,
+		[2] = 80802,
+	},
+	[15229] = {
+		[1] = 7721,
+	},
+	[61031] = {
+		[1] = 23124,
+	},
+	[18298] = {
+		[1] = 15440,
+	},
+	[61287] = {
+		[1] = 10164,
+	},
+	[15686] = {
+		[1] = 14787,
+	},
+	[18490] = {
+		[1] = 10073,
+		[2] = 3392,
+		[3] = 17776,
+		[4] = 4724,
+		[5] = 8750,
+	},
+	[47194] = {
+		[1] = 47182,
+		[2] = 47188,
+	},
+	[6315] = {
+		[1] = 60338,
+	},
+	[15485] = {
+		[1] = 1431,
+	},
+	[15517] = {
+		[1] = 13969,
+		[2] = 41014,
+	},
+	[47171] = {
+		[1] = 47162,
+		[2] = 22466,
+	},
+	[83485] = {
+		[1] = 15605,
+	},
+	[15613] = {
+		[1] = 51785,
+		[2] = 60285,
+	},
+	[15645] = {
+		[1] = 61291,
+		[2] = 22411,
+	},
+	[15381] = {
+		[1] = 7527,
+	},
+	[60905] = {
+		[1] = 7757,
+	},
+	[65039] = {
+		[1] = 10384,
+	},
+	[11678] = {
+		[1] = 14895,
+	},
+	[81264] = {
+		[1] = 10200,
+		[2] = 60316,
+	},
+	[55145] = {
+		[1] = 14774,
+	},
+	[15168] = {
+		[1] = 4830,
+		[2] = 15374,
+	},
+	[3365] = {
+		[1] = 14122,
+		[2] = 16981,
+		[3] = 60685,
+	},
+	[10267] = {
+		[1] = 15681,
+	},
+	[11870] = {
+		[1] = 60417,
+	},
+	[11808] = {
+		[1] = 18817,
+	},
+	[51818] = {
+		[1] = 7327,
+		[2] = 61633,
+	},
+	[65104] = {
+		[1] = 1273,
+		[2] = 61524,
+	},
+	[13387] = {
+		[1] = 61062,
+	},
+	[60392] = {
+		[1] = 2877,
+	},
+	[61604] = {
+		[1] = 4721,
+	},
+	[60648] = {
+		[1] = 8216,
+		[2] = 61018,
+		[3] = 60647,
+		[4] = 60646,
+		[5] = 60649,
+	},
+	[8111] = {
+		[1] = 14443,
+	},
+	[60904] = {
+		[1] = 14929,
+	},
+	[82952] = {
+		[1] = 82950,
+		[2] = 82951,
+		[3] = 82953,
+	},
+	[3204] = {
+		[1] = 9886,
+		[2] = 61647,
+	},
+	[61288] = {
+		[1] = 13856,
+	},
+	[14102] = {
+		[1] = 3275,
+		[2] = 80219,
+	},
+	[20538] = {
+		[1] = 22342,
+		[2] = 19133,
+		[3] = 22747,
+		[4] = 9999,
+		[5] = 20674,
+	},
+	[8255] = {
+		[1] = 7535,
+		[2] = 14684,
+		[3] = 83447,
+	},
+	[14161] = {
+		[1] = 3939,
+		[2] = 61492,
+	},
+	[8319] = {
+		[1] = 61510,
+		[2] = 55480,
+	},
+	[1197] = {
+		[1] = 60601,
+	},
+	[61053] = {
+		[1] = 60562,
+		[3] = 13127,
+		[4] = 83565,
+		[5] = 18313,
+	},
+	[1273] = {
+		[1] = 65104,
+		[2] = 61524,
+	},
+	[14686] = {
+		[1] = 8261,
+		[2] = 6433,
+	},
+	[7511] = {
+		[1] = 60794,
+	},
+	[12606] = {
+		[1] = 61048,
+	},
+	[61661] = {
+		[1] = 10698,
+		[2] = 60546,
+	},
+	[51401] = {
+		[1] = 6418,
+	},
+	[15311] = {
+		[1] = 80132,
+	},
+	[9520] = {
+		[1] = 18758,
+	},
+	[2621] = {
+		[1] = 14200,
+	},
+	[14182] = {
+		[1] = 10657,
+	},
+	[3153] = {
+		[1] = 11850,
+	},
+	[41149] = {
+		[1] = 14578,
+	},
+	[2054] = {
+		[1] = 4561,
+	},
+	[60009] = {
+		[1] = 9904,
+	},
+	[2224] = {
+		[1] = 2195,
+		[2] = 3268,
+		[3] = 5392,
+		[4] = 10547,
+	},
+	[2232] = {
+		[1] = 10247,
+		[2] = 12050,
+	},
+	[60393] = {
+		[1] = 6970,
+	},
+	[2852] = {
+		[1] = 51877,
+	},
+	[60649] = {
+		[1] = 8216,
+		[2] = 61018,
+		[3] = 60647,
+		[4] = 60646,
+		[5] = 60648,
+	},
+	[2264] = {
+		[1] = 15368,
+	},
+	[80845] = {
+		[1] = 18702,
+	},
+	[4560] = {
+		[1] = 81339,
+		[2] = 41024,
+	},
+	[60214] = {
+		[1] = 12968,
+	},
+	[22458] = {
+		[1] = 1664,
+		[2] = 19570,
+		[3] = 80709,
+		[4] = 61338,
+		[5] = 60522,
+	},
+	[10288] = {
+		[1] = 10139,
+		[2] = 14436,
+	},
+	[41070] = {
+		[1] = 2310,
+	},
+	[15666] = {
+		[1] = 60356,
+	},
+	[22714] = {
+		[1] = 60359,
+		[2] = 60791,
+	},
+	[9375] = {
+		[1] = 10543,
+	},
+	[18811] = {
+		[1] = 15183,
+		[2] = 61261,
+		[3] = 81122,
+	},
+	[6393] = {
+		[1] = 10251,
+		[2] = 12977,
+	},
+	[4736] = {
+		[1] = 19090,
+	},
+	[17742] = {
+		[1] = 60784,
+	},
+	[2384] = {
+		[1] = 1732,
+		[2] = 1740,
+		[3] = 1748,
+		[4] = 1756,
+		[5] = 2396,
+		[6] = 2643,
+		[7] = 2651,
+		[8] = 3810,
+	},
+	[23226] = {
+		[1] = 60421,
+	},
+	[80846] = {
+		[1] = 13134,
+	},
+	[9631] = {
+		[1] = 81294,
+	},
+	[1913] = {
+		[1] = 4948,
+	},
+	[4778] = {
+		[1] = 41026,
+	},
+	[13822] = {
+		[1] = 4023,
+		[2] = 12259,
+	},
+	[9759] = {
+		[1] = 51888,
+	},
+	[7508] = {
+		[1] = 7507,
+	},
+	[13819] = {
+		[1] = 4020,
+		[2] = 61318,
+	},
+	[9855] = {
+		[1] = 6468,
+	},
+	[1415] = {
+		[1] = 51810,
+	},
+	[19835] = {
+		[1] = 18374,
+		[2] = 15058,
+		[3] = 20175,
+		[4] = 20060,
+		[5] = 13358,
+		[6] = 20194,
+		[7] = 20059,
+	},
+	[9951] = {
+		[1] = 15382,
+	},
+	[60394] = {
+		[1] = 9889,
+		[2] = 80756,
+	},
+	[2504] = {
+		[1] = 18482,
+	},
+	[14142] = {
+		[1] = 61040,
+	},
+	[14174] = {
+		[1] = 10629,
+		[2] = 22744,
+	},
+	[65001] = {
+		[1] = 13133,
+	},
+	[60183] = {
+		[1] = 14441,
+		[2] = 61060,
+		[3] = 80672,
+	},
+	[14270] = {
+		[1] = 17078,
+		[2] = 83456,
+		[3] = 4732,
+	},
+	[61290] = {
+		[1] = 10166,
+	},
+	[61074] = {
+		[1] = 13821,
+	},
+	[14366] = {
+		[1] = 6062,
+	},
+	[51851] = {
+		[1] = 10653,
+	},
+	[41035] = {
+		[1] = 1784,
+	},
+	[14462] = {
+		[1] = 60286,
+	},
+	[10399] = {
+		[1] = 50427,
+	},
+	[47265] = {
+		[1] = 22421,
+	},
+	[2616] = {
+		[1] = 80708,
+	},
+	[11765] = {
+		[1] = 19833,
+	},
+	[14179] = {
+		[1] = 6564,
+		[2] = 60452,
+	},
+	[14654] = {
+		[1] = 14672,
+	},
+	[2648] = {
+		[1] = 2379,
+		[2] = 3815,
+		[3] = 10421,
+		[4] = 1753,
+		[5] = 1761,
+		[6] = 2109,
+		[7] = 1745,
+		[8] = 1737,
+		[9] = 2656,
+	},
+	[2656] = {
+		[1] = 2379,
+		[2] = 3815,
+		[3] = 10421,
+		[4] = 2648,
+		[5] = 1753,
+		[6] = 1761,
+		[7] = 2109,
+		[8] = 1745,
+		[9] = 1737,
+	},
+	[5328] = {
+		[1] = 41075,
+	},
+	[5344] = {
+		[1] = 2522,
+	},
+	[14814] = {
+		[1] = 8748,
+		[2] = 1282,
+	},
+	[14846] = {
+		[1] = 60625,
+	},
+	[5392] = {
+		[1] = 2195,
+		[2] = 2224,
+		[3] = 3268,
+		[4] = 10547,
+	},
+	[21627] = {
+		[1] = 51733,
+	},
+	[20580] = {
+		[1] = 61651,
+	},
+	[13969] = {
+		[1] = 15517,
+		[2] = 41014,
+	},
+	[15006] = {
+		[1] = 7109,
+	},
+	[14268] = {
+		[1] = 8285,
+	},
+	[16455] = {
+		[1] = 16451,
+		[2] = 23312,
+	},
+	[60395] = {
+		[1] = 15860,
+		[2] = 61630,
+	},
+	[60523] = {
+		[1] = 13205,
+		[2] = 15494,
+	},
+	[13820] = {
+		[1] = 4021,
+	},
+	[1743] = {
+		[1] = 1735,
+		[2] = 1751,
+		[3] = 1759,
+		[4] = 3813,
+	},
+	[61301] = {
+		[1] = 10044,
+	},
+	[41024] = {
+		[1] = 4560,
+		[2] = 81339,
+	},
+	[81361] = {
+		[1] = 8301,
+	},
+	[61291] = {
+		[1] = 22411,
+		[2] = 15645,
+	},
+	[61419] = {
+		[1] = 4663,
+	},
+	[41155] = {
+		[1] = 3853,
+	},
+	[22651] = {
+		[2] = 83466,
+	},
+	[60764] = {
+		[1] = 15213,
+	},
+	[82953] = {
+		[1] = 82950,
+		[2] = 82951,
+		[3] = 82952,
+	},
+	[15550] = {
+		[1] = 18870,
+		[2] = 7420,
+	},
+	[5744] = {
+		[1] = 1951,
+	},
+	[23035] = {
+		[1] = 3556,
+	},
+	[47167] = {
+		[1] = 22470,
+		[2] = 47176,
+	},
+	[1276] = {
+		[1] = 6559,
+	},
+	[2904] = {
+		[1] = 2511,
+		[2] = 51794,
+	},
+	[80850] = {
+		[1] = 8254,
+	},
+	[61006] = {
+		[1] = 20698,
+	},
+	[81362] = {
+		[1] = 16573,
+	},
+	[11743] = {
+		[1] = 80740,
+	},
+	[2944] = {
+		[1] = 7556,
+		[2] = 83212,
+	},
+	[47215] = {
+		[1] = 21350,
+	},
+	[84502] = {
+		[1] = 61297,
+	},
+	[2968] = {
+		[1] = 3281,
+	},
+	[8226] = {
+		[1] = 83219,
+	},
+	[15352] = {
+		[1] = 15466,
+	},
+	[2992] = {
+		[1] = 8347,
+	},
+	[60268] = {
+		[1] = 5422,
+	},
+	[3008] = {
+		[1] = 41194,
+	},
+	[60524] = {
+		[1] = 1121,
+	},
+	[20176] = {
+		[1] = 20061,
+		[2] = 61027,
+	},
+	[8261] = {
+		[1] = 14686,
+		[2] = 6433,
+	},
+	[60908] = {
+		[1] = 14981,
+	},
+	[1368] = {
+		[1] = 80202,
+		[2] = 80101,
+		[3] = 80220,
+	},
+	[16988] = {
+		[1] = 10390,
+	},
+	[61420] = {
+		[1] = 12953,
+		[2] = 4078,
+		[3] = 18319,
+		[4] = 7931,
+		[5] = 61481,
+		[6] = 7130,
+		[7] = 83258,
+		[8] = 8751,
+		[9] = 6971,
+	},
+	[61548] = {
+		[1] = 8201,
+		[2] = 9470,
+	},
+	[8256] = {
+		[1] = 14681,
+	},
+	[16573] = {
+		[1] = 81362,
+	},
+	[3273] = {
+		[1] = 2898,
+		[2] = 4922,
+	},
+	[12447] = {
+		[1] = 2505,
+	},
+	[40003] = {
+		[1] = 1204,
+	},
+	[61571] = {
+		[1] = 10828,
+		[2] = 83446,
+	},
+	[2249] = {
+		[1] = 7330,
+	},
+	[13057] = {
+		[1] = 60951,
+		[2] = 61154,
+	},
+	[19878] = {
+		[1] = 15386,
+		[2] = 15140,
+	},
+	[6630] = {
+		[1] = 9830,
+	},
+	[84600] = {
+		[1] = 827,
+		[2] = 4122,
+	},
+	[10547] = {
+		[1] = 2195,
+		[2] = 2224,
+		[3] = 3268,
+		[4] = 5392,
+	},
+	[21372] = {
+		[1] = 47152,
+		[2] = 47157,
+	},
+	[14852] = {
+		[1] = 14912,
+	},
+	[1756] = {
+		[1] = 1732,
+		[2] = 1740,
+		[3] = 1748,
+		[4] = 2384,
+		[5] = 2396,
+		[6] = 2643,
+		[7] = 2651,
+		[8] = 3810,
+	},
+	[41135] = {
+		[1] = 4022,
+	},
+	[60008] = {
+		[1] = 9897,
+	},
+	[14608] = {
+		[1] = 4064,
+	},
+	[9858] = {
+		[1] = 3652,
+		[2] = 91765,
+	},
+	[7109] = {
+		[1] = 15006,
+	},
+	[56046] = {
+		[1] = 56064,
+	},
+	[60269] = {
+		[1] = 13532,
+	},
+	[13055] = {
+		[1] = 80728,
+	},
+	[3272] = {
+		[1] = 15151,
+	},
+	[9805] = {
+		[1] = 5387,
+	},
+	[13205] = {
+		[1] = 15494,
+		[2] = 60523,
+	},
+	[3296] = {
+		[1] = 2092,
+		[3] = 60307,
+	},
+	[61037] = {
+		[1] = 15413,
+	},
+	[61165] = {
+		[1] = 2507,
+	},
+	[3986] = {
+		[1] = 11785,
+	},
+	[3315] = {
+		[1] = 15065,
+	},
+	[41074] = {
+		[1] = 4545,
+		[2] = 10248,
+		[3] = 20626,
+	},
+	[6688] = {
+		[1] = 15363,
+		[2] = 70014,
+	},
+	[14795] = {
+		[1] = 8131,
+		[2] = 60736,
+	},
+	[6720] = {
+		[1] = 5753,
+		[2] = 81063,
+	},
+	[9661] = {
+		[1] = 18485,
+	},
+	[18485] = {
+		[1] = 9661,
+	},
+	[13122] = {
+		[1] = 83465,
+	},
+	[3392] = {
+		[1] = 10073,
+		[2] = 18490,
+		[3] = 17776,
+		[4] = 4724,
+		[5] = 8750,
+	},
+	[8114] = {
+		[1] = 14446,
+	},
+	[22336] = {
+		[1] = 8282,
+		[2] = 13081,
+		[3] = 18696,
+	},
+	[19133] = {
+		[1] = 22342,
+		[2] = 22747,
+		[3] = 20538,
+		[4] = 9999,
+		[5] = 20674,
+	},
+	[9600] = {
+		[1] = 61077,
+	},
+	[15891] = {
+		[1] = 13375,
+		[2] = 14947,
+	},
+	[3440] = {
+		[1] = 60686,
+	},
+	[19389] = {
+		[1] = 12082,
+	},
+	[13823] = {
+		[1] = 4024,
+	},
+	[7420] = {
+		[1] = 18870,
+		[2] = 15550,
+	},
+	[9792] = {
+		[1] = 6562,
+	},
+	[6171] = {
+		[1] = 5939,
+	},
+	[9856] = {
+		[1] = 7391,
+		[2] = 9382,
+	},
+	[6832] = {
+		[1] = 61622,
+	},
+	[61411] = {
+		[1] = 6505,
+	},
+	[11782] = {
+		[1] = 83290,
+		[2] = 12109,
+	},
+	[19965] = {
+		[1] = 61523,
+	},
+	[14111] = {
+		[1] = 7691,
+		[2] = 83292,
+	},
+	[9843] = {
+		[1] = 15543,
+		[2] = 41034,
+	},
+	[60429] = {
+		[1] = 18712,
+	},
+	[14207] = {
+		[1] = 4505,
+		[2] = 14183,
+		[3] = 17625,
+	},
+	[10144] = {
+		[1] = 60161,
+		[2] = 61076,
+		[3] = 9766,
+		[4] = 60380,
+	},
+	[14271] = {
+		[1] = 14140,
+		[2] = 83208,
+		[3] = 9915,
+		[4] = 14252,
+		[5] = 60888,
+	},
+	[11925] = {
+		[1] = 83451,
+		[2] = 61701,
+	},
+	[14335] = {
+		[1] = 11624,
+	},
+	[41075] = {
+		[1] = 5328,
+	},
+	[8134] = {
+		[1] = 15687,
+	},
+	[15687] = {
+		[1] = 8134,
+	},
+	[10158] = {
+		[1] = 15675,
+	},
+	[10400] = {
+		[1] = 60667,
+	},
+	[83415] = {
+		[1] = 61513,
+		[2] = 20263,
+		[3] = 11124,
+	},
+	[14559] = {
+		[1] = 60272,
+	},
+	[14591] = {
+		[1] = 7441,
+	},
+	[14623] = {
+		[1] = 18690,
+	},
+	[3804] = {
+		[1] = 60504,
+	},
+	[7344] = {
+		[1] = 7297,
+		[2] = 51778,
+	},
+	[14925] = {
+		[1] = 8279,
+	},
+	[5611] = {
+		[1] = 51861,
+	},
+	[81368] = {
+		[1] = 1852,
+		[2] = 7924,
+		[3] = 41126,
+	},
+	[7408] = {
+		[1] = 3806,
+	},
+	[61367] = {
+		[1] = 10276,
+		[2] = 80670,
+	},
+	[7456] = {
+		[1] = 60007,
+		[2] = 15572,
+		[3] = 18546,
+		[4] = 3891,
+		[5] = 9902,
+	},
+	[7472] = {
+		[1] = 10039,
+	},
+	[9479] = {
+		[1] = 61580,
+		[2] = 8345,
+	},
+	[51825] = {
+		[1] = 7538,
+		[2] = 9469,
+		[3] = 60284,
+		[4] = 1981,
+	},
+	[7520] = {
+		[1] = 51789,
+	},
+	[15071] = {
+		[1] = 65027,
+	},
+	[80759] = {
+		[1] = 12551,
+	},
+	[3558] = {
+		[1] = 83207,
+	},
+	[60783] = {
+		[1] = 15927,
+	},
+	[22269] = {
+		[1] = 13340,
+		[2] = 21394,
+	},
+	[81113] = {
+		[1] = 1509,
+	},
+	[15295] = {
+		[1] = 20663,
+	},
+	[80220] = {
+		[1] = 1368,
+		[2] = 80202,
+		[3] = 80101,
+	},
+	[51789] = {
+		[1] = 7520,
+	},
+	[15391] = {
+		[1] = 15339,
+	},
+	[7712] = {
+		[1] = 14112,
+	},
+	[7931] = {
+		[1] = 12953,
+		[2] = 4078,
+		[3] = 18319,
+		[4] = 61481,
+		[5] = 7130,
+		[6] = 83258,
+		[7] = 8751,
+		[8] = 6971,
+		[9] = 61420,
+	},
+	[4561] = {
+		[1] = 2054,
+	},
+	[23082] = {
+		[1] = 60351,
+	},
+	[83417] = {
+		[1] = 10170,
+	},
+	[80790] = {
+		[1] = 21694,
+	},
+	[15615] = {
+		[1] = 7540,
+		[2] = 60357,
+	},
+	[47054] = {
+		[1] = 22424,
+		[2] = 47045,
+	},
+	[47379] = {
+		[1] = 22492,
+		[2] = 47388,
+	},
+	[7283] = {
+		[1] = 6466,
+	},
+	[83208] = {
+		[1] = 14140,
+		[2] = 14271,
+		[3] = 9915,
+		[4] = 14252,
+		[5] = 60888,
+	},
+	[81114] = {
+		[1] = 3799,
+	},
+	[15807] = {
+		[1] = 15808,
+		[2] = 60821,
+	},
+	[7920] = {
+		[1] = 4084,
+	},
+	[18390] = {
+		[1] = 8212,
+		[2] = 9922,
+	},
+	[47219] = {
+		[1] = 22514,
+	},
+	[15332] = {
+		[1] = 6571,
+	},
+	[83212] = {
+		[1] = 2944,
+		[2] = 7556,
+	},
+	[15999] = {
+		[1] = 19999,
+	},
+	[22495] = {
+		[1] = 47384,
+		[2] = 47375,
+	},
+	[10225] = {
+		[1] = 60699,
+	},
+	[60272] = {
+		[1] = 14559,
+	},
+	[20694] = {
+		[1] = 13029,
+		[3] = 61303,
+	},
+	[84500] = {
+		[1] = 20578,
+	},
+	[60656] = {
+		[1] = 60656,
+	},
+	[60784] = {
+		[1] = 17742,
+	},
+	[4064] = {
+		[1] = 14608,
+	},
+	[61040] = {
+		[1] = 14142,
+	},
+	[8160] = {
+		[1] = 83455,
+	},
+	[12256] = {
+		[1] = 8251,
+		[2] = 10009,
+	},
+	[8193] = {
+		[1] = 9624,
+		[2] = 61597,
+	},
+	[4024] = {
+		[1] = 13823,
+	},
+	[4129] = {
+		[1] = 60844,
+	},
+	[20670] = {
+		[1] = 14808,
+		[2] = 19125,
+	},
+	[7387] = {
+		[1] = 10721,
+	},
+	[12448] = {
+		[1] = 51828,
+	},
+	[81125] = {
+		[1] = 7515,
+		[2] = 15107,
+		[3] = 15108,
+	},
+	[15802] = {
+		[1] = 8284,
+	},
+	[47292] = {
+		[1] = 21337,
+	},
+	[15187] = {
+		[1] = 19139,
+		[2] = 16832,
+		[3] = 60572,
+	},
+	[4257] = {
+		[1] = 61331,
+	},
+	[6557] = {
+		[1] = 41013,
+	},
+	[80860] = {
+		[1] = 1405,
+		[2] = 60347,
+	},
+	[5817] = {
+		[1] = 41190,
+	},
+	[21374] = {
+		[1] = 47159,
+		[2] = 47154,
+	},
+	[47056] = {
+		[1] = 22431,
+		[2] = 47047,
+	},
+	[23178] = {
+		[1] = 10776,
+	},
+	[47220] = {
+		[1] = 22515,
+	},
+	[4385] = {
+		[1] = 60612,
+	},
+	[21694] = {
+		[1] = 80790,
+	},
+	[4128] = {
+		[1] = 1991,
+		[2] = 9391,
+	},
+	[51827] = {
+		[1] = 13110,
+	},
+	[12992] = {
+		[1] = 7955,
+	},
+	[80215] = {
+		[1] = 1364,
+	},
+	[60431] = {
+		[1] = 18695,
+		[2] = 22253,
+	},
+	[14538] = {
+		[1] = 51781,
+	},
+	[60657] = {
+		[1] = 3755,
+	},
+	[18715] = {
+		[1] = 84503,
+	},
+	[4545] = {
+		[1] = 10248,
+		[2] = 20626,
+		[3] = 41074,
+	},
+	[4577] = {
+		[1] = 4089,
+	},
+	[61297] = {
+		[1] = 84502,
+	},
+	[3836] = {
+		[1] = 60974,
+		[2] = 10279,
+	},
+	[18495] = {
+		[1] = 51734,
+		[2] = 60804,
+	},
+	[80718] = {
+		[1] = 13245,
+		[2] = 14729,
+	},
+	[22718] = {
+		[1] = 14263,
+		[2] = 81007,
+		[3] = 70036,
+		[4] = 7997,
+	},
+	[81304] = {
+		[1] = 10139,
+		[2] = 17715,
+		[3] = 55338,
+	},
+	[19570] = {
+		[1] = 1664,
+		[2] = 22458,
+		[3] = 80709,
+		[4] = 61338,
+		[5] = 60522,
+	},
+	[70070] = {
+		[1] = 83244,
+		[2] = 61535,
+		[3] = 2955,
+		[4] = 60385,
+	},
+	[4721] = {
+		[1] = 61604,
+	},
+	[4737] = {
+		[1] = 60182,
+	},
+	[4448] = {
+		[1] = 61620,
+	},
+	[4456] = {
+		[1] = 9705,
+		[2] = 15369,
+	},
+	[1196] = {
+		[1] = 60885,
+	},
+	[4464] = {
+		[1] = 18694,
+	},
+	[1204] = {
+		[1] = 40003,
+	},
+	[19986] = {
+		[1] = 11735,
+		[2] = 19945,
+		[3] = 51897,
+		[4] = 60283,
+	},
+	[13060] = {
+		[1] = 80705,
+	},
+	[13824] = {
+		[1] = 4025,
+		[2] = 11304,
+		[3] = 60440,
+	},
+	[13856] = {
+		[1] = 61288,
+	},
+	[9793] = {
+		[1] = 6543,
+	},
+	[9825] = {
+		[1] = 4723,
+		[2] = 61490,
+	},
+	[9857] = {
+		[1] = 83213,
+	},
+	[9889] = {
+		[1] = 60394,
+		[2] = 80756,
+	},
+	[4961] = {
+		[1] = 51833,
+	},
+	[9953] = {
+		[1] = 2622,
+	},
+	[10070] = {
+		[1] = 15068,
+	},
+	[14112] = {
+		[1] = 7712,
+	},
+	[14144] = {
+		[1] = 6282,
+		[2] = 14415,
+		[3] = 83423,
+	},
+	[60786] = {
+		[1] = 18325,
+		[2] = 18698,
+		[3] = 60436,
+	},
+	[14208] = {
+		[1] = 60453,
+	},
+	[61042] = {
+		[1] = 13198,
+		[2] = 22317,
+	},
+	[4792] = {
+		[1] = 5542,
+	},
+	[61298] = {
+		[1] = 839,
+	},
+	[1280] = {
+		[1] = 4039,
+		[2] = 80801,
+	},
+	[14140] = {
+		[1] = 83208,
+		[2] = 14271,
+		[3] = 9915,
+		[4] = 14252,
+		[5] = 60888,
+	},
+	[21394] = {
+		[1] = 13340,
+		[2] = 22269,
+	},
+	[1292] = {
+		[1] = 1927,
+		[2] = 61483,
+	},
+	[1296] = {
+		[1] = 60317,
+	},
+	[10401] = {
+		[1] = 60970,
+	},
+	[83423] = {
+		[1] = 14144,
+		[2] = 6282,
+		[3] = 14415,
+	},
+	[16832] = {
+		[1] = 15187,
+		[2] = 19139,
+		[3] = 60572,
+	},
+	[14592] = {
+		[1] = 6603,
+	},
+	[14624] = {
+		[1] = 13394,
+	},
+	[14656] = {
+		[1] = 14582,
+	},
+	[14688] = {
+		[1] = 8263,
+	},
+	[1732] = {
+		[1] = 1740,
+		[2] = 1748,
+		[3] = 1756,
+		[4] = 2384,
+		[5] = 2396,
+		[6] = 2643,
+		[7] = 2651,
+		[8] = 3810,
+	},
+	[10657] = {
+		[1] = 14182,
+	},
+	[1734] = {
+		[1] = 1742,
+		[2] = 1750,
+		[3] = 1758,
+		[4] = 2385,
+		[5] = 2547,
+		[6] = 2645,
+		[7] = 2653,
+		[8] = 3812,
+	},
+	[10721] = {
+		[1] = 7387,
+	},
+	[47094] = {
+		[1] = 21347,
+		[2] = 51740,
+	},
+	[47222] = {
+		[1] = 22519,
+	},
+	[14912] = {
+		[1] = 14852,
+	},
+	[47315] = {
+		[1] = 47309,
+	},
+	[1738] = {
+		[1] = 1730,
+		[2] = 1746,
+		[3] = 1754,
+		[4] = 2380,
+		[5] = 2387,
+		[6] = 2393,
+		[7] = 2399,
+		[8] = 2635,
+		[9] = 2649,
+		[10] = 3758,
+		[11] = 3808,
+	},
+	[1364] = {
+		[1] = 80215,
+	},
+	[83424] = {
+		[1] = 18735,
+	},
+	[60275] = {
+		[1] = 9965,
+	},
+	[14412] = {
+		[1] = 16995,
+		[2] = 15150,
+	},
+	[15136] = {
+		[1] = 60318,
+	},
+	[60659] = {
+		[1] = 19904,
+	},
+	[4928] = {
+		[1] = 15005,
+		[2] = 83226,
+	},
+	[1748] = {
+		[1] = 1732,
+		[2] = 1740,
+		[3] = 1756,
+		[4] = 2384,
+		[5] = 2396,
+		[6] = 2643,
+		[7] = 2651,
+		[8] = 3810,
+	},
+	[22335] = {
+		[1] = 61567,
+	},
+	[81377] = {
+		[1] = 55368,
+		[2] = 19132,
+		[3] = 10751,
+		[4] = 14332,
+	},
+	[3856] = {
+		[1] = 7941,
+		[2] = 60565,
+	},
+	[15360] = {
+		[1] = 51783,
+		[2] = 60423,
+	},
+	[60685] = {
+		[1] = 3365,
+		[2] = 14122,
+		[3] = 16981,
+	},
+	[1416] = {
+		[1] = 1383,
+		[2] = 1816,
+		[3] = 3443,
+	},
+	[15456] = {
+		[1] = 3966,
+		[2] = 15366,
+	},
+	[15488] = {
+		[1] = 41054,
+	},
+	[61010] = {
+		[1] = 21397,
+	},
+	[61389] = {
+		[1] = 2315,
+	},
+	[15584] = {
+		[1] = 9899,
+	},
+	[5761] = {
+		[1] = 4964,
+		[2] = 5579,
+		[3] = 80105,
+	},
+	[47316] = {
+		[1] = 47310,
+	},
+	[14206] = {
+		[1] = 14177,
+	},
+	[5302] = {
+		[1] = 7495,
+	},
+	[10282] = {
+		[1] = 61366,
+	},
+	[81122] = {
+		[1] = 15183,
+		[2] = 18811,
+		[3] = 61261,
+	},
+	[15808] = {
+		[1] = 15807,
+		[2] = 60821,
+	},
+	[13216] = {
+		[1] = 56089,
+		[2] = 5624,
+	},
+	[47095] = {
+		[1] = 21345,
+	},
+	[47223] = {
+		[1] = 22517,
+	},
+	[20551] = {
+		[1] = 10372,
+		[2] = 61003,
+	},
+	[1484] = {
+		[1] = 70010,
+	},
+	[1488] = {
+		[1] = 1717,
+	},
+	[83216] = {
+		[1] = 60566,
+		[2] = 7915,
+		[3] = 10743,
+		[4] = 21804,
+		[5] = 9932,
+		[6] = 18479,
+		[7] = 19875,
+	},
+	[83426] = {
+		[1] = 9415,
+	},
+	[19904] = {
+		[1] = 60659,
+	},
+	[15015] = {
+		[1] = 1790,
+	},
+	[7439] = {
+		[1] = 14601,
+	},
+	[5624] = {
+		[1] = 56089,
+		[2] = 13216,
+	},
+	[1516] = {
+		[1] = 4923,
+	},
+	[19828] = {
+		[1] = 10275,
+		[2] = 22762,
+	},
+	[81123] = {
+		[1] = 19887,
+	},
+	[7527] = {
+		[1] = 15381,
+	},
+	[61300] = {
+		[1] = 3754,
+		[2] = 9698,
+	},
+	[10010] = {
+		[1] = 7469,
+	},
+	[16449] = {
+		[1] = 16457,
+		[2] = 23313,
+	},
+	[19685] = {
+		[1] = 8265,
+		[2] = 11726,
+		[3] = 51741,
+		[4] = 80758,
+	},
+	[12417] = {
+		[1] = 10160,
+		[2] = 15651,
+		[3] = 14322,
+		[4] = 10219,
+	},
+	[12449] = {
+		[1] = 80207,
+	},
+	[83427] = {
+		[1] = 6395,
+	},
+	[3808] = {
+		[1] = 1730,
+		[2] = 1738,
+		[3] = 1746,
+		[4] = 1754,
+		[5] = 2380,
+		[6] = 2387,
+		[7] = 2393,
+		[8] = 2399,
+		[9] = 2635,
+		[10] = 2649,
+		[11] = 3758,
+	},
+	[3812] = {
+		[1] = 1734,
+		[2] = 1742,
+		[3] = 1750,
+		[4] = 1758,
+		[5] = 2385,
+		[6] = 2547,
+		[7] = 2645,
+		[8] = 2653,
+	},
+	[15307] = {
+		[1] = 9778,
+	},
+	[5616] = {
+		[1] = 60422,
+	},
+	[80612] = {
+		[1] = 51792,
+	},
+	[61519] = {
+		[1] = 7930,
+		[2] = 5755,
+	},
+	[61647] = {
+		[1] = 3204,
+		[2] = 9886,
+	},
+	[21376] = {
+		[1] = 47153,
+		[2] = 47158,
+	},
+	[7719] = {
+		[1] = 10379,
+		[2] = 10235,
+		[3] = 60636,
+		[4] = 12612,
+	},
+	[47096] = {
+		[1] = 21343,
+	},
+	[47224] = {
+		[1] = 22518,
+	},
+	[6433] = {
+		[1] = 8261,
+		[2] = 14686,
+	},
+	[10504] = {
+		[1] = 61187,
+	},
+	[47264] = {
+		[1] = 22423,
+	},
+	[6481] = {
+		[1] = 61487,
+	},
+	[83428] = {
+		[1] = 14410,
+	},
+	[60277] = {
+		[1] = 9763,
+	},
+	[60405] = {
+		[1] = 20517,
+		[2] = 60209,
+	},
+	[80101] = {
+		[1] = 1368,
+		[2] = 80202,
+		[3] = 80220,
+	},
+	[60624] = {
+		[1] = 15809,
+	},
+	[65102] = {
+		[1] = 14401,
+		[2] = 5608,
+	},
+	[6503] = {
+		[1] = 61061,
+	},
+	[61045] = {
+		[1] = 22008,
+	},
+	[9921] = {
+		[1] = 60233,
+		[2] = 13113,
+		[3] = 3011,
+		[4] = 61156,
+	},
+	[22464] = {
+		[1] = 47173,
+		[2] = 47164,
+	},
+	[1664] = {
+		[1] = 19570,
+		[2] = 22458,
+		[3] = 80709,
+		[4] = 61338,
+		[5] = 60522,
+	},
+	[22342] = {
+		[1] = 19133,
+		[2] = 22747,
+		[3] = 20538,
+		[4] = 9999,
+		[5] = 20674,
+	},
+	[21524] = {
+		[1] = 61086,
+	},
+	[22720] = {
+		[1] = 21517,
+	},
+	[18689] = {
+		[1] = 21406,
+		[2] = 18734,
+		[3] = 5257,
+		[4] = 51732,
+	},
+	[83441] = {
+		[1] = 23000,
+	},
+	[83429] = {
+		[1] = 2471,
+		[2] = 41127,
+	},
+	[13537] = {
+		[1] = 60887,
+	},
+	[9474] = {
+		[1] = 60921,
+	},
+	[15904] = {
+		[1] = 61541,
+	},
+	[10783] = {
+		[1] = 10245,
+		[2] = 19037,
+	},
+	[18102] = {
+		[1] = 6406,
+	},
+	[9602] = {
+		[1] = 60796,
+		[2] = 80126,
+	},
+	[2036] = {
+		[1] = 60541,
+	},
+	[61550] = {
+		[1] = 14849,
+		[2] = 47066,
+		[3] = 10198,
+	},
+	[9698] = {
+		[1] = 3754,
+		[2] = 61300,
+	},
+	[47097] = {
+		[1] = 21346,
+		[2] = 83291,
+		[3] = 4046,
+		[4] = 13871,
+		[5] = 21346,
+		[6] = 18545,
+	},
+	[47225] = {
+		[1] = 22513,
+	},
+	[2046] = {
+		[1] = 3740,
+	},
+	[1740] = {
+		[1] = 1732,
+		[2] = 1748,
+		[3] = 1756,
+		[4] = 2384,
+		[5] = 2396,
+		[6] = 2643,
+		[7] = 2651,
+		[8] = 3810,
+	},
+	[1744] = {
+		[1] = 1752,
+		[2] = 1760,
+		[3] = 3814,
+	},
+	[51832] = {
+		[1] = 11920,
+	},
+	[1752] = {
+		[1] = 1744,
+		[2] = 1760,
+		[3] = 3814,
+	},
+	[9954] = {
+		[1] = 14677,
+	},
+	[60406] = {
+		[1] = 8110,
+		[2] = 14442,
+		[3] = 61363,
+	},
+	[7057] = {
+		[1] = 14212,
+	},
+	[60626] = {
+		[1] = 13144,
+		[2] = 80848,
+	},
+	[14177] = {
+		[1] = 14206,
+	},
+	[60818] = {
+		[1] = 9480,
+	},
+	[61046] = {
+		[1] = 863,
+	},
+	[1784] = {
+		[1] = 41035,
+	},
+	[10198] = {
+		[1] = 61550,
+		[2] = 14849,
+		[3] = 47066,
+	},
+	[47047] = {
+		[1] = 22431,
+		[2] = 47056,
+	},
+	[47193] = {
+		[1] = 47181,
+		[2] = 47187,
+	},
+	[14401] = {
+		[1] = 65102,
+		[2] = 5608,
+	},
+	[47385] = {
+		[1] = 22493,
+	},
+	[20058] = {
+		[1] = 20212,
+		[2] = 20057,
+	},
+	[4046] = {
+		[1] = 47097,
+		[2] = 83291,
+		[3] = 13871,
+		[4] = 21346,
+		[5] = 18545,
+	},
+	[1816] = {
+		[1] = 1383,
+		[2] = 1416,
+		[3] = 3443,
+	},
+	[15116] = {
+		[1] = 4251,
+	},
+	[7297] = {
+		[1] = 7344,
+		[2] = 51778,
+	},
+	[60691] = {
+		[1] = 11842,
+	},
+	[14217] = {
+		[1] = 13403,
+	},
+	[80616] = {
+		[1] = 14137,
+		[2] = 8289,
+	},
+	[22325] = {
+		[1] = 10403,
+	},
+	[61523] = {
+		[1] = 19965,
+	},
+	[81384] = {
+		[1] = 4738,
+	},
+	[7409] = {
+		[1] = 3801,
+	},
+	[47098] = {
+		[1] = 21344,
+	},
+	[7441] = {
+		[1] = 14591,
+	},
+	[9599] = {
+		[1] = 3305,
+	},
+	[7473] = {
+		[1] = 22412,
+	},
+	[47387] = {
+		[1] = 47378,
+		[2] = 22489,
+	},
+	[51833] = {
+		[1] = 4961,
+	},
+	[7537] = {
+		[1] = 15522,
+		[2] = 15991,
+	},
+	[60407] = {
+		[1] = 6973,
+	},
+	[80105] = {
+		[1] = 4964,
+		[2] = 5579,
+		[3] = 5761,
+	},
+	[80670] = {
+		[1] = 10276,
+		[2] = 61367,
+	},
+	[60791] = {
+		[1] = 60359,
+		[2] = 22714,
+	},
+	[15241] = {
+		[1] = 3581,
+		[2] = 60743,
+	},
+	[61047] = {
+		[1] = 20640,
+		[2] = 10749,
+		[3] = 84037,
+	},
+	[15297] = {
+		[1] = 60229,
+	},
+	[22465] = {
+		[1] = 47177,
+		[2] = 47168,
+	},
+	[15361] = {
+		[1] = 80115,
+	},
+	[18498] = {
+		[1] = 60124,
+	},
+	[81310] = {
+		[1] = 12108,
+	},
+	[15457] = {
+		[1] = 14201,
+	},
+	[18690] = {
+		[1] = 14623,
+	},
+	[14125] = {
+		[1] = 1378,
+	},
+	[83469] = {
+		[1] = 10083,
+		[2] = 15634,
+		[3] = 60694,
+	},
+	[15617] = {
+		[1] = 22212,
+		[2] = 15531,
+		[3] = 60792,
+		[4] = 7543,
+	},
+	[80106] = {
+		[1] = 3079,
+	},
+	[15681] = {
+		[1] = 10267,
+	},
+	[10111] = {
+		[1] = 14584,
+		[2] = 81014,
+		[3] = 3890,
+	},
+	[1739] = {
+		[1] = 1731,
+		[2] = 1747,
+		[3] = 1755,
+		[4] = 2383,
+		[5] = 2395,
+		[6] = 2642,
+		[7] = 2650,
+		[8] = 2691,
+		[9] = 3809,
+		[10] = 80118,
+		[11] = 51881,
+	},
+	[2545] = {
+		[1] = 61054,
+	},
+	[15809] = {
+		[1] = 60624,
+	},
+	[11746] = {
+		[1] = 17734,
+		[2] = 18718,
+		[3] = 12549,
+	},
+	[47099] = {
+		[1] = 22498,
+	},
+	[15905] = {
+		[1] = 15906,
+	},
+	[11842] = {
+		[1] = 60691,
+	},
+	[14445] = {
+		[1] = 8113,
+		[2] = 61269,
+	},
+	[20061] = {
+		[1] = 20176,
+		[2] = 61027,
+	},
+	[51834] = {
+		[1] = 9423,
+	},
+	[60152] = {
+		[1] = 60543,
+		[2] = 9608,
+	},
+	[9382] = {
+		[1] = 7391,
+		[2] = 9856,
+	},
+	[60408] = {
+		[1] = 15602,
+	},
+	[80107] = {
+		[1] = 6215,
+		[2] = 15397,
+	},
+	[2645] = {
+		[1] = 1734,
+		[2] = 1742,
+		[3] = 1750,
+		[4] = 1758,
+		[5] = 2385,
+		[6] = 2547,
+		[7] = 2653,
+		[8] = 3812,
+	},
+	[60792] = {
+		[1] = 22212,
+		[2] = 15531,
+		[3] = 15617,
+		[4] = 7543,
+	},
+	[60920] = {
+		[1] = 3202,
+	},
+	[61048] = {
+		[1] = 12606,
+	},
+	[8161] = {
+		[1] = 10763,
+	},
+	[61304] = {
+		[1] = 7545,
+	},
+	[7757] = {
+		[1] = 60905,
+	},
+	[16451] = {
+		[1] = 16455,
+		[2] = 23312,
+	},
+	[47162] = {
+		[1] = 22466,
+		[2] = 47171,
+	},
+	[20674] = {
+		[1] = 22342,
+		[2] = 19133,
+		[3] = 22747,
+		[4] = 20538,
+		[5] = 9999,
+	},
+	[15005] = {
+		[1] = 4928,
+		[2] = 83226,
+	},
+	[20158] = {
+		[1] = 20055,
+	},
+	[83435] = {
+		[1] = 14678,
+	},
+	[51817] = {
+		[1] = 80,
+	},
+	[83483] = {
+		[1] = 3894,
+		[2] = 14969,
+	},
+	[15309] = {
+		[1] = 19526,
+	},
+	[50427] = {
+		[1] = 10399,
+	},
+	[2137] = {
+		[1] = 2763,
+		[2] = 3225,
+	},
+	[61335] = {
+		[1] = 14139,
+	},
+	[2153] = {
+		[1] = 1677,
+		[2] = 1715,
+	},
+	[4322] = {
+		[1] = 51219,
+	},
+	[22519] = {
+		[1] = 47222,
+	},
+	[47100] = {
+		[1] = 22499,
+	},
+	[47228] = {
+		[1] = 47234,
+	},
+	[16442] = {
+		[1] = 80516,
+		[2] = 21336,
+		[3] = 14577,
+		[4] = 10141,
+		[5] = 47295,
+	},
+	[15437] = {
+		[1] = 14300,
+	},
+	[711] = {
+		[1] = 80120,
+	},
+	[10279] = {
+		[1] = 60974,
+		[2] = 3836,
+	},
+	[60153] = {
+		[1] = 9508,
+		[2] = 60542,
+	},
+	[13026] = {
+		[1] = 60696,
+	},
+	[60409] = {
+		[1] = 13203,
+		[2] = 83218,
+	},
+	[80109] = {
+		[1] = 6116,
+	},
+	[2257] = {
+		[1] = 60495,
+	},
+	[2265] = {
+		[1] = 2281,
+	},
+	[60921] = {
+		[1] = 9474,
+	},
+	[2281] = {
+		[1] = 2265,
+	},
+	[8142] = {
+		[1] = 7934,
+		[2] = 60700,
+		[3] = 60573,
+		[4] = 8270,
+		[5] = 83443,
+	},
+	[22466] = {
+		[1] = 47162,
+		[2] = 47171,
+	},
+	[60952] = {
+		[1] = 2075,
+	},
+	[84505] = {
+		[1] = 18449,
+		[2] = 61528,
+	},
+	[22658] = {
+		[1] = 50430,
+	},
+	[22467] = {
+		[1] = 47172,
+		[2] = 47163,
+	},
+	[3814] = {
+		[1] = 1752,
+		[2] = 1760,
+		[3] = 1744,
+	},
+	[13474] = {
+		[1] = 6798,
+	},
+	[9904] = {
+		[1] = 60009,
+	},
+	[10132] = {
+		[1] = 21460,
+	},
+	[9475] = {
+		[1] = 60498,
+	},
+	[80110] = {
+		[1] = 1425,
+	},
+	[23170] = {
+		[1] = 9435,
+	},
+	[19139] = {
+		[1] = 15187,
+		[2] = 16832,
+		[3] = 60572,
+	},
+	[2401] = {
+		[1] = 2389,
+	},
+	[9891] = {
+		[1] = 3753,
+	},
+	[8112] = {
+		[1] = 14444,
+	},
+	[14687] = {
+		[1] = 8262,
+	},
+	[47101] = {
+		[1] = 22496,
+	},
+	[13858] = {
+		[1] = 61326,
+	},
+	[80807] = {
+		[1] = 11603,
+		[2] = 83205,
+	},
+	[83494] = {
+		[1] = 60390,
+	},
+	[13954] = {
+		[1] = 21532,
+	},
+	[13986] = {
+		[1] = 14919,
+	},
+	[8289] = {
+		[1] = 80616,
+		[2] = 14137,
+	},
+	[61033] = {
+		[1] = 12987,
+		[2] = 23173,
+	},
+	[60410] = {
+		[1] = 22404,
+	},
+	[2505] = {
+		[1] = 12447,
+	},
+	[60666] = {
+		[1] = 4109,
+	},
+	[60794] = {
+		[1] = 7511,
+	},
+	[19887] = {
+		[1] = 81123,
+	},
+	[61050] = {
+		[1] = 15393,
+	},
+	[14274] = {
+		[1] = 22883,
+	},
+	[61306] = {
+		[1] = 4676,
+	},
+	[60896] = {
+		[1] = 4571,
+	},
+	[10275] = {
+		[1] = 19828,
+		[2] = 22762,
+	},
+	[61690] = {
+		[1] = 22428,
+		[2] = 5613,
+	},
+	[19037] = {
+		[1] = 10245,
+		[2] = 10783,
+	},
+	[1367] = {
+		[1] = 41106,
+		[2] = 80217,
+	},
+	[10403] = {
+		[1] = 22325,
+	},
+	[47312] = {
+		[1] = 47306,
+	},
+	[2617] = {
+		[1] = 81015,
+	},
+	[10499] = {
+		[1] = 60540,
+	},
+	[15134] = {
+		[1] = 8348,
+		[2] = 14804,
+	},
+	[15150] = {
+		[1] = 14412,
+		[2] = 16995,
+	},
+	[21187] = {
+		[1] = 83486,
+	},
+	[5314] = {
+		[1] = 4771,
+	},
+	[20090] = {
+		[1] = 80714,
+		[3] = 20152,
+		[4] = 20197,
+	},
+	[3325] = {
+		[1] = 81316,
+	},
+	[1351] = {
+		[1] = 61259,
+	},
+	[47102] = {
+		[1] = 22503,
+	},
+	[47230] = {
+		[1] = 47236,
+	},
+	[15374] = {
+		[1] = 4830,
+		[2] = 15168,
+	},
+	[13375] = {
+		[1] = 14947,
+		[2] = 15891,
+	},
+	[4964] = {
+		[1] = 5579,
+		[2] = 5761,
+		[3] = 80105,
+	},
+	[14598] = {
+		[1] = 7448,
+	},
+	[83440] = {
+		[1] = 5815,
+	},
+	[15074] = {
+		[1] = 18344,
+	},
+	[60411] = {
+		[1] = 22247,
+	},
+	[80113] = {
+		[1] = 4565,
+	},
+	[60667] = {
+		[1] = 10400,
+	},
+	[60795] = {
+		[1] = 61212,
+		[2] = 12999,
+	},
+	[22275] = {
+		[1] = 10183,
+	},
+	[5586] = {
+		[1] = 1413,
+	},
+	[18308] = {
+		[1] = 21615,
+	},
+	[18372] = {
+		[1] = 24222,
+	},
+	[849] = {
+		[1] = 9810,
+	},
+	[15394] = {
+		[1] = 14668,
+	},
+	[11632] = {
+		[1] = 60610,
+	},
+	[5608] = {
+		[1] = 65102,
+		[2] = 14401,
+	},
+	[7448] = {
+		[1] = 14598,
+	},
+	[15522] = {
+		[1] = 7537,
+		[2] = 15991,
+	},
+	[2865] = {
+		[1] = 4005,
+	},
+	[4946] = {
+		[1] = 4972,
+	},
+	[15618] = {
+		[1] = 7536,
+	},
+	[5778] = {
+		[1] = 80208,
+	},
+	[50430] = {
+		[1] = 22658,
+	},
+	[60701] = {
+		[1] = 15273,
+	},
+	[60765] = {
+		[1] = 61358,
+		[2] = 14796,
+	},
+	[22266] = {
+		[1] = 7682,
+		[2] = 60864,
+	},
+	[61213] = {
+		[1] = 15662,
+	},
+	[6562] = {
+		[1] = 9792,
+	},
+	[47103] = {
+		[1] = 22501,
+	},
+	[15906] = {
+		[1] = 15905,
+	},
+	[2961] = {
+		[1] = 80131,
+	},
+	[61725] = {
+		[1] = 4041,
+		[2] = 83282,
+	},
+	[5970] = {
+		[1] = 21462,
+	},
+	[83442] = {
+		[1] = 18716,
+		[2] = 21493,
+	},
+	[60284] = {
+		[1] = 51825,
+		[2] = 7538,
+		[3] = 9469,
+		[4] = 1981,
+	},
+	[19972] = {
+		[1] = 7996,
+		[2] = 3889,
+	},
+	[60540] = {
+		[1] = 10499,
+	},
+	[18525] = {
+		[1] = 61565,
+	},
+	[60796] = {
+		[1] = 9602,
+		[2] = 80126,
+	},
+	[21184] = {
+		[1] = 60362,
+	},
+	[10785] = {
+		[1] = 6607,
+	},
+	[3733] = {
+		[1] = 60117,
+	},
+	[12259] = {
+		[1] = 4023,
+		[2] = 13822,
+	},
+	[3753] = {
+		[1] = 9891,
+	},
+	[9939] = {
+		[1] = 4319,
+	},
+	[8260] = {
+		[1] = 11665,
+		[2] = 14685,
+	},
+	[8122] = {
+		[1] = 14676,
+		[2] = 10150,
+	},
+	[6730] = {
+		[1] = 6195,
+	},
+	[61023] = {
+		[1] = 65021,
+		[2] = 3055,
+	},
+	[83443] = {
+		[1] = 7934,
+		[2] = 60700,
+		[3] = 60573,
+		[4] = 8270,
+		[5] = 8142,
+	},
+	[3837] = {
+		[1] = 5819,
+		[2] = 15580,
+		[3] = 6389,
+	},
+	[3853] = {
+		[1] = 41155,
+	},
+	[41193] = {
+		[1] = 41103,
+	},
+	[50431] = {
+		[1] = 13107,
+	},
+	[7721] = {
+		[1] = 15229,
+	},
+	[83514] = {
+		[1] = 60439,
+		[2] = 83064,
+	},
+	[22747] = {
+		[1] = 22342,
+		[2] = 19133,
+		[3] = 20538,
+		[4] = 9999,
+		[5] = 20674,
+	},
+	[10099] = {
+		[1] = 61762,
+	},
+	[7130] = {
+		[1] = 12953,
+		[2] = 4078,
+		[3] = 18319,
+		[4] = 7931,
+		[5] = 61481,
+		[6] = 83258,
+		[7] = 8751,
+		[8] = 6971,
+		[9] = 61420,
+	},
+	[47104] = {
+		[1] = 22502,
+	},
+	[47232] = {
+		[1] = 47238,
+	},
+	[3217] = {
+		[1] = 60873,
+	},
+	[3225] = {
+		[1] = 2137,
+		[2] = 2763,
+	},
+	[6466] = {
+		[1] = 7283,
+	},
+	[20048] = {
+		[1] = 20110,
+		[2] = 20209,
+		[4] = 60361,
+	},
+	[83444] = {
+		[1] = 13529,
+	},
+	[60285] = {
+		[1] = 15613,
+		[2] = 51785,
+	},
+	[61088] = {
+		[1] = 4666,
+		[2] = 4675,
+	},
+	[80117] = {
+		[1] = 2963,
+	},
+	[3281] = {
+		[1] = 2968,
+	},
+	[80629] = {
+		[1] = 61278,
+	},
+	[3965] = {
+		[1] = 61057,
+	},
+	[3305] = {
+		[1] = 9599,
+	},
+	[22404] = {
+		[1] = 60410,
+	},
+	[18373] = {
+		[1] = 7477,
+		[2] = 65024,
+	},
+	[3329] = {
+		[1] = 1394,
+		[2] = 80723,
+	},
+	[61565] = {
+		[1] = 18525,
+	},
+	[6690] = {
+		[1] = 18477,
+	},
+	[5387] = {
+		[1] = 9805,
+	},
+	[4021] = {
+		[1] = 13820,
+	},
+	[18757] = {
+		[1] = 14452,
+		[2] = 13867,
+	},
+	[3377] = {
+		[1] = 61493,
+	},
+	[9444] = {
+		[1] = 5593,
+	},
+	[9476] = {
+		[1] = 7532,
+	},
+	[80118] = {
+		[1] = 1731,
+		[2] = 1739,
+		[3] = 1747,
+		[4] = 1755,
+		[5] = 2383,
+		[6] = 2395,
+		[7] = 2642,
+		[8] = 2691,
+		[9] = 2650,
+		[10] = 3809,
+		[11] = 51881,
+	},
+	[18238] = {
+		[1] = 7690,
+	},
+	[6834] = {
+		[1] = 10036,
+	},
+	[14432] = {
+		[1] = 6617,
+	},
+	[60258] = {
+		[1] = 8299,
+		[2] = 14667,
+		[3] = 21669,
+	},
+	[80217] = {
+		[1] = 1367,
+		[2] = 41106,
+	},
+	[21669] = {
+		[1] = 8299,
+		[2] = 14667,
+		[3] = 60258,
+	},
+	[47105] = {
+		[1] = 22497,
+	},
+	[4315] = {
+		[1] = 5274,
+	},
+	[2166] = {
+		[1] = 60503,
+	},
+	[6394] = {
+		[1] = 14641,
+	},
+	[6418] = {
+		[1] = 51401,
+	},
+	[20623] = {
+		[1] = 81223,
+	},
+	[83446] = {
+		[1] = 10828,
+		[2] = 61571,
+	},
+	[60286] = {
+		[1] = 14462,
+	},
+	[60414] = {
+		[1] = 60827,
+		[2] = 83265,
+	},
+	[60542] = {
+		[1] = 9508,
+		[2] = 60153,
+	},
+	[83452] = {
+		[1] = 15284,
+	},
+	[10084] = {
+		[1] = 60274,
+	},
+	[65021] = {
+		[1] = 3055,
+		[2] = 61023,
+	},
+	[61054] = {
+		[1] = 2545,
+	},
+	[12960] = {
+		[1] = 6204,
+		[2] = 17740,
+		[3] = 15384,
+		[4] = 15373,
+	},
+	[3585] = {
+		[1] = 61250,
+	},
+	[61566] = {
+		[1] = 11635,
+	},
+	[18367] = {
+		[1] = 60118,
+	},
+	[16608] = {
+		[1] = 1502,
+		[2] = 60502,
+	},
+	[10372] = {
+		[1] = 20551,
+		[2] = 61003,
+	},
+	[21484] = {
+		[1] = 22759,
+	},
+	[83447] = {
+		[1] = 7535,
+		[2] = 8255,
+		[3] = 14684,
+	},
+	[22212] = {
+		[1] = 15531,
+		[2] = 15617,
+		[3] = 60792,
+		[4] = 7543,
+	},
+	[7335] = {
+		[1] = 9854,
+	},
+	[80120] = {
+		[1] = 711,
+	},
+	[7330] = {
+		[1] = 2249,
+	},
+	[6395] = {
+		[1] = 83427,
+	},
+	[1215] = {
+		[1] = 60550,
+	},
+	[14755] = {
+		[1] = 15492,
+	},
+	[14787] = {
+		[1] = 15686,
+	},
+	[7410] = {
+		[1] = 3802,
+		[2] = 7378,
+	},
+	[47106] = {
+		[1] = 22500,
+	},
+	[47234] = {
+		[1] = 47228,
+	},
+	[41134] = {
+		[1] = 865,
+	},
+	[14947] = {
+		[1] = 13375,
+		[2] = 15891,
+	},
+	[15234] = {
+		[1] = 81325,
+	},
+	[15011] = {
+		[1] = 14567,
+	},
+	[56064] = {
+		[1] = 56046,
+	},
+	[7538] = {
+		[1] = 51825,
+		[2] = 9469,
+		[3] = 60284,
+		[4] = 1981,
+	},
+	[15107] = {
+		[1] = 7515,
+		[2] = 15108,
+		[3] = 81125,
+	},
+	[80121] = {
+		[1] = 4940,
+	},
+	[3793] = {
+		[1] = 60679,
+	},
+	[3801] = {
+		[1] = 7409,
+	},
+	[3809] = {
+		[1] = 1731,
+		[2] = 1739,
+		[3] = 1747,
+		[4] = 1755,
+		[5] = 2383,
+		[6] = 2395,
+		[7] = 2642,
+		[8] = 2691,
+		[9] = 2650,
+		[10] = 80118,
+		[11] = 51881,
+	},
+	[61055] = {
+		[1] = 19308,
+	},
+	[22405] = {
+		[1] = 8250,
+	},
+	[61311] = {
+		[1] = 1974,
+	},
+	[15363] = {
+		[1] = 6688,
+		[2] = 70014,
+	},
+	[61567] = {
+		[1] = 22335,
+	},
+	[15427] = {
+		[1] = 10224,
+		[2] = 15153,
+	},
+	[18208] = {
+		[1] = 4327,
+	},
+	[18694] = {
+		[1] = 4464,
+	},
+	[18758] = {
+		[1] = 9520,
+	},
+	[3889] = {
+		[1] = 7996,
+		[2] = 19972,
+	},
+	[47152] = {
+		[1] = 21372,
+		[2] = 47157,
+	},
+	[15619] = {
+		[1] = 15497,
+	},
+	[80122] = {
+		[1] = 15152,
+	},
+	[23173] = {
+		[1] = 12987,
+		[2] = 61033,
+	},
+	[8212] = {
+		[1] = 9922,
+		[2] = 18390,
+	},
+	[3937] = {
+		[1] = 14218,
+	},
+	[2622] = {
+		[1] = 9953,
+	},
+	[47061] = {
+		[1] = 47067,
+		[2] = 47073,
+	},
+	[19398] = {
+		[1] = 14044,
+	},
+	[14785] = {
+		[1] = 15684,
+		[2] = 15670,
+		[3] = 10388,
+		[4] = 14952,
+	},
+	[19526] = {
+		[1] = 15309,
+	},
+	[47363] = {
+		[1] = 21354,
+		[2] = 47368,
+	},
+	[3993] = {
+		[1] = 80738,
+		[2] = 80218,
+	},
+	[5419] = {
+		[1] = 2374,
+		[2] = 2468,
+		[3] = 60379,
+	},
+	[51842] = {
+		[1] = 5112,
+	},
+	[4017] = {
+		[1] = 13816,
+	},
+	[4025] = {
+		[1] = 11304,
+		[2] = 13824,
+		[3] = 60440,
+	},
+	[60416] = {
+		[1] = 936,
+	},
+	[4041] = {
+		[1] = 61725,
+		[2] = 83282,
+	},
+	[4049] = {
+		[1] = 11469,
+	},
+	[60800] = {
+		[1] = 11411,
+	},
+	[60928] = {
+		[1] = 14834,
+	},
+	[61056] = {
+		[1] = 14329,
+	},
+	[61365] = {
+		[1] = 61239,
+		[2] = 10280,
+	},
+	[4089] = {
+		[1] = 4577,
+	},
+	[61440] = {
+		[1] = 2017,
+	},
+	[61568] = {
+		[1] = 51784,
+	},
+	[4131] = {
+		[1] = 9916,
+		[2] = 83531,
+	},
+	[15393] = {
+		[1] = 61050,
+	},
+	[5739] = {
+		[1] = 15064,
+		[2] = 80736,
+	},
+	[13358] = {
+		[1] = 19835,
+		[2] = 18374,
+		[3] = 15058,
+		[4] = 20175,
+		[5] = 20060,
+		[6] = 20194,
+		[7] = 20059,
+	},
+	[83451] = {
+		[1] = 11925,
+		[2] = 61701,
+	},
+	[19568] = {
+		[1] = 2549,
+	},
+	[9508] = {
+		[1] = 60542,
+		[2] = 60153,
+	},
+	[80124] = {
+		[1] = 4954,
+	},
+	[12612] = {
+		[1] = 10379,
+		[2] = 10235,
+		[3] = 7719,
+		[4] = 60636,
+	},
+	[15665] = {
+		[1] = 17711,
+	},
+	[2906] = {
+		[1] = 15451,
+	},
+	[21318] = {
+		[1] = 9395,
+	},
+	[7930] = {
+		[1] = 61519,
+		[2] = 5755,
+	},
+	[1479] = {
+		[1] = 18369,
+		[2] = 51400,
+	},
+	[47108] = {
+		[1] = 47114,
+	},
+	[47236] = {
+		[1] = 47230,
+	},
+	[47364] = {
+		[1] = 47369,
+		[2] = 21357,
+	},
+	[15300] = {
+		[1] = 10636,
+		[2] = 41019,
+	},
+	[17072] = {
+		[1] = 61011,
+	},
+	[51843] = {
+		[1] = 7611,
+	},
+	[60161] = {
+		[1] = 10144,
+		[2] = 61076,
+		[3] = 9766,
+		[4] = 60380,
+	},
+	[60646] = {
+		[1] = 8216,
+		[2] = 61018,
+		[3] = 60647,
+		[4] = 60648,
+		[5] = 60649,
+	},
+	[60417] = {
+		[1] = 11870,
+	},
+	[80125] = {
+		[1] = 4669,
+	},
+	[60673] = {
+		[1] = 10171,
+		[2] = 61257,
+	},
+	[60801] = {
+		[1] = 13385,
+	},
+	[65024] = {
+		[1] = 7477,
+		[2] = 18373,
+	},
+	[61057] = {
+		[1] = 3965,
+	},
+	[18338] = {
+		[1] = 4547,
+	},
+	[22470] = {
+		[1] = 47167,
+		[2] = 47176,
+	},
+	[13867] = {
+		[1] = 14452,
+		[2] = 18757,
+	},
+	[18503] = {
+		[1] = 21322,
+	},
+	[13380] = {
+		[1] = 9412,
+		[2] = 10508,
+	},
+	[4675] = {
+		[1] = 4666,
+		[2] = 61088,
+	},
+	[22502] = {
+		[1] = 47104,
+	},
+	[61305] = {
+		[1] = 3067,
+	},
+	[4723] = {
+		[1] = 61490,
+		[2] = 9825,
+	},
+	[10708] = {
+		[1] = 10770,
+	},
+	[80126] = {
+		[1] = 9602,
+		[2] = 60796,
+	},
+	[4771] = {
+		[1] = 5314,
+	},
+	[14804] = {
+		[1] = 8348,
+		[2] = 15134,
+	},
+	[23302] = {
+		[1] = 10217,
+	},
+	[9783] = {
+		[1] = 6773,
+		[2] = 7133,
+		[3] = 3330,
+		[4] = 80704,
+		[5] = 3416,
+	},
+	[47231] = {
+		[1] = 47237,
+	},
+	[10027] = {
+		[1] = 19370,
+	},
+	[47109] = {
+		[1] = 47115,
+	},
+	[47237] = {
+		[1] = 47231,
+	},
+	[15202] = {
+		[1] = 2126,
+	},
+	[4915] = {
+		[1] = 14364,
+		[2] = 51876,
+	},
+	[13956] = {
+		[1] = 61628,
+	},
+	[51844] = {
+		[1] = 18388,
+	},
+	[83454] = {
+		[1] = 14545,
+		[2] = 51776,
+	},
+	[15346] = {
+		[1] = 15337,
+		[2] = 2973,
+	},
+	[60418] = {
+		[1] = 15276,
+	},
+	[80127] = {
+		[1] = 4362,
+	},
+	[51888] = {
+		[1] = 9759,
+	},
+	[60802] = {
+		[1] = 15611,
+		[2] = 60500,
+	},
+	[65025] = {
+		[1] = 1718,
+		[2] = 10188,
+	},
+	[61058] = {
+		[1] = 11910,
+	},
+	[61186] = {
+		[1] = 15708,
+	},
+	[10245] = {
+		[1] = 19037,
+		[2] = 10783,
+	},
+	[61570] = {
+		[1] = 10090,
+		[2] = 14907,
+		[3] = 6686,
+	},
+	[61007] = {
+		[1] = 10167,
+		[2] = 61289,
+	},
+	[14436] = {
+		[1] = 10139,
+		[2] = 10288,
+	},
+	[14195] = {
+		[1] = 7434,
+	},
+	[10405] = {
+		[1] = 6588,
+	},
+	[83455] = {
+		[1] = 8160,
+	},
+	[7107] = {
+		[1] = 50428,
+	},
+	[17050] = {
+		[1] = 61319,
+		[2] = 23220,
+	},
+	[80128] = {
+		[1] = 9514,
+	},
+	[61493] = {
+		[1] = 3377,
+	},
+	[80848] = {
+		[1] = 13144,
+		[2] = 60626,
+	},
+	[10629] = {
+		[1] = 14174,
+		[2] = 22744,
+	},
+	[2981] = {
+		[1] = 80213,
+	},
+	[18409] = {
+		[1] = 22256,
+	},
+	[61358] = {
+		[1] = 60765,
+		[2] = 14796,
+	},
+	[47110] = {
+		[1] = 47116,
+	},
+	[47238] = {
+		[1] = 47232,
+	},
+	[14916] = {
+		[1] = 6447,
+		[2] = 65103,
+	},
+	[2898] = {
+		[1] = 3273,
+		[2] = 4922,
+	},
+	[15139] = {
+		[1] = 5963,
+		[2] = 15062,
+	},
+	[83200] = {
+		[1] = 15274,
+		[2] = 60112,
+	},
+	[83456] = {
+		[1] = 17078,
+		[2] = 4732,
+		[3] = 14270,
+	},
+	[15076] = {
+		[1] = 15085,
+	},
+	[15108] = {
+		[1] = 7515,
+		[2] = 15107,
+		[3] = 81125,
+	},
+	[15140] = {
+		[1] = 15386,
+		[2] = 19878,
+	},
+	[60675] = {
+		[1] = 7411,
+	},
+	[15395] = {
+		[1] = 2278,
+	},
+	[65026] = {
+		[1] = 22689,
+	},
+	[22343] = {
+		[1] = 20712,
+		[2] = 20713,
+	},
+	[61187] = {
+		[1] = 10504,
+	},
+	[22471] = {
+		[1] = 47165,
+		[2] = 47174,
+	},
+	[18440] = {
+		[1] = 80796,
+	},
+	[18504] = {
+		[1] = 19089,
+	},
+	[23139] = {
+		[1] = 51796,
+	},
+	[81365] = {
+		[1] = 15087,
+		[2] = 11821,
+	},
+	[18696] = {
+		[1] = 8282,
+		[2] = 13081,
+		[3] = 22336,
+	},
+	[83201] = {
+		[1] = 19049,
+	},
+	[7915] = {
+		[1] = 60566,
+		[2] = 10743,
+		[3] = 21804,
+		[4] = 9932,
+		[5] = 18479,
+		[6] = 83216,
+		[7] = 19875,
+	},
+	[15859] = {
+		[1] = 60350,
+	},
+	[9878] = {
+		[1] = 83286,
+		[2] = 6429,
+	},
+	[17734] = {
+		[1] = 18718,
+		[2] = 11746,
+		[3] = 12549,
+	},
+	[15684] = {
+		[1] = 14785,
+		[2] = 15670,
+		[3] = 10388,
+		[4] = 14952,
+	},
+	[8123] = {
+		[1] = 19889,
+		[2] = 15176,
+	},
+	[10150] = {
+		[1] = 14676,
+		[2] = 8122,
+	},
+	[18502] = {
+		[1] = 61596,
+	},
+	[6204] = {
+		[1] = 17740,
+		[2] = 15384,
+		[3] = 15373,
+		[4] = 12960,
+	},
+	[11749] = {
+		[1] = 80734,
+	},
+	[47111] = {
+		[1] = 47117,
+	},
+	[47384] = {
+		[1] = 22495,
+		[2] = 47375,
+	},
+	[47367] = {
+		[1] = 47367,
+		[2] = 21353,
+	},
+	[5939] = {
+		[1] = 6171,
+	},
+	[11909] = {
+		[1] = 6409,
+	},
+	[83202] = {
+		[1] = 19044,
+		[2] = 51819,
+	},
+	[56069] = {
+		[1] = 10272,
+		[2] = 60946,
+		[3] = 13102,
+		[4] = 55339,
+		[5] = 18526,
+	},
+	[2315] = {
+		[1] = 61389,
+	},
+	[15492] = {
+		[1] = 14755,
+	},
+	[80131] = {
+		[1] = 2961,
+	},
+	[7996] = {
+		[1] = 19972,
+		[2] = 3889,
+	},
+	[60804] = {
+		[1] = 18495,
+		[2] = 51734,
+	},
+	[65027] = {
+		[1] = 15071,
+	},
+	[61060] = {
+		[1] = 14441,
+		[2] = 60183,
+		[3] = 80672,
+	},
+	[61188] = {
+		[1] = 14759,
+		[2] = 18700,
+	},
+	[61316] = {
+		[1] = 15537,
+	},
+	[61467] = {
+		[1] = 5627,
+	},
+	[16457] = {
+		[1] = 16449,
+		[2] = 23313,
+	},
+	[8262] = {
+		[1] = 14687,
+	},
+	[6195] = {
+		[1] = 6730,
+	},
+	[61456] = {
+		[1] = 3807,
+	},
+	[16713] = {
+		[1] = 9775,
+	},
+	[83459] = {
+		[1] = 8083,
+	},
+	[2623] = {
+		[1] = 55337,
+		[2] = 55266,
+		[3] = 12604,
+	},
+	[12549] = {
+		[1] = 17734,
+		[2] = 18718,
+		[3] = 11746,
+	},
+	[80132] = {
+		[1] = 15311,
+	},
+	[20057] = {
+		[1] = 20212,
+		[2] = 20058,
+	},
+	[21607] = {
+		[1] = 23663,
+	},
+	[20711] = {
+		[1] = 20710,
+	},
+	[7556] = {
+		[1] = 2944,
+		[2] = 83212,
+	},
+	[2783] = {
+		[1] = 3780,
+	},
+	[14567] = {
+		[1] = 15011,
+	},
+	[47112] = {
+		[1] = 47118,
+	},
+	[47058] = {
+		[1] = 22430,
+		[2] = 47049,
+	},
+	[47368] = {
+		[1] = 47363,
+		[2] = 21354,
+	},
+	[41154] = {
+		[1] = 80509,
+	},
+	[51719] = {
+		[1] = 1195,
+		[2] = 3334,
+		[3] = 6205,
+		[4] = 70045,
+	},
+	[83204] = {
+		[1] = 9847,
+	},
+	[60165] = {
+		[1] = 4383,
+		[2] = 80795,
+	},
+	[13029] = {
+		[1] = 20694,
+		[3] = 61303,
+	},
+	[60421] = {
+		[1] = 23226,
+	},
+	[80133] = {
+		[1] = 2572,
+	},
+	[2963] = {
+		[1] = 80117,
+	},
+	[2075] = {
+		[1] = 60952,
+	},
+	[60933] = {
+		[1] = 1934,
+	},
+	[61061] = {
+		[1] = 6503,
+	},
+	[18313] = {
+		[1] = 60562,
+		[3] = 61053,
+		[4] = 13127,
+		[5] = 83565,
+	},
+	[22472] = {
+		[1] = 13398,
+	},
+	[20073] = {
+		[1] = 4713,
+	},
+	[61573] = {
+		[1] = 9969,
+		[2] = 18480,
+	},
+	[61701] = {
+		[1] = 11925,
+		[2] = 83451,
+	},
+	[47378] = {
+		[1] = 47387,
+		[2] = 22489,
+	},
+	[4126] = {
+		[1] = 61619,
+	},
+	[6739] = {
+		[1] = 60309,
+	},
+	[83461] = {
+		[1] = 10799,
+		[2] = 61621,
+	},
+	[47308] = {
+		[1] = 47314,
+	},
+	[41157] = {
+		[1] = 80522,
+	},
+	[9705] = {
+		[1] = 4456,
+		[2] = 15369,
+	},
+	[4950] = {
+		[1] = 4825,
+	},
+	[60541] = {
+		[1] = 2036,
+	},
+	[60543] = {
+		[1] = 9608,
+		[2] = 60152,
+	},
+	[11193] = {
+		[1] = 10182,
+	},
+	[7749] = {
+		[1] = 11625,
+	},
+	[60293] = {
+		[1] = 61328,
+	},
+	[9766] = {
+		[1] = 10144,
+		[2] = 60161,
+		[3] = 61076,
+		[4] = 60380,
+	},
+	[47369] = {
+		[1] = 47364,
+		[2] = 21357,
+	},
+	[9830] = {
+		[1] = 6630,
+	},
+	[82950] = {
+		[1] = 82951,
+		[2] = 82952,
+		[3] = 82953,
+	},
+	[83206] = {
+		[1] = 6906,
+	},
+	[83462] = {
+		[1] = 6627,
+	},
+	[7027] = {
+		[1] = 80726,
+	},
+	[60422] = {
+		[1] = 5616,
+	},
+	[7059] = {
+		[1] = 18720,
+	},
+	[60678] = {
+		[1] = 6180,
+		[2] = 7229,
+		[3] = 60865,
+	},
+	[60806] = {
+		[1] = 13360,
+	},
+	[60934] = {
+		[1] = 6506,
+	},
+	[14245] = {
+		[1] = 61486,
+	},
+	[10182] = {
+		[1] = 11193,
+	},
+	[1405] = {
+		[1] = 80860,
+		[2] = 60347,
+	},
+	[14612] = {
+		[1] = 10035,
+		[2] = 6835,
+	},
+	[10035] = {
+		[1] = 14612,
+		[2] = 6835,
+	},
+	[6835] = {
+		[1] = 10035,
+		[2] = 14612,
 	},
 }

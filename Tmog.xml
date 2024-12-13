@@ -2,7 +2,6 @@
     <Script file="TmogGearDB.lua" />
     <Script file="DisplayIdDB.lua" />
     <Script file="Tmog.lua" />
-
     <Frame name="TmogFramePreviewTemplate" virtual="true" framestrata="HIGH">
         <Size>
             <AbsDimension x="90" y="110" />
@@ -16,7 +15,7 @@
         </Anchors>
         <Frames>
             <Button name="$parentButton" inherits="UIPanelButtonTemplate" text="">
-                <NormalTexture file="Interface\TransmogFrame\item_bg_normal">
+                <NormalTexture file="Interface\AddOns\Tmog\Textures\item_bg_normal">
                     <Size>
                         <AbsDimension x="128" y="128" />
                     </Size>
@@ -28,7 +27,7 @@
                         </Anchor>
                     </Anchors>
                 </NormalTexture>
-                <PushedTexture file="Interface\TransmogFrame\item_bg_selected">
+                <PushedTexture file="Interface\AddOns\Tmog\Textures\item_bg_selected">
                     <Size>
                         <AbsDimension x="128" y="128" />
                     </Size>
@@ -40,7 +39,7 @@
                         </Anchor>
                     </Anchors>
                 </PushedTexture>
-                <HighlightTexture file="Interface\TransmogFrame\item_bg_highlight" alphaMode="ADD">
+                <HighlightTexture file="Interface\AddOns\Tmog\Textures\item_bg_highlight" alphaMode="ADD">
                     <Size>
                         <AbsDimension x="128" y="128" />
                     </Size>
@@ -64,19 +63,7 @@
                 </Anchors>
                 <Layers>
                     <Layer level="OVERLAY">
-                        <Texture name="$parentRevert" hidden="true" file="Interface\TransmogFrame\revert">
-                            <Size>
-                                <AbsDimension x="16" y="16" />
-                            </Size>
-                            <Anchors>
-                                <Anchor point="TOPLEFT">
-                                    <Offset>
-                                        <AbsDimension x="3" y="-9" />
-                                    </Offset>
-                                </Anchor>
-                            </Anchors>
-                        </Texture>
-                        <Texture name="$parentCheck" hidden="true" file="Interface\TransmogFrame\check">
+                        <Texture name="$parentCheck" hidden="true" file="Interface\AddOns\Tmog\Textures\check">
                             <Size>
                                 <AbsDimension x="16" y="16" />
                             </Size>
@@ -88,6 +75,30 @@
                                 </Anchor>
                             </Anchors>
                         </Texture>
+                        <Texture name="$parentPlus" hidden="true" file="Interface\AddOns\Tmog\Textures\big_plus_normal">
+                            <Size>
+                                <AbsDimension x="128" y="128" />
+                            </Size>
+                            <Anchors>
+                                <Anchor point="TOPLEFT">
+                                    <Offset>
+                                        <AbsDimension x="-20" y="0" />
+                                    </Offset>
+                                </Anchor>
+                            </Anchors>
+                        </Texture>
+                        <Texture name="$parentPlusPushed" hidden="true" file="Interface\AddOns\Tmog\Textures\big_plus_pushed">
+                            <Size>
+                                <AbsDimension x="128" y="128" />
+                            </Size>
+                            <Anchors>
+                                <Anchor point="TOPLEFT">
+                                    <Offset>
+                                        <AbsDimension x="-20" y="0" />
+                                    </Offset>
+                                </Anchor>
+                            </Anchors>
+                        </Texture>  
                     </Layer>
                 </Layers>
                 <Scripts>
@@ -96,7 +107,6 @@
                     </OnClick>
                 </Scripts>
             </Button>
-
             <DressUpModel name="$parentItemModel" scale="4.0">
                 <Size>
                     <AbsDimension x="80" y="107" />
@@ -111,10 +121,8 @@
                 <Frames>
                 </Frames>
             </DressUpModel>
-
         </Frames>
     </Frame>
-
     <Button name="TmogPlayerSlot" virtual="true" inherits="UIPanelButtonTemplate" topLevel="true">
         <NormalTexture name="$parentNormalTexture">
             <Size>
@@ -172,7 +180,7 @@
                 </Texture>
             </Layer>
             <Layer level="ARTWORK">
-                <Texture name="$parentBorder" file="Interface\TransmogFrame\transmog_border">
+                <Texture name="$parentBorder" file="Interface\AddOns\Tmog\Textures\transmog_border">
                     <Size>
                         <AbsDimension x="48" y="48" />
                     </Size>
@@ -186,43 +194,7 @@
                 </Texture>
             </Layer>
             <Layer level="OVERLAY">
-                <Texture name="$parentNoEquip" hidden="true" file="Interface\TransmogFrame\no_equip">
-                    <Size>
-                        <AbsDimension x="26" y="26" />
-                    </Size>
-                    <Anchors>
-                        <Anchor point="CENTER">
-                            <Offset>
-                                <AbsDimension x="-3" y="2" />
-                            </Offset>
-                        </Anchor>
-                    </Anchors>
-                </Texture>
-                <Texture name="$parentBorderHi" hidden="true" file="Interface\TransmogFrame\border_1">
-                    <Size>
-                        <AbsDimension x="48" y="48" />
-                    </Size>
-                    <Anchors>
-                        <Anchor point="CENTER">
-                            <Offset>
-                                <AbsDimension x="-3" y="2" />
-                            </Offset>
-                        </Anchor>
-                    </Anchors>
-                </Texture>
-                <Texture name="$parentBorderFull" hidden="true" file="Interface\TransmogFrame\border_full">
-                    <Size>
-                        <AbsDimension x="48" y="48" />
-                    </Size>
-                    <Anchors>
-                        <Anchor point="CENTER">
-                            <Offset>
-                                <AbsDimension x="-3" y="2" />
-                            </Offset>
-                        </Anchor>
-                    </Anchors>
-                </Texture>
-                <Texture name="$parentBorderSelected" hidden="true" file="Interface\TransmogFrame\border_2">
+                <Texture name="$parentBorderFull" hidden="true" file="Interface\AddOns\Tmog\Textures\border_full">
                     <Size>
                         <AbsDimension x="48" y="48" />
                     </Size>
@@ -236,7 +208,7 @@
                 </Texture>
             </Layer>
             <Layer level="HIGHLIGHT">
-                <Texture name="$parentRevert" hidden="true" file="Interface\TransmogFrame\revert">
+                <Texture name="$parentRevert" hidden="true" file="Interface\AddOns\Tmog\Textures\revert">
                     <Size>
                         <AbsDimension x="16" y="16" />
                     </Size>
@@ -248,7 +220,7 @@
                         </Anchor>
                     </Anchors>
                 </Texture>
-                <Texture name="$parentBorderHighlight" file="Interface\TransmogFrame\border_3">
+                <Texture name="$parentBorderHighlight" file="Interface\AddOns\Tmog\Textures\border_highlight">
                     <Size>
                         <AbsDimension x="48" y="48" />
                     </Size>
@@ -262,7 +234,6 @@
                 </Texture>
             </Layer>
         </Layers>
-
         <Scripts>
             <OnMouseDown>
                 if (arg1 == "RightButton") then
@@ -279,7 +250,6 @@
             </OnLeave>
         </Scripts>
     </Button>
-
     <Frame name="TmogFrame" hidden="true" frameStrata="HIGH" toplevel="true" parent="UIParent" movable="true" enableMouse="true" clampedToScreen="true">
         <Size>
             <AbsDimension x="750" y="506" />
@@ -319,7 +289,7 @@
                 </Texture>
             </Layer>
             <Layer level="BORDER">
-                <Texture name="$parentBackground1" file="Interface\TransmogFrame\ui1">
+                <Texture name="$parentBackground1" file="Interface\AddOns\Tmog\Textures\ui1">
                     <Size>
                         <AbsDimension x="512" y="512" />
                     </Size>
@@ -331,7 +301,7 @@
                         </Anchor>
                     </Anchors>
                 </Texture>
-                <Texture name="$parentBackground2" file="Interface\TransmogFrame\ui2">
+                <Texture name="$parentBackground2" file="Interface\AddOns\Tmog\Textures\ui2">
                     <Size>
                         <AbsDimension x="512" y="512" />
                     </Size>
@@ -358,7 +328,7 @@
                         </Anchor>
                     </Anchors>
                 </FontString>
-                <FontString name="$parentTitleText" inherits="GameFontNormal" text="Tmog v1.8">
+                <FontString name="$parentTitleText" inherits="GameFontNormal" text="">
                     <Size>
                         <AbsDimension x="512" y="14" />
                     </Size>
@@ -374,7 +344,7 @@
         </Layers>
         <Frames>
             <Button name="$parentItemsButton" inherits="UIPanelButtonTemplate" text="Items">
-                <NormalTexture name="$parentNormalTexture" file="Interface\TransmogFrame\tab_active">
+                <NormalTexture name="$parentNormalTexture" file="Interface\AddOns\Tmog\Textures\tab_active">
                     <Size>
                         <AbsDimension x="128" y="32" />
                     </Size>
@@ -386,7 +356,7 @@
                         </Anchor>
                     </Anchors>
                 </NormalTexture>
-                <PushedTexture name="$parentPushedTexture" file="Interface\TransmogFrame\tab_active">
+                <PushedTexture name="$parentPushedTexture" file="Interface\AddOns\Tmog\Textures\tab_active">
                     <Size>
                         <AbsDimension x="128" y="32" />
                     </Size>
@@ -415,7 +385,7 @@
                 </Scripts>
             </Button>
             <Button name="$parentOutfitsButton" inherits="UIPanelButtonTemplate" text="Outfits">
-                <NormalTexture name="$parentNormalTexture" file="Interface\TransmogFrame\tab_inactive">
+                <NormalTexture name="$parentNormalTexture" file="Interface\AddOns\Tmog\Textures\tab_inactive">
                     <Size>
                         <AbsDimension x="128" y="32" />
                     </Size>
@@ -427,7 +397,7 @@
                         </Anchor>
                     </Anchors>
                 </NormalTexture>
-                <PushedTexture name="$parentPushedTexture" file="Interface\TransmogFrame\tab_inactive">
+                <PushedTexture name="$parentPushedTexture" file="Interface\AddOns\Tmog\Textures\tab_inactive">
                     <Size>
                         <AbsDimension x="128" y="32" />
                     </Size>
@@ -510,7 +480,7 @@
 				</Scripts>
 			</CheckButton>
             <Button name="$parentRevert" hidden="false" text="" topLevel="true">
-                <NormalTexture name="$parentNormalTexture" file="Interface\TransmogFrame\revert">
+                <NormalTexture name="$parentNormalTexture" file="Interface\AddOns\Tmog\Textures\revert">
                     <Size>
                         <AbsDimension x="24" y="24" />
                     </Size>
@@ -522,7 +492,7 @@
                         </Anchor>
                     </Anchors>
                 </NormalTexture>
-                <HighlightTexture name="$parentNormalTexture" file="Interface\TransmogFrame\revert"
+                <HighlightTexture name="$parentNormalTexture" file="Interface\AddOns\Tmog\Textures\revert"
                     alphaMode="ADD">
                     <Size>
                         <AbsDimension x="24" y="24" />
@@ -535,7 +505,7 @@
                         </Anchor>
                     </Anchors>
                 </HighlightTexture>
-                <PushedTexture name="$parentNormalTexture" file="Interface\TransmogFrame\revert"
+                <PushedTexture name="$parentNormalTexture" file="Interface\AddOns\Tmog\Textures\revert"
                     alphaMode="ADD">
                     <Size>
                         <AbsDimension x="24" y="24" />
@@ -564,7 +534,7 @@
                     </OnClick>
                     <OnEnter>
                         GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
-                        GameTooltip:SetText('Reset', nil, nil, nil, nil, 1);
+                        GameTooltip:SetText('Revert', nil, nil, nil, nil, 1);
                     </OnEnter>
                     <OnLeave>
                         GameTooltip:Hide();
@@ -591,7 +561,7 @@
                     </OnLeave>
                 </Scripts>
             </Button>
-            <Button name="$parentSaveOutfit" inherits="UIPanelButtonTemplate2" text="Save" topLevel="true">
+            <Button name="$parentSaveOutfit" inherits="UIPanelButtonTemplate" text="Save" topLevel="true">
                 <Size>
                     <AbsDimension x="60" y="24" />
                 </Size>
@@ -641,11 +611,11 @@
                         StaticPopup_Show('TMOG_CONFIRM_DELETE_OUTFIT')
                     </OnClick>
                 </Scripts>
-                <NormalTexture file="Interface\Buttons\CancelButton-Up" />
+                <NormalTexture file="Interface\AddOns\Tmog\Textures\CancelButton-Up" />
                 <PushedTexture file="Interface\Buttons\CancelButton-Down" />
+                <DisabledTexture file="Interface\AddOns\Tmog\Textures\CancelButton-Disabled"/>
                 <HighlightTexture file="Interface\Buttons\CancelButton-Highlight" alphaMode="ADD" />
             </Button>
-
             <Button name="$parentCloseButton" inherits="UIPanelCloseButton">
                 <Anchors>
                     <Anchor point="CENTER" relativePoint="TOPRIGHT">
@@ -655,7 +625,6 @@
                     </Anchor>
                 </Anchors>
             </Button>
-
             <DressUpModel name="$parentPlayerModel" scale="2.0" enableMouse="true">
                 <Size>
                     <AbsDimension x="221" y="362" />
@@ -679,7 +648,6 @@
                 <Frames>
                 </Frames>
             </DressUpModel>
-
             <Button name="$parentHeadSlot" hidden="false" inherits="TmogPlayerSlot" text="" id="1">
                 <Anchors>
                     <Anchor point="TOPLEFT">
@@ -743,7 +711,6 @@
                     </Anchor>
                 </Anchors>
             </Button>
-
             <Button name="$parentHandsSlot" hidden="false" inherits="TmogPlayerSlot" text="" id="10">
                 <Anchors>
                     <Anchor point="TOPLEFT">
@@ -780,7 +747,6 @@
                     </Anchor>
                 </Anchors>
             </Button>
-
             <Button name="$parentMainHandSlot" hidden="false" inherits="TmogPlayerSlot" text="" id="16">
                 <Anchors>
                     <Anchor point="TOPLEFT">
@@ -810,15 +776,14 @@
                     </Anchor>
                 </Anchors>
             </Button>
-
             <Button name="$parentHideUI" hidden="false" inherits="OptionsButtonTemplate" text="HideUI">
                 <Size>
-                    <AbsDimension x="52" y="22" />
+                    <AbsDimension x="62" y="22" />
                 </Size>
                 <Anchors>
                     <Anchor point="BOTTOMLEFT">
                         <Offset>
-                            <AbsDimension x="17" y="9" />
+                            <AbsDimension x="18" y="9" />
                         </Offset>
                     </Anchor>
                 </Anchors>
@@ -830,12 +795,12 @@
             </Button>
             <Button name="$parentRemoveGear" hidden="false" inherits="OptionsButtonTemplate" text="Undress">
                 <Size>
-                    <AbsDimension x="62" y="22" />
+                    <AbsDimension x="65" y="22" />
                 </Size>
                 <Anchors>
-                    <Anchor point="BOTTOMLEFT">
+                    <Anchor point="BOTTOMLEFT" relativeTo="$parentHideUI" relativePoint="BOTTOMRIGHT">
                         <Offset>
-                            <AbsDimension x="70" y="9" />
+                            <AbsDimension x="-2" y="0" />
                         </Offset>
                     </Anchor>
                 </Anchors>
@@ -847,12 +812,12 @@
             </Button>
             <Button name="$parentResetPosition" hidden="false" inherits="OptionsButtonTemplate" text="Reset Position">
                 <Size>
-                    <AbsDimension x="115" y="22" />
+                    <AbsDimension x="105" y="22" />
                 </Size>
                 <Anchors>
-                    <Anchor point="BOTTOMLEFT">
+                    <Anchor point="BOTTOMLEFT" relativeTo="$parentRemoveGear" relativePoint="BOTTOMRIGHT">
                         <Offset>
-                            <AbsDimension x="130" y="9" />
+                            <AbsDimension x="-3" y="0" />
                         </Offset>
                     </Anchor>
                 </Anchors>
@@ -862,7 +827,6 @@
                     </OnClick>
                 </Scripts>
             </Button>
-
             <Button name="$parentLeftArrow" hidden="true">
                 <Size>
                     <AbsDimension x="32" y="32" />
@@ -907,18 +871,29 @@
             </Button>
 			<EditBox name="$parentSearchBox" hidden="true" inherits="InputBoxTemplate" letters="100">
 				<Size>
-					<AbsDimension x="100" y="32" />
+					<AbsDimension x="160" y="32" />
 				</Size>
 				<Anchors>
 					<Anchor point="TOP">
 						<Offset>
-							<AbsDimension x="-250" y="-42"/>
+							<AbsDimension x="-215" y="-42"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
                 <Frames>
+                    <Frame name="$parentIcon">
+						<Size x="14" y="14" />
+						<Anchors>
+							<Anchor point="LEFT" relativeTo="$parent">
+								<Offset x="1" y="-2" />
+							</Anchor>
+						</Anchors>
+						<Backdrop bgFile="Interface\Common\UI-SearchBox-Icon">
+							<Color r="1.0" g="1.0" b="1.0" a="0.6" />
+						</Backdrop>
+					</Frame>
                     <Button name="$parentClearButton">
-                        <Size x="14" y="14" />
+                        <Size x="16" y="16" />
                         <Anchors>
                             <Anchor point="RIGHT" relativeTo="$parent">
                                 <Offset x="-3" y="0" />
@@ -960,7 +935,20 @@
 					<OnEnterPressed>
 						Tmog_Search(this:GetText())
 						this:ClearFocus()
+                        if this:GetText() == "" then
+							TmogFrameSearchBoxIcon:Show()
+						else
+							TmogFrameSearchBoxIcon:Hide()
+						end
 					</OnEnterPressed>
+                    <OnTextChanged>
+                        Tmog_Search(this:GetText())
+                        if this:GetText() == "" then
+							TmogFrameSearchBoxIcon:Show()
+						else
+							TmogFrameSearchBoxIcon:Hide()
+						end
+                    </OnTextChanged>
 				</Scripts>
 				<FontString name="$parentSearchString" inherits="GameFontNormal"></FontString>
 			</EditBox>
@@ -987,16 +975,15 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-
             <Button name="TmogButton" movable="true" parent="Minimap" enableMouse="true" toplevel="true"
                     frameStrata="LOW">
                 <Size x="33" y="33"/>
                 <Anchors>
-                    <Anchor point="CENTER"/>
+                    <Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER"/>
                 </Anchors>
                 <Layers>
                     <Layer level="BACKGROUND">
-                        <Texture file="Interface\Addons\Tmog\Tmog_Portrait">
+                        <Texture file="Interface\Addons\Tmog\Textures\Tmog_Portrait">
                             <Size x="21" y="21"/>
                             <Anchors>
                                 <Anchor point="TOPLEFT">
@@ -1057,7 +1044,6 @@
                     </OnEvent>
                 </Scripts>
             </Button>
-
         </Frames>
         <Scripts>
             <OnMouseDown>

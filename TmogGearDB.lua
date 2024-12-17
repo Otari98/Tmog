@@ -6435,9 +6435,10 @@ TmogGearDB = {
 			[7443] = "Sentinel Gloves",
 		},
 		["Cloth"] = {
+			[41538] = "Green Dress Gloves",
+			[41537] = "Blue Dress Gloves",
 			[41539] = "Teal Dress Gloves",
 			[69113] = "Fresh Bandage Gloves",
-			[41495] = "Torta Nail Polish",
 			[61363] = "Dreamthread Gloves",
 			[10011] = "Stormcloth Gloves",
 			[10019] = "Dreamweave Gloves",

@@ -2,6 +2,44 @@
     <Script file="TmogGearDB.lua" />
     <Script file="DisplayIdDB.lua" />
     <Script file="Tmog.lua" />
+    <Button name="TmogSharedItemTemplate" virtual="true">
+        <Size>
+			<AbsDimension x="147" y="20"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIconTexture">
+					<Size>
+						<AbsDimension x="20" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentName" inherits="GameFontHighlight" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="200" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentIconTexture">
+							<Offset>
+								<AbsDimension x="22" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+        </Layers>
+        <Scripts>
+			<OnClick>
+                TmogTry(this:GetID(), "LeftButton", 1)
+			</OnClick>
+		</Scripts>
+    </Button>
     <Frame name="TmogFramePreviewTemplate" virtual="true" framestrata="HIGH">
         <Size>
             <AbsDimension x="90" y="110" />
@@ -102,8 +140,11 @@
                     </Layer>
                 </Layers>
                 <Scripts>
+                    <OnLoad>
+                        this:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+                    </OnLoad>
                     <OnClick>
-                        TmogTry(this:GetID())
+                        TmogTry(this:GetID(), arg1)
                     </OnClick>
                 </Scripts>
             </Button>
@@ -118,8 +159,6 @@
                         </Offset>
                     </Anchor>
                 </Anchors>
-                <Frames>
-                </Frames>
             </DressUpModel>
         </Frames>
     </Frame>
@@ -208,18 +247,6 @@
                 </Texture>
             </Layer>
             <Layer level="HIGHLIGHT">
-                <Texture name="$parentRevert" hidden="true" file="Interface\AddOns\Tmog\Textures\revert">
-                    <Size>
-                        <AbsDimension x="16" y="16" />
-                    </Size>
-                    <Anchors>
-                        <Anchor point="TOPRIGHT">
-                            <Offset>
-                                <AbsDimension x="5" y="10" />
-                            </Offset>
-                        </Anchor>
-                    </Anchors>
-                </Texture>
                 <Texture name="$parentBorderHighlight" file="Interface\AddOns\Tmog\Textures\border_highlight">
                     <Size>
                         <AbsDimension x="48" y="48" />
@@ -323,7 +350,7 @@
                     <Anchors>
                         <Anchor point="BOTTOM">
                             <Offset>
-                                <AbsDimension x="80" y="10" />
+                                <AbsDimension x="63" y="10" />
                             </Offset>
                         </Anchor>
                     </Anchors>
@@ -480,58 +507,30 @@
 				</Scripts>
 			</CheckButton>
             <Button name="$parentRevert" hidden="false" text="" topLevel="true">
-                <NormalTexture name="$parentNormalTexture" file="Interface\AddOns\Tmog\Textures\revert">
-                    <Size>
-                        <AbsDimension x="24" y="24" />
-                    </Size>
-                    <Anchors>
-                        <Anchor point="TOPLEFT">
-                            <Offset>
-                                <AbsDimension x="0" y="0" />
-                            </Offset>
-                        </Anchor>
-                    </Anchors>
-                </NormalTexture>
-                <HighlightTexture name="$parentNormalTexture" file="Interface\AddOns\Tmog\Textures\revert"
-                    alphaMode="ADD">
-                    <Size>
-                        <AbsDimension x="24" y="24" />
-                    </Size>
-                    <Anchors>
-                        <Anchor point="TOPLEFT">
-                            <Offset>
-                                <AbsDimension x="0" y="0" />
-                            </Offset>
-                        </Anchor>
-                    </Anchors>
-                </HighlightTexture>
-                <PushedTexture name="$parentNormalTexture" file="Interface\AddOns\Tmog\Textures\revert"
-                    alphaMode="ADD">
-                    <Size>
-                        <AbsDimension x="24" y="24" />
-                    </Size>
-                    <Anchors>
-                        <Anchor point="TOPLEFT">
-                            <Offset>
-                                <AbsDimension x="0" y="0" />
-                            </Offset>
-                        </Anchor>
-                    </Anchors>
-                </PushedTexture>
                 <Size>
-                    <AbsDimension x="24" y="24" />
+                    <AbsDimension x="26" y="26" />
                 </Size>
                 <Anchors>
                     <Anchor point="TOPLEFT">
                         <Offset>
-                            <AbsDimension x="208" y="-120" />
+                            <AbsDimension x="206" y="-118" />
                         </Offset>
                     </Anchor>
                 </Anchors>
+                <NormalTexture file="Interface\AddOns\Tmog\Textures\revert"/>
+                <PushedTexture file="Interface\AddOns\Tmog\Textures\revert_pushed"/>
+                <HighlightTexture name="RevertHighlight" file="Interface\AddOns\Tmog\Textures\revert_highlight" alphaMode="ADD"/>
                 <Scripts>
-                    <OnClick>
+                    <OnLoad>
+                        this:RegisterForClicks("LeftButtonDown", "LeftButtonUp")
+                    </OnLoad>
+                    <OnMouseDown>
+                        RevertHighlight:Hide()
+                    </OnMouseDown>
+                    <OnMouseUp>
+                        RevertHighlight:Show()
                         Tmog_Reset()
-                    </OnClick>
+                    </OnMouseUp>
                     <OnEnter>
                         GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
                         GameTooltip:SetText('Revert', nil, nil, nil, nil, 1);
@@ -625,6 +624,35 @@
                     </Anchor>
                 </Anchors>
             </Button>
+            <Frame name="TmogFrameSharedItems" enableMouse="true" frameStrata="TOOLTIP" hidden="true" toplevel="true" movable="true">
+                <Size>
+                     <AbsDimension x="80" y="107" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPRIGHT">
+                        <Offset>
+                            <AbsDimension x="0" y="0" />
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+                    <EdgeSize>
+                        <AbsValue val="16"/>
+                    </EdgeSize>
+                    <TileSize>
+                        <AbsValue val="16"/>
+                    </TileSize>
+                    <BackgroundInsets>
+                        <AbsInset left="5" right="5" top="5" bottom="5"/>
+                    </BackgroundInsets>
+                </Backdrop>
+                <Scripts>
+                    <OnLoad>
+                        this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+                        this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+                    </OnLoad>
+		        </Scripts>
+            </Frame>
             <DressUpModel name="$parentPlayerModel" scale="2.0" enableMouse="true">
                 <Size>
                     <AbsDimension x="221" y="362" />
@@ -869,6 +897,48 @@
                 <DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled" />
                 <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD" />
             </Button>
+            <Button name="$parentFirstPage" hidden="true">
+                <Size>
+                    <AbsDimension x="32" y="32" />
+                </Size>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentPageText" relativePoint="LEFT">
+                        <Offset>
+                            <AbsDimension x="-80" y="0" />
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        Tmog_ChangePage(-1, "first")
+                    </OnClick>
+                </Scripts>
+                <NormalTexture file="Interface\AddOns\Tmog\Textures\FirstPage-Up"/>
+                <PushedTexture file="Interface\AddOns\Tmog\Textures\FirstPage-Down"/>
+                <DisabledTexture file="Interface\AddOns\Tmog\Textures\FirstPage-Disabled"/>
+                <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD" />
+            </Button>
+            <Button name="$parentLastPage" hidden="true">
+                <Size>
+                    <AbsDimension x="32" y="32" />
+                </Size>
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentRightArrow" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="70" y="0" />
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        Tmog_ChangePage(1, "last")
+                    </OnClick>
+                </Scripts>
+                <NormalTexture file="Interface\AddOns\Tmog\Textures\LastPage-Up"/>
+                <PushedTexture file="Interface\AddOns\Tmog\Textures\LastPage-Down"/>
+                <DisabledTexture file="Interface\AddOns\Tmog\Textures\LastPage-Disabled"/>
+                <HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD" />
+            </Button>
 			<EditBox name="$parentSearchBox" hidden="true" inherits="InputBoxTemplate" letters="100">
 				<Size>
 					<AbsDimension x="160" y="32" />
@@ -905,13 +975,11 @@
                         <Scripts>
                             <OnClick>
                                 local box = this:GetParent();
-                                box:SetText("");
-                                box:SetFocus();
-                                box:ClearFocus();
-                                if not TMOG_SEARCH_STRING then
+                                if box:GetText() == "" then
                                     return
                                 end
-                                TMOG_SEARCH_STRING = nil
+                                box:SetText("");
+                                box:ClearFocus();
                                 getglobal(box:GetParent():GetName().."SearchButton"):Click()
                             </OnClick>
                             <OnEnter>

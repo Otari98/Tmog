@@ -1,5 +1,8 @@
 # Tmog
-Addon for TurtleWoW. Adds information about your transmog collection on item tooltips and an Item Browser where you can search and try on all items in the game (including shirts and tabards) and make outfits. This is work in progress, expect bugs and inaccuracies, report them [here](https://github.com/Otari98/Tmog/issues).
+Addon for TurtleWoW. Adds information about your transmog collection on item tooltips and an Item Browser where you can search and try on all items in the game (including shirts and tabards) and make outfits. This is work in progress, expect bugs and inaccuracies, report them [here](https://github.com/Otari98/Tmog/issues).<br><br>
+Slash commands:<br>
+/tmog show - toggles window<br>
+/tmog reset - resets button position<br>
 ## Instruction
 Download addon, extract into Interface/Addons, remove ```-master```, folder should be named Tmog.<br>
 
@@ -18,6 +21,6 @@ Note: some items can say they are not collected but when you equip them you aren
 
 
 ## Thanks to
-Shagu (http://shagu.org/ShaguTweaks/)<br>
-Zaas (https://github.com/Zebouski/MoPGearTooltips/tree/masterturtle)<br>
-CosminPOP (Turtle_TransmogUI)
+[Shagu](https://github.com/shagu)<br>
+[Zaas](https://github.com/Zebouski)<br>
+[CosminPOP](https://github.com/CosminPOP)

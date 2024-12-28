@@ -143,6 +143,18 @@
                     <OnLoad>
                         this:RegisterForClicks("LeftButtonUp", "RightButtonUp")
                     </OnLoad>
+                    <OnMouseDown>
+                        if this:GetID() == 0 then
+                            getglobal(this:GetName().."PlusPushed"):Show()
+                            getglobal(this:GetName().."Plus"):Hide()
+                        end
+                    </OnMouseDown>
+                    <OnMouseUp>
+                        if this:GetID() == 0 then
+                            getglobal(this:GetName().."PlusPushed"):Hide()
+                            getglobal(this:GetName().."Plus"):Show()
+                        end
+                    </OnMouseUp>
                     <OnClick>
                         TmogTry(this:GetID(), arg1)
                     </OnClick>
@@ -162,44 +174,7 @@
             </DressUpModel>
         </Frames>
     </Frame>
-    <Button name="TmogPlayerSlot" virtual="true" inherits="UIPanelButtonTemplate" topLevel="true">
-        <NormalTexture name="$parentNormalTexture">
-            <Size>
-                <AbsDimension x="26" y="26" />
-            </Size>
-            <Anchors>
-                <Anchor point="TOPLEFT">
-                    <Offset>
-                        <AbsDimension x="0" y="0" />
-                    </Offset>
-                </Anchor>
-            </Anchors>
-        </NormalTexture>
-        <DisabledTexture name="$parentDisabledTexture">
-            <Size>
-                <AbsDimension x="26" y="26" />
-            </Size>
-            <Anchors>
-                <Anchor point="TOPLEFT">
-                    <Offset>
-                        <AbsDimension x="0" y="0" />
-                    </Offset>
-                </Anchor>
-            </Anchors>
-        </DisabledTexture>
-        <PushedTexture name="$parentNormalTexture">
-            <Size>
-                <AbsDimension x="26" y="26" />
-            </Size>
-            <Anchors>
-                <Anchor point="TOPLEFT">
-                    <Offset>
-                        <AbsDimension x="0" y="0" />
-                    </Offset>
-                </Anchor>
-            </Anchors>
-        </PushedTexture>
-        <HighlightTexture name="$parentNormalTexture" />
+    <Button name="TmogPlayerSlot" virtual="true" topLevel="true">
         <Size>
             <AbsDimension x="32" y="32" />
         </Size>
@@ -212,7 +187,7 @@
                     <Anchors>
                         <Anchor point="CENTER">
                             <Offset>
-                                <AbsDimension x="-3" y="3" />
+                                <AbsDimension x="0" y="0" />
                             </Offset>
                         </Anchor>
                     </Anchors>
@@ -226,7 +201,7 @@
                     <Anchors>
                         <Anchor point="CENTER">
                             <Offset>
-                                <AbsDimension x="-2" y="3" />
+                                <AbsDimension x="0" y="0" />
                             </Offset>
                         </Anchor>
                     </Anchors>
@@ -240,21 +215,21 @@
                     <Anchors>
                         <Anchor point="CENTER">
                             <Offset>
-                                <AbsDimension x="-3" y="2" />
+                                <AbsDimension x="-1" y="-1" />
                             </Offset>
                         </Anchor>
                     </Anchors>
                 </Texture>
             </Layer>
             <Layer level="HIGHLIGHT">
-                <Texture name="$parentBorderHighlight" file="Interface\AddOns\Tmog\Textures\border_highlight">
+                <Texture name="$parentBorderHighlight" file="Interface\AddOns\Tmog\Textures\border_2">
                     <Size>
-                        <AbsDimension x="48" y="48" />
+                        <AbsDimension x="47" y="47" />
                     </Size>
                     <Anchors>
                         <Anchor point="CENTER">
                             <Offset>
-                                <AbsDimension x="-3" y="2" />
+                                <AbsDimension x="-1" y="-1" />
                             </Offset>
                         </Anchor>
                     </Anchors>
@@ -262,13 +237,16 @@
             </Layer>
         </Layers>
         <Scripts>
-            <OnMouseDown>
+            <OnLoad>
+                this:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+            </OnLoad>
+            <OnClick>
                 if (arg1 == "RightButton") then
                     TmogSlot_OnClick(this:GetID(), arg1)
                 else
                     TmogSlot_OnClick(this:GetID())
                 end
-            </OnMouseDown>
+            </OnClick>
             <OnEnter>
                 Tmog_PlayerSlotOnEnter()
             </OnEnter>
@@ -276,6 +254,20 @@
                 TmogTooltip:Hide()
             </OnLeave>
         </Scripts>
+        <NormalTexture/>
+        <PushedTexture file="Interface\Buttons\UI-Quickslot-Depress">
+            <Size>
+                <AbsDimension x="26" y="27" />
+            </Size>
+            <Anchors>
+                <Anchor point="CENTER">
+                    <Offset>
+                        <AbsDimension x="-1" y="0" />
+                    </Offset>
+                </Anchor>
+            </Anchors>
+        </PushedTexture>
+		<HighlightTexture/>
     </Button>
     <Frame name="TmogFrame" hidden="true" frameStrata="HIGH" toplevel="true" parent="UIParent" movable="true" enableMouse="true" clampedToScreen="true">
         <Size>
@@ -407,7 +399,10 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                        Tmog_switchTab('items')
+                        if this:GetNormalTexture():GetTexture() == "Interface\\AddOns\\Tmog\\Textures\\tab_inactive" then
+                            Tmog_switchTab('items')
+                            Tmog_Search(TmogFrameSearchBox:GetText())
+                        end
                     </OnClick>
                 </Scripts>
             </Button>
@@ -448,7 +443,9 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                        Tmog_switchTab('outfits')
+                        if this:GetNormalTexture():GetTexture() == "Interface\\AddOns\\Tmog\\Textures\\tab_inactive" then
+                            Tmog_switchTab('outfits')
+                        end
                     </OnClick>
                 </Scripts>
             </Button>
@@ -461,14 +458,12 @@
                     </Anchor>
                 </Anchors>
                 <Scripts>
-                    <OnLoad>
-                    </OnLoad>
                     <OnEnter>
-                        GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
-                        GameTooltip:SetText('Select Type', nil, nil, nil, nil, 1);
+                        GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
+                        GameTooltip:SetText('Select Type', nil, nil, nil, nil, 1)
                     </OnEnter>
                     <OnLeave>
-                        GameTooltip:Hide();
+                        GameTooltip:Hide()
                     </OnLeave>
                 </Scripts>
             </Button>
@@ -522,21 +517,23 @@
                 <HighlightTexture name="RevertHighlight" file="Interface\AddOns\Tmog\Textures\revert_highlight" alphaMode="ADD"/>
                 <Scripts>
                     <OnLoad>
-                        this:RegisterForClicks("LeftButtonDown", "LeftButtonUp")
+                        this:RegisterForClicks("LeftButtonUp", "RightButtonUp")
                     </OnLoad>
                     <OnMouseDown>
                         RevertHighlight:Hide()
                     </OnMouseDown>
                     <OnMouseUp>
                         RevertHighlight:Show()
-                        Tmog_Reset()
                     </OnMouseUp>
+                    <OnClick>
+                        Tmog_Reset()
+                    </OnClick>
                     <OnEnter>
-                        GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
-                        GameTooltip:SetText('Revert', nil, nil, nil, nil, 1);
+                        GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
+                        GameTooltip:SetText('Revert', nil, nil, nil, nil, 1)
                     </OnEnter>
                     <OnLeave>
-                        GameTooltip:Hide();
+                        GameTooltip:Hide()
                     </OnLeave>
                 </Scripts>
             </Button>
@@ -552,11 +549,11 @@
                     <OnLoad>
                     </OnLoad>
                     <OnEnter>
-                        GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
-                        GameTooltip:SetText('Select an Outfit', nil, nil, nil, nil, 1);
+                        GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
+                        GameTooltip:SetText('Select an Outfit', nil, nil, nil, nil, 1)
                     </OnEnter>
                     <OnLeave>
-                        GameTooltip:Hide();
+                        GameTooltip:Hide()
                     </OnLeave>
                 </Scripts>
             </Button>
@@ -573,11 +570,11 @@
                 </Anchors>
                 <Scripts>
                     <OnEnter>
-                        GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
-                        GameTooltip:SetText("Save Outfit");
+                        GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
+                        GameTooltip:SetText("Save Outfit")
                     </OnEnter>
                     <OnLeave>
-                        GameTooltip:Hide();
+                        GameTooltip:Hide()
                     </OnLeave>
                     <OnClick>
                         Tmog_SaveOutfit()
@@ -600,11 +597,11 @@
                 </HitRectInsets>
                 <Scripts>
                     <OnEnter>
-                        GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 4), -(this:GetHeight() / 4));
-                        GameTooltip:SetText("Delete Outfit");
+                        GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 4), -(this:GetHeight() / 4))
+                        GameTooltip:SetText("Delete Outfit")
                     </OnEnter>
                     <OnLeave>
-                        GameTooltip:Hide();
+                        GameTooltip:Hide()
                     </OnLeave>
                     <OnClick>
                         StaticPopup_Show('TMOG_CONFIRM_DELETE_OUTFIT')
@@ -648,8 +645,8 @@
                 </Backdrop>
                 <Scripts>
                     <OnLoad>
-                        this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
-                        this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+                        this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b)
+                        this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b)
                     </OnLoad>
 		        </Scripts>
             </Frame>
@@ -666,7 +663,7 @@
                 </Anchors>
                 <Scripts>
                     <OnLoad>
-                        TmogModel_OnLoad();
+                        TmogModel_OnLoad()
                     </OnLoad>
                     <OnUpdate>
                     </OnUpdate>
@@ -743,7 +740,7 @@
                 <Anchors>
                     <Anchor point="TOPLEFT">
                         <Offset>
-                            <AbsDimension x="205" y="-150" />
+                            <AbsDimension x="202" y="-150" />
                         </Offset>
                     </Anchor>
                 </Anchors>
@@ -779,7 +776,7 @@
                 <Anchors>
                     <Anchor point="TOPLEFT">
                         <Offset>
-                            <AbsDimension x="80" y="-440" />
+                            <AbsDimension x="80" y="-432" />
                         </Offset>
                     </Anchor>
                 </Anchors>
@@ -974,31 +971,31 @@
                         </Backdrop>
                         <Scripts>
                             <OnClick>
-                                local box = this:GetParent();
+                                local box = this:GetParent()
+                                box:SetText("")
+                                box:ClearFocus()
                                 if box:GetText() == "" then
                                     return
                                 end
-                                box:SetText("");
-                                box:ClearFocus();
-                                getglobal(box:GetParent():GetName().."SearchButton"):Click()
+                                Tmog_Search(box:GetText())
                             </OnClick>
                             <OnEnter>
                                 TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT", 0, 0)
                                 TmogTooltip:SetText("Clear")
                                 TmogTooltip:Show()
-                                this:SetBackdropColor(1.0, 1.0, 1.0, 1.0);
+                                this:SetBackdropColor(1.0, 1.0, 1.0, 1.0)
                             </OnEnter>
                             <OnLeave>
                                 TmogTooltip:Hide()
-                                this:SetBackdropColor(1.0, 1.0, 1.0, 0.6);
+                                this:SetBackdropColor(1.0, 1.0, 1.0, 0.6)
                             </OnLeave>
                         </Scripts>
                     </Button>
                 </Frames>
 				<Scripts>
 					<OnLoad>
-						this:SetAutoFocus(false);
-						this:SetTextInsets(0, 8, 0, 0);
+						this:SetAutoFocus(false)
+						this:SetTextInsets(0, 8, 0, 0)
 					</OnLoad>
 					<OnEnterPressed>
 						Tmog_Search(this:GetText())
@@ -1020,7 +1017,7 @@
 				</Scripts>
 				<FontString name="$parentSearchString" inherits="GameFontNormal"></FontString>
 			</EditBox>
-            <Button name="TmogFrameSearchButton" hidden="true" inherits="UIPanelButtonTemplate2" parent="TmogFrameSearchBox">
+            <!--Button name="TmogFrameSearchButton" hidden="true" inherits="UIPanelButtonTemplate2" parent="TmogFrameSearchBox">
 				<Size>
 					<AbsDimension x="69" y="32"/>
 				</Size>
@@ -1042,7 +1039,7 @@
 						CloseDropDownMenus()
 					</OnClick>
 				</Scripts>
-			</Button>
+			</Button-->
             <Button name="TmogButton" movable="true" parent="Minimap" enableMouse="true" toplevel="true"
                     frameStrata="LOW">
                 <Size x="33" y="33"/>
@@ -1073,34 +1070,33 @@
                 <HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
                 <Scripts>
                     <OnLoad>
-                            this:RegisterForClicks("RightButtonUp")
-                            this:RegisterForDrag("LeftButton")
-                            this:SetClampedToScreen(true)
-                            this:RegisterEvent("PLAYER_LOGIN")
+                        this:RegisterForDrag("LeftButton")
+                        this:SetClampedToScreen(true)
+                        this:RegisterEvent("PLAYER_LOGIN")
                     </OnLoad>
                     <OnDragStart>
-                            this:LockHighlight()
-                            this:StartMoving()
+                        this:LockHighlight()
+                        this:StartMoving()
                     </OnDragStart>
                     <OnDragStop>
-                            this:UnlockHighlight()
-                            this:StopMovingOrSizing()
-                            TMOG_POSITION = {this:GetCenter()} 
+                        this:UnlockHighlight()
+                        this:StopMovingOrSizing()
+                        TMOG_POSITION = {this:GetCenter()} 
                     </OnDragStop>
                     <OnEnter>
-                            GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT", 0, 0)
-                            GameTooltip:AddLine('Tmog', 1, 1, 1)
-                            GameTooltip:AddLine('Left-click to toggle frame\nHold Left-click and drag to move this button')
-                            GameTooltip:Show()
+                        local version = GetAddOnMetadata("Tmog", "Version")
+                        GameTooltip:SetOwner(this, "ANCHOR_TOPLEFT", 0, 0)
+                        GameTooltip:AddLine('Tmog v.' .. version, 1, 1, 1)
+                        GameTooltip:AddLine('Left-click to toggle dressing room\nHold Left-click and drag to move this button')
+                        GameTooltip:Show()
                     </OnEnter>
                     <OnLeave>
-                            GameTooltip:Hide()
+                        GameTooltip:Hide()
                     </OnLeave>
                     <OnMouseUp>
-                            if arg1 == "LeftButton" then
-                                TmogFrame_Toggle()
-                            end
-                            CloseDropDownMenus()
+                        if arg1 == "LeftButton" then
+                            TmogFrame_Toggle()
+                        end
                     </OnMouseUp>
                     <OnEvent>
                         if event then
@@ -1114,30 +1110,24 @@
             </Button>
         </Frames>
         <Scripts>
-            <OnMouseDown>
-                CloseDropDownMenus()
-                TmogFrameSearchBox:ClearFocus()
-            </OnMouseDown>
             <OnLoad>
-                this:RegisterForDrag("LeftButton");
-                this:SetMovable(1);
-                this:SetUserPlaced(true);
-                Tmog_OnLoad();
+                TmogFrame_OnLoad()
             </OnLoad>
             <OnShow>
-                PlaySound("igCharacterInfoOpen");
-                TmogFrame_OnShow();
+                TmogFrame_OnShow()
             </OnShow>
             <OnHide>
                 TmogFrame_OnHide()
             </OnHide>
+            <OnMouseDown>
+                CloseDropDownMenus()
+                TmogFrameSearchBox:ClearFocus()
+            </OnMouseDown>
             <OnDragStart>
-                this:StartMoving();
-                this.isMoving = true;
+                this:StartMoving()
             </OnDragStart>
             <OnDragStop>
-                this:StopMovingOrSizing();
-                this.isMoving = false;
+                this:StopMovingOrSizing()
             </OnDragStop>
             <OnMouseWheel>
                 Tmog_ChangePage(arg1)

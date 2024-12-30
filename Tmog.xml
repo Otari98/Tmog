@@ -138,6 +138,20 @@
                             </Anchors>
                         </Texture>  
                     </Layer>
+                    <Layer level="HIGHLIGHT">
+                        <Texture name="$parentPlusHighlight" hidden="true" file="Interface\AddOns\Tmog\Textures\big_plus_highlight" alphamode="ADD">
+                            <Size>
+                                <AbsDimension x="128" y="128" />
+                            </Size>
+                            <Anchors>
+                                <Anchor point="TOPLEFT">
+                                    <Offset>
+                                        <AbsDimension x="-20" y="0" />
+                                    </Offset>
+                                </Anchor>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
                 </Layers>
                 <Scripts>
                     <OnLoad>
@@ -145,6 +159,7 @@
                     </OnLoad>
                     <OnMouseDown>
                         if this:GetID() == 0 then
+                            getglobal(this:GetName().."PlusHighlight"):Hide()
                             getglobal(this:GetName().."PlusPushed"):Show()
                             getglobal(this:GetName().."Plus"):Hide()
                         end
@@ -818,7 +833,7 @@
                     </OnClick>
                 </Scripts>
             </Button>
-            <Button name="$parentRemoveGear" hidden="false" inherits="OptionsButtonTemplate" text="Undress">
+            <Button name="$parentUndress" hidden="false" inherits="OptionsButtonTemplate" text="Undress">
                 <Size>
                     <AbsDimension x="65" y="22" />
                 </Size>
@@ -831,7 +846,7 @@
                 </Anchors>
                 <Scripts>
                     <OnClick>
-                        Tmog_RemoveCurrentGear()
+                        Tmog_Undress()
                     </OnClick>
                 </Scripts>
             </Button>
@@ -840,7 +855,7 @@
                     <AbsDimension x="105" y="22" />
                 </Size>
                 <Anchors>
-                    <Anchor point="BOTTOMLEFT" relativeTo="$parentRemoveGear" relativePoint="BOTTOMRIGHT">
+                    <Anchor point="BOTTOMLEFT" relativeTo="$parentUndress" relativePoint="BOTTOMRIGHT">
                         <Offset>
                             <AbsDimension x="-3" y="0" />
                         </Offset>
@@ -1108,6 +1123,123 @@
                     </OnEvent>
                 </Scripts>
             </Button>
+            <Button name="TmogFrameShareOutfit" inherits="UIPanelButtonTemplate" text="Share" topLevel="true" hidden="true">
+                <Size>
+                    <AbsDimension x="65" y="24" />
+                </Size>
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset>
+                            <AbsDimension x="75" y="-45" />
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        this:Disable()
+                    </OnLoad>
+                    <OnEnter>
+                        GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
+                        GameTooltip:SetText("Share Outfit")
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide()
+                    </OnLeave>
+                    <OnClick>
+                        Tmog_ShareOutfit_OnClick()
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Button name="TmogFrameImportOutfit" inherits="UIPanelButtonTemplate" text="Import" toplevel="true" hidden="true">
+                <Size>
+                    <AbsDimension x="70" y="24" />
+                </Size>
+                <Anchors>
+                    <Anchor point="CENTER" relativeTo="TmogFrameShareOutfit" relativePoint="RIGHT">
+                        <Offset>
+                            <AbsDimension x="50" y="0" />
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnEnter>
+                        GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
+                        GameTooltip:SetText("Import Outfit")
+                    </OnEnter>
+                    <OnLeave>
+                        GameTooltip:Hide()
+                    </OnLeave>
+                    <OnClick>
+                        Tmog_ImportOutfit_OnClick()
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Frame name="TmogFrameShareDialog" hidden="true" movable="true" enableMouse="true" toplevel="true">
+                <Size x="300" y="90"/>
+                <Anchors>
+                    <Anchor point="CENTER">
+                        <Offset>
+                            <AbsDimension x="0" y="0" />
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <FontString name="$parentHint" inherits="GameFontNormal" text="Copy this code:" justifyH="LEFT" toplevel="true">
+                            <Size x="200" y="25"/>
+                            <Anchors>
+                                <Anchor point="CENTER">
+                                    <Offset>
+                                        <AbsDimension x="-20" y="20"/>
+                                    </Offset>
+                                </Anchor>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+                    <BackgroundInsets>
+                        <AbsInset left="11" right="12" top="12" bottom="11"/>
+                    </BackgroundInsets>
+                    <TileSize>
+                        <AbsValue val="32"/>
+                    </TileSize>
+                    <EdgeSize>
+                        <AbsValue val="32"/>
+                    </EdgeSize>
+                </Backdrop>
+                <Frames>
+                    <EditBox name="$parentEditBox" inherits="InputBoxTemplate">
+                        <Size>
+                            <AbsDimension x="250" y="32" />
+                        </Size>
+                        <Anchors>
+                            <Anchor point="CENTER">
+                                <Offset>
+                                    <AbsDimension x="0" y="0"/>
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                        <Scripts>
+                            <OnLoad>
+                                this:SetJustifyH("CENTER")
+                            </OnLoad>
+                            <OnEscapePressed>
+                                getglobal(this:GetParent():GetName().."CloseButton"):Click()
+                            </OnEscapePressed>
+                        </Scripts>
+                    </EditBox>
+                    <Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+                        <Anchors>
+                            <Anchor point="CENTER" relativePoint="TOPRIGHT">
+                                <Offset>
+                                    <AbsDimension x="-20" y="-20" />
+                                </Offset>
+                            </Anchor>
+                        </Anchors>
+                    </Button>
+                </Frames>
+            </Frame>
         </Frames>
         <Scripts>
             <OnLoad>

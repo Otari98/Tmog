@@ -229,7 +229,7 @@ end
 
 local function SetContains(set, key, value)
     if not set then
-        return
+        return false
     end
     if not key and value then
         for _,v in pairs(set) do
@@ -1163,6 +1163,7 @@ function Tmog_Reset()
     Tmog.currentOutfit = nil
     TmogFrameSaveOutfit:Disable()
     TmogFrameDeleteOutfit:Disable()
+    TmogFrameShareOutfit:Disable()
     UIDropDownMenu_SetText("Outfits", TmogFrameOutfitsDropDown)
 
     TmogFramePlayerModel:SetPosition(0, 0, 0)
@@ -1493,7 +1494,7 @@ function Tmog:DrawPreviews(noDraw)
                     if race == "gnome" then
                         Y = Y - 0.3
                     end
-                    if race == "undead" then
+                    if race == "scourge" then
                         if sex == 3 then
                             Z = Z + 1
                             Y = Y - 0.5
@@ -1538,7 +1539,7 @@ function Tmog:DrawPreviews(noDraw)
                             Z = Z - 0.5
                         end
                     end
-                    if race == "undead" then
+                    if race == "scourge" then
                         if sex == 3 then
                             Z = Z + 1
                             X = X - 0.5
@@ -1560,7 +1561,7 @@ function Tmog:DrawPreviews(noDraw)
                     if race == "orc" and sex == 3 then
                         Y = Y + 0.8
                     end
-                    if race == "undead" then
+                    if race == "scourge" then
                         if sex == 3 then
                             Z = Z + 1
                             Y = Y + 1
@@ -1582,7 +1583,8 @@ function Tmog:DrawPreviews(noDraw)
                 if slot == 5 or slot == 4 or slot == 19 then
                     if race == "bloodelf" then
                         if sex == 3 then
-                            Z = Z + 1
+                            Z = Z + 2
+                            X = X + 0.2
                         end
                         Z = Z - 1
                     end
@@ -1596,6 +1598,11 @@ function Tmog:DrawPreviews(noDraw)
                     end
                     if race == "orc" and sex == 3 then
                         Y = Y + 0.5
+                    end
+                    if race == "orc" then
+                        if sex == 3 then
+                            Z = Z + 1
+                        end
                     end
                     model:SetFacing(0.3)
                     model:SetPosition(Z + 5.8, X + 0.1, Y - 1.2)
@@ -1645,7 +1652,7 @@ function Tmog:DrawPreviews(noDraw)
                     if race == "orc" and sex == 3 then
                         Z = Z + 0.5
                     end
-                    if race == "undead" then
+                    if race == "scourge" then
                         if sex == 3 then
                             Z = Z + 1.3
                             X = X - 0.5
@@ -1726,7 +1733,7 @@ function Tmog:DrawPreviews(noDraw)
                             Z = Z + 1
                         end
                     end
-                    if race == "undead" then
+                    if race == "scourge" then
                         if sex == 3 then
                             Z = Z + 1.3
                         end
@@ -1773,7 +1780,7 @@ function Tmog:DrawPreviews(noDraw)
                             Z = Z + 1
                         end
                     end
-                    if race == "undead" then
+                    if race == "scourge" then
                         if sex == 3 then
                             Z = Z + 1.3
                         end
@@ -1800,22 +1807,111 @@ function Tmog:DrawPreviews(noDraw)
                 if slot == 16 then
                     model:SetFacing(0.61)
                     if race == "gnome" then
-                        Y = Y - 2
+                        Y = Y - 1.5
+                        Z = Z + 1
                     end
                     if race == "dwarf" then
                         Y = Y - 1
+                    end
+                    if race == "bloodelf" then
+                        if sex == 3 then
+                            Z = Z + 2.5
+                            X = X + 0.2
+                        end
+                    end
+                    if race == "orc" then
+                        if sex == 3 then
+                            Z = Z + 1
+                        end
+                    end
+                    if race == "troll" then
+                        if sex == 2 then
+                            Y = Y + 1
+                        end
+                    end
+                    if race == "goblin" then
+                        if sex == 2 then
+                            model:SetFacing(0.9)
+                            Y = Y + 0.5
+                        end
                     end
                     model:SetPosition(Z + 3.8, X, Y + 0.4)
                 end
                 -- oh / ranged
                 if slot == 17 or slot == 18 then
-                    model:SetFacing(-0.61)
+                    local _, _, _, _, _, _, _, loc  = GetItemInfo(itemID)
+                    if loc == "INVTYPE_RANGED" or loc == "INVTYPE_WEAPONOFFHAND" or loc == "INVTYPE_HOLDABLE" then
+                        model:SetFacing(-0.61)
+                        if race == "bloodelf" then
+                            if sex == 3 then
+                                model:SetFacing(-1)
+                            end
+                        end
+                    else
+                        model:SetFacing(0.61)
+                        if race == "goblin" then
+                            if sex == 2 then
+                                model:SetFacing(0.9)
+                            end
+                        end
+                    end
+                    -- shield
+                    if loc == "INVTYPE_SHIELD" then
+                        model:SetFacing(-1.5)
+                        if race == "scourge" then
+                            if sex == 3 then
+                                model:SetFacing(-1)
+                                Z = Z + 2
+                                Y = Y - 0.5
+                            end
+                        end
+                        if race == "goblin" then
+                            if sex == 3 then
+                                X = X - 0.3
+                            end
+                            Z = Z + 0.2
+                        end
+                        if race == "orc" then
+                            if sex == 3 then
+                                X = X - 0.8
+                            end
+                        end
+                        if race == "nightelf"then
+                            X = X - 0.3
+                            Y = Y - 1
+                        end
+                        if race == "bloodelf" then
+                            Y = Y - 1
+                        end
+                    end
 
+                    if race == "troll" then
+                        if sex == 2 then
+                            Y = Y + 1
+                        end
+                    end
+                    if race == "bloodelf" then
+                        if sex == 3 then
+                            Z = Z + 2.5
+                            X = X + 0.2
+                        end
+                    end
                     if race == "gnome" then
-                        Y = Y - 2
+                        Y = Y - 1.5
+                        Z = Z + 1
                     end
                     if race == "dwarf" then
                         Y = Y - 1
+                    end
+                    if race == "orc" then
+                        if sex == 3 then
+                            Z = Z + 1
+                        end
+                    end
+                    if race == "goblin" then
+                        if sex == 2 then
+                            Y = Y + 0.5
+                        end
                     end
                     model:SetPosition(Z + 3.8, X, Y + 0.4)
                 end
@@ -1905,13 +2001,13 @@ function Tmog:DrawPreviews(noDraw)
                 button:Show()
                 button:SetID(outfitIndex)
 
-                if frame.name == Tmog.currentOutfit then
+                if name == Tmog.currentOutfit then
                     button:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_selected")
                 else
                     button:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_normal")
                 end
 
-                Tmog_AddOutfitTooltip(button, frame.name)
+                Tmog_AddOutfitTooltip(button, name)
 
                 local model = getglobal("TmogFramePreview" .. outfitIndex .. "ItemModel")
                 local Z, X, Y = model:GetPosition()
@@ -1922,7 +2018,7 @@ function Tmog:DrawPreviews(noDraw)
                 model:SetPosition(Z + 1.5, X, Y)
                 model:Undress()
 
-                for _, itemID in pairs(TMOG_PLAYER_OUTFITS[frame.name]) do
+                for _, itemID in pairs(TMOG_PLAYER_OUTFITS[name]) do
                     model:TryOn(itemID)
                 end
 
@@ -2040,11 +2136,14 @@ end
 
 function TmogSlot_OnClick(InventorySlotId, rightClick)
     if IsShiftKeyDown() then
-        Tmog_LinkItem(Tmog.currentGear[InventorySlotId])
+        Tmog:LinkItem(Tmog.currentGear[InventorySlotId])
 
     elseif rightClick then
         
         if Tmog.currentGear[InventorySlotId] == 0 then
+            if Tmog.actualGear[InventorySlotId] == 0 then
+                return
+            end
             TmogFramePlayerModel:TryOn(Tmog.actualGear[InventorySlotId])
             Tmog.currentGear[InventorySlotId] = Tmog.actualGear[InventorySlotId]
         else
@@ -2184,7 +2283,7 @@ function TmogTry(itemId, arg1, noSelect)
         if Tmog.currentTab == "items" then
             
             if IsShiftKeyDown() then
-                Tmog_LinkItem(itemId)
+                Tmog:LinkItem(itemId)
             else
                 TmogFramePlayerModel:TryOn(itemId)
                 Tmog.currentGear[Tmog.currentSlot] = itemId
@@ -2210,6 +2309,10 @@ function TmogTry(itemId, arg1, noSelect)
             end
 
             local outfit = Tmog.previewButtons[this:GetID()].name
+            if IsShiftKeyDown() then
+                Tmog:LinkOutfit(outfit)
+                return
+            end
             Tmog.currentOutfit = outfit
 
             Tmog_LoadOutfit(outfit)
@@ -2349,7 +2452,7 @@ function Tmog_AddSharedItemTooltip(frame)
     end)
 end
 
-function Tmog_LinkItem(itemId)
+function Tmog:LinkItem(itemId)
     if not itemId or itemId == 0 then
         return
     end
@@ -2359,13 +2462,30 @@ function Tmog_LinkItem(itemId)
     local _, _, _, color = GetItemQualityColor(quality)
 
     if WIM_EditBoxInFocus then
-        WIM_EditBoxInFocus:Insert(color.."|Hitem:"..itemId..":0:0:0|h["..itemName.."]|h|r");
+        WIM_EditBoxInFocus:Insert(color.."|Hitem:"..itemId..":0:0:0|h["..itemName.."]|h|r")
     elseif ChatFrameEditBox:IsVisible() then
-        ChatFrameEditBox:Insert(color.."|Hitem:"..itemId..":0:0:0|h["..itemName.."]|h|r");
+        ChatFrameEditBox:Insert(color.."|Hitem:"..itemId..":0:0:0|h["..itemName.."]|h|r")
     end
 end
 
-function Tmog_RemoveCurrentGear()
+function Tmog:LinkOutfit(outfit)
+    if not outfit or outfit == "" then
+        return
+    end
+
+    local code = "T.O.L."
+    for slot, id in pairs(TMOG_PLAYER_OUTFITS[outfit]) do
+        code = code..slot..":"..id..";"
+    end
+
+    if WIM_EditBoxInFocus then
+        WIM_EditBoxInFocus:Insert(code)
+    elseif ChatFrameEditBox:IsVisible() then
+        ChatFrameEditBox:Insert(code)
+    end
+end
+
+function Tmog_Undress()
     TmogFramePlayerModel:Undress()
 
     for _, InventorySlotId in pairs(Tmog.inventorySlots) do
@@ -2450,13 +2570,20 @@ function Tmog_AddOutfitTooltip(frame, outfit)
                 end
             end
         end
-        getglobal(frame:GetParent():GetName().."ItemModel"):SetLight(unpack(previewHighlight))
+        if this:GetID() == 0 then
+            if not getglobal(this:GetName().."PlusPushed"):IsVisible() then
+                getglobal(this:GetName().."PlusHighlight"):Show()
+            end
+        else
+            getglobal(this:GetParent():GetName().."ItemModel"):SetLight(unpack(previewHighlight))
+        end
         TmogTooltip:Show()
     end)
 
     frame:SetScript("OnLeave", function()
-        getglobal(frame:GetParent():GetName().."ItemModel"):SetLight(unpack(previewNormalLight))
+        getglobal(this:GetParent():GetName().."ItemModel"):SetLight(unpack(previewNormalLight))
         TmogTooltip:Hide()
+        getglobal(this:GetName().."PlusHighlight"):Hide()
     end)
 end
 
@@ -2503,14 +2630,14 @@ function Tmog_AddItemTooltip(frame, text)
                 end
             end
         end
-        getglobal(frame:GetParent():GetName().."ItemModel"):SetLight(unpack(previewHighlight))
+        getglobal(this:GetParent():GetName().."ItemModel"):SetLight(unpack(previewHighlight))
         TmogTooltip:Show()
     end)
 
     frame:SetScript("OnLeave", function()
         TmogTooltip:Hide()
         TmogTooltip.itemID = nil
-        getglobal(frame:GetParent():GetName().."ItemModel"):SetLight(unpack(previewNormalLight))
+        getglobal(this:GetParent():GetName().."ItemModel"):SetLight(unpack(previewNormalLight))
     end)
 end
 
@@ -2534,13 +2661,23 @@ function Tmog_HideUI()
 end
 
 function Tmog_LoadOutfit(outfit)
+    if IsShiftKeyDown() then
+        Tmog:LinkOutfit(outfit)
+        return
+    end
     UIDropDownMenu_SetText(outfit, TmogFrameOutfitsDropDown)
 
     Tmog.currentOutfit = outfit
-    Tmog:EnableOutfitSaveButton()
-    TmogFrameDeleteOutfit:Enable()
+    TmogFrameSaveOutfit:Disable()
 
-    Tmog_RemoveCurrentGear()
+    TmogFrameDeleteOutfit:Enable()
+    TmogFrameShareOutfit:Enable()
+
+    TmogFramePlayerModel:Undress()
+
+    for _, InventorySlotId in pairs(Tmog.inventorySlots) do
+        Tmog.currentGear[InventorySlotId] = 0
+    end
 
     for slot, itemID in pairs(TMOG_PLAYER_OUTFITS[outfit]) do
         if slot ~= 17 and slot ~= 16 then
@@ -2576,6 +2713,8 @@ end
 function Tmog:EnableOutfitSaveButton()
     if Tmog.currentOutfit ~= nil then
         TmogFrameSaveOutfit:Enable()
+        TmogFrameDeleteOutfit:Enable()
+        TmogFrameShareOutfit:Enable()
     end
 end
 
@@ -2602,7 +2741,7 @@ function Tmog_DeleteOutfit()
 
     TmogFrameSaveOutfit:Disable()
     TmogFrameDeleteOutfit:Disable()
-    
+    TmogFrameShareOutfit:Disable()
     UIDropDownMenu_SetText("Outfits", TmogFrameOutfitsDropDown)
 
     if Tmog.currentTab == "outfits" then
@@ -2622,14 +2761,15 @@ StaticPopupDialogs["TMOG_NEW_OUTFIT"] = {
     hasEditBox = 1,
 
     OnShow = function()
-        if Tmog.currentPage == 1 and Tmog.currentTab == "outfits" then
-            getglobal("TmogFramePreview1ButtonPlus"):Hide()
-            getglobal("TmogFramePreview1ButtonPlusPushed"):Show()
-        else
-            getglobal("TmogFramePreview1ButtonPlus"):Hide()
-            getglobal("TmogFramePreview1ButtonPlusPushed"):Hide()
+        if Tmog.currentTab == "outfits" then
+            if Tmog.currentPage == 1 then
+                getglobal("TmogFramePreview1ButtonPlus"):Hide()
+                getglobal("TmogFramePreview1ButtonPlusPushed"):Show()
+            else
+                getglobal("TmogFramePreview1ButtonPlus"):Hide()
+                getglobal("TmogFramePreview1ButtonPlusPushed"):Hide()
+            end
         end
-
         getglobal(this:GetName().."EditBox"):SetFocus()
         getglobal(this:GetName() .. "EditBox"):SetScript("OnEnterPressed", function()
             StaticPopup1Button1:Click()
@@ -2643,15 +2783,15 @@ StaticPopupDialogs["TMOG_NEW_OUTFIT"] = {
 
     OnAccept = function()
         local outfitName = getglobal(this:GetParent():GetName() .. "EditBox"):GetText()
-
-        if Tmog.currentPage == 1 and Tmog.currentTab == "outfits" then
-            getglobal("TmogFramePreview1ButtonPlus"):Show()
-            getglobal("TmogFramePreview1ButtonPlusPushed"):Hide()
-        else
-            getglobal("TmogFramePreview1ButtonPlus"):Hide()
-            getglobal("TmogFramePreview1ButtonPlusPushed"):Hide()
+        if Tmog.currentTab == "outfits" then
+            if Tmog.currentPage == 1 then
+                getglobal("TmogFramePreview1ButtonPlus"):Show()
+                getglobal("TmogFramePreview1ButtonPlusPushed"):Hide()
+            else
+                getglobal("TmogFramePreview1ButtonPlus"):Hide()
+                getglobal("TmogFramePreview1ButtonPlusPushed"):Hide()
+            end
         end
-
         if outfitName == "" then
             StaticPopup_Show("TMOG_OUTFIT_EMPTY_NAME")
             return
@@ -2664,18 +2804,21 @@ StaticPopupDialogs["TMOG_NEW_OUTFIT"] = {
 
         UIDropDownMenu_SetText(outfitName, TmogFrameOutfitsDropDown)
         Tmog.currentOutfit = outfitName
-        Tmog:EnableOutfitSaveButton()
+        TmogFrameDeleteOutfit:Enable()
+        TmogFrameShareOutfit:Enable()
         Tmog_SaveOutfit()
         getglobal(this:GetParent():GetName() .. "EditBox"):SetText("")
     end,
 
     OnCancel = function()
-        if Tmog.currentPage == 1 and Tmog.currentTab == "outfits" then
-            getglobal("TmogFramePreview1ButtonPlus"):Show()
-            getglobal("TmogFramePreview1ButtonPlusPushed"):Hide()
-        else
-            getglobal("TmogFramePreview1ButtonPlus"):Hide()
-            getglobal("TmogFramePreview1ButtonPlusPushed"):Hide()
+        if Tmog.currentTab == "outfits" then
+            if Tmog.currentPage == 1 then
+                getglobal("TmogFramePreview1ButtonPlus"):Show()
+                getglobal("TmogFramePreview1ButtonPlusPushed"):Hide()
+            else
+                getglobal("TmogFramePreview1ButtonPlus"):Hide()
+                getglobal("TmogFramePreview1ButtonPlusPushed"):Hide()
+            end
         end
     end,
 
@@ -2709,6 +2852,53 @@ StaticPopupDialogs["TMOG_CONFIRM_DELETE_OUTFIT"] = {
 
     OnAccept = function()
         Tmog_DeleteOutfit()
+    end,
+
+    timeout = 0,
+    whileDead = 1,
+    hideOnEscape = 1,
+}
+
+StaticPopupDialogs["TMOG_BAD_OUTFIT_CODE"] = {
+    text = "Invalid outfit code.",
+    button1 = "Okay",
+    timeout = 0,
+    exclusive = 1,
+    whileDead = 1,
+    hideOnEscape = 1
+}
+
+StaticPopupDialogs["TMOG_IMPORT_OUTFIT"] = {
+    text = "Insert outfit code here:",
+    button1 = TEXT(OKAY),
+    button2 = TEXT(CANCEL),
+    hasEditBox = 1,
+
+    OnShow = function()
+        getglobal(this:GetName().."EditBox"):SetFocus()
+        getglobal(this:GetName().."EditBox"):SetText("")
+        getglobal(this:GetName() .. "EditBox"):SetScript("OnEnterPressed", function()
+            StaticPopup1Button1:Click()
+        end)
+
+        getglobal(this:GetName() .. "EditBox"):SetScript("OnEscapePressed", function()
+            getglobal(this:GetParent():GetName() .. "EditBox"):SetText("")
+            StaticPopup1Button2:Click()
+        end)
+    end,
+
+    OnAccept = function()
+        TmogFrameShareOutfit:Disable()
+        local code = getglobal(this:GetParent():GetName() .. "EditBox"):GetText()
+        getglobal(this:GetParent():GetName() .. "EditBox"):SetText("")
+        local outfit = ValidateOutfitCode(code)
+        if not outfit then
+            StaticPopup_Show("TMOG_BAD_OUTFIT_CODE")
+            return
+        end
+        Tmog_ImportOutfit(outfit)
+        this:GetParent():Hide()
+        Tmog_NewOutfitPopup()
     end,
 
     timeout = 0,
@@ -2792,7 +2982,8 @@ function Tmog_switchTab(which)
         
         TmogFrameCollected:Show()
         TmogFrameNotCollected:Show()
-
+        TmogFrameShareOutfit:Hide()
+        TmogFrameImportOutfit:Hide()
     elseif which == "outfits" then
         Tmog.currentPage = 1
         TmogFrameOutfitsButton:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\tab_active")
@@ -2804,6 +2995,8 @@ function Tmog_switchTab(which)
         TmogFrameCollected:Hide()
         TmogFrameNotCollected:Hide()
         TmogFrameSearchBox:Hide()
+        TmogFrameShareOutfit:Show()
+        TmogFrameImportOutfit:Show()
 
         Tmog:DrawPreviews()
     end
@@ -2973,6 +3166,9 @@ function Tmog:CacheItem(linkOrID)
             linkOrID = itemLink
         end
     else
+        if type(linkOrID) ~= "string" then
+            return
+        end
         if string.find(linkOrID, "|", 1, true) then
             local _, _, itemLink = string.find(linkOrID, "(item:%d+:%d+:%d+:%d+)")
 
@@ -3021,4 +3217,109 @@ function Tmog:IDFromLink(link)
     end
 
     return nil
+end
+
+function Tmog_ImportOutfit(outfit)
+    Tmog.currentOutfit = nil
+    TmogFrameSaveOutfit:Disable()
+    TmogFrameDeleteOutfit:Disable()
+    UIDropDownMenu_SetText("Outfits", TmogFrameOutfitsDropDown)
+
+    TmogFramePlayerModel:Undress()
+
+    for _, InventorySlotId in pairs(Tmog.inventorySlots) do
+        Tmog.currentGear[InventorySlotId] = 0
+    end
+
+    for slot, itemID in pairs(outfit) do
+        Tmog:CacheItem(itemID)
+        Tmog.currentGear[slot] = itemID
+        TmogFramePlayerModel:TryOn(itemID)
+    end
+
+    Tmog:UpdateItemTextures()
+end
+
+function Tmog_ImportOutfit_OnClick()
+    StaticPopup_Show("TMOG_IMPORT_OUTFIT")
+end
+
+function Tmog_ShareOutfit_OnClick()
+    local code = "T.O.L."
+
+    for slot, id in pairs(TMOG_PLAYER_OUTFITS[Tmog.currentOutfit]) do
+        code = code..slot..":"..id..";"
+    end
+
+    TmogFrameShareDialog:Show()
+    TmogFrameShareDialogEditBox:SetText(code)
+    TmogFrameShareDialogEditBox:HighlightText()
+end
+
+local InventoryTypeToSlot = {
+    ["INVTYPE_HEAD"] = 1,
+    ["INVTYPE_SHOULDER"] = 3,
+    ["INVTYPE_CHEST"] = 5,
+    ["INVTYPE_ROBE"] = 5,
+    ["INVTYPE_WAIST"] = 6,
+    ["INVTYPE_LEGS"] = 7,
+    ["INVTYPE_FEET"] = 8,
+    ["INVTYPE_WRIST"] = 9,
+    ["INVTYPE_HAND"] = 10,
+    ["INVTYPE_CLOAK"] = 15,
+    ["INVTYPE_WEAPONMAINHAND"] = 16,
+    ["INVTYPE_2HWEAPON"] = 16,
+    ["INVTYPE_WEAPON"] = 16,
+    ["INVTYPE_WEAPONOFFHAND"] = 17,
+    ["INVTYPE_HOLDABLE"] = 17,
+    ["INVTYPE_SHIELD"] = 17,
+    ["INVTYPE_RANGED"] = 18,
+    ["INVTYPE_RANGEDRIGHT"] = 18,
+    ["INVTYPE_TABARD"] = 19,
+    ["INVTYPE_BODY"] = 4,
+    ["INVTYPE_RELIC"] = 18,
+}
+
+function ValidateOutfitCode(code)
+    local signature = string.find(code, "T.O.L.", 1, true)
+    if signature then
+        code = string.sub(code, signature)
+        code = strtrim(code)
+    else
+        return nil
+    end
+
+    code = string.sub(code, 7)
+
+    if string.find(code, "[^%d:;]") then
+        return nil
+    end
+
+    local slotItemPairs = strsplit(code, ";")
+    local singlePair = { 0, 0 }
+    local outfit = {}
+    local slot, item
+
+    for i = 1, Tmog:tableSize(slotItemPairs) do
+        singlePair = strsplit(slotItemPairs[i], ":")
+        slot = tonumber(singlePair[1])
+        item = tonumber(singlePair[2])
+        AddToSet(outfit, slot, item)
+    end
+
+    for invSlot, itemID in pairs(outfit) do
+        Tmog:CacheItem(itemID)
+        local _, _, _, _, itemType, itemSubType, _, loc  = GetItemInfo(itemID)
+        if not itemType or not itemSubType or not loc then
+            return nil
+        end
+        if itemType ~= "Armor" and itemType ~= "Weapon" then
+            return nil
+        end
+        if not SetContains(InventoryTypeToSlot, loc, invSlot) and not (invSlot == 17 and loc == "INVTYPE_WEAPON") then
+            return nil
+        end
+    end
+
+    return outfit
 end

@@ -2171,6 +2171,7 @@ function TmogSlot_OnClick(InventorySlotId, rightClick)
         if Tmog.currentTab == "items" then
             Tmog:RemoveSelection()
         end
+        PlaySound("igMainMenuOptionCheckBoxOn")
     else
         Tmog.currentSlot = InventorySlotId
 
@@ -2223,9 +2224,11 @@ function TmogSlot_OnClick(InventorySlotId, rightClick)
             Tmog:HideBorders()
             Tmog.currentSlot = nil
             TmogFrameSearchBox:Hide()
+            PlaySound("InterfaceSound_LostTargetUnit")
         end
 
         Tmog_Search(TmogFrameSearchBox:GetText())
+        PlaySound("igCreatureAggroSelect")
     end
 end
 
@@ -2295,6 +2298,7 @@ function TmogTry(itemId, arg1, noSelect)
                 else
                     selectedButton:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_selected")
                 end
+                PlaySound("igMainMenuOptionCheckBoxOn")
             end
 
             if TmogFrameSharedItems:IsVisible() then
@@ -2318,6 +2322,7 @@ function TmogTry(itemId, arg1, noSelect)
             Tmog_LoadOutfit(outfit)
             Tmog:RemoveSelection()
             this:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_selected")
+            PlaySound("igMainMenuOptionCheckBoxOn")
         end
 
     elseif arg1 == "RightButton" then
@@ -2730,7 +2735,7 @@ function Tmog_SaveOutfit()
     TmogFrameSaveOutfit:Disable()
 
     if Tmog.currentTab == "outfits" then
-        Tmog:HidePreviews()
+        --Tmog:HidePreviews()
         Tmog:DrawPreviews()
     end
 end
@@ -2888,7 +2893,6 @@ StaticPopupDialogs["TMOG_IMPORT_OUTFIT"] = {
     end,
 
     OnAccept = function()
-        TmogFrameShareOutfit:Disable()
         local code = getglobal(this:GetParent():GetName() .. "EditBox"):GetText()
         getglobal(this:GetParent():GetName() .. "EditBox"):SetText("")
         local outfit = ValidateOutfitCode(code)
@@ -2899,6 +2903,7 @@ StaticPopupDialogs["TMOG_IMPORT_OUTFIT"] = {
         Tmog_ImportOutfit(outfit)
         this:GetParent():Hide()
         Tmog_NewOutfitPopup()
+        TmogFrameShareOutfit:Disable()
     end,
 
     timeout = 0,

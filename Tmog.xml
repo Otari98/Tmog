@@ -417,6 +417,7 @@
                         if this:GetNormalTexture():GetTexture() == "Interface\\AddOns\\Tmog\\Textures\\tab_inactive" then
                             Tmog_switchTab('items')
                             Tmog_Search(TmogFrameSearchBox:GetText())
+                            PlaySound("igCharacterInfoTab")
                         end
                     </OnClick>
                 </Scripts>
@@ -460,6 +461,7 @@
                     <OnClick>
                         if this:GetNormalTexture():GetTexture() == "Interface\\AddOns\\Tmog\\Textures\\tab_inactive" then
                             Tmog_switchTab('outfits')
+                            PlaySound("igCharacterInfoTab")
                         end
                     </OnClick>
                 </Scripts>
@@ -496,6 +498,7 @@
 					</OnLoad>
 					<OnClick>
 						Tmog_CollectedToggle()
+                        PlaySound("igMainMenuOptionCheckBoxOn")
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -513,6 +516,7 @@
 					</OnLoad>
 					<OnClick>
 						Tmog_NotCollectedToggle()
+                        PlaySound("igMainMenuOptionCheckBoxOn")
 					</OnClick>
 				</Scripts>
 			</CheckButton>
@@ -542,6 +546,7 @@
                     </OnMouseUp>
                     <OnClick>
                         Tmog_Reset()
+                        PlaySound("igMainMenuOption")
                     </OnClick>
                     <OnEnter>
                         GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
@@ -593,6 +598,7 @@
                     </OnLeave>
                     <OnClick>
                         Tmog_SaveOutfit()
+                        PlaySound("igMainMenuOption")
                     </OnClick>
                 </Scripts>
             </Button>
@@ -830,6 +836,7 @@
                 <Scripts>
                     <OnClick>
                         Tmog_HideUI()
+                        PlaySound("igMainMenuOptionCheckBoxOn")
                     </OnClick>
                 </Scripts>
             </Button>
@@ -847,6 +854,7 @@
                 <Scripts>
                     <OnClick>
                         Tmog_Undress()
+                        PlaySound("igMainMenuOptionCheckBoxOn")
                     </OnClick>
                 </Scripts>
             </Button>
@@ -864,6 +872,7 @@
                 <Scripts>
                     <OnClick>
                         Tmog_ResetPosition()
+                        PlaySound("igMainMenuOptionCheckBoxOn")
                     </OnClick>
                 </Scripts>
             </Button>
@@ -881,6 +890,7 @@
                 <Scripts>
                     <OnClick>
                         Tmog_ChangePage(-1)
+                        PlaySound("igMainMenuOptionCheckBoxOn")
                     </OnClick>
                 </Scripts>
                 <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up" />
@@ -902,6 +912,7 @@
                 <Scripts>
                     <OnClick>
                         Tmog_ChangePage(1)
+                        PlaySound("igMainMenuOptionCheckBoxOn")
                     </OnClick>
                 </Scripts>
                 <NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up" />
@@ -923,6 +934,7 @@
                 <Scripts>
                     <OnClick>
                         Tmog_ChangePage(-1, "first")
+                        PlaySound("igMainMenuOptionCheckBoxOn")
                     </OnClick>
                 </Scripts>
                 <NormalTexture file="Interface\AddOns\Tmog\Textures\FirstPage-Up"/>
@@ -944,6 +956,7 @@
                 <Scripts>
                     <OnClick>
                         Tmog_ChangePage(1, "last")
+                        PlaySound("igMainMenuOptionCheckBoxOn")
                     </OnClick>
                 </Scripts>
                 <NormalTexture file="Interface\AddOns\Tmog\Textures\LastPage-Up"/>
@@ -987,12 +1000,12 @@
                         <Scripts>
                             <OnClick>
                                 local box = this:GetParent()
-                                box:SetText("")
-                                box:ClearFocus()
                                 if box:GetText() == "" then
                                     return
                                 end
-                                Tmog_Search(box:GetText())
+                                box:SetText("")
+                                box:ClearFocus()
+                                PlaySound("igMainMenuOption")
                             </OnClick>
                             <OnEnter>
                                 TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT", 0, 0)
@@ -1239,6 +1252,14 @@
                         </Anchors>
                     </Button>
                 </Frames>
+                <Scripts>
+                    <OnShow>
+                        PlaySound("igMainMenuOpen")
+                    </OnShow>
+                    <OnHide>
+                        PlaySound("igMainMenuClose")
+                    </OnHide>
+                </Scripts>
             </Frame>
         </Frames>
         <Scripts>

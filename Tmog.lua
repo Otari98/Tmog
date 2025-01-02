@@ -491,10 +491,15 @@ Tmog:SetScript("OnEvent", function()
         UIDropDownMenu_SetWidth(100, TmogFrameTypeDropDown)
         UIDropDownMenu_SetWidth(115, TmogFrameOutfitsDropDown)
 
+        Tmog:AddBagshuiRuleFunction()
+
         return
     end
 
     if event == "CHAT_MSG_ADDON" and string.find(arg1, "TW_TRANSMOG", 1, true) and arg4 == UnitName("player") then
+        -- Determine whether we need to notify Bagshui of potential transmog collection changes.
+        local changes = false
+
         if string.find(arg2, "AvailableTransmogs", 1, true) then
             local ex = strsplit(arg2, ":")
             local InventorySlotId = tonumber(ex[2])
@@ -509,6 +514,7 @@ Tmog:SetScript("OnEvent", function()
                         if itemName then
                             if not SetContains(TMOG_CACHE[InventorySlotId], itemID, itemName) then
                                 AddToSet(TMOG_CACHE[InventorySlotId], itemID, itemName)
+                                changes = true
                             end
 
                             -- check if it shares appearance with other items and add those if it does
@@ -518,6 +524,7 @@ Tmog:SetScript("OnEvent", function()
                                     local name = GetItemInfo(id)
                                     if not SetContains(TMOG_CACHE[InventorySlotId], id, name) then
                                         AddToSet(TMOG_CACHE[InventorySlotId], id, name)
+                                        changes = true
                                     end
                                 end
                             end
@@ -533,6 +540,7 @@ Tmog:SetScript("OnEvent", function()
             local itemName = GetItemInfo(itemID)
 
             if slot and itemName then
+                changes = not SetContains(TMOG_CACHE[slot], itemID, itemName)
                 AddToSet(TMOG_CACHE[slot], itemID, itemName)
 
                 -- check if it shares appearance with other items and add those if it does
@@ -542,6 +550,7 @@ Tmog:SetScript("OnEvent", function()
                         local name = GetItemInfo(id)
                         if not SetContains(TMOG_CACHE[slot], id, name) then
                             AddToSet(TMOG_CACHE[slot], id, name)
+                            changes = true
                         end
                     end
                 end
@@ -580,10 +589,15 @@ Tmog:SetScript("OnEvent", function()
             end
         end
 
+        Tmog:SendBagshuiChangeNotification(changes)
+
         return
     end
 
     if event == "UNIT_INVENTORY_CHANGED" and arg1 == "player" then
+        -- Determine whether we need to notify Bagshui of potential transmog collection changes.
+        local changes = false
+
         for slot, _ in pairs(TMOG_CACHE) do
             local link = GetInventoryItemLink("player", slot)
 
@@ -596,6 +610,7 @@ Tmog:SetScript("OnEvent", function()
 
                     if not SetContains(TMOG_CACHE[slot], itemID, itemName) then
                         AddToSet(TMOG_CACHE[slot], itemID, itemName)
+                        changes = true
                     end
 
                     -- check if it shares appearance with other items and add those if it does
@@ -605,12 +620,15 @@ Tmog:SetScript("OnEvent", function()
                             local name = GetItemInfo(id)
                             if not SetContains(TMOG_CACHE[slot], id, name) then
                                 AddToSet(TMOG_CACHE[slot], id, name)
+                                changes = true
                             end
                         end
                     end
                 end
             end
         end
+
+        Tmog:SendBagshuiChangeNotification(changes)
 
         return
     end
@@ -3327,4 +3345,90 @@ function ValidateOutfitCode(code)
     end
 
     return outfit
+end
+
+
+--- Register Tmog() rule function with Bagshui.
+function Tmog:AddBagshuiRuleFunction()
+    if not IsAddOnLoaded("Bagshui") then
+        return
+    end
+
+    -- Used in Tmog:SendBagshuiChangeNotification().
+    self.notifyBagshui = true
+
+    -- Bagshui rule environment variable that will put us into "eligible" mode.
+    local tmogEligible = "~TmogEligible~"
+
+    -- Add Tmog() rule function.
+    Bagshui:AddRuleFunction(
+        "Tmog",
+        function(rules, ruleArguments)
+           
+            if ruleArguments[1] == tmogEligible then
+                -- Just check eligibility (call was `Tmog(TmogEligible)`).
+                return (
+                    string.len(rules.item.equipLocation or "") > 0
+                    and InventoryTypeToSlot[rules.item.equipLocation]
+                )
+
+            else
+                -- Is the item in the transmog collection? (Call was `Tmog()`).
+
+                -- Make sure things are ready to go (this should never be false, but just to be safe...).
+                if type(TMOG_CACHE) ~= "table" then
+                    return false
+                end
+
+                -- Comparisons are done on item ID and require it to be equippable.
+                if
+                    not rules.item.id or rules.item.id == 0
+                    or string.len(rules.item.equipLocation or "") == 0
+                    or not InventoryTypeToSlot[rules.item.equipLocation]
+                then
+                    return false
+                end
+
+                -- Determine whether the item is in the transmog collection.
+                return SetContains(
+                    TMOG_CACHE[InventoryTypeToSlot[rules.item.equipLocation]],
+                    rules.item.id,
+                    rules.item.name
+                )
+
+            end
+
+        end,
+        {
+            -- Add the rule environment variable.
+            TmogEligible = tmogEligible
+        },
+        {
+            -- Category Editor rule function menu ([Fx] button) entries.
+            {
+                code = 'Tmog()',
+                description = 'Check if the item is in your transmog collection.',
+            },
+            {
+                code = 'Tmog(TmogEligible)',
+                description = 'Check if the item can be transmogged.',
+            },
+            {
+                -- Provide a snippet for accomplishing what will probably be the most common use of Tmog().
+                -- Eligibility absolutely has to be checked, otherwise `not Tmog()` matches *everything* (food, potions, etc.).
+                code = 'Tmog(TmogEligible) and not Tmog()',
+                description = 'Check if the item is transmoggable but has not yet been added to your collection.',
+            },
+        }
+    )
+
+end
+
+
+--- Tell Bagshui that items may need to be resorted based on new transmog data.
+---@param changes boolean? Notification won't be sent unless `true`.
+function Tmog:SendBagshuiChangeNotification(changes)
+    if self.notifyBagshui and changes then
+        Bagshui:QueueInventoryUpdate(0.5, true)
+    end
 end

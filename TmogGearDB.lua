@@ -177,6 +177,7 @@ TmogGearDB = {
 			[13113] = "Feathermoon Headdress",
 		},
 		["Cloth"] = {
+			[50029] = "Black Mageweave Blindfold",
 			[41636] = "Evergreen Hood",
 			[19999] = "Bloodvine Goggles",
 			[14111] = "Felcloth Hood",
@@ -3370,6 +3371,7 @@ TmogGearDB = {
 			[10243] = "Heavy Lamellar Girdle",
 		},
 		["Cloth"] = {
+			[23126] = "Waistband of Balzaphon",
 			[47211] = "Sash of Transcendence",
 			[60909] = "Dustguider Sash",
 			[60386] = "Sash of the Northrend Expedition",
@@ -3851,6 +3853,7 @@ TmogGearDB = {
 			[6480] = "Slick Deviate Leggings",
 		},
 		["Cloth"] = {
+			[50377] = "Wanderer's Pants",
 			[41662] = "Solstice Kilt",
 			[41664] = "Kilt of the Winter Hunter",
 			[41666] = "Balsam Tree Kilt",
@@ -4513,6 +4516,8 @@ TmogGearDB = {
 	},
 	[8] = {
 		["Leather"] = {
+			[22852] = "Blood Guard's Dragonhide Treads",
+			[22856] = "Blood Guard's Leather Walkers",
 			[55104] = "Pawn's Advance",
 			[61587] = "Old Hunter's Boots",
 			[47328] = "Trickster Sabatons",
@@ -4778,6 +4783,8 @@ TmogGearDB = {
 			[13111] = "Sandals of the Insurgent",
 		},
 		["Mail"] = {
+			[22843] = "Blood Guard's Chain Greaves",
+			[22857] = "Blood Guard's Mail Greaves",
 			[47196] = "Stormhowl Boots",
 			[47184] = "Stormhowl Sabatons",
 			[47322] = "Ravenstalker Boots",
@@ -4995,6 +5002,7 @@ TmogGearDB = {
 			[6459] = "Savage Trodders",
 		},
 		["Plate"] = {
+			[22858] = "Blood Guard's Plate Greaves",
 			[47076] = "Lionheart Sabatons",
 			[80608] = "Revantusk Watcher's Boots",
 			[47070] = "Lionheart Greaves",
@@ -5130,6 +5138,11 @@ TmogGearDB = {
 			[8316] = "Alabaster Plate Greaves",
 		},
 		["Cloth"] = {
+			[17576] = "Blood Guard's Dreadweave Boots",
+			[16485] = "Blood Guard's Silk Footwraps",
+			[22859] = "Blood Guard's Satin Walkers",
+			[22860] = "Blood Guard's Silk Walkers",
+			[22855] = "Blood Guard's Dreadweave Walkers",
 			[41650] = "Wintry Fur Ankle Cuffs",
 			[41649] = "Fur Ankle Cuffs",
 			[41647] = "Gold Jingle Bell Anklet",
@@ -6197,6 +6210,8 @@ TmogGearDB = {
 	},
 	[10] = {
 		["Leather"] = {
+			[22864] = "Blood Guard's Leather Grips",
+			[22863] = "Blood Guard's Dragonhide Grips",
 			[41046] = "Pincer Mitts",
 			[83070] = "Brave's Fitted Gloves",
 			[55125] = "Handwraps of Dead Winds",
@@ -6464,6 +6479,9 @@ TmogGearDB = {
 			[7443] = "Sentinel Gloves",
 		},
 		["Cloth"] = {
+			[22869] = "Blood Guard's Satin Handwraps",
+			[22870] = "Blood Guard's Silk Handwraps",
+			[22865] = "Blood Guard's Dreadweave Handwraps",
 			[41538] = "Green Dress Gloves",
 			[41537] = "Blue Dress Gloves",
 			[41539] = "Teal Dress Gloves",
@@ -6728,6 +6746,7 @@ TmogGearDB = {
 			[10654] = "Jutebraid Gloves",
 		},
 		["Plate"] = {
+			[22868] = "Blood Guard's Plate Gauntlets",
 			[55088] = "Dragonclaw Gauntlets",
 			[80610] = "Revantusk Watcher's Handguards",
 			[10087] = "Gothic Plate Gauntlets",
@@ -6849,6 +6868,8 @@ TmogGearDB = {
 			[10242] = "Heavy Lamellar Gauntlets",
 		},
 		["Mail"] = {
+			[22867] = "Blood Guard's Mail Vices",
+			[22862] = "Blood Guard's Chain Vices",
 			[61013] = "Gauntlets of Temporal Guidance",
 			[47132] = "Earthfury Gauntlets",
 			[16574] = "General's Mail Gauntlets",
@@ -8209,6 +8230,7 @@ TmogGearDB = {
 			[9385] = "Archaic Defender",
 		},
 		["One-Handed Swords"] = {
+			[60752] = "Sentinel's Glaive",
 			[80636] = "Revantusk Stalker's Blade",
 			[60734] = "Blade of the Warleader",
 			[60384] = "Fleet Scimitar",
@@ -8937,16 +8959,6 @@ TmogGearDB = {
 			[65011] = "Sharpened Claw",
 			[11603] = "Vilerend Slicer",
 		},
-		-- ["Fishing Pole"] = {
-		-- 	[84507] = "Barkskin Fisher",
-		-- 	[6365] = "Strong Fishing Pole",
-		-- 	[6366] = "Darkwood Fishing Pole",
-		-- 	[6367] = "Big Iron Fishing Pole",
-		-- 	[12225] = "Blump Family Fishing Pole",
-		-- 	[19970] = "Arcanite Fishing Pole",
-		-- 	[19022] = "Nat Pagle's Extreme Angler FC-5000",
-		-- 	[6256] = "Fishing Pole",
-		-- },
 		["Polearms"] = {
 			[55116] = "Raka'shishi, Spear of the Adrift Hunt",
 			[80638] = "Revantusk Shadow Hunter's Striker",
@@ -9025,6 +9037,7 @@ TmogGearDB = {
 			[61621] = "Ceremonial Gilnean Pike",
 		},
 		["One-Handed Maces"] = {
+			[10804] = "Fist of the Damned",
 			[41669] = "Sweet Winter Cane",
 			[84600] = "Blackthorn's Blackjack",
 			[60773] = "Blackrock Authority",
@@ -9234,7 +9247,6 @@ TmogGearDB = {
 			[6982] = "Umbral Mace",
 			[22315] = "Hammer of Revitalization",
 			[2048] = "Anvilmar Hammer",
-			[17733] = "Fist of Stone",
 			[2079] = "Sergeant's Warhammer",
 			[2524] = "Truncheon",
 			[11964] = "Swiftstrike Cudgel",
@@ -9265,6 +9277,7 @@ TmogGearDB = {
 			[6360] = "Steelscale Crushfish",
 		},
 		["Two-Handed Axes"] = {
+			[83209] = "Sentinel's Moonslicer",
 			[51779] = "Greataxe of the Decrepit Crypt",
 			[41295] = "Lost Excavation Pickaxe",
 			[41048] = "Whirring Shredder Saw",
@@ -9400,6 +9413,7 @@ TmogGearDB = {
 	},
 	[19] = {
 		["Miscellaneous"] = {
+			[15199] = "Stone Guard's Herald",
 			[80309] = "Undercity Tabard",
 			[50093] = "Tabard of Hearthglen",
 			[81077] = "Theramore Tabard",
@@ -9580,7 +9594,6 @@ TmogGearDB = {
 			[2040] = "Troll Protector",
 			[1276] = "Fire Hardened Buckler",
 			[10686] = "Aegis of Battle",
-			[11201] = "Engineer's Shield 3",
 			[19321] = "The Immovable Object",
 			[14790] = "Protector Buckler",
 			[10195] = "Crusader's Shield",
@@ -10114,6 +10127,7 @@ TmogGearDB = {
 			[3581] = "Serrated Knife",
 		},
 		["One-Handed Swords"] = {
+			[60752] = "Sentinel's Glaive",
 			[61577] = "Lieutenant's Sword",
 			[81339] = "Brightwater Cutlass",
 			[41024] = "Barnacle-covered Scimitar",
@@ -10281,6 +10295,7 @@ TmogGearDB = {
 			[18847] = "Grand Marshal's Left Hand Blade",
 		},
 		["One-Handed Maces"] = {
+			[10804] = "Fist of the Damned",
 			[41669] = "Sweet Winter Cane",
 			[80530] = "Quel'dorei Guardian's Mace",
 			[60773] = "Blackrock Authority",
@@ -10738,6 +10753,7 @@ TmogGearDB = {
 			[8188] = "Explosive Shotgun",
 		},
 		["Wands"] = {
+			[60805] = "Clutch of the Damned",
 			[55134] = "Rod of Permafrost",
 			[81320] = "Crackling Zapper",
 			[80645] = "Revantusk Mender's Wand",

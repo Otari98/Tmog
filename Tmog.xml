@@ -415,7 +415,7 @@
                 <Scripts>
                     <OnClick>
                         if this:GetNormalTexture():GetTexture() == "Interface\\AddOns\\Tmog\\Textures\\tab_inactive" then
-                            Tmog_switchTab('items')
+                            Tmog_SwitchTab('items')
                             Tmog_Search(TmogFrameSearchBox:GetText())
                             PlaySound("igCharacterInfoTab")
                         end
@@ -460,7 +460,7 @@
                 <Scripts>
                     <OnClick>
                         if this:GetNormalTexture():GetTexture() == "Interface\\AddOns\\Tmog\\Textures\\tab_inactive" then
-                            Tmog_switchTab('outfits')
+                            Tmog_SwitchTab('outfits')
                             PlaySound("igCharacterInfoTab")
                         end
                     </OnClick>

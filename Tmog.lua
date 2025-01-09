@@ -1380,6 +1380,7 @@ function Tmog:DrawPreviews(noDraw)
             return
         end
 
+        drawTable[slot][type] = Tmog:Sort(drawTable[slot][type])
         Tmog.totalPages = Tmog:ceil(Tmog:tableSize(drawTable[slot][type]) / ipp)
 
         if noDraw then
@@ -1392,7 +1393,6 @@ function Tmog:DrawPreviews(noDraw)
             end
         end
 
-        drawTable[slot][type] = Tmog:Sort(drawTable[slot][type])
         local frame, button
 
         for i = 1, Tmog:tableSize(drawTable[slot][type]) do

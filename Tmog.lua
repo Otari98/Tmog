@@ -635,13 +635,17 @@ local function GetTableForClass(class)
     end
 end
 
--- return true and slot if this is gear and we can equip it
+local originalTooltip = {}
+-- return slot if this is gear and we can equip it
 local function IsGear(tooltipName)
     if not tooltipName then
-        return false, nil
+        return nil
     end
-    local originalTooltip = {}
-    local isGear = false
+
+    for k in pairs(originalTooltip) do
+        originalTooltip[k] = nil
+    end
+
     local slot = nil
 
     -- collect left lines of the original tooltip into lua table
@@ -650,8 +654,7 @@ local function IsGear(tooltipName)
         if tooltipRowLeft then
             local rowtext = tooltipRowLeft:GetText()
             if rowtext then
-                originalTooltip[row] = {}
-                originalTooltip[row].text = rowtext
+                originalTooltip[row] = rowtext
             end
         end
     end
@@ -662,81 +665,108 @@ local function IsGear(tooltipName)
 
     for row = 1, Tmog:tableSize(originalTooltip) do
         -- check if its class restricted item
-        if originalTooltip[row].text then
-            local _, _, classesRow = string.find(originalTooltip[row].text, "Classes: (.*)")
+        if originalTooltip[row] then
+            local _, _, classesRow = string.find(originalTooltip[row], "Classes: (.*)")
             if classesRow then
-                if not string.find(classesRow, UnitClass("player"),1,true) then
-                    return false, nil
+                if not string.find(classesRow, UnitClass("player"), 1, true) then
+                    tmog_debug("bad class")
+                    return nil
                 end
             end
-            -- skip recipies
-            if string.find(originalTooltip[row].text, "Pattern:",1,true) or
-                string.find(originalTooltip[row].text, "Plans:",1,true) or
-                string.find(originalTooltip[row].text, "Schematic:",1,true)
-                then
-                return false, nil
+            -- skip recipies / spells / units
+            if string.find(originalTooltip[row], "^Pattern:") or
+                string.find(originalTooltip[row], "^Plans:") or
+                string.find(originalTooltip[row], "^Schematic:") or
+                string.find(originalTooltip[row], "yd range$") or
+                string.find(originalTooltip[row], "^Level ") or
+                string.find(originalTooltip[row], "^%d+ sec cast") or
+                string.find(originalTooltip[row], "^Instant cast")
+            then
+                tmog_debug("recipies / spells / units")
+                return nil
             end
         end
     end
 
     local off_hand = false
 
-    for row = 1, Tmog:tableSize(originalTooltip) do
-        if originalTooltip[row].text then
+    for row = 2, 7 do
+        if originalTooltip[row] then
             -- Gear is guaranteed to be labeled with the slot it occupies.
             for _, v in pairs(gearslots) do
-                if string.find(originalTooltip[row].text, v, 1, true) then
+                if string.find(originalTooltip[row], v, 1, true) then
                     if v == "Back" then
-                        return true, 15 -- everyone can equip
+                        tmog_debug("Back")
+                        return 15 -- everyone can equip
                     elseif v == "Held In Off-hand" then
-                        return true, 17 -- everyone can equip
+                        tmog_debug("Held In Off-hand")
+                        return 17 -- everyone can equip
                     elseif v == "Head" then
                         slot = 1
+                        break
                     elseif v == "Shoulder" then
                         slot = 3
+                        break
                     elseif v == "Chest" then
                         slot = 5
+                        break
                     elseif v == "Waist" then
                         slot = 6
+                        break
                     elseif v == "Legs" then
                         slot = 7
+                        break
                     elseif v == "Feet" then
                         slot = 8
+                        break
                     elseif v == "Wrist" then
                         slot = 9
+                        break
                     elseif v == "Hands" then
                         slot = 10
+                        break
                     elseif v == "Main Hand" or v == "Two-Hand" or v == "One-Hand" then
                         slot = 16
+                        break
                     elseif v == "Off Hand" then
                         slot = 17
                         off_hand = true -- some classes cant dual weild, will need to double check later
+                        break
                     elseif v == "Ranged" then
                         slot = 18
+                        break
                     elseif (v == "Gun" or v == "Crossbow") and (class == "WARRIOR" or class == "ROGUE" or class == "HUNTER") then
-                        return true, 18
+                        return 18
                     elseif v == "Wand" and (class == "MAGE" or class == "WARLOCK" or class == "PRIEST") then
-                        return true, 18
-                    else
-                        return false, nil
+                        return 18
                     end
-                    isGear = true
                 end
             end
         end
     end
 
-    if isGear then
+    if not slot then
+        tmog_debug("no slot")
+        return nil
+    end
+
+    if slot then
         -- looking at the first line on the right
         local gearType
 
-        for row = 1, 30 do
+        for row = 1, 7 do
             local tooltipRowRight = getglobal(tooltipName .. "TextRight" .. row)
             if tooltipRowRight then
                 local rowtext = tooltipRowRight:GetText()
-                if rowtext and not string.find(rowtext, "%d") then -- ignore weapon speed
-                    gearType = rowtext
-                    break
+                if rowtext then
+                    if string.find(rowtext, "Rank %d") or string.find(rowtext, "cooldown$") or string.find(rowtext, "yd range$") then
+                        tmog_debug("Spell")
+                        return nil
+                    end
+                    if not string.find(rowtext, "%d") then -- ignore weapon speed
+                        gearType = rowtext
+                        break
+                    end
                 end
             end
         end
@@ -756,10 +786,10 @@ local function IsGear(tooltipName)
 
     if not canEquip then
         tmog_debug("Cant transmog")
-        return false, nil
+        return nil
     end
 
-    return isGear, slot
+    return slot
 end
 
 local LastItemName = nil
@@ -772,15 +802,28 @@ function TmogTip.extendTooltip(tooltip)
     if not itemName or not line2 or IsShiftKeyDown() then
         return
     end
+    
+    -- if not tooltip.itemID then
+    --     return
+    -- end
 
     -- get rid of suffixes
     itemName = FixName(itemName)
+    
+    if itemName ~= LastItemName then
 
-    if itemName == LastItemName then
+        local slot = IsGear(tooltipName)
+        
+        if not slot then
+            return
+        end
+        
+        LastItemName = itemName
+        LastSlot = slot
+
         if line2 then
             if line2:GetText() then
-                -- tooltips have max 30 lines so dont just AddLine, insert into 2nd line of the tooltip instead to avoid hitting lines cap
-                if SetContains(TMOG_CACHE[LastSlot], tonumber(tooltip.itemID), LastItemName) then
+                if SetContains(TMOG_CACHE[slot], tonumber(tooltip.itemID), itemName) then
                     line2:SetText(YELLOW.."In your collection|r\n"..line2:GetText())
                 else
                     line2:SetText(YELLOW.."Not collected|r\n"..line2:GetText())
@@ -788,19 +831,10 @@ function TmogTip.extendTooltip(tooltip)
             end
         end
     else
-        local isGear, slot = IsGear(tooltipName)
-
-        if not isGear or not slot then
-            return
-        end
-
-        LastItemName = itemName
-        LastSlot = slot
-
         if line2 then
             if line2:GetText() then
                 -- tooltips have max 30 lines so dont just AddLine, insert into 2nd line of the tooltip instead to avoid hitting lines cap
-                if SetContains(TMOG_CACHE[slot], tonumber(tooltip.itemID), itemName) then
+                if SetContains(TMOG_CACHE[LastSlot], tonumber(tooltip.itemID), LastItemName) then
                     line2:SetText(YELLOW.."In your collection|r\n"..line2:GetText())
                 else
                     line2:SetText(YELLOW.."Not collected|r\n"..line2:GetText())
@@ -1263,6 +1297,110 @@ function Tmog:HidePreviews()
     end
 end
 
+local drawTable = {
+    [1] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["Miscellaneous"] = {},
+        ["SearchResult"] = {},
+    },
+    [3] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["SearchResult"] = {},
+    },
+    [4] = {
+        ["Miscellaneous"] = {},
+        ["SearchResult"] = {},
+    },
+    [5] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["Miscellaneous"] = {},
+        ["SearchResult"] = {},
+    },
+    [6] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["SearchResult"] = {},
+    },
+    [7] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["SearchResult"] = {},
+    },
+    [8] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["Miscellaneous"] = {},
+        ["SearchResult"] = {},
+    },
+    [9] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["SearchResult"] = {},
+    }, 
+    [10] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["SearchResult"] = {},
+    },
+    [15] = {
+        ["Cloth"] = {},
+        ["SearchResult"] = {},
+    },
+    [16] = {
+        ["Daggers"] = {},
+        ["One-Handed Axes"] = {},
+        ["One-Handed Swords"] = {},
+        ["One-Handed Maces"] = {},
+        ["Fist Weapons"] = {},
+        ["Two-Handed Axes"] = {},
+        ["Two-Handed Swords"] = {},
+        ["Two-Handed Maces"] = {},
+        ["Polearms"] = {},
+        ["Staves"] = {},
+        ["SearchResult"] = {},
+    },
+    [17] = {
+        ["Daggers"] = {},
+        ["One-Handed Axes"] = {},
+        ["One-Handed Swords"] = {},
+        ["One-Handed Maces"] = {},
+        ["Fist Weapons"] = {},
+        ["Miscellaneous"] = {},
+        ["Shields"] = {},
+        ["SearchResult"] = {},
+    },
+    [18] = {
+        ["Bows"] = {},
+        ["Guns"] = {},
+        ["Crossbows"] = {},
+        ["Wands"] = {},
+        ["SearchResult"] = {},
+    },
+    [19] = {
+        ["Miscellaneous"] = {},
+        ["SearchResult"] = {},
+    },
+}
+
 function Tmog:DrawPreviews(noDraw)
     local searchStr = TmogFrameSearchBox:GetText() or ""
     searchStr = string.lower(searchStr)
@@ -1291,9 +1429,9 @@ function Tmog:DrawPreviews(noDraw)
             type = "SearchResult"
         end
 
-        local drawTable = {}
-        drawTable[slot] = {}
-        drawTable[slot][type] = {}
+        for k in pairs(drawTable[slot][type]) do
+            drawTable[slot][type][k] = nil
+        end
 
         -- only Collected checked
         if Tmog.collected and not Tmog.notCollected then
@@ -1372,6 +1510,8 @@ function Tmog:DrawPreviews(noDraw)
             end
         end
 
+        Tmog.totalPages = Tmog:ceil(Tmog:tableSize(drawTable[slot][type]) / ipp)
+
         -- nothing to show
         if not drawTable[slot][type] or next(drawTable[slot][type]) == nil then
             Tmog:HidePreviews()
@@ -1379,9 +1519,6 @@ function Tmog:DrawPreviews(noDraw)
             Tmog.currentPage = 1
             return
         end
-
-        drawTable[slot][type] = Tmog:Sort(drawTable[slot][type])
-        Tmog.totalPages = Tmog:ceil(Tmog:tableSize(drawTable[slot][type]) / ipp)
 
         if noDraw then
             return
@@ -1393,12 +1530,13 @@ function Tmog:DrawPreviews(noDraw)
             end
         end
 
+        local sorted = Tmog:Sort(drawTable[slot][type])
         local frame, button
 
-        for i = 1, Tmog:tableSize(drawTable[slot][type]) do
-            local itemID = drawTable[slot][type][i][1]
-            local name = drawTable[slot][type][i][2]
-            local quality = drawTable[slot][type][i][3]
+        for i = 1, Tmog:tableSize(sorted) do
+            local itemID = sorted[i][1]
+            local name = sorted[i][2]
+            local quality = sorted[i][3]
 
             if index >= (Tmog.currentPage - 1) * ipp and index < Tmog.currentPage * ipp then
                 if not Tmog.previewButtons[itemIndex] then
@@ -1970,7 +2108,7 @@ function Tmog:DrawPreviews(noDraw)
         TmogFramePreview1ButtonPlus:Hide()
         TmogFramePreview1ButtonPlusPushed:Hide()
 
-        Tmog.totalPages = Tmog:ceil(Tmog:tableSize(drawTable[slot][type]) / ipp)
+        Tmog.totalPages = Tmog:ceil(Tmog:tableSize(sorted) / ipp)
         TmogFramePageText:SetText("Page " .. Tmog.currentPage .. "/" .. Tmog.totalPages)
     
         if Tmog.currentPage == 1 then
@@ -1981,7 +2119,7 @@ function Tmog:DrawPreviews(noDraw)
             TmogFrameFirstPage:Enable()
         end
     
-        if Tmog.currentPage == Tmog.totalPages or Tmog:tableSize(drawTable[slot][type]) < ipp then
+        if Tmog.currentPage == Tmog.totalPages or Tmog:tableSize(sorted) < ipp then
             TmogFrameRightArrow:Disable()
             TmogFrameLastPage:Disable()
         else
@@ -2293,8 +2431,6 @@ function Tmog:UpdateItemTextures()
             local frame = getglobal("TmogFrame"..slotName)
 
             if frame and tex then
-                --frame:Enable()
-                frame:SetID(InventorySlotId)
                 getglobal(frame:GetName() .. "ItemIcon"):SetTexture(tex)
             end
         end
@@ -2302,6 +2438,7 @@ function Tmog:UpdateItemTextures()
 end
 
 local sharedItems = {}
+local t = {}
 local selectedButton
 function TmogTry(itemId, arg1, noSelect)
     if arg1 == "LeftButton" then
@@ -2372,7 +2509,9 @@ function TmogTry(itemId, arg1, noSelect)
         cursorY =  cursorY / uiScale
         TmogFrameSharedItems:SetPoint("TOPLEFT", nil , "BOTTOMLEFT", cursorX + 2, cursorY - 2)
         
-        local t = {}
+        for k in pairs(t) do
+            t[k] = nil
+        end
         local index = 1
 
         if SetContains(DisplayIdDB, itemId) then
@@ -2550,7 +2689,7 @@ function Tmog_AddOutfitTooltip(frame, outfit)
         TmogTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 4) + 15, -(this:GetHeight() / 4) + 20)
 
         if outfit then
-            TmogTooltip:AddLine(HIGHLIGHT_FONT_COLOR_CODE .. outfit)
+            TmogTooltip:AddLine(WHITE .. outfit)
         end
 
         for name in pairs(TMOG_PLAYER_OUTFITS) do
@@ -2619,13 +2758,13 @@ function Tmog_AddItemTooltip(frame, text)
         TmogTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 4) + 15, -(this:GetHeight() / 4) + 20)
 
         if text then
-            TmogTooltip:AddLine(HIGHLIGHT_FONT_COLOR_CODE .. text)
+            TmogTooltip:AddLine(WHITE .. text)
         end
 
         local itemID = this:GetID()
         Tmog:CacheItem(itemID)
         TmogTooltip.itemID = itemID
-        TmogTooltip:SetHyperlink("item:"..tostring(itemID))
+        TmogTooltip:SetHyperlink("item:"..itemID)
         TmogTip.extendTooltip(TmogTooltip)
 
         local numLines = TmogTooltip:NumLines()
@@ -2916,7 +3055,7 @@ StaticPopupDialogs["TMOG_IMPORT_OUTFIT"] = {
     OnAccept = function()
         local code = getglobal(this:GetParent():GetName() .. "EditBox"):GetText()
         getglobal(this:GetParent():GetName() .. "EditBox"):SetText("")
-        local outfit = ValidateOutfitCode(code)
+        local outfit = Tmog:ValidateOutfitCode(code)
         if not outfit then
             StaticPopup_Show("TMOG_BAD_OUTFIT_CODE")
             return
@@ -3055,10 +3194,12 @@ function Tmog_PlayerSlotOnEnter()
 
         TmogTooltip:SetText(name, r, g, b)
 
-        if SetContains(TMOG_CACHE[slot], itemID, name)then
-            TmogTooltip:AddLine(YELLOW.."In your collection|r")
-        else
-            TmogTooltip:AddLine(YELLOW.."Not collected|r")
+        if slot ~= 4 and slot ~= 19 then
+            if SetContains(TMOG_CACHE[slot], itemID, name)then
+                TmogTooltip:AddLine(YELLOW.."In your collection|r")
+            else
+                TmogTooltip:AddLine(YELLOW.."Not collected|r")
+            end
         end
 
         TmogTooltip:AddLine(YELLOW.."\nItemID: "..itemID.."|r", 1, 1, 1)
@@ -3316,7 +3457,7 @@ local InventoryTypeToSlot = {
     ["INVTYPE_RELIC"] = 18,
 }
 
-function ValidateOutfitCode(code)
+function Tmog:ValidateOutfitCode(code)
     local signature = string.find(code, "T.O.L.", 1, true)
     if signature then
         code = string.sub(code, signature)
@@ -3360,30 +3501,31 @@ function ValidateOutfitCode(code)
     return outfit
 end
 
-function Tmog:Sort(t)
-    if not t then
-        return
+function Tmog:Sort(unsorted)
+    if not unsorted then
+        return {}
     end
 
-    local tsort = table.sort
     local tinsert = table.insert
     local sorted = {}
 
-    for id, name in pairs(t) do
+    for id, name in pairs(unsorted) do
         Tmog:CacheItem(id)
         local _, _, quality = GetItemInfo(id)
         tinsert(sorted, { id, name, quality })
     end
 
     local sortfunc = function(a, b)
+        -- equal quality - sort by name
         if a[3] == b[3] then
             return a[2] < b[2]
         else
+            -- otherwise sort by quality
             return a[3] > b[3]
         end
     end
 
-    tsort(sorted, sortfunc)
+    table.sort(sorted, sortfunc)
 
     return sorted
 end

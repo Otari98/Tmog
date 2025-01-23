@@ -177,6 +177,16 @@ TmogGearDB = {
 			[13113] = "Feathermoon Headdress",
 		},
 		["Cloth"] = {
+			--************ Jank ******************
+			[50341] = "Sentinel's Faceguard",
+			--[50349] = "Mountaineer's Hood",
+			--[50036] = "High Inquisitor's Chapeau",
+			[50336] = "Stromgarde Guard's Helmet",
+			[50314] = "Stormwind Guard's Helmet",
+			--[50322] = "Kul'Tiras Guard's Helmet",
+			[50356] = "Deathguard's Hood",
+			[50306] = "Ironforge Guard's Helmet",
+			--************************************
 			[50029] = "Black Mageweave Blindfold",
 			[41636] = "Evergreen Hood",
 			[19999] = "Bloodvine Goggles",
@@ -449,6 +459,8 @@ TmogGearDB = {
 			[10219] = "Elegant Circlet",
 		},
 		["Plate"] = {
+			[9664] = "Sentinel's Guard",
+
 			[83483] = "Crown of Divine Justice",
 			[60437] = "Righteous Crusader's Helmet",
 			[83493] = "Enforcer Captain's Hat",
@@ -579,6 +591,8 @@ TmogGearDB = {
 			[10241] = "Heavy Lamellar Helm",
 		},
 		["Mail"] = {
+			[60748] = "Sentinel's Crown",
+
 			[83443] = "The Crown of Shattering",
 			[47152] = "Stormcaller's Crown",
 			[47318] = "Ravenstalker Headpiece",
@@ -751,6 +765,7 @@ TmogGearDB = {
 	},
 	[3] = {
 		["Leather"] = {
+			[26322] = "Blackened Leather Spaulders",
 			[61708] = "Dreamwind Spaulders",
 			[47391] = "Spaulders of the Talon",
 			[51787] = "Spaulders of Insight",
@@ -936,6 +951,8 @@ TmogGearDB = {
 			[9923] = "Tracker's Shoulderpads",
 		},
 		["Mail"] = {
+			[60751] = "Sentinel's Pauldrons",
+
 			[47181] = "Stormhowl Pauldrons",
 			[60727] = "Pauldrons of Sealed Magics",
 			[61335] = "Dragonbane Pauldrons",
@@ -1232,6 +1249,13 @@ TmogGearDB = {
 			[13955] = "Stoneform Shoulders",
 		},
 		["Cloth"] = {
+			--************ Jank ********************
+			[50321] = "Kul'Tiras Guard's Shoulders",
+			[50367] = "Orgrimmar Guard's Shoulders",
+			[50313] = "Stormwind Guard's Shoulders",
+			[50335] = "Stromgarde Guard's Shoulders",
+			[50305] = "Ironforge Guard's Shoulders",
+			--**************************************
 			[41627] = "Fur-trimmed Fir Mantle",
 			[41622] = "Mantle of Winter Nights",
 			[41624] = "Holiday Velvet Mantle",
@@ -1450,9 +1474,7 @@ TmogGearDB = {
 	},
 	[4] = {
 		["Miscellaneous"] = {
-			[69107] = "Snowy Tribal Tattoo",
 			[41279] = "Black Tie Brown Waistcoat",
-			[69104] = "Spectral Illidari Tattoos",
 			[41280] = "Black Tie Green Waistcoat",
 			[41288] = "Black Tie Spring Green Waistcoat",
 			[41281] = "Black Tie Grey Waistcoat",
@@ -1460,7 +1482,6 @@ TmogGearDB = {
 			[92012] = "Mint Spring Shirt",
 			[41283] = "Black Tie Mint Waistcoat",
 			[92011] = "Lavender Spring Shirt",
-			[69108] = "Night Tribal Tattoo",
 			[41292] = "Black Tie Yellow Waistcoat",
 			[91780] = "Lovely Green Shirt",
 			[51904] = "Frayed Tunic of Unrelenting Food Crumbs",
@@ -1514,14 +1535,12 @@ TmogGearDB = {
 			[6096] = "Apprentice's Shirt",
 			[69109] = "Fresh Bandages",
 			[154] = "Primitive Mantle",
-			[69103] = "Nether Illidari Tattoos",
 			[14617] = "Sawbones Shirt",
 			[6134] = "Primitive Mantle",
 			[6833] = "White Tuxedo Shirt",
 			[2575] = "Red Linen Shirt",
 			[41277] = "Black Tie Black Waistcoat",
 			[6136] = "Thug Shirt",
-			[69100] = "Illidari Tattoos",
 			[10052] = "Orange Martial Shirt",
 			[41285] = "Black Tie Plum Waistcoat",
 			[10054] = "Lavender Mageweave Shirt",
@@ -1537,7 +1556,6 @@ TmogGearDB = {
 			[41271] = "Black Darcy Shirt",
 			[41275] = "Rolled-Sleeve White Shirt with Black Cravat",
 			[41287] = "Black Tie Red Waistcoat",
-			[69101] = "Blood Illidari Tattoos",
 			[17723] = "Green Holiday Shirt",
 			[41291] = "Black Tie White Waistcoat",
 			[41278] = "Black Tie Blue Waistcoat",
@@ -1553,10 +1571,17 @@ TmogGearDB = {
 			[4335] = "Rich Purple Silk Shirt",
 			[41269] = "Rolled-Sleeve Black Dress Shirt",
 			[41273] = "Rolled-Sleeve Black Darcy Shirt",
-			[69102] = "Void Illidari Tattoos",
 			[69110] = "Old Bandages",
 			[2576] = "White Linen Shirt",
 			[2577] = "Blue Linen Shirt",
+
+			[69101] = "Crimson Warbrands",
+			[69102] = "Voidbound Warbrands",
+			[69103] = "Netherforged Warbrands",
+			[69104] = "Spectral Warbrands",
+			[69107] = "Frostmark Sigils",
+			[69108] = "Duskmarch Sigils",
+			[69100] = "Illidari Warbrands",
 		},
 	},
 	[5] = {
@@ -1827,6 +1852,8 @@ TmogGearDB = {
 			[4861] = "Sleek Feathered Tunic",
 		},
 		["Mail"] = {
+			[60746] = "Sentinel's Breastplate",
+
 			[51786] = "Cryptbone Hauberk",
 			[80108] = "Charred Chainmail",
 			[60284] = "Swamplink Harness",
@@ -2200,6 +2227,17 @@ TmogGearDB = {
 			[10775] = "Carapace of Tuten'kash",
 		},
 		["Cloth"] = {
+			--************* Jank **********************
+			[50308] = "Stormwind Guard's Chestplate",
+			[50316] = "Kul'Tiras Guard's Chestplate",
+			[50362] = "Orgrimmar Guard's Chestpiece",
+			[50357] = "Nightwatch's Chestpiece",
+			[50350] = "Deathguard's Chestpiece",
+			[50343] = "Mountaineer's Chestpiece",
+			[50337] = "Sentinel's Chestpiece",
+			[50330] = "Stromgarde Guard's Chestplate",
+			[50300] = "Ironforge Guard's Chest",
+			--*****************************************
 			[41655] = "Winter Veil Vest",
 			[41652] = "Solstice Vest",
 			[41654] = "Vest of the Winter Hunter",
@@ -3371,6 +3409,16 @@ TmogGearDB = {
 			[10243] = "Heavy Lamellar Girdle",
 		},
 		["Cloth"] = {
+			--************* Jank ********************
+			[50331] = "Stromgarde Guard's Waistguard",
+			[50309] = "Stormwind Guard's Waistguard",
+			--[50317] = "Kul'Tiras Guard's Waistguard",
+			[50363] = "Orgrimmar Guard's Belt",
+			[50358] = "Nightwatch's Belt",
+			[50351] = "Deathguard's Belt",
+			[50344] = "Mountaineer's Belt",
+			[50301] = "Ironforge Guard's Waistguard",
+			--***************************************
 			[23126] = "Waistband of Balzaphon",
 			[47211] = "Sash of Transcendence",
 			[60909] = "Dustguider Sash",
@@ -3605,6 +3653,9 @@ TmogGearDB = {
 	},
 	[7] = {
 		["Leather"] = {
+			[22750] = "Sentinel's Lizardhide Pants",
+			[22749] = "Sentinel's Leather Pants",
+
 			[80621] = "Revantusk Stalker's Leggings",
 			[47399] = "Trousers of the Talon",
 			[50025] = "Heavy Desert Leggings",
@@ -3853,6 +3904,18 @@ TmogGearDB = {
 			[6480] = "Slick Deviate Leggings",
 		},
 		["Cloth"] = {
+			--*********** Jank ********************
+			[50338] = "Sentinel's Pants",
+			[50332] = "Stromgarde Guard's Greaves",
+			[50310] = "Stormwind Guard's Greaves",
+			--[50318] = "Kul'Tiras Guard's Greaves",
+			[50364] = "Orgrimmar Guard's Pants",
+			[22752] = "Sentinel's Silk Leggings",
+			[50359] = "Nightwatch's Pants",
+			[50352] = "Deathguard's Pants",
+			[50345] = "Mountaineer's Pants",
+			[50302] = "Ironforge Guard's Pants",
+			--*************************************
 			[50377] = "Wanderer's Pants",
 			[41662] = "Solstice Kilt",
 			[41664] = "Kilt of the Winter Hunter",
@@ -4121,7 +4184,7 @@ TmogGearDB = {
 			[16922] = "Leggings of Transcendence",
 			[17603] = "Marshal's Satin Pants",
 			[19895] = "Bloodtinged Kilt",
-			[22505] = "Plagueheart Leggings",
+			[22505] = "Plagueheart Pants",
 			[9851] = "Conjurer's Breeches",
 			[22745] = "Bloodsail Pants",
 			[19683] = "Bloodvine Leggings",
@@ -4165,6 +4228,9 @@ TmogGearDB = {
 			[6118] = "Squire's Pants",
 		},
 		["Plate"] = {
+			[22672] = "Sentinel's Plate Legguards",
+			[22753] = "Sentinel's Lamellar Legguards",
+
 			[47069] = "Lionheart Legguards",
 			[81355] = "Fallen Crusader Legguards",
 			[61035] = "Legguards of the Last Stand",
@@ -4298,6 +4364,9 @@ TmogGearDB = {
 			[14900] = "Saltstone Legplates",
 		},
 		["Mail"] = {
+			[60749] = "Sentinel's Leggings",
+			[22748] = "Sentinel's Chain Leggings",
+
 			[47189] = "Stormhowl Legplates",
 			[60352] = "Bloody Gladiator's Leggings",
 			[60765] = "Sandmoon Greaves",
@@ -4516,6 +4585,8 @@ TmogGearDB = {
 	},
 	[8] = {
 		["Leather"] = {
+			[51791] = "Mountaineer's Boots",
+
 			[22852] = "Blood Guard's Dragonhide Treads",
 			[22856] = "Blood Guard's Leather Walkers",
 			[55104] = "Pawn's Advance",
@@ -4783,6 +4854,8 @@ TmogGearDB = {
 			[13111] = "Sandals of the Insurgent",
 		},
 		["Mail"] = {
+			[60747] = "Sentinel's Boots",
+
 			[22843] = "Blood Guard's Chain Greaves",
 			[22857] = "Blood Guard's Mail Greaves",
 			[47196] = "Stormhowl Boots",
@@ -5138,8 +5211,17 @@ TmogGearDB = {
 			[8316] = "Alabaster Plate Greaves",
 		},
 		["Cloth"] = {
-			[17576] = "Blood Guard's Dreadweave Boots",
-			[16485] = "Blood Guard's Silk Footwraps",
+			--*********** Jank ******************
+			[50353] = "Deathguard's Boots",
+			[50346] = "Mountaineer's Boots",
+			[50339] = "Sentinel's Boots",
+			[50333] = "Stromgarde Guard's Sabatons",
+			[50311] = "Stormwind Guard's Sabatons",
+			--[50319] = "Kul'Tiras Guard's Sabatons",
+			--[50365] = "Orgrimmar Guard's Boots",
+			[50360] = "Nightwatch's Boots",
+			[50303] = "Ironforge Guard's Boots",
+			--***********************************
 			[22859] = "Blood Guard's Satin Walkers",
 			[22860] = "Blood Guard's Silk Walkers",
 			[22855] = "Blood Guard's Dreadweave Walkers",
@@ -5680,6 +5762,10 @@ TmogGearDB = {
 			[6556] = "Bard's Bracers",
 		},
 		["Cloth"] = {
+			--*********** Jank ***************
+			[50355] = "Deathguard's Bracers",
+			[50348] = "Mountaineer's Bracers",
+			--********************************
 			[41643] = "Festive Frostwolf Bands",
 			[41645] = "Winter Veil Bands",
 			[41642] = "Solstice Bands",
@@ -6479,6 +6565,17 @@ TmogGearDB = {
 			[7443] = "Sentinel Gloves",
 		},
 		["Cloth"] = {
+			--************** Jank *******************
+			[50361] = "Nightwatch's Gloves",
+			[50354] = "Deathguard's Gloves",
+			[50347] = "Mountaineer's Gloves",
+			[50340] = "Sentinel's Gloves",
+			[50334] = "Stromgarde Guard's Gauntlets",
+			[50312] = "Stormwind Guard's Gauntlets",
+			[50320] = "Kul'Tiras Guard's Gauntlets",
+			[50366] = "Orgrimmar Guard's Gloves",
+			[50304] = "Ironforge Guard's Gloves",
+			--***************************************
 			[22869] = "Blood Guard's Satin Handwraps",
 			[22870] = "Blood Guard's Silk Handwraps",
 			[22865] = "Blood Guard's Dreadweave Handwraps",
@@ -6654,7 +6751,6 @@ TmogGearDB = {
 			[4318] = "Gloves of Meditation",
 			[41489] = "Grip of the Black Rose",
 			[41545] = "Fingerguards of Scarlet Zeal",
-			[16391] = "Knight-Lieutenant's Silk Gloves",
 			[11192] = "Outfitter Gloves",
 			[16740] = "Shredder Operating Gloves",
 			[69115] = "Bloodied Bandage Gloves",
@@ -6868,6 +6964,8 @@ TmogGearDB = {
 			[10242] = "Heavy Lamellar Gauntlets",
 		},
 		["Mail"] = {
+			[60750] = "Sentinel's Gauntlets",
+
 			[22867] = "Blood Guard's Mail Vices",
 			[22862] = "Blood Guard's Chain Vices",
 			[61013] = "Gauntlets of Temporal Guidance",
@@ -7087,6 +7185,9 @@ TmogGearDB = {
 	},
 	[15] = {
 		["Cloth"] = {
+			--[92053] = "Traveler's Backpack",
+
+			[20068] = "Deathguard's Cloak",
 			[41613] = "Holly Cloak",
 			[41617] = "Frosty Cloak",
 			[41611] = "Cloak of the Long Night",
@@ -7823,6 +7924,12 @@ TmogGearDB = {
 			[18868] = "High Warlord's Pulverizer",
 		},
 		["Daggers"] = {
+			[19549] = "Sentinel's Blade",
+			[19548] = "Sentinel's Blade",
+			[19546] = "Sentinel's Blade",
+			[20443] = "Sentinel's Blade",
+			[19547] = "Sentinel's Blade",
+
 			[80821] = "Hatetalon",
 			[80629] = "Revantusk Mystic's Chanting Blade",
 			[81360] = "Claw of Taranassz",
@@ -9554,6 +9661,11 @@ TmogGearDB = {
 			[1292] = "Butcher's Cleaver",
 		},
 		["Shields"] = {
+			--*********** Jank *********************
+			[50307] = "Ironforge Guard's Shield",
+			[50379] = "Forsaken Guard's Shield",
+			[50378] = "Stromgarde Guard's Shield",
+			--**************************************
 			[41670] = "Gingerbread Bulwark",
 			[81319] = "Razorblade Buckler",
 			[61617] = "Iron-plated Defender",
@@ -9898,6 +10010,12 @@ TmogGearDB = {
 			[6630] = "Seedcloud Buckler",
 		},
 		["Daggers"] = {
+			[19549] = "Sentinel's Blade",
+			[19548] = "Sentinel's Blade",
+			[19546] = "Sentinel's Blade",
+			[20443] = "Sentinel's Blade",
+			[19547] = "Sentinel's Blade",
+
 			[80821] = "Hatetalon",
 			[61001] = "Claw of the Infinite",
 			[81360] = "Claw of Taranassz",
@@ -10295,6 +10413,8 @@ TmogGearDB = {
 			[18847] = "Grand Marshal's Left Hand Blade",
 		},
 		["One-Handed Maces"] = {
+			[17733] = "Fist of Stone",
+
 			[10804] = "Fist of the Damned",
 			[41669] = "Sweet Winter Cane",
 			[80530] = "Quel'dorei Guardian's Mace",

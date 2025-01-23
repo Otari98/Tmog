@@ -642,7 +642,7 @@
                     </Anchor>
                 </Anchors>
             </Button>
-            <Frame name="TmogFrameSharedItems" enableMouse="true" frameStrata="TOOLTIP" hidden="true" toplevel="true" movable="true">
+            <Frame name="TmogFrameSharedItems" enableMouse="true" frameStrata="TOOLTIP" hidden="true" toplevel="true" movable="true" clampedToScreen="true">
                 <Size>
                      <AbsDimension x="80" y="107" />
                 </Size>
@@ -1023,24 +1023,14 @@
 				<Scripts>
 					<OnLoad>
 						this:SetAutoFocus(false)
-						this:SetTextInsets(0, 8, 0, 0)
+						this:SetTextInsets(15, 8, 0, 0)
 					</OnLoad>
 					<OnEnterPressed>
 						Tmog_Search(this:GetText())
 						this:ClearFocus()
-                        if this:GetText() == "" then
-							TmogFrameSearchBoxIcon:Show()
-						else
-							TmogFrameSearchBoxIcon:Hide()
-						end
 					</OnEnterPressed>
                     <OnTextChanged>
                         Tmog_Search(this:GetText())
-                        if this:GetText() == "" then
-							TmogFrameSearchBoxIcon:Show()
-						else
-							TmogFrameSearchBoxIcon:Hide()
-						end
                     </OnTextChanged>
 				</Scripts>
 				<FontString name="$parentSearchString" inherits="GameFontNormal"></FontString>

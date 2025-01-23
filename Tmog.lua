@@ -202,15 +202,16 @@ local function tmog_debug(a)
 end
 
 local function strsplit(str, delimiter)
+    local tinsert = table.insert
     local result = {}
     local from = 1
     local delim_from, delim_to = string.find(str, delimiter, from, true)
     while delim_from do
-        table.insert(result, string.sub(str, from, delim_from - 1))
+        tinsert(result, string.sub(str, from, delim_from - 1))
         from = delim_to + 1
         delim_from, delim_to = string.find(str, delimiter, from, true)
     end
-    table.insert(result, string.sub(str, from))
+    tinsert(result, string.sub(str, from))
     return result
 end
 
@@ -862,6 +863,15 @@ TmogTip:SetScript("OnHide", function()
 end)
 
 TmogTip:SetScript("OnShow", function()
+    if aux_frame and aux_frame:IsVisible() then
+        if GetMouseFocus():GetParent() then
+            if GetMouseFocus():GetParent().row then
+                if GetMouseFocus():GetParent().row.record.item_id then
+                    GameTooltip.itemID = GetMouseFocus():GetParent().row.record.item_id
+                end
+            end
+        end
+    end
     TmogTip.extendTooltip(GameTooltip)
 end)
 
@@ -1580,12 +1590,9 @@ function Tmog:DrawPreviews(noDraw)
 
                 local model = getglobal("TmogFramePreview" .. itemIndex .. "ItemModel")
                 local Z, X, Y = model:GetPosition()
-                model:SetAlpha(1)
                 model:SetUnit("player")
-                model:SetFacing(0.61)
-                model:SetLight(unpack(previewNormalLight))
                 model:Undress()
-                model:TryOn(itemID)
+                model:SetFacing(0.61)
 
                 if race == "nightelf" then
                     Z = Z + 3
@@ -2095,6 +2102,10 @@ function Tmog:DrawPreviews(noDraw)
                     model:SetPosition(Z + 3.8, X, Y + 0.4)
                 end
 
+                model:TryOn(itemID)
+                model:SetAlpha(1)
+                model:SetLight(unpack(previewNormalLight))
+
                 col = col + 1
                 if col == 5 then
                     row = row + 1
@@ -2190,16 +2201,16 @@ function Tmog:DrawPreviews(noDraw)
 
                 local model = getglobal("TmogFramePreview" .. outfitIndex .. "ItemModel")
                 local Z, X, Y = model:GetPosition()
-                model:SetAlpha(1)
                 model:SetUnit("player")
-                model:SetFacing(0.3)
-                model:SetLight(unpack(previewNormalLight))
-                model:SetPosition(Z + 1.5, X, Y)
                 model:Undress()
-
+                model:SetFacing(0.3)
+                model:SetPosition(Z + 1.5, X, Y)
+                
                 for _, itemID in pairs(TMOG_PLAYER_OUTFITS[name]) do
                     model:TryOn(itemID)
                 end
+                model:SetAlpha(1)
+                model:SetLight(unpack(previewNormalLight))
 
                 col = col + 1
                 if col == 5 then
@@ -2582,11 +2593,7 @@ end
 function Tmog_AddSharedItemTooltip(frame)
     local originalColor = { r = 1, g = 1, b = 1}
     local buttonText = getglobal(frame:GetName().."Name")
-    local r, g, b = buttonText:GetTextColor()
-
-    originalColor.r = r
-    originalColor.g = g
-    originalColor.b = b
+    originalColor.r, originalColor.g, originalColor.b = buttonText:GetTextColor()
 
     frame:SetScript("OnEnter", function()
         TmogTooltip:SetOwner(this, "ANCHOR_LEFT", -(this:GetWidth() / 4) + 30, -(this:GetHeight() / 4))

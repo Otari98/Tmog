@@ -53,7 +53,15 @@ local druid = {
     ["Mace"]=true,
     ["Dagger"]=true,
     ["Polearm"]=true,
-    ["Fist Weapon"]=true
+    ["Fist Weapon"]=true,
+
+    ["Daggers"] = true,
+    ["One-Handed Maces"] = true,
+    ["Fist Weapons"] = true,
+    ["Two-Handed Maces"] = true,
+    ["Polearms"] = true,
+    ["Staves"] = true,
+    ["Miscellaneous"] = true,
 }
 
 local shaman = {
@@ -65,7 +73,17 @@ local shaman = {
     ["Dagger"]=true,
     ["Axe"]=true,
     ["Fist Weapon"]=true,
-    ["Shield"]=true
+    ["Shield"]=true,
+
+    ["Daggers"] = true,
+    ["One-Handed Axes"] = true,
+    ["One-Handed Maces"] = true,
+    ["Fist Weapons"] = true,
+    ["Two-Handed Axes"] = true,
+    ["Two-Handed Maces"] = true,
+    ["Staves"] = true,
+    ["Shields"] = true,
+    ["Miscellaneous"] = true,
 }
 
 local paladin = {
@@ -77,15 +95,45 @@ local paladin = {
     ["Sword"]=true,
     ["Axe"]=true,
     ["Polearm"]=true,
-    ["Shield"]=true
+    ["Shield"]=true,
+
+    ["One-Handed Axes"] = true,
+    ["One-Handed Swords"] = true,
+    ["One-Handed Maces"] = true,
+    ["Two-Handed Axes"] = true,
+    ["Two-Handed Swords"] = true,
+    ["Two-Handed Maces"] = true,
+    ["Polearms"] = true,
+    ["Shields"] = true,
+    ["Miscellaneous"] = true,
 }
 
-local magelock = {
+local mage = {
     ["Cloth"]=true,
     ["Staff"]=true,
     ["Sword"]=true,
     ["Dagger"]=true,
-    ["Wand"]=true
+    ["Wand"]=true,
+
+    ["Staves"] = true,
+    ["Daggers"] = true,
+    ["One-Handed Swords"] = true,
+    ["Wands"] = true,
+    ["Miscellaneous"] = true,
+}
+
+local warlock = {
+    ["Cloth"]=true,
+    ["Staff"]=true,
+    ["Sword"]=true,
+    ["Dagger"]=true,
+    ["Wand"]=true,
+
+    ["Staves"] = true,
+    ["Daggers"] = true,
+    ["One-Handed Swords"] = true,
+    ["Wands"] = true,
+    ["Miscellaneous"] = true,
 }
 
 local priest = {
@@ -93,7 +141,13 @@ local priest = {
     ["Staff"]=true,
     ["Mace"]=true,
     ["Dagger"]=true,
-    ["Wand"]=true
+    ["Wand"]=true,
+
+    ["Staves"] = true,
+    ["Daggers"] = true,
+    ["One-Handed Maces"] = true,
+    ["Wands"] = true,
+    ["Miscellaneous"] = true,
 }
 
 local warrior = {
@@ -109,7 +163,23 @@ local warrior = {
     ["Axe"]=true,
     ["Fist Weapon"]=true,
     ["Shield"]=true,
-    ["Bow"]=true
+    ["Bow"]=true,
+
+    ["Daggers"] = true,
+    ["Fist Weapons"] = true,
+    ["Staves"] = true,
+    ["One-Handed Axes"] = true,
+    ["One-Handed Swords"] = true,
+    ["One-Handed Maces"] = true,
+    ["Two-Handed Axes"] = true,
+    ["Two-Handed Swords"] = true,
+    ["Two-Handed Maces"] = true,
+    ["Polearms"] = true,
+    ["Shields"] = true,
+    ["Bows"] = true,
+    ["Guns"] = true,
+    ["Crossbows"] = true,
+    ["Miscellaneous"] = true,
 }
 
 local rogue = {
@@ -119,7 +189,18 @@ local rogue = {
     ["Dagger"]=true,
     ["Sword"]=true,
     ["Fist Weapon"]=true,
-    ["Bow"]=true
+    ["Bow"]=true,
+    ["Axe"]=true,
+
+    ["Daggers"] = true,
+    ["Fist Weapons"] = true,
+    ["One-Handed Axes"] = true,
+    ["One-Handed Swords"] = true,
+    ["One-Handed Maces"] = true,
+    ["Bows"] = true,
+    ["Guns"] = true,
+    ["Crossbows"] = true,
+    ["Miscellaneous"] = true,
 }
 
 local hunter = {
@@ -132,45 +213,20 @@ local hunter = {
     ["Polearm"]=true,
     ["Fist Weapon"]=true,
     ["Axe"]=true,
-    ["Bow"]=true
-}
+    ["Bow"]=true,
 
-local suffixes = {
-    [" of the Owl"]=true,
-    [" of the Eagle"]=true,
-    [" of the Whale"]=true,
-    [" of the Bear"]=true,
-    [" of the Monkey"]=true,
-    [" of the Falcon"]=true,
-    [" of the Wolf"]=true,
-    [" of the Tiger"]=true,
-    [" of the Gorilla"]=true,
-    [" of the Boar"]=true,
-
-    [" of Strength"]=true,
-    [" of Agility"]=true,
-    [" of Stamina"]=true,
-    [" of Intellect"]=true,
-    [" of Spirit"]=true,
-
-    [" of Power"]=true,
-    [" of Marksmanship"]=true,
-    [" of Healing"]=true,
-
-    [" of Fiery Wrath"]=true,
-    [" of Frozen Wrath"]=true,
-    [" of Nature's Wrath"]=true,
-    [" of Shadow Wrath"]=true,
-    [" of Arcane Wrath"]=true,
-
-    [" of Arcane Resistance"]=true,
-    [" of Fire Resistance"]=true,
-    [" of Frost Resistance"]=true,
-    [" of Shadow Resistance"]=true,
-    [" of Nature Resistance"]=true,
-
-    [" of Defense"]=true,
-    [" of Blocking"]=true,
+    ["Daggers"] = true,
+    ["Fist Weapons"] = true,
+    ["Staves"] = true,
+    ["One-Handed Axes"] = true,
+    ["One-Handed Swords"] = true,
+    ["Two-Handed Axes"] = true,
+    ["Two-Handed Swords"] = true,
+    ["Polearms"] = true,
+    ["Bows"] = true,
+    ["Guns"] = true,
+    ["Crossbows"] = true,
+    ["Miscellaneous"] = true,
 }
 
 local function tmogprint(a)
@@ -303,6 +359,44 @@ local function GetItemIDByName(name)
 	return lastSearchID
 end
 
+local HookSetLootRollItem = GameTooltip.SetLootRollItem
+function GameTooltip.SetLootRollItem(self, id)
+    local _, _, itemID = string.find(GetLootRollItemLink(id) or "", "item:(%d+)")
+    GameTooltip.itemID = itemID
+    return HookSetLootRollItem(self, id)
+end
+
+local HookSetLootItem = GameTooltip.SetLootItem
+function GameTooltip.SetLootItem(self, slot)
+    local _, _, itemID = string.find(GetLootSlotLink(slot) or "", "item:(%d+)")
+    GameTooltip.itemID = itemID
+    HookSetLootItem(self, slot)
+end
+
+local HookSetMerchantItem = GameTooltip.SetMerchantItem
+function GameTooltip.SetMerchantItem(self, merchantIndex)
+    local _, _, itemID = string.find(GetMerchantItemLink(merchantIndex) or "", "item:(%d+)")
+    GameTooltip.itemID = itemID
+    return HookSetMerchantItem(self, merchantIndex)
+end
+
+local HookSetQuestLogItem = GameTooltip.SetQuestLogItem
+function GameTooltip.SetQuestLogItem(self, itemType, index)
+    local _, _, itemID = string.find(GetQuestLogItemLink(itemType, index) or "", "item:(%d+)")
+    GameTooltip.itemID = itemID
+    if not GameTooltip.itemID then
+        return
+    end
+    return HookSetQuestLogItem(self, itemType, index)
+end
+
+local HookSetQuestItem = GameTooltip.SetQuestItem
+function GameTooltip.SetQuestItem(self, itemType, index)
+    local _, _, itemID = string.find(GetQuestItemLink(itemType, index) or "", "item:(%d+)")
+    GameTooltip.itemID = itemID
+    return HookSetQuestItem(self, itemType, index)
+end
+
 local HookSetHyperlink = GameTooltip.SetHyperlink
 function GameTooltip.SetHyperlink(self, arg1)
   if arg1 then
@@ -349,6 +443,13 @@ function GameTooltip.SetCraftItem(self, skill, slot)
 		GameTooltip.itemID = id
 	end
 	return HookSetCraftItem(self, skill, slot)
+end
+
+local HookSetCraftSpell = GameTooltip.SetCraftSpell
+function GameTooltip.SetCraftSpell(self, slot)
+    local _, _, id = string.find(GetCraftItemLink(slot) or "", "item:(%d+)")
+    GameTooltip.itemID = id
+    return HookSetCraftSpell(self, slot)
 end
 
 local HookSetTradeSkillItem = GameTooltip.SetTradeSkillItem
@@ -411,19 +512,6 @@ SetItemRef = function(link, text, button)
     if not IsShiftKeyDown() and not IsControlKeyDown() and item then
         TmogTip.extendTooltip(ItemRefTooltip)
     end
-end
-
-local function FixName(name)
-    if not name then
-        return nil
-    end
-    for suffix in pairs(suffixes) do
-        local suffixStart = string.find(name, suffix, 1, true)
-        if suffixStart then
-            return string.sub(name, 1, suffixStart - 1)
-        end
-    end
-    return name
 end
 
 local Tmog = CreateFrame("Frame")
@@ -623,8 +711,10 @@ local function GetTableForClass(class)
         return paladin
     elseif class == "SHAMAN" then
         return shaman
-    elseif class == "MAGE" or class == "WARLOCK" then
-        return magelock
+    elseif class == "MAGE" then
+        return mage
+    elseif class == "WARLOCK" then
+        return warlock
     elseif class == "PRIEST" then
         return priest
     elseif class == "WARRIOR" then
@@ -797,22 +887,18 @@ local LastItemName = nil
 local LastSlot = nil
 function TmogTip.extendTooltip(tooltip)
     local tooltipName = tooltip:GetName()
-    local itemName = getglobal(tooltip:GetName() .. "TextLeft1"):GetText()
-    local line2 = getglobal(tooltip:GetName() .. "TextLeft2")
+    local itemName = getglobal(tooltipName .. "TextLeft1"):GetText()
+    local line2 = getglobal(tooltipName .. "TextLeft2")
 
-    if not itemName or not line2 or IsShiftKeyDown() then
+    if not itemName or not tooltip.itemID or not line2 or IsShiftKeyDown() then
         return
     end
-    
-    -- if not tooltip.itemID then
-    --     return
-    -- end
 
-    -- get rid of suffixes
-    itemName = FixName(itemName)
-    
+    local itemID = tonumber(tooltip.itemID)
+    Tmog:CacheItem(itemID)
+    itemName = GetItemInfo(itemID)
+
     if itemName ~= LastItemName then
-
         local slot = IsGear(tooltipName)
         
         if not slot then
@@ -822,24 +908,20 @@ function TmogTip.extendTooltip(tooltip)
         LastItemName = itemName
         LastSlot = slot
 
-        if line2 then
-            if line2:GetText() then
-                if SetContains(TMOG_CACHE[slot], tonumber(tooltip.itemID), itemName) then
-                    line2:SetText(GREY.."In your collection|r\n"..line2:GetText())
-                else
-                    line2:SetText(YELLOW.."Not collected|r\n"..line2:GetText())
-                end
+        if line2:GetText() then
+            if SetContains(TMOG_CACHE[slot], itemID, itemName) then
+                line2:SetText(GREY.."In your collection|r\n"..line2:GetText())
+            else
+                line2:SetText(YELLOW.."Not collected|r\n"..line2:GetText())
             end
         end
     else
-        if line2 then
-            if line2:GetText() then
-                -- tooltips have max 30 lines so dont just AddLine, insert into 2nd line of the tooltip instead to avoid hitting lines cap
-                if SetContains(TMOG_CACHE[LastSlot], tonumber(tooltip.itemID), LastItemName) then
-                    line2:SetText(GREY.."In your collection|r\n"..line2:GetText())
-                else
-                    line2:SetText(YELLOW.."Not collected|r\n"..line2:GetText())
-                end
+        if line2:GetText() then
+            -- tooltips have max 30 lines so dont just AddLine, insert into 2nd line of the tooltip instead to avoid hitting lines cap
+            if SetContains(TMOG_CACHE[LastSlot], itemID, LastItemName) then
+                line2:SetText(GREY.."In your collection|r\n"..line2:GetText())
+            else
+                line2:SetText(YELLOW.."Not collected|r\n"..line2:GetText())
             end
         end
     end
@@ -929,7 +1011,7 @@ end)
 Tmog.currentGear = {}
 Tmog.previewButtons = {}
 Tmog.actualGear = {} -- actual gear + transmog
-
+local _, playerClass = UnitClass("player")
 local _, playerRace = UnitRace("player")
 Tmog.sex = UnitSex("player") -- 3 - female, 2 - male
 Tmog.race = string.lower(playerRace)
@@ -941,6 +1023,9 @@ Tmog.currentTypesList = {} -- available types for current slot
 Tmog.currentOutfit = nil
 Tmog.collected = true --check box
 Tmog.notCollected = true --check box
+Tmog.usable = false --check box
+Tmog.ignoreLevel = false --check box
+Tmog.canDualWeild = playerClass == "WARRIOR" or playerClass == "HUNTER" or playerClass == "ROGUE"
 Tmog.currentTab = "items"
 
 Tmog.typesDefault = {
@@ -1106,7 +1191,109 @@ Tmog.pages = {
         ["Miscellaneous"]=1,
     },
 }
-
+Tmog.unusable = {
+    [1] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["Miscellaneous"] = {},
+        ["SearchResult"] = {},
+    },
+    [3] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["SearchResult"] = {},
+    },
+    [4] = {
+        ["Miscellaneous"] = {},
+        ["SearchResult"] = {},
+    },
+    [5] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["Miscellaneous"] = {},
+        ["SearchResult"] = {},
+    },
+    [6] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["SearchResult"] = {},
+    },
+    [7] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["SearchResult"] = {},
+    },
+    [8] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["Miscellaneous"] = {},
+        ["SearchResult"] = {},
+    },
+    [9] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["SearchResult"] = {},
+    },
+    [10] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["SearchResult"] = {},
+    },
+    [15] = {
+        ["Cloth"] = {},
+        ["SearchResult"] = {},
+    },
+    [16] = {
+        ["Daggers"] = {},
+        ["One-Handed Axes"] = {},
+        ["One-Handed Swords"] = {},
+        ["One-Handed Maces"] = {},
+        ["Fist Weapons"] = {},
+        ["Two-Handed Axes"] = {},
+        ["Two-Handed Swords"] = {},
+        ["Two-Handed Maces"] = {},
+        ["Polearms"] = {},
+        ["Staves"] = {},
+        ["SearchResult"] = {},
+    },
+    [17] = {
+        ["Daggers"] = {},
+        ["One-Handed Axes"] = {},
+        ["One-Handed Swords"] = {},
+        ["One-Handed Maces"] = {},
+        ["Fist Weapons"] = {},
+        ["Miscellaneous"] = {},
+        ["Shields"] = {},
+        ["SearchResult"] = {},
+    },
+    [18] = {
+        ["Bows"] = {},
+        ["Guns"] = {},
+        ["Crossbows"] = {},
+        ["Wands"] = {},
+        ["SearchResult"] = {},
+    },
+    [19] = {
+        ["Miscellaneous"] = {},
+        ["SearchResult"] = {},
+    },
+}
 Tmog.inventorySlots = {
     ["HeadSlot"] = 1,
     ["ShoulderSlot"] = 3,
@@ -1141,6 +1328,7 @@ function TmogFrame_OnLoad()
 
     TmogFrameCollected:SetChecked(Tmog.collected)
     TmogFrameNotCollected:SetChecked(Tmog.notCollected)
+    TmogFrameUsable:SetChecked(Tmog.usable)
 
     tinsert(UISpecialFrames, "TmogFrame")
 end
@@ -1227,7 +1415,7 @@ function TmogModel_OnLoad()
         end
 
         TmogFrameSearchBox:ClearFocus()
-        CloseDropDownMenus()
+        DropDownList1:Hide()
     end)
 end
 
@@ -1305,6 +1493,49 @@ function Tmog:HidePreviews()
         getglobal("TmogFramePreview" .. index .. "Button"):Hide()
         getglobal("TmogFramePreview" .. index .. "ButtonCheck"):Hide()
     end
+end
+
+local function IsRed(tooltipLine)
+    local r, g, b = getglobal(tooltipLine):GetTextColor()
+    if r > 0.9 and g < 0.2 and b < 0.2 then
+        return true
+    end
+    return false
+end
+local TmogScanTooltip = TmogScanTooltip or CreateFrame("GameTooltip", "TmogScanTooltip", nil, "GameTooltipTemplate")
+TmogScanTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
+function Tmog:IsUsableItem(id)
+    if SetContains(Tmog.unusable[Tmog.currentSlot][Tmog.currentType], id) then
+        return false
+    end
+    local strfind = string.find
+    local isUsable = true
+	for i = 2, 15 do
+		getglobal("TmogScanTooltipTextLeft"..i):SetTextColor(0,0,0)
+		getglobal("TmogScanTooltipTextRight"..i):SetTextColor(0,0,0)
+	end
+    TmogScanTooltip:ClearLines()
+    TmogScanTooltip:SetHyperlink("item:"..id)
+    for i = 2, 15 do
+        local text = getglobal("TmogScanTooltipTextLeft"..i):GetText() or ""
+        if (IsRed("TmogScanTooltipTextLeft"..i) or IsRed("TmogScanTooltipTextRight"..i)) then
+            if strfind(text, "^Requires Level") then
+                if not Tmog.ignoreLevel then
+                    isUsable = false
+                    Tmog.unusable[Tmog.currentSlot][Tmog.currentType][id] = true
+                end
+            else
+                isUsable = false
+                Tmog.unusable[Tmog.currentSlot][Tmog.currentType][id] = true
+            end
+        end
+    end
+    local _, _, _, _, _, _, _, itemEquipLoc = GetItemInfo(id)
+    if not Tmog.canDualWeild and (itemEquipLoc == "INVTYPE_WEAPONOFFHAND" or (itemEquipLoc == "INVTYPE_WEAPON" and Tmog.currentSlot == 17)) then
+        isUsable = false
+        Tmog.unusable[Tmog.currentSlot][Tmog.currentType][id] = true
+    end
+    return isUsable
 end
 
 local drawTable = {
@@ -1507,6 +1738,14 @@ function Tmog:DrawPreviews(noDraw)
                 drawTable[slot][type][k] = nil
             end
         end
+        -- if usable checked, remove unusable items
+        if Tmog.usable then
+            for k in pairs(drawTable[slot][type]) do
+                if not Tmog:IsUsableItem(k) then
+                    drawTable[slot][type][k] = nil
+                end
+            end
+        end
         -- remove duplicates
         if searchStr == "" and type ~= "SearchResult" then
             for k1 in pairs(drawTable[slot][type]) do
@@ -1576,8 +1815,16 @@ function Tmog:DrawPreviews(noDraw)
                 end
                 
                 if quality then
-                    local _, _, _, color = GetItemQualityColor(quality)
+                    local border = getglobal("TmogFramePreview" .. itemIndex .. "ButtonBorder")
+                    local r, g, b, color = GetItemQualityColor(quality)
                     Tmog_AddItemTooltip(button, color .. name)
+                    border:SetVertexColor(r, g, b)
+                    border:SetAlpha(0.4)
+                    if quality == 2 then
+                        border:SetAlpha(0.2)
+                    elseif quality == 0 then
+                        border:SetAlpha(0.1)
+                    end
                 else
                     Tmog_AddItemTooltip(button, name)
                 end
@@ -2166,7 +2413,8 @@ function Tmog:DrawPreviews(noDraw)
             TmogFramePreview1ButtonPlusPushed:Hide()
             TmogFramePreview1ItemModel:SetAlpha(0)
             Tmog_AddOutfitTooltip(button, frame.name)
-
+            TmogFramePreview1ButtonBorder:SetAlpha(0.4)
+            TmogFramePreview1ButtonBorder:SetVertexColor(1, 0.82, 0)
             col = 1
             outfitIndex = 2
             index = index + 1
@@ -2211,7 +2459,8 @@ function Tmog:DrawPreviews(noDraw)
                 end
                 model:SetAlpha(1)
                 model:SetLight(unpack(previewNormalLight))
-
+                getglobal("TmogFramePreview" .. outfitIndex .. "ButtonBorder"):SetAlpha(0.4)
+                getglobal("TmogFramePreview" .. outfitIndex .. "ButtonBorder"):SetVertexColor(1, 0.82, 0)
                 col = col + 1
                 if col == 5 then
                     row = row + 1
@@ -2370,7 +2619,7 @@ function TmogSlot_OnClick(InventorySlotId, rightClick)
         if Tmog.currentTab == "outfits" then
             if getglobal(this:GetName().."BorderFull"):IsVisible() then
                 Tmog_SwitchTab("items")
-                Tmog_Search(TmogFrameSearchBox:GetText())
+                Tmog_Search()
                 return
             else
                 Tmog_SwitchTab("items")
@@ -2399,9 +2648,10 @@ function TmogSlot_OnClick(InventorySlotId, rightClick)
             PlaySound("InterfaceSound_LostTargetUnit")
         end
 
-        Tmog_Search(TmogFrameSearchBox:GetText())
+        Tmog_Search()
         PlaySound("igCreatureAggroSelect")
     end
+    DropDownList1:Hide()
 end
 
 function Tmog:FixTabard()
@@ -2534,14 +2784,17 @@ function TmogTry(itemId, arg1, noSelect)
 
                 if name and quality then
                     local r, g, b = GetItemQualityColor(quality)
-                    t[index] = {name = "", id = 0, color = { r = 0, g = 0, b = 0 }, tex = ""}
-                    t[index].name = name
-                    t[index].id = id
-                    t[index].color.r = r
-                    t[index].color.g = g
-                    t[index].color.b = b
-                    t[index].tex = tex
-                    index = index + 1
+                    if Tmog.usable and not Tmog:IsUsableItem(id) then
+                    else
+                        t[index] = {name = "", id = 0, color = { r = 0, g = 0, b = 0 }, tex = ""}
+                        t[index].name = name
+                        t[index].id = id
+                        t[index].color.r = r
+                        t[index].color.g = g
+                        t[index].color.b = b
+                        t[index].tex = tex
+                        index = index + 1
+                    end
                 end
             end
         end
@@ -2587,7 +2840,7 @@ function TmogTry(itemId, arg1, noSelect)
         TmogFrameSharedItems:SetWidth(45 + widestText)
     end
 
-    CloseDropDownMenus()
+    DropDownList1:Hide()
 end
 
 function Tmog_AddSharedItemTooltip(frame)
@@ -2784,19 +3037,49 @@ function Tmog_AddItemTooltip(frame, text)
                 local name = GetItemInfo(itemID)
 
                 if name and SetContains(DisplayIdDB, itemID) then
-                    lastLine:SetText(lastLine:GetText().."\n\n"..YELLOW.."Shares Appearance With:")
+                    if not Tmog.usable then
+                        lastLine:SetText(lastLine:GetText().."\n\n"..YELLOW.."Shares Appearance With:")
+                        for _, id in pairs(DisplayIdDB[itemID]) do
+                            Tmog:CacheItem(id)
+                            local similarItem, _, quality = GetItemInfo(id)
+    
+                            if similarItem and quality then
+                                local _, _, _, color = GetItemQualityColor(quality)
 
-                    for _, id in pairs(DisplayIdDB[itemID]) do
-                        Tmog:CacheItem(id)
-                        local similarItem, _, quality = GetItemInfo(id)
-
-                        if similarItem and quality then
-                            local _, _, _, color = GetItemQualityColor(quality)
-
-                            if color then
-                                lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
-                            else
-                                lastLine:SetText(lastLine:GetText().."\n"..similarItem)
+                                if color then
+                                    lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
+                                else
+                                    lastLine:SetText(lastLine:GetText().."\n"..similarItem)
+                                end
+                            end
+                        end
+                    else
+                        local proceed = false
+                        for _, id in pairs(DisplayIdDB[itemID]) do
+                            Tmog:CacheItem(itemID)
+                            if Tmog:IsUsableItem(id) then
+                                lastLine:SetText(lastLine:GetText().."\n\n"..YELLOW.."Shares Appearance With:")
+                                proceed = true
+                                break
+                            end
+                        end
+                        if proceed then
+                            for _, id in pairs(DisplayIdDB[itemID]) do
+                                Tmog:CacheItem(id)
+                                local similarItem, _, quality = GetItemInfo(id)
+        
+                                if similarItem and quality then
+                                    if not Tmog:IsUsableItem(id) then
+                                    else
+                                        local _, _, _, color = GetItemQualityColor(quality)
+        
+                                        if color then
+                                            lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
+                                        else
+                                            lastLine:SetText(lastLine:GetText().."\n"..similarItem)
+                                        end
+                                    end
+                                end
                             end
                         end
                     end
@@ -3118,6 +3401,52 @@ function Tmog_NotCollectedToggle()
     end
 end
 
+function Tmog_UsableToggle()
+    if Tmog.usable then
+        Tmog.usable = false
+        TmogFrameIgnoreLevel:Disable()
+        TmogFrameIgnoreLevelText:SetTextColor(GRAY_FONT_COLOR.r, GRAY_FONT_COLOR.g, GRAY_FONT_COLOR.b)
+    else
+        Tmog.usable = true
+        TmogFrameIgnoreLevel:Enable()
+        TmogFrameIgnoreLevelText:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
+    end
+    this:SetChecked(Tmog.usable)
+    if Tmog.currentSlot then
+        Tmog.currentPage = 1
+        for k in pairs(Tmog.pages) do
+            for i in pairs(Tmog.pages[k]) do
+                Tmog.pages[k][i] = 1
+            end
+        end
+        if Tmog.usable then
+            Tmog.unusable[Tmog.currentSlot][Tmog.currentType] = {}
+        end
+        Tmog:DrawPreviews()
+    end
+end
+
+function Tmog_IgnoreLevelToggle()
+    if Tmog.ignoreLevel then
+        Tmog.ignoreLevel = false
+    else
+        Tmog.ignoreLevel = true
+    end
+    this:SetChecked(Tmog.ignoreLevel)
+    if Tmog.currentSlot then
+        Tmog.currentPage = 1
+        for k in pairs(Tmog.pages) do
+            for i in pairs(Tmog.pages[k]) do
+                Tmog.pages[k][i] = 1
+            end
+        end
+        if Tmog.usable then
+            Tmog.unusable[Tmog.currentSlot][Tmog.currentType] = {}
+        end
+        Tmog:DrawPreviews()
+    end
+end
+
 function TmogFrame_Toggle()
 	if TmogFrame:IsVisible() then
 		HideUIPanel(TmogFrame)
@@ -3126,11 +3455,12 @@ function TmogFrame_Toggle()
 	end
 end
 
-function Tmog_Search(text)
+function Tmog_Search()
     if TmogFrameSharedItems:IsVisible() then
         TmogFrameSharedItems:Hide()
     end
-	if text == "" then
+
+	if TmogFrameSearchBox:GetText() == "" then
         Tmog_SelectType(Tmog.currentType)
         return
     end
@@ -3164,6 +3494,8 @@ function Tmog_SwitchTab(which)
         
         TmogFrameCollected:Show()
         TmogFrameNotCollected:Show()
+        TmogFrameUsable:Show()
+        TmogFrameIgnoreLevel:Show()
         TmogFrameShareOutfit:Hide()
         TmogFrameImportOutfit:Hide()
     elseif which == "outfits" then
@@ -3176,6 +3508,8 @@ function Tmog_SwitchTab(which)
         TmogFrameTypeDropDown:Hide()
         TmogFrameCollected:Hide()
         TmogFrameNotCollected:Hide()
+        TmogFrameUsable:Hide()
+        TmogFrameIgnoreLevel:Hide()
         TmogFrameSearchBox:Hide()
         TmogFrameShareOutfit:Show()
         TmogFrameImportOutfit:Show()
@@ -3184,7 +3518,7 @@ function Tmog_SwitchTab(which)
     end
 
     TmogFrameSharedItems:Hide()
-    CloseDropDownMenus()
+    DropDownList1:Hide()
 end
 
 function Tmog_PlayerSlotOnEnter()
@@ -3331,7 +3665,15 @@ function Tmog_TypeDropDown_Initialize()
         info.arg1 = v
         info.checked = Tmog.currentType == v
         info.func = Tmog_SelectType
-        UIDropDownMenu_AddButton(info)
+        if Tmog.usable then
+            if SetContains(GetTableForClass(playerClass), v) then
+                if not (not Tmog.canDualWeild and Tmog.currentSlot == 17 and v ~= "Shields" and v ~= "Miscellaneous") then
+                    UIDropDownMenu_AddButton(info)
+                end
+            end
+        else
+            UIDropDownMenu_AddButton(info)
+        end
     end
 end
 

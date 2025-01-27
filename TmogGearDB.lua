@@ -10413,8 +10413,6 @@ TmogGearDB = {
 			[18847] = "Grand Marshal's Left Hand Blade",
 		},
 		["One-Handed Maces"] = {
-			[17733] = "Fist of Stone",
-
 			[10804] = "Fist of the Damned",
 			[41669] = "Sweet Winter Cane",
 			[80530] = "Quel'dorei Guardian's Mace",

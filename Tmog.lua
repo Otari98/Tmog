@@ -825,7 +825,7 @@ function TmogTip.extendTooltip(tooltip)
         if line2 then
             if line2:GetText() then
                 if SetContains(TMOG_CACHE[slot], tonumber(tooltip.itemID), itemName) then
-                    line2:SetText(YELLOW.."In your collection|r\n"..line2:GetText())
+                    line2:SetText(GREY.."In your collection|r\n"..line2:GetText())
                 else
                     line2:SetText(YELLOW.."Not collected|r\n"..line2:GetText())
                 end
@@ -836,7 +836,7 @@ function TmogTip.extendTooltip(tooltip)
             if line2:GetText() then
                 -- tooltips have max 30 lines so dont just AddLine, insert into 2nd line of the tooltip instead to avoid hitting lines cap
                 if SetContains(TMOG_CACHE[LastSlot], tonumber(tooltip.itemID), LastItemName) then
-                    line2:SetText(YELLOW.."In your collection|r\n"..line2:GetText())
+                    line2:SetText(GREY.."In your collection|r\n"..line2:GetText())
                 else
                     line2:SetText(YELLOW.."Not collected|r\n"..line2:GetText())
                 end
@@ -3203,7 +3203,7 @@ function Tmog_PlayerSlotOnEnter()
 
         if slot ~= 4 and slot ~= 19 then
             if SetContains(TMOG_CACHE[slot], itemID, name)then
-                TmogTooltip:AddLine(YELLOW.."In your collection|r")
+                TmogTooltip:AddLine(GREY.."In your collection|r")
             else
                 TmogTooltip:AddLine(YELLOW.."Not collected|r")
             end

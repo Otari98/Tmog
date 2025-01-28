@@ -873,8 +873,17 @@ local function IsGear(tooltipName)
                 end
             end
         end
+        local id = tonumber(getglobal(tooltipName).itemID)
+        tmog_debug(id)
+        if id then
+            local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemTexture  = GetItemInfo(id)
+            tmog_debug(itemType)
+            tmog_debug(itemSubType)
+            if itemType == "Armor" and itemSubType == "Miscellaneous" then
+                canEquip = true
+            end
+        end
     end
-
     if not canEquip then
         tmog_debug("Cant transmog")
         return nil
@@ -1027,7 +1036,7 @@ Tmog.usable = false --check box
 Tmog.ignoreLevel = false --check box
 Tmog.canDualWeild = playerClass == "WARRIOR" or playerClass == "HUNTER" or playerClass == "ROGUE"
 Tmog.currentTab = "items"
-
+Tmog.flush = true
 Tmog.typesDefault = {
     "Cloth",
     "Leather",
@@ -1470,7 +1479,7 @@ function Tmog_SelectType(typeStr)
     UIDropDownMenu_SetText(typeStr, TmogFrameTypeDropDown)
     Tmog.currentType = typeStr
     Tmog.currentPage = 1
-
+    Tmog.flush = true
     if Tmog.currentSlot and Tmog.currentType and Tmog.pages[Tmog.currentSlot][Tmog.currentType] then
         Tmog.slots[Tmog.currentSlot] = typeStr
         if SetContains(Tmog.linkedSlots, Tmog.currentSlot) then
@@ -1508,6 +1517,36 @@ function Tmog:IsUsableItem(id)
     if SetContains(Tmog.unusable[Tmog.currentSlot][Tmog.currentType], id) then
         return false
     end
+    -- local _, _, _, _, itemType, itemSubType, _, itemEquipLoc = GetItemInfo(id)
+    -- local tableToCheck = GetTableForClass(playerClass)
+    -- if SetContains(tableToCheck, itemSubType) then
+    --     TmogScanTooltip:ClearLines()
+    --     TmogScanTooltip:SetHyperlink("item:"..id)
+    --     for i = 2, 15 do
+    --         local text = getglobal("TmogScanTooltipTextLeft"..i):GetText() or ""
+    --         local _, _, classesRow = string.find(text, "Classes: (.*)")
+    --         if classesRow then
+    --             if not string.find(classesRow, UnitClass("player"), 1, true) then
+    --                 Tmog.unusable[Tmog.currentSlot][Tmog.currentType][id] = true
+    --                 return false
+    --             end
+    --         end
+    --         -- if (IsRed("TmogScanTooltipTextLeft"..i) or IsRed("TmogScanTooltipTextRight"..i)) then
+    --         --     if strfind(text, "^Requires Level") then
+    --         --         if not Tmog.ignoreLevel then
+    --         --             isUsable = false
+    --         --             Tmog.unusable[Tmog.currentSlot][Tmog.currentType][id] = true
+    --         --         end
+    --         --     else
+    --         --         isUsable = false
+    --         --         Tmog.unusable[Tmog.currentSlot][Tmog.currentType][id] = true
+    --         --     end
+    --         -- end
+    --     end
+    --     return true
+    -- end
+    --Tmog.unusable[Tmog.currentSlot][Tmog.currentType][id] = true
+    --return false
     local strfind = string.find
     local isUsable = true
 	for i = 2, 15 do
@@ -1669,96 +1708,97 @@ function Tmog:DrawPreviews(noDraw)
         if searchStr ~= "" then
             type = "SearchResult"
         end
-
-        for k in pairs(drawTable[slot][type]) do
-            drawTable[slot][type][k] = nil
-        end
-
-        -- only Collected checked
-        if Tmog.collected and not Tmog.notCollected then
-            if searchStr ~= "" then
-                for k in pairs(TmogGearDB[slot]) do
-                    for itemID, itemName in pairs(TmogGearDB[slot][k]) do
-                        if SetContains(TMOG_CACHE[slot], itemID) then
-                            local name = string.lower(itemName)
-                            if string.find(name, searchStr, 1 ,true) then
-                                drawTable[slot][type][itemID] = itemName
-                            end
-                        end
-                    end
-                end
-            elseif TmogGearDB[slot][type] then
-                for itemID, name in pairs(TmogGearDB[slot][type]) do
-                    if SetContains(TMOG_CACHE[slot], itemID) then
-                        drawTable[slot][type][itemID] = name
-                    end
-                end
-            end
-        -- only Not Collected checked
-        elseif Tmog.notCollected and not Tmog.collected then
-            if searchStr ~= "" then
-                for k in pairs(TmogGearDB[slot]) do
-                    for itemID, itemName in pairs(TmogGearDB[slot][k]) do
-                        if not SetContains(TMOG_CACHE[slot], itemID) then
-                            local name = string.lower(itemName)
-                            if string.find(name, searchStr, 1 ,true) then
-                                drawTable[slot][type][itemID] = itemName
-                            end
-                        end
-                    end
-                end
-            elseif TmogGearDB[slot][type] then
-                for itemID, name in pairs(TmogGearDB[slot][type]) do
-                    if not SetContains(TMOG_CACHE[slot], itemID) then
-                        drawTable[slot][type][itemID] = name
-                    end
-                end
-            end
-        -- both checked
-        elseif Tmog.collected and Tmog.notCollected then
-            if searchStr ~= "" then
-                for k in pairs(TmogGearDB[slot]) do
-                    for itemID, itemName in pairs(TmogGearDB[slot][k]) do
-                        local name = string.lower(itemName)
-                        if string.find(name, searchStr, 1 ,true) then
-                            drawTable[slot][type][itemID] = itemName
-                        end
-                    end
-                end
-            elseif TmogGearDB[slot][type] then
-                for itemID, name in pairs(TmogGearDB[slot][type]) do
-                    drawTable[slot][type][itemID] = name 
-                end
-            end
-        end
-        -- remove no longer existing items 
-        for k in pairs(drawTable[slot][type]) do
-            Tmog:CacheItem(k)
-            if not GetItemInfo(k) then
+        if Tmog.flush then
+            tmog_debug("flushing, slot "..slot.." type "..type)
+            for k in pairs(drawTable[slot][type]) do
                 drawTable[slot][type][k] = nil
             end
-        end
-        -- if usable checked, remove unusable items
-        if Tmog.usable then
+
+            -- only Collected checked
+            if Tmog.collected and not Tmog.notCollected then
+                if searchStr ~= "" then
+                    for k in pairs(TmogGearDB[slot]) do
+                        for itemID, itemName in pairs(TmogGearDB[slot][k]) do
+                            if SetContains(TMOG_CACHE[slot], itemID) then
+                                local name = string.lower(itemName)
+                                if string.find(name, searchStr, 1 ,true) then
+                                    drawTable[slot][type][itemID] = itemName
+                                end
+                            end
+                        end
+                    end
+                elseif TmogGearDB[slot][type] then
+                    for itemID, name in pairs(TmogGearDB[slot][type]) do
+                        if SetContains(TMOG_CACHE[slot], itemID) then
+                            drawTable[slot][type][itemID] = name
+                        end
+                    end
+                end
+            -- only Not Collected checked
+            elseif Tmog.notCollected and not Tmog.collected then
+                if searchStr ~= "" then
+                    for k in pairs(TmogGearDB[slot]) do
+                        for itemID, itemName in pairs(TmogGearDB[slot][k]) do
+                            if not SetContains(TMOG_CACHE[slot], itemID) then
+                                local name = string.lower(itemName)
+                                if string.find(name, searchStr, 1 ,true) then
+                                    drawTable[slot][type][itemID] = itemName
+                                end
+                            end
+                        end
+                    end
+                elseif TmogGearDB[slot][type] then
+                    for itemID, name in pairs(TmogGearDB[slot][type]) do
+                        if not SetContains(TMOG_CACHE[slot], itemID) then
+                            drawTable[slot][type][itemID] = name
+                        end
+                    end
+                end
+            -- both checked
+            elseif Tmog.collected and Tmog.notCollected then
+                if searchStr ~= "" then
+                    for k in pairs(TmogGearDB[slot]) do
+                        for itemID, itemName in pairs(TmogGearDB[slot][k]) do
+                            local name = string.lower(itemName)
+                            if string.find(name, searchStr, 1 ,true) then
+                                drawTable[slot][type][itemID] = itemName
+                            end
+                        end
+                    end
+                elseif TmogGearDB[slot][type] then
+                    for itemID, name in pairs(TmogGearDB[slot][type]) do
+                        drawTable[slot][type][itemID] = name 
+                    end
+                end
+            end
+            -- remove no longer existing items 
             for k in pairs(drawTable[slot][type]) do
-                if not Tmog:IsUsableItem(k) then
+                Tmog:CacheItem(k)
+                if not GetItemInfo(k) then
                     drawTable[slot][type][k] = nil
                 end
             end
-        end
-        -- remove duplicates
-        if searchStr == "" and type ~= "SearchResult" then
-            for k1 in pairs(drawTable[slot][type]) do
-                if SetContains(DisplayIdDB, k1) then
-                    for _, v in pairs(DisplayIdDB[k1]) do
-                        if drawTable[slot][type][v] then
-                            drawTable[slot][type][v] = nil
+            -- if usable checked, remove unusable items
+            if Tmog.usable then
+                for k in pairs(drawTable[slot][type]) do
+                    if not Tmog:IsUsableItem(k) then
+                        drawTable[slot][type][k] = nil
+                    end
+                end
+            end
+            -- remove duplicates
+            if searchStr == "" and type ~= "SearchResult" then
+                for k1 in pairs(drawTable[slot][type]) do
+                    if SetContains(DisplayIdDB, k1) then
+                        for _, v in pairs(DisplayIdDB[k1]) do
+                            if drawTable[slot][type][v] then
+                                drawTable[slot][type][v] = nil
+                            end
                         end
                     end
                 end
             end
         end
-
         Tmog.totalPages = Tmog:ceil(Tmog:tableSize(drawTable[slot][type]) / ipp)
 
         -- nothing to show
@@ -2496,6 +2536,7 @@ function Tmog:DrawPreviews(noDraw)
     else
         Tmog:HidePagination()
     end
+    Tmog.flush = false
 end
 
 function Tmog:ShowPagination()
@@ -2615,7 +2656,7 @@ function TmogSlot_OnClick(InventorySlotId, rightClick)
         PlaySound("igMainMenuOptionCheckBoxOn")
     else
         Tmog.currentSlot = InventorySlotId
-
+        Tmog.flush = true
         if Tmog.currentTab == "outfits" then
             if getglobal(this:GetName().."BorderFull"):IsVisible() then
                 Tmog_SwitchTab("items")
@@ -3369,7 +3410,7 @@ function Tmog_CollectedToggle()
     end
 
     TmogFrameCollected:SetChecked(Tmog.collected)
-
+    Tmog.flush = true
     if Tmog.currentSlot then
         Tmog.currentPage = 1
         for k in pairs(Tmog.pages) do
@@ -3389,7 +3430,7 @@ function Tmog_NotCollectedToggle()
     end
 
     TmogFrameNotCollected:SetChecked(Tmog.notCollected)
-
+    Tmog.flush = true
     if Tmog.currentSlot then
         Tmog.currentPage = 1
         for k in pairs(Tmog.pages) do
@@ -3412,6 +3453,7 @@ function Tmog_UsableToggle()
         TmogFrameIgnoreLevelText:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
     end
     this:SetChecked(Tmog.usable)
+    Tmog.flush = true
     if Tmog.currentSlot then
         Tmog.currentPage = 1
         for k in pairs(Tmog.pages) do
@@ -3433,6 +3475,7 @@ function Tmog_IgnoreLevelToggle()
         Tmog.ignoreLevel = true
     end
     this:SetChecked(Tmog.ignoreLevel)
+    Tmog.flush = true
     if Tmog.currentSlot then
         Tmog.currentPage = 1
         for k in pairs(Tmog.pages) do
@@ -3464,7 +3507,7 @@ function Tmog_Search()
         Tmog_SelectType(Tmog.currentType)
         return
     end
-
+    Tmog.flush = true
     Tmog.currentPage = 1
     Tmog:DrawPreviews()
 end

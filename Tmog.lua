@@ -1,14 +1,358 @@
--------------------------------
------------ TOOLTIP -----------
--------------------------------
--- adapted from https://github.com/Zebouski/MoPGearTooltips/tree/masterturtle
+-- Dressing room code - modified CosminPOP's Turtle_TransmogUI
+-- Tooltip code - adapted from https://github.com/Zebouski/MoPGearTooltips/tree/masterturtle
 local YELLOW = NORMAL_FONT_COLOR_CODE
 local WHITE = HIGHLIGHT_FONT_COLOR_CODE
 local GREEN = GREEN_FONT_COLOR_CODE
 local GREY = GRAY_FONT_COLOR_CODE
 local BLUE = "|cff0070de"
+
 local version = GetAddOnMetadata("Tmog", "Version")
 local debug = false
+local _, playerClass = UnitClass("player")
+local _, playerRace = UnitRace("player")
+
+local playerModelLight   = { 1, 0, -0.3, -1, -1,   0.55, 1.0, 1.0, 1.0,   0.8, 1.0, 1.0, 1.0 }
+local previewNormalLight = { 1, 0, -0.3,  0, -1,   0.65, 1.0, 1.0, 1.0,   0.8, 1.0, 1.0, 1.0 }
+local previewHighlight   = { 1, 0, -0.3,  0, -1,   0.9,  1.0, 1.0, 1.0,   0.8, 1.0, 1.0, 1.0 }
+local FSLight            = { 1, 0, -0.5, -1, -0.7, 0.42, 1.0, 1.0, 1.0,   0.8, 1.0, 1.0, 1.0 }
+local TmogTip = CreateFrame("Frame", "TmogTip", GameTooltip)
+local TmogTooltip = TmogTooltip or CreateFrame("GameTooltip", "TmogTooltip", nil, "GameTooltipTemplate")
+TmogTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
+
+local Tmog = CreateFrame("Frame")
+Tmog:RegisterEvent("UNIT_INVENTORY_CHANGED")
+Tmog:RegisterEvent("CHAT_MSG_ADDON")
+Tmog:RegisterEvent("PLAYER_ENTERING_WORLD")
+Tmog:RegisterEvent("ADDON_LOADED")
+
+Tmog.currentGear = {}
+Tmog.previewButtons = {}
+Tmog.actualGear = {} -- actual gear + transmog
+Tmog.sex = UnitSex("player") -- 3 - female, 2 - male
+Tmog.race = string.lower(playerRace)
+Tmog.currentType = "Cloth"
+Tmog.currentSlot = nil
+Tmog.currentPage = 1
+Tmog.totalPages = 1
+Tmog.currentTypesList = {} -- available types for current slot
+Tmog.currentOutfit = nil
+Tmog.collected = true -- check box
+Tmog.notCollected = true -- check box
+Tmog.onlyUsable = false -- check box
+Tmog.ignoreLevel = false -- check box
+Tmog.canDualWeild = playerClass == "WARRIOR" or playerClass == "HUNTER" or playerClass == "ROGUE"
+Tmog.currentTab = "items"
+Tmog.flush = true
+
+Tmog.typesDefault = {
+    "Cloth",
+    "Leather",
+    "Mail",
+    "Plate",
+}
+Tmog.typesMisc = {
+    "Cloth",
+    "Leather",
+    "Mail",
+    "Plate",
+    "Miscellaneous",
+}
+Tmog.typesBack = {
+    "Cloth",
+}
+Tmog.typesShirt = {
+    "Miscellaneous",
+}
+Tmog.typesMh = {
+    "Daggers",
+    "One-Handed Axes",
+    "One-Handed Swords",
+    "One-Handed Maces",
+    "Fist Weapons",
+    "Polearms",
+    "Staves",
+    "Two-Handed Axes",
+    "Two-Handed Swords",
+    "Two-Handed Maces",
+}
+Tmog.typesOh = {
+    "Daggers",
+    "One-Handed Axes",
+    "One-Handed Swords",
+    "One-Handed Maces",
+    "Fist Weapons",
+    "Miscellaneous",
+    "Shields",
+}
+Tmog.typesRanged = {
+    "Bows",
+    "Guns",
+    "Crossbows",
+    "Wands",
+}
+-- store last selected type for each slot
+Tmog.slots = {
+    [1] = "Cloth",
+    [3] = "Cloth",
+    [4] = "Miscellaneous",
+    [5] = "Cloth",
+    [6] = "Cloth",
+    [7] = "Cloth",
+    [8] = "Cloth",
+    [9] = "Cloth",
+    [10] = "Cloth",
+    [15] = "Cloth",
+    [16] = "Daggers",
+    [17] = "Daggers",
+    [18] = "Bows",
+    [19] = "Miscellaneous",
+}
+-- these slots change type together
+Tmog.linkedSlots = {
+    [1] = true,
+    [3] = true,
+    [5] = true,
+    [6] = true,
+    [7] = true,
+    [8] = true,
+    [9] = true,
+    [10] = true
+}
+-- store last selected page for each slot and type
+Tmog.pages = {
+    [1] = {
+        ["Cloth"]=1,
+        ["Leather"]=1,
+        ["Mail"]=1,
+        ["Plate"]=1,
+        ["Miscellaneous"]=1,
+    },
+    [3] = {
+        ["Cloth"]=1,
+        ["Leather"]=1,
+        ["Mail"]=1,
+        ["Plate"]=1,
+    },
+    [4] = {
+        ["Miscellaneous"]=1,
+    },
+    [5] = {
+        ["Cloth"]=1,
+        ["Leather"]=1,
+        ["Mail"]=1,
+        ["Plate"]=1,
+        ["Miscellaneous"]=1,
+    },
+    [6] = {
+        ["Cloth"]=1,
+        ["Leather"]=1,
+        ["Mail"]=1,
+        ["Plate"]=1,
+    },
+    [7] = {
+        ["Cloth"]=1,
+        ["Leather"]=1,
+        ["Mail"]=1,
+        ["Plate"]=1,
+    },
+    [8] = {
+        ["Cloth"]=1,
+        ["Leather"]=1,
+        ["Mail"]=1,
+        ["Plate"]=1,
+        ["Miscellaneous"]=1,
+    },
+    [9] = {
+        ["Cloth"]=1,
+        ["Leather"]=1,
+        ["Mail"]=1,
+        ["Plate"]=1,
+    }, 
+    [10] = {
+        ["Cloth"]=1,
+        ["Leather"]=1,
+        ["Mail"]=1,
+        ["Plate"]=1,
+    },
+    [15] = {
+        ["Cloth"]=1
+    },
+    [16] = {
+        ["Daggers"]=1,
+        ["One-Handed Axes"]=1,
+        ["One-Handed Swords"]=1,
+        ["One-Handed Maces"]=1,
+        ["Fist Weapons"]=1,
+        ["Two-Handed Axes"]=1,
+        ["Two-Handed Swords"]=1,
+        ["Two-Handed Maces"]=1,
+        ["Polearms"]=1,
+        ["Staves"]=1,
+    },
+    [17] = {
+        ["Daggers"]=1,
+        ["One-Handed Axes"]=1,
+        ["One-Handed Swords"]=1,
+        ["One-Handed Maces"]=1,
+        ["Fist Weapons"]=1,
+        ["Miscellaneous"]=1,
+        ["Shields"]=1,
+    },
+    [18] = {
+        ["Bows"]=1,
+        ["Guns"]=1,
+        ["Crossbows"]=1,
+        ["Wands"]=1,
+    },
+    [19] = {
+        ["Miscellaneous"]=1,
+    },
+}
+-- bad items for "Ony Usable" check box
+Tmog.unusable = {
+    [1] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["Miscellaneous"] = {},
+        ["SearchResult"] = {},
+    },
+    [3] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["SearchResult"] = {},
+    },
+    [4] = {
+        ["Miscellaneous"] = {},
+        ["SearchResult"] = {},
+    },
+    [5] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["Miscellaneous"] = {},
+        ["SearchResult"] = {},
+    },
+    [6] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["SearchResult"] = {},
+    },
+    [7] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["SearchResult"] = {},
+    },
+    [8] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["Miscellaneous"] = {},
+        ["SearchResult"] = {},
+    },
+    [9] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["SearchResult"] = {},
+    },
+    [10] = {
+        ["Cloth"] = {},
+        ["Leather"] = {},
+        ["Mail"] = {},
+        ["Plate"] = {},
+        ["SearchResult"] = {},
+    },
+    [15] = {
+        ["Cloth"] = {},
+        ["SearchResult"] = {},
+    },
+    [16] = {
+        ["Daggers"] = {},
+        ["One-Handed Axes"] = {},
+        ["One-Handed Swords"] = {},
+        ["One-Handed Maces"] = {},
+        ["Fist Weapons"] = {},
+        ["Two-Handed Axes"] = {},
+        ["Two-Handed Swords"] = {},
+        ["Two-Handed Maces"] = {},
+        ["Polearms"] = {},
+        ["Staves"] = {},
+        ["SearchResult"] = {},
+    },
+    [17] = {
+        ["Daggers"] = {},
+        ["One-Handed Axes"] = {},
+        ["One-Handed Swords"] = {},
+        ["One-Handed Maces"] = {},
+        ["Fist Weapons"] = {},
+        ["Miscellaneous"] = {},
+        ["Shields"] = {},
+        ["SearchResult"] = {},
+    },
+    [18] = {
+        ["Bows"] = {},
+        ["Guns"] = {},
+        ["Crossbows"] = {},
+        ["Wands"] = {},
+        ["SearchResult"] = {},
+    },
+    [19] = {
+        ["Miscellaneous"] = {},
+        ["SearchResult"] = {},
+    },
+}
+
+Tmog.inventorySlots = {
+    ["HeadSlot"] = 1,
+    ["ShoulderSlot"] = 3,
+    ["ChestSlot"] = 5,
+    ["WaistSlot"] = 6,
+    ["LegsSlot"] = 7,
+    ["FeetSlot"] = 8,
+    ["WristSlot"] = 9,
+    ["HandsSlot"] = 10,
+    ["BackSlot"] = 15,
+    ["MainHandSlot"] = 16,
+    ["SecondaryHandSlot"] = 17,
+    ["RangedSlot"] = 18,
+    ["ShirtSlot"] = 4,
+    ["TabardSlot"] = 19
+}
+
+local InventoryTypeToSlot = {
+    ["INVTYPE_HEAD"] = 1,
+    ["INVTYPE_SHOULDER"] = 3,
+    ["INVTYPE_CHEST"] = 5,
+    ["INVTYPE_ROBE"] = 5,
+    ["INVTYPE_WAIST"] = 6,
+    ["INVTYPE_LEGS"] = 7,
+    ["INVTYPE_FEET"] = 8,
+    ["INVTYPE_WRIST"] = 9,
+    ["INVTYPE_HAND"] = 10,
+    ["INVTYPE_CLOAK"] = 15,
+    ["INVTYPE_WEAPONMAINHAND"] = 16,
+    ["INVTYPE_2HWEAPON"] = 16,
+    ["INVTYPE_WEAPON"] = 16,
+    ["INVTYPE_WEAPONOFFHAND"] = 17,
+    ["INVTYPE_HOLDABLE"] = 17,
+    ["INVTYPE_SHIELD"] = 17,
+    ["INVTYPE_RANGED"] = 18,
+    ["INVTYPE_RANGEDRIGHT"] = 18,
+    ["INVTYPE_TABARD"] = 19,
+    ["INVTYPE_BODY"] = 4,
+    ["INVTYPE_RELIC"] = 18,
+}
 
 TMOG_CACHE = TMOG_CACHE or {
     [1] = {}, --HeadSlot
@@ -24,27 +368,6 @@ TMOG_CACHE = TMOG_CACHE or {
     [17] = {}, --SecondaryHandSlot
     [18] = {} --RangedSlot
 }
--- strings from game tooltips to determine if this item can be used for transmog
-local gearslots = {
-    "Head",
-    "Shoulder",
-    "Back",
-    "Chest",
-    "Wrist",
-    "Hands",
-    "Waist",
-    "Legs",
-    "Feet",
-    "Ranged",
-    "Crossbow",
-    "Gun",
-    "Wand",
-    "Two-Hand",
-    "Main Hand",
-    "One-Hand",
-    "Off Hand",
-    "Held In Off-hand",
-  }
 
 local druid = {
     ["Cloth"]=true,
@@ -305,42 +628,35 @@ end
 
 local function InvenotySlotFromItemID(itemID)
     if not itemID then
-        return
+        return nil
     end
     local _, _, _, _, _, _, _, slot  = GetItemInfo(itemID)
-    local id = nil
-    if slot == "INVTYPE_HEAD"
-        then id = 1
-    elseif slot == "INVTYPE_SHOULDER"
-        then id = 3
-    elseif slot == "INVTYPE_CHEST" or
-            slot == "INVTYPE_ROBE"
-        then id = 5
-    elseif slot == "INVTYPE_WAIST"
-        then id = 6
-    elseif slot == "INVTYPE_LEGS"
-        then id = 7
-    elseif slot == "INVTYPE_FEET"
-        then id = 8
-    elseif slot == "INVTYPE_WRIST"
-        then id = 9
-    elseif slot == "INVTYPE_HAND"
-        then id = 10
-    elseif slot == "INVTYPE_CLOAK"
-        then id = 15
-    elseif slot == "INVTYPE_WEAPONMAINHAND" or
-            slot == "INVTYPE_2HWEAPON" or
-            slot == "INVTYPE_WEAPON"
-        then id = 16
-    elseif slot == "INVTYPE_WEAPONOFFHAND" or
-            slot == "INVTYPE_HOLDABLE" or
-            slot == "INVTYPE_SHIELD"
-        then id = 17
-    elseif slot == "INVTYPE_RANGED" or
-            slot == "INVTYPE_RANGEDRIGHT"
-        then id = 18
+    if SetContains(InventoryTypeToSlot, slot) then
+        return InventoryTypeToSlot[slot]
     end
-    return id
+    return nil
+end
+
+local function GetTableForClass(class)
+    if class == "DRUID" then
+        return druid
+    elseif class == "PALADIN" then
+        return paladin
+    elseif class == "SHAMAN" then
+        return shaman
+    elseif class == "MAGE" then
+        return mage
+    elseif class == "WARLOCK" then
+        return warlock
+    elseif class == "PRIEST" then
+        return priest
+    elseif class == "WARRIOR" then
+        return warrior
+    elseif class == "ROGUE" then
+        return rogue
+    elseif class == "HUNTER" then
+        return hunter
+    end
 end
 
 local lastSearchName = nil
@@ -513,16 +829,6 @@ SetItemRef = function(link, text, button)
         TmogTip.extendTooltip(ItemRefTooltip)
     end
 end
-
-local Tmog = CreateFrame("Frame")
-local TmogTip = CreateFrame("Frame", "TmogTip", GameTooltip)
-local TmogTooltip = TmogTooltip or CreateFrame("GameTooltip", "TmogTooltip", nil, "GameTooltipTemplate")
-TmogTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
-
-Tmog:RegisterEvent("UNIT_INVENTORY_CHANGED")
-Tmog:RegisterEvent("CHAT_MSG_ADDON")
-Tmog:RegisterEvent("PLAYER_ENTERING_WORLD")
-Tmog:RegisterEvent("ADDON_LOADED")
 
 local firstLoad = true
 Tmog:SetScript("OnEvent", function()
@@ -704,192 +1010,54 @@ Tmog:SetScript("OnEvent", function()
     end
 end)
 
-local function GetTableForClass(class)
-    if class == "DRUID" then
-        return druid
-    elseif class == "PALADIN" then
-        return paladin
-    elseif class == "SHAMAN" then
-        return shaman
-    elseif class == "MAGE" then
-        return mage
-    elseif class == "WARLOCK" then
-        return warlock
-    elseif class == "PRIEST" then
-        return priest
-    elseif class == "WARRIOR" then
-        return warrior
-    elseif class == "ROGUE" then
-        return rogue
-    elseif class == "HUNTER" then
-        return hunter
-    end
-end
-
 local originalTooltip = {}
 -- return slot if this is gear and we can equip it
-local function IsGear(tooltipName)
-    if not tooltipName then
-        return nil
-    end
-
-    for k in pairs(originalTooltip) do
-        originalTooltip[k] = nil
-    end
-
-    local slot = nil
-
-    -- collect left lines of the original tooltip into lua table
-    for row = 1, 30 do
-        local tooltipRowLeft = getglobal(tooltipName .. "TextLeft" .. row)
-        if tooltipRowLeft then
-            local rowtext = tooltipRowLeft:GetText()
-            if rowtext then
-                originalTooltip[row] = rowtext
-            end
+local function IsGear(itemID, tooltip)
+    local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(itemID)
+    local tableToCheck = GetTableForClass(playerClass)
+    tmog_debug(itemType)
+    tmog_debug(itemSubType)
+    tmog_debug(itemEquipLoc)
+    if SetContains(tableToCheck, itemSubType) and SetContains(InventoryTypeToSlot, itemEquipLoc) then
+        if not Tmog.canDualWeild and itemEquipLoc == "INVTYPE_WEAPONOFFHAND" then
+            tmog_debug("cant dual weild")
+            return nil
         end
-    end
-
-    local _, class = UnitClass("player")
-    local tableToCheck = GetTableForClass(class)
-    local canEquip = false
-
-    for row = 1, Tmog:tableSize(originalTooltip) do
+        if itemType == "Weapon" and itemSubType == "Miscellaneous" then
+            tmog_debug("not a real weapon")
+            return nil
+        end
+        if itemEquipLoc == "INVTYPE_BODY" or itemEquipLoc == "INVTYPE_TABARD" then
+            tmog_debug("shirt or tabard")
+            return nil
+        end
         -- check if its class restricted item
-        if originalTooltip[row] then
-            local _, _, classesRow = string.find(originalTooltip[row], "Classes: (.*)")
-            if classesRow then
-                if not string.find(classesRow, UnitClass("player"), 1, true) then
-                    tmog_debug("bad class")
-                    return nil
-                end
-            end
-            -- skip recipies / spells / units
-            if string.find(originalTooltip[row], "^Pattern:") or
-                string.find(originalTooltip[row], "^Plans:") or
-                string.find(originalTooltip[row], "^Schematic:") or
-                string.find(originalTooltip[row], "yd range$") or
-                string.find(originalTooltip[row], "^Level ") or
-                string.find(originalTooltip[row], "^%d+ sec cast") or
-                string.find(originalTooltip[row], "^Instant cast")
-            then
-                tmog_debug("recipies / spells / units")
-                return nil
-            end
+        for k in pairs(originalTooltip) do
+            originalTooltip[k] = nil
         end
-    end
-
-    local off_hand = false
-
-    for row = 2, 7 do
-        if originalTooltip[row] then
-            -- Gear is guaranteed to be labeled with the slot it occupies.
-            for _, v in pairs(gearslots) do
-                if string.find(originalTooltip[row], v, 1, true) then
-                    if v == "Back" then
-                        tmog_debug("Back")
-                        return 15 -- everyone can equip
-                    elseif v == "Held In Off-hand" then
-                        tmog_debug("Held In Off-hand")
-                        return 17 -- everyone can equip
-                    elseif v == "Head" then
-                        slot = 1
-                        break
-                    elseif v == "Shoulder" then
-                        slot = 3
-                        break
-                    elseif v == "Chest" then
-                        slot = 5
-                        break
-                    elseif v == "Waist" then
-                        slot = 6
-                        break
-                    elseif v == "Legs" then
-                        slot = 7
-                        break
-                    elseif v == "Feet" then
-                        slot = 8
-                        break
-                    elseif v == "Wrist" then
-                        slot = 9
-                        break
-                    elseif v == "Hands" then
-                        slot = 10
-                        break
-                    elseif v == "Main Hand" or v == "Two-Hand" or v == "One-Hand" then
-                        slot = 16
-                        break
-                    elseif v == "Off Hand" then
-                        slot = 17
-                        off_hand = true -- some classes cant dual weild, will need to double check later
-                        break
-                    elseif v == "Ranged" then
-                        slot = 18
-                        break
-                    elseif (v == "Gun" or v == "Crossbow") and (class == "WARRIOR" or class == "ROGUE" or class == "HUNTER") then
-                        return 18
-                    elseif v == "Wand" and (class == "MAGE" or class == "WARLOCK" or class == "PRIEST") then
-                        return 18
-                    end
-                end
-            end
-        end
-    end
-
-    if not slot then
-        tmog_debug("no slot")
-        return nil
-    end
-
-    if slot then
-        -- looking at the first line on the right
-        local gearType
-
-        for row = 1, 7 do
-            local tooltipRowRight = getglobal(tooltipName .. "TextRight" .. row)
-            if tooltipRowRight then
-                local rowtext = tooltipRowRight:GetText()
+        local tooltipName = tooltip:GetName()
+        for row = 1, 15 do
+            local tooltipRowLeft = getglobal(tooltipName .. "TextLeft" .. row)
+            if tooltipRowLeft then
+                local rowtext = tooltipRowLeft:GetText()
                 if rowtext then
-                    if string.find(rowtext, "Rank %d") or string.find(rowtext, "cooldown$") or string.find(rowtext, "yd range$") then
-                        tmog_debug("Spell")
+                    originalTooltip[row] = rowtext
+                end
+            end
+        end
+        for row = 1, Tmog:tableSize(originalTooltip) do
+            if originalTooltip[row] then
+                local _, _, classesRow = string.find(originalTooltip[row], "Classes: (.*)")
+                if classesRow then
+                    if not string.find(classesRow, UnitClass("player"), 1, true) then
+                        tmog_debug("bad class")
                         return nil
                     end
-                    if not string.find(rowtext, "%d") then -- ignore weapon speed
-                        gearType = rowtext
-                        break
-                    end
                 end
             end
         end
-
-        if gearType then
-            if SetContains(tableToCheck, gearType) then
-                canEquip = true
-                if off_hand and gearType ~= "Shield" and not (class == "WARRIOR" or class == "ROGUE" or class == "HUNTER") then
-                    canEquip = false
-                    tmog_debug("Cant dual weild")
-                else
-                    tmog_debug("Can Equip")
-                end
-            end
-        end
-        local id = tonumber(getglobal(tooltipName).itemID)
-        tmog_debug(id)
-        if id then
-            local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemTexture  = GetItemInfo(id)
-            tmog_debug(itemType)
-            tmog_debug(itemSubType)
-            if itemType == "Armor" and itemSubType == "Miscellaneous" then
-                canEquip = true
-            end
-        end
+        return InventoryTypeToSlot[itemEquipLoc]
     end
-    if not canEquip then
-        tmog_debug("Cant transmog")
-        return nil
-    end
-
-    return slot
 end
 
 local LastItemName = nil
@@ -908,7 +1076,7 @@ function TmogTip.extendTooltip(tooltip)
     itemName = GetItemInfo(itemID)
 
     if itemName ~= LastItemName then
-        local slot = IsGear(tooltipName)
+        local slot = IsGear(itemID, tooltip)
         
         if not slot then
             return
@@ -939,17 +1107,10 @@ function TmogTip.extendTooltip(tooltip)
 end
 
 ItemRefTooltip:SetScript("OnHide", function()
-    -- clear right text otherwise it will collect bunch of random strings and mess things up
-    for row = 1, 30 do
-        getglobal("ItemRefTooltipTextRight" .. row):SetText("")
-    end
     ItemRefTooltip.itemID = nil
 end)
 
 TmogTip:SetScript("OnHide", function()
-    for row = 1, 30 do
-        getglobal("GameTooltipTextRight" .. row):SetText("")
-    end
     GameTooltip.itemID = nil
 end)
 
@@ -967,9 +1128,6 @@ TmogTip:SetScript("OnShow", function()
 end)
 
 TmogTooltip:SetScript("OnHide", function()
-    for row = 1, 30 do
-        getglobal("TmogTooltipTextRight" .. row):SetText("")
-    end
     TmogTooltip.itemID = nil
 end)
 
@@ -992,23 +1150,17 @@ Tmog.HookAddonOrVariable("AtlasLoot", function()
     local atlas = CreateFrame("Frame", nil, AtlasLootTooltip)
     local atlas2 = CreateFrame("Frame", nil, AtlasLootTooltip2)
 
-    atlas2:SetScript("OnHide", function()
-        for row = 1, 30 do
-            getglobal("AtlasLootTooltip2TextRight" .. row):SetText("")
-        end
-    end)
-
-    atlas:SetScript("OnHide", function()
-        for row = 1, 30 do
-            getglobal("AtlasLootTooltipTextRight" .. row):SetText("")
-        end
-    end)
-
     atlas:SetScript("OnShow", function()
+        if GetMouseFocus().dressingroomID and GetMouseFocus().dressingroomID ~= 0 then
+            AtlasLootTooltip.itemID = GetMouseFocus().dressingroomID
+        end
         TmogTip.extendTooltip(AtlasLootTooltip)
     end)
 
     atlas2:SetScript("OnShow", function()
+        if GetMouseFocus().dressingroomID and GetMouseFocus().dressingroomID ~= 0 then
+            AtlasLootTooltip2.itemID = GetMouseFocus().dressingroomID
+        end
         TmogTip.extendTooltip(AtlasLootTooltip2)
     end)
 end)
@@ -1016,315 +1168,6 @@ end)
 -------------------------------
 ------- ITEM BROWSER ----------
 -------------------------------
--- Modified CosminPOP's Turtle_TransmogUI
-Tmog.currentGear = {}
-Tmog.previewButtons = {}
-Tmog.actualGear = {} -- actual gear + transmog
-local _, playerClass = UnitClass("player")
-local _, playerRace = UnitRace("player")
-Tmog.sex = UnitSex("player") -- 3 - female, 2 - male
-Tmog.race = string.lower(playerRace)
-Tmog.currentType = "Cloth"
-Tmog.currentSlot = nil
-Tmog.currentPage = 1
-Tmog.totalPages = 1
-Tmog.currentTypesList = {} -- available types for current slot
-Tmog.currentOutfit = nil
-Tmog.collected = true --check box
-Tmog.notCollected = true --check box
-Tmog.usable = false --check box
-Tmog.ignoreLevel = false --check box
-Tmog.canDualWeild = playerClass == "WARRIOR" or playerClass == "HUNTER" or playerClass == "ROGUE"
-Tmog.currentTab = "items"
-Tmog.flush = true
-Tmog.typesDefault = {
-    "Cloth",
-    "Leather",
-    "Mail",
-    "Plate",
-}
-Tmog.typesMisc = {
-    "Cloth",
-    "Leather",
-    "Mail",
-    "Plate",
-    "Miscellaneous",
-}
-Tmog.typesBack = {
-    "Cloth",
-}
-Tmog.typesShirt = {
-    "Miscellaneous",
-}
-Tmog.typesMh = {
-    "Daggers",
-    "One-Handed Axes",
-    "One-Handed Swords",
-    "One-Handed Maces",
-    "Fist Weapons",
-    "Polearms",
-    "Staves",
-    "Two-Handed Axes",
-    "Two-Handed Swords",
-    "Two-Handed Maces",
-}
-Tmog.typesOh = {
-    "Daggers",
-    "One-Handed Axes",
-    "One-Handed Swords",
-    "One-Handed Maces",
-    "Fist Weapons",
-    "Miscellaneous",
-    "Shields",
-}
-Tmog.typesRanged = {
-    "Bows",
-    "Guns",
-    "Crossbows",
-    "Wands",
-}
--- store last selected type for each slot
-Tmog.slots = {
-    [1] = "Cloth",
-    [3] = "Cloth",
-    [4] = "Miscellaneous",
-    [5] = "Cloth",
-    [6] = "Cloth",
-    [7] = "Cloth",
-    [8] = "Cloth",
-    [9] = "Cloth",
-    [10] = "Cloth",
-    [15] = "Cloth",
-    [16] = "Daggers",
-    [17] = "Daggers",
-    [18] = "Bows",
-    [19] = "Miscellaneous",
-}
-Tmog.linkedSlots = {
-    [1] = true,
-    [3] = true,
-    [5] = true,
-    [6] = true,
-    [7] = true,
-    [8] = true,
-    [9] = true,
-    [10] = true
-}
--- store last selected page for each slot and type
-Tmog.pages = {
-    [1] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
-        ["Miscellaneous"]=1,
-    },
-    [3] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
-    },
-    [4] = {
-        ["Miscellaneous"]=1,
-    },
-    [5] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
-        ["Miscellaneous"]=1,
-    },
-    [6] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
-    },
-    [7] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
-    },
-    [8] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
-        ["Miscellaneous"]=1,
-    },
-    [9] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
-    }, 
-    [10] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
-    },
-    [15] = {
-        ["Cloth"]=1
-    },
-    [16] = {
-        ["Daggers"]=1,
-        ["One-Handed Axes"]=1,
-        ["One-Handed Swords"]=1,
-        ["One-Handed Maces"]=1,
-        ["Fist Weapons"]=1,
-        ["Two-Handed Axes"]=1,
-        ["Two-Handed Swords"]=1,
-        ["Two-Handed Maces"]=1,
-        ["Polearms"]=1,
-        ["Staves"]=1,
-    },
-    [17] = {
-        ["Daggers"]=1,
-        ["One-Handed Axes"]=1,
-        ["One-Handed Swords"]=1,
-        ["One-Handed Maces"]=1,
-        ["Fist Weapons"]=1,
-        ["Miscellaneous"]=1,
-        ["Shields"]=1,
-    },
-    [18] = {
-        ["Bows"]=1,
-        ["Guns"]=1,
-        ["Crossbows"]=1,
-        ["Wands"]=1,
-    },
-    [19] = {
-        ["Miscellaneous"]=1,
-    },
-}
-Tmog.unusable = {
-    [1] = {
-        ["Cloth"] = {},
-        ["Leather"] = {},
-        ["Mail"] = {},
-        ["Plate"] = {},
-        ["Miscellaneous"] = {},
-        ["SearchResult"] = {},
-    },
-    [3] = {
-        ["Cloth"] = {},
-        ["Leather"] = {},
-        ["Mail"] = {},
-        ["Plate"] = {},
-        ["SearchResult"] = {},
-    },
-    [4] = {
-        ["Miscellaneous"] = {},
-        ["SearchResult"] = {},
-    },
-    [5] = {
-        ["Cloth"] = {},
-        ["Leather"] = {},
-        ["Mail"] = {},
-        ["Plate"] = {},
-        ["Miscellaneous"] = {},
-        ["SearchResult"] = {},
-    },
-    [6] = {
-        ["Cloth"] = {},
-        ["Leather"] = {},
-        ["Mail"] = {},
-        ["Plate"] = {},
-        ["SearchResult"] = {},
-    },
-    [7] = {
-        ["Cloth"] = {},
-        ["Leather"] = {},
-        ["Mail"] = {},
-        ["Plate"] = {},
-        ["SearchResult"] = {},
-    },
-    [8] = {
-        ["Cloth"] = {},
-        ["Leather"] = {},
-        ["Mail"] = {},
-        ["Plate"] = {},
-        ["Miscellaneous"] = {},
-        ["SearchResult"] = {},
-    },
-    [9] = {
-        ["Cloth"] = {},
-        ["Leather"] = {},
-        ["Mail"] = {},
-        ["Plate"] = {},
-        ["SearchResult"] = {},
-    },
-    [10] = {
-        ["Cloth"] = {},
-        ["Leather"] = {},
-        ["Mail"] = {},
-        ["Plate"] = {},
-        ["SearchResult"] = {},
-    },
-    [15] = {
-        ["Cloth"] = {},
-        ["SearchResult"] = {},
-    },
-    [16] = {
-        ["Daggers"] = {},
-        ["One-Handed Axes"] = {},
-        ["One-Handed Swords"] = {},
-        ["One-Handed Maces"] = {},
-        ["Fist Weapons"] = {},
-        ["Two-Handed Axes"] = {},
-        ["Two-Handed Swords"] = {},
-        ["Two-Handed Maces"] = {},
-        ["Polearms"] = {},
-        ["Staves"] = {},
-        ["SearchResult"] = {},
-    },
-    [17] = {
-        ["Daggers"] = {},
-        ["One-Handed Axes"] = {},
-        ["One-Handed Swords"] = {},
-        ["One-Handed Maces"] = {},
-        ["Fist Weapons"] = {},
-        ["Miscellaneous"] = {},
-        ["Shields"] = {},
-        ["SearchResult"] = {},
-    },
-    [18] = {
-        ["Bows"] = {},
-        ["Guns"] = {},
-        ["Crossbows"] = {},
-        ["Wands"] = {},
-        ["SearchResult"] = {},
-    },
-    [19] = {
-        ["Miscellaneous"] = {},
-        ["SearchResult"] = {},
-    },
-}
-Tmog.inventorySlots = {
-    ["HeadSlot"] = 1,
-    ["ShoulderSlot"] = 3,
-    ["ChestSlot"] = 5,
-    ["WaistSlot"] = 6,
-    ["LegsSlot"] = 7,
-    ["FeetSlot"] = 8,
-    ["WristSlot"] = 9,
-    ["HandsSlot"] = 10,
-    ["BackSlot"] = 15,
-    ["MainHandSlot"] = 16,
-    ["SecondaryHandSlot"] = 17,
-    ["RangedSlot"] = 18,
-    ["ShirtSlot"] = 4,
-    ["TabardSlot"] = 19
-}
-
---(enabled, omni, dirZ, dirX, dirY, ambIntensity, ambR, ambG, ambB, dirIntensity, dirR, dirG, dirB)
-local playerModelLight   = { 1, 0, -0.3, -1, -1,   0.55, 1.0, 1.0, 1.0,   0.8, 1.0, 1.0, 1.0 }
-local previewNormalLight = { 1, 0, -0.3,  0, -1,   0.65, 1.0, 1.0, 1.0,   0.8, 1.0, 1.0, 1.0 }
-local previewHighlight   = { 1, 0, -0.3,  0, -1,   0.9,  1.0, 1.0, 1.0,   0.8, 1.0, 1.0, 1.0 }
-
 function TmogFrame_OnLoad()
     this:RegisterForDrag("LeftButton")
 
@@ -1337,7 +1180,7 @@ function TmogFrame_OnLoad()
 
     TmogFrameCollected:SetChecked(Tmog.collected)
     TmogFrameNotCollected:SetChecked(Tmog.notCollected)
-    TmogFrameUsable:SetChecked(Tmog.usable)
+    TmogFrameUsable:SetChecked(Tmog.onlyUsable)
 
     tinsert(UISpecialFrames, "TmogFrame")
 end
@@ -1438,7 +1281,11 @@ function Tmog_Reset()
     TmogFramePlayerModel:SetPosition(0, 0, 0)
     TmogFramePlayerModel:Dress()
     TmogFramePlayerModel:SetPosition(cacheZ, cacheX, cacheY)
-    Tmog:FixTabard()
+    -- Fix tabard
+    local tabardLink = GetInventoryItemLink("player",19)
+    if tabardLink then
+        TmogFramePlayerModel:TryOn(Tmog:IDFromLink(tabardLink))
+    end
 
     for _, InventorySlotId in pairs(Tmog.inventorySlots) do
         Tmog.actualGear[InventorySlotId] = 0
@@ -1511,43 +1358,14 @@ local function IsRed(tooltipLine)
     end
     return false
 end
+
 local TmogScanTooltip = TmogScanTooltip or CreateFrame("GameTooltip", "TmogScanTooltip", nil, "GameTooltipTemplate")
 TmogScanTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
+
 function Tmog:IsUsableItem(id)
     if SetContains(Tmog.unusable[Tmog.currentSlot][Tmog.currentType], id) then
         return false
     end
-    -- local _, _, _, _, itemType, itemSubType, _, itemEquipLoc = GetItemInfo(id)
-    -- local tableToCheck = GetTableForClass(playerClass)
-    -- if SetContains(tableToCheck, itemSubType) then
-    --     TmogScanTooltip:ClearLines()
-    --     TmogScanTooltip:SetHyperlink("item:"..id)
-    --     for i = 2, 15 do
-    --         local text = getglobal("TmogScanTooltipTextLeft"..i):GetText() or ""
-    --         local _, _, classesRow = string.find(text, "Classes: (.*)")
-    --         if classesRow then
-    --             if not string.find(classesRow, UnitClass("player"), 1, true) then
-    --                 Tmog.unusable[Tmog.currentSlot][Tmog.currentType][id] = true
-    --                 return false
-    --             end
-    --         end
-    --         -- if (IsRed("TmogScanTooltipTextLeft"..i) or IsRed("TmogScanTooltipTextRight"..i)) then
-    --         --     if strfind(text, "^Requires Level") then
-    --         --         if not Tmog.ignoreLevel then
-    --         --             isUsable = false
-    --         --             Tmog.unusable[Tmog.currentSlot][Tmog.currentType][id] = true
-    --         --         end
-    --         --     else
-    --         --         isUsable = false
-    --         --         Tmog.unusable[Tmog.currentSlot][Tmog.currentType][id] = true
-    --         --     end
-    --         -- end
-    --     end
-    --     return true
-    -- end
-    --Tmog.unusable[Tmog.currentSlot][Tmog.currentType][id] = true
-    --return false
-    local strfind = string.find
     local isUsable = true
 	for i = 2, 15 do
 		getglobal("TmogScanTooltipTextLeft"..i):SetTextColor(0,0,0)
@@ -1680,7 +1498,7 @@ local drawTable = {
         ["SearchResult"] = {},
     },
 }
-
+local sorted = {}
 function Tmog:DrawPreviews(noDraw)
     local searchStr = TmogFrameSearchBox:GetText() or ""
     searchStr = string.lower(searchStr)
@@ -1779,7 +1597,7 @@ function Tmog:DrawPreviews(noDraw)
                 end
             end
             -- if usable checked, remove unusable items
-            if Tmog.usable then
+            if Tmog.onlyUsable then
                 for k in pairs(drawTable[slot][type]) do
                     if not Tmog:IsUsableItem(k) then
                         drawTable[slot][type][k] = nil
@@ -1798,8 +1616,9 @@ function Tmog:DrawPreviews(noDraw)
                     end
                 end
             end
+            Tmog.totalPages = Tmog:ceil(Tmog:tableSize(drawTable[slot][type]) / ipp)
+            sorted = Tmog:Sort(drawTable[slot][type])
         end
-        Tmog.totalPages = Tmog:ceil(Tmog:tableSize(drawTable[slot][type]) / ipp)
 
         -- nothing to show
         if not drawTable[slot][type] or next(drawTable[slot][type]) == nil then
@@ -1810,16 +1629,16 @@ function Tmog:DrawPreviews(noDraw)
         end
 
         if noDraw then
+            Tmog.flush = false
             return
         end
 
         if Tmog.currentPage == Tmog.totalPages then
-            if math.mod(Tmog:tableSize(drawTable[slot][type]), ipp) ~= 0 then
+            --if math.mod(Tmog:tableSize(drawTable[slot][type]), ipp) ~= 0 then
                 Tmog:HidePreviews()
-            end
+            --end
         end
 
-        local sorted = Tmog:Sort(drawTable[slot][type])
         local frame, button
 
         for i = 1, Tmog:tableSize(sorted) do
@@ -2424,6 +2243,7 @@ function Tmog:DrawPreviews(noDraw)
             TmogFrameRightArrow:Enable()
             TmogFrameLastPage:Enable()
         end
+        Tmog.flush = false
 
     elseif Tmog.currentTab == "outfits" then
         if noDraw then
@@ -2536,7 +2356,6 @@ function Tmog:DrawPreviews(noDraw)
     else
         Tmog:HidePagination()
     end
-    Tmog.flush = false
 end
 
 function Tmog:ShowPagination()
@@ -2695,13 +2514,6 @@ function TmogSlot_OnClick(InventorySlotId, rightClick)
     DropDownList1:Hide()
 end
 
-function Tmog:FixTabard()
-    local link = GetInventoryItemLink("player",19)
-    if link then
-        TmogFramePlayerModel:TryOn(Tmog:IDFromLink(link))
-    end
-end
-
 function Tmog:UpdateItemTextures()
     -- add paperdoll textures
     for slotName in pairs(Tmog.inventorySlots) do
@@ -2825,7 +2637,7 @@ function TmogTry(itemId, arg1, noSelect)
 
                 if name and quality then
                     local r, g, b = GetItemQualityColor(quality)
-                    if Tmog.usable and not Tmog:IsUsableItem(id) then
+                    if Tmog.onlyUsable and not Tmog:IsUsableItem(id) then
                     else
                         t[index] = {name = "", id = 0, color = { r = 0, g = 0, b = 0 }, tex = ""}
                         t[index].name = name
@@ -3078,7 +2890,7 @@ function Tmog_AddItemTooltip(frame, text)
                 local name = GetItemInfo(itemID)
 
                 if name and SetContains(DisplayIdDB, itemID) then
-                    if not Tmog.usable then
+                    if not Tmog.onlyUsable then
                         lastLine:SetText(lastLine:GetText().."\n\n"..YELLOW.."Shares Appearance With:")
                         for _, id in pairs(DisplayIdDB[itemID]) do
                             Tmog:CacheItem(id)
@@ -3145,6 +2957,7 @@ function Tmog_HideUI()
             getglobal("TmogFrame"..slot):Hide()
         end
         TmogFrameRevert:Hide()
+        TmogFrameFullScreenButton:Hide()
         TmogFrameHideUI:SetText("ShowUI")
         hidden = true
     else
@@ -3152,6 +2965,7 @@ function Tmog_HideUI()
             getglobal("TmogFrame"..slot):Show()
         end
         TmogFrameRevert:Show()
+        TmogFrameFullScreenButton:Show()
         TmogFrameHideUI:SetText("HideUI")
         hidden = false
     end
@@ -3443,16 +3257,16 @@ function Tmog_NotCollectedToggle()
 end
 
 function Tmog_UsableToggle()
-    if Tmog.usable then
-        Tmog.usable = false
+    if Tmog.onlyUsable then
+        Tmog.onlyUsable = false
         TmogFrameIgnoreLevel:Disable()
         TmogFrameIgnoreLevelText:SetTextColor(GRAY_FONT_COLOR.r, GRAY_FONT_COLOR.g, GRAY_FONT_COLOR.b)
     else
-        Tmog.usable = true
+        Tmog.onlyUsable = true
         TmogFrameIgnoreLevel:Enable()
         TmogFrameIgnoreLevelText:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
     end
-    this:SetChecked(Tmog.usable)
+    this:SetChecked(Tmog.onlyUsable)
     Tmog.flush = true
     if Tmog.currentSlot then
         Tmog.currentPage = 1
@@ -3461,7 +3275,7 @@ function Tmog_UsableToggle()
                 Tmog.pages[k][i] = 1
             end
         end
-        if Tmog.usable then
+        if Tmog.onlyUsable then
             Tmog.unusable[Tmog.currentSlot][Tmog.currentType] = {}
         end
         Tmog:DrawPreviews()
@@ -3483,7 +3297,7 @@ function Tmog_IgnoreLevelToggle()
                 Tmog.pages[k][i] = 1
             end
         end
-        if Tmog.usable then
+        if Tmog.onlyUsable then
             Tmog.unusable[Tmog.currentSlot][Tmog.currentType] = {}
         end
         Tmog:DrawPreviews()
@@ -3708,7 +3522,7 @@ function Tmog_TypeDropDown_Initialize()
         info.arg1 = v
         info.checked = Tmog.currentType == v
         info.func = Tmog_SelectType
-        if Tmog.usable then
+        if Tmog.onlyUsable then
             if SetContains(GetTableForClass(playerClass), v) then
                 if not (not Tmog.canDualWeild and Tmog.currentSlot == 17 and v ~= "Shields" and v ~= "Miscellaneous") then
                     UIDropDownMenu_AddButton(info)
@@ -3825,30 +3639,6 @@ function Tmog_ShareOutfit_OnClick()
     TmogFrameShareDialogEditBox:HighlightText()
 end
 
-local InventoryTypeToSlot = {
-    ["INVTYPE_HEAD"] = 1,
-    ["INVTYPE_SHOULDER"] = 3,
-    ["INVTYPE_CHEST"] = 5,
-    ["INVTYPE_ROBE"] = 5,
-    ["INVTYPE_WAIST"] = 6,
-    ["INVTYPE_LEGS"] = 7,
-    ["INVTYPE_FEET"] = 8,
-    ["INVTYPE_WRIST"] = 9,
-    ["INVTYPE_HAND"] = 10,
-    ["INVTYPE_CLOAK"] = 15,
-    ["INVTYPE_WEAPONMAINHAND"] = 16,
-    ["INVTYPE_2HWEAPON"] = 16,
-    ["INVTYPE_WEAPON"] = 16,
-    ["INVTYPE_WEAPONOFFHAND"] = 17,
-    ["INVTYPE_HOLDABLE"] = 17,
-    ["INVTYPE_SHIELD"] = 17,
-    ["INVTYPE_RANGED"] = 18,
-    ["INVTYPE_RANGEDRIGHT"] = 18,
-    ["INVTYPE_TABARD"] = 19,
-    ["INVTYPE_BODY"] = 4,
-    ["INVTYPE_RELIC"] = 18,
-}
-
 function Tmog:ValidateOutfitCode(code)
     local signature = string.find(code, "T.O.L.", 1, true)
     if signature then
@@ -3920,4 +3710,91 @@ function Tmog:Sort(unsorted)
     table.sort(sorted, sortfunc)
 
     return sorted
+end
+
+function TmogFrameFullScreenModel_OnLoad()
+    this:SetLight(unpack(FSLight))
+    this:SetModelScale(1)
+    this:SetScript("OnMouseUp", function()
+        this:SetScript("OnUpdate", nil)
+    end)
+
+    this:SetScript("OnMouseWheel", function()
+        local Z, X, Y = this:GetPosition()
+        Z = (arg1 > 0 and Z + 0.4 or Z - 0.4)
+        this:SetPosition(Z, X, Y)
+    end)
+
+    this:SetScript("OnMouseDown", function()
+        local StartX, StartY = GetCursorPosition()
+        local EndX, EndY, Z, X, Y
+
+        if arg1 == "LeftButton" then
+            this:SetScript("OnUpdate", function()
+                EndX, EndY = GetCursorPosition()
+                this:SetFacing((EndX - StartX) / 34 + this:GetFacing())
+                StartX, StartY = GetCursorPosition()
+            end)
+
+        elseif arg1 == "RightButton" then
+            this:SetScript("OnUpdate", function()
+                EndX, EndY = GetCursorPosition()
+
+                Z, X, Y = this:GetPosition()
+                X = (EndX - StartX) / 180 + X
+                Y = (EndY - StartY) / 180 + Y
+
+                this:SetPosition(Z, X, Y)
+                StartX, StartY = GetCursorPosition()
+            end)
+        end
+    end)
+end
+
+function TmogFrameFullScreenModel_OnShow()
+    UIFrameFadeIn(this, 0.3, 0, 1)
+    showingHelm = ShowingHelm()
+    showingCloak = ShowingCloak()
+    this:SetWidth(GetScreenWidth()+5)
+    this:SetHeight(GetScreenHeight()+5)
+    this:SetUnit("player")
+    this:SetFacing(0)
+    this:SetPosition(-3, 0, 0)
+    this:Undress()
+    for slot, itemID in pairs(Tmog.currentGear) do
+        if slot ~= 18 and slot ~= 17 and slot ~= 16 then
+            if (slot == 1 and showingHelm == 1) or
+                (slot == 1 and showingHelm ~= 1 and Tmog.actualGear[1] ~= Tmog.currentGear[1]) or
+                (slot == 15 and showingCloak == 1) or
+                (slot == 15 and showingCloak ~= 1 and Tmog.actualGear[15] ~= Tmog.currentGear[15]) or
+                (slot ~= 1 and slot ~= 15)
+            then
+                this:TryOn(itemID)
+            end
+        end
+    end
+    this:TryOn(Tmog.currentGear[18])
+    this:TryOn(Tmog.currentGear[16])
+    this:TryOn(Tmog.currentGear[17])
+end
+
+function Tmog_FS_OnUpdate()
+    if not this.fade then
+        return
+    end
+    if (GetTime() - this.fade) > 0.3 then
+        this.fade = nil
+        this:Hide()
+    end
+end
+
+function TmogFrameFullScreen_OnKeyDown()
+    local screenshotKey = GetBindingKey("SCREENSHOT")
+    if arg1 == "ESCAPE" then
+        this:SetScript("OnKeyDown", nil)
+        this.fade = GetTime()
+        UIFrameFadeOut(TmogFrameFullScreenModel, 0.3, 1, 0)
+    elseif screenshotKey and (arg1 == screenshotKey) then
+        RunBinding("SCREENSHOT")
+    end
 end

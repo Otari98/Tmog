@@ -1284,6 +1284,30 @@
                     </OnHide>
                 </Scripts>
             </Frame>
+            <Button name="TmogFrameFullScreenButton" toplevel="true">
+                <Size x="32" y="32"/>
+                <Anchors>
+                    <Anchor point="LEFT">
+                        <Offset x="30" y="123"/>
+                    </Anchor>
+                </Anchors>
+                <NormalTexture file="Interface\Buttons\UI-Panel-MaximizeMapButton-Up"/>
+                <PushedTexture file="Interface\Buttons\UI-Panel-MaximizeMapButton-Down"/>
+                <HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+                <Scripts>
+                    <OnEnter>
+                        TmogTooltip:SetOwner(this, "ANCHOR_RIGHT", -10, -10)
+                        TmogTooltip:SetText("Full Screen")
+                    </OnEnter>
+                    <OnLeave>
+                        TmogTooltip:Hide()
+                    </OnLeave>
+                    <OnClick>
+                        TmogFrameFullScreen:Show()
+                        PlaySound("igMainMenuOptionCheckBoxOn")
+                    </OnClick>
+                </Scripts>
+            </Button>
         </Frames>
         <Scripts>
             <OnLoad>
@@ -1308,6 +1332,47 @@
             <OnMouseWheel>
                 Tmog_ChangePage(arg1)
             </OnMouseWheel>
+        </Scripts>
+    </Frame>
+    <Frame name="TmogFrameFullScreen" hidden="true" frameStrata="DIALOG" toplevel="true" parent="UIParent" enableKeyboard="true" enableMouse="true" clampedToScreen="true">
+        <Size x="16" y="16"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Frames>
+            <DressUpModel name="$parentModel" enableMouse="true">
+                <Backdrop bgFile="Interface\AddOns\Tmog\Textures\fullscreen-background">
+                    <Color r="0" g="0" b="0" a="1"/>
+                </Backdrop>
+                <Size x="140" y="150" />
+                <Anchors>
+                    <Anchor point="CENTER"/>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        TmogFrameFullScreenModel_OnLoad()
+                    </OnLoad>
+                    <OnShow>
+                        TmogFrameFullScreenModel_OnShow()
+                    </OnShow>
+                    <OnHide>
+                        this:SetPosition(0, 0, 0)
+                    </OnHide>
+                    <OnUpdate/>
+                    <OnMouseWheel/>
+                </Scripts>
+            </DressUpModel>
+        </Frames>
+        <Scripts>
+            <OnShow>
+                this:SetScript("OnKeyDown", TmogFrameFullScreen_OnKeyDown)
+            </OnShow>
+            <OnKeyDown>
+                TmogFrameFullScreen_OnKeyDown()
+            </OnKeyDown>
+            <OnUpdate>
+                Tmog_FS_OnUpdate(arg1)
+            </OnUpdate>
         </Scripts>
     </Frame>
 </Ui>

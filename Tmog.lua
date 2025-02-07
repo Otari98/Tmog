@@ -15,6 +15,7 @@ local playerModelLight   = { 1, 0, -0.3, -1, -1,   0.55, 1.0, 1.0, 1.0,   0.8, 1
 local previewNormalLight = { 1, 0, -0.3,  0, -1,   0.65, 1.0, 1.0, 1.0,   0.8, 1.0, 1.0, 1.0 }
 local previewHighlight   = { 1, 0, -0.3,  0, -1,   0.9,  1.0, 1.0, 1.0,   0.8, 1.0, 1.0, 1.0 }
 local FSLight            = { 1, 0, -0.5, -1, -0.7, 0.42, 1.0, 1.0, 1.0,   0.8, 1.0, 1.0, 1.0 }
+
 local TmogTip = CreateFrame("Frame", "TmogTip", GameTooltip)
 local TmogTooltip = TmogTooltip or CreateFrame("GameTooltip", "TmogTooltip", nil, "GameTooltipTemplate")
 TmogTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
@@ -1151,14 +1152,16 @@ Tmog.HookAddonOrVariable("AtlasLoot", function()
     local atlas2 = CreateFrame("Frame", nil, AtlasLootTooltip2)
 
     atlas:SetScript("OnShow", function()
-        if GetMouseFocus().dressingroomID and GetMouseFocus().dressingroomID ~= 0 then
+        if GetMouseFocus().dressingroomID and GetMouseFocus().dressingroomID ~= 0 and
+                strsub(GetMouseFocus().itemID or "", 1, 1) ~= "s" and strsub(GetMouseFocus().itemID or "", 1, 1) ~= "e" then
             AtlasLootTooltip.itemID = GetMouseFocus().dressingroomID
         end
         TmogTip.extendTooltip(AtlasLootTooltip)
     end)
 
     atlas2:SetScript("OnShow", function()
-        if GetMouseFocus().dressingroomID and GetMouseFocus().dressingroomID ~= 0 then
+        if GetMouseFocus().dressingroomID and GetMouseFocus().dressingroomID ~= 0 and
+                strsub(GetMouseFocus().itemID or "", 1, 1) ~= "s" and strsub(GetMouseFocus().itemID or "", 1, 1) ~= "e" then
             AtlasLootTooltip2.itemID = GetMouseFocus().dressingroomID
         end
         TmogTip.extendTooltip(AtlasLootTooltip2)
@@ -1172,7 +1175,7 @@ function TmogFrame_OnLoad()
     this:RegisterForDrag("LeftButton")
 
     TmogFrameRaceBackground:SetTexture("Interface\\AddOns\\Tmog\\Textures\\transmogbackground"..Tmog.race)
-    TmogFramePortrait:SetTexture("Interface\\Addons\\Tmog\\Textures\\Tmog_Portrait")
+
     TmogFrameSaveOutfit:Disable()
     TmogFrameDeleteOutfit:Disable()
 

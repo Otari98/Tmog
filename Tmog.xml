@@ -319,7 +319,7 @@
                         </Anchor>
                     </Anchors>
                 </Texture>
-                <Texture name="$parentPortrait">
+                <Texture name="$parentPortrait" file="Interface\Addons\Tmog\Textures\Tmog_Portrait">
                     <Size>
                         <AbsDimension x="60" y="60" />
                     </Size>

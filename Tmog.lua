@@ -1166,6 +1166,14 @@ Tmog.HookAddonOrVariable("AtlasLoot", function()
         end
         TmogTip.extendTooltip(AtlasLootTooltip2)
     end)
+
+    atlas:SetScript("OnHide", function()
+        AtlasLootTooltip.itemID = nil
+    end)
+    
+    atlas2:SetScript("OnHide", function()
+        AtlasLootTooltip2.itemID = nil
+    end)
 end)
 
 -------------------------------
@@ -3300,8 +3308,12 @@ function Tmog_IgnoreLevelToggle()
                 Tmog.pages[k][i] = 1
             end
         end
-        if Tmog.onlyUsable then
-            Tmog.unusable[Tmog.currentSlot][Tmog.currentType] = {}
+        for k in pairs(Tmog.unusable) do
+            for k2 in pairs(Tmog.unusable[k]) do
+                for k3 in pairs(Tmog.unusable[k][k2]) do
+                    Tmog.unusable[k][k2][k3] = nil
+                end
+            end
         end
         Tmog:DrawPreviews()
     end
@@ -3692,12 +3704,12 @@ function Tmog:Sort(unsorted)
     end
 
     local tinsert = table.insert
-    local sorted = {}
+    local result = {}
 
     for id, name in pairs(unsorted) do
         Tmog:CacheItem(id)
         local _, _, quality = GetItemInfo(id)
-        tinsert(sorted, { id, name, quality })
+        tinsert(result, { id, name, quality })
     end
 
     local sortfunc = function(a, b)
@@ -3710,9 +3722,9 @@ function Tmog:Sort(unsorted)
         end
     end
 
-    table.sort(sorted, sortfunc)
+    table.sort(result, sortfunc)
 
-    return sorted
+    return result
 end
 
 function TmogFrameFullScreenModel_OnLoad()

@@ -177,6 +177,8 @@ TmogGearDB = {
 			[13113] = "Feathermoon Headdress",
 		},
 		["Cloth"] = {
+            [91761] = "Black Rogue Mask",
+			[7997] = "Red Defias Mask",
 			[93091] = "Flamewoven Ceremonial Mask",
 			--************ Jank ******************
 			[50341] = "Sentinel's Faceguard",
@@ -748,7 +750,6 @@ TmogGearDB = {
 			[20564] = "Flimsy Male Nightelf Mask",
 			[20565] = "Flimsy Female Human Mask",
 			[20566] = "Flimsy Male Human Mask",
-			[7997] = "Red Defias Mask",
 			[20567] = "Flimsy Female Troll Mask",
 			[20568] = "Flimsy Male Troll Mask",
 			[20569] = "Flimsy Female Orc Mask",
@@ -757,7 +758,7 @@ TmogGearDB = {
 			[20572] = "Flimsy Male Tauren Mask",
 			[20573] = "Flimsy Male Undead Mask",
 			[20574] = "Flimsy Female Undead Mask",
-			[91761] = "Black Rogue Mask",
+			-- [91761] = "Black Rogue Mask",
 			[50744] = "Winterax Disguise",
 			[21525] = "Green Winter Hat",
 			[21524] = "Red Winter Hat",
@@ -2229,6 +2230,9 @@ TmogGearDB = {
 			[10775] = "Carapace of Tuten'kash",
 		},
 		["Cloth"] = {
+            [68070] = "Robes of the Moonless Night",
+			[41556] = "White & Silver Robes of Insight",
+			[41555] = "White Robes of Insight",
 			[41703] = "Robes of Lunar Eve",
 			[41702] = "Dress of Lunar Blessing",
 			--************* Jank **********************
@@ -6569,6 +6573,18 @@ TmogGearDB = {
 			[7443] = "Sentinel Gloves",
 		},
 		["Cloth"] = {
+			[29954] = "Frostleaf Shine",
+			[41495] = "Tortoise-shell Tint",
+			[29955] = "Amethyst Pearl Gloss",
+			[29956] = "Rosepetal Varnish",
+			[29957] = "Twilight Enamel",
+			[29958] = "Crimson Kiss Stain",
+			[29959] = "Deepwater Sapphire Polish",
+			[29960] = "Sunstone Sheen",
+			[29950] = "Shadowgloss Lacquer",
+			[29951] = "Azureveil Tint",
+			[29952] = "Verdant Gleam",
+			[29953] = "Mossbloom Coating",
 			--************** Jank *******************
 			[50361] = "Nightwatch's Gloves",
 			[50354] = "Deathguard's Gloves",
@@ -7771,6 +7787,7 @@ TmogGearDB = {
 	},
 	[16] = {
 		["Two-Handed Maces"] = {
+            [58084] = "Mudpaw Slammer",
 			[61087] = "Winter Veil Branch",
 			[41026] = "Deckman's Cudgel",
 			[61532] = "Grand Slammer",
@@ -7928,6 +7945,7 @@ TmogGearDB = {
 			[18868] = "High Warlord's Pulverizer",
 		},
 		["Daggers"] = {
+            [58087] = "Drifter's Knife",
 			[19549] = "Sentinel's Blade",
 			[19548] = "Sentinel's Blade",
 			[19546] = "Sentinel's Blade",
@@ -8760,6 +8778,7 @@ TmogGearDB = {
 			[2134] = "Hand Axe",
 		},
 		["Staves"] = {
+            [58085] = "Mudpaw Cane",
 			[41668] = "Winter Shepherd's Cane",
 			[41667] = "Winter Veil Tree",
 			[61551] = "Mathrengyl's Lost Staff",
@@ -10014,6 +10033,7 @@ TmogGearDB = {
 			[6630] = "Seedcloud Buckler",
 		},
 		["Daggers"] = {
+            [58087] = "Drifter's Knife",
 			[19549] = "Sentinel's Blade",
 			[19548] = "Sentinel's Blade",
 			[19546] = "Sentinel's Blade",
@@ -10771,6 +10791,7 @@ TmogGearDB = {
 	},
 	[18] = {
 		["Guns"] = {
+            [58086] = "Standard Grade Rifle",
 			[60165] = "Wobblefree Fizz-rifle",
 			[80127] = "Polished Boomstick",
 			[80106] = "Miscalibrated Rifle",
@@ -11044,6 +11065,8 @@ TmogGearDB = {
 			[18738] = "Carapace Spine Crossbow",
 		},
 		["Bows"] = {
+			[14394] = "Durability Bow",
+
 			[60440] = "Bloodscalp Longbow",
 			[80876] = "Silvermoon Bow",
 			[80820] = "Quilflinger",

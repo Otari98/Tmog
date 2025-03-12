@@ -6,6 +6,18 @@ local GREEN = GREEN_FONT_COLOR_CODE
 local GREY = GRAY_FONT_COLOR_CODE
 local BLUE = "|cff0070de"
 
+local tinsert = table.insert
+local tremove = table.remove
+local getn = table.getn
+local strfind = string.find
+local strlower = string.lower
+
+-- Saved Variables
+TMOG_CACHE = {}
+TMOG_PLAYER_OUTFITS = {}
+TMOG_TRANSMOG_STATUS = {}
+TMOG_POSITION = {}
+
 local version = GetAddOnMetadata("Tmog", "Version")
 local debug = false
 local _, playerClass = UnitClass("player")
@@ -30,7 +42,7 @@ Tmog.currentGear = {}
 Tmog.previewButtons = {}
 Tmog.actualGear = {} -- actual gear + transmog
 Tmog.sex = UnitSex("player") -- 3 - female, 2 - male
-Tmog.race = string.lower(playerRace)
+Tmog.race = strlower(playerRace)
 Tmog.currentType = "Cloth"
 Tmog.currentSlot = nil
 Tmog.currentPage = 1
@@ -122,91 +134,91 @@ Tmog.linkedSlots = {
 -- store last selected page for each slot and type
 Tmog.pages = {
     [1] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
-        ["Miscellaneous"]=1,
+        ["Cloth"] = 1,
+        ["Leather"] = 1,
+        ["Mail"] = 1,
+        ["Plate"] = 1,
+        ["Miscellaneous"] = 1,
     },
     [3] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
+        ["Cloth"] = 1,
+        ["Leather"] = 1,
+        ["Mail"] = 1,
+        ["Plate"] = 1,
     },
     [4] = {
-        ["Miscellaneous"]=1,
+        ["Miscellaneous"] = 1,
     },
     [5] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
-        ["Miscellaneous"]=1,
+        ["Cloth"] = 1,
+        ["Leather"] = 1,
+        ["Mail"] = 1,
+        ["Plate"] = 1,
+        ["Miscellaneous"] = 1,
     },
     [6] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
+        ["Cloth"] = 1,
+        ["Leather"] = 1,
+        ["Mail"] = 1,
+        ["Plate"] = 1,
     },
     [7] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
+        ["Cloth"] = 1,
+        ["Leather"] = 1,
+        ["Mail"] = 1,
+        ["Plate"] = 1,
     },
     [8] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
-        ["Miscellaneous"]=1,
+        ["Cloth"] = 1,
+        ["Leather"] = 1,
+        ["Mail"] = 1,
+        ["Plate"] = 1,
+        ["Miscellaneous"] = 1,
     },
     [9] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
-    }, 
+        ["Cloth"] = 1,
+        ["Leather"] = 1,
+        ["Mail"] = 1,
+        ["Plate"] = 1,
+    },
     [10] = {
-        ["Cloth"]=1,
-        ["Leather"]=1,
-        ["Mail"]=1,
-        ["Plate"]=1,
+        ["Cloth"] = 1,
+        ["Leather"] = 1,
+        ["Mail"] = 1,
+        ["Plate"] = 1,
     },
     [15] = {
-        ["Cloth"]=1
+        ["Cloth"] = 1
     },
     [16] = {
-        ["Daggers"]=1,
-        ["One-Handed Axes"]=1,
-        ["One-Handed Swords"]=1,
-        ["One-Handed Maces"]=1,
-        ["Fist Weapons"]=1,
-        ["Two-Handed Axes"]=1,
-        ["Two-Handed Swords"]=1,
-        ["Two-Handed Maces"]=1,
-        ["Polearms"]=1,
-        ["Staves"]=1,
+        ["Daggers"] = 1,
+        ["One-Handed Axes"] = 1,
+        ["One-Handed Swords"] = 1,
+        ["One-Handed Maces"] = 1,
+        ["Fist Weapons"] = 1,
+        ["Two-Handed Axes"] = 1,
+        ["Two-Handed Swords"] = 1,
+        ["Two-Handed Maces"] = 1,
+        ["Polearms"] = 1,
+        ["Staves"] = 1,
     },
     [17] = {
-        ["Daggers"]=1,
-        ["One-Handed Axes"]=1,
-        ["One-Handed Swords"]=1,
-        ["One-Handed Maces"]=1,
-        ["Fist Weapons"]=1,
-        ["Miscellaneous"]=1,
-        ["Shields"]=1,
+        ["Daggers"] = 1,
+        ["One-Handed Axes"] = 1,
+        ["One-Handed Swords"] = 1,
+        ["One-Handed Maces"] = 1,
+        ["Fist Weapons"] = 1,
+        ["Miscellaneous"] = 1,
+        ["Shields"] = 1,
     },
     [18] = {
-        ["Bows"]=1,
-        ["Guns"]=1,
-        ["Crossbows"]=1,
-        ["Wands"]=1,
+        ["Bows"] = 1,
+        ["Guns"] = 1,
+        ["Crossbows"] = 1,
+        ["Wands"] = 1,
     },
     [19] = {
-        ["Miscellaneous"]=1,
+        ["Miscellaneous"] = 1,
     },
 }
 -- bad items for "Ony Usable" check box
@@ -355,29 +367,14 @@ local InventoryTypeToSlot = {
     ["INVTYPE_RELIC"] = 18,
 }
 
-TMOG_CACHE = TMOG_CACHE or {
-    [1] = {}, --HeadSlot
-    [3] = {}, --ShoulderSlot
-    [5] = {}, --ChestSlot
-    [6] = {}, --WaistSlot
-    [7] = {}, --LegsSlot
-    [8] = {}, --FeetSlot
-    [9] = {}, --WristSlot
-    [10] = {}, --HandsSlot
-    [15] = {}, --BackSlot
-    [16] = {}, --MainHandSlot
-    [17] = {}, --SecondaryHandSlot
-    [18] = {} --RangedSlot
-}
-
 local druid = {
-    ["Cloth"]=true,
-    ["Leather"]=true,
-    ["Staff"]=true,
-    ["Mace"]=true,
-    ["Dagger"]=true,
-    ["Polearm"]=true,
-    ["Fist Weapon"]=true,
+    ["Cloth"] = true,
+    ["Leather"] = true,
+    ["Staff"] = true,
+    ["Mace"] = true,
+    ["Dagger"] = true,
+    ["Polearm"] = true,
+    ["Fist Weapon"] = true,
 
     ["Daggers"] = true,
     ["One-Handed Maces"] = true,
@@ -389,15 +386,15 @@ local druid = {
 }
 
 local shaman = {
-    ["Cloth"]=true,
-    ["Leather"]=true,
-    ["Mail"]=true,
-    ["Staff"]=true,
-    ["Mace"]=true,
-    ["Dagger"]=true,
-    ["Axe"]=true,
-    ["Fist Weapon"]=true,
-    ["Shield"]=true,
+    ["Cloth"] = true,
+    ["Leather"] = true,
+    ["Mail"] = true,
+    ["Staff"] = true,
+    ["Mace"] = true,
+    ["Dagger"] = true,
+    ["Axe"] = true,
+    ["Fist Weapon"] = true,
+    ["Shield"] = true,
 
     ["Daggers"] = true,
     ["One-Handed Axes"] = true,
@@ -411,15 +408,15 @@ local shaman = {
 }
 
 local paladin = {
-    ["Cloth"]=true,
-    ["Leather"]=true,
-    ["Mail"]=true,
-    ["Plate"]=true,
-    ["Mace"]=true,
-    ["Sword"]=true,
-    ["Axe"]=true,
-    ["Polearm"]=true,
-    ["Shield"]=true,
+    ["Cloth"] = true,
+    ["Leather"] = true,
+    ["Mail"] = true,
+    ["Plate"] = true,
+    ["Mace"] = true,
+    ["Sword"] = true,
+    ["Axe"] = true,
+    ["Polearm"] = true,
+    ["Shield"] = true,
 
     ["One-Handed Axes"] = true,
     ["One-Handed Swords"] = true,
@@ -433,11 +430,11 @@ local paladin = {
 }
 
 local mage = {
-    ["Cloth"]=true,
-    ["Staff"]=true,
-    ["Sword"]=true,
-    ["Dagger"]=true,
-    ["Wand"]=true,
+    ["Cloth"] = true,
+    ["Staff"] = true,
+    ["Sword"] = true,
+    ["Dagger"] = true,
+    ["Wand"] = true,
 
     ["Staves"] = true,
     ["Daggers"] = true,
@@ -447,11 +444,11 @@ local mage = {
 }
 
 local warlock = {
-    ["Cloth"]=true,
-    ["Staff"]=true,
-    ["Sword"]=true,
-    ["Dagger"]=true,
-    ["Wand"]=true,
+    ["Cloth"] = true,
+    ["Staff"] = true,
+    ["Sword"] = true,
+    ["Dagger"] = true,
+    ["Wand"] = true,
 
     ["Staves"] = true,
     ["Daggers"] = true,
@@ -461,11 +458,11 @@ local warlock = {
 }
 
 local priest = {
-    ["Cloth"]=true,
-    ["Staff"]=true,
-    ["Mace"]=true,
-    ["Dagger"]=true,
-    ["Wand"]=true,
+    ["Cloth"] = true,
+    ["Staff"] = true,
+    ["Mace"] = true,
+    ["Dagger"] = true,
+    ["Wand"] = true,
 
     ["Staves"] = true,
     ["Daggers"] = true,
@@ -475,19 +472,19 @@ local priest = {
 }
 
 local warrior = {
-    ["Cloth"]=true,
-    ["Leather"]=true,
-    ["Mail"]=true,
-    ["Plate"]=true,
-    ["Staff"]=true,
-    ["Mace"]=true,
-    ["Dagger"]=true,
-    ["Polearm"]=true,
-    ["Sword"]=true,
-    ["Axe"]=true,
-    ["Fist Weapon"]=true,
-    ["Shield"]=true,
-    ["Bow"]=true,
+    ["Cloth"] = true,
+    ["Leather"] = true,
+    ["Mail"] = true,
+    ["Plate"] = true,
+    ["Staff"] = true,
+    ["Mace"] = true,
+    ["Dagger"] = true,
+    ["Polearm"] = true,
+    ["Sword"] = true,
+    ["Axe"] = true,
+    ["Fist Weapon"] = true,
+    ["Shield"] = true,
+    ["Bow"] = true,
 
     ["Daggers"] = true,
     ["Fist Weapons"] = true,
@@ -507,14 +504,14 @@ local warrior = {
 }
 
 local rogue = {
-    ["Cloth"]=true,
-    ["Leather"]=true,
-    ["Mace"]=true,
-    ["Dagger"]=true,
-    ["Sword"]=true,
-    ["Fist Weapon"]=true,
-    ["Bow"]=true,
-    ["Axe"]=true,
+    ["Cloth"] = true,
+    ["Leather"] = true,
+    ["Mace"] = true,
+    ["Dagger"] = true,
+    ["Sword"] = true,
+    ["Fist Weapon"] = true,
+    ["Bow"] = true,
+    ["Axe"] = true,
 
     ["Daggers"] = true,
     ["Fist Weapons"] = true,
@@ -528,16 +525,16 @@ local rogue = {
 }
 
 local hunter = {
-    ["Cloth"]=true,
-    ["Leather"]=true,
-    ["Mail"]=true,
-    ["Staff"]=true,
-    ["Dagger"]=true,
-    ["Sword"]=true,
-    ["Polearm"]=true,
-    ["Fist Weapon"]=true,
-    ["Axe"]=true,
-    ["Bow"]=true,
+    ["Cloth"] = true,
+    ["Leather"] = true,
+    ["Mail"] = true,
+    ["Staff"] = true,
+    ["Dagger"] = true,
+    ["Sword"] = true,
+    ["Polearm"] = true,
+    ["Fist Weapon"] = true,
+    ["Axe"] = true,
+    ["Bow"] = true,
 
     ["Daggers"] = true,
     ["Fist Weapons"] = true,
@@ -581,18 +578,21 @@ local function tmog_debug(a)
     tmogprint(a)
 end
 
+local splitresult = {}
+
 local function strsplit(str, delimiter)
-    local tinsert = table.insert
-    local result = {}
-    local from = 1
-    local delim_from, delim_to = string.find(str, delimiter, from, true)
-    while delim_from do
-        tinsert(result, string.sub(str, from, delim_from - 1))
-        from = delim_to + 1
-        delim_from, delim_to = string.find(str, delimiter, from, true)
+    for i = getn(splitresult), 1, -1 do
+        tremove(splitresult, i)
     end
-    tinsert(result, string.sub(str, from))
-    return result
+    local from = 1
+    local delim_from, delim_to = strfind(str, delimiter, from, true)
+    while delim_from do
+        tinsert(splitresult, string.sub(str, from, delim_from - 1))
+        from = delim_to + 1
+        delim_from, delim_to = strfind(str, delimiter, from, true)
+    end
+    tinsert(splitresult, string.sub(str, from))
+    return splitresult
 end
 
 local function strtrim(s)
@@ -663,6 +663,9 @@ end
 local lastSearchName = nil
 local lastSearchID = nil
 local function GetItemIDByName(name)
+    if not name then
+        return nil
+    end
 	if name ~= lastSearchName then
     	for itemID = 1, 99999 do
       		local itemName = GetItemInfo(itemID)
@@ -676,30 +679,44 @@ local function GetItemIDByName(name)
 	return lastSearchID
 end
 
-local HookSetLootRollItem = GameTooltip.SetLootRollItem
+local HookSetLootRollItem       = GameTooltip.SetLootRollItem
+local HookSetLootItem           = GameTooltip.SetLootItem
+local HookSetMerchantItem       = GameTooltip.SetMerchantItem
+local HookSetQuestLogItem       = GameTooltip.SetQuestLogItem
+local HookSetQuestItem          = GameTooltip.SetQuestItem
+local HookSetHyperlink          = GameTooltip.SetHyperlink
+local HookSetBagItem            = GameTooltip.SetBagItem
+local HookSetInboxItem          = GameTooltip.SetInboxItem
+local HookSetInventoryItem      = GameTooltip.SetInventoryItem
+local HookSetCraftItem          = GameTooltip.SetCraftItem
+local HookSetCraftSpell         = GameTooltip.SetCraftSpell
+local HookSetTradeSkillItem     = GameTooltip.SetTradeSkillItem
+local HookSetAuctionItem        = GameTooltip.SetAuctionItem
+local HookSetAuctionSellItem    = GameTooltip.SetAuctionSellItem
+local HookSetTradePlayerItem    = GameTooltip.SetTradePlayerItem
+local HookSetTradeTargetItem    = GameTooltip.SetTradeTargetItem
+local HookSetItemRef            = SetItemRef
+
 function GameTooltip.SetLootRollItem(self, id)
-    local _, _, itemID = string.find(GetLootRollItemLink(id) or "", "item:(%d+)")
+    local _, _, itemID = strfind(GetLootRollItemLink(id) or "", "item:(%d+)")
     GameTooltip.itemID = itemID
     return HookSetLootRollItem(self, id)
 end
 
-local HookSetLootItem = GameTooltip.SetLootItem
 function GameTooltip.SetLootItem(self, slot)
-    local _, _, itemID = string.find(GetLootSlotLink(slot) or "", "item:(%d+)")
+    local _, _, itemID = strfind(GetLootSlotLink(slot) or "", "item:(%d+)")
     GameTooltip.itemID = itemID
     HookSetLootItem(self, slot)
 end
 
-local HookSetMerchantItem = GameTooltip.SetMerchantItem
 function GameTooltip.SetMerchantItem(self, merchantIndex)
-    local _, _, itemID = string.find(GetMerchantItemLink(merchantIndex) or "", "item:(%d+)")
+    local _, _, itemID = strfind(GetMerchantItemLink(merchantIndex) or "", "item:(%d+)")
     GameTooltip.itemID = itemID
     return HookSetMerchantItem(self, merchantIndex)
 end
 
-local HookSetQuestLogItem = GameTooltip.SetQuestLogItem
 function GameTooltip.SetQuestLogItem(self, itemType, index)
-    local _, _, itemID = string.find(GetQuestLogItemLink(itemType, index) or "", "item:(%d+)")
+    local _, _, itemID = strfind(GetQuestLogItemLink(itemType, index) or "", "item:(%d+)")
     GameTooltip.itemID = itemID
     if not GameTooltip.itemID then
         return
@@ -707,123 +724,85 @@ function GameTooltip.SetQuestLogItem(self, itemType, index)
     return HookSetQuestLogItem(self, itemType, index)
 end
 
-local HookSetQuestItem = GameTooltip.SetQuestItem
 function GameTooltip.SetQuestItem(self, itemType, index)
-    local _, _, itemID = string.find(GetQuestItemLink(itemType, index) or "", "item:(%d+)")
+    local _, _, itemID = strfind(GetQuestItemLink(itemType, index) or "", "item:(%d+)")
     GameTooltip.itemID = itemID
     return HookSetQuestItem(self, itemType, index)
 end
 
-local HookSetHyperlink = GameTooltip.SetHyperlink
 function GameTooltip.SetHyperlink(self, arg1)
-  if arg1 then
-    local _, _, linktype = string.find(arg1, "^(.-):(.+)$")
-    if linktype == "item" then
-        local _, _, id = string.find(arg1,"item:(%d+)")
-  		GameTooltip.itemID = id
-    end
-  end
-  return HookSetHyperlink(self, arg1)
+    local _, _, id = strfind(arg1 or "", "item:(%d+)")
+    GameTooltip.itemID = id
+    return HookSetHyperlink(self, arg1)
 end
 
-local HookSetBagItem = GameTooltip.SetBagItem
 function GameTooltip.SetBagItem(self, container, slot)
-	if GetContainerItemLink(container, slot) then
-		local _, _, id = string.find(GetContainerItemLink(container, slot) or "","item:(%d+)")
-		GameTooltip.itemID = id
-	end
-  return HookSetBagItem(self, container, slot)
+	local _, _, id = strfind(GetContainerItemLink(container, slot) or "", "item:(%d+)")
+	GameTooltip.itemID = id
+    return HookSetBagItem(self, container, slot)
 end
 
-local HookSetInboxItem = GameTooltip.SetInboxItem
 function GameTooltip.SetInboxItem(self, mailID, attachmentIndex)
 	local itemName = GetInboxItem(mailID)
-	if itemName then
-		GameTooltip.itemID = GetItemIDByName(itemName)
-	end
+	GameTooltip.itemID = GetItemIDByName(itemName)
 	return HookSetInboxItem(self, mailID, attachmentIndex)
 end
 
-local HookSetInventoryItem = GameTooltip.SetInventoryItem
 function GameTooltip.SetInventoryItem(self, unit, slot)
-	if GetInventoryItemLink(unit, slot) then
-		local _, _, id = string.find(GetInventoryItemLink(unit, slot) or "","item:(%d+)")
-		GameTooltip.itemID = id
-	end
+	local _, _, id = strfind(GetInventoryItemLink(unit, slot) or "", "item:(%d+)")
+	GameTooltip.itemID = id
 	return HookSetInventoryItem(self, unit, slot)
 end
 
-local HookSetCraftItem = GameTooltip.SetCraftItem
 function GameTooltip.SetCraftItem(self, skill, slot)
-	if GetCraftReagentItemLink(skill, slot) then
-		local _, _, id = string.find(GetCraftReagentItemLink(skill, slot) or "","item:(%d+)")
-		GameTooltip.itemID = id
-	end
+	local _, _, id = strfind(GetCraftReagentItemLink(skill, slot) or "", "item:(%d+)")
+	GameTooltip.itemID = id
 	return HookSetCraftItem(self, skill, slot)
 end
 
-local HookSetCraftSpell = GameTooltip.SetCraftSpell
 function GameTooltip.SetCraftSpell(self, slot)
-    local _, _, id = string.find(GetCraftItemLink(slot) or "", "item:(%d+)")
+    local _, _, id = strfind(GetCraftItemLink(slot) or "", "item:(%d+)")
     GameTooltip.itemID = id
     return HookSetCraftSpell(self, slot)
 end
 
-local HookSetTradeSkillItem = GameTooltip.SetTradeSkillItem
 function GameTooltip.SetTradeSkillItem(self, skillIndex, reagentIndex)
 	if reagentIndex then
-		if GetTradeSkillReagentItemLink(skillIndex, reagentIndex) then
-			local _, _, id = string.find(GetTradeSkillReagentItemLink(skillIndex, reagentIndex) or "","item:(%d+)")
-			GameTooltip.itemID = id
-		end
+		local _, _, id = strfind(GetTradeSkillReagentItemLink(skillIndex, reagentIndex) or "", "item:(%d+)")
+		GameTooltip.itemID = id
 	else
-		if GetTradeSkillItemLink(skillIndex) then
-			local _, _, id = string.find(GetTradeSkillItemLink(skillIndex) or "","item:(%d+)")
-			GameTooltip.itemID = id
-		end
+		local _, _, id = strfind(GetTradeSkillItemLink(skillIndex) or "", "item:(%d+)")
+		GameTooltip.itemID = id
 	end
 	return HookSetTradeSkillItem(self, skillIndex, reagentIndex)
 end
 
-local HookSetAuctionItem = GameTooltip.SetAuctionItem
 function GameTooltip.SetAuctionItem(self, atype, index)
 	local itemName = GetAuctionItemInfo(atype, index)
-	if itemName then
-		GameTooltip.itemID = GetItemIDByName(itemName)
-	end
+	GameTooltip.itemID = GetItemIDByName(itemName)
 	return HookSetAuctionItem(self, atype, index)
 end
 
-local HookSetAuctionSellItem = GameTooltip.SetAuctionSellItem
 function GameTooltip.SetAuctionSellItem(self)
 	local itemName = GetAuctionSellItemInfo()
-	if itemName then
-		GameTooltip.itemID = GetItemIDByName(itemName)
-	end
+	GameTooltip.itemID = GetItemIDByName(itemName)
 	return HookSetAuctionSellItem(self)
 end
 
-local HookSetTradePlayerItem = GameTooltip.SetTradePlayerItem
 function GameTooltip.SetTradePlayerItem(self, index)
-	if GetTradePlayerItemLink(index) then
-		local _, _, id = string.find(GetTradePlayerItemLink(index) or "","item:(%d+)")
-		GameTooltip.itemID = id
-	end
+	local _, _, id = strfind(GetTradePlayerItemLink(index) or "", "item:(%d+)")
+	GameTooltip.itemID = id
 	return HookSetTradePlayerItem(self, index)
 end
 
-local HookSetTradeTargetItem = GameTooltip.SetTradeTargetItem
 function GameTooltip.SetTradeTargetItem(self, index)
-	if GetTradeTargetItemLink(index) then
-		local _, _, id = string.find(GetTradeTargetItemLink(index) or "","item:(%d+)")
-		GameTooltip.itemID = id
-	end
+    local _, _, id = strfind(GetTradeTargetItemLink(index) or "", "item:(%d+)")
+    GameTooltip.itemID = id
 	return HookSetTradeTargetItem(self, index)
 end
 
-local HookSetItemRef = SetItemRef
-SetItemRef = function(link, text, button)
-    local item, _, id = string.find(link, "item:(%d+)")
+function SetItemRef(link, text, button)
+    local item, _, id = strfind(link or "", "item:(%d+)")
 	ItemRefTooltip.itemID = id
     HookSetItemRef(link, text, button)
     if not IsShiftKeyDown() and not IsControlKeyDown() and item then
@@ -864,23 +843,23 @@ Tmog:SetScript("OnEvent", function()
         if not TMOG_TRANSMOG_STATUS then
             TMOG_TRANSMOG_STATUS = {}
         end
-
         if not TMOG_CACHE then
             TMOG_CACHE = {
-                [1] = {}, --HeadSlot
-                [3] = {}, --ShoulderSlot
-                [5] = {}, --ChestSlot
-                [6] = {}, --WaistSlot
-                [7] = {}, --LegsSlot
-                [8] = {}, --FeetSlot
-                [9] = {}, --WristSlot
-                [10] = {}, --HandsSlot
-                [15] = {}, --BackSlot
-                [16] = {}, --MainHandSlot
-                [17] = {}, --SecondaryHandSlot
-                [18] = {} --RangedSlot
+                [1] = {},   -- HeadSlot
+                [3] = {},   -- ShoulderSlot
+                [5] = {},   -- ChestSlot
+                [6] = {},   -- WaistSlot
+                [7] = {},   -- LegsSlot
+                [8] = {},   -- FeetSlot
+                [9] = {},   -- WristSlot
+                [10] = {},  -- HandsSlot
+                [15] = {},  -- BackSlot
+                [16] = {},  -- MainHandSlot
+                [17] = {},  -- SecondaryHandSlot
+                [18] = {}   -- RangedSlot
             }
         end
+
         UIDropDownMenu_Initialize(TmogFrameTypeDropDown, Tmog_TypeDropDown_Initialize)
         UIDropDownMenu_Initialize(TmogFrameOutfitsDropDown, Tmog_OutfitsDropDown_Initialize)
         UIDropDownMenu_SetWidth(100, TmogFrameTypeDropDown)
@@ -889,8 +868,8 @@ Tmog:SetScript("OnEvent", function()
         return
     end
 
-    if event == "CHAT_MSG_ADDON" and string.find(arg1, "TW_TRANSMOG", 1, true) and arg4 == UnitName("player") then
-        if string.find(arg2, "AvailableTransmogs", 1, true) then
+    if event == "CHAT_MSG_ADDON" and strfind(arg1, "TW_TRANSMOG", 1, true) and arg4 == UnitName("player") then
+        if strfind(arg2, "AvailableTransmogs", 1, true) then
             local ex = strsplit(arg2, ":")
             local InventorySlotId = tonumber(ex[2])
 
@@ -921,7 +900,7 @@ Tmog:SetScript("OnEvent", function()
                 end
             end
 
-        elseif string.find(arg2, "NewTransmog", 1, true) then
+        elseif strfind(arg2, "NewTransmog", 1, true) then
             local ex = strsplit(arg2, ":")
             local itemID = tonumber(ex[2])
             local slot = InvenotySlotFromItemID(itemID)
@@ -942,7 +921,7 @@ Tmog:SetScript("OnEvent", function()
                 end
             end
 
-        elseif string.find(arg2, "TransmogStatus", 1, true) then
+        elseif strfind(arg2, "TransmogStatus", 1, true) then
             local dataEx = strsplit(arg2, "TransmogStatus:")
 
             if dataEx[2] then
@@ -1048,9 +1027,9 @@ local function IsGear(itemID, tooltip)
         end
         for row = 1, Tmog:tableSize(originalTooltip) do
             if originalTooltip[row] then
-                local _, _, classesRow = string.find(originalTooltip[row], "Classes: (.*)")
+                local _, _, classesRow = strfind(originalTooltip[row], "Classes: (.*)")
                 if classesRow then
-                    if not string.find(classesRow, UnitClass("player"), 1, true) then
+                    if not strfind(classesRow, UnitClass("player"), 1, true) then
                         tmog_debug("bad class")
                         return nil
                     end
@@ -1509,10 +1488,11 @@ local drawTable = {
         ["SearchResult"] = {},
     },
 }
+
 local sorted = {}
 function Tmog:DrawPreviews(noDraw)
     local searchStr = TmogFrameSearchBox:GetText() or ""
-    searchStr = string.lower(searchStr)
+    searchStr = strlower(searchStr)
     searchStr = strtrim(searchStr)
 
     local slot = Tmog.currentSlot
@@ -1524,7 +1504,7 @@ function Tmog:DrawPreviews(noDraw)
     local col = 0
     local itemIndex = 1
     local outfitIndex = 1
-    local ipp = 15
+    local ipp = 15 -- items per page
 
     if Tmog.currentTab == "items" then
         if (not Tmog.collected and not Tmog.notCollected) or not slot then
@@ -1549,8 +1529,8 @@ function Tmog:DrawPreviews(noDraw)
                     for k in pairs(TmogGearDB[slot]) do
                         for itemID, itemName in pairs(TmogGearDB[slot][k]) do
                             if SetContains(TMOG_CACHE[slot], itemID) then
-                                local name = string.lower(itemName)
-                                if string.find(name, searchStr, 1 ,true) then
+                                local name = strlower(itemName)
+                                if strfind(name, searchStr, 1 ,true) then
                                     drawTable[slot][type][itemID] = itemName
                                 end
                             end
@@ -1569,8 +1549,8 @@ function Tmog:DrawPreviews(noDraw)
                     for k in pairs(TmogGearDB[slot]) do
                         for itemID, itemName in pairs(TmogGearDB[slot][k]) do
                             if not SetContains(TMOG_CACHE[slot], itemID) then
-                                local name = string.lower(itemName)
-                                if string.find(name, searchStr, 1 ,true) then
+                                local name = strlower(itemName)
+                                if strfind(name, searchStr, 1 ,true) then
                                     drawTable[slot][type][itemID] = itemName
                                 end
                             end
@@ -1588,8 +1568,8 @@ function Tmog:DrawPreviews(noDraw)
                 if searchStr ~= "" then
                     for k in pairs(TmogGearDB[slot]) do
                         for itemID, itemName in pairs(TmogGearDB[slot][k]) do
-                            local name = string.lower(itemName)
-                            if string.find(name, searchStr, 1 ,true) then
+                            local name = strlower(itemName)
+                            if strfind(name, searchStr, 1 ,true) then
                                 drawTable[slot][type][itemID] = itemName
                             end
                         end
@@ -1699,7 +1679,7 @@ function Tmog:DrawPreviews(noDraw)
                     Tmog_AddItemTooltip(button, name)
                 end
 
-                --this is for updating tooltip while scrolling with mousewheel
+                -- this is for updating tooltip while scrolling with mousewheel
                 if MouseIsOver(button) then
                     button:Hide()
                     button:Show()
@@ -1736,7 +1716,7 @@ function Tmog:DrawPreviews(noDraw)
                     if race == "tauren" then
                         Z = Z + 2
                         X = X - 0.5
-                        if sex ~= 3 then
+                        if sex == 2 then
                             model:SetFacing(0.3)
                         else
                             Y = Y + 0.5
@@ -1774,9 +1754,12 @@ function Tmog:DrawPreviews(noDraw)
                     if race == "nightelf" then
                         Z = Z + 2
                         Y = Y - 1
+                        if sex == 2 then
+                            Y = Y - 0.5
+                        end
                     end
                     if race == "bloodelf" then
-                        if sex ~= 3 then
+                        if sex == 2 then
                             Z = Z + 1
                             Y = Y - 1.2
                         else
@@ -1821,6 +1804,9 @@ function Tmog:DrawPreviews(noDraw)
                     end
                     if race == "dwarf" then
                         Y = Y - 0.2
+                        if sex == 3 then
+                            X = X - 0.3
+                        end
                     end
                     if race == "goblin" then
                         Y = Y + 1.5
@@ -1848,6 +1834,11 @@ function Tmog:DrawPreviews(noDraw)
                             X = X - 0.5
                         end
                     end
+                    if race == "nightelf" then
+                        if sex == 2 then
+                            Y = Y - 0.5
+                        end
+                    end
                     model:SetPosition(Z + 5.8, X + 0.5, Y - 1.7)
                 end
                 -- cloak
@@ -1860,6 +1851,13 @@ function Tmog:DrawPreviews(noDraw)
                     end
                     if race == "goblin" then
                         Y = Y + 1.5
+                    end
+                    if race == "dwarf" then
+                        Y = Y + 0.5
+                    end
+                    if race == "gnome" then
+                        Z = Z + 1
+                        Y = Y + 0.2
                     end
                     if race == "orc" and sex == 3 then
                         Y = Y + 0.8
@@ -1899,13 +1897,19 @@ function Tmog:DrawPreviews(noDraw)
                         Y = Y + 1.5
                         Z = Z - 0.5
                     end
-                    if race == "orc" and sex == 3 then
-                        Y = Y + 0.5
-                    end
                     if race == "orc" then
                         if sex == 3 then
                             Z = Z + 1
+                            Y = Y + 0.5
                         end
+                    end
+                    if race == "dwarf" then
+                        Y = Y + 0.5
+                        Z = Z - 0.3
+                    end
+                    if race == "gnome" then
+                        Z = Z + 1
+                        Y = Y + 0.3
                     end
                     model:SetFacing(0.3)
                     model:SetPosition(Z + 5.8, X + 0.1, Y - 1.2)
@@ -1919,8 +1923,8 @@ function Tmog:DrawPreviews(noDraw)
                         end
                     end
                     if race == "gnome" then
-                        Y = Y - 0.7
-                        Z = Z + 0.5
+                        Y = Y - 0.5
+                        Z = Z + 1.5
                     end
                     if race == "tauren" then
                         X = X - 0.2
@@ -1933,6 +1937,11 @@ function Tmog:DrawPreviews(noDraw)
                         Z = Z - 0.2
                         X = X - 0.3
                         Y = Y - 0.1
+                        if sex == 3 then
+                            Z = Z + 0.6
+                        elseif sex == 2 then
+                            Y = Y + 0.2
+                        end
                     end
                     if race == "troll" then
                         Y = Y + 0.9
@@ -2027,7 +2036,7 @@ function Tmog:DrawPreviews(noDraw)
                         Y = Y - 1.3
                     end
                     if race == "dwarf" then
-                        Y = Y - 0.9
+                        Y = Y - 0.5
                     end
                     if race == "tauren" then
                         if sex == 3 then
@@ -2071,9 +2080,22 @@ function Tmog:DrawPreviews(noDraw)
                     if race == "gnome" then
                         Z = Z + 1
                         Y = Y - 1.6
+                        if sex == 2 then
+                            Z = Z + 1
+                        elseif sex == 3 then
+                            Z = Z + 0.5
+                            X = X + 0.1
+                        end
                     end
                     if race == "dwarf" then
                         Y = Y - 0.6
+                        if sex == 3 then
+                            Z = Z + 0.5
+                            X = X - 0.2
+                            model:SetFacing(0.1)
+                        elseif sex == 2 then
+                            Y = Y + 0.2
+                        end
                     end
                     if race == "tauren" then
                         if sex == 3 then
@@ -2533,7 +2555,7 @@ function Tmog:UpdateItemTextures()
         if frame then
             local texture
             local texEx = strsplit(frame:GetName(), "Slot")
-            texture = string.lower(texEx[1])
+            texture = strlower(texEx[1])
             texture = string.gsub(texture,"tmogframe","")
 
             if texture == "wrist" then
@@ -2644,7 +2666,7 @@ function TmogTry(itemId, arg1, noSelect)
             for _, id in pairs(DisplayIdDB[itemId]) do
 
                 Tmog:CacheItem(id)
-                local name,_,quality,_,_,_,_,_,tex = GetItemInfo(id)
+                local name, _, quality, _, _, _, _, _, tex = GetItemInfo(id)
 
                 if name and quality then
                     local r, g, b = GetItemQualityColor(quality)
@@ -3559,7 +3581,7 @@ function Tmog:CacheItem(linkOrID)
             return true
         else
             local item = "item:" .. linkOrID .. ":0:0:0"
-            local _, _, itemLink = string.find(item, "(item:%d+:%d+:%d+:%d+)")
+            local _, _, itemLink = strfind(item, "(item:%d+:%d+:%d+:%d+)")
 
             linkOrID = itemLink
         end
@@ -3567,8 +3589,8 @@ function Tmog:CacheItem(linkOrID)
         if type(linkOrID) ~= "string" then
             return
         end
-        if string.find(linkOrID, "|", 1, true) then
-            local _, _, itemLink = string.find(linkOrID, "(item:%d+:%d+:%d+:%d+)")
+        if strfind(linkOrID, "|", 1, true) then
+            local _, _, itemLink = strfind(linkOrID, "(item:%d+:%d+:%d+:%d+)")
 
             linkOrID = itemLink
 
@@ -3655,7 +3677,7 @@ function Tmog_ShareOutfit_OnClick()
 end
 
 function Tmog:ValidateOutfitCode(code)
-    local signature = string.find(code, "T.O.L.", 1, true)
+    local signature = strfind(code, "T.O.L.", 1, true)
     if signature then
         code = string.sub(code, signature)
         code = strtrim(code)
@@ -3665,7 +3687,7 @@ function Tmog:ValidateOutfitCode(code)
 
     code = string.sub(code, 7)
 
-    if string.find(code, "[^%d:;]") then
+    if strfind(code, "[^%d:;]") then
         return nil
     end
 
@@ -3698,33 +3720,36 @@ function Tmog:ValidateOutfitCode(code)
     return outfit
 end
 
+local function sortfunc(a, b)
+    -- equal quality - sort by name
+    if a[3] == b[3] then
+        return a[2] < b[2]
+    else
+        -- otherwise sort by quality
+        return a[3] > b[3]
+    end
+end
+
+local sortResult = {}
+
 function Tmog:Sort(unsorted)
     if not unsorted then
         return {}
     end
 
-    local tinsert = table.insert
-    local result = {}
+    for i = getn(sortResult), 1, -1 do
+        tremove(sortResult, i)
+    end
 
     for id, name in pairs(unsorted) do
         Tmog:CacheItem(id)
         local _, _, quality = GetItemInfo(id)
-        tinsert(result, { id, name, quality })
+        tinsert(sortResult, { id, name, quality })
     end
 
-    local sortfunc = function(a, b)
-        -- equal quality - sort by name
-        if a[3] == b[3] then
-            return a[2] < b[2]
-        else
-            -- otherwise sort by quality
-            return a[3] > b[3]
-        end
-    end
+    table.sort(sortResult, sortfunc)
 
-    table.sort(result, sortfunc)
-
-    return result
+    return sortResult
 end
 
 function TmogFrameFullScreenModel_OnLoad()

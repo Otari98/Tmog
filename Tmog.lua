@@ -578,12 +578,12 @@ local function tmog_debug(a)
     tmogprint(a)
 end
 
-local splitresult = {}
 
 local function strsplit(str, delimiter)
-    for i = getn(splitresult), 1, -1 do
-        tremove(splitresult, i)
-    end
+    -- for i = getn(splitresult), 0, -1 do
+    --     tremove(splitresult, i)
+    -- end
+    local splitresult = {}
     local from = 1
     local delim_from, delim_to = strfind(str, delimiter, from, true)
     while delim_from do
@@ -806,7 +806,7 @@ function SetItemRef(link, text, button)
 	ItemRefTooltip.itemID = id
     HookSetItemRef(link, text, button)
     if not IsShiftKeyDown() and not IsControlKeyDown() and item then
-        TmogTip.extendTooltip(ItemRefTooltip)
+        TmogTip.ExtendTooltip(ItemRefTooltip)
     end
 end
 
@@ -870,10 +870,10 @@ Tmog:SetScript("OnEvent", function()
 
     if event == "CHAT_MSG_ADDON" and strfind(arg1, "TW_TRANSMOG", 1, true) and arg4 == UnitName("player") then
         if strfind(arg2, "AvailableTransmogs", 1, true) then
-            local ex = strsplit(arg2, ":")
-            local InventorySlotId = tonumber(ex[2])
+            local data = strsplit(arg2, ":")
+            local InventorySlotId = tonumber(data[2])
 
-            for i, itemID in pairs(ex) do
+            for i, itemID in pairs(data) do
                 if i > 3 then
                     itemID = tonumber(itemID)
 
@@ -901,8 +901,8 @@ Tmog:SetScript("OnEvent", function()
             end
 
         elseif strfind(arg2, "NewTransmog", 1, true) then
-            local ex = strsplit(arg2, ":")
-            local itemID = tonumber(ex[2])
+            local data = strsplit(arg2, ":")
+            local itemID = tonumber(data[2])
             local slot = InvenotySlotFromItemID(itemID)
             local itemName = GetItemInfo(itemID)
 
@@ -922,10 +922,10 @@ Tmog:SetScript("OnEvent", function()
             end
 
         elseif strfind(arg2, "TransmogStatus", 1, true) then
-            local dataEx = strsplit(arg2, "TransmogStatus:")
+            local data = string.gsub(arg2, "TransmogStatus:", "")
 
-            if dataEx[2] then
-                local TransmogStatus = strsplit(dataEx[2], ",")
+            if data then
+                local TransmogStatus = strsplit(data, ",")
 
                 if not TMOG_TRANSMOG_STATUS then
                     TMOG_TRANSMOG_STATUS = {}
@@ -938,17 +938,20 @@ Tmog:SetScript("OnEvent", function()
                 end
 
                 for _, d in pairs(TransmogStatus) do
-                    local slotEx = strsplit(d, ":")
-                    local InventorySlotId = tonumber(slotEx[1])
-                    local itemID = tonumber(slotEx[2])
-                    local link = GetInventoryItemLink("player", InventorySlotId)
-                    local actualItemId = Tmog:IDFromLink(link) or 0
+                    local slotItemPairs = strsplit(d, ":")
+                    local InventorySlotId = tonumber(slotItemPairs[1])
 
-                    if actualItemId ~= 0 and InventorySlotId then
-                        if not TMOG_TRANSMOG_STATUS[InventorySlotId][actualItemId] then
-                            TMOG_TRANSMOG_STATUS[InventorySlotId][actualItemId] = 0
+                    if InventorySlotId and InventorySlotId ~= 0 then
+                        local itemID = tonumber(slotItemPairs[2])
+                        local link = GetInventoryItemLink("player", InventorySlotId)
+                        local actualItemId = Tmog:IDFromLink(link) or 0
+
+                        if actualItemId ~= 0 then
+                            if not TMOG_TRANSMOG_STATUS[InventorySlotId][actualItemId] then
+                                TMOG_TRANSMOG_STATUS[InventorySlotId][actualItemId] = 0
+                            end
+                            TMOG_TRANSMOG_STATUS[InventorySlotId][actualItemId] = itemID
                         end
-                        TMOG_TRANSMOG_STATUS[InventorySlotId][actualItemId] = itemID
                     end
                 end
             end
@@ -1042,7 +1045,7 @@ end
 
 local LastItemName = nil
 local LastSlot = nil
-function TmogTip.extendTooltip(tooltip)
+function TmogTip.ExtendTooltip(tooltip)
     local tooltipName = tooltip:GetName()
     local itemName = getglobal(tooltipName .. "TextLeft1"):GetText()
     local line2 = getglobal(tooltipName .. "TextLeft2")
@@ -1104,7 +1107,7 @@ TmogTip:SetScript("OnShow", function()
             end
         end
     end
-    TmogTip.extendTooltip(GameTooltip)
+    TmogTip.ExtendTooltip(GameTooltip)
 end)
 
 TmogTooltip:SetScript("OnHide", function()
@@ -1135,7 +1138,7 @@ Tmog.HookAddonOrVariable("AtlasLoot", function()
                 strsub(GetMouseFocus().itemID or "", 1, 1) ~= "s" and strsub(GetMouseFocus().itemID or "", 1, 1) ~= "e" then
             AtlasLootTooltip.itemID = GetMouseFocus().dressingroomID
         end
-        TmogTip.extendTooltip(AtlasLootTooltip)
+        TmogTip.ExtendTooltip(AtlasLootTooltip)
     end)
 
     atlas2:SetScript("OnShow", function()
@@ -1143,7 +1146,7 @@ Tmog.HookAddonOrVariable("AtlasLoot", function()
                 strsub(GetMouseFocus().itemID or "", 1, 1) ~= "s" and strsub(GetMouseFocus().itemID or "", 1, 1) ~= "e" then
             AtlasLootTooltip2.itemID = GetMouseFocus().dressingroomID
         end
-        TmogTip.extendTooltip(AtlasLootTooltip2)
+        TmogTip.ExtendTooltip(AtlasLootTooltip2)
     end)
 
     atlas:SetScript("OnHide", function()
@@ -2548,37 +2551,29 @@ function TmogSlot_OnClick(InventorySlotId, rightClick)
 end
 
 function Tmog:UpdateItemTextures()
-    -- add paperdoll textures
-    for slotName in pairs(Tmog.inventorySlots) do
+    for slotName, InventorySlotId in pairs(Tmog.inventorySlots) do
         local frame = getglobal("TmogFrame"..slotName)
-
+        local icon = getglobal(frame:GetName() .. "ItemIcon")
         if frame then
-            local texture
-            local texEx = strsplit(frame:GetName(), "Slot")
-            texture = strlower(texEx[1])
-            texture = string.gsub(texture,"tmogframe","")
+            -- add paperdoll texture
+            local _, _, texture = strfind(frame:GetName(), "TmogFrame(.+)Slot")
+            texture = strlower(texture)
 
             if texture == "wrist" then
                 texture = texture .. "s"
-            end
-
-            if texture == "back" then
+            elseif texture == "back" then
                 texture = "chest"
             end
 
-            getglobal(frame:GetName() .. "ItemIcon"):SetTexture("Interface\\Paperdoll\\ui-paperdoll-slot-" .. texture)
-        end
-    end
+            icon:SetTexture("Interface\\Paperdoll\\ui-paperdoll-slot-" .. texture)
 
-    -- add item textures
-    for slotName, InventorySlotId in pairs(Tmog.inventorySlots) do
-
-        if GetInventoryItemLink("player", InventorySlotId) or GetItemInfo(Tmog.currentGear[InventorySlotId]) then
-            local _, _, _, _, _, _, _, _, tex = GetItemInfo(Tmog.currentGear[InventorySlotId])
-            local frame = getglobal("TmogFrame"..slotName)
-
-            if frame and tex then
-                getglobal(frame:GetName() .. "ItemIcon"):SetTexture(tex)
+            -- replace with item texture if possible
+            if GetInventoryItemLink("player", InventorySlotId) or GetItemInfo(Tmog.currentGear[InventorySlotId]) then
+                local _, _, _, _, _, _, _, _, tex = GetItemInfo(Tmog.currentGear[InventorySlotId])
+    
+                if tex then
+                    icon:SetTexture(tex)
+                end
             end
         end
     end
@@ -2743,7 +2738,7 @@ function Tmog_AddSharedItemTooltip(frame)
         Tmog:CacheItem(itemID)
         TmogTooltip.itemID = itemID
         TmogTooltip:SetHyperlink("item:"..tostring(itemID))
-        TmogTip.extendTooltip(TmogTooltip)
+        TmogTip.ExtendTooltip(TmogTooltip)
 
         local numLines = TmogTooltip:NumLines()
 
@@ -2911,7 +2906,7 @@ function Tmog_AddItemTooltip(frame, text)
         Tmog:CacheItem(itemID)
         TmogTooltip.itemID = itemID
         TmogTooltip:SetHyperlink("item:"..itemID)
-        TmogTip.extendTooltip(TmogTooltip)
+        TmogTip.ExtendTooltip(TmogTooltip)
 
         local numLines = TmogTooltip:NumLines()
 
@@ -3607,13 +3602,10 @@ function Tmog:tableSize(t)
     if type(t) ~= "table" then
         return 0
     end
-
     local size = 0
-
     for _ in pairs(t) do
         size = size + 1
     end
-
     return size
 end
 
@@ -3621,7 +3613,6 @@ function Tmog:ceil(num)
     if num > math.floor(num) then
         return math.floor(num + 1)
     end
-
     return math.floor(num + 0.5)
 end
 
@@ -3629,13 +3620,10 @@ function Tmog:IDFromLink(link)
     if not link then
         return nil
     end
-
-    local itemSplit = strsplit(link, ":")
-
-    if itemSplit[2] and tonumber(itemSplit[2]) then
-        return tonumber(itemSplit[2])
+    local _, _, id = strfind(link, "item:(%d+)")
+    if id then
+        return tonumber(id)
     end
-
     return nil
 end
 

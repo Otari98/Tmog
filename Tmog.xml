@@ -40,7 +40,7 @@
 			</OnClick>
 		</Scripts>
     </Button>
-    <Frame name="TmogFramePreviewTemplate" virtual="true" framestrata="HIGH">
+    <Frame name="TmogFramePreviewTemplate" virtual="true" framestrata="MEDIUM">
         <Size>
             <AbsDimension x="90" y="110" />
         </Size>
@@ -294,7 +294,7 @@
         </PushedTexture>
 		<HighlightTexture/>
     </Button>
-    <Frame name="TmogFrame" hidden="true" frameStrata="HIGH" toplevel="true" parent="UIParent" movable="true" enableMouse="true" clampedToScreen="true">
+    <Frame name="TmogFrame" hidden="true" frameStrata="MEDIUM" toplevel="true" parent="UIParent" movable="true" enableMouse="true" clampedToScreen="true">
         <Size>
             <AbsDimension x="750" y="506" />
         </Size>
@@ -1334,7 +1334,7 @@
             </OnMouseWheel>
         </Scripts>
     </Frame>
-    <Frame name="TmogFrameFullScreen" hidden="true" frameStrata="DIALOG" toplevel="true" parent="UIParent" enableKeyboard="true" enableMouse="true" clampedToScreen="true">
+    <Frame name="TmogFrameFullScreen" hidden="true" frameStrata="FULLSCREEN_DIALOG" toplevel="true" parent="UIParent" enableKeyboard="true" enableMouse="true" clampedToScreen="true">
         <Size x="16" y="16"/>
         <Anchors>
             <Anchor point="CENTER"/>

@@ -578,11 +578,7 @@ local function tmog_debug(a)
     tmogprint(a)
 end
 
-
 local function strsplit(str, delimiter)
-    -- for i = getn(splitresult), 0, -1 do
-    --     tremove(splitresult, i)
-    -- end
     local splitresult = {}
     local from = 1
     local delim_from, delim_to = strfind(str, delimiter, from, true)
@@ -901,8 +897,8 @@ Tmog:SetScript("OnEvent", function()
             end
 
         elseif strfind(arg2, "NewTransmog", 1, true) then
-            local data = strsplit(arg2, ":")
-            local itemID = tonumber(data[2])
+            local _, _, itemID = strfind(arg2, "NewTransmog:(%d+)")
+            itemID = tonumber(itemID)
             local slot = InvenotySlotFromItemID(itemID)
             local itemName = GetItemInfo(itemID)
 
@@ -938,11 +934,10 @@ Tmog:SetScript("OnEvent", function()
                 end
 
                 for _, d in pairs(TransmogStatus) do
-                    local slotItemPairs = strsplit(d, ":")
-                    local InventorySlotId = tonumber(slotItemPairs[1])
-
+                    local _, _, InventorySlotId, itemID = strfind(d, "(%d+):(%d+)")
+                    InventorySlotId = tonumber(InventorySlotId)
                     if InventorySlotId and InventorySlotId ~= 0 then
-                        local itemID = tonumber(slotItemPairs[2])
+                        itemID = tonumber(itemID)
                         local link = GetInventoryItemLink("player", InventorySlotId)
                         local actualItemId = Tmog:IDFromLink(link) or 0
 
@@ -3680,14 +3675,13 @@ function Tmog:ValidateOutfitCode(code)
     end
 
     local slotItemPairs = strsplit(code, ";")
-    local singlePair = { 0, 0 }
     local outfit = {}
     local slot, item
 
     for i = 1, Tmog:tableSize(slotItemPairs) do
-        singlePair = strsplit(slotItemPairs[i], ":")
-        slot = tonumber(singlePair[1])
-        item = tonumber(singlePair[2])
+        _, _, slot, item = strfind(slotItemPairs[i], "(%d+):(%d+)")
+        slot = tonumber(slot)
+        item = tonumber(item)
         AddToSet(outfit, slot, item)
     end
 

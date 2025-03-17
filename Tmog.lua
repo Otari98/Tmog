@@ -832,6 +832,13 @@ Tmog:SetScript("OnEvent", function()
             [17] = {}, -- SecondaryHandSlot
             [18] = {}  -- RangedSlot
         }
+        for _, InventorySlotId in pairs(Tmog.inventorySlots) do
+            if InventorySlotId ~= 4 and InventorySlotId ~= 19 then
+                if not TMOG_CACHE[InventorySlotId] then
+                    TMOG_CACHE[InventorySlotId] = {}
+                end
+            end
+        end
         TMOG_PLAYER_OUTFITS = TMOG_PLAYER_OUTFITS or {}
         TMOG_TRANSMOG_STATUS = TMOG_TRANSMOG_STATUS or {}
         TMOG_POSITION = TMOG_POSITION or { 760, 600 }
@@ -3825,7 +3832,7 @@ local function OnUpdate()
             end
         else
             if value > 5 then
-                TMOG_CACHE[tbl.slot] = nil
+                TMOG_CACHE[tbl.slot][id] = nil
                 pendingIDs[id] = nil
                 keysdeleted = keysdeleted + 1
                 if not next(pendingIDs) then

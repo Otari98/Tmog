@@ -13,25 +13,6 @@ local strfind = string.find
 local strlower = string.lower
 local GetItemInfo = GetItemInfo
 
--- Saved Variables
-TMOG_CACHE = {}
-TMOG_CACHE[1] = {}   -- HeadSlot
-TMOG_CACHE[3] = {}   -- ShoulderSlot
-TMOG_CACHE[5] = {}   -- ChestSlot
-TMOG_CACHE[6] = {}   -- WaistSlot
-TMOG_CACHE[7] = {}   -- LegsSlot
-TMOG_CACHE[8] = {}   -- FeetSlot
-TMOG_CACHE[9] = {}   -- WristSlot
-TMOG_CACHE[10] = {}  -- HandsSlot
-TMOG_CACHE[15] = {}  -- BackSlot
-TMOG_CACHE[16] = {}  -- MainHandSlot
-TMOG_CACHE[17] = {}  -- SecondaryHandSlot
-TMOG_CACHE[18] = {}  -- RangedSlot
-TMOG_PLAYER_OUTFITS = {}
-TMOG_TRANSMOG_STATUS = {}
-TMOG_POSITION = { 760, 600 }
-TMOG_LOCKED = false
-
 local version = GetAddOnMetadata("Tmog", "Version")
 local debug = false
 local _, playerClass = UnitClass("player")
@@ -836,11 +817,31 @@ Tmog:SetScript("OnEvent", function()
 
         TmogFrameTitleText:SetText("Tmog v."..version)
 
+        -- Saved Variables
+        TMOG_CACHE = TMOG_CACHE or {
+            [1] = {},  -- HeadSlot
+            [3] = {},  -- ShoulderSlot
+            [5] = {},  -- ChestSlot
+            [6] = {},  -- WaistSlot
+            [7] = {},  -- LegsSlot
+            [8] = {},  -- FeetSlot
+            [9] = {},  -- WristSlot
+            [10] = {}, -- HandsSlot
+            [15] = {}, -- BackSlot
+            [16] = {}, -- MainHandSlot
+            [17] = {}, -- SecondaryHandSlot
+            [18] = {}  -- RangedSlot
+        }
+        TMOG_PLAYER_OUTFITS = TMOG_PLAYER_OUTFITS or {}
+        TMOG_TRANSMOG_STATUS = TMOG_TRANSMOG_STATUS or {}
+        TMOG_POSITION = TMOG_POSITION or { 760, 600 }
+        TMOG_LOCKED = TMOG_LOCKED or false
+
         UIDropDownMenu_Initialize(TmogFrameTypeDropDown, Tmog_TypeDropDown_Initialize)
         UIDropDownMenu_Initialize(TmogFrameOutfitsDropDown, Tmog_OutfitsDropDown_Initialize)
         UIDropDownMenu_SetWidth(100, TmogFrameTypeDropDown)
         UIDropDownMenu_SetWidth(115, TmogFrameOutfitsDropDown)
-        
+
         TmogButton:SetMovable(not TMOG_LOCKED)
         TmogButton:ClearAllPoints()
         TmogButton:SetPoint("CENTER", UIParent, "BOTTOMLEFT", unpack(TMOG_POSITION or {TmogButton:GetCenter()}))
@@ -981,7 +982,7 @@ local originalTooltip = {}
 local function IsGear(itemID, tooltip)
     local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(itemID)
     local tableToCheck = GetTableForClass(playerClass)
-    tmog_debug(itemType, itemSubType, itemEquipLoc)
+    tmog_debug(itemID, itemName, itemType, itemSubType, itemEquipLoc)
     if SetContains(tableToCheck, itemSubType) and SetContains(InventoryTypeToSlot, itemEquipLoc) then
         if not Tmog.canDualWeild and itemEquipLoc == "INVTYPE_WEAPONOFFHAND" then
             tmog_debug("cant dual weild")

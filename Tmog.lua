@@ -11,12 +11,26 @@ local tremove = table.remove
 local getn = table.getn
 local strfind = string.find
 local strlower = string.lower
+local GetItemInfo = GetItemInfo
 
 -- Saved Variables
 TMOG_CACHE = {}
+TMOG_CACHE[1] = {}   -- HeadSlot
+TMOG_CACHE[3] = {}   -- ShoulderSlot
+TMOG_CACHE[5] = {}   -- ChestSlot
+TMOG_CACHE[6] = {}   -- WaistSlot
+TMOG_CACHE[7] = {}   -- LegsSlot
+TMOG_CACHE[8] = {}   -- FeetSlot
+TMOG_CACHE[9] = {}   -- WristSlot
+TMOG_CACHE[10] = {}  -- HandsSlot
+TMOG_CACHE[15] = {}  -- BackSlot
+TMOG_CACHE[16] = {}  -- MainHandSlot
+TMOG_CACHE[17] = {}  -- SecondaryHandSlot
+TMOG_CACHE[18] = {}  -- RangedSlot
 TMOG_PLAYER_OUTFITS = {}
 TMOG_TRANSMOG_STATUS = {}
-TMOG_POSITION = {}
+TMOG_POSITION = { 760, 600 }
+TMOG_LOCKED = false
 
 local version = GetAddOnMetadata("Tmog", "Version")
 local debug = false
@@ -550,32 +564,26 @@ local hunter = {
     ["Miscellaneous"] = true,
 }
 
-local function tmogprint(a)
-    local msg = a
-    if a == nil then
-        msg = "Attempt to print a nil value."
-    elseif type(msg) == "boolean" then
-        if a then
-            msg = "true"
-        else
-            msg = "false"
-        end
-    elseif type(a) == "table" then
-        msg = "Attempt to print a table value."
-    elseif type(a) == "userdata" then
-        msg = "Attempt to print a userdata value."
-    elseif type(a) == "function" then
-        msg = "Attempt to print a function value."
-    end
-    local time = GetTime()
-    DEFAULT_CHAT_FRAME:AddMessage(BLUE .."[Tmog]["..GREY..time.."]["..WHITE..msg.."]|r")
+local function print(msg)
+    DEFAULT_CHAT_FRAME:AddMessage("["..BLUE.."Tmog|r] "..(msg or "nil"))
 end
 
-local function tmog_debug(a)
+local function tmog_debug(...)
     if debug ~= true then
         return
     end
-    tmogprint(a)
+    local size = getn(arg)
+    for i = 1, size do
+        arg[i] = tostring(arg[i])
+    end
+    local msg = arg[1] or "nil"
+    if size > 1 then
+        for i = 2, size do
+            msg = msg..", "..arg[i]
+        end
+    end
+    local time = GREY..GetTime().."|r"
+    DEFAULT_CHAT_FRAME:AddMessage("["..BLUE.."Tmog|r]["..time.."] "..msg)
 end
 
 local function strsplit(str, delimiter)
@@ -828,40 +836,20 @@ Tmog:SetScript("OnEvent", function()
 
         TmogFrameTitleText:SetText("Tmog v."..version)
 
-        SLASH_TMOG1 = "/tmog"
-        SlashCmdList["TMOG"] = function(msg)
-            Tmog_SlashCommand(msg)
-        end
-
-        if not TMOG_PLAYER_OUTFITS then
-            TMOG_PLAYER_OUTFITS = {}
-        end
-        if not TMOG_TRANSMOG_STATUS then
-            TMOG_TRANSMOG_STATUS = {}
-        end
-        if not TMOG_CACHE then
-            TMOG_CACHE = {
-                [1] = {},   -- HeadSlot
-                [3] = {},   -- ShoulderSlot
-                [5] = {},   -- ChestSlot
-                [6] = {},   -- WaistSlot
-                [7] = {},   -- LegsSlot
-                [8] = {},   -- FeetSlot
-                [9] = {},   -- WristSlot
-                [10] = {},  -- HandsSlot
-                [15] = {},  -- BackSlot
-                [16] = {},  -- MainHandSlot
-                [17] = {},  -- SecondaryHandSlot
-                [18] = {}   -- RangedSlot
-            }
-        end
-
         UIDropDownMenu_Initialize(TmogFrameTypeDropDown, Tmog_TypeDropDown_Initialize)
         UIDropDownMenu_Initialize(TmogFrameOutfitsDropDown, Tmog_OutfitsDropDown_Initialize)
         UIDropDownMenu_SetWidth(100, TmogFrameTypeDropDown)
         UIDropDownMenu_SetWidth(115, TmogFrameOutfitsDropDown)
+        
+        TmogButton:SetMovable(not TMOG_LOCKED)
+        TmogButton:ClearAllPoints()
+        TmogButton:SetPoint("CENTER", UIParent, "BOTTOMLEFT", unpack(TMOG_POSITION or {TmogButton:GetCenter()}))
 
         return
+    end
+
+    if debug and event == "CHAT_MSG_ADDON" and (strfind(arg1, "TW_TRANSMOG", 1, true) or strfind(arg1, "TW_CHAT_MSG_WHISPER", 1, true)) then
+        tmog_debug(arg1, arg2, arg3, arg4)
     end
 
     if event == "CHAT_MSG_ADDON" and strfind(arg1, "TW_TRANSMOG", 1, true) and arg4 == UnitName("player") then
@@ -993,9 +981,7 @@ local originalTooltip = {}
 local function IsGear(itemID, tooltip)
     local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(itemID)
     local tableToCheck = GetTableForClass(playerClass)
-    tmog_debug(itemType)
-    tmog_debug(itemSubType)
-    tmog_debug(itemEquipLoc)
+    tmog_debug(itemType, itemSubType, itemEquipLoc)
     if SetContains(tableToCheck, itemSubType) and SetContains(InventoryTypeToSlot, itemEquipLoc) then
         if not Tmog.canDualWeild and itemEquipLoc == "INVTYPE_WEAPONOFFHAND" then
             tmog_debug("cant dual weild")
@@ -1055,13 +1041,12 @@ function TmogTip.ExtendTooltip(tooltip)
 
     if itemName ~= LastItemName then
         local slot = IsGear(itemID, tooltip)
-        
+        LastItemName = itemName
+        LastSlot = slot
+
         if not slot then
             return
         end
-        
-        LastItemName = itemName
-        LastSlot = slot
 
         if line2:GetText() then
             if SetContains(TMOG_CACHE[slot], itemID, itemName) then
@@ -1070,7 +1055,7 @@ function TmogTip.ExtendTooltip(tooltip)
                 line2:SetText(YELLOW.."Not collected|r\n"..line2:GetText())
             end
         end
-    else
+    elseif LastSlot then
         if line2:GetText() then
             -- tooltips have max 30 lines so dont just AddLine, insert into 2nd line of the tooltip instead to avoid hitting lines cap
             if SetContains(TMOG_CACHE[LastSlot], itemID, LastItemName) then
@@ -1516,7 +1501,7 @@ function Tmog:DrawPreviews(noDraw)
             type = "SearchResult"
         end
         if Tmog.flush then
-            tmog_debug("flushing, slot "..slot.." type "..type)
+            tmog_debug("flushing", "slot "..slot, " type "..type)
             for k in pairs(drawTable[slot][type]) do
                 drawTable[slot][type][k] = nil
             end
@@ -1623,9 +1608,7 @@ function Tmog:DrawPreviews(noDraw)
         end
 
         if Tmog.currentPage == Tmog.totalPages then
-            --if math.mod(Tmog:tableSize(drawTable[slot][type]), ipp) ~= 0 then
-                Tmog:HidePreviews()
-            --end
+            Tmog:HidePreviews()
         end
 
         local frame, button
@@ -3439,23 +3422,6 @@ function Tmog_PlayerSlotOnEnter()
     end
 end
 
-function Tmog_SlashCommand(msg)
-    local cmd = strtrim(msg)
-    cmd = strlower(cmd)
-
-    if cmd == "" then
-        DEFAULT_CHAT_FRAME:AddMessage(YELLOW.."/tmog show|r"..WHITE.." - to toggle window|r")
-        DEFAULT_CHAT_FRAME:AddMessage(YELLOW.."/tmog reset|r"..WHITE.." - to reset button position|r")
-
-    elseif cmd == "show" then
-        TmogFrame_Toggle()
-
-    elseif cmd == "reset" then
-        TmogButton:ClearAllPoints()
-        TmogButton:SetPoint("CENTER", UIParent, 0, 0)
-    end
-end
-
 function Tmog_OutfitsDropDown_Initialize()
     if Tmog:tableSize(TMOG_PLAYER_OUTFITS) < 30 then
         local newOutfit = {}
@@ -3818,5 +3784,141 @@ function TmogFrameFullScreen_OnKeyDown()
         UIFrameFadeOut(TmogFrameFullScreenModel, 0.3, 1, 0)
     elseif screenshotKey and (arg1 == screenshotKey) then
         RunBinding("SCREENSHOT")
+    end
+end
+
+local debugState = debug
+local pendingIDs = {}
+local requestInterval = 10
+local tick = requestInterval
+
+local keysdeleted = 0
+local namesrestored = 0
+local sharedadded = 0
+
+local function RepairStop()
+    tmog_debug(format("Cache Repair Finished: bad items deleted: %d, item names restored: %d, missing shared items added: %d", keysdeleted, namesrestored, sharedadded))
+    debug = debugState
+    Tmog:SetScript("OnUpdate", nil)
+end
+
+local function OnUpdate()
+    if tick > GetTime() then
+        return
+    else
+        tick = GetTime() + requestInterval
+    end
+    if not next(pendingIDs) then
+        RepairStop()
+        return
+    end
+    for id, tbl in pairs(pendingIDs) do
+        local value = tbl.value
+        if type(value) == "string" then
+            TMOG_CACHE[tbl.slot][id] = value
+            pendingIDs[id] = nil
+            namesrestored = namesrestored + 1
+            if not next(pendingIDs) then
+                RepairStop()
+                return
+            end
+        else
+            if value > 5 then
+                TMOG_CACHE[tbl.slot] = nil
+                pendingIDs[id] = nil
+                keysdeleted = keysdeleted + 1
+                if not next(pendingIDs) then
+                    RepairStop()
+                    return
+                end
+            else
+                tmog_debug("bad item "..id..": requesting info from server, try #"..tonumber(value))
+                Tmog:CacheItem(id)
+                pendingIDs[id].value = (GetItemInfo(id)) or (value + 1)
+            end
+        end
+    end
+end
+
+
+function Tmog:RepairPlayerCache()
+    local pending = false
+    keysdeleted = 0
+    namesrestored = 0
+    sharedadded = 0
+    tmog_debug("Cache Repair Started")
+    for slot in pairs(TMOG_CACHE) do
+        for id, name in pairs(TMOG_CACHE[slot]) do
+            Tmog:CacheItem(id)
+            if type(id) ~= "number" then
+                TMOG_CACHE[slot][id] = nil
+                keysdeleted = keysdeleted + 1
+            elseif name == true then
+                pendingIDs[id] = { slot = slot, value = 1 }
+                if not Tmog:GetScript("OnUpdate") then
+                    Tmog:SetScript("OnUpdate", OnUpdate)
+                    pending = true
+                end
+            end
+        end
+    end
+    for slot in pairs(TMOG_CACHE) do
+        for itemID in pairs(TMOG_CACHE[slot]) do
+            if SetContains(DisplayIdDB, itemID) then
+                for _, id in pairs(DisplayIdDB[itemID]) do
+                    Tmog:CacheItem(id)
+                    local name = GetItemInfo(id) or true
+                    if not SetContains(TMOG_CACHE[slot], id, name) then
+                        AddToSet(TMOG_CACHE[slot], id, name)
+                        sharedadded = sharedadded + 1
+                    end
+                end
+            end
+        end
+    end
+    if not pending then
+        tmog_debug(format("Cache Repair Finished: bad items deleted: %d, item names restored: %d, missing shared items added: %d", keysdeleted, namesrestored, sharedadded))
+        debug = debugState
+    end
+end
+
+SLASH_TMOG1 = "/tmog"
+SlashCmdList["TMOG"] = function(msg)
+    local cmd = strtrim(msg)
+    cmd = strlower(cmd)
+
+    if strfind(cmd, "show$") then
+        TmogFrame_Toggle()
+
+    elseif strfind(cmd, "reset$") then
+        TmogButton:ClearAllPoints()
+        TmogButton:SetPoint("CENTER", UIParent, 0, 0)
+
+    elseif strfind(cmd, "lock$") then
+        TmogButton:SetMovable(not TmogButton:IsMovable())
+        TMOG_LOCKED = not TMOG_LOCKED
+        if not TMOG_LOCKED then
+            print("minimap button unlocked")
+        else
+            print("minimap button locked")
+        end
+
+    elseif strfind(cmd, "debug$") then
+        debug = not debug
+        if debug then
+            print("debug is on")
+        else
+            print("debug is off")
+        end
+
+    elseif strfind(cmd, "db$") then
+        debug = true
+        Tmog:RepairPlayerCache()
+    else
+        print(YELLOW.."/tmog show|r"..WHITE.." - toggle dressing room|r")
+        print(YELLOW.."/tmog reset|r"..WHITE.." - reset minimap button position|r")
+        print(YELLOW.."/tmog lock|r"..WHITE.." - lock/unlock minimap button|r")
+        print(YELLOW.."/tmog debug|r"..WHITE.." - print debug messages in chat|r")
+        print(YELLOW.."/tmog db|r"..WHITE.." - attempt to repair this character's cache (can fix minor bugs)|r")
     end
 end

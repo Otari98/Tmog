@@ -1127,12 +1127,16 @@
                     </OnLoad>
                     <OnDragStart>
                         this:LockHighlight()
-                        this:StartMoving()
+                        if this:IsMovable() then
+                            this:StartMoving()
+                        end
                     </OnDragStart>
                     <OnDragStop>
                         this:UnlockHighlight()
-                        this:StopMovingOrSizing()
-                        TMOG_POSITION = {this:GetCenter()} 
+                        if this:IsMovable() then
+                            this:StopMovingOrSizing()
+                            TMOG_POSITION = {this:GetCenter()}
+                        end
                     </OnDragStop>
                     <OnEnter>
                         local version = GetAddOnMetadata("Tmog", "Version")

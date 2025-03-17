@@ -9527,6 +9527,7 @@ TmogGearDB = {
 	},
 	[19] = {
 		["Miscellaneous"] = {
+            [93099] = "Tabard of Defender",
             [93098] = "Bel'dorei Tabard",
 			[15199] = "Stone Guard's Herald",
 			[80309] = "Undercity Tabard",

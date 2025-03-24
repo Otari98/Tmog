@@ -1,8 +1,9 @@
 -- Dressing room code - modified CosminPOP's Turtle_TransmogUI
 -- Tooltip code - adapted from https://github.com/Zebouski/MoPGearTooltips/tree/masterturtle
-local YELLOW = NORMAL_FONT_COLOR_CODE
+local NORMAL = NORMAL_FONT_COLOR_CODE
+local YELLOW = "|cffFFFF00"
 local WHITE = HIGHLIGHT_FONT_COLOR_CODE
-local GREEN = GREEN_FONT_COLOR_CODE
+local GREEN = "|cff00A000" -- GREEN_FONT_COLOR_CODE
 local GREY = GRAY_FONT_COLOR_CODE
 local BLUE = "|cff0070de"
 
@@ -324,6 +325,7 @@ Tmog.unusable = {
 Tmog.inventorySlots = {
     ["HeadSlot"] = 1,
     ["ShoulderSlot"] = 3,
+    ["ShirtSlot"] = 4,
     ["ChestSlot"] = 5,
     ["WaistSlot"] = 6,
     ["LegsSlot"] = 7,
@@ -334,7 +336,6 @@ Tmog.inventorySlots = {
     ["MainHandSlot"] = 16,
     ["SecondaryHandSlot"] = 17,
     ["RangedSlot"] = 18,
-    ["ShirtSlot"] = 4,
     ["TabardSlot"] = 19
 }
 
@@ -600,9 +601,9 @@ local function SetContains(set, key, value)
         return false
     end
     if not key and value then
-        for _, v in pairs(set) do
+        for k, v in pairs(set) do
             if v == value then
-                return true
+                return k
             end
         end
     end
@@ -664,134 +665,153 @@ local function GetItemIDByName(name)
 	return lastSearchID
 end
 
-local HookSetLootRollItem       = GameTooltip.SetLootRollItem
-local HookSetLootItem           = GameTooltip.SetLootItem
-local HookSetMerchantItem       = GameTooltip.SetMerchantItem
-local HookSetQuestLogItem       = GameTooltip.SetQuestLogItem
-local HookSetQuestItem          = GameTooltip.SetQuestItem
-local HookSetHyperlink          = GameTooltip.SetHyperlink
-local HookSetBagItem            = GameTooltip.SetBagItem
-local HookSetInboxItem          = GameTooltip.SetInboxItem
-local HookSetInventoryItem      = GameTooltip.SetInventoryItem
-local HookSetCraftItem          = GameTooltip.SetCraftItem
-local HookSetCraftSpell         = GameTooltip.SetCraftSpell
-local HookSetTradeSkillItem     = GameTooltip.SetTradeSkillItem
-local HookSetAuctionItem        = GameTooltip.SetAuctionItem
-local HookSetAuctionSellItem    = GameTooltip.SetAuctionSellItem
-local HookSetTradePlayerItem    = GameTooltip.SetTradePlayerItem
-local HookSetTradeTargetItem    = GameTooltip.SetTradeTargetItem
-local HookSetItemRef            = SetItemRef
-
-function GameTooltip.SetLootRollItem(self, id)
-    local _, _, itemID = strfind(GetLootRollItemLink(id) or "", "item:(%d+)")
-    GameTooltip.itemID = itemID
-    return HookSetLootRollItem(self, id)
-end
-
-function GameTooltip.SetLootItem(self, slot)
-    local _, _, itemID = strfind(GetLootSlotLink(slot) or "", "item:(%d+)")
-    GameTooltip.itemID = itemID
-    HookSetLootItem(self, slot)
-end
-
-function GameTooltip.SetMerchantItem(self, merchantIndex)
-    local _, _, itemID = strfind(GetMerchantItemLink(merchantIndex) or "", "item:(%d+)")
-    GameTooltip.itemID = itemID
-    return HookSetMerchantItem(self, merchantIndex)
-end
-
-function GameTooltip.SetQuestLogItem(self, itemType, index)
-    local _, _, itemID = strfind(GetQuestLogItemLink(itemType, index) or "", "item:(%d+)")
-    GameTooltip.itemID = itemID
-    if not GameTooltip.itemID then
-        return
-    end
-    return HookSetQuestLogItem(self, itemType, index)
-end
-
-function GameTooltip.SetQuestItem(self, itemType, index)
-    local _, _, itemID = strfind(GetQuestItemLink(itemType, index) or "", "item:(%d+)")
-    GameTooltip.itemID = itemID
-    return HookSetQuestItem(self, itemType, index)
-end
-
-function GameTooltip.SetHyperlink(self, arg1)
-    local _, _, id = strfind(arg1 or "", "item:(%d+)")
-    GameTooltip.itemID = id
-    return HookSetHyperlink(self, arg1)
-end
-
-function GameTooltip.SetBagItem(self, container, slot)
-	local _, _, id = strfind(GetContainerItemLink(container, slot) or "", "item:(%d+)")
-	GameTooltip.itemID = id
-    return HookSetBagItem(self, container, slot)
-end
-
-function GameTooltip.SetInboxItem(self, mailID, attachmentIndex)
-	local itemName = GetInboxItem(mailID)
-	GameTooltip.itemID = GetItemIDByName(itemName)
-	return HookSetInboxItem(self, mailID, attachmentIndex)
-end
-
-function GameTooltip.SetInventoryItem(self, unit, slot)
-	local _, _, id = strfind(GetInventoryItemLink(unit, slot) or "", "item:(%d+)")
-	GameTooltip.itemID = id
-	return HookSetInventoryItem(self, unit, slot)
-end
-
-function GameTooltip.SetCraftItem(self, skill, slot)
-	local _, _, id = strfind(GetCraftReagentItemLink(skill, slot) or "", "item:(%d+)")
-	GameTooltip.itemID = id
-	return HookSetCraftItem(self, skill, slot)
-end
-
-function GameTooltip.SetCraftSpell(self, slot)
-    local _, _, id = strfind(GetCraftItemLink(slot) or "", "item:(%d+)")
-    GameTooltip.itemID = id
-    return HookSetCraftSpell(self, slot)
-end
-
-function GameTooltip.SetTradeSkillItem(self, skillIndex, reagentIndex)
-	if reagentIndex then
-		local _, _, id = strfind(GetTradeSkillReagentItemLink(skillIndex, reagentIndex) or "", "item:(%d+)")
-		GameTooltip.itemID = id
-	else
-		local _, _, id = strfind(GetTradeSkillItemLink(skillIndex) or "", "item:(%d+)")
-		GameTooltip.itemID = id
-	end
-	return HookSetTradeSkillItem(self, skillIndex, reagentIndex)
-end
-
-function GameTooltip.SetAuctionItem(self, atype, index)
-	local itemName = GetAuctionItemInfo(atype, index)
-	GameTooltip.itemID = GetItemIDByName(itemName)
-	return HookSetAuctionItem(self, atype, index)
-end
-
-function GameTooltip.SetAuctionSellItem(self)
-	local itemName = GetAuctionSellItemInfo()
-	GameTooltip.itemID = GetItemIDByName(itemName)
-	return HookSetAuctionSellItem(self)
-end
-
-function GameTooltip.SetTradePlayerItem(self, index)
-	local _, _, id = strfind(GetTradePlayerItemLink(index) or "", "item:(%d+)")
-	GameTooltip.itemID = id
-	return HookSetTradePlayerItem(self, index)
-end
-
-function GameTooltip.SetTradeTargetItem(self, index)
-    local _, _, id = strfind(GetTradeTargetItemLink(index) or "", "item:(%d+)")
-    GameTooltip.itemID = id
-	return HookSetTradeTargetItem(self, index)
-end
-
+local HookSetItemRef = SetItemRef
 function SetItemRef(link, text, button)
-    local item, _, id = strfind(link or "", "item:(%d+)")
-	ItemRefTooltip.itemID = id
     HookSetItemRef(link, text, button)
+    local item, _, id = strfind(link or "", "item:(%d+)")
+    ItemRefTooltip.itemID = id
     if not IsShiftKeyDown() and not IsControlKeyDown() and item then
-        TmogTip.ExtendTooltip(ItemRefTooltip)
+        Tmog:ExtendTooltip(ItemRefTooltip)
+    end
+end
+
+local tooltips = { GameTooltip, TmogTooltip }
+
+for _, tooltip in pairs(tooltips) do
+    local HookSetLootRollItem       = tooltip.SetLootRollItem
+    local HookSetLootItem           = tooltip.SetLootItem
+    local HookSetMerchantItem       = tooltip.SetMerchantItem
+    local HookSetQuestLogItem       = tooltip.SetQuestLogItem
+    local HookSetQuestItem          = tooltip.SetQuestItem
+    local HookSetHyperlink          = tooltip.SetHyperlink
+    local HookSetBagItem            = tooltip.SetBagItem
+    local HookSetInboxItem          = tooltip.SetInboxItem
+    local HookSetInventoryItem      = tooltip.SetInventoryItem
+    local HookSetCraftItem          = tooltip.SetCraftItem
+    local HookSetCraftSpell         = tooltip.SetCraftSpell
+    local HookSetTradeSkillItem     = tooltip.SetTradeSkillItem
+    local HookSetAuctionItem        = tooltip.SetAuctionItem
+    local HookSetAuctionSellItem    = tooltip.SetAuctionSellItem
+    local HookSetTradePlayerItem    = tooltip.SetTradePlayerItem
+    local HookSetTradeTargetItem    = tooltip.SetTradeTargetItem
+
+    function tooltip.SetLootRollItem(self, id)
+        HookSetLootRollItem(self, id)
+        local _, _, itemID = strfind(GetLootRollItemLink(id) or "", "item:(%d+)")
+        self.itemID = itemID
+        Tmog:ExtendTooltip(self)
+    end
+
+    function tooltip.SetLootItem(self, slot)
+        HookSetLootItem(self, slot)
+        local _, _, itemID = strfind(GetLootSlotLink(slot) or "", "item:(%d+)")
+        self.itemID = itemID
+        Tmog:ExtendTooltip(self)
+    end
+
+    function tooltip.SetMerchantItem(self, merchantIndex)
+        HookSetMerchantItem(self, merchantIndex)
+        local _, _, itemID = strfind(GetMerchantItemLink(merchantIndex) or "", "item:(%d+)")
+        self.itemID = itemID
+        Tmog:ExtendTooltip(self)
+    end
+
+    function tooltip.SetQuestLogItem(self, itemType, index)
+        HookSetQuestLogItem(self, itemType, index)
+        local _, _, itemID = strfind(GetQuestLogItemLink(itemType, index) or "", "item:(%d+)")
+        self.itemID = itemID
+        Tmog:ExtendTooltip(self)
+    end
+
+    function tooltip.SetQuestItem(self, itemType, index)
+        HookSetQuestItem(self, itemType, index)
+        local _, _, itemID = strfind(GetQuestItemLink(itemType, index) or "", "item:(%d+)")
+        self.itemID = itemID
+        Tmog:ExtendTooltip(self)
+    end
+
+    function tooltip.SetHyperlink(self, arg1)
+        HookSetHyperlink(self, arg1)
+        local _, _, id = strfind(arg1 or "", "item:(%d+)")
+        self.itemID = id
+        Tmog:ExtendTooltip(self)
+    end
+
+    function tooltip.SetBagItem(self, container, slot)
+        local hasCooldown, repairCost = HookSetBagItem(self, container, slot)
+        local _, _, id = strfind(GetContainerItemLink(container, slot) or "", "item:(%d+)")
+        self.itemID = id
+        Tmog:ExtendTooltip(self)
+        return hasCooldown, repairCost
+    end
+
+    function tooltip.SetInboxItem(self, mailID, attachmentIndex)
+        HookSetInboxItem(self, mailID, attachmentIndex)
+        local itemName = GetInboxItem(mailID)
+        self.itemID = GetItemIDByName(itemName)
+        Tmog:ExtendTooltip(self)
+    end
+
+    function tooltip.SetInventoryItem(self, unit, slot)
+        local hasItem, hasCooldown, repairCost = HookSetInventoryItem(self, unit, slot)
+        local _, _, id = strfind(GetInventoryItemLink(unit, slot) or "", "item:(%d+)")
+        self.itemID = id
+        Tmog:ExtendTooltip(self)
+        return hasItem, hasCooldown, repairCost
+    end
+
+    function tooltip.SetCraftItem(self, skill, slot)
+        HookSetCraftItem(self, skill, slot)
+        local _, _, id = strfind(GetCraftReagentItemLink(skill, slot) or "", "item:(%d+)")
+        self.itemID = id
+        Tmog:ExtendTooltip(self)
+    end
+
+    function tooltip.SetCraftSpell(self, slot)
+        HookSetCraftSpell(self, slot)
+        local _, _, id = strfind(GetCraftItemLink(slot) or "", "item:(%d+)")
+        self.itemID = id
+        Tmog:ExtendTooltip(self)
+    end
+
+    function tooltip.SetTradeSkillItem(self, skillIndex, reagentIndex)
+        HookSetTradeSkillItem(self, skillIndex, reagentIndex)
+        if reagentIndex then
+            local _, _, id = strfind(GetTradeSkillReagentItemLink(skillIndex, reagentIndex) or "", "item:(%d+)")
+            self.itemID = id
+        else
+            local _, _, id = strfind(GetTradeSkillItemLink(skillIndex) or "", "item:(%d+)")
+            self.itemID = id
+        end
+        Tmog:ExtendTooltip(self)
+    end
+
+    function tooltip.SetAuctionItem(self, atype, index)
+        HookSetAuctionItem(self, atype, index)
+        local itemName = GetAuctionItemInfo(atype, index)
+        self.itemID = GetItemIDByName(itemName)
+        Tmog:ExtendTooltip(self)
+    end
+
+    function tooltip.SetAuctionSellItem(self)
+        HookSetAuctionSellItem(self)
+        local itemName = GetAuctionSellItemInfo()
+        self.itemID = GetItemIDByName(itemName)
+        Tmog:ExtendTooltip(self)
+    end
+
+    function tooltip.SetTradePlayerItem(self, index)
+        HookSetTradePlayerItem(self, index)
+        local _, _, id = strfind(GetTradePlayerItemLink(index) or "", "item:(%d+)")
+        self.itemID = id
+        Tmog:ExtendTooltip(self)
+    end
+
+    function tooltip.SetTradeTargetItem(self, index)
+        HookSetTradeTargetItem(self, index)
+        local _, _, id = strfind(GetTradeTargetItemLink(index) or "", "item:(%d+)")
+        self.itemID = id
+        Tmog:ExtendTooltip(self)
     end
 end
 
@@ -830,13 +850,13 @@ Tmog:SetScript("OnEvent", function()
             [15] = {}, -- BackSlot
             [16] = {}, -- MainHandSlot
             [17] = {}, -- SecondaryHandSlot
-            [18] = {}  -- RangedSlot
+            [18] = {}, -- RangedSlot
+            [4] = {},  -- ShirtSlot 
+            [19] = {}, -- TabardSlot
         }
         for _, InventorySlotId in pairs(Tmog.inventorySlots) do
-            if InventorySlotId ~= 4 and InventorySlotId ~= 19 then
-                if not TMOG_CACHE[InventorySlotId] then
-                    TMOG_CACHE[InventorySlotId] = {}
-                end
+            if not TMOG_CACHE[InventorySlotId] then
+                TMOG_CACHE[InventorySlotId] = {}
             end
         end
         TMOG_PLAYER_OUTFITS = TMOG_PLAYER_OUTFITS or {}
@@ -999,10 +1019,6 @@ local function IsGear(itemID, tooltip)
             tmog_debug("not a real weapon")
             return nil
         end
-        if itemEquipLoc == "INVTYPE_BODY" or itemEquipLoc == "INVTYPE_TABARD" then
-            tmog_debug("shirt or tabard")
-            return nil
-        end
         -- check if its class restricted item
         for k in pairs(originalTooltip) do
             originalTooltip[k] = nil
@@ -1032,14 +1048,67 @@ local function IsGear(itemID, tooltip)
     end
 end
 
-local LastItemName = nil
-local LastSlot = nil
-function TmogTip.ExtendTooltip(tooltip)
+-- adapted from http://shagu.org/ShaguTweaks/
+local function InsertLine(tooltip, text)
+    local name = tooltip:GetName()
+    local sides = { "Left", "Right" }
+    for i = tooltip:NumLines(), 2, -1 do
+        for _, side in pairs(sides) do
+            local current = getglobal(name .. "Text" .. side .. i)
+            local below = getglobal(name .. "Text" .. side .. i + 1)
+            if current and current:IsShown() then
+                local txt = current:GetText()
+                local r, g, b, a = current:GetTextColor()
+                if txt and txt ~= "" then
+                    if tooltip:NumLines() < i + 1 then
+                        tooltip:AddLine(txt, r, g, b, a)
+                    else
+                        below:SetText(txt)
+                        below:SetTextColor(r, g, b, a)
+                        below:Show()
+                        current:Hide()
+                    end
+                end
+            end
+        end
+    end
+    getglobal(name .. "TextLeft2"):SetText(text)
+    getglobal(name .. "TextLeft2"):Show()
+    tooltip:Show()
+end
+
+local function AddLabel(line2, slot, itemID, tooltip)
+    local badLine2 = false
+    for k, v in pairs(InventoryTypeToSlot) do
+        local loc = getglobal(k)
+        if v == slot and strfind(line2:GetText(), loc or "", 1, true) then
+            badLine2 = true
+            break
+        end
+    end
+    if SetContains(TMOG_CACHE[slot], itemID) then
+        if badLine2 and tooltip:NumLines() < 30 then
+            InsertLine(tooltip, GREEN.."Collected|r")
+        else
+            line2:SetText(GREEN.."Collected|r\n"..line2:GetText())
+        end
+    else
+        if badLine2 and tooltip:NumLines() < 30 then
+            InsertLine(tooltip, YELLOW.."Not collected|r")
+        else
+            line2:SetText(YELLOW.."Not collected|r\n"..line2:GetText())
+        end
+    end
+end
+
+local lastItemName = nil
+local lastSlot = nil
+function Tmog:ExtendTooltip(tooltip)
     local tooltipName = tooltip:GetName()
     local itemName = getglobal(tooltipName .. "TextLeft1"):GetText()
     local line2 = getglobal(tooltipName .. "TextLeft2")
 
-    if not itemName or not tooltip.itemID or not line2 or IsShiftKeyDown() then
+    if not itemName or not tooltip.itemID or not line2 then
         return
     end
 
@@ -1047,30 +1116,22 @@ function TmogTip.ExtendTooltip(tooltip)
     Tmog:CacheItem(itemID)
     itemName = GetItemInfo(itemID)
 
-    if itemName ~= LastItemName then
+    if itemName ~= lastItemName then
         local slot = IsGear(itemID, tooltip)
-        LastItemName = itemName
-        LastSlot = slot
+        lastItemName = itemName
+        lastSlot = slot
 
         if not slot then
             return
         end
 
         if line2:GetText() then
-            if SetContains(TMOG_CACHE[slot], itemID, itemName) then
-                line2:SetText(GREY.."In your collection|r\n"..line2:GetText())
-            else
-                line2:SetText(YELLOW.."Not collected|r\n"..line2:GetText())
-            end
+            AddLabel(line2, slot, itemID, tooltip)
         end
-    elseif LastSlot then
+
+    elseif lastSlot then
         if line2:GetText() then
-            -- tooltips have max 30 lines so dont just AddLine, insert into 2nd line of the tooltip instead to avoid hitting lines cap
-            if SetContains(TMOG_CACHE[LastSlot], itemID, LastItemName) then
-                line2:SetText(GREY.."In your collection|r\n"..line2:GetText())
-            else
-                line2:SetText(YELLOW.."Not collected|r\n"..line2:GetText())
-            end
+            AddLabel(line2, lastSlot, itemID, tooltip)
         end
     end
 
@@ -1091,11 +1152,11 @@ TmogTip:SetScript("OnShow", function()
             if GetMouseFocus():GetParent().row then
                 if GetMouseFocus():GetParent().row.record.item_id then
                     GameTooltip.itemID = GetMouseFocus():GetParent().row.record.item_id
+                    Tmog:ExtendTooltip(GameTooltip)
                 end
             end
         end
     end
-    TmogTip.ExtendTooltip(GameTooltip)
 end)
 
 TmogTooltip:SetScript("OnHide", function()
@@ -1126,7 +1187,7 @@ Tmog.HookAddonOrVariable("AtlasLoot", function()
                 strsub(GetMouseFocus().itemID or "", 1, 1) ~= "s" and strsub(GetMouseFocus().itemID or "", 1, 1) ~= "e" then
             AtlasLootTooltip.itemID = GetMouseFocus().dressingroomID
         end
-        TmogTip.ExtendTooltip(AtlasLootTooltip)
+        Tmog:ExtendTooltip(AtlasLootTooltip)
     end)
 
     atlas2:SetScript("OnShow", function()
@@ -1134,7 +1195,7 @@ Tmog.HookAddonOrVariable("AtlasLoot", function()
                 strsub(GetMouseFocus().itemID or "", 1, 1) ~= "s" and strsub(GetMouseFocus().itemID or "", 1, 1) ~= "e" then
             AtlasLootTooltip2.itemID = GetMouseFocus().dressingroomID
         end
-        TmogTip.ExtendTooltip(AtlasLootTooltip2)
+        Tmog:ExtendTooltip(AtlasLootTooltip2)
     end)
 
     atlas:SetScript("OnHide", function()
@@ -2722,16 +2783,14 @@ function Tmog_AddSharedItemTooltip(frame)
         local itemID = this:GetID()
 
         Tmog:CacheItem(itemID)
-        TmogTooltip.itemID = itemID
         TmogTooltip:SetHyperlink("item:"..tostring(itemID))
-        TmogTip.ExtendTooltip(TmogTooltip)
 
         local numLines = TmogTooltip:NumLines()
 
         if numLines and numLines > 0 then
             local lastLine = getglobal("TmogTooltipTextLeft"..numLines)  
             if lastLine:GetText() then
-                lastLine:SetText(lastLine:GetText().."\n\n"..YELLOW.."ItemID: "..itemID)
+                lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL.."ItemID: "..itemID)
             end
         end
 
@@ -2833,31 +2892,22 @@ function Tmog_AddOutfitTooltip(frame, outfit)
                     end
 
                     if slotName then
-                        slotName = TEXT(getglobal(strupper(slotName)))
+                        slotName = getglobal(strupper(slotName))
                         local itemName, _, quality = GetItemInfo(itemID)
                         local _, _, _, color = GetItemQualityColor(quality)
+                        local collected = SetContains(TMOG_CACHE[slot], itemID, itemName)
+                        local status = ""
 
-                        if slot ~= 4 and slot ~= 19 then
-                            local collected = SetContains(TMOG_CACHE[slot], itemID, itemName)
-                            local status = ""
-
-                            if collected then
-                                status = YELLOW.."Collected"
-                            else
-                                status = GREY.."Not collected"
-                            end
-
-                            if color then
-                                TmogTooltip:AddDoubleLine(slotName..": "..color..itemName, status)
-                            else
-                                TmogTooltip:AddDoubleLine(slotName..": "..itemName, status)
-                            end
+                        if collected then
+                            status = NORMAL.."Collected"
                         else
-                            if color then
-                                TmogTooltip:AddLine(slotName..": "..color..itemName)
-                            else
-                                TmogTooltip:AddLine(slotName..": "..itemName)
-                            end
+                            status = GREY.."Not collected"
+                        end
+
+                        if color then
+                            TmogTooltip:AddDoubleLine(slotName..": "..color..itemName, status)
+                        else
+                            TmogTooltip:AddDoubleLine(slotName..": "..itemName, status)
                         end
                     end
                 end
@@ -2889,10 +2939,9 @@ function Tmog_AddItemTooltip(frame, text)
         end
 
         local itemID = this:GetID()
+
         Tmog:CacheItem(itemID)
-        TmogTooltip.itemID = itemID
         TmogTooltip:SetHyperlink("item:"..itemID)
-        TmogTip.ExtendTooltip(TmogTooltip)
 
         local numLines = TmogTooltip:NumLines()
 
@@ -2900,12 +2949,12 @@ function Tmog_AddItemTooltip(frame, text)
             local lastLine = getglobal("TmogTooltipTextLeft"..numLines)
 
             if lastLine:GetText() then
-                lastLine:SetText(lastLine:GetText().."\n\n"..YELLOW.."ItemID: "..itemID)
+                lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL.."ItemID: "..itemID)
                 local name = GetItemInfo(itemID)
 
                 if name and SetContains(DisplayIdDB, itemID) then
                     if not Tmog.onlyUsable then
-                        lastLine:SetText(lastLine:GetText().."\n\n"..YELLOW.."Shares Appearance With:")
+                        lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL.."Shares Appearance With:")
                         for _, id in pairs(DisplayIdDB[itemID]) do
                             Tmog:CacheItem(id)
                             local similarItem, _, quality = GetItemInfo(id)
@@ -2925,7 +2974,7 @@ function Tmog_AddItemTooltip(frame, text)
                         for _, id in pairs(DisplayIdDB[itemID]) do
                             Tmog:CacheItem(itemID)
                             if Tmog:IsUsableItem(id) then
-                                lastLine:SetText(lastLine:GetText().."\n\n"..YELLOW.."Shares Appearance With:")
+                                lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL.."Shares Appearance With:")
                                 proceed = true
                                 break
                             end
@@ -3171,8 +3220,8 @@ StaticPopupDialogs["TMOG_OUTFIT_EMPTY_NAME"] = {
 
 StaticPopupDialogs["TMOG_CONFIRM_DELETE_OUTFIT"] = {
     text = "Delete Outfit?",
-    button1 = TEXT(YES),
-    button2 = TEXT(NO),
+    button1 = YES,
+    button2 = NO,
 
     OnAccept = function()
         Tmog_DeleteOutfit()
@@ -3194,8 +3243,8 @@ StaticPopupDialogs["TMOG_BAD_OUTFIT_CODE"] = {
 
 StaticPopupDialogs["TMOG_IMPORT_OUTFIT"] = {
     text = "Insert outfit code here:",
-    button1 = TEXT(OKAY),
-    button2 = TEXT(CANCEL),
+    button1 = OKAY,
+    button2 = CANCEL,
     hasEditBox = 1,
 
     OnShow = function()
@@ -3410,20 +3459,18 @@ function Tmog_PlayerSlotOnEnter()
 
         TmogTooltip:SetText(name, r, g, b)
 
-        if slot ~= 4 and slot ~= 19 then
-            if SetContains(TMOG_CACHE[slot], itemID, name)then
-                TmogTooltip:AddLine(GREY.."In your collection|r")
-            else
-                TmogTooltip:AddLine(YELLOW.."Not collected|r")
-            end
+        if SetContains(TMOG_CACHE[slot], itemID, name)then
+            TmogTooltip:AddLine(GREEN.."Collected|r")
+        else
+            TmogTooltip:AddLine(YELLOW.."Not collected|r")
         end
 
-        TmogTooltip:AddLine(YELLOW.."\nItemID: "..itemID.."|r", 1, 1, 1)
+        TmogTooltip:AddLine(NORMAL.."\nItemID: "..itemID.."|r", 1, 1, 1)
         TmogTooltip:Show()
     end
 
     if not name then
-        local text = TEXT(getglobal(strupper(strsub(this:GetName(), 10))))
+        local text = getglobal(strupper(strsub(this:GetName(), 10)))
 
         TmogTooltip:SetText(text)
         TmogTooltip:Show()
@@ -3461,7 +3508,7 @@ function Tmog_OutfitsDropDown_Initialize()
             end
 
             if slotName then
-                slotName = TEXT(getglobal(strupper(slotName)))
+                slotName = getglobal(strupper(slotName))
                 Tmog:CacheItem(itemID)
                 local itemName, _, quality = GetItemInfo(itemID)
 
@@ -3470,12 +3517,12 @@ function Tmog_OutfitsDropDown_Initialize()
                     if quality then
                         local _, _, _, color = GetItemQualityColor(quality)
                         if color then
-                            descText = descText..YELLOW..slotName..":|r "..color.. itemName.."|r\n"
+                            descText = descText..NORMAL..slotName..":|r "..color.. itemName.."|r\n"
                         else
-                            descText = descText..YELLOW..slotName..":|r ".. itemName.."|r\n"
+                            descText = descText..NORMAL..slotName..":|r ".. itemName.."|r\n"
                         end
                     else
-                        descText = descText..YELLOW..slotName..":|r ".. itemName.."|r\n"
+                        descText = descText..NORMAL..slotName..":|r ".. itemName.."|r\n"
                     end
                 end
             end
@@ -3774,12 +3821,13 @@ function TmogFrameFullScreenModel_OnShow()
     this:TryOn(Tmog.currentGear[17])
 end
 
+local fade
 function Tmog_FS_OnUpdate()
-    if not this.fade then
+    if not fade then
         return
     end
-    if (GetTime() - this.fade) > 0.3 then
-        this.fade = nil
+    if (GetTime() - fade) > 0.3 then
+        fade = nil
         this:Hide()
     end
 end
@@ -3788,7 +3836,7 @@ function TmogFrameFullScreen_OnKeyDown()
     local screenshotKey = GetBindingKey("SCREENSHOT")
     if arg1 == "ESCAPE" then
         this:SetScript("OnKeyDown", nil)
-        this.fade = GetTime()
+        fade = GetTime()
         UIFrameFadeOut(TmogFrameFullScreenModel, 0.3, 1, 0)
     elseif screenshotKey and (arg1 == screenshotKey) then
         RunBinding("SCREENSHOT")
@@ -3923,10 +3971,10 @@ SlashCmdList["TMOG"] = function(msg)
         debug = true
         Tmog:RepairPlayerCache()
     else
-        print(YELLOW.."/tmog show|r"..WHITE.." - toggle dressing room|r")
-        print(YELLOW.."/tmog reset|r"..WHITE.." - reset minimap button position|r")
-        print(YELLOW.."/tmog lock|r"..WHITE.." - lock/unlock minimap button|r")
-        print(YELLOW.."/tmog debug|r"..WHITE.." - print debug messages in chat|r")
-        print(YELLOW.."/tmog db|r"..WHITE.." - attempt to repair this character's cache (can fix minor bugs)|r")
+        print(NORMAL.."/tmog show|r"..WHITE.." - toggle dressing room|r")
+        print(NORMAL.."/tmog reset|r"..WHITE.." - reset minimap button position|r")
+        print(NORMAL.."/tmog lock|r"..WHITE.." - lock/unlock minimap button|r")
+        print(NORMAL.."/tmog debug|r"..WHITE.." - print debug messages in chat|r")
+        print(NORMAL.."/tmog db|r"..WHITE.." - attempt to repair this character's cache (can fix minor bugs)|r")
     end
 end

@@ -1049,6 +1049,7 @@ local function IsGear(itemID, tooltip)
 end
 
 -- adapted from http://shagu.org/ShaguTweaks/
+--TODO: fix this
 local function InsertLine(tooltip, text)
     local name = tooltip:GetName()
     local sides = { "Left", "Right" }

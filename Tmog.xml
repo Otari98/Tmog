@@ -1295,9 +1295,9 @@
                         <Offset x="30" y="123"/>
                     </Anchor>
                 </Anchors>
-                <NormalTexture file="Interface\Buttons\UI-Panel-MaximizeMapButton-Up"/>
-                <PushedTexture file="Interface\Buttons\UI-Panel-MaximizeMapButton-Down"/>
-                <HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+                <NormalTexture file="Interface\AddOns\Tmog\Textures\UI-Panel-MaximizeMapButton-Up"/>
+                <PushedTexture file="Interface\AddOns\Tmog\Textures\UI-Panel-MaximizeMapButton-Down"/>
+                <HighlightTexture file="Interface\AddOns\Tmog\Textures\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
                 <Scripts>
                     <OnEnter>
                         TmogTooltip:SetOwner(this, "ANCHOR_RIGHT", -10, -10)

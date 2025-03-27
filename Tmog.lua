@@ -2784,8 +2784,8 @@ function Tmog_AddSharedItemTooltip(frame)
         local itemID = this:GetID()
 
         Tmog:CacheItem(itemID)
+        TmogTooltip.itemID = itemID
         TmogTooltip:SetHyperlink("item:"..tostring(itemID))
-
         local numLines = TmogTooltip:NumLines()
 
         if numLines and numLines > 0 then
@@ -2942,8 +2942,8 @@ function Tmog_AddItemTooltip(frame, text)
         local itemID = this:GetID()
 
         Tmog:CacheItem(itemID)
+        TmogTooltip.itemID = itemID
         TmogTooltip:SetHyperlink("item:"..itemID)
-
         local numLines = TmogTooltip:NumLines()
 
         if numLines and numLines > 0 then

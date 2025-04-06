@@ -25,7 +25,7 @@ local previewHighlight   = { 1, 0, -0.3,  0, -1,   0.9,  1.0, 1.0, 1.0,   0.8, 1
 local FSLight            = { 1, 0, -0.5, -1, -0.7, 0.42, 1.0, 1.0, 1.0,   0.8, 1.0, 1.0, 1.0 }
 
 local TmogTip = CreateFrame("Frame", "TmogTip", GameTooltip)
-local TmogTooltip = TmogTooltip or CreateFrame("GameTooltip", "TmogTooltip", nil, "GameTooltipTemplate")
+local TmogTooltip = TmogTooltip or CreateFrame("GameTooltip", "TmogTooltip", UIParent, "GameTooltipTemplate")
 TmogTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
 
 local Tmog = CreateFrame("Frame")

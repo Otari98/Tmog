@@ -5,6 +5,16 @@
 TmogGearDB = {
 	[1] = {
         ["Cloth"] = {
+            [1] = "Spring White Rabbit Headband",
+			[14] = "Spring Brown Rabbit Headband",
+			[29] = "Spring Black Rabbit Headband",
+			[33] = "Spring Butterfly Crown",
+			[9] = "Spring Pink Rabbit Headband",
+			[41501] = "Brown Banded Top Hat",
+			[41629] = "Hood of the Long Night",
+			[51777] = "Necromancer's Visage",
+			[22] = "Spring Blue Rabbit Headband",
+			[11] = "Spring Yellow Rabbit Headband",
             [111] = "The Lunatic King's Crown",
             [50349] = "Dun Morogh Mountaineer Hood",
             [50341] = "Darnassus Sentinel Faceguard",
@@ -1585,6 +1595,20 @@ TmogGearDB = {
 	},
 	[5] = {
         ["Cloth"] = {
+            [41247] = "Formal Mint Waistcoat",
+			[83026] = "Mellow Woolen Dress",
+			[83028] = "Shadow Lace Blouse",
+			[83030] = "Pink Lace Camisole",
+			[36014] = "White Lace Camisole",
+			[41231] = "Red Hem Embroidered Waistcoat",
+			[55342] = "Cherry Spring Vest",
+			[55343] = "Lilac Spring Vest",
+			[55344] = "Willow Spring Vest",
+			[55345] = "Sage Spring Vest",
+			[83047] = "Shadow Lace Bodice",
+			[36004] = "Shadow Lace Camisole",
+			[83045] = "Icy Lace Camisole",
+			[83037] = "Vibrant Spring Dress",
             [50316] = "Kul Tiras Marine Chestplate",
 			[50362] = "Orgrimmar Grunt Harness",
 			[50357] = "Night Watch Guard Chestpiece",
@@ -2176,6 +2200,8 @@ TmogGearDB = {
 			[3072] = "Smoldering Robe",
 		},
 		["Leather"] = {
+            [55513] = "Tunic of Demonic Deception",
+			[55079] = "Ravenkeeper’s Frenzied Embrace",
 			[61613] = "Burnt Explorer's Tunic",
 			[80110] = "Scorched Vest",
 			[47326] = "Trickster Breastplate",
@@ -2846,6 +2872,7 @@ TmogGearDB = {
 	},
 	[6] = {
         ["Cloth"] = {
+			[55284] = "Dragunovi's Sash of Domination",
 			[80463] = "Summer Collection of Unseen Fashion: Waist",
             [50363] = "Orgrimmar Grunt Girdle",
 			[50358] = "Night Watch Guard Waist",
@@ -3086,6 +3113,7 @@ TmogGearDB = {
 			[3599] = "Thin Cloth Belt",
 		},
 		["Leather"] = {
+			[55357] = "Sash of the Grand Betrayal",
 			[81221] = "Chieftain's Ceremonial Belt",
 			[50024] = "Sandfury Sash",
 			[61583] = "Light Ogre Belt",
@@ -3537,6 +3565,7 @@ TmogGearDB = {
 			[1853] = "Scalemail Belt",
 		},
 		["Plate"] = {
+			[55506] = "Worldbreaker Girdle",
 			[61648] = "Fury of the Timbermaw",
 			[80609] = "Revantusk Watcher's Girdle",
 			[60285] = "Swampguard Girdle",
@@ -3652,6 +3681,10 @@ TmogGearDB = {
 	},
 	[7] = {
         ["Cloth"] = {
+            [83029] = "Pink Lace Skirt",
+            [83048] = "White Lace Skirt",
+            [83041] = "Shadow Lace Skirt",
+            [83036] = "Icy Lace Skirt",
             [50391] = "Summer Collection of Unseen Fashion: Leggings",
 			[50318] = "Kul Tiras Marine Breeches",
 			[50364] = "Orgrimmar Grunt Pants",
@@ -4225,6 +4258,8 @@ TmogGearDB = {
 			[6480] = "Slick Deviate Leggings",
 		},
 		["Mail"] = {
+            [47195] = "Stormhowl Legguards",
+			[47183] = "Stormhowl Leggings",
 			[60749] = "Sentinel's Leggings",
 			[22748] = "Sentinel's Chain Leggings",
 			[47189] = "Stormhowl Legplates",
@@ -5175,6 +5210,7 @@ TmogGearDB = {
 			[13111] = "Sandals of the Insurgent",
 		},
 		["Mail"] = {
+			[55280] = "Boots of Elemental Fury",
 			[15506] = "Grunt's Anklewraps",
 			[60747] = "Sentinel's Boots",
 			[22843] = "Blood Guard's Chain Greaves",
@@ -5395,6 +5431,7 @@ TmogGearDB = {
 			[6459] = "Savage Trodders",
 		},
 		["Plate"] = {
+			[55282] = "Boots of the Grand Crusader",
 			[22858] = "Blood Guard's Plate Greaves",
 			[47076] = "Lionheart Sabatons",
 			[80608] = "Revantusk Watcher's Boots",
@@ -6184,6 +6221,7 @@ TmogGearDB = {
 			[2390] = "Rusted Chain Bracers",
 		},
         ["Plate"] = {
+			[55356] = "Netherwrought Bracers",
 			[55500] = "Barnacle Vambraces",
 			[60395] = "Bloodfist Vambraces",
 			[14914] = "Jade Bracers",
@@ -6291,6 +6329,7 @@ TmogGearDB = {
 	},
 	[10] = {
         ["Cloth"] = {
+			[55285] = "Crite's Holy Hands",
 			[50354] = "Deathguard's Gloves",
 			[50334] = "Stromgarde Guard's Gauntlets",
 			[50312] = "Stormwind Guard's Gauntlets",
@@ -6847,6 +6886,8 @@ TmogGearDB = {
 			[7443] = "Sentinel Gloves",
 		},
 		["Mail"] = {
+            [55281] = "Gauntlets of Elemental Fury",
+			[55278] = "Ques' Gauntlets of Precision",
 			[60750] = "Sentinel's Gauntlets",
 			[22867] = "Blood Guard's Mail Vices",
 			[22862] = "Blood Guard's Chain Vices",
@@ -7065,6 +7106,7 @@ TmogGearDB = {
 			[2980] = "Veteran Gloves",
 		},
 		["Plate"] = {
+			[55283] = "Gauntlets of the Grand Crusader",
 			[22868] = "Blood Guard's Plate Gauntlets",
 			[55088] = "Dragonclaw Gauntlets",
 			[80610] = "Revantusk Watcher's Handguards",
@@ -8191,6 +8233,7 @@ TmogGearDB = {
 			[3581] = "Serrated Knife",
 		},
 		["Two-Handed Swords"] = {
+            [55277] = "The End of All Ambitions",
 			[60808] = "Bone Fracture",
 			[80817] = "Scorched Bastard Sword",
 			[61049] = "Chronobreaker",
@@ -8341,6 +8384,7 @@ TmogGearDB = {
 			[9385] = "Archaic Defender",
 		},
 		["One-Handed Swords"] = {
+            [13182] = "Phase Blade",
 			[2496] = "Raider Shortsword",
             [17382] = "Moonshadow Glaive",
 			[60752] = "Sentinel's Glaive",
@@ -9151,6 +9195,7 @@ TmogGearDB = {
 			[61621] = "Ceremonial Gilnean Pike",
 		},
 		["One-Handed Maces"] = {
+            [55276] = "Forgotten Raven's Mallet",
 			[6196] = "Noboru's Truncheon",
 			[10804] = "Fist of the Damned",
 			[41669] = "Sweet Winter Cane",
@@ -10255,6 +10300,7 @@ TmogGearDB = {
 			[3581] = "Serrated Knife",
 		},
 		["One-Handed Swords"] = {
+            [13182] = "Phase Blade",
             [17382] = "Moonshadow Glaive",
 			[60752] = "Sentinel's Glaive",
 			[61577] = "Lieutenant's Sword",
@@ -10424,6 +10470,7 @@ TmogGearDB = {
 			[18847] = "Grand Marshal's Left Hand Blade",
 		},
 		["One-Handed Maces"] = {
+            [55276] = "Forgotten Raven's Mallet",
 			[10804] = "Fist of the Damned",
 			[41669] = "Sweet Winter Cane",
 			[80530] = "Quel'dorei Guardian's Mace",
@@ -10774,6 +10821,7 @@ TmogGearDB = {
 			[13030] = "Basilisk Bone",
 			[21666] = "Sartura's Might",
 			[9944] = "Abjurer's Crystal",
+            [55279] = "Branch of Resolute Defense",
 		},
 	},
 	[18] = {
@@ -10885,6 +10933,8 @@ TmogGearDB = {
 			[8188] = "Explosive Shotgun",
 		},
 		["Wands"] = {
+            [5235] = "Cultist's Firestick",
+			[55511] = "Hellflame",
 			[60805] = "Clutch of the Damned",
 			[55134] = "Rod of Permafrost",
 			[81320] = "Crackling Zapper",

@@ -425,7 +425,7 @@
                 <Scripts>
                     <OnClick>
                         if this:GetNormalTexture():GetTexture() == "Interface\\AddOns\\Tmog\\Textures\\tab_inactive" then
-                            Tmog_SwitchTab('items')
+                            Tmog_SwitchTab("items")
                             Tmog_Search()
                             PlaySound("igCharacterInfoTab")
                         end
@@ -470,7 +470,7 @@
                 <Scripts>
                     <OnClick>
                         if this:GetNormalTexture():GetTexture() == "Interface\\AddOns\\Tmog\\Textures\\tab_inactive" then
-                            Tmog_SwitchTab('outfits')
+                            Tmog_SwitchTab("outfits")
                             PlaySound("igCharacterInfoTab")
                         end
                     </OnClick>
@@ -487,7 +487,7 @@
                 <Scripts>
                     <OnEnter>
                         TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
-                        TmogTooltip:SetText('Select Type', nil, nil, nil, nil, 1)
+                        TmogTooltip:SetText("Select Type", nil, nil, nil, nil, 1)
                     </OnEnter>
                     <OnLeave>
                         TmogTooltip:Hide()
@@ -606,7 +606,7 @@
                     </OnClick>
                     <OnEnter>
                         TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
-                        TmogTooltip:SetText('Revert', nil, nil, nil, nil, 1)
+                        TmogTooltip:SetText("Revert", nil, nil, nil, nil, 1)
                     </OnEnter>
                     <OnLeave>
                         TmogTooltip:Hide()
@@ -626,7 +626,7 @@
                     </OnLoad>
                     <OnEnter>
                         TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
-                        TmogTooltip:SetText('Select an Outfit', nil, nil, nil, nil, 1)
+                        TmogTooltip:SetText("Select an Outfit", nil, nil, nil, nil, 1)
                     </OnEnter>
                     <OnLeave>
                         TmogTooltip:Hide()
@@ -681,7 +681,7 @@
                         TmogTooltip:Hide()
                     </OnLeave>
                     <OnClick>
-                        StaticPopup_Show('TMOG_CONFIRM_DELETE_OUTFIT')
+                        StaticPopup_Show("TMOG_CONFIRM_DELETE_OUTFIT")
                     </OnClick>
                 </Scripts>
                 <NormalTexture file="Interface\AddOns\Tmog\Textures\CancelButton-Up" />
@@ -1089,7 +1089,7 @@
                         Tmog_Search()
                     </OnTextChanged>
 				</Scripts>
-				<FontString name="$parentSearchString" inherits="GameFontNormal"></FontString>
+				<FontString name="$parentSearchString" inherits="GameFontNormal"/>
 			</EditBox>
             <Button name="TmogButton" movable="true" parent="Minimap" enableMouse="true" toplevel="true"
                     frameStrata="LOW">
@@ -1141,8 +1141,8 @@
                     <OnEnter>
                         local version = GetAddOnMetadata("Tmog", "Version")
                         TmogTooltip:SetOwner(this, "ANCHOR_TOPLEFT", 0, 0)
-                        TmogTooltip:AddLine('Tmog v.' .. version, 1, 1, 1)
-                        TmogTooltip:AddLine('Left-click to toggle dressing room\nHold Left-click and drag to move this button')
+                        TmogTooltip:AddLine("Tmog v." .. version, 1, 1, 1)
+                        TmogTooltip:AddLine("Left-click to toggle dressing room\nHold Left-click and drag to move this button")
                         TmogTooltip:Show()
                     </OnEnter>
                     <OnLeave>
@@ -1157,7 +1157,7 @@
                         if event then
                             if event == "PLAYER_LOGIN" then
                                 this:ClearAllPoints()
-                                this:SetPoint('CENTER', UIParent, 'BOTTOMLEFT', unpack(TMOG_POSITION or {this:GetCenter()}))
+                                this:SetPoint("CENTER", UIParent, "BOTTOMLEFT", unpack(TMOG_POSITION or {this:GetCenter()}))
                             end
                         end
                     </OnEvent>
@@ -1317,6 +1317,9 @@
             <OnLoad>
                 TmogFrame_OnLoad()
             </OnLoad>
+            <OnEvent>
+                TmogFrame_OnEvent()
+            </OnEvent>
             <OnShow>
                 TmogFrame_OnShow()
             </OnShow>

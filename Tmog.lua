@@ -1673,6 +1673,7 @@ function Tmog:DrawPreviews(noDraw)
     local outfitIndex = 1
     local lowerLimit = (currentPage - 1) * itemsPerPage
     local upperLimit = currentPage * itemsPerPage
+    local type = currentType
 
     if currentTab == "items" then
         if (not collected and not notCollected) or not currentSlot then
@@ -1683,12 +1684,12 @@ function Tmog:DrawPreviews(noDraw)
         end
 
         if searchStr ~= "" then
-            currentType = "SearchResult"
+            type = "SearchResult"
         end
         if flush then
-            debug("flushing", "slot "..currentSlot, " type "..currentType)
-            for k in pairs(DrawTable[currentSlot][currentType]) do
-                DrawTable[currentSlot][currentType][k] = nil
+            debug("flushing", "slot "..currentSlot, " type "..type)
+            for k in pairs(DrawTable[currentSlot][type]) do
+                DrawTable[currentSlot][type][k] = nil
             end
 
             -- only Collected checked
@@ -1699,15 +1700,15 @@ function Tmog:DrawPreviews(noDraw)
                             if SetContains(TMOG_CACHE[currentSlot], itemID) then
                                 local name = strlower(itemName)
                                 if strfind(name, searchStr, 1 ,true) then
-                                    DrawTable[currentSlot][currentType][itemID] = itemName
+                                    DrawTable[currentSlot][type][itemID] = itemName
                                 end
                             end
                         end
                     end
-                elseif TmogGearDB[currentSlot][currentType] then
-                    for itemID, name in pairs(TmogGearDB[currentSlot][currentType]) do
+                elseif TmogGearDB[currentSlot][type] then
+                    for itemID, name in pairs(TmogGearDB[currentSlot][type]) do
                         if SetContains(TMOG_CACHE[currentSlot], itemID) then
-                            DrawTable[currentSlot][currentType][itemID] = name
+                            DrawTable[currentSlot][type][itemID] = name
                         end
                     end
                 end
@@ -1719,15 +1720,15 @@ function Tmog:DrawPreviews(noDraw)
                             if not SetContains(TMOG_CACHE[currentSlot], itemID) then
                                 local name = strlower(itemName)
                                 if strfind(name, searchStr, 1 ,true) then
-                                    DrawTable[currentSlot][currentType][itemID] = itemName
+                                    DrawTable[currentSlot][type][itemID] = itemName
                                 end
                             end
                         end
                     end
-                elseif TmogGearDB[currentSlot][currentType] then
-                    for itemID, name in pairs(TmogGearDB[currentSlot][currentType]) do
+                elseif TmogGearDB[currentSlot][type] then
+                    for itemID, name in pairs(TmogGearDB[currentSlot][type]) do
                         if not SetContains(TMOG_CACHE[currentSlot], itemID) then
-                            DrawTable[currentSlot][currentType][itemID] = name
+                            DrawTable[currentSlot][type][itemID] = name
                         end
                     end
                 end
@@ -1738,49 +1739,49 @@ function Tmog:DrawPreviews(noDraw)
                         for itemID, itemName in pairs(TmogGearDB[currentSlot][k]) do
                             local name = strlower(itemName)
                             if strfind(name, searchStr, 1 ,true) then
-                                DrawTable[currentSlot][currentType][itemID] = itemName
+                                DrawTable[currentSlot][type][itemID] = itemName
                             end
                         end
                     end
-                elseif TmogGearDB[currentSlot][currentType] then
-                    for itemID, name in pairs(TmogGearDB[currentSlot][currentType]) do
-                        DrawTable[currentSlot][currentType][itemID] = name 
+                elseif TmogGearDB[currentSlot][type] then
+                    for itemID, name in pairs(TmogGearDB[currentSlot][type]) do
+                        DrawTable[currentSlot][type][itemID] = name 
                     end
                 end
             end
             -- remove no longer existing items 
-            for k in pairs(DrawTable[currentSlot][currentType]) do
+            for k in pairs(DrawTable[currentSlot][type]) do
                 Tmog:CacheItem(k)
                 if not GetItemInfo(k) then
-                    DrawTable[currentSlot][currentType][k] = nil
+                    DrawTable[currentSlot][type][k] = nil
                 end
             end
             -- if usable checked, remove unusable items
             if onlyUsable then
-                for k in pairs(DrawTable[currentSlot][currentType]) do
+                for k in pairs(DrawTable[currentSlot][type]) do
                     if not Tmog:IsUsableItem(k) then
-                        DrawTable[currentSlot][currentType][k] = nil
+                        DrawTable[currentSlot][type][k] = nil
                     end
                 end
             end
             -- remove duplicates
-            if searchStr == "" and currentType ~= "SearchResult" then
-                for k1 in pairs(DrawTable[currentSlot][currentType]) do
+            if searchStr == "" and type ~= "SearchResult" then
+                for k1 in pairs(DrawTable[currentSlot][type]) do
                     if SetContains(DisplayIdDB, k1) then
                         for _, v in pairs(DisplayIdDB[k1]) do
-                            if DrawTable[currentSlot][currentType][v] then
-                                DrawTable[currentSlot][currentType][v] = nil
+                            if DrawTable[currentSlot][type][v] then
+                                DrawTable[currentSlot][type][v] = nil
                             end
                         end
                     end
                 end
             end
-            totalPages = ceil(tsize(DrawTable[currentSlot][currentType]) / itemsPerPage)
-            sorted = Tmog:Sort(DrawTable[currentSlot][currentType])
+            totalPages = ceil(tsize(DrawTable[currentSlot][type]) / itemsPerPage)
+            sorted = Tmog:Sort(DrawTable[currentSlot][type])
         end
 
         -- nothing to show
-        if not DrawTable[currentSlot][currentType] or next(DrawTable[currentSlot][currentType]) == nil then
+        if not DrawTable[currentSlot][type] or next(DrawTable[currentSlot][type]) == nil then
             Tmog:HidePreviews()
             Tmog:HidePagination()
             currentPage = 1
@@ -3298,15 +3299,18 @@ function Tmog:ValidateOutfitCode(code)
     for invSlot, itemID in pairs(outfit) do
         Tmog:CacheItem(itemID)
         local _, _, _, _, itemType, itemSubType, _, loc  = GetItemInfo(itemID)
-        if not itemType or not itemSubType or not loc then
-            return nil
-        end
-        if itemType ~= "Armor" and itemType ~= "Weapon" then
-            return nil
-        end
-        if not SetContains(InventoryTypeToSlot, loc, invSlot) and not (invSlot == 17 and loc == "INVTYPE_WEAPON") then
-            return nil
-        end
+        -- if not TmogGearDB[itemID] then
+        --     return nil
+        -- end
+        -- if not itemType or not itemSubType or not loc then
+        --     return nil
+        -- end
+        -- if itemType ~= "Armor" and itemType ~= "Weapon" then
+        --     return nil
+        -- end
+        -- if not SetContains(InventoryTypeToSlot, loc, invSlot) and not (invSlot == 17 and loc == "INVTYPE_WEAPON") then
+        --     return nil
+        -- end
     end
 
     return outfit

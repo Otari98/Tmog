@@ -997,6 +997,7 @@ TmogGearDB = {
 			[13374] = "Soulstealer Mantle",
 		},
 		["Leather"] = {
+            [55512] = "Forgotten Hide Pauldrons",
 			[26322] = "Blackened Leather Spaulders",
 			[61708] = "Dreamwind Spaulders",
 			[47391] = "Spaulders of the Talon",
@@ -3565,6 +3566,7 @@ TmogGearDB = {
 			[1853] = "Scalemail Belt",
 		},
 		["Plate"] = {
+            [55351] = "Turalyon's Hope",
 			[55506] = "Worldbreaker Girdle",
 			[61648] = "Fury of the Timbermaw",
 			[80609] = "Revantusk Watcher's Girdle",
@@ -5211,7 +5213,6 @@ TmogGearDB = {
 		},
 		["Mail"] = {
 			[55280] = "Boots of Elemental Fury",
-			[15506] = "Grunt's Anklewraps",
 			[60747] = "Sentinel's Boots",
 			[22843] = "Blood Guard's Chain Greaves",
 			[22857] = "Blood Guard's Mail Greaves",
@@ -7231,6 +7232,7 @@ TmogGearDB = {
 	},
 	[15] = {
 		["Cloth"] = {
+            [55274] = "Chain-Cloak of the Rookguard",
 			[20068] = "Deathguard's Cloak",
 			[41613] = "Holly Cloak",
 			[41617] = "Frosty Cloak",

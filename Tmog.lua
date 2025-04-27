@@ -1015,58 +1015,86 @@ local function IsGear(itemID, tooltip)
     end
 end
 
--- adapted from http://shagu.org/ShaguTweaks/
---TODO: fix this
-local function InsertLine(tooltip, text)
+local WrappingLines = {
+    ["Set: %s"] = gsub("^"..ITEM_SET_BONUS, " %%s", ""),
+    ["(%d) Set: %s"] = gsub(gsub(ITEM_SET_BONUS_GRAY, "%(%%d%)", "^%%(%%d%%)"), " %%s", ""),
+    ["Effect: %s"] = gsub("^"..ITEM_SPELL_EFFECT, " %%s", ""),
+    ["Equip:"] = "^"..ITEM_SPELL_TRIGGER_ONEQUIP,
+    ["Chance on hit:"] = "^"..ITEM_SPELL_TRIGGER_ONPROC,
+    ["Use:"] = "^"..ITEM_SPELL_TRIGGER_ONUSE,
+}
+
+local lines = {}
+for i = 1, 30 do
+    lines[i] = {}
+end
+
+local function AddCollectionStatus(slot, itemID, tooltip)
     local name = tooltip:GetName()
-    local sides = { "Left", "Right" }
-    for i = tooltip:NumLines(), 2, -1 do
-        for _, side in pairs(sides) do
-            local current = getglobal(name .. "Text" .. side .. i)
-            local below = getglobal(name .. "Text" .. side .. i + 1)
-            if current and current:IsShown() then
-                local txt = current:GetText()
-                local r, g, b, a = current:GetTextColor()
-                if txt and txt ~= "" then
-                    if tooltip:NumLines() < i + 1 then
-                        tooltip:AddLine(txt, r, g, b, a)
-                    else
-                        below:SetText(txt)
-                        below:SetTextColor(r, g, b, a)
-                        below:Show()
-                        current:Hide()
+    local numLines = tooltip:NumLines()
+    local left, right
+    local leftText, rightText
+    local rL, gL, bL
+    local rR, gR, bR
+    local status, wrap
+
+    for i in pairs(lines) do
+        for j in pairs(lines[i]) do
+            lines[i][j] = nil
+        end
+    end
+
+    for i = 1, numLines do
+        left = getglobal(name .. "TextLeft" .. i)
+        right = getglobal(name .. "TextRight" .. i)
+        leftText = left:GetText()
+        rightText = right:IsShown() and right:GetText()
+        rL, gL, bL = left:GetTextColor()
+        rR, gR, bR = right:GetTextColor()
+        lines[i][1] = leftText
+        lines[i][2] = rightText
+        lines[i][3] = rL
+        lines[i][4] = gL
+        lines[i][5] = bL
+        lines[i][6] = rR
+        lines[i][7] = gR
+        lines[i][8] = bR
+    end
+
+    if SetContains(TMOG_CACHE[slot], itemID) then
+        status = GREEN.."Collected|r"
+    else
+        status = YELLOW.."Not collected|r"
+    end
+
+    tooltip:SetText(lines[1][1], lines[1][3], lines[1][4], lines[1][5], 1, false)
+
+    if numLines < 28 then
+        tooltip:AddLine(status)
+    elseif lines[2][1] then
+        lines[2][1] = status.."\n"..lines[2][1]
+    end
+
+    for i = 2, getn(lines) do
+        if lines[i][2] then
+            tooltip:AddDoubleLine(lines[i][1], lines[i][2], lines[i][3], lines[i][4], lines[i][5], lines[i][6], lines[i][7], lines[i][8])
+        else
+            wrap = false
+            if strsub(lines[i][1] or "", 1, 1) == "\"" then
+                wrap = true
+            else
+                for _, pattern in pairs(WrappingLines) do
+                    if strfind(lines[i][1] or "", pattern) then
+                        wrap = true
+                        break
                     end
                 end
             end
+            tooltip:AddLine(lines[i][1], lines[i][3], lines[i][4], lines[i][5], wrap)
         end
     end
-    getglobal(name .. "TextLeft2"):SetText(text)
-    getglobal(name .. "TextLeft2"):Show()
-    tooltip:Show()
-end
 
-local function AddLabel(line2, slot, itemID, tooltip)
-    local badLine2 = false
-    for k, v in pairs(InventoryTypeToSlot) do
-        local loc = getglobal(k)
-        if v == slot and strfind(line2:GetText(), loc or "", 1, true) then
-            badLine2 = true
-            break
-        end
-    end
-    if SetContains(TMOG_CACHE[slot], itemID) then
-        if badLine2 and tooltip:NumLines() < 30 then
-            InsertLine(tooltip, GREEN.."Collected|r")
-        else
-            line2:SetText(GREEN.."Collected|r\n"..line2:GetText())
-        end
-    else
-        if badLine2 and tooltip:NumLines() < 30 then
-            InsertLine(tooltip, YELLOW.."Not collected|r")
-        else
-            line2:SetText(YELLOW.."Not collected|r\n"..line2:GetText())
-        end
-    end
+    tooltip:Show()
 end
 
 local lastItemName = nil
@@ -1094,12 +1122,12 @@ function Tmog_ExtendTooltip(tooltip)
         end
 
         if line2:GetText() then
-            AddLabel(line2, slot, itemID, tooltip)
+            AddCollectionStatus(slot, itemID, tooltip)
         end
 
     elseif lastSlot then
         if line2:GetText() then
-            AddLabel(line2, lastSlot, itemID, tooltip)
+            AddCollectionStatus(lastSlot, itemID, tooltip)
         end
     end
 

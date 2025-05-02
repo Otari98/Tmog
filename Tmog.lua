@@ -816,6 +816,13 @@ local function GetItemIDByName(name)
 	return lastSearchID
 end
 
+local tooltipMoney = 0
+local original_SetTooltipMoney = SetTooltipMoney
+function SetTooltipMoney(frame, money)
+    original_SetTooltipMoney(frame, money)
+    tooltipMoney = money or 0
+end
+
 local function HookTooltip(tooltip)
     local HookSetLootRollItem       = tooltip.SetLootRollItem
     local HookSetLootItem           = tooltip.SetLootItem
@@ -840,6 +847,7 @@ local function HookTooltip(tooltip)
             original_OnHide()
         end
         this.itemID = nil
+        tooltipMoney = 0
     end)
 
     function tooltip.SetLootRollItem(self, id)
@@ -1093,24 +1101,18 @@ local function AddCollectionStatus(slot, itemID, tooltip)
             tooltip:AddLine(lines[i][1], lines[i][3], lines[i][4], lines[i][5], wrap)
         end
     end
-
-    tooltip:Show()
 end
 
 local lastItemName = nil
 local lastSlot = nil
 function Tmog_ExtendTooltip(tooltip)
-    local tooltipName = tooltip:GetName()
-    local itemName = getglobal(tooltipName .. "TextLeft1"):GetText()
-    local line2 = getglobal(tooltipName .. "TextLeft2")
+    local itemID = tonumber(tooltip.itemID)
 
-    if not itemName or not tooltip.itemID or not line2 then
+    if not itemID then
         return
     end
 
-    local itemID = tonumber(tooltip.itemID)
-    Tmog:CacheItem(itemID)
-    itemName = GetItemInfo(itemID)
+    local itemName = GetItemInfo(itemID)
 
     if itemName ~= lastItemName then
         local slot = IsGear(itemID, tooltip)
@@ -1121,14 +1123,16 @@ function Tmog_ExtendTooltip(tooltip)
             return
         end
 
-        if line2:GetText() then
-            AddCollectionStatus(slot, itemID, tooltip)
-        end
+        AddCollectionStatus(slot, itemID, tooltip)
 
     elseif lastSlot then
-        if line2:GetText() then
-            AddCollectionStatus(lastSlot, itemID, tooltip)
-        end
+        AddCollectionStatus(lastSlot, itemID, tooltip)
+    end
+
+    if tooltipMoney > 0 then
+        local moneyFrame = getglobal(tooltip:GetName().."MoneyFrame")
+        moneyFrame:SetPoint("LEFT", tooltip:GetName().."TextLeft"..tooltip:NumLines(), "LEFT", 4, 0)
+        moneyFrame:Show()
     end
 
     tooltip:Show()

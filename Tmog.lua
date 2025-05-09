@@ -1024,12 +1024,13 @@ local function IsGear(itemID, tooltip)
 end
 
 local WrappingLines = {
-    ["Set: %s"] = gsub("^"..ITEM_SET_BONUS, " %%s", ""),
-    ["(%d) Set: %s"] = gsub(gsub(ITEM_SET_BONUS_GRAY, "%(%%d%)", "^%%(%%d%%)"), " %%s", ""),
-    ["Effect: %s"] = gsub("^"..ITEM_SPELL_EFFECT, " %%s", ""),
-    ["Equip:"] = "^"..ITEM_SPELL_TRIGGER_ONEQUIP,
-    ["Chance on hit:"] = "^"..ITEM_SPELL_TRIGGER_ONPROC,
-    ["Use:"] = "^"..ITEM_SPELL_TRIGGER_ONUSE,
+    ["^Set:"] = gsub("^"..ITEM_SET_BONUS, " %%s", ""),
+    ["^%(%d%) Set:"] = gsub(gsub(ITEM_SET_BONUS_GRAY, "%(%%d%)", "^%%(%%d%%)"), " %%s", ""),
+    ["^Effect:"] = gsub("^"..ITEM_SPELL_EFFECT, " %%s", ""),
+    ["^Equip:"] = "^"..ITEM_SPELL_TRIGGER_ONEQUIP,
+    ["^Chance on hit:"] = "^"..ITEM_SPELL_TRIGGER_ONPROC,
+    ["^Use:"] = "^"..ITEM_SPELL_TRIGGER_ONUSE,
+    ["^\nRequires"] = "^\n"..gsub(ITEM_REQ_SKILL, " %%s", "")
 }
 
 local lines = {}
@@ -1067,6 +1068,10 @@ local function AddCollectionStatus(slot, itemID, tooltip)
         lines[i][6] = rR
         lines[i][7] = gR
         lines[i][8] = bR
+    end
+
+    if not lines[1][1] then
+        return
     end
 
     if SetContains(TMOG_CACHE[slot], itemID) then

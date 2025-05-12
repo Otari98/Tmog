@@ -816,11 +816,15 @@ local function GetItemIDByName(name)
 	return lastSearchID
 end
 
+local insideHook = false
 local tooltipMoney = 0
-local original_SetTooltipMoney = SetTooltipMoney
+local HookSetTooltipMoney = SetTooltipMoney
 function SetTooltipMoney(frame, money)
-    original_SetTooltipMoney(frame, money)
-    tooltipMoney = money or 0
+    if insideHook then
+        tooltipMoney = money or 0
+    else
+        HookSetTooltipMoney(frame, money)
+    end
 end
 
 local function HookTooltip(tooltip)
@@ -851,49 +855,63 @@ local function HookTooltip(tooltip)
     end)
 
     function tooltip.SetLootRollItem(self, id)
+        insideHook = true
         HookSetLootRollItem(self, id)
+        insideHook = false
         local _, _, itemID = strfind(GetLootRollItemLink(id) or "", "item:(%d+)")
         self.itemID = itemID
         Tmog_ExtendTooltip(self)
     end
 
     function tooltip.SetLootItem(self, slot)
+        insideHook = true
         HookSetLootItem(self, slot)
+        insideHook = false
         local _, _, itemID = strfind(GetLootSlotLink(slot) or "", "item:(%d+)")
         self.itemID = itemID
         Tmog_ExtendTooltip(self)
     end
 
     function tooltip.SetMerchantItem(self, merchantIndex)
+        insideHook = true
         HookSetMerchantItem(self, merchantIndex)
+        insideHook = false
         local _, _, itemID = strfind(GetMerchantItemLink(merchantIndex) or "", "item:(%d+)")
         self.itemID = itemID
         Tmog_ExtendTooltip(self)
     end
 
     function tooltip.SetQuestLogItem(self, itemType, index)
+        insideHook = true
         HookSetQuestLogItem(self, itemType, index)
+        insideHook = false
         local _, _, itemID = strfind(GetQuestLogItemLink(itemType, index) or "", "item:(%d+)")
         self.itemID = itemID
         Tmog_ExtendTooltip(self)
     end
 
     function tooltip.SetQuestItem(self, itemType, index)
+        insideHook = true
         HookSetQuestItem(self, itemType, index)
+        insideHook = false
         local _, _, itemID = strfind(GetQuestItemLink(itemType, index) or "", "item:(%d+)")
         self.itemID = itemID
         Tmog_ExtendTooltip(self)
     end
 
     function tooltip.SetHyperlink(self, arg1)
+        insideHook = true
         HookSetHyperlink(self, arg1)
+        insideHook = false
         local _, _, id = strfind(arg1 or "", "item:(%d+)")
         self.itemID = id
         Tmog_ExtendTooltip(self)
     end
 
     function tooltip.SetBagItem(self, container, slot)
+        insideHook = true
         local hasCooldown, repairCost = HookSetBagItem(self, container, slot)
+        insideHook = false
         local _, _, id = strfind(GetContainerItemLink(container, slot) or "", "item:(%d+)")
         self.itemID = id
         Tmog_ExtendTooltip(self)
@@ -901,14 +919,18 @@ local function HookTooltip(tooltip)
     end
 
     function tooltip.SetInboxItem(self, mailID, attachmentIndex)
+        insideHook = true
         HookSetInboxItem(self, mailID, attachmentIndex)
+        insideHook = false
         local itemName = GetInboxItem(mailID)
         self.itemID = GetItemIDByName(itemName)
         Tmog_ExtendTooltip(self)
     end
 
     function tooltip.SetInventoryItem(self, unit, slot)
+        insideHook = true
         local hasItem, hasCooldown, repairCost = HookSetInventoryItem(self, unit, slot)
+        insideHook = false
         local _, _, id = strfind(GetInventoryItemLink(unit, slot) or "", "item:(%d+)")
         self.itemID = id
         Tmog_ExtendTooltip(self)
@@ -916,21 +938,27 @@ local function HookTooltip(tooltip)
     end
 
     function tooltip.SetCraftItem(self, skill, slot)
+        insideHook = true
         HookSetCraftItem(self, skill, slot)
+        insideHook = false
         local _, _, id = strfind(GetCraftReagentItemLink(skill, slot) or "", "item:(%d+)")
         self.itemID = id
         Tmog_ExtendTooltip(self)
     end
 
     function tooltip.SetCraftSpell(self, slot)
+        insideHook = true
         HookSetCraftSpell(self, slot)
+        insideHook = false
         local _, _, id = strfind(GetCraftItemLink(slot) or "", "item:(%d+)")
         self.itemID = id
         Tmog_ExtendTooltip(self)
     end
 
     function tooltip.SetTradeSkillItem(self, skillIndex, reagentIndex)
+        insideHook = true
         HookSetTradeSkillItem(self, skillIndex, reagentIndex)
+        insideHook = false
         if reagentIndex then
             local _, _, id = strfind(GetTradeSkillReagentItemLink(skillIndex, reagentIndex) or "", "item:(%d+)")
             self.itemID = id
@@ -942,28 +970,36 @@ local function HookTooltip(tooltip)
     end
 
     function tooltip.SetAuctionItem(self, atype, index)
+        insideHook = true
         HookSetAuctionItem(self, atype, index)
+        insideHook = false
         local itemName = GetAuctionItemInfo(atype, index)
         self.itemID = GetItemIDByName(itemName)
         Tmog_ExtendTooltip(self)
     end
 
     function tooltip.SetAuctionSellItem(self)
+        insideHook = true
         HookSetAuctionSellItem(self)
+        insideHook = false
         local itemName = GetAuctionSellItemInfo()
         self.itemID = GetItemIDByName(itemName)
         Tmog_ExtendTooltip(self)
     end
 
     function tooltip.SetTradePlayerItem(self, index)
+        insideHook = true
         HookSetTradePlayerItem(self, index)
+        insideHook = false
         local _, _, id = strfind(GetTradePlayerItemLink(index) or "", "item:(%d+)")
         self.itemID = id
         Tmog_ExtendTooltip(self)
     end
 
     function tooltip.SetTradeTargetItem(self, index)
+        insideHook = true
         HookSetTradeTargetItem(self, index)
+        insideHook = false
         local _, _, id = strfind(GetTradeTargetItemLink(index) or "", "item:(%d+)")
         self.itemID = id
         Tmog_ExtendTooltip(self)
@@ -971,8 +1007,23 @@ local function HookTooltip(tooltip)
 end
 
 HookTooltip(GameTooltip)
-HookTooltip(ItemRefTooltip)
 HookTooltip(TmogTooltip)
+
+local HookSetItemRef = SetItemRef
+function SetItemRef(link, text, button)
+    local item, _, id = string.find(link, "item:(%d+)")
+    ItemRefTooltip.itemID = id
+    HookSetItemRef(link, text, button)
+    if not IsShiftKeyDown() and not IsControlKeyDown() and item then
+        Tmog_ExtendTooltip(ItemRefTooltip)
+    end
+end
+
+local original_OnHide = ItemRefTooltip:GetScript("OnHide")
+ItemRefTooltip:SetScript("OnHide", function()
+    original_OnHide()
+    ItemRefTooltip.itemID = nil
+end)
 
 local originalTooltip = {}
 -- return slot if this is gear and we can equip it
@@ -1112,34 +1163,20 @@ local lastItemName = nil
 local lastSlot = nil
 function Tmog_ExtendTooltip(tooltip)
     local itemID = tonumber(tooltip.itemID)
-
-    if not itemID then
-        return
-    end
-
-    local itemName = GetItemInfo(itemID)
-
-    if itemName ~= lastItemName then
-        local slot = IsGear(itemID, tooltip)
-        lastItemName = itemName
-        lastSlot = slot
-
-        if not slot then
-            return
+    if itemID then
+        local itemName = GetItemInfo(itemID)
+        if itemName ~= lastItemName then
+            local slot = IsGear(itemID, tooltip)
+            lastItemName = itemName
+            lastSlot = slot
         end
-
-        AddCollectionStatus(slot, itemID, tooltip)
-
-    elseif lastSlot then
-        AddCollectionStatus(lastSlot, itemID, tooltip)
+        if lastSlot then
+            AddCollectionStatus(lastSlot, itemID, tooltip)
+        end
     end
-
     if tooltipMoney > 0 then
-        local moneyFrame = getglobal(tooltip:GetName().."MoneyFrame")
-        moneyFrame:SetPoint("LEFT", tooltip:GetName().."TextLeft"..tooltip:NumLines(), "LEFT", 4, 0)
-        moneyFrame:Show()
+        HookSetTooltipMoney(tooltip, tooltipMoney)
     end
-
     tooltip:Show()
 end
 

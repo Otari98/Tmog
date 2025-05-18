@@ -355,7 +355,7 @@ local InventoryTypeToSlot = {
     ["INVTYPE_RANGEDRIGHT"] = 18,
     ["INVTYPE_TABARD"] = 19,
     ["INVTYPE_BODY"] = 4,
-    ["INVTYPE_RELIC"] = 18,
+    -- ["INVTYPE_RELIC"] = 18,
 }
 
 local Druid = {
@@ -1029,49 +1029,68 @@ local originalTooltip = {}
 -- return slot if this is gear and we can equip it
 local function IsGear(itemID, tooltip)
     local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(itemID)
-    local tableToCheck = GetTableForClass(playerClass)
-    -- (TWoW bug)
-    if itemSubType == "-" then
-        itemSubType = "Miscellaneous"
-    end
-
-    debug(itemID, itemName, itemType, itemSubType, itemEquipLoc)
-    if SetContains(tableToCheck, itemSubType) and SetContains(InventoryTypeToSlot, itemEquipLoc) then
-        if not canDualWeild and itemEquipLoc == "INVTYPE_WEAPONOFFHAND" then
-            debug("cant dual weild")
-            return nil
+    if itemEquipLoc and itemEquipLoc ~= "" then
+        local tableToCheck = GetTableForClass(playerClass)
+        -- (TWoW bug)
+        if itemSubType == "-" then
+            itemSubType = "Miscellaneous"
         end
-        if itemType == "Weapon" and itemSubType == "Miscellaneous" then
-            debug("not a real weapon")
-            return nil
+        if itemEquipLoc == "INVTYPE_HOLDABLE" then
+            return InventoryTypeToSlot[itemEquipLoc]
         end
-        -- check if its class restricted item
-        for k in pairs(originalTooltip) do
-            originalTooltip[k] = nil
-        end
-        local tooltipName = tooltip:GetName()
-        for row = 1, 15 do
-            local tooltipRowLeft = getglobal(tooltipName .. "TextLeft" .. row)
-            if tooltipRowLeft then
-                local rowtext = tooltipRowLeft:GetText()
-                if rowtext then
-                    originalTooltip[row] = rowtext
-                end
+        debug(itemID, itemName, itemType, itemSubType, itemEquipLoc)
+        if SetContains(tableToCheck, itemSubType) and SetContains(InventoryTypeToSlot, itemEquipLoc) then
+            if not canDualWeild and itemEquipLoc == "INVTYPE_WEAPONOFFHAND" then
+                debug("cant dual weild")
+                return nil
             end
-        end
-        for row = 1, tsize(originalTooltip) do
-            if originalTooltip[row] then
-                local _, _, classesRow = strfind(originalTooltip[row], "Classes: (.*)")
-                if classesRow then
-                    if not strfind(classesRow, UnitClass("player"), 1, true) then
-                        debug("bad class")
-                        return nil
+            if itemType == "Weapon" and itemSubType == "Miscellaneous" then
+                debug("not a real weapon")
+                return nil
+            end
+            -- check if its class restricted item
+            for k in pairs(originalTooltip) do
+                originalTooltip[k] = nil
+            end
+            local tooltipName = tooltip:GetName()
+            for row = 1, 15 do
+                local tooltipRowLeft = getglobal(tooltipName .. "TextLeft" .. row)
+                if tooltipRowLeft then
+                    local rowtext = tooltipRowLeft:GetText()
+                    if rowtext then
+                        originalTooltip[row] = rowtext
                     end
                 end
             end
+            for row = 1, tsize(originalTooltip) do
+                if originalTooltip[row] then
+                    local _, _, classesRow = strfind(originalTooltip[row], "Classes: (.*)")
+                    if classesRow then
+                        if not strfind(classesRow, UnitClass("player"), 1, true) then
+                            debug("bad class")
+                            return nil
+                        end
+                    end
+                end
+            end
+            return InventoryTypeToSlot[itemEquipLoc]
         end
-        return InventoryTypeToSlot[itemEquipLoc]
     end
+end
+
+-- Return true if item can be transmogged (but no necessarily by us)
+local function Transmogable(itemID)
+    local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(itemID)
+    if itemName then
+        if itemEquipLoc ~= "" and InventoryTypeToSlot[itemEquipLoc] then
+            if itemType == "Weapon" or itemType == "Armor" or itemType == "Miscellaneous" then
+                if itemSubType ~= "Fishing Pole" then
+                    return true
+                end
+            end
+        end
+    end
+    return false
 end
 
 local WrappingLines = {
@@ -1172,6 +1191,22 @@ function Tmog_ExtendTooltip(tooltip)
         end
         if lastSlot then
             AddCollectionStatus(lastSlot, itemID, tooltip)
+        end
+        if tooltip ~= TmogTooltip and Transmogable(itemID) then
+            if not DisplayIdDB[itemID] then
+                tooltip:AddLine(NORMAL.."Unique appearance|r")
+            else
+                local n = getn(DisplayIdDB[itemID])
+                local items = n > 1 and "Items" or n == 1 and "item"
+                local string = NORMAL.."Shares appearance with "..n.." "..items.."|r"
+                local numLines = tooltip:NumLines()
+                if numLines < 30 then
+                    tooltip:AddLine(string)
+                else
+                    local lastLine = getglobal(tooltip:GetName().."TextLeft"..numLines)
+                    lastLine:SetText(lastLine:GetText().."\n"..string)
+                end
+            end
         end
     end
     if tooltipMoney > 0 then
@@ -1735,7 +1770,7 @@ local DrawTable = {
     },
 }
 
-local sorted = {}
+local Sorted = {}
 function Tmog:DrawPreviews(noDraw)
     local searchStr = TmogFrameSearchBox:GetText() or ""
     searchStr = strlower(searchStr)
@@ -1851,7 +1886,7 @@ function Tmog:DrawPreviews(noDraw)
                 end
             end
             totalPages = ceil(tsize(DrawTable[currentSlot][type]) / itemsPerPage)
-            sorted = Tmog:Sort(DrawTable[currentSlot][type])
+            Sorted = Tmog:Sort(DrawTable[currentSlot][type])
         end
 
         -- nothing to show
@@ -1873,10 +1908,10 @@ function Tmog:DrawPreviews(noDraw)
 
         local frame, button
 
-        for i = 1, tsize(sorted) do
-            local itemID = sorted[i][1]
-            local name = sorted[i][2]
-            local quality = sorted[i][3]
+        for i = 1, tsize(Sorted) do
+            local itemID = Sorted[i][1]
+            local name = Sorted[i][2]
+            local quality = Sorted[i][3]
 
             if index >= lowerLimit and index < upperLimit then
                 if not PreviewButtons[itemIndex] then
@@ -2004,7 +2039,7 @@ function Tmog:DrawPreviews(noDraw)
         TmogFramePreview1ButtonPlus:Hide()
         TmogFramePreview1ButtonPlusPushed:Hide()
 
-        local size = tsize(sorted)
+        local size = tsize(Sorted)
         totalPages = ceil(size / itemsPerPage)
         TmogFramePageText:SetText("Page " .. currentPage .. "/" .. totalPages)
     
@@ -2097,8 +2132,20 @@ function Tmog:DrawPreviews(noDraw)
                 model:SetPosition(1.5, 0, 0)
                 model:SetAlpha(1)
 
-                for _, itemID in pairs(TMOG_PLAYER_OUTFITS[name]) do
+                local collectedAll = true
+                for slot, itemID in pairs(TMOG_PLAYER_OUTFITS[name]) do
                     model:TryOn(itemID)
+                    if collectedAll then
+                        if not SetContains(TMOG_CACHE[slot], itemID) then
+                            collectedAll = false
+                        end
+                    end
+                end
+
+                if collectedAll then
+                    getglobal("TmogFramePreview" .. outfitIndex .. "ButtonCheck"):Show()
+                else
+                    getglobal("TmogFramePreview" .. outfitIndex .. "ButtonCheck"):Hide()
                 end
 
                 getglobal("TmogFramePreview" .. outfitIndex .. "ButtonBorder"):SetAlpha(0.4)
@@ -2388,17 +2435,9 @@ function TmogTry(itemId, arg1, noSelect)
             getglobal("TmogFrameSharedItem"..i):Hide()
         end
 
-        local cursorX, cursorY = GetCursorPosition()
-        local uiScale = 0.9
+        TmogFrameSharedItems:ClearAllPoints()
+        TmogFrameSharedItems:SetPoint("TOPLEFT", this, "BOTTOMLEFT", -2, 12)
 
-        if GetCVar("useUiScale") == "1" then
-		    uiScale = tonumber(GetCVar("uiscale")) or 0.9
-		end
-
-        cursorX = cursorX / uiScale
-        cursorY =  cursorY / uiScale
-        TmogFrameSharedItems:SetPoint("TOPLEFT", nil , "BOTTOMLEFT", cursorX + 2, cursorY - 2)
-        
         for k in pairs(t) do
             t[k] = nil
         end
@@ -2576,12 +2615,15 @@ function Tmog_AddOutfitTooltip(frame, outfit)
         TmogTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 4) + 15, -(this:GetHeight() / 4) + 20)
 
         if outfit then
-            TmogTooltip:AddLine(WHITE .. outfit)
+            TmogTooltip:AddDoubleLine(outfit, "", 1, 1, 1, 1, 1, 1)
         end
+        local numItemsInOutfit = 0
+        local numCollected = 0
 
         for name in pairs(TMOG_PLAYER_OUTFITS) do
 
             if name == outfit then
+                numItemsInOutfit = tsize(TMOG_PLAYER_OUTFITS[name])
 
                 for slot, itemID in pairs(TMOG_PLAYER_OUTFITS[name]) do
                     local slotName
@@ -2601,6 +2643,7 @@ function Tmog_AddOutfitTooltip(frame, outfit)
 
                         if isCollected then
                             status = NORMAL.."Collected"
+                            numCollected = numCollected + 1
                         else
                             status = GREY.."Not collected"
                         end
@@ -2618,8 +2661,11 @@ function Tmog_AddOutfitTooltip(frame, outfit)
             if not getglobal(this:GetName().."PlusPushed"):IsVisible() then
                 getglobal(this:GetName().."PlusHighlight"):Show()
             end
+            TmogTooltip:AddLine("Create an outfit from currently selected items.", 1, 0.82, 0, 1, true)
         else
             getglobal(this:GetParent():GetName().."ItemModel"):SetLight(unpack(previewHighlight))
+            TmogTooltipTextRight1:SetText("("..numCollected.."/"..numItemsInOutfit..")")
+            TmogTooltipTextRight1:Show()
         end
         TmogTooltip:Show()
     end)
@@ -2655,7 +2701,7 @@ function Tmog_AddItemTooltip(frame, text)
 
                 if name and SetContains(DisplayIdDB, itemID) then
                     if not onlyUsable then
-                        lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL.."Shares Appearance With:")
+                        lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL.."Shares appearance with:")
                         for _, id in pairs(DisplayIdDB[itemID]) do
                             Tmog:CacheItem(id)
                             local similarItem, _, quality = GetItemInfo(id)
@@ -2675,7 +2721,7 @@ function Tmog_AddItemTooltip(frame, text)
                         for _, id in pairs(DisplayIdDB[itemID]) do
                             Tmog:CacheItem(itemID)
                             if Tmog:IsUsableItem(id) then
-                                lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL.."Shares Appearance With:")
+                                lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL.."Shares appearance with:")
                                 proceed = true
                                 break
                             end
@@ -3038,7 +3084,13 @@ function Tmog_UsableToggle()
             end
         end
         if onlyUsable then
-            Unusable[currentSlot][currentType] = {}
+            for k in pairs(Unusable) do
+                for k2 in pairs(Unusable[k]) do
+                    for k3 in pairs(Unusable[k][k2]) do
+                        Unusable[k][k2][k3] = nil
+                    end
+                end
+            end
         end
         Tmog:DrawPreviews()
     end
@@ -3176,19 +3228,21 @@ function Tmog_PlayerSlotOnEnter()
     end
 end
 
+local info = {}
+
 function Tmog_OutfitsDropDown_Initialize()
     if tsize(TMOG_PLAYER_OUTFITS) < 30 then
-        local newOutfit = {}
-        newOutfit.text = GREEN .. "+ New Outfit"
-        newOutfit.value = 1
-        newOutfit.arg1 = 1
-        newOutfit.checked = false
-        newOutfit.func = Tmog_NewOutfitPopup
-        UIDropDownMenu_AddButton(newOutfit)
+        info.text = GREEN .. "+ New Outfit"
+        info.value = 1
+        info.arg1 = 1
+        info.checked = false
+        info.func = Tmog_NewOutfitPopup
+        info.tooltipTitle = "New Outfit"
+        info.tooltipText = "Create an outfit from currently selected items."
+        UIDropDownMenu_AddButton(info)
     end
 
     for name, data in pairs(TMOG_PLAYER_OUTFITS) do
-        local info = {}
         info.text = name
         info.value = name
         info.arg1 = name

@@ -487,7 +487,7 @@
                 <Scripts>
                     <OnEnter>
                         TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
-                        TmogTooltip:SetText("Select Type", nil, nil, nil, nil, 1)
+                        TmogTooltip:SetText("Select Type")
                     </OnEnter>
                     <OnLeave>
                         TmogTooltip:Hide()
@@ -541,7 +541,7 @@
                 </HitRectInsets>
 				<Anchors>
 					<Anchor point="TOPRIGHT">
-						<Offset x="-90" y="-35"/>
+						<Offset x="-93" y="-35"/>
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -552,6 +552,15 @@
 						Tmog_UsableToggle()
                         PlaySound("igMainMenuOptionCheckBoxOn")
 					</OnClick>
+                    <OnEnter>
+                        GameTooltip_SetDefaultAnchor(TmogTooltip, this)
+                        TmogTooltip:SetText("Only Usable", 1, 1, 1, false)
+                        TmogTooltip:AddLine("Checking this will only show items that you can equip. Can be inaccurate for quest rewards.", 1, 0.82, 0, 1, true)
+                        TmogTooltip:Show()
+                    </OnEnter>
+                    <OnLeave>
+                        TmogTooltip:Hide()
+                    </OnLeave>
 				</Scripts>
 			</CheckButton>
             <CheckButton name="$parentIgnoreLevel" inherits="OptionsCheckButtonTemplate" enable="false">
@@ -574,6 +583,15 @@
 						Tmog_IgnoreLevelToggle()
                         PlaySound("igMainMenuOptionCheckBoxOn")
 					</OnClick>
+                    <OnEnter>
+                        GameTooltip_SetDefaultAnchor(TmogTooltip, this)
+                        TmogTooltip:SetText("Ignore Level", 1, 1, 1, false)
+                        TmogTooltip:AddLine("Checking this will ignore level requirements while 'Only Usable' filter is active. Can be inaccurate for quest rewards.", 1, 0.82, 0, 1, true)
+                        TmogTooltip:Show()
+                    </OnEnter>
+                    <OnLeave>
+                        TmogTooltip:Hide()
+                    </OnLeave>
 				</Scripts>
 			</CheckButton>
             <Button name="$parentRevert" hidden="false" text="" topLevel="true">
@@ -606,7 +624,7 @@
                     </OnClick>
                     <OnEnter>
                         TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
-                        TmogTooltip:SetText("Revert", nil, nil, nil, nil, 1)
+                        TmogTooltip:SetText("Revert")
                     </OnEnter>
                     <OnLeave>
                         TmogTooltip:Hide()
@@ -626,7 +644,7 @@
                     </OnLoad>
                     <OnEnter>
                         TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
-                        TmogTooltip:SetText("Select an Outfit", nil, nil, nil, nil, 1)
+                        TmogTooltip:SetText("Select an Outfit")
                     </OnEnter>
                     <OnLeave>
                         TmogTooltip:Hide()

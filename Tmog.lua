@@ -1035,10 +1035,10 @@ local function IsGear(itemID, tooltip)
         if itemSubType == "-" then
             itemSubType = "Miscellaneous"
         end
+        debug(itemID, itemName, itemType, itemSubType, itemEquipLoc)
         if itemEquipLoc == "INVTYPE_HOLDABLE" then
             return InventoryTypeToSlot[itemEquipLoc]
         end
-        debug(itemID, itemName, itemType, itemSubType, itemEquipLoc)
         if SetContains(tableToCheck, itemSubType) and SetContains(InventoryTypeToSlot, itemEquipLoc) then
             if not canDualWeild and itemEquipLoc == "INVTYPE_WEAPONOFFHAND" then
                 debug("cant dual weild")
@@ -1083,10 +1083,13 @@ local function Transmogable(itemID)
     local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(itemID)
     if itemName then
         if itemEquipLoc ~= "" and InventoryTypeToSlot[itemEquipLoc] then
-            if itemType == "Weapon" or itemType == "Armor" or itemType == "Miscellaneous" then
-                if itemSubType ~= "Fishing Pole" then
-                    return true
-                end
+            if itemSubType == "-" then
+                itemSubType = "Miscellaneous"
+            end
+            if (itemType == "Weapon" and itemSubType == "Miscellaneous") or (itemSubType == "Fishing Pole") then
+                return false
+            else
+                return true
             end
         end
     end
@@ -1208,11 +1211,12 @@ function Tmog_ExtendTooltip(tooltip)
                 end
             end
         end
+        tooltip:Show()
     end
     if tooltipMoney > 0 then
         HookSetTooltipMoney(tooltip, tooltipMoney)
+        tooltip:Show()
     end
-    tooltip:Show()
 end
 
 local original_OnShow = GameTooltip:GetScript("OnShow")
@@ -1941,20 +1945,17 @@ function Tmog:DrawPreviews(noDraw)
                     button:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_normal")
                 end
                 
-                if quality then
-                    local border = getglobal("TmogFramePreview" .. itemIndex .. "ButtonBorder")
-                    local r, g, b, color = GetItemQualityColor(quality)
-                    Tmog_AddItemTooltip(button, color .. name)
-                    border:SetVertexColor(r, g, b)
-                    border:SetAlpha(0.4)
-                    if quality == 2 then
-                        border:SetAlpha(0.2)
-                    elseif quality == 0 then
-                        border:SetAlpha(0.1)
-                    end
-                else
-                    Tmog_AddItemTooltip(button, name)
+                local border = getglobal("TmogFramePreview" .. itemIndex .. "ButtonBorder")
+                local r, g, b = GetItemQualityColor(quality or 1)
+                border:SetVertexColor(r, g, b)
+                border:SetAlpha(0.4)
+                if quality == 2 then
+                    border:SetAlpha(0.2)
+                elseif quality == 0 then
+                    border:SetAlpha(0.1)
                 end
+                
+                Tmog_AddItemTooltip(button)
 
                 -- this is for updating tooltip while scrolling with mousewheel
                 if MouseIsOver(button) then
@@ -2677,16 +2678,10 @@ function Tmog_AddOutfitTooltip(frame, outfit)
     end)
 end
 
-function Tmog_AddItemTooltip(frame, text)
+function Tmog_AddItemTooltip(frame)
     frame:SetScript("OnEnter", function()
         TmogTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 4) + 15, -(this:GetHeight() / 4) + 20)
-
-        if text then
-            TmogTooltip:AddLine(WHITE .. text)
-        end
-
         local itemID = this:GetID()
-
         Tmog:CacheItem(itemID)
         TmogTooltip.itemID = itemID
         TmogTooltip:SetHyperlink("item:"..itemID)
@@ -2705,15 +2700,9 @@ function Tmog_AddItemTooltip(frame, text)
                         for _, id in pairs(DisplayIdDB[itemID]) do
                             Tmog:CacheItem(id)
                             local similarItem, _, quality = GetItemInfo(id)
-    
-                            if similarItem and quality then
-                                local _, _, _, color = GetItemQualityColor(quality)
-
-                                if color then
-                                    lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
-                                else
-                                    lastLine:SetText(lastLine:GetText().."\n"..similarItem)
-                                end
+                            if similarItem then
+                                local _, _, _, color = GetItemQualityColor(quality or 1)
+                                lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
                             end
                         end
                     else
@@ -2730,17 +2719,12 @@ function Tmog_AddItemTooltip(frame, text)
                             for _, id in pairs(DisplayIdDB[itemID]) do
                                 Tmog:CacheItem(id)
                                 local similarItem, _, quality = GetItemInfo(id)
-        
-                                if similarItem and quality then
+                                if similarItem then
                                     if not Tmog:IsUsableItem(id) then
+                                        -- continue
                                     else
-                                        local _, _, _, color = GetItemQualityColor(quality)
-        
-                                        if color then
-                                            lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
-                                        else
-                                            lastLine:SetText(lastLine:GetText().."\n"..similarItem)
-                                        end
+                                        local _, _, _, color = GetItemQualityColor(quality or 1)
+                                        lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
                                     end
                                 end
                             end

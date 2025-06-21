@@ -317,6 +317,24 @@ local Unusable = {
     },
 }
 
+-- table for checking transmog status
+local StatusSlotsLookup = {
+    [1] = true,
+    [3] = true,
+    [4] = true,
+    [5] = true,
+    [6] = true,
+    [7] = true,
+    [8] = true,
+    [9] = true,
+    [10] = true,
+    [15] = true,
+    [16] = true,
+    [17] = true,
+    [18] = true,
+    [19] = true,
+}
+
 local InventorySlots = {
     ["HeadSlot"] = 1,
     ["ShoulderSlot"] = 3,
@@ -1404,6 +1422,10 @@ function TmogFrame_OnEvent()
                     end
                 end
 
+                for k in pairs(StatusSlotsLookup) do
+                    StatusSlotsLookup[k] = true
+                end
+
                 for _, d in pairs(TransmogStatus) do
                     local _, _, InventorySlotId, itemID = strfind(d, "(%d+):(%d+)")
                     InventorySlotId = tonumber(InventorySlotId)
@@ -1411,12 +1433,20 @@ function TmogFrame_OnEvent()
                         itemID = tonumber(itemID)
                         local link = GetInventoryItemLink("player", InventorySlotId)
                         local actualItemId = IDFromLink(link) or 0
-
+                        StatusSlotsLookup[InventorySlotId] = false
                         if actualItemId ~= 0 then
-                            if not TMOG_TRANSMOG_STATUS[InventorySlotId][actualItemId] then
-                                TMOG_TRANSMOG_STATUS[InventorySlotId][actualItemId] = 0
-                            end
                             TMOG_TRANSMOG_STATUS[InventorySlotId][actualItemId] = itemID
+                        end
+                    end
+                end
+                -- if we recieve 0 for some equipped item AND we have it in our TMOG_TRANSMOG_STATUS
+                -- remove it from TMOG_TRANSMOG_STATUS
+                for k in pairs(StatusSlotsLookup) do
+                    if StatusSlotsLookup[k] then
+                        local equippedItemLink = GetInventoryItemLink("player", k)
+                        local equippedItemID = IDFromLink(equippedItemLink) or 0
+                        if equippedItemID ~= 0 and TMOG_TRANSMOG_STATUS[k][equippedItemID] then
+                            TMOG_TRANSMOG_STATUS[k][equippedItemID] = nil
                         end
                     end
                 end

@@ -1110,13 +1110,13 @@ local function Transmogable(itemID)
 end
 
 local WrappingLines = {
-	["^Set:"] = gsub("^"..ITEM_SET_BONUS, " %%s", ""),
-	["^%(%d%) Set:"] = gsub(gsub(ITEM_SET_BONUS_GRAY, "%(%%d%)", "^%%(%%d%%)"), " %%s", ""),
-	["^Effect:"] = gsub("^"..ITEM_SPELL_EFFECT, " %%s", ""),
+	["^Set:"] = gsub("^"..ITEM_SET_BONUS, "%%s", ""),
+	["^%(%d%) Set:"] = gsub(gsub(ITEM_SET_BONUS_GRAY, "%(%%d%)", "^%%(%%d%%)"), "%%s", ""),
+	["^Effect:"] = gsub("^"..ITEM_SPELL_EFFECT, "%%s", ""),
 	["^Equip:"] = "^"..ITEM_SPELL_TRIGGER_ONEQUIP,
 	["^Chance on hit:"] = "^"..ITEM_SPELL_TRIGGER_ONPROC,
 	["^Use:"] = "^"..ITEM_SPELL_TRIGGER_ONUSE,
-	["^\nRequires"] = "^\n"..gsub(ITEM_REQ_SKILL, " %%s", "")
+	["^\nRequires"] = "^\n"..gsub(ITEM_REQ_SKILL, "%%s", "")
 }
 
 local lines = {}

@@ -2294,6 +2294,25 @@ function Tmog:RemoveSelection()
 	end
 end
 
+function Tmog_UndressSlot(InventorySlotId)
+	TmogFramePlayerModel:Undress()
+	for slot, itemID in pairs(CurrentGear) do
+		if slot ~= InventorySlotId and slot ~= 18 then
+			if (slot == 1 and showingHelm == 1) or (slot == 15 and showingCloak == 1) or
+				(CurrentGear[slot] ~= ActualGear[slot]) or (slot ~= 1 and slot ~= 15)
+				then
+				TmogFramePlayerModel:TryOn(itemID)
+			end
+		end
+	end
+	CurrentGear[InventorySlotId] = 0
+	Tmog:EnableOutfitSaveButton()
+	Tmog:UpdateItemTextures()
+	if currentTab == "items" then
+		Tmog:RemoveSelection()
+	end
+end
+
 function TmogSlot_OnClick(InventorySlotId, rightClick)
 	if IsShiftKeyDown() then
 		Tmog:LinkItem(CurrentGear[InventorySlotId])
@@ -2306,31 +2325,17 @@ function TmogSlot_OnClick(InventorySlotId, rightClick)
 			end
 			TmogFramePlayerModel:TryOn(ActualGear[InventorySlotId])
 			CurrentGear[InventorySlotId] = ActualGear[InventorySlotId]
-		else
-			TmogFramePlayerModel:Undress()
-
-			for slot, itemID in pairs(CurrentGear) do
-				if slot ~= InventorySlotId and slot ~= 18 then
-					if (slot == 1 and showingHelm == 1) or (slot == 15 and showingCloak == 1) or
-						(CurrentGear[slot] ~= ActualGear[slot]) or (slot ~= 1 and slot ~= 15)
-						then
-						TmogFramePlayerModel:TryOn(itemID)
-					end
-				end
+			Tmog:EnableOutfitSaveButton()
+			Tmog:UpdateItemTextures()
+			if currentTab == "items" then
+				Tmog:RemoveSelection()
 			end
-
-			CurrentGear[InventorySlotId] = 0
+		else
+			Tmog_UndressSlot(InventorySlotId)
 		end
-
-		Tmog:EnableOutfitSaveButton()
-		Tmog:UpdateItemTextures()
 		--update tooltip
 		this:Hide()
 		this:Show()
-
-		if currentTab == "items" then
-			Tmog:RemoveSelection()
-		end
 		PlaySound("igMainMenuOptionCheckBoxOn")
 	else
 		currentSlot = InventorySlotId
@@ -2413,6 +2418,9 @@ function TmogTry(itemId, arg1, noSelect)
 			if IsShiftKeyDown() then
 				Tmog:LinkItem(itemId)
 			else
+				if currentSlot == 16 then
+					Tmog_UndressSlot(currentSlot)
+				end
 				TmogFramePlayerModel:TryOn(itemId)
 				CurrentGear[currentSlot] = itemId
 				Tmog:EnableOutfitSaveButton()

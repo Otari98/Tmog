@@ -808,23 +808,25 @@ local function GetTableForClass(class)
 	end
 end
 
-local lastSearchName = nil
-local lastSearchID = nil
+local IDcache = {}
 local function GetItemIDByName(name)
-	if not name then
-		return nil
-	end
-	if name ~= lastSearchName then
-		for itemID = 1, 99999 do
-	  		local itemName = GetItemInfo(itemID)
-	  		if itemName and itemName == name then
-				lastSearchID = itemID
-				break
-	 		end
+	if not name then return nil end
+	if IDcache[name] then
+		if IDcache[name] ~= 0 then
+			return IDcache[name]
+		else
+			return nil
 		end
-		lastSearchName = name
-  	end
-	return lastSearchID
+	end
+	for itemID = 1, 99999 do
+		local itemName = GetItemInfo(itemID)
+		if itemName and itemName == name then
+			IDcache[name] = itemID
+			return itemID
+		end
+	end
+	IDcache[name] = 0
+	return nil
 end
 
 local insideHook = false

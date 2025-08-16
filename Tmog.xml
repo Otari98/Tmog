@@ -258,11 +258,18 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="$parentTitleText" inherits="GameFontNormal" text="">
+				<FontString name="$parentTitleText" inherits="GameFontNormal" text="Tmog">
 					<Size x="512" y="14"/>
 					<Anchors>
 						<Anchor point="TOP" relativePoint="TOP">
 							<Offset x="0" y="-17"/>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentVersionText" inherits="GameFontHighlightSmall" justifyH="RIGHT">
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset x="-50" y="-20"/>
 						</Anchor>
 					</Anchors>
 				</FontString>

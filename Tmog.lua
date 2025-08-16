@@ -1305,7 +1305,7 @@ function TmogFrame_OnEvent()
 	if event == "ADDON_LOADED" and arg1 == "Tmog" then
 		TmogFrame:UnregisterEvent("ADDON_LOADED")
 
-		TmogFrameTitleText:SetText("Tmog v."..version)
+		TmogFrameVersionText:SetText("v."..version)
 
 		-- Saved Variables
 		TMOG_CACHE = TMOG_CACHE or {

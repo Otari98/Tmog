@@ -1,6 +1,7 @@
 TmogGearDB = {
 	[1] = {
 		["Cloth"] = {
+			[58006] = "Tattered Gnoll Bandana",
 			[58176] = "Stormreaver Hood",
 			[12064] = "Gamemaster Hood",
 			[41967] = "Magistrate's Brim Hat",
@@ -310,6 +311,7 @@ TmogGearDB = {
 			[10219] = "Elegant Circlet",
 		},
 		["Leather"] = {
+			[60554] = "Quarry Miner's Cap",
 			[58200] = "Eyes of the Beholder",
 			[58264] = "Memory of Fenris",
 			[58099] = "Dragonmaw Helmet",
@@ -492,6 +494,7 @@ TmogGearDB = {
 			[13113] = "Feathermoon Headdress",
 		},
 		["Mail"] = {
+			[58002] = "Honeypot",
 			[58272] = "Kor'kron Crown",
 			[55054] = "Prismatic Scale Barbute",
 			[41955] = "Helmet of Dun Kithas",
@@ -1526,6 +1529,7 @@ TmogGearDB = {
 	},
 	[4] = {
 		["Miscellaneous"] = {
+			[94] = "Lavender Bow Corset Shirt",
 			[69990] = "Sigil of the Fire Elemental",
 			[69991] = "Sigil of the Water Elemental",
 			[69992] = "Sigil of the Scarlet Viper",
@@ -1653,6 +1657,7 @@ TmogGearDB = {
 	},
 	[5] = {
 		["Cloth"] = {
+			[58056] = "Robes of Creeping Tendrils",
 			[41578] = "Flamekeeper's Robe",
 			[538] = "Rose Spring Blouse",
 			[58028] = "Robes of the Wailing Nun",
@@ -3209,6 +3214,7 @@ TmogGearDB = {
 			[3599] = "Thin Cloth Belt",
 		},
 		["Leather"] = {
+			[58248] = "Sparked Sash",
 			[58132] = "Gluttonous Buckle",
 			[58076] = "Archivist's Belt",
 			[58118] = "Sash of Ritual Scars",
@@ -3465,6 +3471,7 @@ TmogGearDB = {
 			[9682] = "Leather Chef's Belt",
 		},
 		["Mail"] = {
+			[58157] = "Girdle of Venoms",
 			[58021] = "Belt of Compassion",
 			[58184] = "Obedient Shackles",
 			[41568] = "Torkon's Belt",
@@ -4121,8 +4128,10 @@ TmogGearDB = {
 			[3309] = "Barbaric Loincloth",
 			[13008] = "Dalewind Trousers",
 			[6118] = "Squire's Pants",
+			[58156] = "Bonesplitter Loincloth",
 		},
 		["Leather"] = {
+			[58000] = "Boarhide Leggings",
 			[58063] = "Pantaloons of Torture",
 			[41573] = "Mosshide Trousers",
 			[41898] = "Ursan Trousers",
@@ -5076,6 +5085,7 @@ TmogGearDB = {
 			[2432] = "Russet Boots",
 		},
 		["Leather"] = {
+			[60553] = "The Soot Boots",
 			[58123] = "Felhoof Sabatons",
 			[41789] = "Renegade Battle Boots",
 			[58125] = "Cinderfist Treads",
@@ -5358,6 +5368,7 @@ TmogGearDB = {
 			[13111] = "Sandals of the Insurgent",
 		},
 		["Mail"] = {
+			[58057] = "Drenched Demon Treads",
 			[55039] = "Sharpshooter's Boots",
 			[58148] = "Treads of the Unknown",
 			[41567] = "Cavernrock Stompers",
@@ -8639,6 +8650,8 @@ TmogGearDB = {
 			[9385] = "Archaic Defender",
 		},
 		["One-Handed Swords"] = {
+			[58282] = "Mariner's Cutlass",
+			[58154] = "Brand of Lohengrin",
 			[58018] = "Inheritance Blade",
 			[9380] = "Jang'thraze the Protector",
 			[41581] = "The Bane of Althazz",
@@ -8907,6 +8920,7 @@ TmogGearDB = {
 			[1384] = "Dull Blade",
 		},
 		["One-Handed Axes"] = {
+			[4965] = "Bloodhoof Hand Axe",
 			[41571] = "Snickerclaw",
 			[41559] = "Rock Carver",
 			[58015] = "Blackrock Cleaver",
@@ -9073,6 +9087,7 @@ TmogGearDB = {
 			[2134] = "Hand Axe",
 		},
 		["Staves"] = {
+			[58054] = "Scepter of Nazjatar",
 			[58183] = "Rod of Subjugation",
 			[58199] = "Spine of Dentarg",
 			[58117] = "Staff of the Bloodbound",
@@ -9743,6 +9758,7 @@ TmogGearDB = {
 			[6360] = "Steelscale Crushfish",
 		},
 		["Two-Handed Axes"] = {
+			[58163] = "Headsplitter Axe",
 			[58035] = "Amberwood Great-Axe",
 			[58128] = "Axe of Raging Winds",
 			[58130] = "Maneater Cleaver",
@@ -10629,6 +10645,8 @@ TmogGearDB = {
 			[3581] = "Serrated Knife",
 		},
 		["One-Handed Swords"] = {
+			[58282] = "Mariner's Cutlass",
+			[58154] = "Brand of Lohengrin",
 			[58018] = "Inheritance Blade",
 			[9380] = "Jang'thraze the Protector",
 			[58036] = "Blade of the Overlord",
@@ -10906,6 +10924,7 @@ TmogGearDB = {
 			[15228] = "Smashing Star",
 		},
 		["Miscellaneous"] = {
+			[58160] = "Firebound Skull",
 			[58082] = "Noppsy's Compendium",
 			[58145] = "Light's Sermon",
 			[58027] = "Almanac of Prayer",
@@ -11499,6 +11518,7 @@ TmogGearDB = {
 			[18738] = "Carapace Spine Crossbow",
 		},
 		["Bows"] = {
+			[4110] = "Master Hunter's Bow",
 			[41725] = "Dragonmaw Battle Bow",
 			[58016] = "Ashwood Bow",
 			[58193] = "Demon Hair Bow",

@@ -1,6 +1,8 @@
+local L = Tmog.L
+
 TmogGearDB = {
 	[1] = {
-		["Cloth"] = {
+		[L["Cloth"]] = {
 			[58006] = "Tattered Gnoll Bandana",
 			[58176] = "Stormreaver Hood",
 			[12064] = "Gamemaster Hood",
@@ -310,7 +312,7 @@ TmogGearDB = {
 			[18526] = "Crown of the Ogre King",
 			[10219] = "Elegant Circlet",
 		},
-		["Leather"] = {
+		[L["Leather"]] = {
 			[60554] = "Quarry Miner's Cap",
 			[58200] = "Eyes of the Beholder",
 			[58264] = "Memory of Fenris",
@@ -493,7 +495,7 @@ TmogGearDB = {
 			[16821] = "Nightslayer Cover",
 			[13113] = "Feathermoon Headdress",
 		},
-		["Mail"] = {
+		[L["Mail"]] = {
 			[58002] = "Honeypot",
 			[58272] = "Kor'kron Crown",
 			[55054] = "Prismatic Scale Barbute",
@@ -645,7 +647,7 @@ TmogGearDB = {
 			[16566] = "Warlord's Chain Helmet",
 			[6971] = "Fire Hardened Coif",
 		},
-		["Plate"] = {
+		[L["Plate"]] = {
 			[58092] = "Champion's Sandhelm",
 			[9664] = "Sentinel's Guard",
 			[83483] = "Crown of Divine Justice",
@@ -776,7 +778,7 @@ TmogGearDB = {
 			[20551] = "Darkrune Helm",
 			[10241] = "Heavy Lamellar Helm",
 		},
-		["Miscellaneous"] = {
+		[L["Miscellaneous"]] = {
 			[9978] = "Gahz'ridian Detector",
 			[61153] = "Foul Effigy",
 			[4491] = "Goggles of Gem Hunting",
@@ -802,7 +804,7 @@ TmogGearDB = {
 		},
 	},
 	[3] = {
-		["Cloth"] = {
+		[L["Cloth"]] = {
 			[58008] = "Defias Amice",
 			[58147] = "Stormreaver Mantle",
 			[49991] = "Sea Turtle Shell Pauldrons",
@@ -1031,7 +1033,7 @@ TmogGearDB = {
 			[47285] = "Nemesis Mantle",
 			[13374] = "Soulstealer Mantle",
 		},
-		["Leather"] = {
+		[L["Leather"]] = {
 			[58072] = "Tarred Shoulderpads",
 			[41724] = "Dragonmaw Shoulders",
 			[58164] = "Pauldrons of War",
@@ -1223,7 +1225,7 @@ TmogGearDB = {
 			[11502] = "Loreskin Shoulders",
 			[9923] = "Tracker's Shoulderpads",
 		},
-		["Mail"] = {
+		[L["Mail"]] = {
 			[58170] = "Scrap Metal Pauldrons",
 			[41787] = "Shatterblade Pauldrons",
 			[41952] = "Shoulderpads of Dun Kithas",
@@ -1394,7 +1396,7 @@ TmogGearDB = {
 			[6404] = "Mail Combat Spaulders",
 			[13132] = "Skeletal Shoulders",
 		},
-		["Plate"] = {
+		[L["Plate"]] = {
 			[58255] = "Crystal Pauldrons",
 			[55034] = "Grim Batol Mountaineer Pauldrons",
 			[60405] = "Mantle of Dag'grak",
@@ -1528,7 +1530,7 @@ TmogGearDB = {
 		},
 	},
 	[4] = {
-		["Miscellaneous"] = {
+		[L["Miscellaneous"]] = {
 			[94] = "Lavender Bow Corset Shirt",
 			[69990] = "Sigil of the Fire Elemental",
 			[69991] = "Sigil of the Water Elemental",
@@ -1656,7 +1658,7 @@ TmogGearDB = {
 		},
 	},
 	[5] = {
-		["Cloth"] = {
+		[L["Cloth"]] = {
 			[58056] = "Robes of Creeping Tendrils",
 			[41578] = "Flamekeeper's Robe",
 			[538] = "Rose Spring Blouse",
@@ -2274,7 +2276,7 @@ TmogGearDB = {
 			[10007] = "Red Mageweave Vest",
 			[3072] = "Smoldering Robe",
 		},
-		["Leather"] = {
+		[L["Leather"]] = {
 			[58273] = "Voodoo Jerkin",
 			[41946] = "Farstrider Chestpiece",
 			[55079] = "Ravenkeeper's Frenzied Embrace",
@@ -2550,7 +2552,7 @@ TmogGearDB = {
 			[2317] = "Dark Leather Tunic",
 			[4861] = "Sleek Feathered Tunic",
 		},
-		["Mail"] = {
+		[L["Mail"]] = {
 			[41916] = "Dune Wanderer's Hauberk",
 			[58030] = "Crawford Hauberk",
 			[58203] = "Chainmail of Writhing Miasma",
@@ -2811,7 +2813,7 @@ TmogGearDB = {
 			[8189] = "Turtle Scale Breastplate",
 			[6721] = "Chestplate of Kor",
 		},
-		["Plate"] = {
+		[L["Plate"]] = {
 			[47068] = "Lionheart Chestguard",
 			[80607] = "Revantusk Watcher's Chestplate",
 			[47272] = "Chestguard of the Brotherhood",
@@ -2932,7 +2934,7 @@ TmogGearDB = {
 			[14939] = "Warbringer's Chestguard",
 			[10775] = "Carapace of Tuten'kash",
 		},
-		["Miscellaneous"] = {
+		[L["Miscellaneous"]] = {
 			[21538] = "Festive Pink Dress",
 			[13900] = "Green Wedding Hanbok",
 			[19028] = "Elegant Dress",
@@ -2962,7 +2964,7 @@ TmogGearDB = {
 		},
 	},
 	[6] = {
-		["Cloth"] = {
+		[L["Cloth"]] = {
 			[58131] = "Stormreaver Belt",
 			[41714] = "Sash of Zarm'geth",
 			[41956] = "Grim Girdle",
@@ -3213,7 +3215,7 @@ TmogGearDB = {
 			[51875] = "Tapered Belt",
 			[3599] = "Thin Cloth Belt",
 		},
-		["Leather"] = {
+		[L["Leather"]] = {
 			[58248] = "Sparked Sash",
 			[58132] = "Gluttonous Buckle",
 			[58076] = "Archivist's Belt",
@@ -3470,7 +3472,7 @@ TmogGearDB = {
 			[14502] = "Frostbite Girdle",
 			[9682] = "Leather Chef's Belt",
 		},
-		["Mail"] = {
+		[L["Mail"]] = {
 			[58157] = "Girdle of Venoms",
 			[58021] = "Belt of Compassion",
 			[58184] = "Obedient Shackles",
@@ -3677,7 +3679,7 @@ TmogGearDB = {
 			[6200] = "Garneg's War Belt",
 			[1853] = "Scalemail Belt",
 		},
-		["Plate"] = {
+		[L["Plate"]] = {
 			[55351] = "Turalyon's Hope",
 			[55506] = "Worldbreaker Girdle",
 			[61648] = "Fury of the Timbermaw",
@@ -3794,7 +3796,7 @@ TmogGearDB = {
 		},
 	},
 	[7] = {
-		["Cloth"] = {
+		[L["Cloth"]] = {
 			[160] = "Mint Spring Shorts",
 			[58259] = "Advisor's Trousers of the Eldreth",
 			[41917] = "Desert Seeker's Pants",
@@ -4130,7 +4132,7 @@ TmogGearDB = {
 			[6118] = "Squire's Pants",
 			[58156] = "Bonesplitter Loincloth",
 		},
-		["Leather"] = {
+		[L["Leather"]] = {
 			[58000] = "Boarhide Leggings",
 			[58063] = "Pantaloons of Torture",
 			[41573] = "Mosshide Trousers",
@@ -4389,7 +4391,7 @@ TmogGearDB = {
 			[10227] = "Nightshade Leggings",
 			[6480] = "Slick Deviate Leggings",
 		},
-		["Mail"] = {
+		[L["Mail"]] = {
 			[58243] = "Leggings of the Deep Delve",
 			[58124] = "Mountaineer's Breaches",
 			[41947] = "Farstrider Leggings",
@@ -4618,7 +4620,7 @@ TmogGearDB = {
 			[15582] = "Sparkleshell Legguards",
 			[7920] = "Mithril Scale Pants",
 		},
-		["Plate"] = {
+		[L["Plate"]] = {
 			[58228] = "Leggings of the Redeemer",
 			[55058] = "Rune-Inscribed Plate Leggings",
 			[22672] = "Sentinel's Plate Legguards",
@@ -4757,7 +4759,7 @@ TmogGearDB = {
 		},
 	},
 	[8] = {
-		["Cloth"] = {
+		[L["Cloth"]] = {
 			[41851] = "Expedition Boots",
 			[58013] = "Academy Dropout Slippers",
 			[58204] = "Treads of Forgotten Empathy",
@@ -5084,7 +5086,7 @@ TmogGearDB = {
 			[80] = "Soft Fur-lined Shoes",
 			[2432] = "Russet Boots",
 		},
-		["Leather"] = {
+		[L["Leather"]] = {
 			[60553] = "The Soot Boots",
 			[58123] = "Felhoof Sabatons",
 			[41789] = "Renegade Battle Boots",
@@ -5367,7 +5369,7 @@ TmogGearDB = {
 			[4109] = "Excelsior Boots",
 			[13111] = "Sandals of the Insurgent",
 		},
-		["Mail"] = {
+		[L["Mail"]] = {
 			[58057] = "Drenched Demon Treads",
 			[55039] = "Sharpshooter's Boots",
 			[58148] = "Treads of the Unknown",
@@ -5594,7 +5596,7 @@ TmogGearDB = {
 			[3847] = "Golden Scale Boots",
 			[6459] = "Savage Trodders",
 		},
-		["Plate"] = {
+		[L["Plate"]] = {
 			[58215] = "Ash-Forged Greaves",
 			[58220] = "Golem Stompers",
 			[55282] = "Boots of the Grand Crusader",
@@ -5733,7 +5735,7 @@ TmogGearDB = {
 			[14911] = "Brutish Boots",
 			[8316] = "Alabaster Plate Greaves",
 		},
-		["Miscellaneous"] = {
+		[L["Miscellaneous"]] = {
 			[59] = "Acolyte's Shoes",
 			[121] = "Thug Boots",
 			[24146] = "Initiate's Boots",
@@ -5753,7 +5755,7 @@ TmogGearDB = {
 		},
 	},
 	[9] = {
-		["Cloth"] = {
+		[L["Cloth"]] = {
 			[41722] = "Rockspeaker Bracers",
 			[41103] = "Refugee's Bracers",
 			[58122] = "Bracers of Sinister Rites",
@@ -5993,7 +5995,7 @@ TmogGearDB = {
 			[3592] = "Padded Bracers",
 			[5315] = "Timberland Armguards",
 		},
-		["Leather"] = {
+		[L["Leather"]] = {
 			[41713] = "Doomsong Cuffs",
 			[58251] = "Wristbands of Excellency",
 			[58133] = "Handmaiden's Bracelet",
@@ -6208,7 +6210,7 @@ TmogGearDB = {
 			[4928] = "Sandrunner Wristguards",
 			[6556] = "Bard's Bracers",
 		},
-		["Mail"] = {
+		[L["Mail"]] = {
 			[58119] = "Bracers of the Bloodbound",
 			[58065] = "Clasps of Subterfuge",
 			[58219] = "Magmascale Shackles",
@@ -6404,7 +6406,7 @@ TmogGearDB = {
 			[6040] = "Golden Scale Bracers",
 			[2390] = "Rusted Chain Bracers",
 		},
-		["Plate"] = {
+		[L["Plate"]] = {
 			[55356] = "Netherwrought Bracers",
 			[55500] = "Barnacle Vambraces",
 			[60395] = "Bloodfist Vambraces",
@@ -6512,7 +6514,7 @@ TmogGearDB = {
 		},
 	},
 	[10] = {
-		["Cloth"] = {
+		[L["Cloth"]] = {
 			[58042] = "Venomtouched Gloves",
 			[41855] = "Fenweave Gloves",
 			[58134] = "Stormreaver Gloves",
@@ -6806,7 +6808,7 @@ TmogGearDB = {
 			[4042] = "Aurora Gloves",
 			[10654] = "Jutebraid Gloves",
 		},
-		["Leather"] = {
+		[L["Leather"]] = {
 			[58108] = "Drakeskin Gloves",
 			[55050] = "Essence Infused Leather Gloves",
 			[41912] = "Hollowed Handguards",
@@ -7083,7 +7085,7 @@ TmogGearDB = {
 			[12522] = "Bingles' Flying Gloves",
 			[7443] = "Sentinel Gloves",
 		},
-		["Mail"] = {
+		[L["Mail"]] = {
 			[58032] = "Dark Iron Gloves",
 			[58166] = "Grips of the Overseer",
 			[41726] = "Slaver's Gauntlets",
@@ -7310,7 +7312,7 @@ TmogGearDB = {
 			[4004] = "Overlinked Chain Gloves",
 			[2980] = "Veteran Gloves",
 		},
-		["Plate"] = {
+		[L["Plate"]] = {
 			[58210] = "Grasps of Sundering Power",
 			[58223] = "Molten Tempered Gloves",
 			[55283] = "Gauntlets of the Grand Crusader",
@@ -7436,7 +7438,7 @@ TmogGearDB = {
 		},
 	},
 	[15] = {
-		["Cloth"] = {
+		[L["Cloth"]] = {
 			-- wrong subtype !!
 			[41565] = "Cloak of Draconic Madness",
 			[41843] = "Stoutheart Shawl",
@@ -8054,7 +8056,7 @@ TmogGearDB = {
 		},
 	},
 	[16] = {
-		["Two-Handed Maces"] = {
+		[L["Two-Handed Maces"]] = {
 			[58007] = "Obedient Whacker",
 			[58270] = "Totem of An'she",
 			[58019] = "Mace of Devotion",
@@ -8215,7 +8217,7 @@ TmogGearDB = {
 			[1218] = "Heavy Gnoll War Club",
 			[18868] = "High Warlord's Pulverizer",
 		},
-		["Daggers"] = {
+		[L["Daggers"]] = {
 			[58116] = "Bloodstained Fangblade",
 			[58169] = "Remodeled Venture Co. Shiv",
 			[58286] = "Stormreaver Fang",
@@ -8492,7 +8494,7 @@ TmogGearDB = {
 			[23451] = "Grand Marshal's Mageblade",
 			[3581] = "Serrated Knife",
 		},
-		["Two-Handed Swords"] = {
+		[L["Two-Handed Swords"]] = {
 			[41564] = "Emberclaw",
 			[58188] = "Jaw of the Ancient",
 			[58232] = "Demonbane",
@@ -8649,7 +8651,7 @@ TmogGearDB = {
 			[17076] = "Bonereaver's Edge",
 			[9385] = "Archaic Defender",
 		},
-		["One-Handed Swords"] = {
+		[L["One-Handed Swords"]] = {
 			[58282] = "Mariner's Cutlass",
 			[58154] = "Brand of Lohengrin",
 			[58018] = "Inheritance Blade",
@@ -8919,7 +8921,7 @@ TmogGearDB = {
 			[12777] = "Blazing Rapier",
 			[1384] = "Dull Blade",
 		},
-		["One-Handed Axes"] = {
+		[L["One-Handed Axes"]] = {
 			[4965] = "Bloodhoof Hand Axe",
 			[41571] = "Snickerclaw",
 			[41559] = "Rock Carver",
@@ -9086,7 +9088,7 @@ TmogGearDB = {
 			[1927] = "Deadmines Cleaver",
 			[2134] = "Hand Axe",
 		},
-		["Staves"] = {
+		[L["Staves"]] = {
 			[58054] = "Scepter of Nazjatar",
 			[58183] = "Rod of Subjugation",
 			[58199] = "Spine of Dentarg",
@@ -9115,7 +9117,6 @@ TmogGearDB = {
 			[80107] = "Smooth Wooden Staff",
 			[56052] = "Staff of Gallitrea",
 			[80642] = "Revantusk Mender's Cane",
-			[50631] = "Rune-etched Baton",
 			[81363] = "Staff of Azure Domination",
 			[83513] = "Insomnius' Wrath",
 			[83200] = "Verdant Cane",
@@ -9356,7 +9357,7 @@ TmogGearDB = {
 			[6631] = "Living Root",
 			[2226] = "Ogremage Staff",
 		},
-		["Miscellaneous"] = {
+		[L["Miscellaneous"]] = {
 			[7005] = "Skinning Knife",
 			[5956] = "Blacksmith Hammer",
 			[50062] = "Half-Eaten Mutton Chop",
@@ -9366,7 +9367,7 @@ TmogGearDB = {
 			[4616] = "Ryedol's Lucky Pick",
 			[2901] = "Mining Pick",
 		},
-		["Fist Weapons"] = {
+		[L["Fist Weapons"]] = {
 			[58161] = "Grim Claws",
 			[58279] = "Antiquated Slasher",
 			[58129] = "Claw of Tempered Fire",
@@ -9413,7 +9414,7 @@ TmogGearDB = {
 			[65011] = "Sharpened Claw",
 			[11603] = "Vilerend Slicer",
 		},
-		["Polearms"] = {
+		[L["Polearms"]] = {
 			[58058] = "Harpoon of Ahab",
 			[58263] = "Wolfbrother",
 			[41562] = "Flamescale Pike",
@@ -9495,7 +9496,7 @@ TmogGearDB = {
 			[21635] = "Barb of the Sand Reaver",
 			[61621] = "Ceremonial Gilnean Pike",
 		},
-		["One-Handed Maces"] = {
+		[L["One-Handed Maces"]] = {
 			[58048] = "Shovel of Loneliness",
 			[58080] = "Rufus' Trusty Tankard",
 			[58269] = "Right",
@@ -9757,7 +9758,7 @@ TmogGearDB = {
 			[60800] = "Femur Club",
 			[6360] = "Steelscale Crushfish",
 		},
-		["Two-Handed Axes"] = {
+		[L["Two-Handed Axes"]] = {
 			[58163] = "Headsplitter Axe",
 			[58035] = "Amberwood Great-Axe",
 			[58128] = "Axe of Raging Winds",
@@ -9899,7 +9900,7 @@ TmogGearDB = {
 		},
 	},
 	[19] = {
-		["Miscellaneous"] = {
+		[L["Miscellaneous"]] = {
 			[81088] = "Tabard of the Midsummer Solstice",
 			[93099] = "Tabard of Defender",
 			[93098] = "Bel'dorei Tabard",
@@ -9963,7 +9964,7 @@ TmogGearDB = {
 		},
 	},
 	[17] = {
-		["One-Handed Axes"] = {
+		[L["One-Handed Axes"]] = {
 			[58015] = "Blackrock Cleaver",
 			[58194] = "Nethershard Sickle",
 			[55080] = "Bloodmoon, Sickle of the Murderous Flight",
@@ -10038,7 +10039,7 @@ TmogGearDB = {
 			[4568] = "Grunt Axe",
 			[1292] = "Butcher's Cleaver",
 		},
-		["Shields"] = {
+		[L["Shields"]] = {
 			[60523] = "Sen'jin Buckler",
 			[41721] = "Bulwark of the Old Horde",
 			[58034] = "Leafsguard",
@@ -10399,7 +10400,7 @@ TmogGearDB = {
 			[9858] = "Archer's Buckler",
 			[6630] = "Seedcloud Buckler",
 		},
-		["Daggers"] = {
+		[L["Daggers"]] = {
 			[58116] = "Bloodstained Fangblade",
 			[41971] = "Trashtalon",
 			[58135] = "Dagger of Whispered Madness",
@@ -10644,7 +10645,7 @@ TmogGearDB = {
 			[23451] = "Grand Marshal's Mageblade",
 			[3581] = "Serrated Knife",
 		},
-		["One-Handed Swords"] = {
+		[L["One-Handed Swords"]] = {
 			[58282] = "Mariner's Cutlass",
 			[58154] = "Brand of Lohengrin",
 			[58018] = "Inheritance Blade",
@@ -10792,7 +10793,7 @@ TmogGearDB = {
 			[13032] = "Sword of Corruption",
 			[13033] = "Zealot Blade",
 		},
-		["Fist Weapons"] = {
+		[L["Fist Weapons"]] = {
 			[58207] = "Fist of the Flamewaker",
 			[58268] = "Left",
 			[55120] = "Al'Kazeth, Claw of Ruptured Elements",
@@ -10824,7 +10825,7 @@ TmogGearDB = {
 			[23242] = "Claw of the Frost Wyrm",
 			[18847] = "Grand Marshal's Left Hand Blade",
 		},
-		["One-Handed Maces"] = {
+		[L["One-Handed Maces"]] = {
 			[58048] = "Shovel of Loneliness",
 			[55041] = "Wildhammer Stormcaller",
 			[58214] = "Modrag'zan, Heart of the Mountain",
@@ -10923,7 +10924,7 @@ TmogGearDB = {
 			[6360] = "Steelscale Crushfish",
 			[15228] = "Smashing Star",
 		},
-		["Miscellaneous"] = {
+		[L["Miscellaneous"]] = {
 			[58160] = "Firebound Skull",
 			[58082] = "Noppsy's Compendium",
 			[58145] = "Light's Sermon",
@@ -11231,7 +11232,7 @@ TmogGearDB = {
 		},
 	},
 	[18] = {
-		["Guns"] = {
+		[L["Guns"]] = {
 			[58284] = "Waterlogged Blunderbuss",
 			[58083] = "Nippsy's Precision Rifle",
 			[58086] = "Standard Grade Rifle",
@@ -11340,7 +11341,7 @@ TmogGearDB = {
 			[9412] = "Galgann's Fireblaster",
 			[8188] = "Explosive Shotgun",
 		},
-		["Wands"] = {
+		[L["Wands"]] = {
 			[58026] = "Rod of Stromgarde",
 			[58253] = "Lector's Baton",
 			[58089] = "Thornlash Branch",
@@ -11485,7 +11486,7 @@ TmogGearDB = {
 			[80545] = "Quel'dorei Cleric's Wand",
 			[5326] = "Flaring Baton",
 		},
-		["Crossbows"] = {
+		[L["Crossbows"]] = {
 			[83517] = "Balanced Light Crossbow",
 			[61683] = "Battered Arbalest",
 			[55096] = "Phase-shifting Crossbow",
@@ -11517,7 +11518,7 @@ TmogGearDB = {
 			[13039] = "Skull Splitting Crossbow",
 			[18738] = "Carapace Spine Crossbow",
 		},
-		["Bows"] = {
+		[L["Bows"]] = {
 			[4110] = "Master Hunter's Bow",
 			[41725] = "Dragonmaw Battle Bow",
 			[58016] = "Ashwood Bow",

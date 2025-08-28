@@ -37,8 +37,9 @@ Tmog.sex = UnitSex("player") - 1 -- 2 - female, 1 - male
 Tmog.currentPage = 1
 Tmog.totalPages = 1
 Tmog.itemsPerPage = 15
+Tmog.loadingTimeMax = 0.5
 
-Tmog.verbose = true
+Tmog.verbose = false
 Tmog.collected = true
 Tmog.notCollected = true
 Tmog.onlyUsable = false
@@ -722,10 +723,7 @@ function Tmog.InventorySlotFromItemID(itemID)
 		return nil
 	end
 	local _, _, _, _, _, _, _, slot  = GetItemInfo(itemID)
-	if SetContains(InventoryTypeToSlot, slot) then
-		return InventoryTypeToSlot[slot]
-	end
-	return nil
+	return InventoryTypeToSlot[slot or ""]
 end
 
 function Tmog.IDFromLink(link)
@@ -987,7 +985,7 @@ function Tmog.GetTransmogSlot(unit, itemID, tooltip)
 		if itemEquipLoc == "INVTYPE_HOLDABLE" then
 			return InventoryTypeToSlot[itemEquipLoc]
 		end
-		if SetContains(tableToCheck, itemSubType) and SetContains(InventoryTypeToSlot, itemEquipLoc) then
+		if tableToCheck[itemSubType] and InventoryTypeToSlot[itemEquipLoc] then
 			if not (classEn == "WARRIOR" or classEn == "HUNTER" or classEn == "ROGUE") and itemEquipLoc == "INVTYPE_WEAPONOFFHAND" then
 				Tmog.debug("cant dual weild")
 				return nil
@@ -1097,7 +1095,7 @@ local function AddCollectionStatus(slot, itemID, tooltip)
 		return
 	end
 
-	if SetContains(TMOG_CACHE[slot], itemID) then
+	if TMOG_CACHE[slot][itemID] then
 		status = GREEN..L["Collected"].."|r"
 	else
 		status = YELLOW..L["Not collected"].."|r"
@@ -1298,16 +1296,16 @@ function TmogFrame_OnEvent()
 						local itemName = GetItemInfo(itemID)
 
 						if itemName then
-							if not SetContains(TMOG_CACHE[InventorySlotId], itemID, itemName) then
+							if not TMOG_CACHE[InventorySlotId][itemID] then
 								AddToSet(TMOG_CACHE[InventorySlotId], itemID, itemName)
 							end
 
 							-- check if it shares appearance with other items and add those if it does
-							if SetContains(DisplayIdDB, itemID) then
+							if DisplayIdDB[itemID] then
 								for _, id in pairs(DisplayIdDB[itemID]) do
 									Tmog.CacheItem(id)
 									local name = GetItemInfo(id)
-									if not SetContains(TMOG_CACHE[InventorySlotId], id, name) then
+									if not TMOG_CACHE[InventorySlotId][id] then
 										AddToSet(TMOG_CACHE[InventorySlotId], id, name)
 									end
 								end
@@ -1327,7 +1325,7 @@ function TmogFrame_OnEvent()
 				AddToSet(TMOG_CACHE[slot], itemID, itemName)
 
 				-- check if it shares appearance with other items and add those if it does
-				if SetContains(DisplayIdDB, itemID, itemName) then
+				if DisplayIdDB[itemID] then
 					for _, id in pairs(DisplayIdDB[itemID]) do
 						Tmog.CacheItem(id)
 						local name = GetItemInfo(id)
@@ -1399,16 +1397,16 @@ function TmogFrame_OnEvent()
 					Tmog.CacheItem(itemID)
 					local itemName = GetItemInfo(itemID)
 
-					if not SetContains(TMOG_CACHE[slot], itemID, itemName) then
+					if not TMOG_CACHE[slot][itemID] then
 						AddToSet(TMOG_CACHE[slot], itemID, itemName)
 					end
 
 					-- check if it shares appearance with other items and add those if it does
-					if SetContains(DisplayIdDB, itemID) then
+					if DisplayIdDB[itemID] then
 						for _, id in pairs(DisplayIdDB[itemID]) do
 							Tmog.CacheItem(id)
 							local name = GetItemInfo(id)
-							if not SetContains(TMOG_CACHE[slot], id, name) then
+							if not TMOG_CACHE[slot][id] then
 								AddToSet(TMOG_CACHE[slot], id, name)
 							end
 						end
@@ -1546,9 +1544,9 @@ function Tmog.SelectType(typeStr)
 	Tmog.flush = true
 	if Tmog.currentSlot and Tmog.currentType and Pages[Tmog.currentSlot][Tmog.currentType] then
 		SlotsTypes[Tmog.currentSlot] = typeStr
-		if SetContains(LinkedSlots, Tmog.currentSlot) then
+		if LinkedSlots[Tmog.currentSlot] then
 			for k in SlotsTypes do
-				if SetContains(LinkedSlots, k) and SetContains(Pages[k], typeStr) then
+				if LinkedSlots[k] and Pages[k][typeStr] then
 					SlotsTypes[k] = typeStr
 				end
 			end
@@ -1578,7 +1576,7 @@ local function IsRed(tooltipLine)
 end
 
 function Tmog.IsUsableItem(id)
-	if SetContains(Unusable[Tmog.currentSlot][Tmog.currentType], id) then
+	if Unusable[Tmog.currentSlot][Tmog.currentType][id] then
 		return false
 	end
 	local isUsable = true
@@ -1714,6 +1712,52 @@ local DrawTable = {
 	},
 }
 
+local LoadingFrame = CreateFrame("Frame", "TmogLoadingFrame")
+LoadingFrame.queueIDs = {}
+LoadingFrame.queueTimer = 0
+LoadingFrame.dotStrings = { [0] = "", [1] = ".", [2] = "..", [3] = "..." }
+LoadingFrame.dotCount = 0
+LoadingFrame.dotTimer = 0.3
+
+LoadingFrame:SetScript("OnUpdate", function()
+	if this.queueTimer == 0 then
+		TmogFrameLoadingTexture:Hide()
+		return
+	end
+
+	if this.dotTimer <= 0 then
+		this.dotCount = this.dotCount + 1
+		if this.dotCount > 3 then
+			this.dotCount = 0
+		end
+		TmogFrameLoadingTextureText:SetText(L["Loading"].." "..this.dotStrings[this.dotCount])
+		this.dotTimer = 0.3
+	else
+		this.dotTimer = this.dotTimer - arg1
+	end
+
+	local allCached = true
+	for id in pairs(this.queueIDs) do
+		if not GetItemInfo(id) then
+			allCached = false
+		end
+	end
+	for _, frame in pairs(Tmog.PreviewButtons) do
+		_G[frame:GetName().."Button"]:EnableMouse(false)
+	end
+	TmogFrameLoadingTexture:Show()
+	if allCached or this.queueTimer < 0 then
+		this.queueTimer = 0
+		Tmog.DrawPreviews()
+		TmogFrameLoadingTexture:Hide()
+		for _, frame in pairs(Tmog.PreviewButtons) do
+			_G[frame:GetName().."Button"]:EnableMouse(true)
+		end
+	else
+		this.queueTimer = this.queueTimer - arg1
+	end
+end)
+
 function Tmog.DrawPreviews(noDraw)
 	local searchStr = TmogFrameSearchBox:GetText() or ""
 	searchStr = strlower(searchStr)
@@ -1752,6 +1796,9 @@ function Tmog.DrawPreviews(noDraw)
 							if strfind(strlower(GetItemInfo(itemID)), searchStr, 1 ,true) then
 								tinsert(DrawTable[Tmog.currentSlot][type], itemID)
 							end
+						elseif not LoadingFrame.queueIDs[itemID] then
+							LoadingFrame.queueTimer = Tmog.loadingTimeMax
+							LoadingFrame.queueIDs[itemID] = true
 						end
 					end
 				end
@@ -1759,6 +1806,9 @@ function Tmog.DrawPreviews(noDraw)
 				for itemID in pairs(TmogGearDB[Tmog.currentSlot][type]) do
 					if Tmog.CacheItem(itemID) then
 						tinsert(DrawTable[Tmog.currentSlot][type], itemID)
+					elseif not LoadingFrame.queueIDs[itemID] then
+						LoadingFrame.queueTimer = Tmog.loadingTimeMax
+						LoadingFrame.queueIDs[itemID] = true
 					end
 				end
 			end
@@ -1798,6 +1848,9 @@ function Tmog.DrawPreviews(noDraw)
 			end
 			Tmog.totalPages = ceil(getn(DrawTable[Tmog.currentSlot][type]) / Tmog.itemsPerPage)
 			sort(DrawTable[Tmog.currentSlot][type], Tmog.Sort)
+			if LoadingFrame.queueTimer > 0 then
+				return
+			end
 		end
 
 		-- nothing to show
@@ -1841,7 +1894,7 @@ function Tmog.DrawPreviews(noDraw)
 				button:SetID(itemID)
 
 				Tmog.CacheItem(itemID)
-				if SetContains(TMOG_CACHE[Tmog.currentSlot], itemID) then
+				if TMOG_CACHE[Tmog.currentSlot][itemID] then
 					_G["TmogFramePreview" .. itemIndex .. "ButtonCheck"]:Show()
 				else
 					_G["TmogFramePreview" .. itemIndex .. "ButtonCheck"]:Hide()
@@ -2045,7 +2098,7 @@ function Tmog.DrawPreviews(noDraw)
 				for slot, itemID in pairs(TMOG_PLAYER_OUTFITS[name]) do
 					model:TryOn(itemID)
 					if collectedAll then
-						if not SetContains(TMOG_CACHE[slot], itemID) then
+						if not TMOG_CACHE[slot][itemID] then
 							collectedAll = false
 						end
 					end
@@ -2115,6 +2168,10 @@ function Tmog.HidePagination()
 end
 
 function Tmog.ChangePage(dir, destination)
+	if TmogFrameLoadingTexture:IsShown() then
+		return
+	end
+
 	if not Tmog.currentPage or not Tmog.totalPages then
 		return
 	end
@@ -2340,7 +2397,7 @@ function TmogTry(itemId, mouseButton, noSelect)
 		end
 		local index = 1
 
-		if SetContains(DisplayIdDB, itemId) then
+		if DisplayIdDB[itemId] then
 
 			for _, id in pairs(DisplayIdDB[itemId]) do
 
@@ -2556,21 +2613,16 @@ function Tmog.AddOutfitTooltip(frame, outfit)
 						local itemName, _, quality = GetItemInfo(itemID)
 						if itemName then
 							local _, _, _, color = GetItemQualityColor(quality or 1)
-							local isCollected = SetContains(TMOG_CACHE[slot], itemID, itemName)
 							local status = ""
 
-							if isCollected then
+							if TMOG_CACHE[slot][itemID] then
 								status = NORMAL..L["Collected"]
 								numCollected = numCollected + 1
 							else
 								status = GREY..L["Not collected"]
 							end
 
-							if color then
-								TmogTooltip:AddDoubleLine(slotName..": "..color..itemName, status)
-							else
-								TmogTooltip:AddDoubleLine(slotName..": "..itemName, status)
-							end
+							TmogTooltip:AddDoubleLine(slotName..": "..color..itemName, status)
 						end
 					end
 				end
@@ -2612,7 +2664,7 @@ function Tmog.AddItemTooltip(frame)
 				lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL.."ItemID: "..itemID)
 				local name = GetItemInfo(itemID)
 
-				if name and SetContains(DisplayIdDB, itemID) then
+				if name and DisplayIdDB[itemID] then
 					if not Tmog.onlyUsable then
 						lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL..L["Shares appearance with"]..":")
 						for _, id in pairs(DisplayIdDB[itemID]) do
@@ -3079,7 +3131,7 @@ function TmogPlayerSlot_OnEnter()
 
 		TmogTooltip:SetText(name, r, g, b)
 
-		if SetContains(TMOG_CACHE[slot], itemID, name)then
+		if TMOG_CACHE[slot][itemID] then
 			TmogTooltip:AddLine(GREEN..L["Collected"].."|r")
 		else
 			TmogTooltip:AddLine(YELLOW..L["Not collected"].."|r")
@@ -3186,7 +3238,7 @@ function Tmog.TypeDropDown_Initialize()
 		info.checked = Tmog.currentType == v
 		info.func = Tmog.SelectType
 		if Tmog.onlyUsable then
-			if SetContains(Tmog.classEquipTable[playerClass], v) then
+			if Tmog.classEquipTable[playerClass][v] then
 				if not (not Tmog.canDualWeild and Tmog.currentSlot == 17 and v ~= L["Shields"] and v ~= L["Miscellaneous"]) then
 					UIDropDownMenu_AddButton(info)
 				end
@@ -3465,11 +3517,11 @@ function Tmog.RepairPlayerCache()
 	end
 	for slot in pairs(TMOG_CACHE) do
 		for itemID in pairs(TMOG_CACHE[slot]) do
-			if SetContains(DisplayIdDB, itemID) then
+			if DisplayIdDB[itemID] then
 				for _, id in pairs(DisplayIdDB[itemID]) do
 					Tmog.CacheItem(id)
-					local name = GetItemInfo(id) or true
-					if not SetContains(TMOG_CACHE[slot], id, name) then
+					local name = GetItemInfo(id)
+					if not TMOG_CACHE[slot][id] then
 						AddToSet(TMOG_CACHE[slot], id, name)
 						sharedadded = sharedadded + 1
 					end

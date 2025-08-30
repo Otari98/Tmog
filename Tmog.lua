@@ -37,7 +37,7 @@ Tmog.sex = UnitSex("player") - 1 -- 2 - female, 1 - male
 Tmog.currentPage = 1
 Tmog.totalPages = 1
 Tmog.itemsPerPage = 15
-Tmog.loadingTimeMax = 0.5
+Tmog.loadingTimeMax = 2
 
 Tmog.verbose = false
 Tmog.collected = true
@@ -50,7 +50,7 @@ Tmog.canDualWeild = playerClass == "WARRIOR" or playerClass == "HUNTER" or playe
 Tmog.PreviewButtons = {}
 Tmog.CurrentGear = {}
 Tmog.ActualGear = {} -- actual gear + transmog
-Tmog.SharedItems = {}
+Tmog.SharedItemsFrames = {}
 
 Tmog.DressOrder = { 1, 3, 4, 5, 6, 7, 8, 9, 10, 15, 18, 16, 17, 19 } -- equip ranged first, then main hand, then offhand
 
@@ -59,82 +59,13 @@ Tmog.previewNormalLight = 	{ 1, 0, -0.3,  0, -1,   0.65, 1.0, 1.0, 1.0,   0.8, 1
 Tmog.previewHighlight = 	{ 1, 0, -0.3,  0, -1,   0.9,  1.0, 1.0, 1.0,   0.8, 1.0, 1.0, 1.0 }
 Tmog.fullScreenLight = 		{ 1, 0, -0.5, -1, -0.7, 0.42, 1.0, 1.0, 1.0,   0.8, 1.0, 1.0, 1.0 }
 
-do
-	local info = {}
-	UIDropDownMenu_CreateInfo = UIDropDownMenu_CreateInfo or function()
-		for k in pairs(info) do
-			info[k] = nil
-		end
-		return info
-	end
-end
-
-Tmog.dropdownTypes = {
-	default = {
-		L["Cloth"],
-		L["Leather"],
-		L["Mail"],
-		L["Plate"],
-	},
-	misc = {
-		L["Cloth"],
-		L["Leather"],
-		L["Mail"],
-		L["Plate"],
-		L["Miscellaneous"],
-	},
-	back = {
-		L["Cloth"],
-	},
-	shirt = {
-		L["Miscellaneous"],
-	},
-	mh = {
-		L["Daggers"],
-		L["One-Handed Axes"],
-		L["One-Handed Swords"],
-		L["One-Handed Maces"],
-		L["Fist Weapons"],
-		L["Polearms"],
-		L["Staves"],
-		L["Two-Handed Axes"],
-		L["Two-Handed Swords"],
-		L["Two-Handed Maces"],
-	},
-	oh = {
-		L["Daggers"],
-		L["One-Handed Axes"],
-		L["One-Handed Swords"],
-		L["One-Handed Maces"],
-		L["Fist Weapons"],
-		L["Miscellaneous"],
-		L["Shields"],
-	},
-	ranged = {
-		L["Bows"],
-		L["Guns"],
-		L["Crossbows"],
-		L["Wands"],
-	},
+Tmog.TooltipsToHook = {
+	["GameTooltip"] = true,
+	["TmogTooltip"] = true,
+	["AtlasLootTooltip"] = true,
+	["AtlasLootTooltip2"] = true,
 }
 
--- store last selected type for each slot
-local SlotsTypes = {
-	[1] = L["Cloth"],
-	[3] = L["Cloth"],
-	[4] = L["Miscellaneous"],
-	[5] = L["Cloth"],
-	[6] = L["Cloth"],
-	[7] = L["Cloth"],
-	[8] = L["Cloth"],
-	[9] = L["Cloth"],
-	[10] = L["Cloth"],
-	[15] = L["Cloth"],
-	[16] = L["Daggers"],
-	[17] = L["Daggers"],
-	[18] = L["Bows"],
-	[19] = L["Miscellaneous"],
-}
 -- these slots change type together
 local LinkedSlots = {
 	[1] = true,
@@ -145,218 +76,6 @@ local LinkedSlots = {
 	[8] = true,
 	[9] = true,
 	[10] = true
-}
--- store last selected page for each slot and type
-local Pages = {
-	[1] = {
-		[L["Cloth"]] = 1,
-		[L["Leather"]] = 1,
-		[L["Mail"]] = 1,
-		[L["Plate"]] = 1,
-		[L["Miscellaneous"]] = 1,
-	},
-	[3] = {
-		[L["Cloth"]] = 1,
-		[L["Leather"]] = 1,
-		[L["Mail"]] = 1,
-		[L["Plate"]] = 1,
-	},
-	[4] = {
-		[L["Miscellaneous"]] = 1,
-	},
-	[5] = {
-		[L["Cloth"]] = 1,
-		[L["Leather"]] = 1,
-		[L["Mail"]] = 1,
-		[L["Plate"]] = 1,
-		[L["Miscellaneous"]] = 1,
-	},
-	[6] = {
-		[L["Cloth"]] = 1,
-		[L["Leather"]] = 1,
-		[L["Mail"]] = 1,
-		[L["Plate"]] = 1,
-	},
-	[7] = {
-		[L["Cloth"]] = 1,
-		[L["Leather"]] = 1,
-		[L["Mail"]] = 1,
-		[L["Plate"]] = 1,
-	},
-	[8] = {
-		[L["Cloth"]] = 1,
-		[L["Leather"]] = 1,
-		[L["Mail"]] = 1,
-		[L["Plate"]] = 1,
-		[L["Miscellaneous"]] = 1,
-	},
-	[9] = {
-		[L["Cloth"]] = 1,
-		[L["Leather"]] = 1,
-		[L["Mail"]] = 1,
-		[L["Plate"]] = 1,
-	},
-	[10] = {
-		[L["Cloth"]] = 1,
-		[L["Leather"]] = 1,
-		[L["Mail"]] = 1,
-		[L["Plate"]] = 1,
-	},
-	[15] = {
-		[L["Cloth"]] = 1,
-	},
-	[16] = {
-		[L["Daggers"]] = 1,
-		[L["One-Handed Axes"]] = 1,
-		[L["One-Handed Swords"]] = 1,
-		[L["One-Handed Maces"]] = 1,
-		[L["Fist Weapons"]] = 1,
-		[L["Two-Handed Axes"]] = 1,
-		[L["Two-Handed Swords"]] = 1,
-		[L["Two-Handed Maces"]] = 1,
-		[L["Polearms"]] = 1,
-		[L["Staves"]] = 1,
-	},
-	[17] = {
-		[L["Daggers"]] = 1,
-		[L["One-Handed Axes"]] = 1,
-		[L["One-Handed Swords"]] = 1,
-		[L["One-Handed Maces"]] = 1,
-		[L["Fist Weapons"]] = 1,
-		[L["Miscellaneous"]] = 1,
-		[L["Shields"]] = 1,
-	},
-	[18] = {
-		[L["Bows"]] = 1,
-		[L["Guns"]] = 1,
-		[L["Crossbows"]] = 1,
-		[L["Wands"]] = 1,
-	},
-	[19] = {
-		[L["Miscellaneous"]] = 1,
-	},
-}
--- bad items for "Ony Usable" check box
-local Unusable = {
-	[1] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		[L["Miscellaneous"]] = {},
-		["SearchResult"] = {},
-	},
-	[3] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		["SearchResult"] = {},
-	},
-	[4] = {
-		[L["Miscellaneous"]] = {},
-		["SearchResult"] = {},
-	},
-	[5] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		[L["Miscellaneous"]] = {},
-		["SearchResult"] = {},
-	},
-	[6] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		["SearchResult"] = {},
-	},
-	[7] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		["SearchResult"] = {},
-	},
-	[8] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		[L["Miscellaneous"]] = {},
-		["SearchResult"] = {},
-	},
-	[9] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		["SearchResult"] = {},
-	},
-	[10] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		["SearchResult"] = {},
-	},
-	[15] = {
-		[L["Cloth"]] = {},
-		["SearchResult"] = {},
-	},
-	[16] = {
-		[L["Daggers"]] = {},
-		[L["One-Handed Axes"]] = {},
-		[L["One-Handed Swords"]] = {},
-		[L["One-Handed Maces"]] = {},
-		[L["Fist Weapons"]] = {},
-		[L["Two-Handed Axes"]] = {},
-		[L["Two-Handed Swords"]] = {},
-		[L["Two-Handed Maces"]] = {},
-		[L["Polearms"]] = {},
-		[L["Staves"]] = {},
-		["SearchResult"] = {},
-	},
-	[17] = {
-		[L["Daggers"]] = {},
-		[L["One-Handed Axes"]] = {},
-		[L["One-Handed Swords"]] = {},
-		[L["One-Handed Maces"]] = {},
-		[L["Fist Weapons"]] = {},
-		[L["Miscellaneous"]] = {},
-		[L["Shields"]] = {},
-		["SearchResult"] = {},
-	},
-	[18] = {
-		[L["Bows"]] = {},
-		[L["Guns"]] = {},
-		[L["Crossbows"]] = {},
-		[L["Wands"]] = {},
-		["SearchResult"] = {},
-	},
-	[19] = {
-		[L["Miscellaneous"]] = {},
-		["SearchResult"] = {},
-	},
-}
-
--- table for checking transmog status
-local StatusSlotsLookup = {
-	[1] = true,
-	[3] = true,
-	[4] = true,
-	[5] = true,
-	[6] = true,
-	[7] = true,
-	[8] = true,
-	[9] = true,
-	[10] = true,
-	[15] = true,
-	[16] = true,
-	[17] = true,
-	[18] = true,
-	[19] = true,
 }
 
 local InventorySlots = {
@@ -644,12 +363,122 @@ Positions[19] = Positions[5]
 Positions[10] = Positions[9]
 Positions[17] = Positions[16]
 
+if not UIDropDownMenu_CreateInfo then
+	local info = {}
+	UIDropDownMenu_CreateInfo = function()
+		for k in pairs(info) do
+			info[k] = nil
+		end
+		return info
+	end
+end
+
+Tmog.dropdownTypes = {
+	default = {
+		L["Cloth"],
+		L["Leather"],
+		L["Mail"],
+		L["Plate"],
+	},
+	misc = {
+		L["Cloth"],
+		L["Leather"],
+		L["Mail"],
+		L["Plate"],
+		L["Miscellaneous"],
+	},
+	back = {
+		L["Cloth"],
+	},
+	shirt = {
+		L["Miscellaneous"],
+	},
+	mh = {
+		L["Daggers"],
+		L["One-Handed Axes"],
+		L["One-Handed Swords"],
+		L["One-Handed Maces"],
+		L["Fist Weapons"],
+		L["Polearms"],
+		L["Staves"],
+		L["Two-Handed Axes"],
+		L["Two-Handed Swords"],
+		L["Two-Handed Maces"],
+	},
+	oh = {
+		L["Daggers"],
+		L["One-Handed Axes"],
+		L["One-Handed Swords"],
+		L["One-Handed Maces"],
+		L["Fist Weapons"],
+		L["Miscellaneous"],
+		L["Shields"],
+	},
+	ranged = {
+		L["Bows"],
+		L["Guns"],
+		L["Crossbows"],
+		L["Wands"],
+	},
+}
+
+function Tmog.GetTypesForSlot(slot)
+	local types
+	if slot == 1 or slot == 5 or slot == 8 then
+		types = Tmog.dropdownTypes.misc
+	elseif slot == 15 then
+		types = Tmog.dropdownTypes.back
+	elseif slot == 4 or slot == 19 then
+		types = Tmog.dropdownTypes.shirt
+	elseif slot == 10 or slot == 6 or slot == 7 or slot == 3 or slot == 9 then
+		types = Tmog.dropdownTypes.default
+	elseif slot == 16 then
+		types = Tmog.dropdownTypes.mh
+	elseif slot == 17 then
+		types = Tmog.dropdownTypes.oh
+	elseif slot == 18 then
+		types = Tmog.dropdownTypes.ranged
+	end
+	return types
+end
+
+-- table for checking transmog status
+local StatusSlotsLookup = {}
+
+-- store last selected type for each slot
+local SlotTypesMemory = {}
+
+-- store last selected page for each slot and type
+local PagesMemory = {}
+
+-- items for preview buttons
+local DrawTable = {}
+
+-- bad items for "Ony Usable" check box
+local Unusable = {}
+
+for _, slot in pairs(InventorySlots) do
+	local types = Tmog.GetTypesForSlot(slot)
+	PagesMemory[slot] = {}
+	DrawTable[slot] = {}
+	Unusable[slot] = {}
+	StatusSlotsLookup[slot] = true
+	SlotTypesMemory[slot] = types[1]
+	for _, type in ipairs(types) do
+		PagesMemory[slot][type] = 1
+		DrawTable[slot][type] = {}
+		Unusable[slot][type] = {}
+	end
+	DrawTable[slot]["SearchResult"] = {}
+	Unusable[slot]["SearchResult"] = {}
+end
+
 function Tmog.print(msg)
 	DEFAULT_CHAT_FRAME:AddMessage("["..BLUE.."Tmog|r] "..tostring(msg))
 end
 
 function Tmog.debug(...)
-	if Tmog.verbose ~= true then
+	if not Tmog.verbose then
 		return
 	end
 	local size = getn(arg)
@@ -772,6 +601,8 @@ function SetTooltipMoney(frame, money)
 end
 
 function Tmog.HookTooltip(tooltip)
+	Tmog.debug("hooking tooltip", tooltip)
+
 	local HookSetLootRollItem    = tooltip.SetLootRollItem
 	local HookSetLootItem        = tooltip.SetLootItem
 	local HookSetMerchantItem    = tooltip.SetMerchantItem
@@ -955,9 +786,6 @@ TmogTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
 local TmogScanTooltip = CreateFrame("GameTooltip", "TmogScanTooltip", nil, "GameTooltipTemplate")
 TmogScanTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
 
-Tmog.HookTooltip(GameTooltip)
-Tmog.HookTooltip(TmogTooltip)
-
 local HookSetItemRef = SetItemRef
 function SetItemRef(link, text, button)
 	local item, _, id = strfind(link, "item:(%d+)")
@@ -1029,7 +857,7 @@ function Tmog.GetTransmogSlot(unit, itemID, tooltip)
 	end
 end
 
--- Return true if item can be transmogged (but no necessarily by us)
+-- Return true if item can be transmogged in general
 function Tmog.Transmogable(itemID)
 	local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(itemID)
 	if itemName then
@@ -1171,7 +999,7 @@ GameTooltip:SetScript("OnShow", function()
 	if original_OnShow then
 		original_OnShow()
 	end
-	if aux_frame and aux_frame:IsVisible() then
+	if aux_frame and aux_frame:IsShown() then
 		if GetMouseFocus():GetParent() then
 			if GetMouseFocus():GetParent().row then
 				if GetMouseFocus():GetParent().row.record.item_id then
@@ -1210,7 +1038,6 @@ function TmogFrame_OnLoad()
 end
 
 local firstLoad = true
-local atlasLootHooked = false
 function TmogFrame_OnEvent()
 	if event == "PLAYER_ENTERING_WORLD" then
 		TmogFramePlayerModel:SetUnit("player")
@@ -1220,16 +1047,18 @@ function TmogFrame_OnEvent()
 			firstLoad = false
 		end
 
-		if TmogFrame:IsVisible() then
+		if TmogFrame:IsShown() then
 			TmogFrame:Hide()
 		end
 
-		if not atlasLootHooked then
-			if AtlasLootTooltip then
-				Tmog.HookTooltip(AtlasLootTooltip)
-				Tmog.HookTooltip(AtlasLootTooltip2)
+		for tooltipName, doHook in pairs(Tmog.TooltipsToHook) do
+			if doHook then
+				local tooltip = _G[tooltipName]
+				if tooltip then
+					Tmog.HookTooltip(tooltip)
+					Tmog.TooltipsToHook[tooltipName] = false
+				end
 			end
-			atlasLootHooked = true
 		end
 
 		return
@@ -1496,6 +1325,7 @@ function Tmog.Reset()
 	TmogFramePlayerModel:SetPosition(0, 0, 0)
 	TmogFramePlayerModel:Dress()
 	TmogFramePlayerModel:SetPosition(cacheZ, cacheX, cacheY)
+
 	-- Fix tabard
 	local tabardLink = GetInventoryItemLink("player", 19)
 	if tabardLink then
@@ -1503,16 +1333,13 @@ function Tmog.Reset()
 	end
 
 	for _, InventorySlotId in pairs(InventorySlots) do
-		Tmog.ActualGear[InventorySlotId] = 0
-	end
-
-	for _, InventorySlotId in pairs(InventorySlots) do
 		Tmog.CurrentGear[InventorySlotId] = 0
-	end
-
-	for _, InventorySlotId in pairs(InventorySlots) do
 		local link = GetInventoryItemLink("player", InventorySlotId)
-		Tmog.ActualGear[InventorySlotId] = Tmog.IDFromLink(link) or 0
+		if link then
+			Tmog.ActualGear[InventorySlotId] = Tmog.IDFromLink(link)
+		else
+			Tmog.ActualGear[InventorySlotId] = 0
+		end
 	end
 
 	for slot in pairs(TMOG_TRANSMOG_STATUS) do
@@ -1535,23 +1362,23 @@ function Tmog.Reset()
 end
 
 function Tmog.SelectType(typeStr)
-	if TmogFrameSharedItems:IsVisible() then
+	if TmogFrameSharedItems:IsShown() then
 		TmogFrameSharedItems:Hide()
 	end
 	UIDropDownMenu_SetText(typeStr, TmogFrameTypeDropDown)
 	Tmog.currentType = typeStr
 	Tmog.currentPage = 1
 	Tmog.flush = true
-	if Tmog.currentSlot and Tmog.currentType and Pages[Tmog.currentSlot][Tmog.currentType] then
-		SlotsTypes[Tmog.currentSlot] = typeStr
+	if Tmog.currentSlot and Tmog.currentType and PagesMemory[Tmog.currentSlot][Tmog.currentType] then
+		SlotTypesMemory[Tmog.currentSlot] = typeStr
 		if LinkedSlots[Tmog.currentSlot] then
-			for k in SlotsTypes do
-				if LinkedSlots[k] and Pages[k][typeStr] then
-					SlotsTypes[k] = typeStr
+			for k in SlotTypesMemory do
+				if LinkedSlots[k] and PagesMemory[k][typeStr] then
+					SlotTypesMemory[k] = typeStr
 				end
 			end
 		end
-		Tmog.ChangePage(Pages[Tmog.currentSlot][Tmog.currentType] - 1)
+		Tmog.ChangePage(PagesMemory[Tmog.currentSlot][Tmog.currentType] - 1)
 		return
 	end
 
@@ -1607,110 +1434,6 @@ function Tmog.IsUsableItem(id)
 	end
 	return isUsable
 end
-
-local DrawTable = {
-	[1] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		[L["Miscellaneous"]] = {},
-		["SearchResult"] = {},
-	},
-	[3] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		["SearchResult"] = {},
-	},
-	[4] = {
-		[L["Miscellaneous"]] = {},
-		["SearchResult"] = {},
-	},
-	[5] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		[L["Miscellaneous"]] = {},
-		["SearchResult"] = {},
-	},
-	[6] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		["SearchResult"] = {},
-	},
-	[7] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		["SearchResult"] = {},
-	},
-	[8] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		[L["Miscellaneous"]] = {},
-		["SearchResult"] = {},
-	},
-	[9] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		["SearchResult"] = {},
-	},
-	[10] = {
-		[L["Cloth"]] = {},
-		[L["Leather"]] = {},
-		[L["Mail"]] = {},
-		[L["Plate"]] = {},
-		["SearchResult"] = {},
-	},
-	[15] = {
-		[L["Cloth"]] = {},
-		["SearchResult"] = {},
-	},
-	[16] = {
-		[L["Daggers"]] = {},
-		[L["One-Handed Axes"]] = {},
-		[L["One-Handed Swords"]] = {},
-		[L["One-Handed Maces"]] = {},
-		[L["Fist Weapons"]] = {},
-		[L["Two-Handed Axes"]] = {},
-		[L["Two-Handed Swords"]] = {},
-		[L["Two-Handed Maces"]] = {},
-		[L["Polearms"]] = {},
-		[L["Staves"]] = {},
-		["SearchResult"] = {},
-	},
-	[17] = {
-		[L["Daggers"]] = {},
-		[L["One-Handed Axes"]] = {},
-		[L["One-Handed Swords"]] = {},
-		[L["One-Handed Maces"]] = {},
-		[L["Fist Weapons"]] = {},
-		[L["Miscellaneous"]] = {},
-		[L["Shields"]] = {},
-		["SearchResult"] = {},
-	},
-	[18] = {
-		[L["Bows"]] = {},
-		[L["Guns"]] = {},
-		[L["Crossbows"]] = {},
-		[L["Wands"]] = {},
-		["SearchResult"] = {},
-	},
-	[19] = {
-		[L["Miscellaneous"]] = {},
-		["SearchResult"] = {},
-	},
-}
 
 local LoadingFrame = CreateFrame("Frame", "TmogLoadingFrame")
 LoadingFrame.queueIDs = {}
@@ -2198,10 +1921,10 @@ function Tmog.ChangePage(dir, destination)
 	Tmog.DrawPreviews()
 
 	if Tmog.currentTab == "ITEMS" then
-		Pages[Tmog.currentSlot][Tmog.currentType] = Tmog.currentPage
+		PagesMemory[Tmog.currentSlot][Tmog.currentType] = Tmog.currentPage
 	end
 
-	if TmogFrameSharedItems:IsVisible() then
+	if TmogFrameSharedItems:IsShown() then
 		TmogFrameSharedItems:Hide()
 	end
 end
@@ -2244,7 +1967,7 @@ function TmogSlot_OnClick(InventorySlotId, rightClick)
 			end
 			TmogFramePlayerModel:TryOn(Tmog.ActualGear[InventorySlotId])
 			Tmog.CurrentGear[InventorySlotId] = Tmog.ActualGear[InventorySlotId]
-			Tmog.EnableOutfitSaveButton()
+			Tmog.ToggleOutfitButtons()
 			Tmog.UpdateItemTextures()
 			if Tmog.currentTab == "ITEMS" then
 				Tmog.RemoveSelection()
@@ -2260,7 +1983,7 @@ function TmogSlot_OnClick(InventorySlotId, rightClick)
 		Tmog.currentSlot = InventorySlotId
 		Tmog.flush = true
 		if Tmog.currentTab == "OUTFITS" then
-			if _G[this:GetName().."BorderFull"]:IsVisible() then
+			if _G[this:GetName().."BorderFull"]:IsShown() then
 				Tmog.SwitchTab("ITEMS")
 				Tmog.Search()
 				return
@@ -2272,9 +1995,9 @@ function TmogSlot_OnClick(InventorySlotId, rightClick)
 		Tmog.HidePagination()
 		UIDropDownMenu_Initialize(TmogFrameTypeDropDown, Tmog.TypeDropDown_Initialize)
 		TmogFrameSearchBox:Show()
-		Tmog.currentType = SlotsTypes[InventorySlotId]
+		Tmog.currentType = SlotTypesMemory[InventorySlotId]
 
-		if not _G[this:GetName().."BorderFull"]:IsVisible() then
+		if not _G[this:GetName().."BorderFull"]:IsShown() then
 			Tmog.HideBorders()
 			_G[this:GetName().."BorderFull"]:Show()
 			-- shirt / tabard / cloak
@@ -2326,7 +2049,7 @@ function Tmog.UpdateItemTextures()
 	end
 end
 
-local t = {}
+local SharedItems = {}
 function TmogTry(itemId, mouseButton, noSelect)
 	mouseButton = mouseButton or arg1
 	if mouseButton == "LeftButton" then
@@ -2341,7 +2064,7 @@ function TmogTry(itemId, mouseButton, noSelect)
 				end
 				TmogFramePlayerModel:TryOn(itemId)
 				Tmog.CurrentGear[Tmog.currentSlot] = itemId
-				Tmog.EnableOutfitSaveButton()
+				Tmog.ToggleOutfitButtons()
 				Tmog.UpdateItemTextures()
 				Tmog.RemoveSelection()
 				if not noSelect then
@@ -2352,7 +2075,7 @@ function TmogTry(itemId, mouseButton, noSelect)
 				PlaySound("igMainMenuOptionCheckBoxOn")
 			end
 
-			if TmogFrameSharedItems:IsVisible() then
+			if TmogFrameSharedItems:IsShown() then
 				TmogFrameSharedItems:Hide()
 			end
 
@@ -2385,15 +2108,15 @@ function TmogTry(itemId, mouseButton, noSelect)
 
 		Tmog.selectedButton = this
 
-		for i = 1, tsize(Tmog.SharedItems) do
-			Tmog.SharedItems[i]:Hide()
+		for i = 1, tsize(Tmog.SharedItemsFrames) do
+			Tmog.SharedItemsFrames[i]:Hide()
 		end
 
 		TmogFrameSharedItems:ClearAllPoints()
 		TmogFrameSharedItems:SetPoint("TOPLEFT", this, "BOTTOMLEFT", -2, 12)
 
-		for k in pairs(t) do
-			t[k] = nil
+		for k in pairs(SharedItems) do
+			SharedItems[k] = nil
 		end
 		local index = 1
 
@@ -2407,25 +2130,25 @@ function TmogTry(itemId, mouseButton, noSelect)
 				if name and quality then
 					local r, g, b = GetItemQualityColor(quality)
 					if not (Tmog.onlyUsable and not Tmog.IsUsableItem(id)) then
-						t[index] = {name = "", id = 0, color = { r = 0, g = 0, b = 0 }, tex = ""}
-						t[index].name = name
-						t[index].id = id
-						t[index].color.r = r
-						t[index].color.g = g
-						t[index].color.b = b
-						t[index].tex = tex
+						SharedItems[index] = {name = "", id = 0, color = { r = 0, g = 0, b = 0 }, tex = ""}
+						SharedItems[index].name = name
+						SharedItems[index].id = id
+						SharedItems[index].color.r = r
+						SharedItems[index].color.g = g
+						SharedItems[index].color.b = b
+						SharedItems[index].tex = tex
 						index = index + 1
 					end
 				end
 			end
 		end
 
-		if not next(t) then
+		if not next(SharedItems) then
 			TmogFrameSharedItems:Hide()
 			return
 		end
 
-		if TmogFrameSharedItems:IsVisible() then
+		if TmogFrameSharedItems:IsShown() then
 			TmogFrameSharedItems:Hide()
 		else
 			TmogFrameSharedItems:Show()
@@ -2433,21 +2156,21 @@ function TmogTry(itemId, mouseButton, noSelect)
 
 		local widestText = 0
 
-		for i = 1, tsize(t) do
+		for i = 1, tsize(SharedItems) do
 
-			if not Tmog.SharedItems[i] then
-				Tmog.SharedItems[i] = CreateFrame("Button", "TmogFrameSharedItem"..i, TmogFrameSharedItems, "TmogSharedItemTemplate")
+			if not Tmog.SharedItemsFrames[i] then
+				Tmog.SharedItemsFrames[i] = CreateFrame("Button", "TmogFrameSharedItem"..i, TmogFrameSharedItems, "TmogSharedItemTemplate")
 			end
 
-			Tmog.SharedItems[i]:Show()
-			Tmog.SharedItems[i]:SetID(t[i].id)
-			Tmog.SharedItems[i]:SetPoint("TOPLEFT", TmogFrameSharedItems, 10 , -10 - ((i - 1) * 20))
+			Tmog.SharedItemsFrames[i]:Show()
+			Tmog.SharedItemsFrames[i]:SetID(SharedItems[i].id)
+			Tmog.SharedItemsFrames[i]:SetPoint("TOPLEFT", TmogFrameSharedItems, 10 , -10 - ((i - 1) * 20))
 
 			TmogFrameSharedItems:SetHeight(40 + (i - 1) * 20)
 
-			_G["TmogFrameSharedItem"..i.."IconTexture"]:SetTexture(t[i].tex)
-			_G["TmogFrameSharedItem"..i.."Name"]:SetText(t[i].name)
-			_G["TmogFrameSharedItem"..i.."Name"]:SetTextColor(t[i].color.r, t[i].color.g, t[i].color.b)
+			_G["TmogFrameSharedItem"..i.."IconTexture"]:SetTexture(SharedItems[i].tex)
+			_G["TmogFrameSharedItem"..i.."Name"]:SetText(SharedItems[i].name)
+			_G["TmogFrameSharedItem"..i.."Name"]:SetTextColor(SharedItems[i].color.r, SharedItems[i].color.g, SharedItems[i].color.b)
 
 			local width = _G["TmogFrameSharedItem"..i.."Name"]:GetStringWidth()
 
@@ -2455,7 +2178,7 @@ function TmogTry(itemId, mouseButton, noSelect)
 				widestText = width
 			end
 
-			Tmog.AddSharedItemTooltip(Tmog.SharedItems[i])
+			Tmog.AddSharedItemTooltip(Tmog.SharedItemsFrames[i])
 		end
 
 		TmogFrameSharedItems:SetWidth(45 + widestText)
@@ -2507,7 +2230,7 @@ function Tmog.LinkItem(itemId)
 
 	if WIM_EditBoxInFocus then
 		WIM_EditBoxInFocus:Insert(color.."|Hitem:"..itemId..":0:0:0|h["..itemName.."]|h|r")
-	elseif ChatFrameEditBox:IsVisible() then
+	elseif ChatFrameEditBox:IsShown() then
 		ChatFrameEditBox:Insert(color.."|Hitem:"..itemId..":0:0:0|h["..itemName.."]|h|r")
 	end
 end
@@ -2524,7 +2247,7 @@ function Tmog.LinkOutfit(outfit)
 
 	if WIM_EditBoxInFocus then
 		WIM_EditBoxInFocus:Insert(code)
-	elseif ChatFrameEditBox:IsVisible() then
+	elseif ChatFrameEditBox:IsShown() then
 		ChatFrameEditBox:Insert(code)
 	end
 end
@@ -2551,7 +2274,7 @@ function Tmog.Undress()
 	end
 
 	Tmog.UpdateItemTextures()
-	Tmog.EnableOutfitSaveButton()
+	Tmog.ToggleOutfitButtons()
 
 	if Tmog.currentTab == "ITEMS" then
 		Tmog.RemoveSelection()
@@ -2570,7 +2293,7 @@ function Tmog.UndressSlot(InventorySlotId)
 		end
 	end
 	Tmog.CurrentGear[InventorySlotId] = 0
-	Tmog.EnableOutfitSaveButton()
+	Tmog.ToggleOutfitButtons()
 	Tmog.UpdateItemTextures()
 	if Tmog.currentTab == "ITEMS" then
 		Tmog.RemoveSelection()
@@ -2629,7 +2352,7 @@ function Tmog.AddOutfitTooltip(frame, outfit)
 			end
 		end
 		if this:GetID() == 0 then
-			if not _G[this:GetName().."PlusPushed"]:IsVisible() then
+			if not _G[this:GetName().."PlusPushed"]:IsShown() then
 				_G[this:GetName().."PlusHighlight"]:Show()
 			end
 			TmogTooltip:AddLine(L["Create an outfit from currently selected items."], 1, 0.82, 0, 1, true)
@@ -2772,11 +2495,23 @@ function Tmog.LoadOutfit(outfit)
 	end
 end
 
-function Tmog.EnableOutfitSaveButton()
+function Tmog.ToggleOutfitButtons()
 	if Tmog.currentOutfit ~= nil then
-		TmogFrameSaveOutfit:Enable()
+		TmogFrameSaveOutfit:Disable()
+		for slot, itemID in pairs(Tmog.CurrentGear) do
+			if itemID ~= 0 and not TMOG_PLAYER_OUTFITS[Tmog.currentOutfit][slot] then
+				TmogFrameSaveOutfit:Enable()
+				break
+			elseif TMOG_PLAYER_OUTFITS[Tmog.currentOutfit][slot] and TMOG_PLAYER_OUTFITS[Tmog.currentOutfit][slot] ~= itemID then
+				TmogFrameSaveOutfit:Enable()
+			end
+		end
 		TmogFrameDeleteOutfit:Enable()
 		TmogFrameShareOutfit:Enable()
+	else
+		TmogFrameSaveOutfit:Disable()
+		TmogFrameDeleteOutfit:Disable()
+		TmogFrameShareOutfit:Disable()
 	end
 end
 
@@ -2969,9 +2704,9 @@ StaticPopupDialogs["TMOG_IMPORT_OUTFIT"] = {
 
 function Tmog.ResetPages()
 	Tmog.currentPage = 1
-	for k in pairs(Pages) do
-		for i in pairs(Pages[k]) do
-			Pages[k][i] = 1
+	for k in pairs(PagesMemory) do
+		for i in pairs(PagesMemory[k]) do
+			PagesMemory[k][i] = 1
 		end
 	end
 end
@@ -3043,7 +2778,7 @@ function Tmog.IgnoreLevelToggle()
 end
 
 function TmogFrame_Toggle()
-	if TmogFrame:IsVisible() then
+	if TmogFrame:IsShown() then
 		HideUIPanel(TmogFrame)
 	else
 		ShowUIPanel(TmogFrame)
@@ -3051,7 +2786,7 @@ function TmogFrame_Toggle()
 end
 
 function Tmog.Search()
-	if TmogFrameSharedItems:IsVisible() then
+	if TmogFrameSharedItems:IsShown() then
 		TmogFrameSharedItems:Hide()
 	end
 
@@ -3209,30 +2944,14 @@ function Tmog.OutfitsDropDown_Initialize()
 end
 
 function Tmog.TypeDropDown_Initialize()
-	local typesList
+	local types = Tmog.GetTypesForSlot(Tmog.currentSlot)
 
-	if Tmog.currentSlot == 1 or Tmog.currentSlot == 5 or Tmog.currentSlot == 8 then
-		typesList = Tmog.dropdownTypes.misc
-	elseif Tmog.currentSlot == 15 then
-		typesList = Tmog.dropdownTypes.back
-	elseif Tmog.currentSlot == 4 or Tmog.currentSlot == 19 then
-		typesList = Tmog.dropdownTypes.shirt
-	elseif Tmog.currentSlot == 10 or Tmog.currentSlot == 6 or Tmog.currentSlot == 7 or Tmog.currentSlot == 3 or Tmog.currentSlot == 9 then
-		typesList = Tmog.dropdownTypes.default
-	elseif Tmog.currentSlot == 16 then
-		typesList = Tmog.dropdownTypes.mh
-	elseif Tmog.currentSlot == 17 then
-		typesList = Tmog.dropdownTypes.oh
-	elseif Tmog.currentSlot == 18 then
-		typesList = Tmog.dropdownTypes.ranged
-	end
-
-	if not typesList then
+	if not types then
 		return
 	end
 
 	local info = UIDropDownMenu_CreateInfo()
-	for _, v in pairs(typesList) do
+	for _, v in pairs(types) do
 		info.text = v
 		info.arg1 = v
 		info.checked = Tmog.currentType == v

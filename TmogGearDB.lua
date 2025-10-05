@@ -1664,6 +1664,7 @@ TmogGearDB = {
 	},
 	[5] = {
 		[L["Cloth"]] = {
+			[2190] = "Snakeswarm Robe",
 			[734] = "Gardenia Spring Blouse",
 			[58056] = "Robes of Creeping Tendrils",
 			[41578] = "Flamekeeper's Robe",
@@ -2283,6 +2284,7 @@ TmogGearDB = {
 			[3072] = "Smoldering Robe",
 		},
 		[L["Leather"]] = {
+			[2189] = "Serpent Scale Mantle",
 			[58273] = "Voodoo Jerkin",
 			[41946] = "Farstrider Chestpiece",
 			[55079] = "Ravenkeeper's Frenzied Embrace",

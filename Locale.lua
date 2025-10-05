@@ -36,6 +36,7 @@ Tmog.L = {
 	["Not collected"] = true,
 	["Unique appearance"] = true,
 	["Non-unique appearance"] = true,
+	["Unknown appearance"] = true,
 	["Shares appearance with"] = true,
 	["Outfits"] = true,
 	["New outfit"] = true,
@@ -87,6 +88,7 @@ if GetLocale() == "ruRU" then
 	Tmog.L["Not collected"] = "Не в коллекции"
 	Tmog.L["Unique appearance"] = "Уникальный внешний вид"
 	Tmog.L["Non-unique appearance"] = "Не уникальный внешний вид"
+	Tmog.L["Unknown appearance"] = "Неизвестный внешний вид"
 	Tmog.L["Shares appearance with"] = "Общий внешний вид с"
 	Tmog.L["Outfits"] = "Наряды"
 	Tmog.L["New outfit"] = "Новый наряд"

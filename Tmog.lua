@@ -64,6 +64,7 @@ Tmog.TooltipsToHook = {
 	["TmogTooltip"] = true,
 	["AtlasLootTooltip"] = true,
 	["AtlasLootTooltip2"] = true,
+	["ItemRefTooltip"] = true,
 }
 
 -- these slots change type together
@@ -560,10 +561,7 @@ function Tmog.IDFromLink(link)
 		return nil
 	end
 	local _, _, id = strfind(link, "item:(%d+)")
-	if id then
-		return tonumber(id)
-	end
-	return nil
+	return tonumber(id)
 end
 
 local IDcache = {}
@@ -629,67 +627,64 @@ function Tmog.HookTooltip(tooltip)
 		tooltipMoney = 0
 	end)
 
+	local IDFromLink = Tmog.IDFromLink
+	local GetItemIDByName = Tmog.GetItemIDByName
+	local ExtendTooltip = Tmog.ExtendTooltip
+
 	function tooltip.SetLootRollItem(self, id)
 		insideHook = true
 		HookSetLootRollItem(self, id)
 		insideHook = false
-		local _, _, itemID = strfind(GetLootRollItemLink(id) or "", "item:(%d+)")
-		self.itemID = itemID
-		Tmog.ExtendTooltip(self)
+		self.itemID = IDFromLink(GetLootRollItemLink(id))
+		ExtendTooltip(self)
 	end
 
 	function tooltip.SetLootItem(self, slot)
 		insideHook = true
 		HookSetLootItem(self, slot)
 		insideHook = false
-		local _, _, itemID = strfind(GetLootSlotLink(slot) or "", "item:(%d+)")
-		self.itemID = itemID
-		Tmog.ExtendTooltip(self)
+		self.itemID = IDFromLink(GetLootSlotLink(slot))
+		ExtendTooltip(self)
 	end
 
 	function tooltip.SetMerchantItem(self, merchantIndex)
 		insideHook = true
 		HookSetMerchantItem(self, merchantIndex)
 		insideHook = false
-		local _, _, itemID = strfind(GetMerchantItemLink(merchantIndex) or "", "item:(%d+)")
-		self.itemID = itemID
-		Tmog.ExtendTooltip(self)
+		self.itemID = IDFromLink(GetMerchantItemLink(merchantIndex))
+		ExtendTooltip(self)
 	end
 
 	function tooltip.SetQuestLogItem(self, itemType, index)
 		insideHook = true
 		HookSetQuestLogItem(self, itemType, index)
 		insideHook = false
-		local _, _, itemID = strfind(GetQuestLogItemLink(itemType, index) or "", "item:(%d+)")
-		self.itemID = itemID
-		Tmog.ExtendTooltip(self)
+		self.itemID = IDFromLink(GetQuestLogItemLink(itemType, index))
+		ExtendTooltip(self)
 	end
 
 	function tooltip.SetQuestItem(self, itemType, index)
 		insideHook = true
 		HookSetQuestItem(self, itemType, index)
 		insideHook = false
-		local _, _, itemID = strfind(GetQuestItemLink(itemType, index) or "", "item:(%d+)")
-		self.itemID = itemID
-		Tmog.ExtendTooltip(self)
+		self.itemID = IDFromLink(GetQuestItemLink(itemType, index))
+		ExtendTooltip(self)
 	end
 
 	function tooltip.SetHyperlink(self, arg1)
 		insideHook = true
 		HookSetHyperlink(self, arg1)
 		insideHook = false
-		local _, _, id = strfind(arg1 or "", "item:(%d+)")
-		self.itemID = id
-		Tmog.ExtendTooltip(self)
+		self.itemID = IDFromLink(arg1)
+		ExtendTooltip(self)
 	end
 
 	function tooltip.SetBagItem(self, container, slot)
 		insideHook = true
 		local hasCooldown, repairCost = HookSetBagItem(self, container, slot)
 		insideHook = false
-		local _, _, id = strfind(GetContainerItemLink(container, slot) or "", "item:(%d+)")
-		self.itemID = id
-		Tmog.ExtendTooltip(self)
+		self.itemID = IDFromLink(GetContainerItemLink(container, slot))
+		ExtendTooltip(self)
 		return hasCooldown, repairCost
 	end
 
@@ -697,18 +692,16 @@ function Tmog.HookTooltip(tooltip)
 		insideHook = true
 		HookSetInboxItem(self, mailID, attachmentIndex)
 		insideHook = false
-		local itemName = GetInboxItem(mailID)
-		self.itemID = Tmog.GetItemIDByName(itemName)
-		Tmog.ExtendTooltip(self)
+		self.itemID = GetItemIDByName(GetInboxItem(mailID))
+		ExtendTooltip(self)
 	end
 
 	function tooltip.SetInventoryItem(self, unit, slot)
 		insideHook = true
 		local hasItem, hasCooldown, repairCost = HookSetInventoryItem(self, unit, slot)
 		insideHook = false
-		local _, _, id = strfind(GetInventoryItemLink(unit, slot) or "", "item:(%d+)")
-		self.itemID = id
-		Tmog.ExtendTooltip(self)
+		self.itemID = IDFromLink(GetInventoryItemLink(unit, slot))
+		ExtendTooltip(self)
 		return hasItem, hasCooldown, repairCost
 	end
 
@@ -716,18 +709,16 @@ function Tmog.HookTooltip(tooltip)
 		insideHook = true
 		HookSetCraftItem(self, skill, slot)
 		insideHook = false
-		local _, _, id = strfind(GetCraftReagentItemLink(skill, slot) or "", "item:(%d+)")
-		self.itemID = id
-		Tmog.ExtendTooltip(self)
+		self.itemID = IDFromLink(GetCraftReagentItemLink(skill, slot))
+		ExtendTooltip(self)
 	end
 
 	function tooltip.SetCraftSpell(self, slot)
 		insideHook = true
 		HookSetCraftSpell(self, slot)
 		insideHook = false
-		local _, _, id = strfind(GetCraftItemLink(slot) or "", "item:(%d+)")
-		self.itemID = id
-		Tmog.ExtendTooltip(self)
+		self.itemID = IDFromLink(GetCraftItemLink(slot))
+		ExtendTooltip(self)
 	end
 
 	function tooltip.SetTradeSkillItem(self, skillIndex, reagentIndex)
@@ -735,48 +726,43 @@ function Tmog.HookTooltip(tooltip)
 		HookSetTradeSkillItem(self, skillIndex, reagentIndex)
 		insideHook = false
 		if reagentIndex then
-			local _, _, id = strfind(GetTradeSkillReagentItemLink(skillIndex, reagentIndex) or "", "item:(%d+)")
-			self.itemID = id
+			self.itemID = IDFromLink(GetTradeSkillReagentItemLink(skillIndex, reagentIndex))
 		else
-			local _, _, id = strfind(GetTradeSkillItemLink(skillIndex) or "", "item:(%d+)")
-			self.itemID = id
+			self.itemID = IDFromLink(GetTradeSkillItemLink(skillIndex))
 		end
-		Tmog.ExtendTooltip(self)
+		ExtendTooltip(self)
 	end
 
 	function tooltip.SetAuctionItem(self, atype, index)
 		insideHook = true
 		HookSetAuctionItem(self, atype, index)
 		insideHook = false
-		local _, _, id = strfind(GetAuctionItemLink(atype, index) or "", "item:(%d+)")
-		self.itemID = id
-		Tmog.ExtendTooltip(self)
+		self.itemID = IDFromLink(GetAuctionItemLink(atype, index))
+		ExtendTooltip(self)
 	end
 
 	function tooltip.SetAuctionSellItem(self)
 		insideHook = true
 		HookSetAuctionSellItem(self)
 		insideHook = false
-		self.itemID = Tmog.GetItemIDByName(GetAuctionSellItemInfo())
-		Tmog.ExtendTooltip(self)
+		self.itemID = GetItemIDByName(GetAuctionSellItemInfo())
+		ExtendTooltip(self)
 	end
 
 	function tooltip.SetTradePlayerItem(self, index)
 		insideHook = true
 		HookSetTradePlayerItem(self, index)
 		insideHook = false
-		local _, _, id = strfind(GetTradePlayerItemLink(index) or "", "item:(%d+)")
-		self.itemID = id
-		Tmog.ExtendTooltip(self)
+		self.itemID = IDFromLink(GetTradePlayerItemLink(index))
+		ExtendTooltip(self)
 	end
 
 	function tooltip.SetTradeTargetItem(self, index)
 		insideHook = true
 		HookSetTradeTargetItem(self, index)
 		insideHook = false
-		local _, _, id = strfind(GetTradeTargetItemLink(index) or "", "item:(%d+)")
-		self.itemID = id
-		Tmog.ExtendTooltip(self)
+		self.itemID = IDFromLink(GetTradeTargetItemLink(index))
+		ExtendTooltip(self)
 	end
 end
 
@@ -786,25 +772,12 @@ TmogTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
 local TmogScanTooltip = CreateFrame("GameTooltip", "TmogScanTooltip", nil, "GameTooltipTemplate")
 TmogScanTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
 
-local HookSetItemRef = SetItemRef
-function SetItemRef(link, text, button)
-	local item, _, id = strfind(link, "item:(%d+)")
-	ItemRefTooltip.itemID = id
-	HookSetItemRef(link, text, button)
-	if not IsShiftKeyDown() and not IsControlKeyDown() and item then
-		Tmog.ExtendTooltip(ItemRefTooltip)
-	end
-end
-
-local original_OnHide = ItemRefTooltip:GetScript("OnHide")
-ItemRefTooltip:SetScript("OnHide", function()
-	original_OnHide()
-	ItemRefTooltip.itemID = nil
-end)
-
 local originalTooltip = {}
 -- return slot if this is gear and unit can equip it
-function Tmog.GetTransmogSlot(unit, itemID, tooltip)
+function Tmog.GetTransmogSlot(itemID, unit, tooltip)
+	itemID = tonumber(itemID)
+	if not itemID then return nil end
+	unit = unit or "player"
 	local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(itemID)
 	if itemEquipLoc and itemEquipLoc ~= "" then
 		local class, classEn = UnitClass(unit)
@@ -858,18 +831,44 @@ function Tmog.GetTransmogSlot(unit, itemID, tooltip)
 end
 
 -- Return true if item can be transmogged in general
-function Tmog.Transmogable(itemID)
-	local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(itemID)
-	if itemName then
+do
+	local cache = {}
+	function Tmog.Transmogable(itemID)
+		itemID = tonumber(itemID)
+		if not itemID then return nil end
+		if cache[itemID] then return cache[itemID] == 1 end
+		local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(itemID)
+		if not itemName then return nil end
 		if itemEquipLoc ~= "" and InventoryTypeToSlot[itemEquipLoc] then
 			if (itemType == L["Weapon"] and itemSubType == L["Miscellaneous"]) or (itemSubType == L["Fishing Pole"]) then
+				cache[itemID] = 0
 				return false
 			else
+				cache[itemID] = 1
 				return true
 			end
 		end
+		return false
 	end
-	return false
+end
+
+do
+	local cache = {}
+	function Tmog.IsKnownAppearance(itemID)
+		itemID = tonumber(itemID)
+		if not itemID then return nil end
+		if cache[itemID] then return cache[itemID] == 1 end
+		for k, v in pairs(TmogGearDB) do
+			for k2, v2 in pairs(v) do
+				if v2[itemID] then
+					cache[itemID] = 1
+					return true
+				end
+			end
+		end
+		cache[itemID] = 0
+		return false
+	end
 end
 
 local WrappingLines = {
@@ -964,7 +963,7 @@ function Tmog.ExtendTooltip(tooltip)
 	if itemID then
 		local itemName = GetItemInfo(itemID)
 		if itemName ~= lastItemName then
-			local slot = Tmog.GetTransmogSlot("player", itemID, tooltip)
+			local slot = Tmog.GetTransmogSlot(itemID, "player", tooltip)
 			lastItemName = itemName
 			lastSlot = slot
 		end
@@ -974,7 +973,11 @@ function Tmog.ExtendTooltip(tooltip)
 		if tooltip ~= TmogTooltip and Tmog.Transmogable(itemID) then
 			local string
 			if not DisplayIdDB[itemID] then
-				string = NORMAL..L["Unique appearance"].."|r"
+				if not Tmog.IsKnownAppearance(itemID) then
+					string = NORMAL..L["Unknown appearance"].."|r"
+				else
+					string = NORMAL..L["Unique appearance"].."|r"
+				end
 			else
 				string = NORMAL..L["Non-unique appearance"].."|r"
 			end
@@ -1000,14 +1003,16 @@ GameTooltip:SetScript("OnShow", function()
 		original_OnShow()
 	end
 	if aux_frame and aux_frame:IsShown() then
-		if GetMouseFocus():GetParent() then
-			if GetMouseFocus():GetParent().row then
-				if GetMouseFocus():GetParent().row.record.item_id then
-					GameTooltip.itemID = GetMouseFocus():GetParent().row.record.item_id
-					Tmog.ExtendTooltip(GameTooltip)
-				end
-			end
-		end
+		local frame = GetMouseFocus()
+		
+		if not frame then return end
+
+		local parent = frame:GetParent()
+		
+		if not (parent and parent.row and parent.row.record) then return end
+
+		GameTooltip.itemID = tonumber(parent.row.record.item_id)
+		Tmog.ExtendTooltip(GameTooltip)
 	end
 end)
 
@@ -1117,26 +1122,23 @@ function TmogFrame_OnEvent()
 			local data = strsplit(arg2, ":")
 			local InventorySlotId = tonumber(data[2])
 
-			for i, itemID in pairs(data) do
-				if i > 3 then
-					itemID = tonumber(itemID)
+			for i = 4, getn(data) do
+				local itemID = tonumber(data[i])
+				if itemID then
+					local itemName = GetItemInfo(itemID)
 
-					if itemID then
-						local itemName = GetItemInfo(itemID)
+					if itemName then
+						if not TMOG_CACHE[InventorySlotId][itemID] then
+							AddToSet(TMOG_CACHE[InventorySlotId], itemID, itemName)
+						end
 
-						if itemName then
-							if not TMOG_CACHE[InventorySlotId][itemID] then
-								AddToSet(TMOG_CACHE[InventorySlotId], itemID, itemName)
-							end
-
-							-- check if it shares appearance with other items and add those if it does
-							if DisplayIdDB[itemID] then
-								for _, id in pairs(DisplayIdDB[itemID]) do
-									Tmog.CacheItem(id)
-									local name = GetItemInfo(id)
-									if not TMOG_CACHE[InventorySlotId][id] then
-										AddToSet(TMOG_CACHE[InventorySlotId], id, name)
-									end
+						-- check if it shares appearance with other items and add those if it does
+						if DisplayIdDB[itemID] then
+							for _, id in pairs(DisplayIdDB[itemID]) do
+								Tmog.CacheItem(id)
+								local name = GetItemInfo(id)
+								if not TMOG_CACHE[InventorySlotId][id] then
+									AddToSet(TMOG_CACHE[InventorySlotId], id, name)
 								end
 							end
 						end

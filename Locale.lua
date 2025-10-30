@@ -81,6 +81,7 @@ Tmog.L = {
 	["Copy this code:"] = true,
 	["Left-click to toggle dressing room\nHold Left-click and drag to move this button"] = true,
 	["Loading"] = true,
+	["Outfits: %s"] = true,
 }
 
 if GetLocale() == "ruRU" then

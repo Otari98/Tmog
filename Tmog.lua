@@ -871,6 +871,33 @@ do
 	end
 end
 
+do
+	local outfits = {}
+	function Tmog.GetOutfitsWithItem(itemID)
+		for i = getn(outfits), 1, -1 do
+			tremove(outfits, i)
+		end
+		itemID = tonumber(itemID)
+		if not itemID then
+			return outfits, 0
+		end
+		for k, v in pairs(TMOG_PLAYER_OUTFITS) do
+			for k2, v2 in pairs(v) do
+				if itemID == v2 then
+					tinsert(outfits, k)
+					break
+				elseif DisplayIdDB[v2] then
+					if SetContains(DisplayIdDB[v2], nil, itemID) then
+						tinsert(outfits, k)
+						break
+					end
+				end
+			end
+		end
+		return outfits, getn(outfits)
+	end
+end
+
 local WrappingLines = {
 	["^Set:"] = gsub("^"..ITEM_SET_BONUS, "%%s", ""),
 	["^%(%d%) Set:"] = gsub(gsub(ITEM_SET_BONUS_GRAY, "%(%%d%)", "^%%(%%d%%)"), "%%s", ""),
@@ -981,9 +1008,13 @@ function Tmog.ExtendTooltip(tooltip)
 			else
 				string = NORMAL..L["Non-unique appearance"].."|r"
 			end
+			local outfits, numTotal = Tmog.GetOutfitsWithItem(itemID)
+			if numTotal > 0 then
+				string = string..GRAY_FONT_COLOR_CODE.." ("..format(L["Outfits: %s"], concat(outfits, ", "))..")"..FONT_COLOR_CODE_CLOSE
+			end
 			local numLines = tooltip:NumLines()
 			if numLines < 30 then
-				tooltip:AddLine(string)
+				tooltip:AddLine(string, 1, 0.82, 0, numTotal > 3)
 			else
 				local lastLine = _G[tooltip:GetName().."TextLeft"..numLines]
 				lastLine:SetText(lastLine:GetText().."\n"..string)
@@ -1641,8 +1672,6 @@ function Tmog.DrawPreviews(noDraw)
 					border:SetAlpha(0.1)
 				end
 
-				Tmog.AddItemTooltip(button)
-
 				-- this is for updating tooltip while scrolling with mousewheel
 				if GetMouseFocus() == button then
 					button:Hide()
@@ -1760,6 +1789,7 @@ function Tmog.DrawPreviews(noDraw)
 			if not Tmog.PreviewButtons[1] then
 				Tmog.PreviewButtons[1] = CreateFrame("Frame", "TmogFramePreview1", TmogFrame, "TmogFramePreviewTemplate")
 				Tmog.PreviewButtons[1]:SetPoint("TOPLEFT", TmogFrame, "TOPLEFT", 263 , -105)
+				TmogFramePreview1ItemModel:SetLight(unpack(Tmog.previewNormalLight))
 			end
 
 			frame = Tmog.PreviewButtons[1]
@@ -1775,7 +1805,6 @@ function Tmog.DrawPreviews(noDraw)
 			TmogFramePreview1ButtonPlus:Show()
 			TmogFramePreview1ButtonPlusPushed:Hide()
 			TmogFramePreview1ItemModel:SetAlpha(0)
-			Tmog.AddOutfitTooltip(button, frame.name)
 			TmogFramePreview1ButtonBorder:SetAlpha(0.4)
 			TmogFramePreview1ButtonBorder:SetVertexColor(1, 0.82, 0)
 			col = 1
@@ -1808,8 +1837,6 @@ function Tmog.DrawPreviews(noDraw)
 				else
 					button:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_normal")
 				end
-
-				Tmog.AddOutfitTooltip(button, name)
 
 				local model = _G["TmogFramePreview" .. outfitIndex .. "ItemModel"]
 				model:SetPosition(0, 0, 0)
@@ -2084,7 +2111,7 @@ function TmogTry(itemId, mouseButton, noSelect)
 		elseif Tmog.currentTab == "OUTFITS" then
 
 			if this:GetID() == 0 then
-				Tmog.NewOutfitPopup()
+				StaticPopup_Show("TMOG_NEW_OUTFIT")
 				return
 			end
 
@@ -2179,8 +2206,6 @@ function TmogTry(itemId, mouseButton, noSelect)
 			if width > widestText then
 				widestText = width
 			end
-
-			Tmog.AddSharedItemTooltip(Tmog.SharedItemsFrames[i])
 		end
 
 		TmogFrameSharedItems:SetWidth(45 + widestText)
@@ -2189,36 +2214,34 @@ function TmogTry(itemId, mouseButton, noSelect)
 	DropDownList1:Hide()
 end
 
-function Tmog.AddSharedItemTooltip(frame)
-	local buttonText = _G[frame:GetName().."Name"]
+function TmogSharedItem_OnEnter()
+	local buttonText = _G[this:GetName().."Name"]
 	local originalR, originalG, originalB = buttonText:GetTextColor()
+	this.r, this.g, this.b = originalR, originalG, originalB
+	TmogTooltip:SetOwner(this, "ANCHOR_LEFT", -6, -5)
+	buttonText:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
 
-	frame:SetScript("OnEnter", function()
-		TmogTooltip:SetOwner(this, "ANCHOR_LEFT", -(this:GetWidth() / 4) + 30, -(this:GetHeight() / 4))
-		buttonText:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
+	local itemID = this:GetID()
 
-		local itemID = this:GetID()
+	Tmog.CacheItem(itemID)
+	TmogTooltip.itemID = itemID
+	TmogTooltip:SetHyperlink("item:"..tostring(itemID))
+	local numLines = TmogTooltip:NumLines()
 
-		Tmog.CacheItem(itemID)
-		TmogTooltip.itemID = itemID
-		TmogTooltip:SetHyperlink("item:"..tostring(itemID))
-		local numLines = TmogTooltip:NumLines()
-
-		if numLines and numLines > 0 then
-			local lastLine = _G["TmogTooltipTextLeft"..numLines]
-			if lastLine:GetText() then
-				lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL.."ItemID: "..itemID)
-			end
+	if numLines and numLines > 0 then
+		local lastLine = _G["TmogTooltipTextLeft"..numLines]
+		if lastLine:GetText() then
+			lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL.."ItemID: "..itemID)
 		end
+	end
 
-		TmogTooltip:Show()
-	end)
+	TmogTooltip:Show()
+end
 
-	frame:SetScript("OnLeave", function()
-		buttonText:SetTextColor(originalR, originalG, originalB)
-		TmogTooltip:Hide()
-		TmogTooltip.itemID = nil
-	end)
+function TmogSharedItem_OnLeave()
+	_G[this:GetName().."Name"]:SetTextColor(this.r, this.g, this.b)
+	TmogTooltip:Hide()
+	TmogTooltip.itemID = nil
 end
 
 function Tmog.LinkItem(itemId)
@@ -2308,14 +2331,75 @@ function Tmog.HideBorders()
 	end
 end
 
-function Tmog.AddOutfitTooltip(frame, outfit)
-	frame:SetScript("OnEnter", function()
+function TmogFramePreview_OnEnter()
+	_G[this:GetParent():GetName().."ItemModel"]:SetLight(unpack(Tmog.previewHighlight))
 
-		TmogTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 4) + 15, -(this:GetHeight() / 4) + 20)
+	if Tmog.currentTab == "ITEMS" then
+		local itemID = this:GetID()
+		Tmog.CacheItem(itemID)
+		TmogTooltip.itemID = itemID
+		TmogTooltip:SetOwner(this, "ANCHOR_RIGHT", -5, -8)
+		TmogTooltip:SetHyperlink("item:"..itemID)
 
-		if outfit then
-			TmogTooltip:AddDoubleLine(outfit, "", 1, 1, 1, 1, 1, 1)
+		local numLines = TmogTooltip:NumLines() or 0
+		if numLines == 0 then
+			return
 		end
+
+		local lastLine = _G["TmogTooltipTextLeft"..numLines]
+		if not (lastLine and lastLine:GetText()) then
+			return
+		end
+
+		lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL.."ItemID: "..itemID)
+		local name = GetItemInfo(itemID)
+		if not (name and DisplayIdDB[itemID]) then
+			TmogTooltip:Show()
+			return
+		end
+		if not Tmog.onlyUsable then
+			lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL..L["Shares appearance with"]..":")
+			for _, id in pairs(DisplayIdDB[itemID]) do
+				Tmog.CacheItem(id)
+				local similarItem, _, quality = GetItemInfo(id)
+				if similarItem then
+					local _, _, _, color = GetItemQualityColor(quality or 1)
+					lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
+				end
+			end
+		else
+			local proceed = false
+			for _, id in pairs(DisplayIdDB[itemID]) do
+				Tmog.CacheItem(itemID)
+				if Tmog.IsUsableItem(id) then
+					proceed = true
+					break
+				end
+			end
+			if proceed then
+				lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL..L["Shares appearance with"]..":")
+				for _, id in pairs(DisplayIdDB[itemID]) do
+					Tmog.CacheItem(id)
+					local similarItem, _, quality = GetItemInfo(id)
+					if similarItem then
+						if Tmog.IsUsableItem(id) then
+							local _, _, _, color = GetItemQualityColor(quality or 1)
+							lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
+						end
+					end
+				end
+			end
+		end
+		TmogTooltip:Show()
+
+	elseif Tmog.currentTab == "OUTFITS" then
+		local outfit = this:GetParent().name
+		if not outfit then
+			return
+		end
+		TmogTooltip:SetOwner(this, "ANCHOR_RIGHT", -5, -8)
+		TmogTooltip:AddDoubleLine(outfit, "", 1, 1, 1, 1, 1, 1)
+
 		local numItemsInOutfit = 0
 		local numCollected = 0
 
@@ -2364,79 +2448,14 @@ function Tmog.AddOutfitTooltip(frame, outfit)
 			TmogTooltipTextRight1:Show()
 		end
 		TmogTooltip:Show()
-	end)
-
-	frame:SetScript("OnLeave", function()
-		_G[this:GetParent():GetName().."ItemModel"]:SetLight(unpack(Tmog.previewNormalLight))
-		TmogTooltip:Hide()
-		_G[this:GetName().."PlusHighlight"]:Hide()
-	end)
+	end
 end
 
-function Tmog.AddItemTooltip(frame)
-	frame:SetScript("OnEnter", function()
-		TmogTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 4) + 15, -(this:GetHeight() / 4) + 20)
-		local itemID = this:GetID()
-		Tmog.CacheItem(itemID)
-		TmogTooltip.itemID = itemID
-		TmogTooltip:SetHyperlink("item:"..itemID)
-		local numLines = TmogTooltip:NumLines()
-
-		if numLines and numLines > 0 then
-			local lastLine = _G["TmogTooltipTextLeft"..numLines]
-
-			if lastLine:GetText() then
-				lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL.."ItemID: "..itemID)
-				local name = GetItemInfo(itemID)
-
-				if name and DisplayIdDB[itemID] then
-					if not Tmog.onlyUsable then
-						lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL..L["Shares appearance with"]..":")
-						for _, id in pairs(DisplayIdDB[itemID]) do
-							Tmog.CacheItem(id)
-							local similarItem, _, quality = GetItemInfo(id)
-							if similarItem then
-								local _, _, _, color = GetItemQualityColor(quality or 1)
-								lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
-							end
-						end
-					else
-						local proceed = false
-						for _, id in pairs(DisplayIdDB[itemID]) do
-							Tmog.CacheItem(itemID)
-							if Tmog.IsUsableItem(id) then
-								proceed = true
-								break
-							end
-						end
-						if proceed then
-							lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL..L["Shares appearance with"]..":")
-							for _, id in pairs(DisplayIdDB[itemID]) do
-								Tmog.CacheItem(id)
-								local similarItem, _, quality = GetItemInfo(id)
-								if similarItem then
-									if not Tmog.IsUsableItem(id) then
-										-- continue
-									else
-										local _, _, _, color = GetItemQualityColor(quality or 1)
-										lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
-									end
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-		_G[this:GetParent():GetName().."ItemModel"]:SetLight(unpack(Tmog.previewHighlight))
-		TmogTooltip:Show()
-	end)
-
-	frame:SetScript("OnLeave", function()
-		TmogTooltip:Hide()
-		TmogTooltip.itemID = nil
-		_G[this:GetParent():GetName().."ItemModel"]:SetLight(unpack(Tmog.previewNormalLight))
-	end)
+function TmogFramePreview_OnLeave()
+	_G[this:GetParent():GetName().."ItemModel"]:SetLight(unpack(Tmog.previewNormalLight))
+	_G[this:GetName().."PlusHighlight"]:Hide()
+	TmogTooltip:Hide()
+	TmogTooltip.itemID = nil
 end
 
 local hidden = false
@@ -2695,7 +2714,7 @@ StaticPopupDialogs["TMOG_IMPORT_OUTFIT"] = {
 		end
 		Tmog.ImportOutfit(outfit)
 		this:GetParent():Hide()
-		Tmog.NewOutfitPopup()
+		StaticPopup_Show("TMOG_NEW_OUTFIT")
 		TmogFrameShareOutfit:Disable()
 	end,
 
@@ -2893,9 +2912,9 @@ function Tmog.OutfitsDropDown_Initialize()
 	if tsize(TMOG_PLAYER_OUTFITS) < 30 then
 		info.text = GREEN.."+ "..L["New outfit"]
 		info.value = 1
-		info.arg1 = 1
 		info.checked = false
-		info.func = Tmog.NewOutfitPopup
+		info.func = StaticPopup_Show
+		info.arg1 = "TMOG_NEW_OUTFIT"
 		info.tooltipTitle = L["New outfit"]
 		info.tooltipText = L["Create an outfit from currently selected items."]
 		UIDropDownMenu_AddButton(info)
@@ -2904,9 +2923,9 @@ function Tmog.OutfitsDropDown_Initialize()
 	for name, data in pairs(TMOG_PLAYER_OUTFITS) do
 		info.text = name
 		info.value = name
-		info.arg1 = name
 		info.checked = Tmog.currentOutfit == name
 		info.func = Tmog.LoadOutfit
+		info.arg1 = name
 		info.tooltipTitle = name
 		local descText, slotName = "", ""
 
@@ -2955,9 +2974,9 @@ function Tmog.TypeDropDown_Initialize()
 	local info = UIDropDownMenu_CreateInfo()
 	for _, v in pairs(types) do
 		info.text = v
-		info.arg1 = v
 		info.checked = Tmog.currentType == v
 		info.func = Tmog.SelectType
+		info.arg1 = v
 		if Tmog.onlyUsable then
 			if Tmog.classEquipTable[playerClass][v] then
 				if not (not Tmog.canDualWeild and Tmog.currentSlot == 17 and v ~= L["Shields"] and v ~= L["Miscellaneous"]) then
@@ -3063,7 +3082,7 @@ function Tmog.ValidateOutfitCode(code)
 
 	for invSlot, itemID in pairs(outfit) do
 		Tmog.CacheItem(itemID)
-		local _, _, _, _, itemType, itemSubType, _, loc  = GetItemInfo(itemID)
+		-- local _, _, _, _, itemType, itemSubType, _, loc  = GetItemInfo(itemID)
 		-- if not TmogGearDB[itemID] then
 		--	 return nil
 		-- end
@@ -3086,7 +3105,8 @@ function Tmog.Sort(a, b)
 	local nameB, _, qualityB = GetItemInfo(b)
 	if not nameA or not nameB then return false end
 	if qualityA == qualityB then
-		return nameA < nameB
+		return a > b
+		-- return nameA < nameB
 	else
 		return qualityA > qualityB
 	end

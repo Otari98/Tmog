@@ -27,6 +27,12 @@
 			<OnClick>
 				TmogTry(this:GetID(), "LeftButton", 1)
 			</OnClick>
+			<OnEnter>
+				TmogSharedItem_OnEnter()
+			</OnEnter>
+			<OnLeave>
+				TmogSharedItem_OnLeave()
+			</OnLeave>
 		</Scripts>
 	</Button>
 	<Frame name="TmogFramePreviewTemplate" virtual="true" framestrata="MEDIUM">
@@ -130,6 +136,12 @@
 					<OnClick>
 						TmogTry(this:GetID(), arg1)
 					</OnClick>
+					<OnEnter>
+						TmogFramePreview_OnEnter()
+					</OnEnter>
+					<OnLeave>
+						TmogFramePreview_OnLeave()
+					</OnLeave>
 				</Scripts>
 			</Button>
 			<DressUpModel name="$parentItemModel" scale="4.0">

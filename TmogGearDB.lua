@@ -1673,6 +1673,7 @@ TmogGearDB = {
 	},
 	[5] = {
 		[L["Cloth"]] = {
+			[736] = "Lemon Spring Blouse",
 			[41659] = "Jolly Red Bodysuit",
 			[41661] = "Krampus's Little Helper Suit",
 			[41658] = "Jolly Blue Bodysuit",
@@ -2314,6 +2315,7 @@ TmogGearDB = {
 			[3072] = "Smoldering Robe",
 		},
 		[L["Leather"]] = {
+			[108] = "Tattered Defias Rags",
 			[2189] = "Serpent Scale Mantle",
 			[58273] = "Voodoo Jerkin",
 			[41946] = "Farstrider Chestpiece",
@@ -3836,6 +3838,7 @@ TmogGearDB = {
 	},
 	[7] = {
 		[L["Cloth"]] = {
+			[196] = "Lemon Spring Shorts",
 			[42026] = "Black Silk Skirt",
 			[160] = "Mint Spring Shorts",
 			[58259] = "Advisor's Trousers of the Eldreth",
@@ -4173,6 +4176,7 @@ TmogGearDB = {
 			[58156] = "Bonesplitter Loincloth",
 		},
 		[L["Leather"]] = {
+			[3982] = "Strapped Pants",
 			[58000] = "Boarhide Leggings",
 			[58063] = "Pantaloons of Torture",
 			[41573] = "Mosshide Trousers",
@@ -9979,6 +9983,7 @@ TmogGearDB = {
 	},
 	[19] = {
 		[L["Miscellaneous"]] = {
+			[109] = "Summer Collection of Unseen Fashion: Tabard",
 			[81088] = "Tabard of the Midsummer Solstice",
 			[93099] = "Tabard of Defender",
 			[93098] = "Bel'dorei Tabard",
@@ -11596,6 +11601,7 @@ TmogGearDB = {
 			[18738] = "Carapace Spine Crossbow",
 		},
 		[L["Bows"]] = {
+			[107] = "Defias Longbow",
 			[4110] = "Master Hunter's Bow",
 			[41725] = "Dragonmaw Battle Bow",
 			[58016] = "Ashwood Bow",

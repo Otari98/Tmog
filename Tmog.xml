@@ -2,6 +2,7 @@
 	<Script file="Locale.lua"/>
 	<Script file="TmogGearDB.lua"/>
 	<Script file="DisplayIdDB.lua"/>
+	<Script file="ItemDisplayGroup.lua"/>
 	<Script file="Tmog.lua"/>
 	<Button name="TmogSharedItemTemplate" virtual="true">
 		<Size x="147" y="20"/>
@@ -1139,7 +1140,7 @@
 		</Anchors>
 		<Frames>
 			<DressUpModel name="$parentModel" enableMouse="true">
-				<Backdrop bgFile="Interface\AddOns\Tmog\Textures\fullscreen-background">
+				<Backdrop bgFile="Interface\Buttons\WHITE8x8">
 					<Color r="0" g="0" b="0" a="1"/>
 				</Backdrop>
 				<Size x="140" y="150"/>

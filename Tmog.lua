@@ -855,7 +855,7 @@ do
 		itemID = tonumber(itemID)
 		if not itemID then return nil end
 		if cache[itemID] then return cache[itemID] == 1 end
-		for k, v in pairs(TmogGearDB) do
+		for k, v in pairs(Tmog.ItemDB) do
 			for k2, v2 in pairs(v) do
 				if v2[itemID] then
 					cache[itemID] = 1
@@ -869,29 +869,26 @@ do
 end
 
 do
-	local outfits = {}
+	local result = {}
 	function Tmog.GetOutfitsWithItem(itemID)
-		for i = getn(outfits), 1, -1 do
-			tremove(outfits, i)
+		for i = getn(result), 1, -1 do
+			tremove(result, i)
 		end
 		itemID = tonumber(itemID)
 		if not itemID then
-			return outfits, 0
+			return result, 0
 		end
-		for k, v in pairs(TMOG_PLAYER_OUTFITS) do
-			for k2, v2 in pairs(v) do
-				if itemID == v2 then
-					tinsert(outfits, k)
+		for outfitName, outfitItems in pairs(TMOG_PLAYER_OUTFITS) do
+			for _, outfitItemID in pairs(outfitItems) do
+				local g1 = Tmog.ItemDisplayGroup[outfitItemID]
+				local g2 = Tmog.ItemDisplayGroup[itemID]
+				if itemID == outfitItemID or (g1 and g2 and g1 == g2) then
+					tinsert(result, outfitName)
 					break
-				elseif DisplayIdDB[v2] then
-					if SetContains(DisplayIdDB[v2], nil, itemID) then
-						tinsert(outfits, k)
-						break
-					end
 				end
 			end
 		end
-		return outfits, getn(outfits)
+		return result, getn(result)
 	end
 end
 
@@ -996,7 +993,7 @@ function Tmog.ExtendTooltip(tooltip)
 		end
 		if tooltip ~= TmogTooltip and Tmog.Transmogable(itemID) then
 			local string
-			if not DisplayIdDB[itemID] then
+			if not Tmog.ItemDisplayGroup[itemID] then
 				if not Tmog.IsKnownAppearance(itemID) then
 					string = NORMAL..L["Unknown appearance"].."|r"
 				else
@@ -1122,6 +1119,11 @@ function TmogFrame_OnEvent()
 				TMOG_CACHE[InventorySlotId] = {}
 			end
 		end
+		for k, v in pairs(TMOG_CACHE) do
+			for k2, v2 in pairs(v) do
+				if v2 ~= 1 then TMOG_CACHE[k][k2] = 1 end
+			end
+		end
 		TMOG_PLAYER_OUTFITS = TMOG_PLAYER_OUTFITS or {}
 		TMOG_TRANSMOG_STATUS = TMOG_TRANSMOG_STATUS or {}
 		TMOG_POSITION = TMOG_POSITION or { 760, 600 }
@@ -1149,26 +1151,20 @@ function TmogFrame_OnEvent()
 		if strfind(arg2, "AvailableTransmogs", 1, true) then
 			local data = strsplit(arg2, ":")
 			local InventorySlotId = tonumber(data[2])
+			
+			if not InventorySlotId then return end
 
 			for i = 4, getn(data) do
 				local itemID = tonumber(data[i])
 				if itemID then
-					local itemName = GetItemInfo(itemID)
-
-					if itemName then
-						if not TMOG_CACHE[InventorySlotId][itemID] then
-							AddToSet(TMOG_CACHE[InventorySlotId], itemID, itemName)
-						end
-
-						-- check if it shares appearance with other items and add those if it does
-						if DisplayIdDB[itemID] then
-							for _, id in pairs(DisplayIdDB[itemID]) do
-								Tmog.CacheItem(id)
-								local name = GetItemInfo(id)
-								if not TMOG_CACHE[InventorySlotId][id] then
-									AddToSet(TMOG_CACHE[InventorySlotId], id, name)
-								end
-							end
+					Tmog.CacheItem(itemID)
+					TMOG_CACHE[InventorySlotId][itemID] = 1
+					-- check if it shares appearance with other items and add those if it does
+					local displayGroup = Tmog.ItemDisplayGroup[itemID]
+					if displayGroup then
+						for _, id in pairs(Tmog.DisplayGroups[displayGroup]) do
+							Tmog.CacheItem(id)
+							TMOG_CACHE[InventorySlotId][id] = 1
 						end
 					end
 				end
@@ -1177,66 +1173,58 @@ function TmogFrame_OnEvent()
 		elseif strfind(arg2, "NewTransmog", 1, true) then
 			local _, _, itemID = strfind(arg2, "NewTransmog:(%d+)")
 			itemID = tonumber(itemID)
-			local slot = Tmog.InventorySlotFromItemID(itemID)
-			local itemName = GetItemInfo(itemID)
-
-			if slot and itemName then
-				AddToSet(TMOG_CACHE[slot], itemID, itemName)
-
-				-- check if it shares appearance with other items and add those if it does
-				if DisplayIdDB[itemID] then
-					for _, id in pairs(DisplayIdDB[itemID]) do
-						Tmog.CacheItem(id)
-						local name = GetItemInfo(id)
-						if not SetContains(TMOG_CACHE[slot], id, name) then
-							AddToSet(TMOG_CACHE[slot], id, name)
-						end
-					end
+			local InventorySlotId = Tmog.InventorySlotFromItemID(itemID)
+			
+			if not (InventorySlotId and itemID) then return end
+			
+			Tmog.CacheItem(itemID)
+			TMOG_CACHE[InventorySlotId][itemID] = 1
+			-- check if it shares appearance with other items and add those if it does
+			local displayGroup = Tmog.ItemDisplayGroup[itemID]
+			if displayGroup then
+				for _, id in pairs(Tmog.DisplayGroups[displayGroup]) do
+					Tmog.CacheItem(id)
+					TMOG_CACHE[InventorySlotId][id] = 1
 				end
 			end
 
 		elseif strfind(arg2, "TransmogStatus", 1, true) then
 			local data = gsub(arg2, "TransmogStatus:", "")
 
-			if data then
-				local TransmogStatus = strsplit(data, ",")
+			if not data then return end
 
-				if not TMOG_TRANSMOG_STATUS then
-					TMOG_TRANSMOG_STATUS = {}
-				end
+			local TransmogStatus = strsplit(data, ",")
+			if not TMOG_TRANSMOG_STATUS then TMOG_TRANSMOG_STATUS = {} end
 
-				for _, InventorySlotId in pairs(InventorySlots) do
-					if not TMOG_TRANSMOG_STATUS[InventorySlotId] then
-						TMOG_TRANSMOG_STATUS[InventorySlotId] = {}
+			for _, InventorySlotId in pairs(InventorySlots) do
+				if not TMOG_TRANSMOG_STATUS[InventorySlotId] then TMOG_TRANSMOG_STATUS[InventorySlotId] = {} end
+			end
+
+			for k in pairs(StatusSlotsLookup) do
+				StatusSlotsLookup[k] = true
+			end
+
+			for _, d in pairs(TransmogStatus) do
+				local _, _, InventorySlotId, itemID = strfind(d, "(%d+):(%d+)")
+				InventorySlotId = tonumber(InventorySlotId)
+				if InventorySlotId and InventorySlotId ~= 0 then
+					itemID = tonumber(itemID)
+					local link = GetInventoryItemLink("player", InventorySlotId)
+					local actualItemId = Tmog.IDFromLink(link) or 0
+					StatusSlotsLookup[InventorySlotId] = false
+					if actualItemId ~= 0 then
+						TMOG_TRANSMOG_STATUS[InventorySlotId][actualItemId] = itemID
 					end
 				end
-
-				for k in pairs(StatusSlotsLookup) do
-					StatusSlotsLookup[k] = true
-				end
-
-				for _, d in pairs(TransmogStatus) do
-					local _, _, InventorySlotId, itemID = strfind(d, "(%d+):(%d+)")
-					InventorySlotId = tonumber(InventorySlotId)
-					if InventorySlotId and InventorySlotId ~= 0 then
-						itemID = tonumber(itemID)
-						local link = GetInventoryItemLink("player", InventorySlotId)
-						local actualItemId = Tmog.IDFromLink(link) or 0
-						StatusSlotsLookup[InventorySlotId] = false
-						if actualItemId ~= 0 then
-							TMOG_TRANSMOG_STATUS[InventorySlotId][actualItemId] = itemID
-						end
-					end
-				end
-				-- if we recieve 0 for some equipped item AND we have it in our TMOG_TRANSMOG_STATUS
-				-- remove it from TMOG_TRANSMOG_STATUS
-				for k in pairs(StatusSlotsLookup) do
-					if StatusSlotsLookup[k] then
-						local equippedItemLink = GetInventoryItemLink("player", k)
-						local equippedItemID = Tmog.IDFromLink(equippedItemLink) or 0
-						if equippedItemID ~= 0 and TMOG_TRANSMOG_STATUS[k][equippedItemID] then
-							TMOG_TRANSMOG_STATUS[k][equippedItemID] = nil
-						end
+			end
+			-- if we recieve 0 for some equipped item AND we have it in our TMOG_TRANSMOG_STATUS
+			-- remove it from TMOG_TRANSMOG_STATUS
+			for k in pairs(StatusSlotsLookup) do
+				if StatusSlotsLookup[k] then
+					local equippedItemLink = GetInventoryItemLink("player", k)
+					local equippedItemID = Tmog.IDFromLink(equippedItemLink) or 0
+					if equippedItemID ~= 0 and TMOG_TRANSMOG_STATUS[k][equippedItemID] then
+						TMOG_TRANSMOG_STATUS[k][equippedItemID] = nil
 					end
 				end
 			end
@@ -1246,28 +1234,19 @@ function TmogFrame_OnEvent()
 	end
 
 	if event == "UNIT_INVENTORY_CHANGED" and arg1 == "player" then
-		for slot in pairs(TMOG_CACHE) do
-			local link = GetInventoryItemLink("player", slot)
-
+		for InventorySlotId in pairs(TMOG_CACHE) do
+			local link = GetInventoryItemLink("player", InventorySlotId)
 			if link then
 				local itemID = Tmog.IDFromLink(link)
-
 				if itemID then
 					Tmog.CacheItem(itemID)
-					local itemName = GetItemInfo(itemID)
-
-					if not TMOG_CACHE[slot][itemID] then
-						AddToSet(TMOG_CACHE[slot], itemID, itemName)
-					end
-
+					TMOG_CACHE[InventorySlotId][itemID] = 1
 					-- check if it shares appearance with other items and add those if it does
-					if DisplayIdDB[itemID] then
-						for _, id in pairs(DisplayIdDB[itemID]) do
+					local displayGroup = Tmog.ItemDisplayGroup[itemID]
+					if displayGroup then
+						for _, id in pairs(Tmog.DisplayGroups[displayGroup]) do
 							Tmog.CacheItem(id)
-							local name = GetItemInfo(id)
-							if not TMOG_CACHE[slot][id] then
-								AddToSet(TMOG_CACHE[slot], id, name)
-							end
+							TMOG_CACHE[InventorySlotId][id] = 1
 						end
 					end
 				end
@@ -1543,8 +1522,8 @@ function Tmog.DrawPreviews(noDraw)
 			end
 
 			if type == "SearchResult" then
-				for k in pairs(TmogGearDB[Tmog.currentSlot]) do
-					for itemID in pairs(TmogGearDB[Tmog.currentSlot][k]) do
+				for k in pairs(Tmog.ItemDB[Tmog.currentSlot]) do
+					for itemID in pairs(Tmog.ItemDB[Tmog.currentSlot][k]) do
 						if Tmog.CacheItem(itemID) then
 							if strfind(strlower(GetItemInfo(itemID)), searchStr, 1 ,true) then
 								tinsert(DrawTable, itemID)
@@ -1556,25 +1535,12 @@ function Tmog.DrawPreviews(noDraw)
 					end
 				end
 			else
-				for itemID in pairs(TmogGearDB[Tmog.currentSlot][type]) do
+				for itemID in pairs(Tmog.ItemDB[Tmog.currentSlot][type]) do
 					if Tmog.CacheItem(itemID) then
 						tinsert(DrawTable, itemID)
 					elseif not LoadingFrame.queueIDs[itemID] then
 						LoadingFrame.queueTimer = Tmog.loadingTimeMax
 						LoadingFrame.queueIDs[itemID] = true
-					end
-				end
-			end
-			-- remove duplicates
-			if type ~= "SearchResult" then
-				for _, id in ipairs(DrawTable) do
-					if DisplayIdDB[id] then
-						for _, duplicate in pairs(DisplayIdDB[id]) do
-							local i = tonumber(SetContains(DrawTable, nil, duplicate))
-							if i then
-								tremove(DrawTable, i)
-							end
-						end
 					end
 				end
 			end
@@ -1596,6 +1562,20 @@ function Tmog.DrawPreviews(noDraw)
 				for i = getn(DrawTable), 1, -1 do
 					if not Tmog.IsUsableItem(DrawTable[i]) then
 						tremove(DrawTable, i)
+					end
+				end
+			end
+			-- remove duplicates
+			if type ~= "SearchResult" then
+				for _, id in ipairs(DrawTable) do
+					local displayGroup = Tmog.ItemDisplayGroup[id]
+					if displayGroup then
+						for _, itemID in pairs(Tmog.DisplayGroups[displayGroup]) do
+							if itemID ~= id then
+								local i = tonumber(SetContains(DrawTable, nil, itemID))
+								if i then tremove(DrawTable, i) end
+							end
+						end
 					end
 				end
 			end
@@ -2145,15 +2125,15 @@ function TmogTry(itemId, mouseButton, noSelect)
 			SharedItems[k] = nil
 		end
 		local index = 1
+		local displayGroup = Tmog.ItemDisplayGroup[itemId]
+		if displayGroup then
 
-		if DisplayIdDB[itemId] then
-
-			for _, id in pairs(DisplayIdDB[itemId]) do
+			for _, id in pairs(Tmog.DisplayGroups[displayGroup]) do
 
 				Tmog.CacheItem(id)
 				local name, _, quality, _, _, _, _, _, tex = GetItemInfo(id)
 
-				if name and quality then
+				if name and quality and id ~= itemId then
 					local r, g, b = GetItemQualityColor(quality)
 					if not (Tmog.onlyUsable and not Tmog.IsUsableItem(id)) then
 						SharedItems[index] = {name = "", id = 0, color = { r = 0, g = 0, b = 0 }, tex = ""}
@@ -2350,35 +2330,36 @@ function TmogFramePreview_OnEnter()
 
 		lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL.."ItemID: "..itemID)
 		local name = GetItemInfo(itemID)
-		if not (name and DisplayIdDB[itemID]) then
+		local displayGroup = Tmog.ItemDisplayGroup[itemID]
+		if not (name and displayGroup) then
 			TmogTooltip:Show()
 			return
 		end
 		if not Tmog.onlyUsable then
 			lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL..L["Shares appearance with"]..":")
-			for _, id in pairs(DisplayIdDB[itemID]) do
+			for _, id in pairs(Tmog.DisplayGroups[displayGroup]) do
 				Tmog.CacheItem(id)
 				local similarItem, _, quality = GetItemInfo(id)
-				if similarItem then
+				if similarItem and id ~= itemID then
 					local _, _, _, color = GetItemQualityColor(quality or 1)
 					lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
 				end
 			end
 		else
 			local proceed = false
-			for _, id in pairs(DisplayIdDB[itemID]) do
+			for _, id in pairs(Tmog.DisplayGroups[displayGroup]) do
 				Tmog.CacheItem(itemID)
-				if Tmog.IsUsableItem(id) then
+				if id ~= itemID and Tmog.IsUsableItem(id) then
 					proceed = true
 					break
 				end
 			end
 			if proceed then
 				lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL..L["Shares appearance with"]..":")
-				for _, id in pairs(DisplayIdDB[itemID]) do
+				for _, id in pairs(Tmog.DisplayGroups[displayGroup]) do
 					Tmog.CacheItem(id)
 					local similarItem, _, quality = GetItemInfo(id)
-					if similarItem then
+					if id ~= itemID and similarItem then
 						if Tmog.IsUsableItem(id) then
 							local _, _, _, color = GetItemQualityColor(quality or 1)
 							lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
@@ -2778,7 +2759,6 @@ function Tmog.UsableToggle()
 		end
 		Tmog.DrawPreviews()
 	end
-	print(Unusable)
 end
 
 function Tmog.IgnoreLevelToggle()
@@ -3250,12 +3230,12 @@ do
 		end
 		for slot in pairs(TMOG_CACHE) do
 			for itemID in pairs(TMOG_CACHE[slot]) do
-				if DisplayIdDB[itemID] then
-					for _, id in pairs(DisplayIdDB[itemID]) do
+				local displayGroup = Tmog.ItemDisplayGroup[itemID]
+				if displayGroup then
+					for _, id in pairs(Tmog.DisplayGroups[displayGroup]) do
 						Tmog.CacheItem(id)
-						local name = GetItemInfo(id)
 						if not TMOG_CACHE[slot][id] then
-							AddToSet(TMOG_CACHE[slot], id, name)
+							TMOG_CACHE[slot][id] = 1
 							sharedadded = sharedadded + 1
 						end
 					end

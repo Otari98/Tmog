@@ -506,17 +506,6 @@ local function strtrim(s)
 	return gsub(s or "", "^%s*(.-)%s*$", "%1")
 end
 
-local function AddToSet(set, key, value)
-	if not set or not key then
-		return
-	end
-	if not value then
-		set[key] = true
-	else
-		set[key] = value
-	end
-end
-
 local function SetContains(set, key, value)
 	if not set then
 		return false
@@ -1141,7 +1130,7 @@ function TmogFrame_OnEvent()
 		return
 	end
 
-	if strfind(arg1, "TW_CHAT_MSG_WHISPER", 1, true) then
+	if Tmog.verbose and strfind(arg1, "TW_CHAT_MSG_WHISPER", 1, true) then
 		Tmog.debug(arg1, arg2, arg3, arg4)
 	end
 
@@ -3055,7 +3044,7 @@ function Tmog.ValidateOutfitCode(code)
 		_, _, slot, item = strfind(slotItemPairs[i], "(%d+):(%d+)")
 		slot = tonumber(slot)
 		item = tonumber(item)
-		AddToSet(outfit, slot, item)
+		if slot and item then outfit[slot] = item end
 	end
 
 	for invSlot, itemID in pairs(outfit) do

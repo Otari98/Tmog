@@ -424,7 +424,7 @@ Tmog.dropdownTypes = {
 }
 
 function Tmog.GetTypesForSlot(slot)
-	local types
+	local types = Tmog.dropdownTypes.default
 	if slot == 1 or slot == 5 or slot == 8 then
 		types = Tmog.dropdownTypes.misc
 	elseif slot == 15 then
@@ -461,16 +461,13 @@ local Unusable = {}
 for _, slot in pairs(InventorySlots) do
 	local types = Tmog.GetTypesForSlot(slot)
 	PagesMemory[slot] = {}
-	DrawTable[slot] = {}
 	Unusable[slot] = {}
 	StatusSlotsLookup[slot] = true
 	SlotTypesMemory[slot] = types[1]
 	for _, type in ipairs(types) do
 		PagesMemory[slot][type] = 1
-		DrawTable[slot][type] = {}
 		Unusable[slot][type] = {}
 	end
-	DrawTable[slot]["SearchResult"] = {}
 	Unusable[slot]["SearchResult"] = {}
 end
 
@@ -1541,8 +1538,8 @@ function Tmog.DrawPreviews(noDraw)
 
 		if Tmog.flush then
 			Tmog.debug("flushing", "slot "..Tmog.currentSlot, " type "..type)
-			for i = getn(DrawTable[Tmog.currentSlot][type]), 1, -1 do
-				tremove(DrawTable[Tmog.currentSlot][type], i)
+			for i = getn(DrawTable), 1, -1 do
+				tremove(DrawTable, i)
 			end
 
 			if type == "SearchResult" then
@@ -1550,7 +1547,7 @@ function Tmog.DrawPreviews(noDraw)
 					for itemID in pairs(TmogGearDB[Tmog.currentSlot][k]) do
 						if Tmog.CacheItem(itemID) then
 							if strfind(strlower(GetItemInfo(itemID)), searchStr, 1 ,true) then
-								tinsert(DrawTable[Tmog.currentSlot][type], itemID)
+								tinsert(DrawTable, itemID)
 							end
 						elseif not LoadingFrame.queueIDs[itemID] then
 							LoadingFrame.queueTimer = Tmog.loadingTimeMax
@@ -1561,7 +1558,7 @@ function Tmog.DrawPreviews(noDraw)
 			else
 				for itemID in pairs(TmogGearDB[Tmog.currentSlot][type]) do
 					if Tmog.CacheItem(itemID) then
-						tinsert(DrawTable[Tmog.currentSlot][type], itemID)
+						tinsert(DrawTable, itemID)
 					elseif not LoadingFrame.queueIDs[itemID] then
 						LoadingFrame.queueTimer = Tmog.loadingTimeMax
 						LoadingFrame.queueIDs[itemID] = true
@@ -1570,47 +1567,47 @@ function Tmog.DrawPreviews(noDraw)
 			end
 			-- remove duplicates
 			if type ~= "SearchResult" then
-				for _, id in ipairs(DrawTable[Tmog.currentSlot][type]) do
+				for _, id in ipairs(DrawTable) do
 					if DisplayIdDB[id] then
 						for _, duplicate in pairs(DisplayIdDB[id]) do
-							local i = tonumber(SetContains(DrawTable[Tmog.currentSlot][type], nil, duplicate))
+							local i = tonumber(SetContains(DrawTable, nil, duplicate))
 							if i then
-								tremove(DrawTable[Tmog.currentSlot][type], i)
+								tremove(DrawTable, i)
 							end
 						end
 					end
 				end
 			end
 			if not Tmog.notCollected then
-				for i = getn(DrawTable[Tmog.currentSlot][type]), 1, -1 do
-					if not TMOG_CACHE[Tmog.currentSlot][DrawTable[Tmog.currentSlot][type][i]] then
-						tremove(DrawTable[Tmog.currentSlot][type], i)
+				for i = getn(DrawTable), 1, -1 do
+					if not TMOG_CACHE[Tmog.currentSlot][DrawTable[i]] then
+						tremove(DrawTable, i)
 					end
 				end
 			elseif not Tmog.collected then
-				for i = getn(DrawTable[Tmog.currentSlot][type]), 1, -1 do
-					if TMOG_CACHE[Tmog.currentSlot][DrawTable[Tmog.currentSlot][type][i]] then
-						tremove(DrawTable[Tmog.currentSlot][type], i)
+				for i = getn(DrawTable), 1, -1 do
+					if TMOG_CACHE[Tmog.currentSlot][DrawTable[i]] then
+						tremove(DrawTable, i)
 					end
 				end
 			end
 			-- if "usable" checked, remove unusable items
 			if Tmog.onlyUsable then
-				for i = getn(DrawTable[Tmog.currentSlot][type]), 1, -1 do
-					if not Tmog.IsUsableItem(DrawTable[Tmog.currentSlot][type][i]) then
-						tremove(DrawTable[Tmog.currentSlot][type], i)
+				for i = getn(DrawTable), 1, -1 do
+					if not Tmog.IsUsableItem(DrawTable[i]) then
+						tremove(DrawTable, i)
 					end
 				end
 			end
-			Tmog.totalPages = ceil(getn(DrawTable[Tmog.currentSlot][type]) / Tmog.itemsPerPage)
-			sort(DrawTable[Tmog.currentSlot][type], Tmog.Sort)
+			Tmog.totalPages = ceil(getn(DrawTable) / Tmog.itemsPerPage)
+			sort(DrawTable, Tmog.Sort)
 			if LoadingFrame.queueTimer > 0 then
 				return
 			end
 		end
 
 		-- nothing to show
-		if not DrawTable[Tmog.currentSlot][type] or next(DrawTable[Tmog.currentSlot][type]) == nil then
+		if not next(DrawTable) then
 			Tmog.HidePreviews()
 			Tmog.HidePagination()
 			Tmog.currentPage = 1
@@ -1628,10 +1625,10 @@ function Tmog.DrawPreviews(noDraw)
 
 		local frame, button
 
-		for i = 1, getn(DrawTable[Tmog.currentSlot][type]) do
-			local itemID = DrawTable[Tmog.currentSlot][type][i]
+		for i = 1, getn(DrawTable) do
+			local itemID = DrawTable[i]
 			local name, _, quality = GetItemInfo(itemID)
-			name = name or TmogGearDB[Tmog.currentSlot][type][itemID]
+			name = name or ""
 			quality = quality or 1
 
 			if index >= lowerLimit and index < upperLimit then
@@ -1755,7 +1752,7 @@ function Tmog.DrawPreviews(noDraw)
 		TmogFramePreview1ButtonPlus:Hide()
 		TmogFramePreview1ButtonPlusPushed:Hide()
 
-		local size = getn(DrawTable[Tmog.currentSlot][type])
+		local size = getn(DrawTable)
 		Tmog.totalPages = ceil(size / Tmog.itemsPerPage)
 		TmogFramePageText:SetText(GENERIC_PAGE.." " .. Tmog.currentPage .. "/" .. Tmog.totalPages)
 
@@ -2781,6 +2778,7 @@ function Tmog.UsableToggle()
 		end
 		Tmog.DrawPreviews()
 	end
+	print(Unusable)
 end
 
 function Tmog.IgnoreLevelToggle()
@@ -3182,97 +3180,90 @@ function TmogFrameFullScreen_OnKeyDown()
 	end
 end
 
-local debugState = Tmog.verbose
-local pendingIDs = {}
-local requestInterval = 10
-local tick = requestInterval
+do
+	local requestInterval = 1
+	local maxattempts = 3
+	local pendingIDs = {}
+	local tick = 0
+	local keysdeleted = 0
+	local namesrestored = 0
+	local sharedadded = 0
 
-local keysdeleted = 0
-local namesrestored = 0
-local sharedadded = 0
-
-local function RepairStop()
-	Tmog.debug(format(L["Cache repair finished: bad items deleted: %d, item names restored: %d, missing shared items added: %d"], keysdeleted, namesrestored, sharedadded))
-	Tmog.verbose = debugState
-	TmogFrame:SetScript("OnUpdate", nil)
-end
-
-local function OnUpdate()
-	if tick > GetTime() then
-		return
-	else
-		tick = GetTime() + requestInterval
+	local function RepairStop()
+		Tmog.print(format(L["Cache repair finished: bad items deleted: %d, item names restored: %d, missing shared items added: %d"], keysdeleted, namesrestored, sharedadded))
+		TmogRepairFrame:SetScript("OnUpdate", nil)
 	end
-	if not next(pendingIDs) then
-		RepairStop()
-		return
-	end
-	for id, tbl in pairs(pendingIDs) do
-		local value = tbl.value
-		if type(value) == "string" then
-			TMOG_CACHE[tbl.slot][id] = value
-			pendingIDs[id] = nil
-			namesrestored = namesrestored + 1
-			if not next(pendingIDs) then
-				RepairStop()
-				return
-			end
-		else
-			if value > 5 then
-				TMOG_CACHE[tbl.slot][id] = nil
+
+	local function OnUpdate()
+		tick = tick + arg1
+		if tick < requestInterval then return end
+		tick = 0
+		if not next(pendingIDs) then
+			RepairStop()
+			return
+		end
+		for id, tbl in pairs(pendingIDs) do
+			local value = tbl.value
+			if type(value) == "string" then
+				TMOG_CACHE[tbl.slot][id] = value
 				pendingIDs[id] = nil
-				keysdeleted = keysdeleted + 1
+				namesrestored = namesrestored + 1
 				if not next(pendingIDs) then
 					RepairStop()
 					return
 				end
 			else
-				Tmog.debug(format(L["bad item %d, requesting info from server, try #%d"], id, tonumber(value)))
-				Tmog.CacheItem(id)
-				pendingIDs[id].value = (GetItemInfo(id)) or (value + 1)
-			end
-		end
-	end
-end
-
-function Tmog.RepairPlayerCache()
-	local pending = false
-	keysdeleted = 0
-	namesrestored = 0
-	sharedadded = 0
-	Tmog.debug(L["Cache repair started."])
-	for slot in pairs(TMOG_CACHE) do
-		for id, name in pairs(TMOG_CACHE[slot]) do
-			Tmog.CacheItem(id)
-			if type(id) ~= "number" then
-				TMOG_CACHE[slot][id] = nil
-				keysdeleted = keysdeleted + 1
-			elseif name == true then
-				pendingIDs[id] = { slot = slot, value = 1 }
-				if not TmogFrame:GetScript("OnUpdate") then
-					TmogFrame:SetScript("OnUpdate", OnUpdate)
-					pending = true
+				if value > maxattempts then
+					TMOG_CACHE[tbl.slot][id] = nil
+					pendingIDs[id] = nil
+					keysdeleted = keysdeleted + 1
+					if not next(pendingIDs) then
+						RepairStop()
+						return
+					end
+				else
+					Tmog.print(format(L["bad item %d, requesting info from server, try #%d"], id, tonumber(value)))
+					Tmog.CacheItem(id)
+					pendingIDs[id].value = (GetItemInfo(id)) or (value + 1)
 				end
 			end
 		end
 	end
-	for slot in pairs(TMOG_CACHE) do
-		for itemID in pairs(TMOG_CACHE[slot]) do
-			if DisplayIdDB[itemID] then
-				for _, id in pairs(DisplayIdDB[itemID]) do
-					Tmog.CacheItem(id)
-					local name = GetItemInfo(id)
-					if not TMOG_CACHE[slot][id] then
-						AddToSet(TMOG_CACHE[slot], id, name)
-						sharedadded = sharedadded + 1
+
+	function Tmog.RepairStart()
+		pendingIDs = {}
+		tick = 0
+		keysdeleted = 0
+		namesrestored = 0
+		sharedadded = 0
+		Tmog.print(L["Cache repair started."])
+		for slot in pairs(TMOG_CACHE) do
+			for id, name in pairs(TMOG_CACHE[slot]) do
+				Tmog.CacheItem(id)
+				if type(id) ~= "number" then
+					TMOG_CACHE[slot][id] = nil
+					keysdeleted = keysdeleted + 1
+				elseif name == true then
+					pendingIDs[id] = { slot = slot, value = 1 }
+				end
+			end
+		end
+		for slot in pairs(TMOG_CACHE) do
+			for itemID in pairs(TMOG_CACHE[slot]) do
+				if DisplayIdDB[itemID] then
+					for _, id in pairs(DisplayIdDB[itemID]) do
+						Tmog.CacheItem(id)
+						local name = GetItemInfo(id)
+						if not TMOG_CACHE[slot][id] then
+							AddToSet(TMOG_CACHE[slot], id, name)
+							sharedadded = sharedadded + 1
+						end
 					end
 				end
 			end
 		end
-	end
-	if not pending then
-		Tmog.debug(format(L["Cache repair finished: bad items deleted: %d, item names restored: %d, missing shared items added: %d"], keysdeleted, namesrestored, sharedadded))
-		Tmog.verbose = debugState
+		TmogRepairFrame = TmogRepairFrame or CreateFrame("Frame", "TmogRepairFrame")
+		TmogRepairFrame:SetScript("OnUpdate", OnUpdate)
 	end
 end
 
@@ -3306,8 +3297,7 @@ SlashCmdList["TMOG"] = function(msg)
 		end
 
 	elseif strfind(cmd, "db$") then
-		Tmog.verbose = true
-		Tmog.RepairPlayerCache()
+		Tmog.RepairStart()
 	else
 		Tmog.print(NORMAL.."/tmog show|r"..WHITE.." - "..L["toggle dressing room"].."|r")
 		Tmog.print(NORMAL.."/tmog reset|r"..WHITE.." - "..L["reset minimap button position"].."|r")

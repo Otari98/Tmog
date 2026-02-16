@@ -997,17 +997,25 @@
 				</Scripts>
 			</Button>
 			<Frame name="TmogFrameShareDialog" hidden="true" movable="true" enableMouse="true" toplevel="true">
-				<Size x="300" y="90"/>
+				<Size x="400" y="240"/>
 				<Anchors>
 					<Anchor point="CENTER"/>
 				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
-						<FontString name="$parentHint" inherits="GameFontNormal" justifyH="LEFT" toplevel="true">
+						<FontString name="TmogFrameShareDialogHint" inherits="GameFontNormal" justifyH="LEFT">
 							<Size x="200" y="25"/>
 							<Anchors>
-								<Anchor point="CENTER">
-									<Offset x="-20" y="20"/>
+								<Anchor point="TOPLEFT">
+									<Offset x="25" y="-15"/>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="TmogFrameShareDialogHint2" inherits="GameFontNormal" justifyH="LEFT">
+							<Size x="200" y="25"/>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset x="25" y="-55"/>
 								</Anchor>
 							</Anchors>
 						</FontString>
@@ -1019,31 +1027,80 @@
 					<EdgeSize val="32"/>
 				</Backdrop>
 				<Frames>
-					<EditBox name="$parentEditBox" inherits="InputBoxTemplate">
-						<Size x="250" y="32"/>
-						<Anchors>
-							<Anchor point="CENTER"/>
-						</Anchors>
-						<Scripts>
-							<OnLoad>
-								this:SetJustifyH("CENTER")
-							</OnLoad>
-							<OnEscapePressed>
-								getglobal(this:GetParent():GetName().."CloseButton"):Click()
-							</OnEscapePressed>
-						</Scripts>
-					</EditBox>
-					<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+					<Button name="TmogFrameShareDialogCloseButton" inherits="UIPanelCloseButton">
 						<Anchors>
 							<Anchor point="CENTER" relativePoint="TOPRIGHT">
 								<Offset x="-20" y="-20"/>
 							</Anchor>
 						</Anchors>
 					</Button>
+					<EditBox name="TmogFrameShareDialogEditBox" inherits="InputBoxTemplate">
+						<Size x="350" y="32"/>
+						<Anchors>
+							<Anchor point="TOP">
+								<Offset x="0" y="-30"/>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this:SetJustifyH("LEFT")
+							</OnLoad>
+							<OnEscapePressed>
+								TmogFrameShareDialogCloseButton:Click()
+							</OnEscapePressed>
+						</Scripts>
+					</EditBox>
+					<ScrollFrame name="TmogFrameShareDialogScrollFrame" inherits="UIPanelScrollFrameTemplate">
+						<Size x="330" y="140"/>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset x="25" y="-80"/>
+							</Anchor>
+						</Anchors>
+						<ScrollChild>
+							<EditBox name="TmogFrameShareDialogEditBox2" multiLine="true" autoFocus="false">
+								<Size x="330" y="132"/>
+								<Anchors>
+									<Anchor point="TOP">
+										<Offset x="0" y="-80"/>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnLoad>
+										this:SetJustifyH("LEFT")
+									</OnLoad>
+									<OnEscapePressed>
+										TmogFrameShareDialogCloseButton:Click()
+									</OnEscapePressed>
+									<OnTextChanged>
+										TmogFrameShareDialogScrollFrame:UpdateScrollChildRect()
+									</OnTextChanged>
+								</Scripts>
+								<FontString inherits="GameFontHighlightSmall" justifyH="LEFT"/>
+								<TextInsets left="5" right="0" top="5" bottom="5"/>
+							</EditBox>
+						</ScrollChild>
+					</ScrollFrame>
+					<Frame name="TmogFrameShareDialogBorderFrame">
+						<Size x="362" y="150"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TmogFrameShareDialogScrollFrame">
+								<Offset x="-5" y="5"/>
+							</Anchor>
+						</Anchors>
+						<Backdrop bgFile="Interface\Buttons\WHITE8x8" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+							<EdgeSize val="16"/>
+							<TileSize val="16"/>
+							<BackgroundInsets left="5" right="5" top="5" bottom="5"/>
+							<BorderColor r="1" g="1" b="1" a="1"/>
+							<Color r="0" g="0" b="0" a="0.3"/>
+						</Backdrop>
+					</Frame>
 				</Frames>
 				<Scripts>
 					<OnLoad>
-						getglobal(this:GetName().."Hint"):SetText(Tmog.L["Copy this code:"])
+						TmogFrameShareDialogHint:SetText(Tmog.L["Copy this code:"])
+						TmogFrameShareDialogHint2:SetText(Tmog.L["Database links:"])
 					</OnLoad>
 					<OnShow>
 						PlaySound("igMainMenuOpen")

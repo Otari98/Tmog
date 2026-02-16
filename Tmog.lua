@@ -19,6 +19,8 @@ local YELLOW = "|cffFFFF00"
 local GREEN = "|cff00A000"
 local BLUE = "|cff0070de"
 
+local WEBSITE = "https://database.turtlecraft.gg/?item="
+
 local _, playerClass = UnitClass("player")
 local _, playerRace = UnitRace("player")
 
@@ -3011,14 +3013,21 @@ end
 
 function TmogFrameShareOutfit_OnClick()
 	local code = "T.O.L."
+	local dbLinks = ""
 
 	for slot, id in pairs(TMOG_PLAYER_OUTFITS[Tmog.currentOutfit]) do
 		code = code..slot..":"..id..";"
+		local slotName = ""
+		for k, v in pairs(InventorySlots) do
+			if v == slot then slotName = _G[strupper(k)] end
+		end
+		dbLinks = dbLinks.."**"..slotName.."**: "..GetItemInfo(id).." "..WEBSITE..id.."\n"
 	end
 
 	TmogFrameShareDialog:Show()
 	TmogFrameShareDialogEditBox:SetText(code)
 	TmogFrameShareDialogEditBox:HighlightText()
+	TmogFrameShareDialogEditBox2:SetText(dbLinks)
 end
 
 function Tmog.ValidateOutfitCode(code)

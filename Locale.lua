@@ -5,7 +5,6 @@ local miscellaneous, cloth, leather, mail, plate, shields, librams, idols, totem
 local weapon, armor, container, consumable, tradeGoods, projectile, quiver, recipe, reagent, miscellaneous =  GetAuctionItemClasses(1)
 
 Tmog.L = {
-	-- Do not translate!
 	["Cloth"] = cloth,
 	["Leather"] = leather,
 	["Mail"] = mail,
@@ -30,8 +29,6 @@ Tmog.L = {
 	["Armor"] = armor,
 	["Fishing Pole"] = fishingPole,
 	----------------------------
-
-	-- Translate
 	["Collected"] = true,
 	["Not collected"] = true,
 	["Unique appearance"] = true,
@@ -82,6 +79,7 @@ Tmog.L = {
 	["Left-click to toggle dressing room\nHold Left-click and drag to move this button"] = true,
 	["Loading"] = true,
 	["Outfits: %s"] = true,
+	["Database links:"] = true,
 }
 
 if GetLocale() == "ruRU" then

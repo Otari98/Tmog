@@ -80,6 +80,8 @@ Tmog.L = {
 	["Loading"] = true,
 	["Outfits: %s"] = true,
 	["Database links:"] = true,
+	["reset this character's collection"] = true,
+	["cllection has been reset"] = true,
 }
 
 if GetLocale() == "ruRU" then

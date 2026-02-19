@@ -935,9 +935,9 @@ local function AddCollectionStatus(slot, itemID, tooltip)
 	end
 
 	if TMOG_CACHE[slot][itemID] then
-		status = GREEN..L["Collected"].."|r"
+		status = GREEN..L["Collected"]
 	else
-		status = YELLOW..L["Not collected"].."|r"
+		status = YELLOW..L["Not collected"]
 	end
 
 	tooltip:SetText(lines[1][1], lines[1][3], lines[1][4], lines[1][5], 1, false)
@@ -986,12 +986,12 @@ function Tmog.ExtendTooltip(tooltip)
 			local string
 			if not Tmog.ItemDisplayGroup[itemID] then
 				if not Tmog.IsKnownAppearance(itemID) then
-					string = NORMAL..L["Unknown appearance"].."|r"
+					string = NORMAL..L["Unknown appearance"]
 				else
-					string = NORMAL..L["Unique appearance"].."|r"
+					string = NORMAL..L["Unique appearance"]
 				end
 			else
-				string = NORMAL..L["Non-unique appearance"].."|r"
+				string = NORMAL..L["Non-unique appearance"]
 			end
 			local outfits, numTotal = Tmog.GetOutfitsWithItem(itemID)
 			if numTotal > 0 then
@@ -2857,12 +2857,12 @@ function TmogPlayerSlot_OnEnter()
 		TmogTooltip:SetText(name, r, g, b)
 
 		if TMOG_CACHE[slot][itemID] then
-			TmogTooltip:AddLine(GREEN..L["Collected"].."|r")
+			TmogTooltip:AddLine(GREEN..L["Collected"])
 		else
-			TmogTooltip:AddLine(YELLOW..L["Not collected"].."|r")
+			TmogTooltip:AddLine(YELLOW..L["Not collected"])
 		end
 
-		TmogTooltip:AddLine(NORMAL.."\nItemID: "..itemID.."|r", 1, 1, 1)
+		TmogTooltip:AddLine(NORMAL.."\nItemID: "..itemID, 1, 1, 1)
 		TmogTooltip:Show()
 	end
 
@@ -3246,9 +3246,8 @@ do
 end
 
 SLASH_TMOG1 = "/tmog"
-SlashCmdList["TMOG"] = function(msg)
-	local cmd = strtrim(msg)
-	cmd = strlower(cmd)
+SlashCmdList["TMOG"] = function(cmd)
+	cmd = strlower(strtrim(cmd))
 
 	if strfind(cmd, "show$") then
 		TmogFrame_Toggle()
@@ -3256,6 +3255,12 @@ SlashCmdList["TMOG"] = function(msg)
 	elseif strfind(cmd, "reset$") then
 		TmogButton:ClearAllPoints()
 		TmogButton:SetPoint("CENTER", UIParent, 0, 0)
+
+	elseif strfind(cmd, "wipe$") then
+		for k, v in pairs(TMOG_CACHE) do
+			for k2, v2 in pairs(v) do TMOG_CACHE[k][k2] = nil end
+		end
+		Tmog.print(L["cllection has been reset"])
 
 	elseif strfind(cmd, "lock$") then
 		TmogButton:SetMovable(not TmogButton:IsMovable())
@@ -3274,13 +3279,14 @@ SlashCmdList["TMOG"] = function(msg)
 			Tmog.print(L["debug is off"])
 		end
 
-	elseif strfind(cmd, "db$") then
+	elseif strfind(cmd, "repair$") then
 		Tmog.RepairStart()
 	else
-		Tmog.print(NORMAL.."/tmog show|r"..WHITE.." - "..L["toggle dressing room"].."|r")
-		Tmog.print(NORMAL.."/tmog reset|r"..WHITE.." - "..L["reset minimap button position"].."|r")
-		Tmog.print(NORMAL.."/tmog lock|r"..WHITE.." - "..L["lock/unlock minimap button"].."|r")
-		Tmog.print(NORMAL.."/tmog debug|r"..WHITE.." - "..L["print debug messages in chat"].."|r")
-		Tmog.print(NORMAL.."/tmog db|r"..WHITE.." - "..L["attempt to repair this character's cache (can fix minor bugs)"].."|r")
+		Tmog.print(NORMAL.."/tmog show|r - "..L["toggle dressing room"])
+		Tmog.print(NORMAL.."/tmog reset|r - "..L["reset minimap button position"])
+		Tmog.print(NORMAL.."/tmog wipe|r - "..L["reset this character's collection"])
+		Tmog.print(NORMAL.."/tmog lock|r - "..L["lock/unlock minimap button"])
+		Tmog.print(NORMAL.."/tmog debug|r - "..L["print debug messages in chat"])
+		Tmog.print(NORMAL.."/tmog repair|r - "..L["attempt to repair this character's cache (can fix minor bugs)"])
 	end
 end

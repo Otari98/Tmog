@@ -1,7 +1,7 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
-	<Script file="Locale.lua"/>
-	<Script file="TmogGearDB.lua"/>
-	<Script file="DisplayIdDB.lua"/>
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="Localization.lua"/>
+	<Script file="ItemDB.lua"/>
+	<Script file="DisplayGroups.lua"/>
 	<Script file="ItemDisplayGroup.lua"/>
 	<Script file="Tmog.lua"/>
 	<Button name="TmogSharedItemTemplate" virtual="true">

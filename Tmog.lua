@@ -920,6 +920,7 @@ local function AddCollectionStatus(slot, itemID, tooltip)
 		rightText = right:IsShown() and right:GetText()
 		rL, gL, bL = left:GetTextColor()
 		rR, gR, bR = right:GetTextColor()
+		if not lines[i] then lines[i] = {} end
 		lines[i][1] = leftText
 		lines[i][2] = rightText
 		lines[i][3] = rL
@@ -935,9 +936,9 @@ local function AddCollectionStatus(slot, itemID, tooltip)
 	end
 
 	if TMOG_CACHE[slot][itemID] then
-		status = GREEN..L["Collected"]
+		status = GREEN..L["Collected"].."|r"
 	else
-		status = YELLOW..L["Not collected"]
+		status = YELLOW..L["Not collected"].."|r"
 	end
 
 	tooltip:SetText(lines[1][1], lines[1][3], lines[1][4], lines[1][5], 1, false)
@@ -2327,14 +2328,20 @@ function TmogFramePreview_OnEnter()
 			return
 		end
 		if not Tmog.onlyUsable then
-			lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL..L["Shares appearance with"]..":")
+			local similarItemsText = ""
+			local numSimilarItems = 0
 			for _, id in pairs(Tmog.DisplayGroups[displayGroup]) do
 				Tmog.CacheItem(id)
 				local similarItem, _, quality = GetItemInfo(id)
 				if similarItem and id ~= itemID then
+					numSimilarItems = numSimilarItems + 1
 					local _, _, _, color = GetItemQualityColor(quality or 1)
-					lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
+					similarItemsText = similarItemsText.."\n"..color..similarItem.."|r"
 				end
+			end
+			if numSimilarItems > 0 then
+				similarItemsText = NORMAL..L["Shares appearance with"]..":|r"..similarItemsText
+				lastLine:SetText(lastLine:GetText().."\n\n"..similarItemsText)
 			end
 		else
 			local proceed = false
@@ -2346,16 +2353,22 @@ function TmogFramePreview_OnEnter()
 				end
 			end
 			if proceed then
-				lastLine:SetText(lastLine:GetText().."\n\n"..NORMAL..L["Shares appearance with"]..":")
+				local similarItemsText = ""
+				local numSimilarItems = 0
 				for _, id in pairs(Tmog.DisplayGroups[displayGroup]) do
 					Tmog.CacheItem(id)
 					local similarItem, _, quality = GetItemInfo(id)
 					if id ~= itemID and similarItem then
 						if Tmog.IsUsableItem(id) then
+							numSimilarItems = numSimilarItems + 1
 							local _, _, _, color = GetItemQualityColor(quality or 1)
-							lastLine:SetText(lastLine:GetText().."\n"..color..similarItem)
+							similarItemsText = similarItemsText.."\n"..color..similarItem.."|r"
 						end
 					end
+				end
+				if numSimilarItems > 0 then
+					similarItemsText = NORMAL..L["Shares appearance with"]..":|r"..similarItemsText
+					lastLine:SetText(lastLine:GetText().."\n\n"..similarItemsText)
 				end
 			end
 		end

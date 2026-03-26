@@ -1639,7 +1639,7 @@ Tmog.ItemDB={
 },
 },
 [17]={
-["One-Handed Swords"]={
+[L["One-Handed Swords"]]={
 [3572]=1,
 [6633]=1,
 [15814]=1,
@@ -1804,7 +1804,7 @@ Tmog.ItemDB={
 [61577]=1,
 [41155]=1,
 },
-["One-Handed Maces"]={
+[L["One-Handed Maces"]]={
 [11684]=1,
 [22988]=1,
 [33912]=1,
@@ -1911,7 +1911,7 @@ Tmog.ItemDB={
 [33908]=1,
 [19293]=1,
 },
-["One-Handed Axes"]={
+[L["One-Handed Axes"]]={
 [15240]=1,
 [61601]=1,
 [33028]=1,
@@ -2269,7 +2269,7 @@ Tmog.ItemDB={
 [7682]=1,
 [1287]=1,
 },
-["Fist Weapons"]={
+[L["Fist Weapons"]]={
 [18848]=1,
 [17738]=1,
 [33889]=1,
@@ -11108,7 +11108,7 @@ Tmog.ItemDB={
 [18833]=1,
 [9426]=1,
 },
-["One-Handed Axes"]={
+[L["One-Handed Axes"]]={
 [13289]=1,
 },
 [L["Guns"]]={
@@ -11266,7 +11266,7 @@ Tmog.ItemDB={
 },
 },
 [16]={
-["One-Handed Swords"]={
+[L["One-Handed Swords"]]={
 [20440]=1,
 [2046]=1,
 [15335]=1,
@@ -11564,7 +11564,7 @@ Tmog.ItemDB={
 [12777]=1,
 [21650]=1,
 },
-["One-Handed Maces"]={
+[L["One-Handed Maces"]]={
 [4090]=1,
 [2048]=1,
 [12781]=1,
@@ -11840,7 +11840,7 @@ Tmog.ItemDB={
 [12794]=1,
 [17112]=1,
 },
-["One-Handed Axes"]={
+[L["One-Handed Axes"]]={
 [55080]=1,
 [2807]=1,
 [768]=1,
@@ -12025,7 +12025,7 @@ Tmog.ItemDB={
 [13818]=1,
 [15231]=1,
 },
-["Two-Handed Maces"]={
+[L["Two-Handed Maces"]]={
 [3571]=1,
 [23465]=1,
 [9449]=1,
@@ -12520,7 +12520,7 @@ Tmog.ItemDB={
 [67004]=1,
 [6219]=1,
 },
-["Two-Handed Axes"]={
+[L["Two-Handed Axes"]]={
 [2299]=1,
 [12249]=1,
 [3325]=1,
@@ -12676,7 +12676,7 @@ Tmog.ItemDB={
 [L["Wands"]]={
 [61374]=1,
 },
-["Fist Weapons"]={
+[L["Fist Weapons"]]={
 [61740]=1,
 [18462]=1,
 [58279]=1,
@@ -12829,7 +12829,7 @@ Tmog.ItemDB={
 [58037]=1,
 [13055]=1,
 },
-["Two-Handed Swords"]={
+[L["Two-Handed Swords"]]={
 [51766]=1,
 [13262]=1,
 [5614]=1,

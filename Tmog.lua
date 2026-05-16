@@ -1726,7 +1726,7 @@ function Tmog.DrawPreviews(noDraw)
 
 		local size = getn(DrawTable)
 		Tmog.totalPages = ceil(size / Tmog.itemsPerPage)
-		TmogFramePageText:SetText(GENERIC_PAGE.." " .. Tmog.currentPage .. "/" .. Tmog.totalPages)
+		TmogFramePageText:SetText(Tmog.currentPage .. "/" .. Tmog.totalPages)
 
 		if Tmog.currentPage == 1 then
 			TmogFrameLeftArrow:Disable()
@@ -1846,7 +1846,7 @@ function Tmog.DrawPreviews(noDraw)
 
 		local size = tsize(TMOG_PLAYER_OUTFITS) + 1
 		Tmog.totalPages = ceil(size / Tmog.itemsPerPage)
-		TmogFramePageText:SetText(GENERIC_PAGE.." " .. Tmog.currentPage .. "/" .. Tmog.totalPages)
+		TmogFramePageText:SetText(Tmog.currentPage .. "/" .. Tmog.totalPages)
 
 		if Tmog.currentPage == 1 then
 			TmogFrameLeftArrow:Disable()

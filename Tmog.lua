@@ -3273,7 +3273,7 @@ SlashCmdList["TMOG"] = function(cmd)
 		for k, v in pairs(TMOG_CACHE) do
 			for k2, v2 in pairs(v) do TMOG_CACHE[k][k2] = nil end
 		end
-		Tmog.print(L["cllection has been reset"])
+		Tmog.print(L["collection has been reset"])
 
 	elseif strfind(cmd, "lock$") then
 		TmogButton:SetMovable(not TmogButton:IsMovable())

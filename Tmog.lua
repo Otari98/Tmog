@@ -2980,7 +2980,8 @@ function Tmog.CacheItem(linkOrID)
 		if GetItemInfo(linkOrID) then
 			return true
 		else
-			GameTooltip:SetHyperlink("item:"..linkOrID)
+            TmogScanTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
+			TmogScanTooltip:SetHyperlink("item:"..linkOrID)
 			Tmog.debug("Caching "..linkOrID)
 		end
 	else
@@ -2992,7 +2993,8 @@ function Tmog.CacheItem(linkOrID)
 			if GetItemInfo(item) then
 				return true
 			else
-				GameTooltip:SetHyperlink(item)
+                TmogScanTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
+				TmogScanTooltip:SetHyperlink(item)
 				Tmog.debug("Caching "..item)
 			end
 		end

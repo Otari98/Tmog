@@ -879,7 +879,6 @@
 						Tmog.Search()
 					</OnTextChanged>
 				</Scripts>
-				<FontString name="$parentSearchString" inherits="GameFontNormal"/>
 			</EditBox>
 			<Button name="TmogButton" movable="true" parent="Minimap" enableMouse="true" toplevel="true">
 				<Size x="33" y="33"/>
@@ -1075,6 +1074,12 @@
 									<OnTextChanged>
 										TmogFrameShareDialogScrollFrame:UpdateScrollChildRect()
 									</OnTextChanged>
+									<OnEditFocusGained>
+										this:HighlightText()
+									</OnEditFocusGained>
+									<OnEditFocusLost>
+										this:HighlightText(0, 0)
+									</OnEditFocusLost>
 								</Scripts>
 								<FontString inherits="GameFontHighlightSmall" justifyH="LEFT"/>
 								<TextInsets left="5" right="0" top="5" bottom="5"/>
@@ -1212,7 +1217,7 @@
 						TmogFrameFullScreenModel_OnShow()
 					</OnShow>
 					<OnHide>
-						this:SetPosition(0, 0, 0)
+						TmogFrameFullScreenModel_OnHide()
 					</OnHide>
 					<OnUpdate/>
 					<OnMouseWheel/>

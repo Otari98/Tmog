@@ -19,7 +19,7 @@ local YELLOW = "|cffFFFF00"
 local GREEN = "|cff00A000"
 local BLUE = "|cff0070de"
 
-local WEBSITE = "https://database.turtlecraft.gg/?item="
+local WEBSITE = "https://octowow.st/db/?item="
 
 local _, playerClass = UnitClass("player")
 local _, playerRace = UnitRace("player")
@@ -369,9 +369,7 @@ Positions[17] = Positions[16]
 if not UIDropDownMenu_CreateInfo then
 	local info = {}
 	UIDropDownMenu_CreateInfo = function()
-		for k in pairs(info) do
-			info[k] = nil
-		end
+		for k in pairs(info) do info[k] = nil end
 		return info
 	end
 end
@@ -426,23 +424,21 @@ Tmog.dropdownTypes = {
 }
 
 function Tmog.GetTypesForSlot(slot)
-	local types = Tmog.dropdownTypes.default
 	if slot == 1 or slot == 5 or slot == 8 then
-		types = Tmog.dropdownTypes.misc
+		return Tmog.dropdownTypes.misc
 	elseif slot == 15 then
-		types = Tmog.dropdownTypes.back
+		return Tmog.dropdownTypes.back
 	elseif slot == 4 or slot == 19 then
-		types = Tmog.dropdownTypes.shirt
-	elseif slot == 10 or slot == 6 or slot == 7 or slot == 3 or slot == 9 then
-		types = Tmog.dropdownTypes.default
+		return Tmog.dropdownTypes.shirt
 	elseif slot == 16 then
-		types = Tmog.dropdownTypes.mh
+		return Tmog.dropdownTypes.mh
 	elseif slot == 17 then
-		types = Tmog.dropdownTypes.oh
+		return Tmog.dropdownTypes.oh
 	elseif slot == 18 then
-		types = Tmog.dropdownTypes.ranged
+		return Tmog.dropdownTypes.ranged
+	else
+		return Tmog.dropdownTypes.default
 	end
-	return types
 end
 
 -- table for checking transmog status
@@ -478,13 +474,9 @@ function Tmog.print(msg)
 end
 
 function Tmog.debug(...)
-	if not Tmog.verbose then
-		return
-	end
+	if not Tmog.verbose then return end
 	local size = getn(arg)
-	for i = 1, size do
-		arg[i] = tostring(arg[i])
-	end
+	for i = 1, size do arg[i] = tostring(arg[i]) end
 	local msg = size > 1 and concat(arg, ", ") or tostring(arg[1])
 	local time = GetTime()
 	DEFAULT_CHAT_FRAME:AddMessage("["..BLUE.."Tmog|r]["..GREY..format("%.3f", time).."|r] "..msg)
@@ -505,64 +497,45 @@ local function strsplit(str, delimiter)
 end
 
 local function strtrim(s)
-	return gsub(s or "", "^%s*(.-)%s*$", "%1")
+	return (gsub(s or "", "^%s*(.-)%s*$", "%1"))
 end
 
 local function SetContains(set, key, value)
-	if not set then
-		return false
-	end
+	if not set then return false end
 	if not key and value then
 		for k, v in pairs(set) do
-			if v == value then
-				return k
-			end
+			if v == value then return k end
 		end
 	end
-	if key and not value then
-		return set[key] ~= nil
-	end
+	if key and not value then return set[key] ~= nil end
 	return set[key] == value
 end
 
 local function tsize(t)
-	if type(t) ~= "table" then
-		return 0
-	end
+	if type(t) ~= "table" then return 0 end
 	local size = 0
-	for _ in pairs(t) do
-		size = size + 1
-	end
+	for _ in pairs(t) do size = size + 1 end
 	return size
 end
 
 function Tmog.InventorySlotFromItemID(itemID)
-	if not itemID then
-		return nil
-	end
+	if not itemID then return nil end
 	local _, _, _, _, _, _, _, slot  = GetItemInfo(itemID)
 	return InventoryTypeToSlot[slot or ""]
 end
 
 function Tmog.IDFromLink(link)
-	if not link then
-		return nil
-	end
+	if not link then return nil end
 	local _, _, id = strfind(link, "item:(%d+)")
 	return tonumber(id)
 end
 
 local IDcache = {}
 function Tmog.GetItemIDByName(name)
-	if not name then
-		return nil
-	end
+	if not name then return nil end
 	if IDcache[name] then
-		if IDcache[name] ~= 0 then
-			return IDcache[name]
-		else
-			return nil
-		end
+		if IDcache[name] ~= 0 then return IDcache[name]
+		else return nil end
 	end
 	for itemID = 1, 99999 do
 		local itemName = GetItemInfo(itemID)
@@ -579,41 +552,64 @@ local insideHook = false
 local tooltipMoney = 0
 local HookSetTooltipMoney = SetTooltipMoney
 function SetTooltipMoney(frame, money)
-	if insideHook then
-		tooltipMoney = money or 0
-	else
+	tooltipMoney = money or 0
+	if not insideHook then
 		HookSetTooltipMoney(frame, money)
 	end
 end
 
 function Tmog.HookTooltip(tooltip)
-	Tmog.debug("hooking tooltip", tooltip)
-
-	local HookSetLootRollItem    = tooltip.SetLootRollItem
-	local HookSetLootItem        = tooltip.SetLootItem
-	local HookSetMerchantItem    = tooltip.SetMerchantItem
-	local HookSetQuestLogItem    = tooltip.SetQuestLogItem
-	local HookSetQuestItem       = tooltip.SetQuestItem
-	local HookSetHyperlink       = tooltip.SetHyperlink
-	local HookSetBagItem         = tooltip.SetBagItem
-	local HookSetInboxItem       = tooltip.SetInboxItem
-	local HookSetInventoryItem   = tooltip.SetInventoryItem
-	local HookSetCraftItem       = tooltip.SetCraftItem
-	local HookSetCraftSpell      = tooltip.SetCraftSpell
-	local HookSetTradeSkillItem  = tooltip.SetTradeSkillItem
-	local HookSetAuctionItem     = tooltip.SetAuctionItem
-	local HookSetAuctionSellItem = tooltip.SetAuctionSellItem
-	local HookSetTradePlayerItem = tooltip.SetTradePlayerItem
-	local HookSetTradeTargetItem = tooltip.SetTradeTargetItem
-
+	Tmog.debug("hooking tooltip", tooltip, tooltip:GetName())
 	local original_OnHide = tooltip:GetScript("OnHide")
+
 	tooltip:SetScript("OnHide", function()
-		if original_OnHide then
-			original_OnHide()
-		end
+		if original_OnHide then original_OnHide() end
 		this.itemID = nil
 		tooltipMoney = 0
 	end)
+
+	-- ClassicAPI
+	if tooltip.HookScript and tooltip.GetItem and hooksecurefunc then
+		-- tooltip:HookScript("OnHide", function(self)
+		-- 	self.itemID = nil
+		-- 	tooltipMoney = 0
+		-- end)
+		-- tooltip:HookScript("OnTooltipSetItem", function(self)
+			-- local itemName, itemLink, itemID = self:GetItem()
+			-- self.itemID = tonumber(self.itemID) or itemID or Tmog.IDFromLink(itemLink)
+			-- Tmog.ExtendTooltip(self)
+		-- end)
+		for _, method in pairs({
+			"SetLootRollItem","SetLootItem","SetMerchantItem","SetQuestLogItem","SetQuestItem","SetHyperlink",
+			"SetBagItem","SetInboxItem","SetInventoryItem","SetCraftItem","SetCraftSpell","SetTradeSkillItem",
+			"SetAuctionItem","SetAuctionSellItem","SetTradePlayerItem","SetTradeTargetItem",
+		}) do
+			hooksecurefunc(tooltip, method, function(self)
+				local itemName, itemLink, itemID = tooltip:GetItem()
+				self.itemID = tonumber(self.itemID) or itemID or Tmog.IDFromLink(itemLink)
+				Tmog.ExtendTooltip(self)
+			end)
+		end
+		return
+	end
+
+	-- Old stuff
+	local original_SetLootRollItem    = tooltip.SetLootRollItem
+	local original_SetLootItem        = tooltip.SetLootItem
+	local original_SetMerchantItem    = tooltip.SetMerchantItem
+	local original_SetQuestLogItem    = tooltip.SetQuestLogItem
+	local original_SetQuestItem       = tooltip.SetQuestItem
+	local original_SetHyperlink       = tooltip.SetHyperlink
+	local original_SetBagItem         = tooltip.SetBagItem
+	local original_SetInboxItem       = tooltip.SetInboxItem
+	local original_SetInventoryItem   = tooltip.SetInventoryItem
+	local original_SetCraftItem       = tooltip.SetCraftItem
+	local original_SetCraftSpell      = tooltip.SetCraftSpell
+	local original_SetTradeSkillItem  = tooltip.SetTradeSkillItem
+	local original_SetAuctionItem     = tooltip.SetAuctionItem
+	local original_SetAuctionSellItem = tooltip.SetAuctionSellItem
+	local original_SetTradePlayerItem = tooltip.SetTradePlayerItem
+	local original_SetTradeTargetItem = tooltip.SetTradeTargetItem
 
 	local IDFromLink = Tmog.IDFromLink
 	local GetItemIDByName = Tmog.GetItemIDByName
@@ -621,7 +617,7 @@ function Tmog.HookTooltip(tooltip)
 
 	function tooltip.SetLootRollItem(self, id)
 		insideHook = true
-		HookSetLootRollItem(self, id)
+		original_SetLootRollItem(self, id)
 		insideHook = false
 		self.itemID = IDFromLink(GetLootRollItemLink(id))
 		ExtendTooltip(self)
@@ -629,7 +625,7 @@ function Tmog.HookTooltip(tooltip)
 
 	function tooltip.SetLootItem(self, slot)
 		insideHook = true
-		HookSetLootItem(self, slot)
+		original_SetLootItem(self, slot)
 		insideHook = false
 		self.itemID = IDFromLink(GetLootSlotLink(slot))
 		ExtendTooltip(self)
@@ -637,7 +633,7 @@ function Tmog.HookTooltip(tooltip)
 
 	function tooltip.SetMerchantItem(self, merchantIndex)
 		insideHook = true
-		HookSetMerchantItem(self, merchantIndex)
+		original_SetMerchantItem(self, merchantIndex)
 		insideHook = false
 		self.itemID = IDFromLink(GetMerchantItemLink(merchantIndex))
 		ExtendTooltip(self)
@@ -645,7 +641,7 @@ function Tmog.HookTooltip(tooltip)
 
 	function tooltip.SetQuestLogItem(self, itemType, index)
 		insideHook = true
-		HookSetQuestLogItem(self, itemType, index)
+		original_SetQuestLogItem(self, itemType, index)
 		insideHook = false
 		self.itemID = IDFromLink(GetQuestLogItemLink(itemType, index))
 		ExtendTooltip(self)
@@ -653,7 +649,7 @@ function Tmog.HookTooltip(tooltip)
 
 	function tooltip.SetQuestItem(self, itemType, index)
 		insideHook = true
-		HookSetQuestItem(self, itemType, index)
+		original_SetQuestItem(self, itemType, index)
 		insideHook = false
 		self.itemID = IDFromLink(GetQuestItemLink(itemType, index))
 		ExtendTooltip(self)
@@ -661,7 +657,7 @@ function Tmog.HookTooltip(tooltip)
 
 	function tooltip.SetHyperlink(self, arg1)
 		insideHook = true
-		HookSetHyperlink(self, arg1)
+		original_SetHyperlink(self, arg1)
 		insideHook = false
 		self.itemID = IDFromLink(arg1)
 		ExtendTooltip(self)
@@ -669,7 +665,7 @@ function Tmog.HookTooltip(tooltip)
 
 	function tooltip.SetBagItem(self, container, slot)
 		insideHook = true
-		local hasCooldown, repairCost = HookSetBagItem(self, container, slot)
+		local hasCooldown, repairCost = original_SetBagItem(self, container, slot)
 		insideHook = false
 		self.itemID = IDFromLink(GetContainerItemLink(container, slot))
 		ExtendTooltip(self)
@@ -678,15 +674,19 @@ function Tmog.HookTooltip(tooltip)
 
 	function tooltip.SetInboxItem(self, mailID, attachmentIndex)
 		insideHook = true
-		HookSetInboxItem(self, mailID, attachmentIndex)
+		original_SetInboxItem(self, mailID, attachmentIndex)
 		insideHook = false
-		self.itemID = GetItemIDByName(GetInboxItem(mailID))
+		if GetInboxItemLink then
+			self.itemID = IDFromLink(GetInboxItemLink(mailID, attachmentIndex))
+		else
+			self.itemID = GetItemIDByName(GetInboxItem(mailID, attachmentIndex))
+		end
 		ExtendTooltip(self)
 	end
 
 	function tooltip.SetInventoryItem(self, unit, slot)
 		insideHook = true
-		local hasItem, hasCooldown, repairCost = HookSetInventoryItem(self, unit, slot)
+		local hasItem, hasCooldown, repairCost = original_SetInventoryItem(self, unit, slot)
 		insideHook = false
 		self.itemID = IDFromLink(GetInventoryItemLink(unit, slot))
 		ExtendTooltip(self)
@@ -695,7 +695,7 @@ function Tmog.HookTooltip(tooltip)
 
 	function tooltip.SetCraftItem(self, skill, slot)
 		insideHook = true
-		HookSetCraftItem(self, skill, slot)
+		original_SetCraftItem(self, skill, slot)
 		insideHook = false
 		self.itemID = IDFromLink(GetCraftReagentItemLink(skill, slot))
 		ExtendTooltip(self)
@@ -703,7 +703,7 @@ function Tmog.HookTooltip(tooltip)
 
 	function tooltip.SetCraftSpell(self, slot)
 		insideHook = true
-		HookSetCraftSpell(self, slot)
+		original_SetCraftSpell(self, slot)
 		insideHook = false
 		self.itemID = IDFromLink(GetCraftItemLink(slot))
 		ExtendTooltip(self)
@@ -711,7 +711,7 @@ function Tmog.HookTooltip(tooltip)
 
 	function tooltip.SetTradeSkillItem(self, skillIndex, reagentIndex)
 		insideHook = true
-		HookSetTradeSkillItem(self, skillIndex, reagentIndex)
+		original_SetTradeSkillItem(self, skillIndex, reagentIndex)
 		insideHook = false
 		if reagentIndex then
 			self.itemID = IDFromLink(GetTradeSkillReagentItemLink(skillIndex, reagentIndex))
@@ -723,7 +723,7 @@ function Tmog.HookTooltip(tooltip)
 
 	function tooltip.SetAuctionItem(self, atype, index)
 		insideHook = true
-		HookSetAuctionItem(self, atype, index)
+		original_SetAuctionItem(self, atype, index)
 		insideHook = false
 		self.itemID = IDFromLink(GetAuctionItemLink(atype, index))
 		ExtendTooltip(self)
@@ -731,15 +731,20 @@ function Tmog.HookTooltip(tooltip)
 
 	function tooltip.SetAuctionSellItem(self)
 		insideHook = true
-		HookSetAuctionSellItem(self)
+		original_SetAuctionSellItem(self)
 		insideHook = false
-		self.itemID = GetItemIDByName(GetAuctionSellItemInfo())
+		local name, texture, stackSize, quality, canUse, price, maxStack, link = GetAuctionSellItemInfo()
+		if link then
+			self.itemID = IDFromLink(link)
+		else
+			self.itemID = GetItemIDByName(name)
+		end
 		ExtendTooltip(self)
 	end
 
 	function tooltip.SetTradePlayerItem(self, index)
 		insideHook = true
-		HookSetTradePlayerItem(self, index)
+		original_SetTradePlayerItem(self, index)
 		insideHook = false
 		self.itemID = IDFromLink(GetTradePlayerItemLink(index))
 		ExtendTooltip(self)
@@ -747,7 +752,7 @@ function Tmog.HookTooltip(tooltip)
 
 	function tooltip.SetTradeTargetItem(self, index)
 		insideHook = true
-		HookSetTradeTargetItem(self, index)
+		original_SetTradeTargetItem(self, index)
 		insideHook = false
 		self.itemID = IDFromLink(GetTradeTargetItemLink(index))
 		ExtendTooltip(self)
@@ -862,13 +867,9 @@ end
 do
 	local result = {}
 	function Tmog.GetOutfitsWithItem(itemID)
-		for i = getn(result), 1, -1 do
-			tremove(result, i)
-		end
+		for i = getn(result), 1, -1 do tremove(result, i) end
 		itemID = tonumber(itemID)
-		if not itemID then
-			return result, 0
-		end
+		if not itemID then return result end
 		for outfitName, outfitItems in pairs(TMOG_PLAYER_OUTFITS) do
 			for _, outfitItemID in pairs(outfitItems) do
 				local g1 = Tmog.ItemDisplayGroup[outfitItemID]
@@ -879,7 +880,7 @@ do
 				end
 			end
 		end
-		return result, getn(result)
+		return result
 	end
 end
 
@@ -894,13 +895,20 @@ local WrappingLines = {
 }
 
 local lines = {}
-for i = 1, 30 do
+local maxLines = 30
+for i = 1, maxLines do
 	lines[i] = {}
 end
 
 local function AddCollectionStatus(slot, itemID, tooltip)
 	local name = tooltip:GetName()
 	local numLines = tooltip:NumLines()
+
+	if numLines > maxLines then
+		for i = maxLines + 1, numLines do lines[i] = {} end
+		maxLines = numLines
+	end
+
 	local left, right
 	local leftText, rightText
 	local rL, gL, bL
@@ -920,7 +928,6 @@ local function AddCollectionStatus(slot, itemID, tooltip)
 		rightText = right:IsShown() and right:GetText()
 		rL, gL, bL = left:GetTextColor()
 		rR, gR, bR = right:GetTextColor()
-		if not lines[i] then lines[i] = {} end
 		lines[i][1] = leftText
 		lines[i][2] = rightText
 		lines[i][3] = rL
@@ -931,9 +938,7 @@ local function AddCollectionStatus(slot, itemID, tooltip)
 		lines[i][8] = bR
 	end
 
-	if not lines[1][1] then
-		return
-	end
+	if not lines[1][1] then return end
 
 	if TMOG_CACHE[slot][itemID] then
 		status = GREEN..L["Collected"].."|r"
@@ -943,7 +948,7 @@ local function AddCollectionStatus(slot, itemID, tooltip)
 
 	tooltip:SetText(lines[1][1], lines[1][3], lines[1][4], lines[1][5], 1, false)
 
-	if numLines < 28 then
+	if numLines < maxLines then
 		tooltip:AddLine(status)
 	elseif lines[2][1] then
 		lines[2][1] = status.."\n"..lines[2][1]
@@ -969,6 +974,35 @@ local function AddCollectionStatus(slot, itemID, tooltip)
 	end
 end
 
+local function AddUniquenessLine(itemID, tooltip)
+	local numLines = tooltip:NumLines()
+	if numLines > maxLines then
+		for i = maxLines + 1, numLines do lines[i] = {} end
+		maxLines = numLines
+	end
+	local string
+	if not Tmog.ItemDisplayGroup[itemID] then
+		if not Tmog.IsKnownAppearance(itemID) then
+			string = NORMAL..L["Unknown appearance"]
+		else
+			string = NORMAL..L["Unique appearance"]
+		end
+	else
+		string = NORMAL..L["Non-unique appearance"]
+	end
+	local outfits = Tmog.GetOutfitsWithItem(itemID)
+	local numTotal = getn(outfits)
+	if numTotal > 0 then
+		string = string..GRAY_FONT_COLOR_CODE.." ("..format(L["Outfits: %s"], concat(outfits, ", "))..")"..FONT_COLOR_CODE_CLOSE
+	end
+	if numLines < maxLines then
+		tooltip:AddLine(string, 1, 0.82, 0, numTotal > 3)
+	else
+		local lastLine = _G[tooltip:GetName().."TextLeft"..numLines]
+		lastLine:SetText(lastLine:GetText().."\n"..string)
+	end
+end
+
 local lastItemName = nil
 local lastSlot = nil
 function Tmog.ExtendTooltip(tooltip)
@@ -984,27 +1018,7 @@ function Tmog.ExtendTooltip(tooltip)
 			AddCollectionStatus(lastSlot, itemID, tooltip)
 		end
 		if tooltip ~= TmogTooltip and Tmog.Transmogable(itemID) then
-			local string
-			if not Tmog.ItemDisplayGroup[itemID] then
-				if not Tmog.IsKnownAppearance(itemID) then
-					string = NORMAL..L["Unknown appearance"]
-				else
-					string = NORMAL..L["Unique appearance"]
-				end
-			else
-				string = NORMAL..L["Non-unique appearance"]
-			end
-			local outfits, numTotal = Tmog.GetOutfitsWithItem(itemID)
-			if numTotal > 0 then
-				string = string..GRAY_FONT_COLOR_CODE.." ("..format(L["Outfits: %s"], concat(outfits, ", "))..")"..FONT_COLOR_CODE_CLOSE
-			end
-			local numLines = tooltip:NumLines()
-			if numLines < 30 then
-				tooltip:AddLine(string, 1, 0.82, 0, numTotal > 3)
-			else
-				local lastLine = _G[tooltip:GetName().."TextLeft"..numLines]
-				lastLine:SetText(lastLine:GetText().."\n"..string)
-			end
+			AddUniquenessLine(itemID, tooltip)
 		end
 		tooltip:Show()
 	end
@@ -1016,16 +1030,12 @@ end
 
 local original_OnShow = GameTooltip:GetScript("OnShow")
 GameTooltip:SetScript("OnShow", function()
-	if original_OnShow then
-		original_OnShow()
-	end
+	if original_OnShow then original_OnShow() end
+
 	if aux_frame and aux_frame:IsShown() then
 		local frame = GetMouseFocus()
-		
 		if not frame then return end
-
 		local parent = frame:GetParent()
-		
 		if not (parent and parent.row and parent.row.record) then return end
 
 		GameTooltip.itemID = tonumber(parent.row.record.item_id)
@@ -1057,16 +1067,16 @@ function TmogFrame_OnLoad()
 	TmogFrameUsable:SetChecked(Tmog.onlyUsable)
 
 	tinsert(UISpecialFrames, "TmogFrame")
+	TmogFrame.firstLoad = true
 end
 
-local firstLoad = true
 function TmogFrame_OnEvent()
 	if event == "PLAYER_ENTERING_WORLD" then
 		TmogFramePlayerModel:SetUnit("player")
 
-		if firstLoad then
+		if TmogFrame.firstLoad then
 			Tmog.Reset()
-			firstLoad = false
+			TmogFrame.firstLoad = nil
 		end
 
 		if TmogFrame:IsShown() then
@@ -1107,14 +1117,10 @@ function TmogFrame_OnEvent()
 			[19] = {}, -- TabardSlot
 		}
 		for _, InventorySlotId in pairs(InventorySlots) do
-			if not TMOG_CACHE[InventorySlotId] then
-				TMOG_CACHE[InventorySlotId] = {}
-			end
+			if not TMOG_CACHE[InventorySlotId] then TMOG_CACHE[InventorySlotId] = {} end
 		end
 		for k, v in pairs(TMOG_CACHE) do
-			for k2, v2 in pairs(v) do
-				if v2 ~= 1 then TMOG_CACHE[k][k2] = 1 end
-			end
+			for k2, v2 in pairs(v) do if v2 ~= 1 then TMOG_CACHE[k][k2] = 1 end end
 		end
 		TMOG_PLAYER_OUTFITS = TMOG_PLAYER_OUTFITS or {}
 		TMOG_TRANSMOG_STATUS = TMOG_TRANSMOG_STATUS or {}
@@ -1395,12 +1401,9 @@ function Tmog.HidePreviews()
 	end
 end
 
-local function IsRed(tooltipLine)
-	local r, g, b = _G[tooltipLine]:GetTextColor()
-	if r > 0.9 and g < 0.2 and b < 0.2 then
-		return true
-	end
-	return false
+local function IsRed(r, g, b)
+	if not r then return false end
+	return r > 0.9 and g < 0.2 and b < 0.2
 end
 
 function Tmog.IsUsableItem(id)
@@ -1416,7 +1419,9 @@ function Tmog.IsUsableItem(id)
 	TmogScanTooltip:SetHyperlink("item:"..id)
 	for i = 2, 15 do
 		local text = _G["TmogScanTooltipTextLeft"..i]:GetText() or ""
-		if (IsRed("TmogScanTooltipTextLeft"..i) or IsRed("TmogScanTooltipTextRight"..i)) then
+		local leftR, leftG, leftB = _G["TmogScanTooltipTextLeft"..i]:GetTextColor()
+		local rightR, rightG, rightB = _G["TmogScanTooltipTextRight"..i]:GetTextColor()
+		if IsRed(leftR, leftG, leftB) or IsRed(rightR, rightG, rightB) then
 			if strfind(text, "^"..(gsub(ITEM_MIN_LEVEL, "%%d", ""))) then
 				if not Tmog.ignoreLevel then
 					isUsable = false
@@ -2230,19 +2235,112 @@ function Tmog.LinkItem(itemId)
 end
 
 function Tmog.LinkOutfit(outfit)
-	if not outfit or outfit == "" then
-		return
-	end
+	if not outfit or outfit == "" then return end
 
-	local code = "T.O.L."
-	for slot, id in pairs(TMOG_PLAYER_OUTFITS[outfit]) do
-		code = code..slot..":"..id..";"
-	end
+	-- local code = "T.O.L."
+	-- for slot, id in pairs(TMOG_PLAYER_OUTFITS[outfit]) do
+	-- 	code = code..slot..":"..id..";"
+	-- end
+
+	local link = Tmog.GetOutfitLink(outfit)
+	if not link then return end
 
 	if WIM_EditBoxInFocus then
-		WIM_EditBoxInFocus:Insert(code)
+		WIM_EditBoxInFocus:Insert(link)
 	elseif ChatFrameEditBox:IsShown() then
-		ChatFrameEditBox:Insert(code)
+		ChatFrameEditBox:Insert(link)
+	end
+end
+
+Tmog.LinkSlotOrder = { 1, 3, 15, 5, 4, 19, 9, 10, 6, 7, 8, 16, 17, 18 }
+local base = string.len([[!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{]])
+local asciiOffset = 33
+local charsPerItem = 3
+
+function Tmog.ParseOutfitLink(link)
+	if not link then return nil end
+	local payload = gsub(link, "^.*outfit:(.+).*$", "%1", 1)
+	local t = {}
+	for i = 1, string.len(payload), charsPerItem do
+		local group = strsub(payload, i, i + charsPerItem - 1)
+		local sum = 0
+		for j = 1, string.len(group) do
+			local a = string.byte(group, j) - asciiOffset
+			local b = math.pow(base, charsPerItem - j)
+			sum = sum + a * b
+		end
+		table.insert(t, sum)
+	end
+	return getn(t) > 0 and t or nil
+end
+
+function Tmog.GetOutfitLink(outfit)
+	if not outfit or outfit == "" or not TMOG_PLAYER_OUTFITS[outfit] then return "" end
+	local link = ""
+	for i = 1, getn(Tmog.LinkSlotOrder) do
+		local slot = Tmog.LinkSlotOrder[i]
+		local code = ""
+		local itemID = TMOG_PLAYER_OUTFITS[outfit][slot]
+		if itemID then
+			for _ = 1, charsPerItem do
+				code = string.char(mod(itemID, base) + asciiOffset)..code
+				itemID = floor(itemID / base)
+			end
+		else
+			code = string.rep(string.char(asciiOffset), charsPerItem)
+		end
+		link = link..code
+	end
+	return link ~= "" and string.format("|cffff80ff|Houtfit:%s|h[%s]|h|r", link, outfit) or ""
+end
+
+local original_SetItemRef = SetItemRef
+function SetItemRef(link, text, button)
+	if string.sub(link or "", 1, 6) == "outfit" then
+		local info = Tmog.ParseOutfitLink(link)
+		if not info then return end
+		if IsControlKeyDown() then
+			DressUpItem(0)
+			if DressUpFrame:IsShown() then
+				DressUpModel:Undress()
+				for index, itemID in ipairs(info) do
+					if itemID > 0 then DressUpModel:TryOn(itemID) end
+				end
+			end
+		elseif IsShiftKeyDown() then
+			local staticPopup = StaticPopup_Visible("TMOG_IMPORT_OUTFIT")
+			if staticPopup then
+				_G[staticPopup.."EditBox"]:SetText(link)
+			elseif WIM_EditBoxInFocus then
+				WIM_EditBoxInFocus:Insert(text)
+			elseif ChatFrameEditBox:IsVisible() then
+				ChatFrameEditBox:Insert(text)
+			end
+		else
+			ShowUIPanel(ItemRefTooltip)
+			if not ItemRefTooltip:IsVisible() then
+				ItemRefTooltip:SetOwner(UIParent, "ANCHOR_PRESERVE")
+			end
+			ItemRefTooltip:SetText((gsub(text, "^.*|h%[(.+)%]|h.*$", "%1", 1)), 1, 1, 1, 1, true)
+			for index, itemID in ipairs(info) do
+				local slot = Tmog.LinkSlotOrder[index]
+				local slotName
+				for k, v in pairs(InventorySlots) do
+					if v == slot then slotName = k end
+				end
+				if slotName and itemID > 0 then
+					slotName = _G[strupper(slotName)]
+					local itemName, _, quality = GetItemInfo(itemID)
+					if itemName then
+						local _, _, _, color = GetItemQualityColor(quality or 1)
+						ItemRefTooltip:AddLine(slotName..": "..color..itemName)
+					end
+				end
+			end
+			ItemRefTooltip:Show()
+		end
+	else
+		return original_SetItemRef(link, text, button)
 	end
 end
 
@@ -3046,6 +3144,17 @@ function TmogFrameShareOutfit_OnClick()
 end
 
 function Tmog.ValidateOutfitCode(code)
+	local info = Tmog.ParseOutfitLink(code)
+
+	if info then
+		local outfit = {}
+		for index, itemID in ipairs(info) do
+			local slot = Tmog.LinkSlotOrder[index]
+			if slot then outfit[slot] = itemID end
+		end
+		return outfit
+	end
+
 	local signature = strfind(code, "T.O.L.", 1, true)
 	if signature then
 		code = strsub(code, signature)
@@ -3105,7 +3214,7 @@ end
 
 function TmogFrameFullScreenModel_OnLoad()
 	this:SetLight(unpack(Tmog.fullScreenLight))
-	this:SetModelScale(1)
+
 	this:SetScript("OnMouseUp", function()
 		this:SetScript("OnUpdate", nil)
 	end)
@@ -3146,10 +3255,16 @@ function TmogFrameFullScreenModel_OnShow()
 	UIFrameFadeIn(this, 0.3, 0, 1)
 	this:SetWidth(GetScreenWidth()+5)
 	this:SetHeight(GetScreenHeight()+5)
+	this:SetPosition(0, 0, 0)
 	this:SetUnit("player")
-	this:SetFacing(0)
-	this:SetPosition(-3, 0, 0)
 	Tmog.Dress(this)
+	this:SetPosition(this.z or -3, this.x or 0, this.y or 0)
+	this:SetFacing(this.f or 0)
+end
+
+function TmogFrameFullScreenModel_OnHide()
+	this.z, this.x, this.y = this:GetPosition()
+	this.f = this:GetFacing()
 end
 
 function TmogFrameFullScreen_OnUpdate()

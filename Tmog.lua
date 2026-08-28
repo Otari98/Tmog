@@ -1,16 +1,4 @@
--- Dressing room code - modified CosminPOP's Turtle_TransmogUI
--- Tooltip code - adapted from https://github.com/Zebouski/MoPGearTooltips/tree/masterturtle
-local _G = _G or getfenv(0)
-local tinsert = table.insert
-local tremove = table.remove
-local concat = table.concat
-local getn = table.getn
-local strfind = string.find
-local strlower = string.lower
-local format = string.format
-local strsub = string.sub
-local gsub = string.gsub
-local GetItemInfo = GetItemInfo
+_G = _G or getfenv(0)
 
 local NORMAL = NORMAL_FONT_COLOR_CODE
 local WHITE = HIGHLIGHT_FONT_COLOR_CODE
@@ -19,21 +7,18 @@ local YELLOW = "|cffFFFF00"
 local GREEN = "|cff00A000"
 local BLUE = "|cff0070de"
 
-local WEBSITE = "https://octowow.st/db/?item="
-
 local _, playerClass = UnitClass("player")
 local _, playerRace = UnitRace("player")
 
 local L = Tmog.L
 
 Tmog.version = GetAddOnMetadata("Tmog", "Version")
-Tmog.race = strlower(playerRace)
+Tmog.race = string.lower(playerRace)
 Tmog.currentType = L["Cloth"]
 Tmog.currentTab = "ITEMS"
 
 Tmog.currentSlot = nil
 Tmog.currentOutfit = nil
-Tmog.selectedButton = nil
 
 Tmog.sex = UnitSex("player") - 1 -- 2 - female, 1 - male
 Tmog.currentPage = 1
@@ -53,6 +38,7 @@ Tmog.PreviewButtons = {}
 Tmog.CurrentGear = {}
 Tmog.ActualGear = {} -- actual gear + transmog
 Tmog.SharedItemsFrames = {}
+Tmog.OutfitsSorted = {}
 
 Tmog.DressOrder = { 1, 3, 4, 5, 6, 7, 8, 9, 10, 15, 18, 16, 17, 19 } -- equip ranged first, then main hand, then offhand
 
@@ -81,7 +67,7 @@ local LinkedSlots = {
 	[10] = true
 }
 
-local InventorySlots = {
+Tmog.InventorySlots = {
 	["HeadSlot"] = 1,
 	["ShoulderSlot"] = 3,
 	["ShirtSlot"] = 4,
@@ -98,7 +84,7 @@ local InventorySlots = {
 	["TabardSlot"] = 19
 }
 
-local InventoryTypeToSlot = {
+Tmog.InventoryTypeToSlot = {
 	["INVTYPE_HEAD"] = 1,
 	["INVTYPE_SHOULDER"] = 3,
 	["INVTYPE_CHEST"] = 5,
@@ -454,598 +440,21 @@ local PagesMemory = {}
 local DrawTable = {}
 
 -- bad items for "Ony Usable" check box
-local Unusable = {}
+Tmog.Unusable = {}
 
-for _, slot in pairs(InventorySlots) do
+for _, slot in pairs(Tmog.InventorySlots) do
 	local types = Tmog.GetTypesForSlot(slot)
 	PagesMemory[slot] = {}
-	Unusable[slot] = {}
+	Tmog.Unusable[slot] = {}
 	StatusSlotsLookup[slot] = true
 	SlotTypesMemory[slot] = types[1]
 	for _, type in ipairs(types) do
 		PagesMemory[slot][type] = 1
-		Unusable[slot][type] = {}
+		Tmog.Unusable[slot][type] = {}
 	end
-	Unusable[slot]["SearchResult"] = {}
+	Tmog.Unusable[slot]["SearchResult"] = {}
 end
 
-function Tmog.print(msg)
-	DEFAULT_CHAT_FRAME:AddMessage("["..BLUE.."Tmog|r] "..tostring(msg))
-end
-
-function Tmog.debug(...)
-	if not Tmog.verbose then return end
-	local size = getn(arg)
-	for i = 1, size do arg[i] = tostring(arg[i]) end
-	local msg = size > 1 and concat(arg, ", ") or tostring(arg[1])
-	local time = GetTime()
-	DEFAULT_CHAT_FRAME:AddMessage("["..BLUE.."Tmog|r]["..GREY..format("%.3f", time).."|r] "..msg)
-	return msg, time
-end
-
-local function strsplit(str, delimiter)
-	local splitresult = {}
-	local from = 1
-	local delim_from, delim_to = strfind(str, delimiter, from, true)
-	while delim_from do
-		tinsert(splitresult, strsub(str, from, delim_from - 1))
-		from = delim_to + 1
-		delim_from, delim_to = strfind(str, delimiter, from, true)
-	end
-	tinsert(splitresult, strsub(str, from))
-	return splitresult
-end
-
-local function strtrim(s)
-	return (gsub(s or "", "^%s*(.-)%s*$", "%1"))
-end
-
-local function SetContains(set, key, value)
-	if not set then return false end
-	if not key and value then
-		for k, v in pairs(set) do
-			if v == value then return k end
-		end
-	end
-	if key and not value then return set[key] ~= nil end
-	return set[key] == value
-end
-
-local function tsize(t)
-	if type(t) ~= "table" then return 0 end
-	local size = 0
-	for _ in pairs(t) do size = size + 1 end
-	return size
-end
-
-function Tmog.InventorySlotFromItemID(itemID)
-	if not itemID then return nil end
-	local _, _, _, _, _, _, _, slot  = GetItemInfo(itemID)
-	return InventoryTypeToSlot[slot or ""]
-end
-
-function Tmog.IDFromLink(link)
-	if not link then return nil end
-	local _, _, id = strfind(link, "item:(%d+)")
-	return tonumber(id)
-end
-
-local IDcache = {}
-function Tmog.GetItemIDByName(name)
-	if not name then return nil end
-	if IDcache[name] then
-		if IDcache[name] ~= 0 then return IDcache[name]
-		else return nil end
-	end
-	for itemID = 1, 99999 do
-		local itemName = GetItemInfo(itemID)
-		if itemName and itemName == name then
-			IDcache[name] = itemID
-			return itemID
-		end
-	end
-	IDcache[name] = 0
-	return nil
-end
-
-local insideHook = false
-local tooltipMoney = 0
-local HookSetTooltipMoney = SetTooltipMoney
-function SetTooltipMoney(frame, money)
-	tooltipMoney = money or 0
-	if not insideHook then
-		HookSetTooltipMoney(frame, money)
-	end
-end
-
-function Tmog.HookTooltip(tooltip)
-	Tmog.debug("hooking tooltip", tooltip, tooltip:GetName())
-	local original_OnHide = tooltip:GetScript("OnHide")
-
-	tooltip:SetScript("OnHide", function()
-		if original_OnHide then original_OnHide() end
-		this.itemID = nil
-		tooltipMoney = 0
-	end)
-
-	-- ClassicAPI
-	if tooltip.HookScript and tooltip.GetItem and hooksecurefunc then
-		-- tooltip:HookScript("OnHide", function(self)
-		-- 	self.itemID = nil
-		-- 	tooltipMoney = 0
-		-- end)
-		-- tooltip:HookScript("OnTooltipSetItem", function(self)
-			-- local itemName, itemLink, itemID = self:GetItem()
-			-- self.itemID = tonumber(self.itemID) or itemID or Tmog.IDFromLink(itemLink)
-			-- Tmog.ExtendTooltip(self)
-		-- end)
-		for _, method in pairs({
-			"SetLootRollItem","SetLootItem","SetMerchantItem","SetQuestLogItem","SetQuestItem","SetHyperlink",
-			"SetBagItem","SetInboxItem","SetInventoryItem","SetCraftItem","SetCraftSpell","SetTradeSkillItem",
-			"SetAuctionItem","SetAuctionSellItem","SetTradePlayerItem","SetTradeTargetItem",
-		}) do
-			hooksecurefunc(tooltip, method, function(self)
-				local itemName, itemLink, itemID = tooltip:GetItem()
-				self.itemID = tonumber(self.itemID) or itemID or Tmog.IDFromLink(itemLink)
-				Tmog.ExtendTooltip(self)
-			end)
-		end
-		return
-	end
-
-	-- Old stuff
-	local original_SetLootRollItem    = tooltip.SetLootRollItem
-	local original_SetLootItem        = tooltip.SetLootItem
-	local original_SetMerchantItem    = tooltip.SetMerchantItem
-	local original_SetQuestLogItem    = tooltip.SetQuestLogItem
-	local original_SetQuestItem       = tooltip.SetQuestItem
-	local original_SetHyperlink       = tooltip.SetHyperlink
-	local original_SetBagItem         = tooltip.SetBagItem
-	local original_SetInboxItem       = tooltip.SetInboxItem
-	local original_SetInventoryItem   = tooltip.SetInventoryItem
-	local original_SetCraftItem       = tooltip.SetCraftItem
-	local original_SetCraftSpell      = tooltip.SetCraftSpell
-	local original_SetTradeSkillItem  = tooltip.SetTradeSkillItem
-	local original_SetAuctionItem     = tooltip.SetAuctionItem
-	local original_SetAuctionSellItem = tooltip.SetAuctionSellItem
-	local original_SetTradePlayerItem = tooltip.SetTradePlayerItem
-	local original_SetTradeTargetItem = tooltip.SetTradeTargetItem
-
-	local IDFromLink = Tmog.IDFromLink
-	local GetItemIDByName = Tmog.GetItemIDByName
-	local ExtendTooltip = Tmog.ExtendTooltip
-
-	function tooltip.SetLootRollItem(self, id)
-		insideHook = true
-		original_SetLootRollItem(self, id)
-		insideHook = false
-		self.itemID = IDFromLink(GetLootRollItemLink(id))
-		ExtendTooltip(self)
-	end
-
-	function tooltip.SetLootItem(self, slot)
-		insideHook = true
-		original_SetLootItem(self, slot)
-		insideHook = false
-		self.itemID = IDFromLink(GetLootSlotLink(slot))
-		ExtendTooltip(self)
-	end
-
-	function tooltip.SetMerchantItem(self, merchantIndex)
-		insideHook = true
-		original_SetMerchantItem(self, merchantIndex)
-		insideHook = false
-		self.itemID = IDFromLink(GetMerchantItemLink(merchantIndex))
-		ExtendTooltip(self)
-	end
-
-	function tooltip.SetQuestLogItem(self, itemType, index)
-		insideHook = true
-		original_SetQuestLogItem(self, itemType, index)
-		insideHook = false
-		self.itemID = IDFromLink(GetQuestLogItemLink(itemType, index))
-		ExtendTooltip(self)
-	end
-
-	function tooltip.SetQuestItem(self, itemType, index)
-		insideHook = true
-		original_SetQuestItem(self, itemType, index)
-		insideHook = false
-		self.itemID = IDFromLink(GetQuestItemLink(itemType, index))
-		ExtendTooltip(self)
-	end
-
-	function tooltip.SetHyperlink(self, arg1)
-		insideHook = true
-		original_SetHyperlink(self, arg1)
-		insideHook = false
-		self.itemID = IDFromLink(arg1)
-		ExtendTooltip(self)
-	end
-
-	function tooltip.SetBagItem(self, container, slot)
-		insideHook = true
-		local hasCooldown, repairCost = original_SetBagItem(self, container, slot)
-		insideHook = false
-		self.itemID = IDFromLink(GetContainerItemLink(container, slot))
-		ExtendTooltip(self)
-		return hasCooldown, repairCost
-	end
-
-	function tooltip.SetInboxItem(self, mailID, attachmentIndex)
-		insideHook = true
-		original_SetInboxItem(self, mailID, attachmentIndex)
-		insideHook = false
-		if GetInboxItemLink then
-			self.itemID = IDFromLink(GetInboxItemLink(mailID, attachmentIndex))
-		else
-			self.itemID = GetItemIDByName(GetInboxItem(mailID, attachmentIndex))
-		end
-		ExtendTooltip(self)
-	end
-
-	function tooltip.SetInventoryItem(self, unit, slot)
-		insideHook = true
-		local hasItem, hasCooldown, repairCost = original_SetInventoryItem(self, unit, slot)
-		insideHook = false
-		self.itemID = IDFromLink(GetInventoryItemLink(unit, slot))
-		ExtendTooltip(self)
-		return hasItem, hasCooldown, repairCost
-	end
-
-	function tooltip.SetCraftItem(self, skill, slot)
-		insideHook = true
-		original_SetCraftItem(self, skill, slot)
-		insideHook = false
-		self.itemID = IDFromLink(GetCraftReagentItemLink(skill, slot))
-		ExtendTooltip(self)
-	end
-
-	function tooltip.SetCraftSpell(self, slot)
-		insideHook = true
-		original_SetCraftSpell(self, slot)
-		insideHook = false
-		self.itemID = IDFromLink(GetCraftItemLink(slot))
-		ExtendTooltip(self)
-	end
-
-	function tooltip.SetTradeSkillItem(self, skillIndex, reagentIndex)
-		insideHook = true
-		original_SetTradeSkillItem(self, skillIndex, reagentIndex)
-		insideHook = false
-		if reagentIndex then
-			self.itemID = IDFromLink(GetTradeSkillReagentItemLink(skillIndex, reagentIndex))
-		else
-			self.itemID = IDFromLink(GetTradeSkillItemLink(skillIndex))
-		end
-		ExtendTooltip(self)
-	end
-
-	function tooltip.SetAuctionItem(self, atype, index)
-		insideHook = true
-		original_SetAuctionItem(self, atype, index)
-		insideHook = false
-		self.itemID = IDFromLink(GetAuctionItemLink(atype, index))
-		ExtendTooltip(self)
-	end
-
-	function tooltip.SetAuctionSellItem(self)
-		insideHook = true
-		original_SetAuctionSellItem(self)
-		insideHook = false
-		local name, texture, stackSize, quality, canUse, price, maxStack, link = GetAuctionSellItemInfo()
-		if link then
-			self.itemID = IDFromLink(link)
-		else
-			self.itemID = GetItemIDByName(name)
-		end
-		ExtendTooltip(self)
-	end
-
-	function tooltip.SetTradePlayerItem(self, index)
-		insideHook = true
-		original_SetTradePlayerItem(self, index)
-		insideHook = false
-		self.itemID = IDFromLink(GetTradePlayerItemLink(index))
-		ExtendTooltip(self)
-	end
-
-	function tooltip.SetTradeTargetItem(self, index)
-		insideHook = true
-		original_SetTradeTargetItem(self, index)
-		insideHook = false
-		self.itemID = IDFromLink(GetTradeTargetItemLink(index))
-		ExtendTooltip(self)
-	end
-end
-
-local TmogTooltip = CreateFrame("GameTooltip", "TmogTooltip", UIParent, "GameTooltipTemplate")
-TmogTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
-
-local TmogScanTooltip = CreateFrame("GameTooltip", "TmogScanTooltip", nil, "GameTooltipTemplate")
-TmogScanTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
-
-local originalTooltip = {}
--- return slot if this is gear and unit can equip it
-function Tmog.GetTransmogSlot(itemID, unit, tooltip)
-	itemID = tonumber(itemID)
-	if not itemID then return nil end
-	unit = unit or "player"
-	local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(itemID)
-	if itemEquipLoc and itemEquipLoc ~= "" then
-		local class, classEn = UnitClass(unit)
-		local tableToCheck = Tmog.classEquipTable[classEn]
-		Tmog.debug(itemID, itemName, itemType, itemSubType, itemEquipLoc)
-		if itemEquipLoc == "INVTYPE_HOLDABLE" then
-			return InventoryTypeToSlot[itemEquipLoc]
-		end
-		if tableToCheck[itemSubType] and InventoryTypeToSlot[itemEquipLoc] then
-			if not (classEn == "WARRIOR" or classEn == "HUNTER" or classEn == "ROGUE") and itemEquipLoc == "INVTYPE_WEAPONOFFHAND" then
-				Tmog.debug("cant dual weild")
-				return nil
-			end
-			if itemType == L["Weapon"] and itemSubType == L["Miscellaneous"] then
-				Tmog.debug("not a real weapon")
-				return nil
-			end
-			-- check if its class restricted item
-			for k in pairs(originalTooltip) do
-				originalTooltip[k] = nil
-			end
-			if not tooltip then
-				tooltip = TmogScanTooltip
-				tooltip:ClearLines()
-				tooltip:SetHyperlink("item:"..itemID)
-			end
-			local tooltipName = tooltip:GetName()
-			for row = 1, 15 do
-				local tooltipRowLeft = _G[tooltipName .. "TextLeft" .. row]
-				if tooltipRowLeft then
-					local rowtext = tooltipRowLeft:GetText()
-					if rowtext then
-						originalTooltip[row] = rowtext
-					end
-				end
-			end
-			for row = 1, tsize(originalTooltip) do
-				if originalTooltip[row] then
-					local _, _, classesRow = strfind(originalTooltip[row], (gsub(ITEM_CLASSES_ALLOWED, "%%s", "(.*)")))
-					if classesRow then
-						if not strfind(classesRow, class, 1, true) then
-							Tmog.debug("bad class")
-							return nil
-						end
-					end
-				end
-			end
-			return InventoryTypeToSlot[itemEquipLoc]
-		end
-	end
-end
-
--- Return true if item can be transmogged in general
-do
-	local cache = {}
-	function Tmog.Transmogable(itemID)
-		itemID = tonumber(itemID)
-		if not itemID then return nil end
-		if cache[itemID] then return cache[itemID] == 1 end
-		local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(itemID)
-		if not itemName then return nil end
-		if itemEquipLoc ~= "" and InventoryTypeToSlot[itemEquipLoc] then
-			if (itemType == L["Weapon"] and itemSubType == L["Miscellaneous"]) or (itemSubType == L["Fishing Pole"]) then
-				cache[itemID] = 0
-				return false
-			else
-				cache[itemID] = 1
-				return true
-			end
-		end
-		return false
-	end
-end
-
-do
-	local cache = {}
-	function Tmog.IsKnownAppearance(itemID)
-		itemID = tonumber(itemID)
-		if not itemID then return nil end
-		if cache[itemID] then return cache[itemID] == 1 end
-		for k, v in pairs(Tmog.ItemDB) do
-			for k2, v2 in pairs(v) do
-				if v2[itemID] then
-					cache[itemID] = 1
-					return true
-				end
-			end
-		end
-		cache[itemID] = 0
-		return false
-	end
-end
-
-do
-	local result = {}
-	function Tmog.GetOutfitsWithItem(itemID)
-		for i = getn(result), 1, -1 do tremove(result, i) end
-		itemID = tonumber(itemID)
-		if not itemID then return result end
-		for outfitName, outfitItems in pairs(TMOG_PLAYER_OUTFITS) do
-			for _, outfitItemID in pairs(outfitItems) do
-				local g1 = Tmog.ItemDisplayGroup[outfitItemID]
-				local g2 = Tmog.ItemDisplayGroup[itemID]
-				if itemID == outfitItemID or (g1 and g2 and g1 == g2) then
-					tinsert(result, outfitName)
-					break
-				end
-			end
-		end
-		return result
-	end
-end
-
-local WrappingLines = {
-	["^Set:"] = gsub("^"..ITEM_SET_BONUS, "%%s", ""),
-	["^%(%d%) Set:"] = gsub(gsub(ITEM_SET_BONUS_GRAY, "%(%%d%)", "^%%(%%d%%)"), "%%s", ""),
-	["^Effect:"] = gsub("^"..ITEM_SPELL_EFFECT, "%%s", ""),
-	["^Equip:"] = "^"..ITEM_SPELL_TRIGGER_ONEQUIP,
-	["^Chance on hit:"] = "^"..ITEM_SPELL_TRIGGER_ONPROC,
-	["^Use:"] = "^"..ITEM_SPELL_TRIGGER_ONUSE,
-	["^\nRequires"] = "^\n"..gsub(ITEM_REQ_SKILL, "%%s", "")
-}
-
-local lines = {}
-local maxLines = 30
-for i = 1, maxLines do
-	lines[i] = {}
-end
-
-local function AddCollectionStatus(slot, itemID, tooltip)
-	local name = tooltip:GetName()
-	local numLines = tooltip:NumLines()
-
-	if numLines > maxLines then
-		for i = maxLines + 1, numLines do lines[i] = {} end
-		maxLines = numLines
-	end
-
-	local left, right
-	local leftText, rightText
-	local rL, gL, bL
-	local rR, gR, bR
-	local status, wrap
-
-	for i in pairs(lines) do
-		for j in pairs(lines[i]) do
-			lines[i][j] = nil
-		end
-	end
-
-	for i = 1, numLines do
-		left = _G[name .. "TextLeft" .. i]
-		right = _G[name .. "TextRight" .. i]
-		leftText = left:GetText()
-		rightText = right:IsShown() and right:GetText()
-		rL, gL, bL = left:GetTextColor()
-		rR, gR, bR = right:GetTextColor()
-		lines[i][1] = leftText
-		lines[i][2] = rightText
-		lines[i][3] = rL
-		lines[i][4] = gL
-		lines[i][5] = bL
-		lines[i][6] = rR
-		lines[i][7] = gR
-		lines[i][8] = bR
-	end
-
-	if not lines[1][1] then return end
-
-	if TMOG_CACHE[slot][itemID] then
-		status = GREEN..L["Collected"].."|r"
-	else
-		status = YELLOW..L["Not collected"].."|r"
-	end
-
-	tooltip:SetText(lines[1][1], lines[1][3], lines[1][4], lines[1][5], 1, false)
-
-	if numLines < maxLines then
-		tooltip:AddLine(status)
-	elseif lines[2][1] then
-		lines[2][1] = status.."\n"..lines[2][1]
-	end
-
-	for i = 2, getn(lines) do
-		if lines[i][2] then
-			tooltip:AddDoubleLine(lines[i][1], lines[i][2], lines[i][3], lines[i][4], lines[i][5], lines[i][6], lines[i][7], lines[i][8])
-		else
-			wrap = false
-			if strsub(lines[i][1] or "", 1, 1) == "\"" then
-				wrap = true
-			else
-				for _, pattern in pairs(WrappingLines) do
-					if strfind(lines[i][1] or "", pattern) then
-						wrap = true
-						break
-					end
-				end
-			end
-			tooltip:AddLine(lines[i][1], lines[i][3], lines[i][4], lines[i][5], wrap)
-		end
-	end
-end
-
-local function AddUniquenessLine(itemID, tooltip)
-	local numLines = tooltip:NumLines()
-	if numLines > maxLines then
-		for i = maxLines + 1, numLines do lines[i] = {} end
-		maxLines = numLines
-	end
-	local string
-	if not Tmog.ItemDisplayGroup[itemID] then
-		if not Tmog.IsKnownAppearance(itemID) then
-			string = NORMAL..L["Unknown appearance"]
-		else
-			string = NORMAL..L["Unique appearance"]
-		end
-	else
-		string = NORMAL..L["Non-unique appearance"]
-	end
-	local outfits = Tmog.GetOutfitsWithItem(itemID)
-	local numTotal = getn(outfits)
-	if numTotal > 0 then
-		string = string..GRAY_FONT_COLOR_CODE.." ("..format(L["Outfits: %s"], concat(outfits, ", "))..")"..FONT_COLOR_CODE_CLOSE
-	end
-	if numLines < maxLines then
-		tooltip:AddLine(string, 1, 0.82, 0, numTotal > 3)
-	else
-		local lastLine = _G[tooltip:GetName().."TextLeft"..numLines]
-		lastLine:SetText(lastLine:GetText().."\n"..string)
-	end
-end
-
-local lastItemName = nil
-local lastSlot = nil
-function Tmog.ExtendTooltip(tooltip)
-	local itemID = tonumber(tooltip.itemID)
-	if itemID then
-		local itemName = GetItemInfo(itemID)
-		if itemName ~= lastItemName then
-			local slot = Tmog.GetTransmogSlot(itemID, "player", tooltip)
-			lastItemName = itemName
-			lastSlot = slot
-		end
-		if lastSlot then
-			AddCollectionStatus(lastSlot, itemID, tooltip)
-		end
-		if tooltip ~= TmogTooltip and Tmog.Transmogable(itemID) then
-			AddUniquenessLine(itemID, tooltip)
-		end
-		tooltip:Show()
-	end
-	if tooltipMoney > 0 then
-		HookSetTooltipMoney(tooltip, tooltipMoney)
-		tooltip:Show()
-	end
-end
-
-local original_OnShow = GameTooltip:GetScript("OnShow")
-GameTooltip:SetScript("OnShow", function()
-	if original_OnShow then original_OnShow() end
-
-	if aux_frame and aux_frame:IsShown() then
-		local frame = GetMouseFocus()
-		if not frame then return end
-		local parent = frame:GetParent()
-		if not (parent and parent.row and parent.row.record) then return end
-
-		GameTooltip.itemID = tonumber(parent.row.record.item_id)
-		Tmog.ExtendTooltip(GameTooltip)
-	end
-end)
-
--------------------------------
-------- ITEM BROWSER ----------
--------------------------------
 function TmogFrame_OnLoad()
 	TmogFrame:RegisterEvent("ADDON_LOADED")
 	TmogFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
@@ -1057,16 +466,11 @@ function TmogFrame_OnLoad()
 	TmogFrameRaceBackground:SetTexture("Interface\\AddOns\\Tmog\\Textures\\transmogbackground"..Tmog.race)
 
 	TmogFrameSaveOutfit:Disable()
-	TmogFrameDeleteOutfit:Disable()
+	TmogFrameSelectedOutfitText:SetText(string.format(L.FMT_SELECTED_OUTFIT, Tmog.currentOutfit or ""))
 
-	UIDropDownMenu_SetText(L["Outfits"], TmogFrameOutfitsDropDown)
 	TmogFrameVersionText:SetText(Tmog.version)
 
-	TmogFrameCollected:SetChecked(Tmog.collected)
-	TmogFrameNotCollected:SetChecked(Tmog.notCollected)
-	TmogFrameUsable:SetChecked(Tmog.onlyUsable)
-
-	tinsert(UISpecialFrames, "TmogFrame")
+	table.insert(UISpecialFrames, "TmogFrame")
 	TmogFrame.firstLoad = true
 end
 
@@ -1116,7 +520,7 @@ function TmogFrame_OnEvent()
 			[18] = {}, -- RangedSlot
 			[19] = {}, -- TabardSlot
 		}
-		for _, InventorySlotId in pairs(InventorySlots) do
+		for _, InventorySlotId in pairs(Tmog.InventorySlots) do
 			if not TMOG_CACHE[InventorySlotId] then TMOG_CACHE[InventorySlotId] = {} end
 		end
 		for k, v in pairs(TMOG_CACHE) do
@@ -1128,9 +532,7 @@ function TmogFrame_OnEvent()
 		TMOG_LOCKED = TMOG_LOCKED or false
 
 		UIDropDownMenu_Initialize(TmogFrameTypeDropDown, Tmog.TypeDropDown_Initialize)
-		UIDropDownMenu_Initialize(TmogFrameOutfitsDropDown, Tmog.OutfitsDropDown_Initialize)
-		UIDropDownMenu_SetWidth(100, TmogFrameTypeDropDown)
-		UIDropDownMenu_SetWidth(115, TmogFrameOutfitsDropDown)
+		UIDropDownMenu_SetWidth(140, TmogFrameTypeDropDown)
 
 		TmogButton:SetMovable(not TMOG_LOCKED)
 		TmogButton:ClearAllPoints()
@@ -1139,20 +541,20 @@ function TmogFrame_OnEvent()
 		return
 	end
 
-	if Tmog.verbose and strfind(arg1, "TW_CHAT_MSG_WHISPER", 1, true) then
+	if Tmog.verbose and string.find(arg1, "TW_CHAT_MSG_WHISPER", 1, true) then
 		Tmog.debug(arg1, arg2, arg3, arg4)
 	end
 
-	if event == "CHAT_MSG_ADDON" and strfind(arg1, "TW_TRANSMOG", 1, true) and arg4 == UnitName("player") then
+	if event == "CHAT_MSG_ADDON" and string.find(arg1, "TW_TRANSMOG", 1, true) and arg4 == UnitName("player") then
 		Tmog.debug(arg1, arg2, arg3, arg4)
 
-		if strfind(arg2, "AvailableTransmogs", 1, true) then
-			local data = strsplit(arg2, ":")
+		if string.find(arg2, "AvailableTransmogs", 1, true) then
+			local data = Tmog.strsplit(arg2, ":")
 			local InventorySlotId = tonumber(data[2])
 			
 			if not InventorySlotId then return end
 
-			for i = 4, getn(data) do
+			for i = 4, table.getn(data) do
 				local itemID = tonumber(data[i])
 				if itemID then
 					Tmog.CacheItem(itemID)
@@ -1168,8 +570,8 @@ function TmogFrame_OnEvent()
 				end
 			end
 
-		elseif strfind(arg2, "NewTransmog", 1, true) then
-			local _, _, itemID = strfind(arg2, "NewTransmog:(%d+)")
+		elseif string.find(arg2, "NewTransmog", 1, true) then
+			local _, _, itemID = string.find(arg2, "NewTransmog:(%d+)")
 			itemID = tonumber(itemID)
 			local InventorySlotId = Tmog.InventorySlotFromItemID(itemID)
 			
@@ -1186,15 +588,15 @@ function TmogFrame_OnEvent()
 				end
 			end
 
-		elseif strfind(arg2, "TransmogStatus", 1, true) then
-			local data = gsub(arg2, "TransmogStatus:", "")
+		elseif string.find(arg2, "TransmogStatus", 1, true) then
+			local data = string.gsub(arg2, "TransmogStatus:", "")
 
 			if not data then return end
 
-			local TransmogStatus = strsplit(data, ",")
+			local TransmogStatus = Tmog.strsplit(data, ",")
 			if not TMOG_TRANSMOG_STATUS then TMOG_TRANSMOG_STATUS = {} end
 
-			for _, InventorySlotId in pairs(InventorySlots) do
+			for _, InventorySlotId in pairs(Tmog.InventorySlots) do
 				if not TMOG_TRANSMOG_STATUS[InventorySlotId] then TMOG_TRANSMOG_STATUS[InventorySlotId] = {} end
 			end
 
@@ -1203,7 +605,7 @@ function TmogFrame_OnEvent()
 			end
 
 			for _, d in pairs(TransmogStatus) do
-				local _, _, InventorySlotId, itemID = strfind(d, "(%d+):(%d+)")
+				local _, _, InventorySlotId, itemID = string.find(d, "(%d+):(%d+)")
 				InventorySlotId = tonumber(InventorySlotId)
 				if InventorySlotId and InventorySlotId ~= 0 then
 					itemID = tonumber(itemID)
@@ -1255,9 +657,8 @@ function TmogFrame_OnEvent()
 	end
 end
 
-local cacheZ, cacheX, cacheY = 0, 0, 0
 function TmogFrame_OnShow()
-	TmogFramePlayerModel:SetPosition(cacheZ, cacheX, cacheY)
+	TmogFramePlayerModel:SetPosition(TmogFramePlayerModel.z, TmogFramePlayerModel.x, TmogFramePlayerModel.y)
 	Tmog.Dress(TmogFramePlayerModel)
 	Tmog.DrawPreviews()
 	Tmog.UpdateItemTextures()
@@ -1265,69 +666,65 @@ function TmogFrame_OnShow()
 end
 
 function TmogFrame_OnHide()
-	cacheZ, cacheX, cacheY = TmogFramePlayerModel:GetPosition()
-	TmogFramePlayerModel:SetPosition(0,0,0)
+	TmogFramePlayerModel.z, TmogFramePlayerModel.x, TmogFramePlayerModel.y = TmogFramePlayerModel:GetPosition()
+	TmogFramePlayerModel:SetPosition(0, 0, 0)
+	for i in pairs(Tmog.PreviewButtons) do
+		Tmog.PreviewButtons[i]:Hide()
+	end
 	PlaySound("igCharacterInfoClose")
 end
 
 function Tmog.ResetPosition()
-	TmogFramePlayerModel:SetPosition(0,0,0)
+	TmogFramePlayerModel:SetPosition(0, 0, 0)
 	TmogFramePlayerModel:SetFacing(0.3)
-	cacheZ, cacheX, cacheY = TmogFramePlayerModel:GetPosition()
+	TmogFramePlayerModel.z, TmogFramePlayerModel.x, TmogFramePlayerModel.y = TmogFramePlayerModel:GetPosition()
 end
 
-function TmogFramePlayerModel_OnLoad()
-	TmogFramePlayerModel:SetFacing(0.3)
-	cacheZ, cacheX, cacheY = TmogFramePlayerModel:GetPosition()
-	TmogFramePlayerModel:SetLight(unpack(Tmog.playerModelLight))
+function TmogFramePlayerModel_OnMouseDown(self, button)
+	TmogFrameSearchBox:ClearFocus()
+	DropDownList1:Hide()
+	self.startX, self.startY = GetCursorPosition()
+	self.mouseButton = button
+end
 
-	TmogFramePlayerModel:SetScript("OnMouseUp", function()
-		cacheZ, cacheX, cacheY = TmogFramePlayerModel:GetPosition()
-		TmogFramePlayerModel:SetScript("OnUpdate", nil)
-	end)
+function TmogFramePlayerModel_OnMouseUp(self, button)
+	self.z, self.x, self.y = self:GetPosition()
+	self.mouseButton = nil
+end
 
-	TmogFramePlayerModel:SetScript("OnMouseWheel", function()
-		local Z, X, Y = TmogFramePlayerModel:GetPosition()
-		Z = (arg1 > 0 and Z + 1 or Z - 1)
-		TmogFramePlayerModel:SetPosition(Z, X, Y)
-		cacheZ = Z
-	end)
+function TmogFramePlayerModel_OnUpdate(self, elapsed)
+	if not self.mouseButton then return end
+	if self.mouseButton == "LeftButton" then
+		local endX, endY = GetCursorPosition()
+		self:SetFacing((endX - self.startX) / 34 + self:GetFacing())
+		self.startX, self.startY = GetCursorPosition()
+	elseif self.mouseButton == "RightButton" then
+		local endX, endY = GetCursorPosition()
+		local z, x, y = self:GetPosition()
+		x = (endX - self.startX) / 45 + x
+		y = (endY - self.startY) / 45 + y
+		self:SetPosition(z, x, y)
+		self.startX, self.startY = GetCursorPosition()
+	end
+end
 
-	TmogFramePlayerModel:SetScript("OnMouseDown", function()
-		local StartX, StartY = GetCursorPosition()
-		local EndX, EndY, Z, X, Y
+function TmogFramePlayerModel_OnMouseWheel(self, delta)
+	local z, x, y = self:GetPosition()
+	z = z + delta
+	self:SetPosition(z, x, y)
+	self.z = z
+end
 
-		if arg1 == "LeftButton" then
-			TmogFramePlayerModel:SetScript("OnUpdate", function()
-				EndX, EndY = GetCursorPosition()
-				TmogFramePlayerModel:SetFacing((EndX - StartX) / 34 + TmogFramePlayerModel:GetFacing())
-				StartX, StartY = GetCursorPosition()
-			end)
-
-		elseif arg1 == "RightButton" then
-			TmogFramePlayerModel:SetScript("OnUpdate", function()
-				EndX, EndY = GetCursorPosition()
-
-				Z, X, Y = TmogFramePlayerModel:GetPosition()
-				X = (EndX - StartX) / 45 + X
-				Y = (EndY - StartY) / 45 + Y
-
-				TmogFramePlayerModel:SetPosition(Z, X, Y)
-				StartX, StartY = GetCursorPosition()
-			end)
-		end
-
-		TmogFrameSearchBox:ClearFocus()
-		DropDownList1:Hide()
-	end)
+function TmogFramePlayerModel_OnLoad(self)
+	self.z, self.x, self.y = 0, 0, 0
+	self:SetFacing(0.3)
+	self:SetLight(unpack(Tmog.playerModelLight))
 end
 
 function Tmog.Reset()
 	Tmog.currentOutfit = nil
 	TmogFrameSaveOutfit:Disable()
-	TmogFrameDeleteOutfit:Disable()
-	TmogFrameShareOutfit:Disable()
-	UIDropDownMenu_SetText(L["Outfits"], TmogFrameOutfitsDropDown)
+	TmogFrameSelectedOutfitText:SetText(string.format(L.FMT_SELECTED_OUTFIT, Tmog.currentOutfit or ""))
 
 	TmogFramePlayerModel:SetPosition(0, 0, 0)
 	TmogFramePlayerModel:Dress()
@@ -1339,7 +736,7 @@ function Tmog.Reset()
 		TmogFramePlayerModel:TryOn(Tmog.IDFromLink(tabardLink))
 	end
 
-	for _, InventorySlotId in pairs(InventorySlots) do
+	for _, InventorySlotId in pairs(Tmog.InventorySlots) do
 		Tmog.CurrentGear[InventorySlotId] = 0
 		local link = GetInventoryItemLink("player", InventorySlotId)
 		if link then
@@ -1360,12 +757,12 @@ function Tmog.Reset()
 		end
 	end
 
-	for _, InventorySlotId in pairs(InventorySlots) do
+	for _, InventorySlotId in pairs(Tmog.InventorySlots) do
 		Tmog.CurrentGear[InventorySlotId] = Tmog.ActualGear[InventorySlotId]
 	end
 
 	Tmog.UpdateItemTextures()
-	Tmog.RemoveSelection()
+	Tmog.UpdateSelection()
 end
 
 function Tmog.SelectType(typeStr)
@@ -1399,46 +796,7 @@ function Tmog.HidePreviews()
 		_G[buttonName.."Button"]:Hide()
 		_G[buttonName.."ButtonCheck"]:Hide()
 	end
-end
-
-local function IsRed(r, g, b)
-	if not r then return false end
-	return r > 0.9 and g < 0.2 and b < 0.2
-end
-
-function Tmog.IsUsableItem(id)
-	if Unusable[Tmog.currentSlot][Tmog.currentType][id] then
-		return false
-	end
-	local isUsable = true
-	for i = 2, 15 do
-		_G["TmogScanTooltipTextLeft"..i]:SetTextColor(0,0,0)
-		_G["TmogScanTooltipTextRight"..i]:SetTextColor(0,0,0)
-	end
-	TmogScanTooltip:ClearLines()
-	TmogScanTooltip:SetHyperlink("item:"..id)
-	for i = 2, 15 do
-		local text = _G["TmogScanTooltipTextLeft"..i]:GetText() or ""
-		local leftR, leftG, leftB = _G["TmogScanTooltipTextLeft"..i]:GetTextColor()
-		local rightR, rightG, rightB = _G["TmogScanTooltipTextRight"..i]:GetTextColor()
-		if IsRed(leftR, leftG, leftB) or IsRed(rightR, rightG, rightB) then
-			if strfind(text, "^"..(gsub(ITEM_MIN_LEVEL, "%%d", ""))) then
-				if not Tmog.ignoreLevel then
-					isUsable = false
-					Unusable[Tmog.currentSlot][Tmog.currentType][id] = true
-				end
-			else
-				isUsable = false
-				Unusable[Tmog.currentSlot][Tmog.currentType][id] = true
-			end
-		end
-	end
-	local _, _, _, _, _, _, _, itemEquipLoc = GetItemInfo(id)
-	if not Tmog.canDualWeild and (itemEquipLoc == "INVTYPE_WEAPONOFFHAND" or (itemEquipLoc == "INVTYPE_WEAPON" and Tmog.currentSlot == 17)) then
-		isUsable = false
-		Unusable[Tmog.currentSlot][Tmog.currentType][id] = true
-	end
-	return isUsable
+	TmogFrame.previewsHidden = true
 end
 
 local LoadingFrame = CreateFrame("Frame", "TmogLoadingFrame")
@@ -1489,8 +847,7 @@ end)
 
 function Tmog.DrawPreviews(noDraw)
 	local searchStr = TmogFrameSearchBox:GetText() or ""
-	searchStr = strlower(searchStr)
-	searchStr = strtrim(searchStr)
+	searchStr = Tmog.strtrim(string.lower(searchStr))
 	local index = 0
 	local row = 0
 	local col = 0
@@ -1508,22 +865,20 @@ function Tmog.DrawPreviews(noDraw)
 			return
 		end
 
-		if searchStr ~= "" then
-			type = "SearchResult"
-		end
+		if searchStr ~= "" then type = "SearchResult" end
 
 		if Tmog.flush then
 			Tmog.debug("flushing", "slot "..Tmog.currentSlot, " type "..type)
-			for i = getn(DrawTable), 1, -1 do
-				tremove(DrawTable, i)
+			for i = table.getn(DrawTable), 1, -1 do
+				table.remove(DrawTable, i)
 			end
 
 			if type == "SearchResult" then
 				for k in pairs(Tmog.ItemDB[Tmog.currentSlot]) do
 					for itemID in pairs(Tmog.ItemDB[Tmog.currentSlot][k]) do
 						if Tmog.CacheItem(itemID) then
-							if strfind(strlower(GetItemInfo(itemID)), searchStr, 1 ,true) then
-								tinsert(DrawTable, itemID)
+							if string.find(string.lower(GetItemInfo(itemID)), searchStr, 1 ,true) then
+								table.insert(DrawTable, itemID)
 							end
 						elseif not LoadingFrame.queueIDs[itemID] then
 							LoadingFrame.queueTimer = Tmog.loadingTimeMax
@@ -1534,7 +889,7 @@ function Tmog.DrawPreviews(noDraw)
 			else
 				for itemID in pairs(Tmog.ItemDB[Tmog.currentSlot][type]) do
 					if Tmog.CacheItem(itemID) then
-						tinsert(DrawTable, itemID)
+						table.insert(DrawTable, itemID)
 					elseif not LoadingFrame.queueIDs[itemID] then
 						LoadingFrame.queueTimer = Tmog.loadingTimeMax
 						LoadingFrame.queueIDs[itemID] = true
@@ -1542,23 +897,23 @@ function Tmog.DrawPreviews(noDraw)
 				end
 			end
 			if not Tmog.notCollected then
-				for i = getn(DrawTable), 1, -1 do
+				for i = table.getn(DrawTable), 1, -1 do
 					if not TMOG_CACHE[Tmog.currentSlot][DrawTable[i]] then
-						tremove(DrawTable, i)
+						table.remove(DrawTable, i)
 					end
 				end
 			elseif not Tmog.collected then
-				for i = getn(DrawTable), 1, -1 do
+				for i = table.getn(DrawTable), 1, -1 do
 					if TMOG_CACHE[Tmog.currentSlot][DrawTable[i]] then
-						tremove(DrawTable, i)
+						table.remove(DrawTable, i)
 					end
 				end
 			end
 			-- if "usable" checked, remove unusable items
 			if Tmog.onlyUsable then
-				for i = getn(DrawTable), 1, -1 do
+				for i = table.getn(DrawTable), 1, -1 do
 					if not Tmog.IsUsableItem(DrawTable[i]) then
-						tremove(DrawTable, i)
+						table.remove(DrawTable, i)
 					end
 				end
 			end
@@ -1569,14 +924,14 @@ function Tmog.DrawPreviews(noDraw)
 					if displayGroup then
 						for _, itemID in pairs(Tmog.DisplayGroups[displayGroup]) do
 							if itemID ~= id then
-								local i = tonumber(SetContains(DrawTable, nil, itemID))
-								if i then tremove(DrawTable, i) end
+								local i = tonumber(Tmog.SetContains(DrawTable, nil, itemID))
+								if i then table.remove(DrawTable, i) end
 							end
 						end
 					end
 				end
 			end
-			Tmog.totalPages = ceil(getn(DrawTable) / Tmog.itemsPerPage)
+			Tmog.totalPages = ceil(table.getn(DrawTable) / Tmog.itemsPerPage)
 			sort(DrawTable, Tmog.Sort)
 			if LoadingFrame.queueTimer > 0 then
 				return
@@ -1601,9 +956,11 @@ function Tmog.DrawPreviews(noDraw)
 		end
 
 		local frame, button
-
-		for i = 1, getn(DrawTable) do
+		local itemIDEquipped = Tmog.CurrentGear[Tmog.currentSlot]
+		local displayGroupEquipped = itemIDEquipped and Tmog.ItemDisplayGroup[itemIDEquipped]
+		for i = 1, table.getn(DrawTable) do
 			local itemID = DrawTable[i]
+			local displayGroup = Tmog.ItemDisplayGroup[itemID]
 			local name, _, quality = GetItemInfo(itemID)
 			name = name or ""
 			quality = quality or 1
@@ -1618,19 +975,20 @@ function Tmog.DrawPreviews(noDraw)
 				frame:Show()
 				frame.name = name
 				frame.id = itemID
+				frame.displayGroup = displayGroup
 
 				button = _G["TmogFramePreview"..itemIndex.."Button"]
 				button:Show()
 				button:SetID(itemID)
 
-				Tmog.CacheItem(itemID)
+				-- Tmog.CacheItem(itemID)
 				if TMOG_CACHE[Tmog.currentSlot][itemID] then
 					_G["TmogFramePreview" .. itemIndex .. "ButtonCheck"]:Show()
 				else
 					_G["TmogFramePreview" .. itemIndex .. "ButtonCheck"]:Hide()
 				end
 
-				if itemID == Tmog.CurrentGear[Tmog.currentSlot] then
+				if itemID == itemIDEquipped or (displayGroup and displayGroupEquipped and displayGroup == displayGroupEquipped) then
 					button:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_selected")
 				else
 					button:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_normal")
@@ -1729,7 +1087,7 @@ function Tmog.DrawPreviews(noDraw)
 		TmogFramePreview1ButtonPlus:Hide()
 		TmogFramePreview1ButtonPlusPushed:Hide()
 
-		local size = getn(DrawTable)
+		local size = table.getn(DrawTable)
 		Tmog.totalPages = ceil(size / Tmog.itemsPerPage)
 		TmogFramePageText:SetText(Tmog.currentPage .. "/" .. Tmog.totalPages)
 
@@ -1751,9 +1109,7 @@ function Tmog.DrawPreviews(noDraw)
 		Tmog.flush = false
 
 	elseif Tmog.currentTab == "OUTFITS" then
-		if noDraw then
-			return
-		end
+		if noDraw then return end
 
 		Tmog.HidePreviews()
 
@@ -1770,6 +1126,8 @@ function Tmog.DrawPreviews(noDraw)
 			frame:Show()
 
 			frame.name = L["New outfit"]
+			frame.id = nil
+			frame.displayGroup = nil
 
 			button = TmogFramePreview1Button
 			button:Show()
@@ -1790,8 +1148,16 @@ function Tmog.DrawPreviews(noDraw)
 			TmogFramePreview1ButtonPlusPushed:Hide()
 		end
 
-		for name in pairs(TMOG_PLAYER_OUTFITS) do
+		for i = table.getn(Tmog.OutfitsSorted), 1, -1 do table.remove(Tmog.OutfitsSorted) end
+		for outfitName in pairs(TMOG_PLAYER_OUTFITS) do
+			if searchStr == "" or string.find(string.lower(outfitName), searchStr, 1, true) then
+				table.insert(Tmog.OutfitsSorted, outfitName)
+			end
+		end
+		table.sort(Tmog.OutfitsSorted)
 
+		for i = 1, table.getn(Tmog.OutfitsSorted) do
+			local name = Tmog.OutfitsSorted[i]
 			if index >= lowerLimit and index < upperLimit and outfitIndex <= Tmog.itemsPerPage then
 				if not Tmog.PreviewButtons[outfitIndex] then
 					Tmog.PreviewButtons[outfitIndex] = CreateFrame("Frame", "TmogFramePreview" .. outfitIndex, TmogFrame, "TmogFramePreviewTemplate")
@@ -1801,6 +1167,8 @@ function Tmog.DrawPreviews(noDraw)
 				frame = Tmog.PreviewButtons[outfitIndex]
 				frame:Show()
 				frame.name = name
+				frame.id = nil
+				frame.displayGroup = nil
 
 				button = _G["TmogFramePreview" .. outfitIndex .. "Button"]
 				button:Show()
@@ -1823,11 +1191,7 @@ function Tmog.DrawPreviews(noDraw)
 				local collectedAll = true
 				for slot, itemID in pairs(TMOG_PLAYER_OUTFITS[name]) do
 					model:TryOn(itemID)
-					if collectedAll then
-						if not TMOG_CACHE[slot][itemID] then
-							collectedAll = false
-						end
-					end
+					if not TMOG_CACHE[slot][itemID] then collectedAll = false end
 				end
 
 				if collectedAll then
@@ -1849,7 +1213,7 @@ function Tmog.DrawPreviews(noDraw)
 			index = index + 1
 		end
 
-		local size = tsize(TMOG_PLAYER_OUTFITS) + 1
+		local size = Tmog.tsize(TMOG_PLAYER_OUTFITS) + 1
 		Tmog.totalPages = ceil(size / Tmog.itemsPerPage)
 		TmogFramePageText:SetText(Tmog.currentPage .. "/" .. Tmog.totalPages)
 
@@ -1875,6 +1239,9 @@ function Tmog.DrawPreviews(noDraw)
 	else
 		Tmog.HidePagination()
 	end
+
+	TmogFrameSelectedOutfitText:SetText(string.format(L.FMT_SELECTED_OUTFIT, Tmog.currentOutfit or ""))
+	TmogFrame.previewsHidden = nil
 end
 
 function Tmog.ShowPagination()
@@ -1932,61 +1299,71 @@ function Tmog.ChangePage(dir, destination)
 	end
 end
 
-function Tmog.RemoveSelection()
+function Tmog.UpdateSelection()
+	for i = 1, Tmog.tsize(Tmog.PreviewButtons) do
+		_G["TmogFramePreview"..i.."Button"]:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_normal")
+	end
 	if Tmog.currentTab == "OUTFITS" then
-
 		if Tmog.currentPage ~= 1 then
 			TmogFramePreview1ButtonPlus:Hide()
 			TmogFramePreview1ButtonPlusPushed:Hide()
 		end
-
-		for index = 1, tsize(Tmog.PreviewButtons) do
-			_G["TmogFramePreview"..index.."Button"]:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_normal")
-		end
-
-	elseif Tmog.currentTab == "ITEMS" then
-
-		for index = 1, tsize(Tmog.PreviewButtons) do
-			if Tmog.PreviewButtons[index].id ~= Tmog.CurrentGear[Tmog.currentSlot] then
-				_G["TmogFramePreview"..index.."Button"]:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_normal")
+		if not Tmog.currentOutfit then return end
+		for i = 1, Tmog.tsize(Tmog.PreviewButtons) do
+			if Tmog.PreviewButtons[i].name == Tmog.currentOutfit then
+				_G["TmogFramePreview"..i.."Button"]:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_selected")
+				break
 			end
 		end
-		if TmogFramePreview1ButtonPlus or TmogFramePreview1ButtonPlusPushed then
+	elseif Tmog.currentTab == "ITEMS" then
+		if TmogFramePreview1ButtonPlus and TmogFramePreview1ButtonPlusPushed then
 			TmogFramePreview1ButtonPlus:Hide()
 			TmogFramePreview1ButtonPlusPushed:Hide()
+		end
+		if not Tmog.currentSlot then return end
+		local itemIDEquipped = Tmog.CurrentGear[Tmog.currentSlot]
+		local displayGroupEquipped = itemIDEquipped and Tmog.ItemDisplayGroup[itemIDEquipped]
+		for i = 1, Tmog.tsize(Tmog.PreviewButtons) do
+			local displayGroup = Tmog.PreviewButtons[i].displayGroup
+			local itemID = Tmog.PreviewButtons[i].id
+			if itemID == itemIDEquipped or (displayGroup and displayGroupEquipped and displayGroup == displayGroupEquipped) then
+				_G["TmogFramePreview"..i.."Button"]:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_selected")
+			end
 		end
 	end
 end
 
-function TmogSlot_OnClick(InventorySlotId, rightClick)
+function TmogPlayerSlot_OnClick(self, button)
+	local slot = self:GetID()
+	DropDownList1:Hide()
+
 	if IsShiftKeyDown() then
-		Tmog.LinkItem(Tmog.CurrentGear[InventorySlotId])
+		Tmog.LinkItem(Tmog.CurrentGear[slot])
 
-	elseif rightClick then
-
-		if Tmog.CurrentGear[InventorySlotId] == 0 then
-			if Tmog.ActualGear[InventorySlotId] == 0 then
+	elseif button == "RightButton" then
+		if Tmog.CurrentGear[slot] == 0 then
+			if Tmog.ActualGear[slot] == 0 then
 				return
 			end
-			TmogFramePlayerModel:TryOn(Tmog.ActualGear[InventorySlotId])
-			Tmog.CurrentGear[InventorySlotId] = Tmog.ActualGear[InventorySlotId]
-			Tmog.ToggleOutfitButtons()
+			TmogFramePlayerModel:TryOn(Tmog.ActualGear[slot])
+			Tmog.CurrentGear[slot] = Tmog.ActualGear[slot]
+			Tmog.UpdateOutfitButtons()
 			Tmog.UpdateItemTextures()
 			if Tmog.currentTab == "ITEMS" then
-				Tmog.RemoveSelection()
+				Tmog.UpdateSelection()
 			end
 		else
-			Tmog.UndressSlot(InventorySlotId)
+			Tmog.UndressSlot(slot)
 		end
-		--update tooltip
-		this:Hide()
-		this:Show()
+		-- update tooltip
+		self:Hide()
+		self:Show()
 		PlaySound("igMainMenuOptionCheckBoxOn")
 	else
-		Tmog.currentSlot = InventorySlotId
+		Tmog.currentSlot = slot
 		Tmog.flush = true
 		if Tmog.currentTab == "OUTFITS" then
-			if _G[this:GetName().."BorderFull"]:IsShown() then
+			if _G[self:GetName().."BorderFull"]:IsShown() then
 				Tmog.SwitchTab("ITEMS")
 				Tmog.Search()
 				return
@@ -1997,195 +1374,53 @@ function TmogSlot_OnClick(InventorySlotId, rightClick)
 
 		Tmog.HidePagination()
 		UIDropDownMenu_Initialize(TmogFrameTypeDropDown, Tmog.TypeDropDown_Initialize)
-		TmogFrameSearchBox:Show()
-		Tmog.currentType = SlotTypesMemory[InventorySlotId]
+		Tmog.currentType = SlotTypesMemory[slot]
 
-		if not _G[this:GetName().."BorderFull"]:IsShown() then
+		local fullBorder = _G[self:GetName().."BorderFull"]
+		if not fullBorder:IsShown() then
 			Tmog.HideBorders()
-			_G[this:GetName().."BorderFull"]:Show()
+			fullBorder:Show()
 			-- shirt / tabard / cloak
-			if InventorySlotId == 4 or InventorySlotId == 19 or InventorySlotId == 15 then
+			if slot == 4 or slot == 19 or slot == 15 then
 				TmogFrameTypeDropDown:Hide()
 			else
 				TmogFrameTypeDropDown:Show()
 			end
+			TmogFrameFiltersButton:Show()
 		else
 			TmogFrameTypeDropDown:Hide()
+			TmogFrameFiltersButton:Hide()
 			Tmog.HideBorders()
 			Tmog.currentSlot = nil
-			TmogFrameSearchBox:Hide()
 			PlaySound("InterfaceSound_LostTargetUnit")
 		end
 
 		Tmog.Search()
 		PlaySound("igCreatureAggroSelect")
 	end
-	DropDownList1:Hide()
 end
 
 function Tmog.UpdateItemTextures()
-	for slotName, InventorySlotId in pairs(InventorySlots) do
+	for slotName, slotID in pairs(Tmog.InventorySlots) do
 		local frame = _G["TmogFrame"..slotName]
 		local icon = _G[frame:GetName() .. "ItemIcon"]
 		if frame then
 			-- add paperdoll texture
-			local _, _, texture = strfind(frame:GetName(), "TmogFrame(.+)Slot")
-			texture = strlower(texture)
+			local _, _, texture = string.find(frame:GetName(), "TmogFrame(.+)Slot")
+			texture = string.lower(texture)
 
-			if texture == "wrist" then
-				texture = texture .. "s"
-			elseif texture == "back" then
-				texture = "chest"
-			end
+			if texture == "wrist" then texture = texture .. "s"
+			elseif texture == "back" then texture = "chest" end
 
 			icon:SetTexture("Interface\\Paperdoll\\ui-paperdoll-slot-" .. texture)
 
 			-- replace with item texture if possible
-			if GetInventoryItemLink("player", InventorySlotId) or GetItemInfo(Tmog.CurrentGear[InventorySlotId]) then
-				local _, _, _, _, _, _, _, _, tex = GetItemInfo(Tmog.CurrentGear[InventorySlotId])
-
-				if tex then
-					icon:SetTexture(tex)
-				end
+			if GetInventoryItemLink("player", slotID) or GetItemInfo(Tmog.CurrentGear[slotID]) then
+				local _, _, _, _, _, _, _, _, tex = GetItemInfo(Tmog.CurrentGear[slotID])
+				if tex then icon:SetTexture(tex) end
 			end
 		end
 	end
-end
-
-local SharedItems = {}
-function TmogTry(itemId, mouseButton, noSelect)
-	mouseButton = mouseButton or arg1
-	if mouseButton == "LeftButton" then
-
-		if Tmog.currentTab == "ITEMS" then
-
-			if IsShiftKeyDown() then
-				Tmog.LinkItem(itemId)
-			else
-				if Tmog.currentSlot == 16 then
-					Tmog.UndressSlot(Tmog.currentSlot)
-				end
-				TmogFramePlayerModel:TryOn(itemId)
-				Tmog.CurrentGear[Tmog.currentSlot] = itemId
-				Tmog.ToggleOutfitButtons()
-				Tmog.UpdateItemTextures()
-				Tmog.RemoveSelection()
-				if not noSelect then
-					this:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_selected")
-				else
-					Tmog.selectedButton:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_selected")
-				end
-				PlaySound("igMainMenuOptionCheckBoxOn")
-			end
-
-			if TmogFrameSharedItems:IsShown() then
-				TmogFrameSharedItems:Hide()
-			end
-
-		elseif Tmog.currentTab == "OUTFITS" then
-
-			if this:GetID() == 0 then
-				StaticPopup_Show("TMOG_NEW_OUTFIT")
-				return
-			end
-
-			local outfit = Tmog.PreviewButtons[this:GetID()].name
-			if IsShiftKeyDown() then
-				Tmog.LinkOutfit(outfit)
-				return
-			end
-			Tmog.currentOutfit = outfit
-
-			Tmog.LoadOutfit(outfit)
-			Tmog.RemoveSelection()
-			this:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_selected")
-			PlaySound("igMainMenuOptionCheckBoxOn")
-		end
-
-	elseif mouseButton == "RightButton" then
-
-		if Tmog.currentTab ~= "ITEMS" then
-			TmogFrameSharedItems:Hide()
-			return
-		end
-
-		Tmog.selectedButton = this
-
-		for i = 1, tsize(Tmog.SharedItemsFrames) do
-			Tmog.SharedItemsFrames[i]:Hide()
-		end
-
-		TmogFrameSharedItems:ClearAllPoints()
-		TmogFrameSharedItems:SetPoint("TOPLEFT", this, "BOTTOMLEFT", -2, 12)
-
-		for k in pairs(SharedItems) do
-			SharedItems[k] = nil
-		end
-		local index = 1
-		local displayGroup = Tmog.ItemDisplayGroup[itemId]
-		if displayGroup then
-
-			for _, id in pairs(Tmog.DisplayGroups[displayGroup]) do
-
-				Tmog.CacheItem(id)
-				local name, _, quality, _, _, _, _, _, tex = GetItemInfo(id)
-
-				if name and quality and id ~= itemId then
-					local r, g, b = GetItemQualityColor(quality)
-					if not (Tmog.onlyUsable and not Tmog.IsUsableItem(id)) then
-						SharedItems[index] = {name = "", id = 0, color = { r = 0, g = 0, b = 0 }, tex = ""}
-						SharedItems[index].name = name
-						SharedItems[index].id = id
-						SharedItems[index].color.r = r
-						SharedItems[index].color.g = g
-						SharedItems[index].color.b = b
-						SharedItems[index].tex = tex
-						index = index + 1
-					end
-				end
-			end
-		end
-
-		if not next(SharedItems) then
-			TmogFrameSharedItems:Hide()
-			return
-		end
-
-		if TmogFrameSharedItems:IsShown() then
-			TmogFrameSharedItems:Hide()
-		else
-			TmogFrameSharedItems:Show()
-		end
-
-		local widestText = 0
-
-		for i = 1, tsize(SharedItems) do
-
-			if not Tmog.SharedItemsFrames[i] then
-				Tmog.SharedItemsFrames[i] = CreateFrame("Button", "TmogFrameSharedItem"..i, TmogFrameSharedItems, "TmogSharedItemTemplate")
-			end
-
-			Tmog.SharedItemsFrames[i]:Show()
-			Tmog.SharedItemsFrames[i]:SetID(SharedItems[i].id)
-			Tmog.SharedItemsFrames[i]:SetPoint("TOPLEFT", TmogFrameSharedItems, 10 , -10 - ((i - 1) * 20))
-
-			TmogFrameSharedItems:SetHeight(40 + (i - 1) * 20)
-
-			_G["TmogFrameSharedItem"..i.."IconTexture"]:SetTexture(SharedItems[i].tex)
-			_G["TmogFrameSharedItem"..i.."Name"]:SetText(SharedItems[i].name)
-			_G["TmogFrameSharedItem"..i.."Name"]:SetTextColor(SharedItems[i].color.r, SharedItems[i].color.g, SharedItems[i].color.b)
-
-			local width = _G["TmogFrameSharedItem"..i.."Name"]:GetStringWidth()
-
-			if width > widestText then
-				widestText = width
-			end
-		end
-
-		TmogFrameSharedItems:SetWidth(45 + widestText)
-	end
-
-	DropDownList1:Hide()
 end
 
 function TmogSharedItem_OnEnter()
@@ -2219,11 +1454,8 @@ function TmogSharedItem_OnLeave()
 end
 
 function Tmog.LinkItem(itemId)
-	if not itemId or itemId == 0 then
-		return
-	end
+	if not Tmog.CacheItem(itemId) then return end
 
-	Tmog.CacheItem(itemId)
 	local itemName, _, quality = GetItemInfo(itemId)
 	local _, _, _, color = GetItemQualityColor(quality)
 
@@ -2234,123 +1466,13 @@ function Tmog.LinkItem(itemId)
 	end
 end
 
-function Tmog.LinkOutfit(outfit)
-	if not outfit or outfit == "" then return end
-
-	-- local code = "T.O.L."
-	-- for slot, id in pairs(TMOG_PLAYER_OUTFITS[outfit]) do
-	-- 	code = code..slot..":"..id..";"
-	-- end
-
-	local link = Tmog.GetOutfitLink(outfit)
-	if not link then return end
-
-	if WIM_EditBoxInFocus then
-		WIM_EditBoxInFocus:Insert(link)
-	elseif ChatFrameEditBox:IsShown() then
-		ChatFrameEditBox:Insert(link)
-	end
-end
-
-Tmog.LinkSlotOrder = { 1, 3, 15, 5, 4, 19, 9, 10, 6, 7, 8, 16, 17, 18 }
-local base = string.len([[!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{]])
-local asciiOffset = 33
-local charsPerItem = 3
-
-function Tmog.ParseOutfitLink(link)
-	if not link then return nil end
-	local payload = gsub(link, "^.*outfit:(.+).*$", "%1", 1)
-	local t = {}
-	for i = 1, string.len(payload), charsPerItem do
-		local group = strsub(payload, i, i + charsPerItem - 1)
-		local sum = 0
-		for j = 1, string.len(group) do
-			local a = string.byte(group, j) - asciiOffset
-			local b = math.pow(base, charsPerItem - j)
-			sum = sum + a * b
-		end
-		table.insert(t, sum)
-	end
-	return getn(t) > 0 and t or nil
-end
-
-function Tmog.GetOutfitLink(outfit)
-	if not outfit or outfit == "" or not TMOG_PLAYER_OUTFITS[outfit] then return "" end
-	local link = ""
-	for i = 1, getn(Tmog.LinkSlotOrder) do
-		local slot = Tmog.LinkSlotOrder[i]
-		local code = ""
-		local itemID = TMOG_PLAYER_OUTFITS[outfit][slot]
-		if itemID then
-			for _ = 1, charsPerItem do
-				code = string.char(mod(itemID, base) + asciiOffset)..code
-				itemID = floor(itemID / base)
-			end
-		else
-			code = string.rep(string.char(asciiOffset), charsPerItem)
-		end
-		link = link..code
-	end
-	return link ~= "" and string.format("|cffff80ff|Houtfit:%s|h[%s]|h|r", link, outfit) or ""
-end
-
-local original_SetItemRef = SetItemRef
-function SetItemRef(link, text, button)
-	if string.sub(link or "", 1, 6) == "outfit" then
-		local info = Tmog.ParseOutfitLink(link)
-		if not info then return end
-		if IsControlKeyDown() then
-			DressUpItem(0)
-			if DressUpFrame:IsShown() then
-				DressUpModel:Undress()
-				for index, itemID in ipairs(info) do
-					if itemID > 0 then DressUpModel:TryOn(itemID) end
-				end
-			end
-		elseif IsShiftKeyDown() then
-			local staticPopup = StaticPopup_Visible("TMOG_IMPORT_OUTFIT")
-			if staticPopup then
-				_G[staticPopup.."EditBox"]:SetText(link)
-			elseif WIM_EditBoxInFocus then
-				WIM_EditBoxInFocus:Insert(text)
-			elseif ChatFrameEditBox:IsVisible() then
-				ChatFrameEditBox:Insert(text)
-			end
-		else
-			ShowUIPanel(ItemRefTooltip)
-			if not ItemRefTooltip:IsVisible() then
-				ItemRefTooltip:SetOwner(UIParent, "ANCHOR_PRESERVE")
-			end
-			ItemRefTooltip:SetText((gsub(text, "^.*|h%[(.+)%]|h.*$", "%1", 1)), 1, 1, 1, 1, true)
-			for index, itemID in ipairs(info) do
-				local slot = Tmog.LinkSlotOrder[index]
-				local slotName
-				for k, v in pairs(InventorySlots) do
-					if v == slot then slotName = k end
-				end
-				if slotName and itemID > 0 then
-					slotName = _G[strupper(slotName)]
-					local itemName, _, quality = GetItemInfo(itemID)
-					if itemName then
-						local _, _, _, color = GetItemQualityColor(quality or 1)
-						ItemRefTooltip:AddLine(slotName..": "..color..itemName)
-					end
-				end
-			end
-			ItemRefTooltip:Show()
-		end
-	else
-		return original_SetItemRef(link, text, button)
-	end
-end
-
 function Tmog.Dress(model)
 	local showingHelm = ShowingHelm()
 	local showingCloak = ShowingCloak()
 	model:Undress()
 	for _, slot in ipairs(Tmog.DressOrder) do
-		if (slot == 1 and showingHelm == 1) or (slot == 1 and showingHelm ~= 1 and Tmog.ActualGear[1] ~= Tmog.CurrentGear[1]) or
-			(slot == 15 and showingCloak == 1) or (slot == 15 and showingCloak ~= 1 and Tmog.ActualGear[15] ~= Tmog.CurrentGear[15]) or
+		if (slot == 1 and showingHelm) or (slot == 1 and not showingHelm and Tmog.ActualGear[1] ~= Tmog.CurrentGear[1]) or
+			(slot == 15 and showingCloak) or (slot == 15 and not showingCloak and Tmog.ActualGear[15] ~= Tmog.CurrentGear[15]) or
 			(slot ~= 1 and slot ~= 15)
 		then
 			model:TryOn(Tmog.CurrentGear[slot])
@@ -2361,15 +1483,15 @@ end
 function Tmog.Undress()
 	TmogFramePlayerModel:Undress()
 
-	for _, InventorySlotId in pairs(InventorySlots) do
+	for _, InventorySlotId in pairs(Tmog.InventorySlots) do
 		Tmog.CurrentGear[InventorySlotId] = 0
 	end
 
 	Tmog.UpdateItemTextures()
-	Tmog.ToggleOutfitButtons()
+	Tmog.UpdateOutfitButtons()
 
 	if Tmog.currentTab == "ITEMS" then
-		Tmog.RemoveSelection()
+		Tmog.UpdateSelection()
 	end
 end
 
@@ -2377,28 +1499,167 @@ function Tmog.UndressSlot(InventorySlotId)
 	TmogFramePlayerModel:Undress()
 	for slot, itemID in pairs(Tmog.CurrentGear) do
 		if slot ~= InventorySlotId and slot ~= 18 then
-			if (slot == 1 and ShowingHelm() == 1) or (slot == 15 and ShowingCloak() == 1) or
-				(Tmog.CurrentGear[slot] ~= Tmog.ActualGear[slot]) or (slot ~= 1 and slot ~= 15)
-				then
+			if (slot == 1 and ShowingHelm()) or (slot == 15 and ShowingCloak()) or (Tmog.CurrentGear[slot] ~= Tmog.ActualGear[slot]) or (slot ~= 1 and slot ~= 15) then
 				TmogFramePlayerModel:TryOn(itemID)
 			end
 		end
 	end
 	Tmog.CurrentGear[InventorySlotId] = 0
-	Tmog.ToggleOutfitButtons()
+	Tmog.UpdateOutfitButtons()
 	Tmog.UpdateItemTextures()
 	if Tmog.currentTab == "ITEMS" then
-		Tmog.RemoveSelection()
+		Tmog.UpdateSelection()
 	end
 end
 
 function Tmog.HideBorders()
-	for k in pairs(InventorySlots) do
+	for k in pairs(Tmog.InventorySlots) do
 		_G["TmogFrame"..k.."BorderFull"]:Hide()
 	end
 end
 
-function TmogFramePreview_OnEnter()
+local SharedItems = {}
+function TmogFramePreview_OnClick(self, button)
+	local itemId = self:GetID()
+	if button == "LeftButton" then
+		if Tmog.currentTab == "ITEMS" then
+			if IsShiftKeyDown() then
+				Tmog.LinkItem(itemId)
+			else
+				if Tmog.currentSlot == 16 then
+					Tmog.UndressSlot(Tmog.currentSlot)
+				end
+				TmogFramePlayerModel:TryOn(itemId)
+				Tmog.CurrentGear[Tmog.currentSlot] = itemId
+				Tmog.UpdateOutfitButtons()
+				Tmog.UpdateItemTextures()
+				Tmog.UpdateSelection()
+				PlaySound("igMainMenuOptionCheckBoxOn")
+			end
+			if TmogFrameSharedItems:IsShown() then
+				TmogFrameSharedItems:Hide()
+			end
+		elseif Tmog.currentTab == "OUTFITS" then
+			local id = self:GetID()
+			if id == 0 then
+				StaticPopup_Show("TMOG_NEW_OUTFIT_CHOISE")
+				return
+			end
+			local outfit = Tmog.PreviewButtons[id].name
+			if IsShiftKeyDown() then
+				Tmog.LinkOutfit(outfit)
+				return
+			end
+			Tmog.currentOutfit = outfit
+			Tmog.LoadOutfit(outfit)
+			Tmog.UpdateSelection()
+			PlaySound("igMainMenuOptionCheckBoxOn")
+		end
+	elseif button == "RightButton" then
+		if Tmog.currentTab == "OUTFITS" then
+			local id = self:GetID()
+			if id <= 0 then return end
+			if not TmogFrameOutfitOptionsDropDown.initialize then
+				UIDropDownMenu_Initialize(TmogFrameOutfitOptionsDropDown, function()
+					local outfit = Tmog.PreviewButtons[id].name
+					local info = UIDropDownMenu_CreateInfo()
+					info.text = outfit
+					info.isTitle = true
+					info.notCheckable = true
+					UIDropDownMenu_AddButton(info)
+
+					info = UIDropDownMenu_CreateInfo()
+					info.text = "Rename"
+					info.notCheckable = true
+					info.func = function()
+						StaticPopup_Show("TMOG_OUTFIT_RENAME", nil, nil, outfit)
+					end
+					UIDropDownMenu_AddButton(info)
+
+					info = UIDropDownMenu_CreateInfo()
+					info.text = "Share"
+					info.notCheckable = true
+					info.func = TmogFrameShareOutfit_OnClick
+					info.arg1 = outfit
+					UIDropDownMenu_AddButton(info)
+
+					info = UIDropDownMenu_CreateInfo()
+					info.text = "Delete"
+					info.notCheckable = true
+					info.func = function()
+						StaticPopup_Show("TMOG_CONFIRM_DELETE_OUTFIT", outfit, nil, outfit)
+					end
+					UIDropDownMenu_AddButton(info)
+				end, "MENU")
+			end
+			ToggleDropDownMenu(1, nil, TmogFrameOutfitOptionsDropDown, "cursor")
+			TmogFrameSharedItems:Hide()
+			return
+		end
+
+		for i = 1, Tmog.tsize(Tmog.SharedItemsFrames) do
+			Tmog.SharedItemsFrames[i]:Hide()
+		end
+
+		TmogFrameSharedItems:ClearAllPoints()
+		TmogFrameSharedItems:SetPoint("TOPLEFT", self, "BOTTOMLEFT", -2, 12)
+
+		for k in pairs(SharedItems) do SharedItems[k] = nil end
+		local index = 1
+		local displayGroup = Tmog.ItemDisplayGroup[itemId]
+		if displayGroup then
+			for _, id in pairs(Tmog.DisplayGroups[displayGroup]) do
+				Tmog.CacheItem(id)
+				local name, _, quality, _, _, _, _, _, tex = GetItemInfo(id)
+				if name and quality and id ~= itemId then
+					local r, g, b = GetItemQualityColor(quality)
+					if not (Tmog.onlyUsable and not Tmog.IsUsableItem(id)) then
+						SharedItems[index] = {name = "", id = 0, color = { r = 0, g = 0, b = 0 }, tex = ""}
+						SharedItems[index].name = name
+						SharedItems[index].id = id
+						SharedItems[index].color.r = r
+						SharedItems[index].color.g = g
+						SharedItems[index].color.b = b
+						SharedItems[index].tex = tex
+						index = index + 1
+					end
+				end
+			end
+		end
+
+		if not next(SharedItems) then
+			TmogFrameSharedItems:Hide()
+			return
+		end
+
+		if TmogFrameSharedItems:IsShown() then
+			TmogFrameSharedItems:Hide()
+		else
+			TmogFrameSharedItems:Show()
+		end
+
+		local widestText = 0
+
+		for i = 1, Tmog.tsize(SharedItems) do
+			if not Tmog.SharedItemsFrames[i] then
+				Tmog.SharedItemsFrames[i] = CreateFrame("Button", "TmogFrameSharedItem"..i, TmogFrameSharedItems, "TmogSharedItemTemplate")
+			end
+			Tmog.SharedItemsFrames[i]:Show()
+			Tmog.SharedItemsFrames[i]:SetID(SharedItems[i].id)
+			Tmog.SharedItemsFrames[i]:SetPoint("TOPLEFT", TmogFrameSharedItems, 10 , -10 - ((i - 1) * 20))
+			TmogFrameSharedItems:SetHeight(40 + (i - 1) * 20)
+			_G["TmogFrameSharedItem"..i.."IconTexture"]:SetTexture(SharedItems[i].tex)
+			_G["TmogFrameSharedItem"..i.."Name"]:SetText(SharedItems[i].name)
+			_G["TmogFrameSharedItem"..i.."Name"]:SetTextColor(SharedItems[i].color.r, SharedItems[i].color.g, SharedItems[i].color.b)
+			local width = _G["TmogFrameSharedItem"..i.."Name"]:GetStringWidth()
+			if width > widestText then widestText = width end
+		end
+		TmogFrameSharedItems:SetWidth(45 + widestText)
+	end
+	DropDownList1:Hide()
+end
+
+function TmogFramePreview_OnEnter(self)
 	_G[this:GetParent():GetName().."ItemModel"]:SetLight(unpack(Tmog.previewHighlight))
 
 	if Tmog.currentTab == "ITEMS" then
@@ -2474,9 +1735,8 @@ function TmogFramePreview_OnEnter()
 
 	elseif Tmog.currentTab == "OUTFITS" then
 		local outfit = this:GetParent().name
-		if not outfit then
-			return
-		end
+		if not outfit then return end
+
 		TmogTooltip:SetOwner(this, "ANCHOR_RIGHT", -5, -8)
 		TmogTooltip:AddDoubleLine(outfit, "", 1, 1, 1, 1, 1, 1)
 
@@ -2486,12 +1746,12 @@ function TmogFramePreview_OnEnter()
 		for name in pairs(TMOG_PLAYER_OUTFITS) do
 
 			if name == outfit then
-				numItemsInOutfit = tsize(TMOG_PLAYER_OUTFITS[name])
+				numItemsInOutfit = Tmog.tsize(TMOG_PLAYER_OUTFITS[name])
 
 				for slot, itemID in pairs(TMOG_PLAYER_OUTFITS[name]) do
 					local slotName
 
-					for k, v in pairs(InventorySlots) do
+					for k, v in pairs(Tmog.InventorySlots) do
 						if v == slot then
 							slotName = k
 						end
@@ -2521,7 +1781,7 @@ function TmogFramePreview_OnEnter()
 			if not _G[this:GetName().."PlusPushed"]:IsShown() then
 				_G[this:GetName().."PlusHighlight"]:Show()
 			end
-			TmogTooltip:AddLine(L["Create an outfit from currently selected items."], 1, 0.82, 0, 1, true)
+			TmogTooltip:AddLine(L["Create an outfit from currently selected items or import from ingame link/code."], 1, 0.82, 0, 1, true)
 		else
 			_G[this:GetParent():GetName().."ItemModel"]:SetLight(unpack(Tmog.previewHighlight))
 			TmogTooltipTextRight1:SetText("("..numCollected.."/"..numItemsInOutfit..")")
@@ -2531,9 +1791,9 @@ function TmogFramePreview_OnEnter()
 	end
 end
 
-function TmogFramePreview_OnLeave()
-	_G[this:GetParent():GetName().."ItemModel"]:SetLight(unpack(Tmog.previewNormalLight))
-	_G[this:GetName().."PlusHighlight"]:Hide()
+function TmogFramePreview_OnLeave(self)
+	_G[self:GetParent():GetName().."ItemModel"]:SetLight(unpack(Tmog.previewNormalLight))
+	_G[self:GetName().."PlusHighlight"]:Hide()
 	TmogTooltip:Hide()
 	TmogTooltip.itemID = nil
 end
@@ -2541,267 +1801,23 @@ end
 local hidden = false
 function Tmog.HideUI()
 	if not hidden then
-		for slot in pairs(InventorySlots) do
+		for slot in pairs(Tmog.InventorySlots) do
 			_G["TmogFrame"..slot]:Hide()
 		end
-		TmogFrameRevert:Hide()
+		TmogFrameResetOutfit:Hide()
 		TmogFrameFullScreenButton:Hide()
 		TmogFrameHideUI:SetText(L["Show UI"])
 		hidden = true
 	else
-		for slot in pairs(InventorySlots) do
+		for slot in pairs(Tmog.InventorySlots) do
 			_G["TmogFrame"..slot]:Show()
 		end
-		TmogFrameRevert:Show()
+		TmogFrameResetOutfit:Show()
 		TmogFrameFullScreenButton:Show()
 		TmogFrameHideUI:SetText(L["Hide UI"])
 		hidden = false
 	end
 end
-
-function Tmog.LoadOutfit(outfit)
-	if IsShiftKeyDown() then
-		Tmog.LinkOutfit(outfit)
-		return
-	end
-	UIDropDownMenu_SetText(outfit, TmogFrameOutfitsDropDown)
-
-	Tmog.currentOutfit = outfit
-	TmogFrameSaveOutfit:Disable()
-
-	TmogFrameDeleteOutfit:Enable()
-	TmogFrameShareOutfit:Enable()
-
-	TmogFramePlayerModel:Undress()
-
-	for _, InventorySlotId in pairs(InventorySlots) do
-		Tmog.CurrentGear[InventorySlotId] = 0
-	end
-
-	for _, slot in ipairs(Tmog.DressOrder) do
-		local itemID = TMOG_PLAYER_OUTFITS[outfit][slot]
-		if itemID then
-			TmogFramePlayerModel:TryOn(itemID)
-			Tmog.CurrentGear[slot] = itemID
-		end
-	end
-
-	Tmog.UpdateItemTextures()
-	Tmog.RemoveSelection()
-
-	for i = 1, tsize(Tmog.PreviewButtons) do
-		if Tmog.PreviewButtons[i].name == outfit then
-			_G["TmogFramePreview"..i.."Button"]:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\item_bg_selected")
-		end
-	end
-end
-
-function Tmog.ToggleOutfitButtons()
-	if Tmog.currentOutfit ~= nil then
-		TmogFrameSaveOutfit:Disable()
-		for slot, itemID in pairs(Tmog.CurrentGear) do
-			if itemID ~= 0 and not TMOG_PLAYER_OUTFITS[Tmog.currentOutfit][slot] then
-				TmogFrameSaveOutfit:Enable()
-				break
-			elseif TMOG_PLAYER_OUTFITS[Tmog.currentOutfit][slot] and TMOG_PLAYER_OUTFITS[Tmog.currentOutfit][slot] ~= itemID then
-				TmogFrameSaveOutfit:Enable()
-			end
-		end
-		TmogFrameDeleteOutfit:Enable()
-		TmogFrameShareOutfit:Enable()
-	else
-		TmogFrameSaveOutfit:Disable()
-		TmogFrameDeleteOutfit:Disable()
-		TmogFrameShareOutfit:Disable()
-	end
-end
-
-function Tmog.SaveOutfit()
-	TMOG_PLAYER_OUTFITS[Tmog.currentOutfit] = {}
-
-	for InventorySlotId, itemID in pairs(Tmog.CurrentGear) do
-		if itemID ~= 0 then
-			TMOG_PLAYER_OUTFITS[Tmog.currentOutfit][InventorySlotId] = itemID
-		end
-	end
-
-	TmogFrameSaveOutfit:Disable()
-
-	if Tmog.currentTab == "OUTFITS" then
-		Tmog.DrawPreviews()
-	end
-end
-
-function Tmog.DeleteOutfit()
-	TMOG_PLAYER_OUTFITS[Tmog.currentOutfit] = nil
-	Tmog.currentOutfit = nil
-
-	TmogFrameSaveOutfit:Disable()
-	TmogFrameDeleteOutfit:Disable()
-	TmogFrameShareOutfit:Disable()
-	UIDropDownMenu_SetText(L["Outfits"], TmogFrameOutfitsDropDown)
-
-	if Tmog.currentTab == "OUTFITS" then
-		Tmog.HidePreviews()
-		Tmog.DrawPreviews()
-	end
-end
-
-function Tmog.NewOutfitPopup()
-	StaticPopup_Show("TMOG_NEW_OUTFIT")
-end
-
-StaticPopupDialogs["TMOG_NEW_OUTFIT"] = {
-	text = L["Enter outfit name:"],
-	button1 = SAVE,
-	button2 = CANCEL,
-	hasEditBox = 1,
-
-	OnShow = function()
-		if Tmog.currentTab == "OUTFITS" then
-			if Tmog.currentPage == 1 then
-				TmogFramePreview1ButtonPlus:Hide()
-				TmogFramePreview1ButtonPlusPushed:Show()
-			else
-				TmogFramePreview1ButtonPlus:Hide()
-				TmogFramePreview1ButtonPlusPushed:Hide()
-			end
-		end
-		_G[this:GetName().."EditBox"]:SetFocus()
-		_G[this:GetName() .. "EditBox"]:SetScript("OnEnterPressed", function()
-			StaticPopup1Button1:Click()
-		end)
-
-		_G[this:GetName() .. "EditBox"]:SetScript("OnEscapePressed", function()
-			_G[this:GetParent():GetName() .. "EditBox"]:SetText("")
-			StaticPopup1Button2:Click()
-		end)
-	end,
-
-	OnAccept = function()
-		local outfitName = _G[this:GetParent():GetName() .. "EditBox"]:GetText()
-		if Tmog.currentTab == "OUTFITS" then
-			if Tmog.currentPage == 1 then
-				TmogFramePreview1ButtonPlus:Show()
-				TmogFramePreview1ButtonPlusPushed:Hide()
-			else
-				TmogFramePreview1ButtonPlus:Hide()
-				TmogFramePreview1ButtonPlusPushed:Hide()
-			end
-		end
-		if outfitName == "" then
-			StaticPopup_Show("TMOG_OUTFIT_EMPTY_NAME")
-			return
-		end
-
-		if TMOG_PLAYER_OUTFITS[outfitName] then
-			StaticPopup_Show("TMOG_OUTFIT_EXISTS")
-			return
-		end
-
-		UIDropDownMenu_SetText(outfitName, TmogFrameOutfitsDropDown)
-		Tmog.currentOutfit = outfitName
-		TmogFrameDeleteOutfit:Enable()
-		TmogFrameShareOutfit:Enable()
-		Tmog.SaveOutfit()
-		_G[this:GetParent():GetName() .. "EditBox"]:SetText("")
-	end,
-
-	OnCancel = function()
-		if Tmog.currentTab == "OUTFITS" then
-			if Tmog.currentPage == 1 then
-				TmogFramePreview1ButtonPlus:Show()
-				TmogFramePreview1ButtonPlusPushed:Hide()
-			else
-				TmogFramePreview1ButtonPlus:Hide()
-				TmogFramePreview1ButtonPlusPushed:Hide()
-			end
-		end
-	end,
-
-	timeout = 0,
-	whileDead = 0,
-	hideOnEscape = 1,
-}
-
-StaticPopupDialogs["TMOG_OUTFIT_EXISTS"] = {
-	text = L["Outfit with this name already exists."],
-	button1 = OKAY,
-	timeout = 0,
-	exclusive = 1,
-	whileDead = 1,
-	hideOnEscape = 1
-}
-
-StaticPopupDialogs["TMOG_OUTFIT_EMPTY_NAME"] = {
-	text = L["Outfit name not valid."],
-	button1 = OKAY,
-	timeout = 0,
-	exclusive = 1,
-	whileDead = 1,
-	hideOnEscape = 1
-}
-
-StaticPopupDialogs["TMOG_CONFIRM_DELETE_OUTFIT"] = {
-	text = L["Delete outfit?"],
-	button1 = YES,
-	button2 = NO,
-
-	OnAccept = function()
-		Tmog.DeleteOutfit()
-	end,
-
-	timeout = 0,
-	whileDead = 1,
-	hideOnEscape = 1,
-}
-
-StaticPopupDialogs["TMOG_BAD_OUTFIT_CODE"] = {
-	text = L["Invalid outfit code."],
-	button1 = OKAY,
-	timeout = 0,
-	exclusive = 1,
-	whileDead = 1,
-	hideOnEscape = 1
-}
-
-StaticPopupDialogs["TMOG_IMPORT_OUTFIT"] = {
-	text = L["Enter outfit code:"],
-	button1 = OKAY,
-	button2 = CANCEL,
-	hasEditBox = 1,
-
-	OnShow = function()
-		_G[this:GetName().."EditBox"]:SetFocus()
-		_G[this:GetName().."EditBox"]:SetText("")
-		_G[this:GetName() .. "EditBox"]:SetScript("OnEnterPressed", function()
-			StaticPopup1Button1:Click()
-		end)
-
-		_G[this:GetName() .. "EditBox"]:SetScript("OnEscapePressed", function()
-			_G[this:GetParent():GetName() .. "EditBox"]:SetText("")
-			StaticPopup1Button2:Click()
-		end)
-	end,
-
-	OnAccept = function()
-		local code = _G[this:GetParent():GetName() .. "EditBox"]:GetText()
-		_G[this:GetParent():GetName() .. "EditBox"]:SetText("")
-		local outfit = Tmog.ValidateOutfitCode(code)
-		if not outfit then
-			StaticPopup_Show("TMOG_BAD_OUTFIT_CODE")
-			return
-		end
-		Tmog.ImportOutfit(outfit)
-		this:GetParent():Hide()
-		StaticPopup_Show("TMOG_NEW_OUTFIT")
-		TmogFrameShareOutfit:Disable()
-	end,
-
-	timeout = 0,
-	whileDead = 1,
-	hideOnEscape = 1,
-}
 
 function Tmog.ResetPages()
 	Tmog.currentPage = 1
@@ -2809,72 +1825,6 @@ function Tmog.ResetPages()
 		for i in pairs(PagesMemory[k]) do
 			PagesMemory[k][i] = 1
 		end
-	end
-end
-
-function Tmog.ResetUnusableTable()
-	for k in pairs(Unusable) do
-		for k2 in pairs(Unusable[k]) do
-			for k3 in pairs(Unusable[k][k2]) do
-				Unusable[k][k2][k3] = nil
-			end
-		end
-	end
-end
-
-function Tmog.CollectedToggle()
-	Tmog.collected = not Tmog.collected
-	TmogFrameCollected:SetChecked(Tmog.collected)
-	Tmog.flush = true
-	if Tmog.currentSlot then
-		Tmog.ResetPages()
-		Tmog.DrawPreviews()
-	end
-end
-
-function Tmog.NotCollectedToggle()
-	Tmog.notCollected = not Tmog.notCollected
-	TmogFrameNotCollected:SetChecked(Tmog.notCollected)
-	Tmog.flush = true
-	if Tmog.currentSlot then
-		Tmog.ResetPages()
-		Tmog.DrawPreviews()
-	end
-end
-
-function Tmog.UsableToggle()
-	if Tmog.onlyUsable then
-		Tmog.onlyUsable = false
-		TmogFrameIgnoreLevel:Disable()
-		TmogFrameIgnoreLevelText:SetTextColor(GRAY_FONT_COLOR.r, GRAY_FONT_COLOR.g, GRAY_FONT_COLOR.b)
-	else
-		Tmog.onlyUsable = true
-		TmogFrameIgnoreLevel:Enable()
-		TmogFrameIgnoreLevelText:SetTextColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
-	end
-	this:SetChecked(Tmog.onlyUsable)
-	Tmog.flush = true
-	if Tmog.currentSlot then
-		Tmog.ResetPages()
-		if Tmog.onlyUsable then
-			Tmog.ResetUnusableTable()
-		end
-		Tmog.DrawPreviews()
-	end
-end
-
-function Tmog.IgnoreLevelToggle()
-	if Tmog.ignoreLevel then
-		Tmog.ignoreLevel = false
-	else
-		Tmog.ignoreLevel = true
-	end
-	this:SetChecked(Tmog.ignoreLevel)
-	Tmog.flush = true
-	if Tmog.currentSlot then
-		Tmog.ResetPages()
-		Tmog.ResetUnusableTable()
-		Tmog.DrawPreviews()
 	end
 end
 
@@ -2901,50 +1851,39 @@ function Tmog.Search()
 end
 
 function Tmog.SwitchTab(which)
-	if Tmog.currentTab == which then
-		return
-	end
+	if Tmog.currentTab == which then return end
 
 	Tmog.currentTab = which
 
 	if which == "ITEMS" then
-		TmogFrameItemsButton:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\tab_active")
-		TmogFrameItemsButton:SetPushedTexture("Interface\\AddOns\\Tmog\\Textures\\tab_active")
-		TmogFrameOutfitsButton:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\tab_inactive")
-		TmogFrameOutfitsButton:SetPushedTexture("Interface\\AddOns\\Tmog\\Textures\\tab_inactive")
+		TmogFrameTab1:SetTextColor(1, 1, 1)
+		TmogFrameTab2:SetTextColor(1, 0.82, 0)
+		TmogFrameTab1:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\tab_active")
+		TmogFrameTab1:SetPushedTexture("Interface\\AddOns\\Tmog\\Textures\\tab_active")
+		TmogFrameTab2:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\tab_inactive")
+		TmogFrameTab2:SetPushedTexture("Interface\\AddOns\\Tmog\\Textures\\tab_inactive")
 
 		if Tmog.currentSlot then
 			if Tmog.currentSlot ~= 15 and Tmog.currentSlot ~= 4 and Tmog.currentSlot ~= 19 then
 				TmogFrameTypeDropDown:Show()
 			end
-			TmogFrameSearchBox:Show()
+			TmogFrameFiltersButton:Show()
 		else
 			Tmog.HidePreviews()
 			Tmog.HidePagination()
 		end
 
-		TmogFrameCollected:Show()
-		TmogFrameNotCollected:Show()
-		TmogFrameUsable:Show()
-		TmogFrameIgnoreLevel:Show()
-		TmogFrameShareOutfit:Hide()
-		TmogFrameImportOutfit:Hide()
-
 	elseif which == "OUTFITS" then
 		Tmog.currentPage = 1
-		TmogFrameOutfitsButton:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\tab_active")
-		TmogFrameOutfitsButton:SetPushedTexture("Interface\\AddOns\\Tmog\\Textures\\tab_active")
-		TmogFrameItemsButton:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\tab_inactive")
-		TmogFrameItemsButton:SetPushedTexture("Interface\\AddOns\\Tmog\\Textures\\tab_inactive")
+		TmogFrameTab1:SetTextColor(1, 0.82, 0)
+		TmogFrameTab2:SetTextColor(1, 1, 1)
+		TmogFrameTab1:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\tab_inactive")
+		TmogFrameTab1:SetPushedTexture("Interface\\AddOns\\Tmog\\Textures\\tab_inactive")
+		TmogFrameTab2:SetNormalTexture("Interface\\AddOns\\Tmog\\Textures\\tab_active")
+		TmogFrameTab2:SetPushedTexture("Interface\\AddOns\\Tmog\\Textures\\tab_active")
 
 		TmogFrameTypeDropDown:Hide()
-		TmogFrameCollected:Hide()
-		TmogFrameNotCollected:Hide()
-		TmogFrameUsable:Hide()
-		TmogFrameIgnoreLevel:Hide()
-		TmogFrameSearchBox:Hide()
-		TmogFrameShareOutfit:Show()
-		TmogFrameImportOutfit:Show()
+		TmogFrameFiltersButton:Hide()
 
 		Tmog.DrawPreviews()
 	end
@@ -2978,78 +1917,17 @@ function TmogPlayerSlot_OnEnter()
 	end
 
 	if not name then
-		local text = _G[strupper(strsub(this:GetName(), 10))]
+		local text = _G[strupper(string.sub(this:GetName(), 10))]
 
 		TmogTooltip:SetText(text)
 		TmogTooltip:Show()
 	end
 end
 
-
-function Tmog.OutfitsDropDown_Initialize()
-	local info = UIDropDownMenu_CreateInfo()
-
-	if tsize(TMOG_PLAYER_OUTFITS) < 30 then
-		info.text = GREEN.."+ "..L["New outfit"]
-		info.value = 1
-		info.checked = false
-		info.func = StaticPopup_Show
-		info.arg1 = "TMOG_NEW_OUTFIT"
-		info.tooltipTitle = L["New outfit"]
-		info.tooltipText = L["Create an outfit from currently selected items."]
-		UIDropDownMenu_AddButton(info)
-	end
-
-	for name, data in pairs(TMOG_PLAYER_OUTFITS) do
-		info.text = name
-		info.value = name
-		info.checked = Tmog.currentOutfit == name
-		info.func = Tmog.LoadOutfit
-		info.arg1 = name
-		info.tooltipTitle = name
-		local descText, slotName = "", ""
-
-		for slot, itemID in pairs(data) do
-			Tmog.CacheItem(itemID)
-
-			for k, v in pairs(InventorySlots) do
-				if v == slot then
-					slotName = k
-				end
-			end
-
-			if slotName then
-				slotName = _G[strupper(slotName)]
-				Tmog.CacheItem(itemID)
-				local itemName, _, quality = GetItemInfo(itemID)
-
-				if itemName then
-
-					if quality then
-						local _, _, _, color = GetItemQualityColor(quality)
-						if color then
-							descText = descText..NORMAL..slotName..":|r "..color.. itemName.."|r\n"
-						else
-							descText = descText..NORMAL..slotName..":|r ".. itemName.."|r\n"
-						end
-					else
-						descText = descText..NORMAL..slotName..":|r ".. itemName.."|r\n"
-					end
-				end
-			end
-		end
-
-		info.tooltipText = descText
-		UIDropDownMenu_AddButton(info)
-	end
-end
-
 function Tmog.TypeDropDown_Initialize()
 	local types = Tmog.GetTypesForSlot(Tmog.currentSlot)
 
-	if not types then
-		return
-	end
+	if not types then return end
 
 	local info = UIDropDownMenu_CreateInfo()
 	for _, v in pairs(types) do
@@ -3069,137 +1947,6 @@ function Tmog.TypeDropDown_Initialize()
 	end
 end
 
-function Tmog.CacheItem(linkOrID)
-	if not linkOrID or linkOrID == 0 then
-		return false
-	end
-
-	if tonumber(linkOrID) then
-		if GetItemInfo(linkOrID) then
-			return true
-		else
-            TmogScanTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
-			TmogScanTooltip:SetHyperlink("item:"..linkOrID)
-			Tmog.debug("Caching "..linkOrID)
-		end
-	else
-		if type(linkOrID) ~= "string" then
-			return false
-		end
-		local _, _, item = strfind(linkOrID, "(item:%d+)")
-		if item then
-			if GetItemInfo(item) then
-				return true
-			else
-                TmogScanTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
-				TmogScanTooltip:SetHyperlink(item)
-				Tmog.debug("Caching "..item)
-			end
-		end
-	end
-end
-
-function Tmog.ImportOutfit(outfit)
-	Tmog.currentOutfit = nil
-	TmogFrameSaveOutfit:Disable()
-	TmogFrameDeleteOutfit:Disable()
-	UIDropDownMenu_SetText(L["Outfits"], TmogFrameOutfitsDropDown)
-
-	TmogFramePlayerModel:Undress()
-
-	for _, InventorySlotId in pairs(InventorySlots) do
-		Tmog.CurrentGear[InventorySlotId] = 0
-	end
-
-	for slot, itemID in pairs(outfit) do
-		Tmog.CacheItem(itemID)
-		Tmog.CurrentGear[slot] = itemID
-		TmogFramePlayerModel:TryOn(itemID)
-	end
-
-	Tmog.UpdateItemTextures()
-end
-
-function TmogFrameImportOutfit_OnClick()
-	StaticPopup_Show("TMOG_IMPORT_OUTFIT")
-end
-
-function TmogFrameShareOutfit_OnClick()
-	local code = "T.O.L."
-	local dbLinks = ""
-
-	for slot, id in pairs(TMOG_PLAYER_OUTFITS[Tmog.currentOutfit]) do
-		code = code..slot..":"..id..";"
-		local slotName = ""
-		for k, v in pairs(InventorySlots) do
-			if v == slot then slotName = _G[strupper(k)] end
-		end
-		dbLinks = dbLinks.."**"..slotName.."**: "..GetItemInfo(id).." "..WEBSITE..id.."\n"
-	end
-
-	TmogFrameShareDialog:Show()
-	TmogFrameShareDialogEditBox:SetText(code)
-	TmogFrameShareDialogEditBox:HighlightText()
-	TmogFrameShareDialogEditBox2:SetText(dbLinks)
-end
-
-function Tmog.ValidateOutfitCode(code)
-	local info = Tmog.ParseOutfitLink(code)
-
-	if info then
-		local outfit = {}
-		for index, itemID in ipairs(info) do
-			local slot = Tmog.LinkSlotOrder[index]
-			if slot then outfit[slot] = itemID end
-		end
-		return outfit
-	end
-
-	local signature = strfind(code, "T.O.L.", 1, true)
-	if signature then
-		code = strsub(code, signature)
-		code = strtrim(code)
-	else
-		return nil
-	end
-
-	code = strsub(code, 7)
-
-	if strfind(code, "[^%d:;]") then
-		return nil
-	end
-
-	local slotItemPairs = strsplit(code, ";")
-	local outfit = {}
-	local slot, item
-
-	for i = 1, tsize(slotItemPairs) do
-		_, _, slot, item = strfind(slotItemPairs[i], "(%d+):(%d+)")
-		slot = tonumber(slot)
-		item = tonumber(item)
-		if slot and item then outfit[slot] = item end
-	end
-
-	for invSlot, itemID in pairs(outfit) do
-		Tmog.CacheItem(itemID)
-		-- local _, _, _, _, itemType, itemSubType, _, loc  = GetItemInfo(itemID)
-		-- if not TmogGearDB[itemID] then
-		--	 return nil
-		-- end
-		-- if not itemType or not itemSubType or not loc then
-		--	 return nil
-		-- end
-		-- if itemType ~= L["Armor"] and itemType ~= L["Weapon"] then
-		--	 return nil
-		-- end
-		-- if not SetContains(InventoryTypeToSlot, loc, invSlot) and not (invSlot == 17 and loc == "INVTYPE_WEAPON") then
-		--	 return nil
-		-- end
-	end
-
-	return outfit
-end
-
 function Tmog.Sort(a, b)
 	local nameA, _, qualityA = GetItemInfo(a)
 	local nameB, _, qualityB = GetItemInfo(b)
@@ -3212,211 +1959,3 @@ function Tmog.Sort(a, b)
 	end
 end
 
-function TmogFrameFullScreenModel_OnLoad()
-	this:SetLight(unpack(Tmog.fullScreenLight))
-
-	this:SetScript("OnMouseUp", function()
-		this:SetScript("OnUpdate", nil)
-	end)
-
-	this:SetScript("OnMouseWheel", function()
-		local Z, X, Y = this:GetPosition()
-		Z = (arg1 > 0 and Z + 0.4 or Z - 0.4)
-		this:SetPosition(Z, X, Y)
-	end)
-
-	this:SetScript("OnMouseDown", function()
-		local StartX, StartY = GetCursorPosition()
-		local EndX, EndY, Z, X, Y
-
-		if arg1 == "LeftButton" then
-			this:SetScript("OnUpdate", function()
-				EndX, EndY = GetCursorPosition()
-				this:SetFacing((EndX - StartX) / 34 + this:GetFacing())
-				StartX, StartY = GetCursorPosition()
-			end)
-
-		elseif arg1 == "RightButton" then
-			this:SetScript("OnUpdate", function()
-				EndX, EndY = GetCursorPosition()
-
-				Z, X, Y = this:GetPosition()
-				X = (EndX - StartX) / 180 + X
-				Y = (EndY - StartY) / 180 + Y
-
-				this:SetPosition(Z, X, Y)
-				StartX, StartY = GetCursorPosition()
-			end)
-		end
-	end)
-end
-
-function TmogFrameFullScreenModel_OnShow()
-	UIFrameFadeIn(this, 0.3, 0, 1)
-	this:SetWidth(GetScreenWidth()+5)
-	this:SetHeight(GetScreenHeight()+5)
-	this:SetPosition(0, 0, 0)
-	this:SetUnit("player")
-	Tmog.Dress(this)
-	this:SetPosition(this.z or -3, this.x or 0, this.y or 0)
-	this:SetFacing(this.f or 0)
-end
-
-function TmogFrameFullScreenModel_OnHide()
-	this.z, this.x, this.y = this:GetPosition()
-	this.f = this:GetFacing()
-end
-
-function TmogFrameFullScreen_OnUpdate()
-	if not this.fadeTime then
-		return
-	end
-	if (GetTime() - this.fadeTime) > 0.3 then
-		this.fadeTime = nil
-		this:Hide()
-	end
-end
-
-function TmogFrameFullScreen_OnKeyDown()
-	local screenshotKey = GetBindingKey("SCREENSHOT")
-	if arg1 == "ESCAPE" then
-		this:SetScript("OnKeyDown", nil)
-		this.fadeTime = GetTime()
-		UIFrameFadeOut(TmogFrameFullScreenModel, 0.3, 1, 0)
-	elseif screenshotKey and (arg1 == screenshotKey) then
-		RunBinding("SCREENSHOT")
-	end
-end
-
-do
-	local requestInterval = 1
-	local maxattempts = 3
-	local pendingIDs = {}
-	local tick = 0
-	local keysdeleted = 0
-	local namesrestored = 0
-	local sharedadded = 0
-
-	local function RepairStop()
-		Tmog.print(format(L["Cache repair finished: bad items deleted: %d, item names restored: %d, missing shared items added: %d"], keysdeleted, namesrestored, sharedadded))
-		TmogRepairFrame:SetScript("OnUpdate", nil)
-	end
-
-	local function OnUpdate()
-		tick = tick + arg1
-		if tick < requestInterval then return end
-		tick = 0
-		if not next(pendingIDs) then
-			RepairStop()
-			return
-		end
-		for id, tbl in pairs(pendingIDs) do
-			local value = tbl.value
-			if type(value) == "string" then
-				TMOG_CACHE[tbl.slot][id] = value
-				pendingIDs[id] = nil
-				namesrestored = namesrestored + 1
-				if not next(pendingIDs) then
-					RepairStop()
-					return
-				end
-			else
-				if value > maxattempts then
-					TMOG_CACHE[tbl.slot][id] = nil
-					pendingIDs[id] = nil
-					keysdeleted = keysdeleted + 1
-					if not next(pendingIDs) then
-						RepairStop()
-						return
-					end
-				else
-					Tmog.print(format(L["bad item %d, requesting info from server, try #%d"], id, tonumber(value)))
-					Tmog.CacheItem(id)
-					pendingIDs[id].value = (GetItemInfo(id)) or (value + 1)
-				end
-			end
-		end
-	end
-
-	function Tmog.RepairStart()
-		pendingIDs = {}
-		tick = 0
-		keysdeleted = 0
-		namesrestored = 0
-		sharedadded = 0
-		Tmog.print(L["Cache repair started."])
-		for slot in pairs(TMOG_CACHE) do
-			for id, name in pairs(TMOG_CACHE[slot]) do
-				Tmog.CacheItem(id)
-				if type(id) ~= "number" then
-					TMOG_CACHE[slot][id] = nil
-					keysdeleted = keysdeleted + 1
-				elseif name == true then
-					pendingIDs[id] = { slot = slot, value = 1 }
-				end
-			end
-		end
-		for slot in pairs(TMOG_CACHE) do
-			for itemID in pairs(TMOG_CACHE[slot]) do
-				local displayGroup = Tmog.ItemDisplayGroup[itemID]
-				if displayGroup then
-					for _, id in pairs(Tmog.DisplayGroups[displayGroup]) do
-						Tmog.CacheItem(id)
-						if not TMOG_CACHE[slot][id] then
-							TMOG_CACHE[slot][id] = 1
-							sharedadded = sharedadded + 1
-						end
-					end
-				end
-			end
-		end
-		TmogRepairFrame = TmogRepairFrame or CreateFrame("Frame", "TmogRepairFrame")
-		TmogRepairFrame:SetScript("OnUpdate", OnUpdate)
-	end
-end
-
-SLASH_TMOG1 = "/tmog"
-SlashCmdList["TMOG"] = function(cmd)
-	cmd = strlower(strtrim(cmd))
-
-	if strfind(cmd, "show$") then
-		TmogFrame_Toggle()
-
-	elseif strfind(cmd, "reset$") then
-		TmogButton:ClearAllPoints()
-		TmogButton:SetPoint("CENTER", UIParent, 0, 0)
-
-	elseif strfind(cmd, "wipe$") then
-		for k, v in pairs(TMOG_CACHE) do
-			for k2, v2 in pairs(v) do TMOG_CACHE[k][k2] = nil end
-		end
-		Tmog.print(L["collection has been reset"])
-
-	elseif strfind(cmd, "lock$") then
-		TmogButton:SetMovable(not TmogButton:IsMovable())
-		TMOG_LOCKED = not TMOG_LOCKED
-		if not TMOG_LOCKED then
-			Tmog.print(L["minimap button unlocked"])
-		else
-			Tmog.print(L["minimap button locked"])
-		end
-
-	elseif strfind(cmd, "debug$") then
-		Tmog.verbose = not Tmog.verbose
-		if Tmog.verbose then
-			Tmog.print(L["debug is on"])
-		else
-			Tmog.print(L["debug is off"])
-		end
-
-	elseif strfind(cmd, "repair$") then
-		Tmog.RepairStart()
-	else
-		Tmog.print(NORMAL.."/tmog show|r - "..L["toggle dressing room"])
-		Tmog.print(NORMAL.."/tmog reset|r - "..L["reset minimap button position"])
-		Tmog.print(NORMAL.."/tmog wipe|r - "..L["reset this character's collection"])
-		Tmog.print(NORMAL.."/tmog lock|r - "..L["lock/unlock minimap button"])
-		Tmog.print(NORMAL.."/tmog debug|r - "..L["print debug messages in chat"])
-		Tmog.print(NORMAL.."/tmog repair|r - "..L["attempt to repair this character's cache (can fix minor bugs)"])
-	end
-end

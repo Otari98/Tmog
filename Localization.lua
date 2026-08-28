@@ -37,11 +37,11 @@ Tmog.L = {
 	["Shares appearance with"] = true,
 	["Outfits"] = true,
 	["New outfit"] = true,
-	["Create an outfit from currently selected items."] = true,
+	["Create an outfit from currently selected items or import from ingame link/code."] = true,
 	["Enter outfit name:"] = true,
 	["Outfit with this name already exists."] = true,
 	["Outfit name not valid."] = true,
-	["Delete outfit?"] = true,
+	["Delete outfit %s?"] = true,
 	["Invalid outfit code."] = true,
 	["Enter outfit code:"] = true,
 	["toggle dressing room"] = true,
@@ -71,17 +71,18 @@ Tmog.L = {
 	["Clear"] = true,
 	["Undress"] = true,
 	["Reset Position"] = true,
-	["Revert"] = true,
+	["Reset Outfit"] = true,
 	["Full Screen"] = true,
 	["Share"] = true,
 	["Import"] = true,
-	["Copy this code:"] = true,
+	["Outfit code:"] = true,
 	["Left-click to toggle dressing room\nHold Left-click and drag to move this button"] = true,
 	["Loading"] = true,
 	["Outfits: %s"] = true,
 	["Database links:"] = true,
 	["reset this character's collection"] = true,
 	["collection has been reset"] = true,
+	FMT_SELECTED_OUTFIT = "Outfit: |cffFFFFFF%s|r"
 }
 
 if GetLocale() == "ruRU" then
@@ -93,11 +94,11 @@ if GetLocale() == "ruRU" then
 	Tmog.L["Shares appearance with"] = "Общий внешний вид с"
 	Tmog.L["Outfits"] = "Наряды"
 	Tmog.L["New outfit"] = "Новый наряд"
-	Tmog.L["Create an outfit from currently selected items."] = "Создать наряд из выбранных предметов."
+	Tmog.L["Create an outfit from currently selected items or import from ingame link/code."] = "Создать наряд из выбранных предметов."
 	Tmog.L["Enter outfit name:"] = "Введите название наряда:"
 	Tmog.L["Outfit with this name already exists."] = "Наряд с таким названием уже существует."
 	Tmog.L["Outfit name not valid."] = "Некорректное название."
-	Tmog.L["Delete outfit?"] = "Удалить наряд?"
+	Tmog.L["Delete outfit %s?"] = "Удалить наряд?"
 	Tmog.L["Invalid outfit code."] = "Некорректный код."
 	Tmog.L["Enter outfit code:"] = "Введите код наряда:"
 	Tmog.L["toggle dressing room"] = "открыть примерочную."
@@ -127,11 +128,11 @@ if GetLocale() == "ruRU" then
 	Tmog.L["Clear"] = "Очистить"
 	Tmog.L["Undress"] = "Раздеть"
 	Tmog.L["Reset Position"] = "Сброс позиции"
-	Tmog.L["Revert"] = "Сброс"
+	Tmog.L["Reset Outfit"] = "Сброс"
 	Tmog.L["Full Screen"] = "Во весь экран"
 	Tmog.L["Share"] = "Экспорт"
 	Tmog.L["Import"] = "Импорт"
-	Tmog.L["Copy this code:"] = "Скопируйте код:"
+	Tmog.L["Outfit code:"] = "Скопируйте код:"
 	Tmog.L["Left-click to toggle dressing room\nHold Left-click and drag to move this button"] = "ЛКМ чтобы открыть или закрыть примерочную\nУдерживайте ЛКМ и тащите чтобы перемесить эту кнопку."
 	Tmog.L["Loading"] = "Загрузка"
 

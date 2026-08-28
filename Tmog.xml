@@ -4,6 +4,13 @@
 	<Script file="DisplayGroups.lua"/>
 	<Script file="ItemDisplayGroup.lua"/>
 	<Script file="Tmog.lua"/>
+	<Script file="Tooltip.lua"/>
+	<Script file="Utility.lua"/>
+	<Script file="Filters.lua"/>
+	<Script file="Outfits.lua"/>
+	<Script file="Fullscreen.lua"/>
+	<Script file="PopupDialogs.lua"/>
+	<Script file="Slashcmd.lua"/>
 	<Button name="TmogSharedItemTemplate" virtual="true">
 		<Size x="147" y="20"/>
 		<Layers>
@@ -26,7 +33,7 @@
 		</Layers>
 		<Scripts>
 			<OnClick>
-				TmogTry(this:GetID(), "LeftButton", 1)
+				TmogFramePreview_OnClick(this, "LeftButton")
 			</OnClick>
 			<OnEnter>
 				TmogSharedItem_OnEnter()
@@ -123,25 +130,25 @@
 					</OnLoad>
 					<OnMouseDown>
 						if this:GetID() == 0 then
-							getglobal(this:GetName().."PlusHighlight"):Hide()
-							getglobal(this:GetName().."PlusPushed"):Show()
-							getglobal(this:GetName().."Plus"):Hide()
+							_G[this:GetName().."PlusHighlight"]:Hide()
+							_G[this:GetName().."PlusPushed"]:Show()
+							_G[this:GetName().."Plus"]:Hide()
 						end
 					</OnMouseDown>
 					<OnMouseUp>
 						if this:GetID() == 0 then
-							getglobal(this:GetName().."PlusPushed"):Hide()
-							getglobal(this:GetName().."Plus"):Show()
+							_G[this:GetName().."PlusPushed"]:Hide()
+							_G[this:GetName().."Plus"]:Show()
 						end
 					</OnMouseUp>
 					<OnClick>
-						TmogTry(this:GetID(), arg1)
+						TmogFramePreview_OnClick(this, arg1)
 					</OnClick>
 					<OnEnter>
-						TmogFramePreview_OnEnter()
+						TmogFramePreview_OnEnter(this)
 					</OnEnter>
 					<OnLeave>
-						TmogFramePreview_OnLeave()
+						TmogFramePreview_OnLeave(this)
 					</OnLeave>
 				</Scripts>
 			</Button>
@@ -200,11 +207,7 @@
 				this:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 			</OnLoad>
 			<OnClick>
-				if (arg1 == "RightButton") then
-					TmogSlot_OnClick(this:GetID(), arg1)
-				else
-					TmogSlot_OnClick(this:GetID())
-				end
+				TmogPlayerSlot_OnClick(this, arg1)
 			</OnClick>
 			<OnEnter>
 				TmogPlayerSlot_OnEnter()
@@ -286,10 +289,22 @@
 						</Anchor>
 					</Anchors>
 				</FontString>
+				<FontString name="$parentSelectedOutfitText" inherits="GameFontNormal" justifyH="LEFT">
+					<Size x="135" y="20"/>
+					<Anchors>
+						<Anchor point="TOPLEFT"><Offset x="30" y="-80"/></Anchor>
+					</Anchors>
+				</FontString>
 			</Layer>
 		</Layers>
 		<Frames>
-			<Button name="$parentItemsButton" inherits="UIPanelButtonTemplate" text="ITEMS">
+			<Button name="$parentTab1" inherits="UIPanelButtonTemplate" text="ITEMS">
+				<Size x="81" y="32"/>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="260" y="-47"/>
+					</Anchor>
+				</Anchors>
 				<NormalTexture name="$parentNormalTexture" file="Interface\AddOns\Tmog\Textures\tab_active">
 					<Size x="128" y="32"/>
 					<Anchors>
@@ -302,15 +317,12 @@
 						<Anchor point="TOPLEFT"/>
 					</Anchors>
 				</PushedTexture>
-				<Size x="81" y="32"/>
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="250" y="-47"/>
-					</Anchor>
-				</Anchors>
 				<Scripts>
+					<OnLoad>
+						this:SetTextColor(1, 1, 1)
+					</OnLoad>
 					<OnClick>
-						if this:GetNormalTexture():GetTexture() == "Interface\\AddOns\\Tmog\\Textures\\tab_inactive" then
+						if Tmog.currentTab ~= "ITEMS" then
 							Tmog.SwitchTab("ITEMS")
 							Tmog.Search()
 							PlaySound("igCharacterInfoTab")
@@ -318,7 +330,13 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			<Button name="$parentOutfitsButton" inherits="UIPanelButtonTemplate">
+			<Button name="$parentTab2" inherits="UIPanelButtonTemplate">
+				<Size x="81" y="32"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTab1" relativePoint="TOPRIGHT">
+						<Offset x="2" y="0"/>
+					</Anchor>
+				</Anchors>
 				<NormalTexture name="$parentNormalTexture" file="Interface\AddOns\Tmog\Textures\tab_inactive">
 					<Size x="128" y="32"/>
 					<Anchors>
@@ -331,18 +349,12 @@
 						<Anchor point="TOPLEFT"/>
 					</Anchors>
 				</PushedTexture>
-				<Size x="81" y="32"/>
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="332" y="-47"/>
-					</Anchor>
-				</Anchors>
 				<Scripts>
 					<OnLoad>
 						this:SetText(Tmog.L["Outfits"])
 					</OnLoad>
 					<OnClick>
-						if this:GetNormalTexture():GetTexture() == "Interface\\AddOns\\Tmog\\Textures\\tab_inactive" then
+						if Tmog.currentTab ~= "OUTFITS" then
 							Tmog.SwitchTab("OUTFITS")
 							PlaySound("igCharacterInfoTab")
 						end
@@ -352,7 +364,7 @@
 			<Button name="$parentTypeDropDown" inherits="UIDropDownMenuTemplate" hidden="true">
 				<Anchors>
 					<Anchor point="TOP">
-						<Offset x="100" y="-43"/>
+						<Offset x="150" y="-43"/>
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -365,99 +377,22 @@
 					</OnLeave>
 				</Scripts>
 			</Button>
-			<CheckButton name="$parentCollected" inherits="OptionsCheckButtonTemplate" enable="true">
-				<Size x="22" y="22"/>
-				<HitRectInsets left="0" right="-70" top="0" bottom="0"/>
+			<Frame name="TmogFrameFiltersDropDown" inherits="UIDropDownMenuTemplate" hidden="true"/>
+			<Frame name="TmogFrameOutfitOptionsDropDown" inherits="UIDropDownMenuTemplate" hidden="true"/>
+			<Button name="TmogFrameFiltersButton" inherits="GameMenuButtonTemplate" text="FILTERS" hidden="true">
+				<Size x="100" y="21"/>
 				<Anchors>
 					<Anchor point="TOPRIGHT">
-						<Offset x="-190" y="-52"/>
+						<Offset x="-40" y="-45"/>
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnLoad>
-						getglobal(this:GetName().."Text"):SetText(Tmog.L["Collected"])
-					</OnLoad>
 					<OnClick>
-						Tmog.CollectedToggle()
-						PlaySound("igMainMenuOptionCheckBoxOn")
+						Tmog.FiltersButton_OnClick(this, arg1)
 					</OnClick>
 				</Scripts>
-			</CheckButton>
-			<CheckButton name="$parentNotCollected" inherits="OptionsCheckButtonTemplate" enable="true">
-				<Size x="22" y="22"/>
-				<HitRectInsets left="0" right="-80" top="0" bottom="0"/>
-				<Anchors>
-					<Anchor point="TOPRIGHT">
-						<Offset x="-190" y="-35"/>
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnLoad>
-						getglobal(this:GetName().."Text"):SetText(Tmog.L["Not collected"])
-					</OnLoad>
-					<OnClick>
-						Tmog.NotCollectedToggle()
-						PlaySound("igMainMenuOptionCheckBoxOn")
-					</OnClick>
-				</Scripts>
-			</CheckButton>
-			<CheckButton name="$parentUsable" inherits="OptionsCheckButtonTemplate" enable="true">
-				<Size x="22" y="22"/>
-				<HitRectInsets left="0" right="-70" top="0" bottom="0"/>
-				<Anchors>
-					<Anchor point="TOPRIGHT">
-						<Offset x="-93" y="-35"/>
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnLoad>
-						getglobal(this:GetName().."Text"):SetText(Tmog.L["Only usable"])
-					</OnLoad>
-					<OnClick>
-						Tmog.UsableToggle()
-						PlaySound("igMainMenuOptionCheckBoxOn")
-					</OnClick>
-					<OnEnter>
-						GameTooltip_SetDefaultAnchor(TmogTooltip, this)
-						TmogTooltip:SetText(Tmog.L["Only usable"], 1, 1, 1, false)
-						TmogTooltip:AddLine(Tmog.L["Check this to only show items that you can equip. Can be inaccurate for quest rewards."], 1, 0.82, 0, 1, true)
-						TmogTooltip:Show()
-					</OnEnter>
-					<OnLeave>
-						TmogTooltip:Hide()
-					</OnLeave>
-				</Scripts>
-			</CheckButton>
-			<CheckButton name="$parentIgnoreLevel" inherits="OptionsCheckButtonTemplate" enable="false">
-				<Size x="22" y="22"/>
-				<HitRectInsets left="0" right="-75" top="0" bottom="0"/>
-				<Anchors>
-					<Anchor point="TOPRIGHT">
-						<Offset x="-93" y="-52"/>
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnLoad>
-						this:Disable()
-						getglobal(this:GetName().."Text"):SetText(Tmog.L["Ignore level"])
-						getglobal(this:GetName().."Text"):SetTextColor(GRAY_FONT_COLOR.r, GRAY_FONT_COLOR.g, GRAY_FONT_COLOR.b)
-					</OnLoad>
-					<OnClick>
-						Tmog.IgnoreLevelToggle()
-						PlaySound("igMainMenuOptionCheckBoxOn")
-					</OnClick>
-					<OnEnter>
-						GameTooltip_SetDefaultAnchor(TmogTooltip, this)
-						TmogTooltip:SetText(Tmog.L["Ignore level"], 1, 1, 1, false)
-						TmogTooltip:AddLine(Tmog.L["Check this to ignore level requirements while \"Only usable\" filter is active. Can be inaccurate for quest rewards."], 1, 0.82, 0, 1, true)
-						TmogTooltip:Show()
-					</OnEnter>
-					<OnLeave>
-						TmogTooltip:Hide()
-					</OnLeave>
-				</Scripts>
-			</CheckButton>
-			<Button name="$parentRevert" topLevel="true">
+			</Button>
+			<Button name="$parentResetOutfit" topLevel="true">
 				<Size x="26" y="26"/>
 				<Anchors>
 					<Anchor point="TOPLEFT">
@@ -466,16 +401,16 @@
 				</Anchors>
 				<NormalTexture file="Interface\AddOns\Tmog\Textures\revert"/>
 				<PushedTexture file="Interface\AddOns\Tmog\Textures\revert_pushed"/>
-				<HighlightTexture name="RevertHighlight" file="Interface\AddOns\Tmog\Textures\revert_highlight" alphaMode="ADD"/>
+				<HighlightTexture name="ResetOutfitHighlight" file="Interface\AddOns\Tmog\Textures\revert_highlight" alphaMode="ADD"/>
 				<Scripts>
 					<OnLoad>
 						this:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 					</OnLoad>
 					<OnMouseDown>
-						RevertHighlight:Hide()
+						ResetOutfitHighlight:Hide()
 					</OnMouseDown>
 					<OnMouseUp>
-						RevertHighlight:Show()
+						ResetOutfitHighlight:Show()
 					</OnMouseUp>
 					<OnClick>
 						Tmog.Reset()
@@ -483,23 +418,7 @@
 					</OnClick>
 					<OnEnter>
 						TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
-						TmogTooltip:SetText(Tmog.L["Revert"])
-					</OnEnter>
-					<OnLeave>
-						TmogTooltip:Hide()
-					</OnLeave>
-				</Scripts>
-			</Button>
-			<Button name="$parentOutfitsDropDown" inherits="UIDropDownMenuTemplate">
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="5" y="-75"/>
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnEnter>
-						TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
-						TmogTooltip:SetText(Tmog.L["Select outfit"])
+						TmogTooltip:SetText(Tmog.L["Reset Outfit"])
 					</OnEnter>
 					<OnLeave>
 						TmogTooltip:Hide()
@@ -507,10 +426,10 @@
 				</Scripts>
 			</Button>
 			<Button name="$parentSaveOutfit" inherits="UIPanelButtonTemplate" text="SAVE" topLevel="true">
-				<Size x="60" y="24"/>
+				<Size x="70" y="24"/>
 				<Anchors>
 					<Anchor point="TOPLEFT">
-						<Offset x="160" y="-75"/>
+						<Offset x="170" y="-78"/>
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -526,31 +445,6 @@
 						PlaySound("igMainMenuOption")
 					</OnClick>
 				</Scripts>
-			</Button>
-			<Button name="$parentDeleteOutfit">
-				<Size x="40" y="40"/>
-				<Anchors>
-					<Anchor point="LEFT" relativeTo="$parentSaveOutfit" relativePoint="RIGHT">
-						<Offset x="-9" y="-2"/>
-					</Anchor>
-				</Anchors>
-				<HitRectInsets left="9" right="7" top="-7" bottom="10"/>
-				<Scripts>
-					<OnEnter>
-						TmogTooltip:SetOwner(this, "ANCHOR_RIGHT", -(this:GetWidth() / 4), -(this:GetHeight() / 4))
-						TmogTooltip:SetText(Tmog.L["Delete outfit"])
-					</OnEnter>
-					<OnLeave>
-						TmogTooltip:Hide()
-					</OnLeave>
-					<OnClick>
-						StaticPopup_Show("TMOG_CONFIRM_DELETE_OUTFIT")
-					</OnClick>
-				</Scripts>
-				<NormalTexture file="Interface\AddOns\Tmog\Textures\CancelButton-Up"/>
-				<PushedTexture file="Interface\Buttons\CancelButton-Down"/>
-				<DisabledTexture file="Interface\AddOns\Tmog\Textures\CancelButton-Disabled"/>
-				<HighlightTexture file="Interface\Buttons\CancelButton-Highlight" alphaMode="ADD"/>
 			</Button>
 			<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
 				<Anchors>
@@ -585,12 +479,20 @@
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-						TmogFramePlayerModel_OnLoad()
+						TmogFramePlayerModel_OnLoad(this)
 					</OnLoad>
 					<OnUpdate>
+						TmogFramePlayerModel_OnUpdate(this, arg1)
 					</OnUpdate>
 					<OnMouseWheel>
+						TmogFramePlayerModel_OnMouseWheel(this, arg1)
 					</OnMouseWheel>
+					<OnMouseDown>
+						TmogFramePlayerModel_OnMouseDown(this, arg1)
+					</OnMouseDown>
+					<OnMouseUp>
+						TmogFramePlayerModel_OnMouseUp(this, arg1)
+					</OnMouseUp>
 				</Scripts>
 				<Frames>
 				</Frames>
@@ -814,7 +716,7 @@
 				<DisabledTexture file="Interface\AddOns\Tmog\Textures\LastPage-Disabled"/>
 				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
 			</Button>
-			<EditBox name="$parentSearchBox" hidden="true" inherits="InputBoxTemplate" letters="100">
+			<EditBox name="$parentSearchBox" inherits="InputBoxTemplate" letters="100">
 				<Size x="160" y="32"/>
 				<Anchors>
 					<Anchor point="TOP">
@@ -948,53 +850,6 @@
 					</OnEvent>
 				</Scripts>
 			</Button>
-			<Button name="TmogFrameShareOutfit" inherits="UIPanelButtonTemplate" topLevel="true" hidden="true">
-				<Size x="80" y="24"/>
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="75" y="-45"/>
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnLoad>
-						this:Disable()
-						this:SetText(Tmog.L["Share"])
-					</OnLoad>
-					<OnEnter>
-						TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
-						TmogTooltip:SetText(Tmog.L["Share outfit"])
-					</OnEnter>
-					<OnLeave>
-						TmogTooltip:Hide()
-					</OnLeave>
-					<OnClick>
-						TmogFrameShareOutfit_OnClick()
-					</OnClick>
-				</Scripts>
-			</Button>
-			<Button name="TmogFrameImportOutfit" inherits="UIPanelButtonTemplate" toplevel="true" hidden="true">
-				<Size x="80" y="24"/>
-				<Anchors>
-					<Anchor point="CENTER" relativeTo="TmogFrameShareOutfit" relativePoint="RIGHT">
-						<Offset x="45" y="0"/>
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnLoad>
-						this:SetText(Tmog.L["Import"])
-					</OnLoad>
-					<OnEnter>
-						TmogTooltip:SetOwner(this, "ANCHOR_TOPRIGHT")
-						TmogTooltip:SetText(Tmog.L["Import outfit"])
-					</OnEnter>
-					<OnLeave>
-						TmogTooltip:Hide()
-					</OnLeave>
-					<OnClick>
-						TmogFrameImportOutfit_OnClick()
-					</OnClick>
-				</Scripts>
-			</Button>
 			<Frame name="TmogFrameShareDialog" hidden="true" movable="true" enableMouse="true" toplevel="true">
 				<Size x="400" y="240"/>
 				<Anchors>
@@ -1104,7 +959,7 @@
 				</Frames>
 				<Scripts>
 					<OnLoad>
-						TmogFrameShareDialogHint:SetText(Tmog.L["Copy this code:"])
+						TmogFrameShareDialogHint:SetText(Tmog.L["Outfit code:"])
 						TmogFrameShareDialogHint2:SetText(Tmog.L["Database links:"])
 					</OnLoad>
 					<OnShow>
@@ -1180,6 +1035,9 @@
 			<OnHide>
 				TmogFrame_OnHide()
 			</OnHide>
+			<!-- <OnUpdate>
+				TmogFrame_OnUpdate(this, arg1)
+			</OnUpdate> -->
 			<OnMouseDown>
 				DropDownList1:Hide()
 				TmogFrameSearchBox:ClearFocus()
@@ -1201,7 +1059,7 @@
 			<Anchor point="CENTER"/>
 		</Anchors>
 		<Frames>
-			<DressUpModel name="$parentModel" enableMouse="true">
+			<DressUpModel name="$parentModel" enableMouse="true" toplevel="true">
 				<Backdrop bgFile="Interface\Buttons\WHITE8x8">
 					<Color r="0" g="0" b="0" a="1"/>
 				</Backdrop>
@@ -1211,16 +1069,26 @@
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-						TmogFrameFullScreenModel_OnLoad()
+						TmogFrameFullScreenModel_OnLoad(this)
 					</OnLoad>
 					<OnShow>
-						TmogFrameFullScreenModel_OnShow()
+						TmogFrameFullScreenModel_OnShow(this)
 					</OnShow>
 					<OnHide>
-						TmogFrameFullScreenModel_OnHide()
+						TmogFrameFullScreenModel_OnHide(this)
 					</OnHide>
-					<OnUpdate/>
-					<OnMouseWheel/>
+					<OnUpdate>
+						TmogFrameFullScreenModel_OnUpdate(this, arg1)
+					</OnUpdate>
+					<OnMouseWheel>
+						TmogFrameFullScreenModel_OnMouseWheel(this, arg1)
+					</OnMouseWheel>
+					<OnMouseDown>
+						TmogFrameFullScreenModel_OnMouseDown(this, arg1)
+					</OnMouseDown>
+					<OnMouseUp>
+						TmogFrameFullScreenModel_OnMouseUp(this, arg1)
+					</OnMouseUp>
 				</Scripts>
 			</DressUpModel>
 		</Frames>

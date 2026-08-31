@@ -3,6 +3,7 @@
 	<Script file="ItemDB.lua"/>
 	<Script file="DisplayGroups.lua"/>
 	<Script file="ItemDisplayGroup.lua"/>
+	<Script file="Constants.lua"/>
 	<Script file="Tmog.lua"/>
 	<Script file="Tooltip.lua"/>
 	<Script file="Utility.lua"/>
@@ -11,223 +12,8 @@
 	<Script file="Fullscreen.lua"/>
 	<Script file="PopupDialogs.lua"/>
 	<Script file="Slashcmd.lua"/>
-	<Button name="TmogSharedItemTemplate" virtual="true">
-		<Size x="147" y="20"/>
-		<Layers>
-			<Layer level="BACKGROUND">
-				<Texture name="$parentIconTexture">
-					<Size x="20" y="20"/>
-					<Anchors>
-						<Anchor point="TOPLEFT"/>
-					</Anchors>
-				</Texture>
-				<FontString name="$parentName" inherits="GameFontHighlight" justifyH="LEFT">
-					<Size x="200" y="20"/>
-					<Anchors>
-						<Anchor point="LEFT" relativeTo="$parentIconTexture">
-							<Offset x="22" y="0"/>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Scripts>
-			<OnClick>
-				TmogFramePreview_OnClick(this, "LeftButton")
-			</OnClick>
-			<OnEnter>
-				TmogSharedItem_OnEnter()
-			</OnEnter>
-			<OnLeave>
-				TmogSharedItem_OnLeave()
-			</OnLeave>
-		</Scripts>
-	</Button>
-	<Frame name="TmogFramePreviewTemplate" virtual="true" framestrata="MEDIUM">
-		<Size x="90" y="110"/>
-		<Anchors>
-			<Anchor point="CENTER"/>
-		</Anchors>
-		<Frames>
-			<Button name="$parentButton" inherits="UIPanelButtonTemplate">
-				<NormalTexture file="Interface\AddOns\Tmog\Textures\item_bg_normal">
-					<Size x="128" y="128"/>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="-20" y="0"/>
-						</Anchor>
-					</Anchors>
-				</NormalTexture>
-				<PushedTexture file="Interface\AddOns\Tmog\Textures\item_bg_selected">
-					<Size x="128" y="128"/>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="-20" y="0"/>
-						</Anchor>
-					</Anchors>
-				</PushedTexture>
-				<HighlightTexture file="Interface\AddOns\Tmog\Textures\item_bg_highlight" alphaMode="ADD">
-					<Size x="128" y="128"/>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="-20" y="0"/>
-						</Anchor>
-					</Anchors>
-				</HighlightTexture>
-				<Size x="90" y="128"/>
-				<Anchors>
-					<Anchor point="LEFT"/>
-				</Anchors>
-				<Layers>
-					<Layer level="OVERLAY">
-						<Texture name="$parentBorder" file="Interface\AddOns\Tmog\Textures\preview-border-thin">
-							<Size x="128" y="128"/>
-							<Anchors>
-								<Anchor point="TOPLEFT">
-									<Offset x="-20" y="0"/>
-								</Anchor>
-							</Anchors>
-						</Texture>
-						<Texture name="$parentCheck" hidden="true" file="Interface\AddOns\Tmog\Textures\check">
-							<Size x="16" y="16"/>
-							<Anchors>
-								<Anchor point="TOPRIGHT">
-									<Offset x="-8" y="-9"/>
-								</Anchor>
-							</Anchors>
-						</Texture>
-						<Texture name="$parentPlus" hidden="true" file="Interface\AddOns\Tmog\Textures\big_plus_normal">
-							<Size x="128" y="128"/>
-							<Anchors>
-								<Anchor point="TOPLEFT">
-									<Offset x="-20" y="0"/>
-								</Anchor>
-							</Anchors>
-						</Texture>
-						<Texture name="$parentPlusPushed" hidden="true" file="Interface\AddOns\Tmog\Textures\big_plus_pushed">
-							<Size x="128" y="128"/>
-							<Anchors>
-								<Anchor point="TOPLEFT">
-									<Offset x="-20" y="0"/>
-								</Anchor>
-							</Anchors>
-						</Texture>
-					</Layer>
-					<Layer level="HIGHLIGHT">
-						<Texture name="$parentPlusHighlight" hidden="true" file="Interface\AddOns\Tmog\Textures\big_plus_highlight" alphaMode="ADD">
-							<Size x="128" y="128"/>
-							<Anchors>
-								<Anchor point="TOPLEFT">
-									<Offset x="-20" y="0"/>
-								</Anchor>
-							</Anchors>
-						</Texture>
-					</Layer>
-				</Layers>
-				<Scripts>
-					<OnLoad>
-						this:RegisterForClicks("LeftButtonUp", "RightButtonUp")
-					</OnLoad>
-					<OnMouseDown>
-						if this:GetID() == 0 then
-							_G[this:GetName().."PlusHighlight"]:Hide()
-							_G[this:GetName().."PlusPushed"]:Show()
-							_G[this:GetName().."Plus"]:Hide()
-						end
-					</OnMouseDown>
-					<OnMouseUp>
-						if this:GetID() == 0 then
-							_G[this:GetName().."PlusPushed"]:Hide()
-							_G[this:GetName().."Plus"]:Show()
-						end
-					</OnMouseUp>
-					<OnClick>
-						TmogFramePreview_OnClick(this, arg1)
-					</OnClick>
-					<OnEnter>
-						TmogFramePreview_OnEnter(this)
-					</OnEnter>
-					<OnLeave>
-						TmogFramePreview_OnLeave(this)
-					</OnLeave>
-				</Scripts>
-			</Button>
-			<DressUpModel name="$parentItemModel" scale="4.0">
-				<Size x="80" y="107"/>
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="4" y="0"/>
-					</Anchor>
-				</Anchors>
-			</DressUpModel>
-		</Frames>
-	</Frame>
-	<Button name="TmogPlayerSlot" virtual="true" topLevel="true">
-		<Size x="32" y="32"/>
-		<Layers>
-			<Layer level="BORDER">
-				<Texture name="$parentItemIcon">
-					<Size x="26" y="26"/>
-					<Anchors>
-						<Anchor point="CENTER"/>
-					</Anchors>
-				</Texture>
-			</Layer>
-			<Layer level="ARTWORK">
-				<Texture name="$parentBorder" file="Interface\AddOns\Tmog\Textures\transmog_border">
-					<Size x="48" y="48"/>
-					<Anchors>
-						<Anchor point="CENTER"/>
-					</Anchors>
-				</Texture>
-			</Layer>
-			<Layer level="OVERLAY">
-				<Texture name="$parentBorderFull" hidden="true" file="Interface\AddOns\Tmog\Textures\border_full">
-					<Size x="48" y="48"/>
-					<Anchors>
-						<Anchor point="CENTER">
-							<Offset x="-1" y="-1"/>
-						</Anchor>
-					</Anchors>
-				</Texture>
-			</Layer>
-			<Layer level="HIGHLIGHT">
-				<Texture name="$parentBorderHighlight" file="Interface\AddOns\Tmog\Textures\border_2">
-					<Size x="47" y="47"/>
-					<Anchors>
-						<Anchor point="CENTER">
-							<Offset x="-1" y="-1"/>
-						</Anchor>
-					</Anchors>
-				</Texture>
-			</Layer>
-		</Layers>
-		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp")
-			</OnLoad>
-			<OnClick>
-				TmogPlayerSlot_OnClick(this, arg1)
-			</OnClick>
-			<OnEnter>
-				TmogPlayerSlot_OnEnter()
-			</OnEnter>
-			<OnLeave>
-				TmogTooltip:Hide()
-			</OnLeave>
-		</Scripts>
-		<NormalTexture/>
-		<PushedTexture file="Interface\Buttons\UI-Quickslot-Depress">
-			<Size x="26" y="27"/>
-			<Anchors>
-				<Anchor point="CENTER">
-					<Offset x="-1" y="0"/>
-				</Anchor>
-			</Anchors>
-		</PushedTexture>
-		<HighlightTexture/>
-	</Button>
-	<Frame name="TmogFrame" hidden="true" frameStrata="MEDIUM" toplevel="true" parent="UIParent" movable="true" enableMouse="true" clampedToScreen="true">
+	<Include file="Templates.xml"/>
+	<Frame name="TmogFrame" hidden="true" toplevel="true" parent="UIParent" movable="true" enableMouse="true" clampedToScreen="true">
 		<Size x="750" y="506"/>
 		<Anchors>
 			<Anchor point="CENTER"/>
@@ -237,17 +23,13 @@
 				<Texture name="$parentRaceBackground">
 					<Size x="442" y="442"/>
 					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="18" y="-70"/>
-						</Anchor>
+						<Anchor point="TOPLEFT"><Offset x="18" y="-70"/></Anchor>
 					</Anchors>
 				</Texture>
-				<Texture name="$parentPortrait" file="Interface\Addons\Tmog\Textures\Tmog_Portrait">
+				<Texture name="$parentPortrait">
 					<Size x="60" y="60"/>
 					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="8" y="-7"/>
-						</Anchor>
+						<Anchor point="TOPLEFT"><Offset x="8" y="-6"/></Anchor>
 					</Anchors>
 				</Texture>
 			</Layer>
@@ -269,86 +51,45 @@
 				<FontString name="$parentPageText" hidden="true" inherits="GameFontHighlightSmall" justifyH="CENTER">
 					<Size x="80" y="36"/>
 					<Anchors>
-						<Anchor point="BOTTOM">
-							<Offset x="63" y="10"/>
-						</Anchor>
+						<Anchor point="BOTTOM"><Offset x="63" y="10"/></Anchor>
 					</Anchors>
 				</FontString>
 				<FontString name="$parentTitleText" inherits="GameFontNormal" text="Tmog">
 					<Size x="512" y="14"/>
 					<Anchors>
-						<Anchor point="TOP" relativePoint="TOP">
-							<Offset x="0" y="-17"/>
-						</Anchor>
+						<Anchor point="TOP" relativePoint="TOP"><Offset x="0" y="-17"/></Anchor>
 					</Anchors>
 				</FontString>
 				<FontString name="$parentVersionText" inherits="GameFontHighlightSmall" justifyH="RIGHT">
 					<Anchors>
-						<Anchor point="TOPRIGHT">
-							<Offset x="-50" y="-20"/>
-						</Anchor>
-					</Anchors>
-				</FontString>
-				<FontString name="$parentSelectedOutfitText" inherits="GameFontNormal" justifyH="LEFT">
-					<Size x="135" y="20"/>
-					<Anchors>
-						<Anchor point="TOPLEFT"><Offset x="30" y="-80"/></Anchor>
+						<Anchor point="TOPRIGHT"><Offset x="-50" y="-20"/></Anchor>
 					</Anchors>
 				</FontString>
 			</Layer>
 		</Layers>
 		<Frames>
-			<Button name="$parentTab1" inherits="UIPanelButtonTemplate" text="ITEMS">
+			<Button name="$parentTab1" inherits="TmogTabTemplate" text="ITEMS">
 				<Size x="81" y="32"/>
 				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="260" y="-47"/>
-					</Anchor>
+					<Anchor point="TOPLEFT"><Offset x="260" y="-47"/></Anchor>
 				</Anchors>
-				<NormalTexture name="$parentNormalTexture" file="Interface\AddOns\Tmog\Textures\tab_active">
-					<Size x="128" y="32"/>
-					<Anchors>
-						<Anchor point="TOPLEFT"/>
-					</Anchors>
-				</NormalTexture>
-				<PushedTexture name="$parentPushedTexture" file="Interface\AddOns\Tmog\Textures\tab_active">
-					<Size x="128" y="32"/>
-					<Anchors>
-						<Anchor point="TOPLEFT"/>
-					</Anchors>
-				</PushedTexture>
 				<Scripts>
 					<OnLoad>
-						this:SetTextColor(1, 1, 1)
+						this:Disable()
 					</OnLoad>
 					<OnClick>
 						if Tmog.currentTab ~= "ITEMS" then
 							Tmog.SwitchTab("ITEMS")
-							Tmog.Search()
 							PlaySound("igCharacterInfoTab")
 						end
 					</OnClick>
 				</Scripts>
 			</Button>
-			<Button name="$parentTab2" inherits="UIPanelButtonTemplate">
+			<Button name="$parentTab2" inherits="TmogTabTemplate">
 				<Size x="81" y="32"/>
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parentTab1" relativePoint="TOPRIGHT">
-						<Offset x="2" y="0"/>
-					</Anchor>
+					<Anchor point="TOPLEFT" relativeTo="$parentTab1" relativePoint="TOPRIGHT"><Offset x="2" y="0"/></Anchor>
 				</Anchors>
-				<NormalTexture name="$parentNormalTexture" file="Interface\AddOns\Tmog\Textures\tab_inactive">
-					<Size x="128" y="32"/>
-					<Anchors>
-						<Anchor point="TOPLEFT"/>
-					</Anchors>
-				</NormalTexture>
-				<PushedTexture name="$parentPushedTexture" file="Interface\AddOns\Tmog\Textures\tab_inactive">
-					<Size x="128" y="32"/>
-					<Anchors>
-						<Anchor point="TOPLEFT"/>
-					</Anchors>
-				</PushedTexture>
 				<Scripts>
 					<OnLoad>
 						this:SetText(Tmog.L["Outfits"])
@@ -363,9 +104,7 @@
 			</Button>
 			<Button name="$parentTypeDropDown" inherits="UIDropDownMenuTemplate" hidden="true">
 				<Anchors>
-					<Anchor point="TOP">
-						<Offset x="150" y="-43"/>
-					</Anchor>
+					<Anchor point="TOP"><Offset x="150" y="-43"/></Anchor>
 				</Anchors>
 				<Scripts>
 					<OnEnter>
@@ -377,14 +116,34 @@
 					</OnLeave>
 				</Scripts>
 			</Button>
+			<Button name="$parentOutfitsDropDown" inherits="UIDropDownMenuTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset x="5" y="-75"/></Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TmogDeleteOutfitButton" parent="DropDownList1" hidden="true" inherits="UIPanelCloseButton">
+				<Size x="24" y="24"/>
+				<Scripts>
+					<OnLoad>
+						Tmog.DeleteOutfitButton_OnLoad(this)
+					</OnLoad>
+					<OnClick>
+						Tmog.DeleteOutfitButton_OnClick(this)
+					</OnClick>
+					<OnEnter>
+						Tmog.DeleteOutfitButton_OnEnter(this)
+					</OnEnter>
+					<OnLeave>
+						Tmog.DeleteOutfitButton_OnLeave(this)
+					</OnLeave>
+				</Scripts>
+			</Button>
 			<Frame name="TmogFrameFiltersDropDown" inherits="UIDropDownMenuTemplate" hidden="true"/>
 			<Frame name="TmogFrameOutfitOptionsDropDown" inherits="UIDropDownMenuTemplate" hidden="true"/>
 			<Button name="TmogFrameFiltersButton" inherits="GameMenuButtonTemplate" text="FILTERS" hidden="true">
 				<Size x="100" y="21"/>
 				<Anchors>
-					<Anchor point="TOPRIGHT">
-						<Offset x="-40" y="-45"/>
-					</Anchor>
+					<Anchor point="TOPRIGHT"><Offset x="-40" y="-45"/></Anchor>
 				</Anchors>
 				<Scripts>
 					<OnClick>
@@ -395,9 +154,7 @@
 			<Button name="$parentResetOutfit" topLevel="true">
 				<Size x="26" y="26"/>
 				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="206" y="-118"/>
-					</Anchor>
+					<Anchor point="TOPLEFT"><Offset x="206" y="-118"/></Anchor>
 				</Anchors>
 				<NormalTexture file="Interface\AddOns\Tmog\Textures\revert"/>
 				<PushedTexture file="Interface\AddOns\Tmog\Textures\revert_pushed"/>
@@ -428,9 +185,7 @@
 			<Button name="$parentSaveOutfit" inherits="UIPanelButtonTemplate" text="SAVE" topLevel="true">
 				<Size x="70" y="24"/>
 				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="170" y="-78"/>
-					</Anchor>
+					<Anchor point="TOPLEFT"><Offset x="170" y="-78"/></Anchor>
 				</Anchors>
 				<Scripts>
 					<OnEnter>
@@ -448,9 +203,7 @@
 			</Button>
 			<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
 				<Anchors>
-					<Anchor point="CENTER" relativePoint="TOPRIGHT">
-						<Offset x="-29" y="-25"/>
-					</Anchor>
+					<Anchor point="CENTER" relativePoint="TOPRIGHT"><Offset x="-29" y="-25"/></Anchor>
 				</Anchors>
 			</Button>
 			<Frame name="TmogFrameSharedItems" enableMouse="true" frameStrata="TOOLTIP" hidden="true" toplevel="true" movable="true" clampedToScreen="true">
@@ -473,134 +226,102 @@
 			<DressUpModel name="$parentPlayerModel" scale="2.0" enableMouse="true">
 				<Size x="221" y="362"/>
 				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="20" y="-111"/>
-					</Anchor>
+					<Anchor point="TOPLEFT"><Offset x="20" y="-111"/></Anchor>
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-						TmogFramePlayerModel_OnLoad(this)
+						Tmog.PlayerModel_OnLoad(this)
 					</OnLoad>
 					<OnUpdate>
-						TmogFramePlayerModel_OnUpdate(this, arg1)
+						Tmog.PlayerModel_OnUpdate(this, arg1)
 					</OnUpdate>
 					<OnMouseWheel>
-						TmogFramePlayerModel_OnMouseWheel(this, arg1)
+						Tmog.PlayerModel_OnMouseWheel(this, arg1)
 					</OnMouseWheel>
 					<OnMouseDown>
-						TmogFramePlayerModel_OnMouseDown(this, arg1)
+						Tmog.PlayerModel_OnMouseDown(this, arg1)
 					</OnMouseDown>
 					<OnMouseUp>
-						TmogFramePlayerModel_OnMouseUp(this, arg1)
+						Tmog.PlayerModel_OnMouseUp(this, arg1)
 					</OnMouseUp>
 				</Scripts>
 				<Frames>
 				</Frames>
 			</DressUpModel>
-			<Button name="$parentHeadSlot" inherits="TmogPlayerSlot" id="1">
+			<Button name="$parentHeadSlot" inherits="TmogPlayerSlotTemplate" id="1">
 				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="30" y="-150"/>
-					</Anchor>
+					<Anchor point="TOPLEFT"><Offset x="30" y="-150"/></Anchor>
 				</Anchors>
 			</Button>
-			<Button name="$parentShoulderSlot" inherits="TmogPlayerSlot" id="3">
+			<Button name="$parentShoulderSlot" inherits="TmogPlayerSlotTemplate" id="3">
 				<Anchors>
-					<Anchor point="TOP" relativeTo="$parentHeadSlot" relativePoint="BOTTOM">
-						<Offset x="0" y="-5"/>
-					</Anchor>
+					<Anchor point="TOP" relativeTo="$parentHeadSlot" relativePoint="BOTTOM"><Offset x="0" y="-5"/></Anchor>
 				</Anchors>
 			</Button>
-			<Button name="$parentBackSlot" inherits="TmogPlayerSlot" id="15">
+			<Button name="$parentBackSlot" inherits="TmogPlayerSlotTemplate" id="15">
 				<Anchors>
-					<Anchor point="TOP" relativeTo="$parentShoulderSlot" relativePoint="BOTTOM">
-						<Offset x="0" y="-5"/>
-					</Anchor>
+					<Anchor point="TOP" relativeTo="$parentShoulderSlot" relativePoint="BOTTOM"><Offset x="0" y="-5"/></Anchor>
 				</Anchors>
 			</Button>
-			<Button name="$parentChestSlot" inherits="TmogPlayerSlot" id="5">
+			<Button name="$parentChestSlot" inherits="TmogPlayerSlotTemplate" id="5">
 				<Anchors>
-					<Anchor point="TOP" relativeTo="$parentBackSlot" relativePoint="BOTTOM">
-						<Offset x="0" y="-5"/>
-					</Anchor>
+					<Anchor point="TOP" relativeTo="$parentBackSlot" relativePoint="BOTTOM"><Offset x="0" y="-5"/></Anchor>
 				</Anchors>
 			</Button>
-			<Button name="$parentShirtSlot" inherits="TmogPlayerSlot" id="4">
+			<Button name="$parentShirtSlot" inherits="TmogPlayerSlotTemplate" id="4">
 				<Anchors>
-					<Anchor point="TOP" relativeTo="$parentChestSlot" relativePoint="BOTTOM">
-						<Offset x="0" y="-5"/>
-					</Anchor>
+					<Anchor point="TOP" relativeTo="$parentChestSlot" relativePoint="BOTTOM"><Offset x="0" y="-5"/></Anchor>
 				</Anchors>
 			</Button>
-			<Button name="$parentTabardSlot" inherits="TmogPlayerSlot" id="19">
+			<Button name="$parentTabardSlot" inherits="TmogPlayerSlotTemplate" id="19">
 				<Anchors>
-					<Anchor point="TOP" relativeTo="$parentShirtSlot" relativePoint="BOTTOM">
-						<Offset x="0" y="-5"/>
-					</Anchor>
+					<Anchor point="TOP" relativeTo="$parentShirtSlot" relativePoint="BOTTOM"><Offset x="0" y="-5"/></Anchor>
 				</Anchors>
 			</Button>
-			<Button name="$parentWristSlot" inherits="TmogPlayerSlot" id="9">
+			<Button name="$parentWristSlot" inherits="TmogPlayerSlotTemplate" id="9">
 				<Anchors>
-					<Anchor point="TOP" relativeTo="$parentTabardSlot" relativePoint="BOTTOM">
-						<Offset x="0" y="-5"/>
-					</Anchor>
+					<Anchor point="TOP" relativeTo="$parentTabardSlot" relativePoint="BOTTOM"><Offset x="0" y="-5"/></Anchor>
 				</Anchors>
 			</Button>
-			<Button name="$parentHandsSlot" inherits="TmogPlayerSlot" id="10">
+			<Button name="$parentHandsSlot" inherits="TmogPlayerSlotTemplate" id="10">
 				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="202" y="-150"/>
-					</Anchor>
+					<Anchor point="TOPLEFT"><Offset x="202" y="-150"/></Anchor>
 				</Anchors>
 			</Button>
-			<Button name="$parentWaistSlot" inherits="TmogPlayerSlot" id="6">
+			<Button name="$parentWaistSlot" inherits="TmogPlayerSlotTemplate" id="6">
 				<Anchors>
-					<Anchor point="TOP" relativeTo="$parentHandsSlot" relativePoint="BOTTOM">
-						<Offset x="0" y="-5"/>
-					</Anchor>
+					<Anchor point="TOP" relativeTo="$parentHandsSlot" relativePoint="BOTTOM"><Offset x="0" y="-5"/></Anchor>
 				</Anchors>
 			</Button>
-			<Button name="$parentLegsSlot" inherits="TmogPlayerSlot" id="7">
+			<Button name="$parentLegsSlot" inherits="TmogPlayerSlotTemplate" id="7">
 				<Anchors>
-					<Anchor point="TOP" relativeTo="$parentWaistSlot" relativePoint="BOTTOM">
-						<Offset x="0" y="-5"/>
-					</Anchor>
+					<Anchor point="TOP" relativeTo="$parentWaistSlot" relativePoint="BOTTOM"><Offset x="0" y="-5"/></Anchor>
 				</Anchors>
 			</Button>
-			<Button name="$parentFeetSlot" inherits="TmogPlayerSlot" id="8">
+			<Button name="$parentFeetSlot" inherits="TmogPlayerSlotTemplate" id="8">
 				<Anchors>
-					<Anchor point="TOP" relativeTo="$parentLegsSlot" relativePoint="BOTTOM">
-						<Offset x="0" y="-5"/>
-					</Anchor>
+					<Anchor point="TOP" relativeTo="$parentLegsSlot" relativePoint="BOTTOM"><Offset x="0" y="-5"/></Anchor>
 				</Anchors>
 			</Button>
-			<Button name="$parentMainHandSlot" inherits="TmogPlayerSlot" id="16">
+			<Button name="$parentMainHandSlot" inherits="TmogPlayerSlotTemplate" id="16">
 				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="80" y="-432"/>
-					</Anchor>
+					<Anchor point="TOPLEFT"><Offset x="80" y="-432"/></Anchor>
 				</Anchors>
 			</Button>
-			<Button name="$parentSecondaryHandSlot" inherits="TmogPlayerSlot" id="17">
+			<Button name="$parentSecondaryHandSlot" inherits="TmogPlayerSlotTemplate" id="17">
 				<Anchors>
-					<Anchor point="LEFT" relativeTo="$parentMainHandSlot">
-						<Offset x="38" y="0"/>
-					</Anchor>
+					<Anchor point="LEFT" relativeTo="$parentMainHandSlot"><Offset x="38" y="0"/></Anchor>
 				</Anchors>
 			</Button>
-			<Button name="$parentRangedSlot" inherits="TmogPlayerSlot" id="18">
+			<Button name="$parentRangedSlot" inherits="TmogPlayerSlotTemplate" id="18">
 				<Anchors>
-					<Anchor point="TOPRIGHT" relativeTo="$parentSecondaryHandSlot">
-						<Offset x="38" y="0"/>
-					</Anchor>
+					<Anchor point="TOPRIGHT" relativeTo="$parentSecondaryHandSlot"><Offset x="38" y="0"/></Anchor>
 				</Anchors>
 			</Button>
 			<Button name="$parentHideUI" inherits="OptionsButtonTemplate">
 				<Size x="62" y="22"/>
 				<Anchors>
-					<Anchor point="BOTTOMLEFT">
-						<Offset x="18" y="9"/>
-					</Anchor>
+					<Anchor point="BOTTOMLEFT"><Offset x="18" y="9"/></Anchor>
 				</Anchors>
 				<Scripts>
 					<OnLoad>
@@ -615,9 +336,7 @@
 			<Button name="$parentUndress" inherits="OptionsButtonTemplate">
 				<Size x="65" y="22"/>
 				<Anchors>
-					<Anchor point="BOTTOMLEFT" relativeTo="$parentHideUI" relativePoint="BOTTOMRIGHT">
-						<Offset x="-2" y="0"/>
-					</Anchor>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parentHideUI" relativePoint="BOTTOMRIGHT"><Offset x="-2" y="0"/></Anchor>
 				</Anchors>
 				<Scripts>
 					<OnLoad>
@@ -632,9 +351,7 @@
 			<Button name="$parentResetPosition" inherits="OptionsButtonTemplate">
 				<Size x="105" y="22"/>
 				<Anchors>
-					<Anchor point="BOTTOMLEFT" relativeTo="$parentUndress" relativePoint="BOTTOMRIGHT">
-						<Offset x="-3" y="0"/>
-					</Anchor>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parentUndress" relativePoint="BOTTOMRIGHT"><Offset x="-3" y="0"/></Anchor>
 				</Anchors>
 				<Scripts>
 					<OnLoad>
@@ -646,16 +363,14 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			<Button name="$parentLeftArrow" hidden="true">
+			<Button name="$parentPrevPage" hidden="true">
 				<Size x="32" y="32"/>
 				<Anchors>
-					<Anchor point="RIGHT" relativeTo="$parentPageText" relativePoint="RIGHT">
-						<Offset x="40" y="0"/>
-					</Anchor>
+					<Anchor point="RIGHT" relativeTo="$parentPageText" relativePoint="RIGHT"><Offset x="40" y="0"/></Anchor>
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						Tmog.ChangePage(-1)
+						Tmog.GoToPage(Tmog.currentPage - 1)
 						PlaySound("igMainMenuOptionCheckBoxOn")
 					</OnClick>
 				</Scripts>
@@ -664,14 +379,14 @@
 				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
 				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
 			</Button>
-			<Button name="$parentRightArrow" hidden="true">
+			<Button name="$parentNextPage" hidden="true">
 				<Size x="32" y="32"/>
 				<Anchors>
-					<Anchor point="LEFT" relativeTo="$parentLeftArrow" relativePoint="RIGHT"/>
+					<Anchor point="LEFT" relativeTo="$parentPrevPage" relativePoint="RIGHT"/>
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						Tmog.ChangePage(1)
+						Tmog.GoToPage(Tmog.currentPage + 1)
 						PlaySound("igMainMenuOptionCheckBoxOn")
 					</OnClick>
 				</Scripts>
@@ -683,13 +398,11 @@
 			<Button name="$parentFirstPage" hidden="true">
 				<Size x="32" y="32"/>
 				<Anchors>
-					<Anchor point="LEFT" relativeTo="$parentPageText" relativePoint="LEFT">
-						<Offset x="-80" y="0"/>
-					</Anchor>
+					<Anchor point="LEFT" relativeTo="$parentPageText" relativePoint="LEFT"><Offset x="-80" y="0"/></Anchor>
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						Tmog.ChangePage(-1, "FIRST")
+						Tmog.GoToPage(1)
 						PlaySound("igMainMenuOptionCheckBoxOn")
 					</OnClick>
 				</Scripts>
@@ -701,13 +414,11 @@
 			<Button name="$parentLastPage" hidden="true">
 				<Size x="32" y="32"/>
 				<Anchors>
-					<Anchor point="LEFT" relativeTo="$parentRightArrow" relativePoint="RIGHT">
-						<Offset x="70" y="0"/>
-					</Anchor>
+					<Anchor point="LEFT" relativeTo="$parentNextPage" relativePoint="RIGHT"><Offset x="70" y="0"/></Anchor>
 				</Anchors>
 				<Scripts>
 					<OnClick>
-						Tmog.ChangePage(1, "LAST")
+						Tmog.GoToPage(Tmog.totalPages)
 						PlaySound("igMainMenuOptionCheckBoxOn")
 					</OnClick>
 				</Scripts>
@@ -719,17 +430,13 @@
 			<EditBox name="$parentSearchBox" inherits="InputBoxTemplate" letters="100">
 				<Size x="160" y="32"/>
 				<Anchors>
-					<Anchor point="TOP">
-						<Offset x="-215" y="-42"/>
-					</Anchor>
+					<Anchor point="TOP"><Offset x="-215" y="-42"/></Anchor>
 				</Anchors>
 				<Frames>
 					<Frame name="$parentIcon">
 						<Size x="14" y="14"/>
 						<Anchors>
-							<Anchor point="LEFT" relativeTo="$parent">
-								<Offset x="1" y="-2"/>
-							</Anchor>
+							<Anchor point="LEFT" relativeTo="$parent"><Offset x="1" y="-2"/></Anchor>
 						</Anchors>
 						<Backdrop bgFile="Interface\AddOns\Tmog\Textures\UI-SearchBox-Icon">
 							<Color r="1.0" g="1.0" b="1.0" a="0.6"/>
@@ -738,9 +445,7 @@
 					<Button name="$parentClearButton">
 						<Size x="16" y="16"/>
 						<Anchors>
-							<Anchor point="RIGHT" relativeTo="$parent">
-								<Offset x="-3" y="0"/>
-							</Anchor>
+							<Anchor point="RIGHT" relativeTo="$parent"><Offset x="-3" y="0"/></Anchor>
 						</Anchors>
 						<Backdrop bgFile="Interface\AddOns\Tmog\Textures\UI-SearchBox-Clear">
 							<Color r="1.0" g="1.0" b="1.0" a="0.6"/>
@@ -777,24 +482,26 @@
 						Tmog.Search()
 						this:ClearFocus()
 					</OnEnterPressed>
+					<OnEscapePressed>
+						this:SetText("")
+						this:ClearFocus()
+					</OnEscapePressed>
 					<OnTextChanged>
 						Tmog.Search()
 					</OnTextChanged>
 				</Scripts>
 			</EditBox>
-			<Button name="TmogButton" movable="true" parent="Minimap" enableMouse="true" toplevel="true">
+			<Button name="TmogButton" movable="true" parent="Minimap" enableMouse="true" toplevel="true" clampedToScreen="true">
 				<Size x="33" y="33"/>
 				<Anchors>
 					<Anchor point="CENTER" relativeTo="UIParent" relativePoint="CENTER"/>
 				</Anchors>
 				<Layers>
 					<Layer level="BACKGROUND">
-						<Texture file="Interface\Addons\Tmog\Textures\Tmog_Portrait">
+						<Texture name="$parentPortrait">
 							<Size x="21" y="21"/>
 							<Anchors>
-								<Anchor point="TOPLEFT">
-									<Offset x="7" y="-6"/>
-								</Anchor>
+								<Anchor point="TOPLEFT"><Offset x="7" y="-6"/></Anchor>
 							</Anchors>
 							<TexCoords left="0.075" right="0.925" top="0.075" bottom="0.925"/>
 						</Texture>
@@ -812,8 +519,7 @@
 				<Scripts>
 					<OnLoad>
 						this:RegisterForDrag("LeftButton")
-						this:SetClampedToScreen(true)
-						this:RegisterEvent("PLAYER_LOGIN")
+						SetPortraitToTexture(TmogButtonPortrait, "interface\\icons\\inv_chest_cloth_41")
 					</OnLoad>
 					<OnDragStart>
 						this:LockHighlight()
@@ -825,8 +531,10 @@
 						this:UnlockHighlight()
 						if this:IsMovable() then
 							this:StopMovingOrSizing()
-							TMOG_POSITION = {this:GetCenter()}
 						end
+						local x, y = this:GetCenter()
+						TmogConfig.buttonX = x
+						TmogConfig.buttonY = y
 					</OnDragStop>
 					<OnEnter>
 						TmogTooltip:SetOwner(this, "ANCHOR_TOPLEFT", 0, 0)
@@ -838,16 +546,8 @@
 						TmogTooltip:Hide()
 					</OnLeave>
 					<OnMouseUp>
-						if arg1 == "LeftButton" then
-							TmogFrame_Toggle()
-						end
+						Tmog.ToggleFrame()
 					</OnMouseUp>
-					<OnEvent>
-						if event == "PLAYER_LOGIN" then
-							this:ClearAllPoints()
-							this:SetPoint("CENTER", UIParent, "BOTTOMLEFT", unpack(TMOG_POSITION or {this:GetCenter()}))
-						end
-					</OnEvent>
 				</Scripts>
 			</Button>
 			<Frame name="TmogFrameShareDialog" hidden="true" movable="true" enableMouse="true" toplevel="true">
@@ -860,17 +560,13 @@
 						<FontString name="TmogFrameShareDialogHint" inherits="GameFontNormal" justifyH="LEFT">
 							<Size x="200" y="25"/>
 							<Anchors>
-								<Anchor point="TOPLEFT">
-									<Offset x="25" y="-15"/>
-								</Anchor>
+								<Anchor point="TOPLEFT"><Offset x="25" y="-15"/></Anchor>
 							</Anchors>
 						</FontString>
 						<FontString name="TmogFrameShareDialogHint2" inherits="GameFontNormal" justifyH="LEFT">
 							<Size x="200" y="25"/>
 							<Anchors>
-								<Anchor point="TOPLEFT">
-									<Offset x="25" y="-55"/>
-								</Anchor>
+								<Anchor point="TOPLEFT"><Offset x="25" y="-55"/></Anchor>
 							</Anchors>
 						</FontString>
 					</Layer>
@@ -883,22 +579,15 @@
 				<Frames>
 					<Button name="TmogFrameShareDialogCloseButton" inherits="UIPanelCloseButton">
 						<Anchors>
-							<Anchor point="CENTER" relativePoint="TOPRIGHT">
-								<Offset x="-20" y="-20"/>
-							</Anchor>
+							<Anchor point="CENTER" relativePoint="TOPRIGHT"><Offset x="-20" y="-20"/></Anchor>
 						</Anchors>
 					</Button>
 					<EditBox name="TmogFrameShareDialogEditBox" inherits="InputBoxTemplate">
 						<Size x="350" y="32"/>
 						<Anchors>
-							<Anchor point="TOP">
-								<Offset x="0" y="-30"/>
-							</Anchor>
+							<Anchor point="TOP"><Offset x="0" y="-30"/></Anchor>
 						</Anchors>
 						<Scripts>
-							<OnLoad>
-								this:SetJustifyH("LEFT")
-							</OnLoad>
 							<OnEscapePressed>
 								TmogFrameShareDialogCloseButton:Click()
 							</OnEscapePressed>
@@ -907,22 +596,15 @@
 					<ScrollFrame name="TmogFrameShareDialogScrollFrame" inherits="UIPanelScrollFrameTemplate">
 						<Size x="330" y="140"/>
 						<Anchors>
-							<Anchor point="TOPLEFT">
-								<Offset x="25" y="-80"/>
-							</Anchor>
+							<Anchor point="TOPLEFT"><Offset x="25" y="-80"/></Anchor>
 						</Anchors>
 						<ScrollChild>
 							<EditBox name="TmogFrameShareDialogEditBox2" multiLine="true" autoFocus="false">
 								<Size x="330" y="132"/>
 								<Anchors>
-									<Anchor point="TOP">
-										<Offset x="0" y="-80"/>
-									</Anchor>
+									<Anchor point="TOP"><Offset x="0" y="-80"/></Anchor>
 								</Anchors>
 								<Scripts>
-									<OnLoad>
-										this:SetJustifyH("LEFT")
-									</OnLoad>
 									<OnEscapePressed>
 										TmogFrameShareDialogCloseButton:Click()
 									</OnEscapePressed>
@@ -944,9 +626,7 @@
 					<Frame name="TmogFrameShareDialogBorderFrame">
 						<Size x="362" y="150"/>
 						<Anchors>
-							<Anchor point="TOPLEFT" relativeTo="TmogFrameShareDialogScrollFrame">
-								<Offset x="-5" y="5"/>
-							</Anchor>
+							<Anchor point="TOPLEFT" relativeTo="TmogFrameShareDialogScrollFrame"><Offset x="-5" y="5"/></Anchor>
 						</Anchors>
 						<Backdrop bgFile="Interface\Buttons\WHITE8x8" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
 							<EdgeSize val="16"/>
@@ -973,9 +653,7 @@
 			<Button name="TmogFrameFullScreenButton" toplevel="true">
 				<Size x="32" y="32"/>
 				<Anchors>
-					<Anchor point="LEFT">
-						<Offset x="30" y="123"/>
-					</Anchor>
+					<Anchor point="LEFT"><Offset x="30" y="123"/></Anchor>
 				</Anchors>
 				<NormalTexture file="Interface\AddOns\Tmog\Textures\UI-Panel-MaximizeMapButton-Up"/>
 				<PushedTexture file="Interface\AddOns\Tmog\Textures\UI-Panel-MaximizeMapButton-Down"/>
@@ -994,14 +672,32 @@
 					</OnClick>
 				</Scripts>
 			</Button>
+			<Button name="TmogFrameImportOutfitButton" inherits="GameMenuButtonTemplate" hidden="true">
+				<Size x="100" y="21"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT"><Offset x="-40" y="-45"/></Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetText(Tmog.L["Import"])
+					</OnLoad>
+					<OnEnter>
+						TmogTooltip:SetOwner(this, "ANCHOR_RIGHT", -50, 0)
+						TmogTooltip:SetText(Tmog.L["Import outfit"])
+					</OnEnter>
+					<OnLeave>
+						TmogTooltip:Hide()
+					</OnLeave>
+					<OnClick>
+						StaticPopup_Show("TMOG_IMPORT_OUTFIT")
+						PlaySound("igMainMenuOptionCheckBoxOn")
+					</OnClick>
+				</Scripts>
+			</Button>
 			<Frame name="TmogFrameLoadingTexture" frameLevel="12" hidden="true">
 				<Anchors>
-					<Anchor point="TOPRIGHT">
-						<Offset x="-20" y="-74"/>
-					</Anchor>
-					<Anchor point="BOTTOMLEFT">
-						<Offset x="250" y="10"/>
-					</Anchor>
+					<Anchor point="TOPRIGHT"><Offset x="-20" y="-74"/></Anchor>
+					<Anchor point="BOTTOMLEFT"><Offset x="250" y="10"/></Anchor>
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
@@ -1024,20 +720,17 @@
 		</Frames>
 		<Scripts>
 			<OnLoad>
-				TmogFrame_OnLoad()
+				Tmog.OnLoad(this)
 			</OnLoad>
 			<OnEvent>
-				TmogFrame_OnEvent()
+				Tmog.OnEvent(this, event, arg1, arg2, arg3, arg4)
 			</OnEvent>
 			<OnShow>
-				TmogFrame_OnShow()
+				Tmog.OnShow(this)
 			</OnShow>
 			<OnHide>
-				TmogFrame_OnHide()
+				Tmog.OnHide(this)
 			</OnHide>
-			<!-- <OnUpdate>
-				TmogFrame_OnUpdate(this, arg1)
-			</OnUpdate> -->
 			<OnMouseDown>
 				DropDownList1:Hide()
 				TmogFrameSearchBox:ClearFocus()
@@ -1049,8 +742,15 @@
 				this:StopMovingOrSizing()
 			</OnDragStop>
 			<OnMouseWheel>
-				Tmog.ChangePage(arg1)
+				if arg1 > 0 then
+					if TmogFrameNextPage:IsEnabled() == 1 then Tmog.GoToPage(Tmog.currentPage + 1) end
+				else
+					if TmogFramePrevPage:IsEnabled() == 1 then Tmog.GoToPage(Tmog.currentPage - 1) end
+				end
 			</OnMouseWheel>
+			<OnUpdate>
+				Tmog.OnUpdate(this, arg1)
+			</OnUpdate>
 		</Scripts>
 	</Frame>
 	<Frame name="TmogFrameFullScreen" hidden="true" frameStrata="FULLSCREEN_DIALOG" toplevel="true" parent="UIParent" enableKeyboard="true" enableMouse="true" clampedToScreen="true">
@@ -1069,38 +769,35 @@
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-						TmogFrameFullScreenModel_OnLoad(this)
+						Tmog.FullScreenModel_OnLoad(this)
 					</OnLoad>
 					<OnShow>
-						TmogFrameFullScreenModel_OnShow(this)
+						Tmog.FullScreenModel_OnShow(this)
 					</OnShow>
 					<OnHide>
-						TmogFrameFullScreenModel_OnHide(this)
+						Tmog.FullScreenModel_OnHide(this)
 					</OnHide>
 					<OnUpdate>
-						TmogFrameFullScreenModel_OnUpdate(this, arg1)
+						Tmog.FullScreenModel_OnUpdate(this, arg1)
 					</OnUpdate>
 					<OnMouseWheel>
-						TmogFrameFullScreenModel_OnMouseWheel(this, arg1)
+						Tmog.FullScreenModel_OnMouseWheel(this, arg1)
 					</OnMouseWheel>
 					<OnMouseDown>
-						TmogFrameFullScreenModel_OnMouseDown(this, arg1)
+						Tmog.FullScreenModel_OnMouseDown(this, arg1)
 					</OnMouseDown>
 					<OnMouseUp>
-						TmogFrameFullScreenModel_OnMouseUp(this, arg1)
+						Tmog.FullScreenModel_OnMouseUp(this, arg1)
 					</OnMouseUp>
 				</Scripts>
 			</DressUpModel>
 		</Frames>
 		<Scripts>
-			<OnShow>
-				this:SetScript("OnKeyDown", TmogFrameFullScreen_OnKeyDown)
-			</OnShow>
 			<OnKeyDown>
-				TmogFrameFullScreen_OnKeyDown()
+				Tmog.FullScreen_OnKeyDown(this, arg1)
 			</OnKeyDown>
 			<OnUpdate>
-				TmogFrameFullScreen_OnUpdate()
+				Tmog.FullScreen_OnUpdate(this, arg1)
 			</OnUpdate>
 		</Scripts>
 	</Frame>

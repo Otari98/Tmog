@@ -37,13 +37,14 @@ Tmog.L = {
 	["Shares appearance with"] = true,
 	["Outfits"] = true,
 	["New outfit"] = true,
-	["Create an outfit from currently selected items or import from ingame link/code."] = true,
+	["Create an outfit from selected items."] = true,
 	["Enter outfit name:"] = true,
-	["Outfit with this name already exists."] = true,
+	["Outfit with this name already exists. Do you want to overwrite it?"] = true,
 	["Outfit name not valid."] = true,
 	["Delete outfit %s?"] = true,
 	["Invalid outfit code."] = true,
-	["Enter outfit code:"] = true,
+	["Enter outfit code or shift-click an outfit link from the chat window:"] = true,
+	["<Shift-Click to link outfit to chat>"] = true,
 	["toggle dressing room"] = true,
 	["reset minimap button position"] = true,
 	["lock/unlock minimap button"] = true,
@@ -73,6 +74,7 @@ Tmog.L = {
 	["Reset Position"] = true,
 	["Reset Outfit"] = true,
 	["Full Screen"] = true,
+	["Rename"] = true,
 	["Share"] = true,
 	["Import"] = true,
 	["Outfit code:"] = true,
@@ -82,7 +84,6 @@ Tmog.L = {
 	["Database links:"] = true,
 	["reset this character's collection"] = true,
 	["collection has been reset"] = true,
-	FMT_SELECTED_OUTFIT = "Outfit: |cffFFFFFF%s|r"
 }
 
 if GetLocale() == "ruRU" then
@@ -94,13 +95,13 @@ if GetLocale() == "ruRU" then
 	Tmog.L["Shares appearance with"] = "Общий внешний вид с"
 	Tmog.L["Outfits"] = "Наряды"
 	Tmog.L["New outfit"] = "Новый наряд"
-	Tmog.L["Create an outfit from currently selected items or import from ingame link/code."] = "Создать наряд из выбранных предметов."
+	Tmog.L["Create an outfit from selected items."] = "Создать наряд из выбранных предметов."
 	Tmog.L["Enter outfit name:"] = "Введите название наряда:"
-	Tmog.L["Outfit with this name already exists."] = "Наряд с таким названием уже существует."
+	Tmog.L["Outfit with this name already exists. Do you want to overwrite it?"] = "Наряд с таким названием уже существует."
 	Tmog.L["Outfit name not valid."] = "Некорректное название."
 	Tmog.L["Delete outfit %s?"] = "Удалить наряд?"
 	Tmog.L["Invalid outfit code."] = "Некорректный код."
-	Tmog.L["Enter outfit code:"] = "Введите код наряда:"
+	Tmog.L["Enter outfit code or shift-click an outfit link from the chat window:"] = "Введите код наряда:"
 	Tmog.L["toggle dressing room"] = "открыть примерочную."
 	Tmog.L["reset minimap button position"] = "восстановить позицию мини-кнопки."
 	Tmog.L["lock/unlock minimap button"] = "зафиксировать/разблокировать мини-кнопкую"
@@ -147,7 +148,5 @@ elseif GetLocale() == "deDE" then
 end
 
 for k, v in pairs(Tmog.L) do
-	if v == true then
-		Tmog.L[k] = k
-	end
+	if v == true then Tmog.L[k] = k end
 end

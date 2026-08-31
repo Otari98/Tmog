@@ -21,17 +21,17 @@ function SetTooltipMoney(frame, money)
 	end
 end
 
-function Tmog.HookTooltip(tooltip)
-	if not (tooltip and type(tooltip.GetFrameType) == "function" and tooltip:GetFrameType() == "GameTooltip") then
+function Tmog.HookTooltip(frame)
+	if not (frame and type(frame.GetFrameType) == "function" and frame:GetFrameType() == "GameTooltip") then
 		return
 	end
 
-	if type(tooltip.HookScript) == "function" then
-		tooltip:HookScript("OnTooltipSetItem", function(self)
+	if type(frame.HookScript) == "function" then
+		frame:HookScript("OnTooltipSetItem", function(self)
 			local itemName, itemLink, itemID = self:GetItem()
 			self.itemID = itemID or Tmog.IDFromLink(itemLink)
 		end)
-		tooltip:HookScript("OnTooltipCleared", function(self)
+		frame:HookScript("OnTooltipCleared", function(self)
 			self.itemID = nil
 			self.tmogLine = nil
 			self.tooltipMoney = 0
@@ -41,13 +41,13 @@ function Tmog.HookTooltip(tooltip)
 			"SetQuestItem","SetHyperlink","SetInboxItem","SetCraftItem","SetCraftSpell","SetTradeSkillItem",
 			"SetAuctionItem","SetAuctionSellItem","SetTradePlayerItem","SetTradeTargetItem","SetAction","SetBuybackItem"
 		}) do
-			hooksecurefunc(tooltip, method, Tmog.ExtendTooltip)
+			hooksecurefunc(frame, method, Tmog.ExtendTooltip)
 		end
 		return
 	end
 
-	local original_SetBagItem = tooltip.SetBagItem
-	function tooltip.SetBagItem(self, container, slot)
+	local original_SetBagItem = frame.SetBagItem
+	function frame.SetBagItem(self, container, slot)
 		self.insideHook = true
 		local hasCooldown, repairCost = original_SetBagItem(self, container, slot)
 		self.insideHook = nil
@@ -56,8 +56,8 @@ function Tmog.HookTooltip(tooltip)
 		return hasCooldown, repairCost
 	end
 
-	local original_SetInventoryItem = tooltip.SetInventoryItem
-	function tooltip.SetInventoryItem(self, unit, slot, nameOnly)
+	local original_SetInventoryItem = frame.SetInventoryItem
+	function frame.SetInventoryItem(self, unit, slot, nameOnly)
 		self.insideHook = true
 		local hasItem, hasCooldown, repairCost = original_SetInventoryItem(self, unit, slot, nameOnly)
 		self.insideHook = nil
@@ -66,8 +66,8 @@ function Tmog.HookTooltip(tooltip)
 		return hasItem, hasCooldown, repairCost
 	end
 
-	local original_SetLootRollItem = tooltip.SetLootRollItem
-	function tooltip.SetLootRollItem(self, id)
+	local original_SetLootRollItem = frame.SetLootRollItem
+	function frame.SetLootRollItem(self, id)
 		self.insideHook = true
 		original_SetLootRollItem(self, id)
 		self.insideHook = nil
@@ -75,8 +75,8 @@ function Tmog.HookTooltip(tooltip)
 		Tmog.ExtendTooltip(self)
 	end
 
-	local original_SetLootItem = tooltip.SetLootItem
-	function tooltip.SetLootItem(self, slot)
+	local original_SetLootItem = frame.SetLootItem
+	function frame.SetLootItem(self, slot)
 		self.insideHook = true
 		original_SetLootItem(self, slot)
 		self.insideHook = nil
@@ -84,8 +84,8 @@ function Tmog.HookTooltip(tooltip)
 		Tmog.ExtendTooltip(self)
 	end
 
-	local original_SetMerchantItem = tooltip.SetMerchantItem
-	function tooltip.SetMerchantItem(self, merchantIndex)
+	local original_SetMerchantItem = frame.SetMerchantItem
+	function frame.SetMerchantItem(self, merchantIndex)
 		self.insideHook = true
 		original_SetMerchantItem(self, merchantIndex)
 		self.insideHook = nil
@@ -93,8 +93,8 @@ function Tmog.HookTooltip(tooltip)
 		Tmog.ExtendTooltip(self)
 	end
 
-	local original_SetQuestLogItem = tooltip.SetQuestLogItem
-	function tooltip.SetQuestLogItem(self, itemType, index)
+	local original_SetQuestLogItem = frame.SetQuestLogItem
+	function frame.SetQuestLogItem(self, itemType, index)
 		self.insideHook = true
 		original_SetQuestLogItem(self, itemType, index)
 		self.insideHook = nil
@@ -102,8 +102,8 @@ function Tmog.HookTooltip(tooltip)
 		Tmog.ExtendTooltip(self)
 	end
 
-	local original_SetQuestItem = tooltip.SetQuestItem
-	function tooltip.SetQuestItem(self, itemType, index)
+	local original_SetQuestItem = frame.SetQuestItem
+	function frame.SetQuestItem(self, itemType, index)
 		self.insideHook = true
 		original_SetQuestItem(self, itemType, index)
 		self.insideHook = nil
@@ -111,8 +111,8 @@ function Tmog.HookTooltip(tooltip)
 		Tmog.ExtendTooltip(self)
 	end
 
-	local original_SetHyperlink = tooltip.SetHyperlink
-	function tooltip.SetHyperlink(self, arg1)
+	local original_SetHyperlink = frame.SetHyperlink
+	function frame.SetHyperlink(self, arg1)
 		self.insideHook = true
 		original_SetHyperlink(self, arg1)
 		self.insideHook = nil
@@ -120,8 +120,8 @@ function Tmog.HookTooltip(tooltip)
 		Tmog.ExtendTooltip(self)
 	end
 
-	local original_SetInboxItem = tooltip.SetInboxItem
-	function tooltip.SetInboxItem(self, mailID, attachmentIndex)
+	local original_SetInboxItem = frame.SetInboxItem
+	function frame.SetInboxItem(self, mailID, attachmentIndex)
 		self.insideHook = true
 		original_SetInboxItem(self, mailID, attachmentIndex)
 		self.insideHook = nil
@@ -133,8 +133,8 @@ function Tmog.HookTooltip(tooltip)
 		Tmog.ExtendTooltip(self)
 	end
 
-	local original_SetCraftItem = tooltip.SetCraftItem
-	function tooltip.SetCraftItem(self, skill, slot)
+	local original_SetCraftItem = frame.SetCraftItem
+	function frame.SetCraftItem(self, skill, slot)
 		self.insideHook = true
 		original_SetCraftItem(self, skill, slot)
 		self.nsideHook = nil
@@ -142,8 +142,8 @@ function Tmog.HookTooltip(tooltip)
 		Tmog.ExtendTooltip(self)
 	end
 
-	local original_SetCraftSpell = tooltip.SetCraftSpell
-	function tooltip.SetCraftSpell(self, slot)
+	local original_SetCraftSpell = frame.SetCraftSpell
+	function frame.SetCraftSpell(self, slot)
 		self.insideHook = true
 		original_SetCraftSpell(self, slot)
 		self.insideHook = nil
@@ -151,8 +151,8 @@ function Tmog.HookTooltip(tooltip)
 		Tmog.ExtendTooltip(self)
 	end
 
-	local original_SetTradeSkillItem = tooltip.SetTradeSkillItem
-	function tooltip.SetTradeSkillItem(self, skillIndex, reagentIndex)
+	local original_SetTradeSkillItem = frame.SetTradeSkillItem
+	function frame.SetTradeSkillItem(self, skillIndex, reagentIndex)
 		self.insideHook = true
 		original_SetTradeSkillItem(self, skillIndex, reagentIndex)
 		self.insideHook = nil
@@ -164,8 +164,8 @@ function Tmog.HookTooltip(tooltip)
 		Tmog.ExtendTooltip(self)
 	end
 
-	local original_SetAuctionItem = tooltip.SetAuctionItem
-	function tooltip.SetAuctionItem(self, atype, index)
+	local original_SetAuctionItem = frame.SetAuctionItem
+	function frame.SetAuctionItem(self, atype, index)
 		self.insideHook = true
 		original_SetAuctionItem(self, atype, index)
 		self.insideHook = nil
@@ -173,8 +173,8 @@ function Tmog.HookTooltip(tooltip)
 		Tmog.ExtendTooltip(self)
 	end
 
-	local original_SetAuctionSellItem = tooltip.SetAuctionSellItem
-	function tooltip.SetAuctionSellItem(self)
+	local original_SetAuctionSellItem = frame.SetAuctionSellItem
+	function frame.SetAuctionSellItem(self)
 		self.insideHook = true
 		original_SetAuctionSellItem(self)
 		self.insideHook = nil
@@ -187,8 +187,8 @@ function Tmog.HookTooltip(tooltip)
 		Tmog.ExtendTooltip(self)
 	end
 
-	local original_SetTradePlayerItem = tooltip.SetTradePlayerItem
-	function tooltip.SetTradePlayerItem(self, index)
+	local original_SetTradePlayerItem = frame.SetTradePlayerItem
+	function frame.SetTradePlayerItem(self, index)
 		self.insideHook = true
 		original_SetTradePlayerItem(self, index)
 		self.insideHook = nil
@@ -196,8 +196,8 @@ function Tmog.HookTooltip(tooltip)
 		Tmog.ExtendTooltip(self)
 	end
 
-	local original_SetTradeTargetItem = tooltip.SetTradeTargetItem
-	function tooltip.SetTradeTargetItem(self, index)
+	local original_SetTradeTargetItem = frame.SetTradeTargetItem
+	function frame.SetTradeTargetItem(self, index)
 		self.insideHook = true
 		original_SetTradeTargetItem(self, index)
 		self.insideHook = nil
@@ -205,19 +205,20 @@ function Tmog.HookTooltip(tooltip)
 		Tmog.ExtendTooltip(self)
 	end
 
-	local original_OnHide = tooltip:GetScript("OnHide")
-	tooltip:SetScript("OnHide", function()
-		if original_OnHide then original_OnHide(tooltip) end
-		tooltip.itemID = nil
-		tooltip.tmogLine = nil
-		tooltip.tooltipMoney = 0
+	local original_OnHide = frame:GetScript("OnHide")
+	frame:SetScript("OnHide", function()
+		if original_OnHide then original_OnHide(frame) end
+		frame.itemID = nil
+		frame.tmogLine = nil
+		frame.tooltipMoney = 0
 	end)
 end
 
 local maxLines = 30
-function Tmog.ExtendTooltip(frame)
-	local itemID = tonumber(frame.itemID)
-	if itemID and frame ~= TmogTooltip and Tmog.Transmogable(itemID) then
+function Tmog.ExtendTooltip(self)
+    self = self or this
+	local itemID = tonumber(self.itemID)
+	if itemID and self ~= TmogTooltip and Tmog.Transmogable(itemID) then
 		local line = ""
 		local outfits = Tmog.GetOutfitsWithItem(itemID)
 		local numOutfits = table.getn(outfits)
@@ -228,15 +229,15 @@ function Tmog.ExtendTooltip(frame)
 		end
 		if not items then
 			if not Tmog.IsKnownAppearance(itemID) then
-				line = L["Unknown appearance"].." (?)"..line
+				line = NORMAL..L["Unknown appearance"].." (?)|r"..line
 			else
-				line = L["Unique appearance"]..line
+				line = NORMAL..L["Unique appearance"].."|r"..line
 			end
 		else
 			if numItems > 0 then
-				line = L["Non-unique appearance"].." ("..numItems..")"..line
+				line = NORMAL..L["Non-unique appearance"].." ("..numItems..")|r"..line
 			else
-				line = L["Non-unique appearance"].." (?)"..line
+				line = NORMAL..L["Non-unique appearance"].." (?)|r"..line
 			end
 			-- if IsShiftKeyDown() then
 			-- 	for i = 1, numItems do
@@ -247,7 +248,7 @@ function Tmog.ExtendTooltip(frame)
 			-- 	line = line.."\n  "..concat(items, "\n  ")
 			-- end
 		end
-		local slot = Tmog.GetTransmogSlot(itemID, "player", frame)
+		local slot = Tmog.GetTransmogSlot(itemID, "player", self)
 		if slot then
 			if TMOG_CACHE[slot][itemID] then
 				line = "("..GREEN..L["Collected"].."|r"..") "..line
@@ -255,21 +256,21 @@ function Tmog.ExtendTooltip(frame)
 				line = "("..YELLOW..L["Not collected"].."|r"..") "..line
 			end
 		end
-		local numLines = frame:NumLines()
+		local numLines = self:NumLines()
 		if numLines > maxLines then maxLines = numLines end
 		if numLines < maxLines then
-			frame:AddLine(line, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, numOutfits > 1)
+			self:AddLine(line, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, numOutfits > 1)
 		else
-			local lastLine = _G[frame:GetName().."TextLeft"..numLines]
+			local lastLine = _G[self:GetName().."TextLeft"..numLines]
 			lastLine:SetText(lastLine:GetText().."\n"..line)
 		end
-		frame.tmogLine = line
-		frame:Show()
+		self.tmogLine = line
+		self:Show()
 	end
-	local money = frame.tooltipMoney or 0
+	local money = self.tooltipMoney or 0
 	if money > 0 then
-		original_SetTooltipMoney(frame, money)
-		frame:Show()
+		original_SetTooltipMoney(self, money)
+		self:Show()
 	end
 end
 

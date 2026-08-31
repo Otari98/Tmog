@@ -1,0 +1,212 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Button name="TmogTabTemplate" virtual="true">
+        <ButtonText name="$parentText"/>
+        <NormalFont inherits="GameFontNormal"/>
+        <HighlightFont inherits="GameFontHighlight"/>
+        <DisabledFont inherits="GameFontHighlight"/>
+        <NormalTexture file="Interface\AddOns\Tmog\Textures\tab_inactive">
+            <Size x="128" y="32"/>
+            <Anchors>
+                <Anchor point="TOPLEFT"/>
+            </Anchors>
+        </NormalTexture>
+        <PushedTexture file="Interface\AddOns\Tmog\Textures\tab_inactive">
+            <Size x="128" y="32"/>
+            <Anchors>
+                <Anchor point="TOPLEFT"/>
+            </Anchors>
+        </PushedTexture>
+        <DisabledTexture file="Interface\AddOns\Tmog\Textures\tab_active">
+            <Size x="128" y="32"/>
+            <Anchors>
+                <Anchor point="TOPLEFT"/>
+            </Anchors>
+        </DisabledTexture>
+        <HighlightTexture inherits="UIPanelButtonHighlightTexture"/>
+    </Button>
+    <Button name="TmogSharedItemTemplate" virtual="true">
+        <Size x="147" y="20"/>
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentIconTexture">
+                    <Size x="20" y="20"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                    </Anchors>
+                </Texture>
+                <FontString name="$parentName" inherits="GameFontHighlight" justifyH="LEFT">
+                    <Size x="200" y="20"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeTo="$parentIconTexture"><Offset x="22" y="0"/></Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad>
+                this.icon = _G[this:GetName().."IconTexture"]
+                this.name = _G[this:GetName().."Name"]
+            </OnLoad>
+            <OnClick>
+                Tmog.SharedItem_OnClick(this, arg1)
+            </OnClick>
+            <OnEnter>
+                Tmog.SharedItem_OnEnter(this)
+            </OnEnter>
+            <OnLeave>
+                Tmog.SharedItem_OnLeave(this)
+            </OnLeave>
+        </Scripts>
+    </Button>
+    <Frame name="TmogPreviewTemplate" virtual="true">
+        <Size x="90" y="110"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+        <Frames>
+            <Button name="$parentButton">
+                <Size x="90" y="128"/>
+                <Anchors>
+                    <Anchor point="LEFT"/>
+                </Anchors>
+                <NormalTexture file="Interface\AddOns\Tmog\Textures\item_bg_normal">
+                    <Size x="128" y="128"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT"><Offset x="-20" y="0"/></Anchor>
+                    </Anchors>
+                </NormalTexture>
+                <PushedTexture file="Interface\AddOns\Tmog\Textures\item_bg_highlight" alphaMode="ADD">
+                    <Size x="128" y="128"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT"><Offset x="-20" y="0"/></Anchor>
+                    </Anchors>
+                </PushedTexture>
+                <HighlightTexture file="Interface\AddOns\Tmog\Textures\item_bg_selected" alphaMode="ADD">
+                    <Size x="128" y="128"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT"><Offset x="-20" y="0"/></Anchor>
+                    </Anchors>
+                </HighlightTexture>
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <Texture name="$parentBorder" file="Interface\AddOns\Tmog\Textures\preview-border-thin">
+                            <Size x="128" y="128"/>
+                            <Anchors>
+                                <Anchor point="TOPLEFT"><Offset x="-20" y="0"/></Anchor>
+                            </Anchors>
+                        </Texture>
+                        <Texture name="$parentCheck" hidden="true" file="Interface\AddOns\Tmog\Textures\check">
+                            <Size x="16" y="16"/>
+                            <Anchors>
+                                <Anchor point="TOPRIGHT"><Offset x="-8" y="-9"/></Anchor>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+                </Layers>
+                <Scripts>
+                    <OnLoad>
+                        Tmog.PreviewButton_OnLoad(this)
+                    </OnLoad>
+                    <OnMouseDown>
+                        Tmog.PreviewButton_OnMouseDown(this, arg1)
+                    </OnMouseDown>
+                    <OnMouseUp>
+                        Tmog.PreviewButton_OnMouseUp(this, arg1)
+                    </OnMouseUp>
+                    <OnClick>
+                        Tmog.PreviewButton_OnClick(this, arg1)
+                    </OnClick>
+                    <OnEnter>
+                        Tmog.PreviewButton_OnEnter(this)
+                    </OnEnter>
+                    <OnLeave>
+                        Tmog.PreviewButton_OnLeave(this)
+                    </OnLeave>
+                </Scripts>
+            </Button>
+            <DressUpModel name="$parentItemModel" scale="4.0">
+                <Size x="80" y="107"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT"><Offset x="4" y="0"/></Anchor>
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        this:SetSequence(99)
+                        this.items = {}
+                    </OnLoad>
+                    <OnUpdateModel>
+                        this:SetSequenceTime(99, 0)
+                    </OnUpdateModel>
+                    <OnMouseWheel/>
+                </Scripts>
+            </DressUpModel>
+        </Frames>
+        <Scripts>
+            <OnLoad>
+                Tmog.Preview_OnLoad(this)
+            </OnLoad>
+        </Scripts>
+    </Frame>
+    <Button name="TmogPlayerSlotTemplate" virtual="true" topLevel="true">
+        <Size x="32" y="32"/>
+        <Layers>
+            <Layer level="BORDER">
+                <Texture name="$parentItemIcon">
+                    <Size x="26" y="26"/>
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <Texture name="$parentBorder" file="Interface\AddOns\Tmog\Textures\transmog_border">
+                    <Size x="48" y="48"/>
+                    <Anchors>
+                        <Anchor point="CENTER"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <Texture name="$parentBorderFull" hidden="true" file="Interface\AddOns\Tmog\Textures\border_full">
+                    <Size x="48" y="48"/>
+                    <Anchors>
+                        <Anchor point="CENTER"><Offset x="-1" y="-1"/></Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="HIGHLIGHT">
+                <Texture name="$parentBorderHighlight" file="Interface\AddOns\Tmog\Textures\border_2">
+                    <Size x="47" y="47"/>
+                    <Anchors>
+                        <Anchor point="CENTER"><Offset x="-1" y="-1"/></Anchor>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <NormalTexture/>
+        <PushedTexture file="Interface\Buttons\UI-Quickslot-Depress">
+            <Size x="26" y="27"/>
+            <Anchors>
+                <Anchor point="CENTER"><Offset x="-1" y="0"/></Anchor>
+            </Anchors>
+        </PushedTexture>
+        <HighlightTexture/>
+        <Scripts>
+            <OnLoad>
+                Tmog.PlayerSlot_OnLoad(this)
+            </OnLoad>
+            <OnClick>
+                Tmog.PlayerSlot_OnClick(this, arg1)
+            </OnClick>
+            <!-- <OnDoubleClick>
+                Tmog.PlayerSlot_OnDoubleClick(this, arg1)
+            </OnDoubleClick> -->
+            <OnEnter>
+                Tmog.PlayerSlot_OnEnter(this)
+            </OnEnter>
+            <OnLeave>
+                TmogTooltip:Hide()
+            </OnLeave>
+        </Scripts>
+    </Button>
+</Ui>

@@ -6,24 +6,32 @@ local GREEN = "|cff00A000"
 local BLUE = "|cff0070de"
 local L = Tmog.L
 
+if not UIDropDownMenu_CreateInfo then
+	local info = {}
+	UIDropDownMenu_CreateInfo = function()
+		for k in pairs(info) do info[k] = nil end
+		return info
+	end
+end
+
 function Tmog.CacheItem(linkOrID)
-	if not linkOrID or linkOrID == 0 then return false end
+	if not linkOrID or linkOrID == 0 then return nil end
 	if tonumber(linkOrID) then
-		if GetItemInfo(linkOrID) then return true end
+		local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(linkOrID)
+		if itemName then return itemName, itemQuality, itemTexture end
 		TmogScanTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
 		TmogScanTooltip:SetHyperlink("item:"..linkOrID)
-		Tmog.debug("Caching "..linkOrID)
-		return false
+		return nil
 	else
-		if type(linkOrID) ~= "string" then return false end
-		local _, _, item = string.find(linkOrID, "(item:%d+)")
-		if item then
-			if GetItemInfo(item) then return true end
+		if type(linkOrID) ~= "string" then return nil end
+		local _, _, itemString = string.find(linkOrID, "(item:%d+)")
+		if itemString then
+			local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc, itemTexture = GetItemInfo(itemString)
+			if itemName then return itemName, itemQuality, itemTexture end
 			TmogScanTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
-			TmogScanTooltip:SetHyperlink(item)
-			Tmog.debug("Caching "..item)
+			TmogScanTooltip:SetHyperlink(itemString)
 		end
-		return false
+		return nil
 	end
 end
 
@@ -34,8 +42,8 @@ end
 
 function Tmog.InventorySlotFromItemID(itemID)
 	if not itemID then return nil end
-	local _, _, _, _, _, _, _, slot  = GetItemInfo(itemID)
-	return Tmog.InventoryTypeToSlot[slot or ""]
+	local _, _, _, _, _, _, _, invType  = GetItemInfo(itemID)
+	return Tmog.InventoryTypeToSlot[invType or ""]
 end
 
 function Tmog.IDFromLink(link)
@@ -62,8 +70,7 @@ function Tmog.GetItemIDByName(name)
 	return nil
 end
 
-
-local originalTooltip = {}
+local allowedClassesPattern = string.gsub(ITEM_CLASSES_ALLOWED, "%%s", "(.*)")
 -- return slot if this is gear and unit can equip it
 function Tmog.GetTransmogSlot(itemID, unit, tooltip)
 	itemID = tonumber(itemID)
@@ -73,23 +80,21 @@ function Tmog.GetTransmogSlot(itemID, unit, tooltip)
 	if itemEquipLoc and itemEquipLoc ~= "" then
 		local class, classEn = UnitClass(unit)
 		local tableToCheck = Tmog.classEquipTable[classEn]
-		Tmog.debug(itemID, itemName, itemType, itemSubType, itemEquipLoc)
+		Tmog.debugprint(itemID, itemName, itemType, itemSubType, itemEquipLoc)
+		local invSlot = Tmog.InventoryTypeToSlot[itemEquipLoc]
 		if itemEquipLoc == "INVTYPE_HOLDABLE" then
-			return Tmog.InventoryTypeToSlot[itemEquipLoc]
+			return invSlot
 		end
-		if tableToCheck[itemSubType] and Tmog.InventoryTypeToSlot[itemEquipLoc] then
+		if tableToCheck[itemSubType] and invSlot then
 			if not (classEn == "WARRIOR" or classEn == "HUNTER" or classEn == "ROGUE") and itemEquipLoc == "INVTYPE_WEAPONOFFHAND" then
-				Tmog.debug("cant dual weild")
+				Tmog.debugprint("cant dual weild")
 				return nil
 			end
 			if itemType == L["Weapon"] and itemSubType == L["Miscellaneous"] then
-				Tmog.debug("not a real weapon")
+				Tmog.debugprint("not a real weapon")
 				return nil
 			end
 			-- check if its class restricted item
-			for k in pairs(originalTooltip) do
-				originalTooltip[k] = nil
-			end
 			if not tooltip then
 				tooltip = TmogScanTooltip
 				tooltip:ClearLines()
@@ -97,26 +102,21 @@ function Tmog.GetTransmogSlot(itemID, unit, tooltip)
 			end
 			local tooltipName = tooltip:GetName()
 			for row = 1, 15 do
-				local tooltipRowLeft = _G[tooltipName .. "TextLeft" .. row]
+				local tooltipRowLeft = _G[tooltipName.."TextLeft"..row]
 				if tooltipRowLeft then
 					local rowtext = tooltipRowLeft:GetText()
 					if rowtext then
-						originalTooltip[row] = rowtext
-					end
-				end
-			end
-			for row = 1, Tmog.tsize(originalTooltip) do
-				if originalTooltip[row] then
-					local _, _, classesRow = string.find(originalTooltip[row], (string.gsub(ITEM_CLASSES_ALLOWED, "%%s", "(.*)")))
-					if classesRow then
-						if not string.find(classesRow, class, 1, true) then
-							Tmog.debug("bad class")
-							return nil
+						local _, _, classes = string.find(rowtext, allowedClassesPattern)
+						if classes then
+							if not string.find(classes, class, 1, true) then
+								Tmog.debugprint("bad class")
+								return nil
+							end
 						end
 					end
 				end
 			end
-			return Tmog.InventoryTypeToSlot[itemEquipLoc]
+			return invSlot
 		end
 	end
 end
@@ -168,13 +168,15 @@ do
 		for i = table.getn(result), 1, -1 do table.remove(result, i) end
 		itemID = tonumber(itemID)
 		if not itemID then return result end
-		for outfitName, outfitItems in pairs(TMOG_PLAYER_OUTFITS) do
-			for _, outfitItemID in pairs(outfitItems) do
-				local g1 = Tmog.ItemDisplayGroup[outfitItemID]
-				local g2 = Tmog.ItemDisplayGroup[itemID]
-				if itemID == outfitItemID or (g1 and g2 and g1 == g2) then
-					table.insert(result, outfitName)
-					break
+		for index, outfitData in pairs(TMOG_PLAYER_OUTFITS) do
+			for _, outfitItemID in pairs(outfitData) do
+				if type(outfitItemID) == "number" then
+					local g1 = Tmog.ItemDisplayGroup[outfitItemID]
+					local g2 = Tmog.ItemDisplayGroup[itemID]
+					if itemID == outfitItemID or (g1 and g2 and g1 == g2) then
+						table.insert(result, outfitData.name)
+						break
+					end
 				end
 			end
 		end
@@ -198,77 +200,29 @@ do
 	end
 end
 
-function Tmog.IsUsableItem(id)
-	if Tmog.Unusable[Tmog.currentSlot][Tmog.currentType][id] then
-		return false
-	end
-	local isUsable = true
-	for i = 2, 15 do
-		_G["TmogScanTooltipTextLeft"..i]:SetTextColor(0,0,0)
-		_G["TmogScanTooltipTextRight"..i]:SetTextColor(0,0,0)
-	end
-	TmogScanTooltip:SetOwner(WorldFrame, "ANCHOR_NONE")
-	TmogScanTooltip:SetHyperlink("item:"..id)
-	for i = 2, 15 do
-		local text = _G["TmogScanTooltipTextLeft"..i]:GetText() or ""
-		local leftR, leftG, leftB = _G["TmogScanTooltipTextLeft"..i]:GetTextColor()
-		local rightR, rightG, rightB = _G["TmogScanTooltipTextRight"..i]:GetTextColor()
-		if Tmog.IsRed(leftR, leftG, leftB) or Tmog.IsRed(rightR, rightG, rightB) then
-			if not (Tmog.ignoreLevel and string.find(text, "^"..(string.gsub(ITEM_MIN_LEVEL, "%%d", "")))) then
-				isUsable = false
-				Tmog.Unusable[Tmog.currentSlot][Tmog.currentType][id] = true
-			end
-			break
-		end
-	end
-	local _, _, _, _, _, _, _, itemEquipLoc = GetItemInfo(id)
-	if not Tmog.canDualWeild and (itemEquipLoc == "INVTYPE_WEAPONOFFHAND" or (itemEquipLoc == "INVTYPE_WEAPON" and Tmog.currentSlot == 17)) then
-		isUsable = false
-		Tmog.Unusable[Tmog.currentSlot][Tmog.currentType][id] = true
-	end
-	return isUsable
-end
-
 function Tmog.print(msg)
 	DEFAULT_CHAT_FRAME:AddMessage("["..BLUE.."Tmog|r] "..tostring(msg))
 end
 
-function Tmog.debug(...)
-	if not Tmog.verbose then return end
-	local size = table.getn(arg)
-	for i = 1, size do arg[i] = tostring(arg[i]) end
-	local msg = size > 1 and table.concat(arg, ", ") or tostring(arg[1])
+function Tmog.debugprint(...)
+	if not TmogConfig.debug then return end
+	for i = 1, table.getn(arg) do arg[i] = tostring(arg[i]) end
+	local msg = table.concat(arg, " ")
 	local time = GetTime()
 	DEFAULT_CHAT_FRAME:AddMessage("["..BLUE.."Tmog|r]["..GREY..string.format("%.3f", time).."|r] "..msg)
 	return msg, time
-end
-
-function Tmog.strsplit(str, delimiter)
-	local splitresult = {}
-	local from = 1
-	local delim_from, delim_to = string.find(str, delimiter, from, true)
-	while delim_from do
-		table.insert(splitresult, string.sub(str, from, delim_from - 1))
-		from = delim_to + 1
-		delim_from, delim_to = string.find(str, delimiter, from, true)
-	end
-	table.insert(splitresult, string.sub(str, from))
-	return splitresult
 end
 
 function Tmog.strtrim(s)
 	return (string.gsub(s or "", "^%s*(.-)%s*$", "%1"))
 end
 
-function Tmog.SetContains(set, key, value)
-	if not set then return false end
-	if not key and value then
-		for k, v in pairs(set) do
-			if v == value then return k end
-		end
+function Tmog.tkey(t, value)
+	if type(t) ~= "table" then return nil end
+	for k, v in pairs(t) do
+		if v == value then return k end
 	end
-	if key and not value then return set[key] ~= nil end
-	return set[key] == value
+	return nil
 end
 
 function Tmog.tsize(t)
@@ -276,4 +230,22 @@ function Tmog.tsize(t)
 	local size = 0
 	for _ in pairs(t) do size = size + 1 end
 	return size
+end
+
+function Tmog.GetTypesForSlot(slot)
+	if slot == 1 or slot == 5 or slot == 8 then
+		return Tmog.dropdownTypes.misc
+	elseif slot == 15 then
+		return Tmog.dropdownTypes.back
+	elseif slot == 4 or slot == 19 then
+		return Tmog.dropdownTypes.shirt
+	elseif slot == 16 then
+		return Tmog.dropdownTypes.mh
+	elseif slot == 17 then
+		return Tmog.dropdownTypes.oh
+	elseif slot == 18 then
+		return Tmog.dropdownTypes.ranged
+	else
+		return Tmog.dropdownTypes.default
+	end
 end

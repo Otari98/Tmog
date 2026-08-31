@@ -1,11 +1,9 @@
-local L = Tmog.L
-
-function TmogFrameFullScreenModel_OnLoad(self)
+function Tmog.FullScreenModel_OnLoad(self)
 	self.z, self.x, self.y, self.f = -3, 0, 0, 0
-	self:SetLight(unpack(Tmog.fullScreenLight))
+	self:SetLight(unpack(Tmog.Light.fullscreenModel))
 end
 
-function TmogFrameFullScreenModel_OnShow(self)
+function Tmog.FullScreenModel_OnShow(self)
 	UIFrameFadeIn(self, 0.3, 0, 1)
 	self:SetWidth(GetScreenWidth() + 5)
 	self:SetHeight(GetScreenHeight() + 5)
@@ -16,12 +14,12 @@ function TmogFrameFullScreenModel_OnShow(self)
 	self:SetFacing(self.f)
 end
 
-function TmogFrameFullScreenModel_OnHide(self)
+function Tmog.FullScreenModel_OnHide(self)
 	self.z, self.x, self.y = self:GetPosition()
 	self.f = self:GetFacing()
 end
 
-function TmogFrameFullScreenModel_OnUpdate(self, elapsed)
+function Tmog.FullScreenModel_OnUpdate(self, elapsed)
 	if not self.mouseButton then return end
 	if self.mouseButton == "LeftButton" then
 		local endX, endY = GetCursorPosition()
@@ -37,40 +35,38 @@ function TmogFrameFullScreenModel_OnUpdate(self, elapsed)
 	end
 end
 
-function TmogFrameFullScreenModel_OnMouseWheel(self, delta)
+function Tmog.FullScreenModel_OnMouseWheel(self, delta)
 	local z, x, y = self:GetPosition()
 	z = z + delta
 	self:SetPosition(z, x, y)
 	self.z = z
 end
 
-function TmogFrameFullScreenModel_OnMouseDown(self, button)
+function Tmog.FullScreenModel_OnMouseDown(self, button)
 	self.startX, self.startY = GetCursorPosition()
 	self.mouseButton = button
 end
 
-function TmogFrameFullScreenModel_OnMouseUp(self, button)
+function Tmog.FullScreenModel_OnMouseUp(self, button)
 	self.z, self.x, self.y = self:GetPosition()
 	self.mouseButton = nil
 end
 
-function TmogFrameFullScreen_OnUpdate()
-	if not this.fadeTime then
-		return
-	end
-	if (GetTime() - this.fadeTime) > 0.3 then
-		this.fadeTime = nil
-		this:Hide()
+function Tmog.FullScreen_OnUpdate(self, elapsed)
+	if not self.fadeTime then return end
+    self.fadeTime= self.fadeTime - elapsed
+	if self.fadeTime <= 0 then
+		self.fadeTime = nil
+		self:Hide()
 	end
 end
 
-function TmogFrameFullScreen_OnKeyDown()
+function Tmog.FullScreen_OnKeyDown(self, key)
 	local screenshotKey = GetBindingKey("SCREENSHOT")
-	if arg1 == "ESCAPE" then
-		this:SetScript("OnKeyDown", nil)
-		this.fadeTime = GetTime()
+	if key == "ESCAPE" then
+		self.fadeTime = 0.3
 		UIFrameFadeOut(TmogFrameFullScreenModel, 0.3, 1, 0)
-	elseif screenshotKey and (arg1 == screenshotKey) then
+	elseif screenshotKey and key == screenshotKey then
 		RunBinding("SCREENSHOT")
 	end
 end

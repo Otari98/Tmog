@@ -1,3 +1,9 @@
+local NORMAL = NORMAL_FONT_COLOR_CODE
+local WHITE = HIGHLIGHT_FONT_COLOR_CODE
+local GREY = GRAY_FONT_COLOR_CODE
+local YELLOW = "|cffFFFF00"
+local GREEN = "|cff00A000"
+local BLUE = "|cff0070de"
 local L = Tmog.L
 
 local requestInterval = 1
@@ -42,8 +48,8 @@ local function OnUpdate()
                 end
             else
                 Tmog.print(string.format(L["bad item %d, requesting info from server, try #%d"], id, tonumber(value)))
-                Tmog.CacheItem(id)
-                pendingIDs[id].value = (GetItemInfo(id)) or (value + 1)
+                local itemName = Tmog.CacheItem(id)
+                pendingIDs[id].value = itemName or (value + 1)
             end
         end
     end
@@ -90,11 +96,13 @@ SlashCmdList["TMOG"] = function(cmd)
 	cmd = string.lower(Tmog.strtrim(cmd))
 
 	if string.find(cmd, "show$") then
-		TmogFrame_Toggle()
+		Tmog.ToggleFrame()
 
 	elseif string.find(cmd, "reset$") then
 		TmogButton:ClearAllPoints()
-		TmogButton:SetPoint("CENTER", UIParent, 0, 0)
+        TmogConfig.buttonX = 760
+        TmogConfig.buttonY = 600
+		TmogButton:SetPoint("CENTER", UIParent, "BOTTOMLEFT", TmogConfig.buttonX, TmogConfig.buttonY)
 
 	elseif string.find(cmd, "wipe$") then
 		for k, v in pairs(TMOG_CACHE) do
@@ -104,16 +112,16 @@ SlashCmdList["TMOG"] = function(cmd)
 
 	elseif string.find(cmd, "lock$") then
 		TmogButton:SetMovable(not TmogButton:IsMovable())
-		TMOG_LOCKED = not TMOG_LOCKED
-		if not TMOG_LOCKED then
+		TmogConfig.locked = not TmogConfig.locked
+		if not TmogConfig.locked then
 			Tmog.print(L["minimap button unlocked"])
 		else
 			Tmog.print(L["minimap button locked"])
 		end
 
 	elseif string.find(cmd, "debug$") then
-		Tmog.verbose = not Tmog.verbose
-		if Tmog.verbose then
+		TmogConfig.debug = not TmogConfig.debug
+		if TmogConfig.debug then
 			Tmog.print(L["debug is on"])
 		else
 			Tmog.print(L["debug is off"])

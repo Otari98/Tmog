@@ -4,6 +4,7 @@ local GREY = GRAY_FONT_COLOR_CODE
 local YELLOW = "|cffFFFF00"
 local GREEN = "|cff00A000"
 local BLUE = "|cff0070de"
+local PINK = "|cffff80ff"
 local L = Tmog.L
 
 local TmogTooltip = CreateFrame("GameTooltip", "TmogTooltip", UIParent, "GameTooltipTemplate")
@@ -253,7 +254,7 @@ function Tmog.ExtendTooltip(self)
 			if TMOG_CACHE[slot][itemID] then
 				line = "("..GREEN..L["Collected"].."|r"..") "..line
 			else
-				line = "("..YELLOW..L["Not collected"].."|r"..") "..line
+				line = "("..PINK..L["Not collected"].."|r"..") "..line
 			end
 		end
 		local numLines = self:NumLines()

@@ -4,6 +4,7 @@ local GREY = GRAY_FONT_COLOR_CODE
 local YELLOW = "|cffFFFF00"
 local GREEN = "|cff00A000"
 local BLUE = "|cff0070de"
+local PINK = "|cffff80ff"
 
 local L = Tmog.L
 
@@ -910,7 +911,7 @@ function Tmog.PlayerSlot_OnEnter(self)
 		if TMOG_CACHE[slot][itemID] then
 			TmogTooltip:AddLine(GREEN..L["Collected"].."|r")
 		else
-			TmogTooltip:AddLine(YELLOW..L["Not collected"].."|r")
+			TmogTooltip:AddLine(PINK..L["Not collected"].."|r")
 		end
 		TmogTooltip:AddLine(" ")
 		TmogTooltip:AddLine("ItemID: "..itemID, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)

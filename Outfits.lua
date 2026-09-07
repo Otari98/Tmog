@@ -5,6 +5,8 @@ local GREY = GRAY_FONT_COLOR_CODE
 local YELLOW = "|cffFFFF00"
 local GREEN = "|cff00A000"
 local BLUE = "|cff0070de"
+local PINK = "|cffff80ff"
+
 local L = Tmog.L
 
 function Tmog.GetOutfitByName(outfitName)
@@ -237,7 +239,7 @@ function Tmog.GetOutfitLink(outfit)
 		end
 		link = link..code
 	end
-	return link ~= "" and string.format("|cffff80ff|Houtfit:%s|h[%s]|h|r", link, outfit) or ""
+	return link ~= "" and string.format(PINK.."|Houtfit:%s|h[%s]|h|r", link, outfit) or ""
 end
 
 local original_SetItemRef = SetItemRef

@@ -29,8 +29,8 @@ Tmog.playerClass = class
 Tmog.playerRace = string.lower(race)
 Tmog.playerSex = UnitSex("player") - 1    -- 1 - male, 2 - female
 
-Tmog.OrderDress = { 1, 3, 4,  5, 6, 7,  8, 9,  10, 15, 18, 16, 17, 19 } -- for dressing models inside addon
-Tmog.OrderLink =  { 1, 3, 15, 5, 4, 19, 9, 10, 6,  7,  8,  16, 17, 18 } -- for creating and decoding outfit links
+Tmog.OrderDress = { 1, 3, 4, 5, 6, 7, 8, 9, 10, 15, 18, 16, 17, 19 }    -- for dressing models inside addon
+Tmog.OrderLink = { 1, 3, 15, 5, 4, 19, 9, 10, 6, 7, 8, 16, 17, 18 }     -- for creating and decoding outfit links
 
 Tmog.Light = {}
 Tmog.Light.playerModel =        { 1, 0, -0.3, -1, -1,   0.55, 1.0, 1.0, 1.0,   0.8, 1.0, 1.0, 1.0 }

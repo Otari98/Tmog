@@ -215,7 +215,7 @@ function Tmog.HookTooltip(frame)
 	end)
 end
 
-local maxLines = 30
+-- local maxLines = 30
 function Tmog.ExtendTooltip(self)
     self = self or this
 	local itemID = tonumber(self.itemID)
@@ -230,15 +230,15 @@ function Tmog.ExtendTooltip(self)
 		end
 		if not items then
 			if not Tmog.IsKnownAppearance(itemID) then
-				line = NORMAL..L["Unknown appearance"].." (?)|r"..line
+				line = L["Unknown appearance"].." (?)"..line
 			else
-				line = NORMAL..L["Unique appearance"].."|r"..line
+				line = L["Unique appearance"]..line
 			end
 		else
 			if numItems > 0 then
-				line = NORMAL..L["Non-unique appearance"].." ("..numItems..")|r"..line
+				line = L["Non-unique appearance"].." ("..numItems..")"..line
 			else
-				line = NORMAL..L["Non-unique appearance"].." (?)|r"..line
+				line = L["Non-unique appearance"].." (?)"..line
 			end
 			-- if IsShiftKeyDown() then
 			-- 	for i = 1, numItems do
@@ -257,14 +257,14 @@ function Tmog.ExtendTooltip(self)
 				line = "("..PINK..L["Not collected"].."|r"..") "..line
 			end
 		end
-		local numLines = self:NumLines()
-		if numLines > maxLines then maxLines = numLines end
-		if numLines < maxLines then
+		-- local numLines = self:NumLines()
+		-- if numLines > maxLines then maxLines = numLines end
+		-- if numLines < maxLines then
 			self:AddLine(line, NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b, numOutfits > 1)
-		else
-			local lastLine = _G[self:GetName().."TextLeft"..numLines]
-			lastLine:SetText(lastLine:GetText().."\n"..line)
-		end
+		-- else
+		-- 	local lastLine = _G[self:GetName().."TextLeft"..numLines]
+		-- 	lastLine:SetText(lastLine:GetText().."\n"..NORMAL..line.."|r")
+		-- end
 		self.tmogLine = line
 		self:Show()
 	end

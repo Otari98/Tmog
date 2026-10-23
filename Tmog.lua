@@ -350,13 +350,11 @@ function Tmog.Reset()
 
 	for _, slot in pairs(Tmog.InventorySlots) do
 		Tmog.CurrentGear[slot] = 0
-		local link = GetInventoryItemLink("player", slot)
-		Tmog.ActualGear[slot] = link and Tmog.IDFromLink(link) or 0
+		Tmog.ActualGear[slot] = Tmog.IDFromLink(GetInventoryItemLink("player", slot)) or 0
 	end
 
 	for slot in pairs(TMOG_TRANSMOG_STATUS) do
-		local link = GetInventoryItemLink("player", slot)
-		local id = Tmog.IDFromLink(link) or 0
+		local id = Tmog.IDFromLink(GetInventoryItemLink("player", slot)) or 0
 		for actualItemID, transmogID in pairs(TMOG_TRANSMOG_STATUS[slot]) do
 			if actualItemID == id then Tmog.ActualGear[slot] = transmogID end
 		end
@@ -398,11 +396,10 @@ function Tmog.SelectType(type)
 end
 
 function Tmog.HidePreviews()
-	for index in pairs(Tmog.PreviewFrames) do
-		local buttonName = Tmog.PreviewFrames[index]:GetName()
-		_G[buttonName.."ItemModel"]:SetAlpha(0)
-		_G[buttonName.."Button"]:Hide()
-		_G[buttonName.."ButtonCheck"]:Hide()
+	for _, frame in pairs(Tmog.PreviewFrames) do
+		frame.model:SetAlpha(0)
+		frame.button:Hide()
+		frame.button.check:Hide()
 	end
 	TmogFrame.lastShownPreview = 0
 	TmogFrame.nextPreview = 0
@@ -482,8 +479,6 @@ function Tmog.UpdatePreviews()
 
 			local displayGroup = Tmog.ItemDisplayGroup[itemID]
 			local name, _, quality, _, _, subType, _, invType = GetItemInfo(itemID)
-			name = name or ""
-			quality = quality or 1
 
 			local frame = Tmog.PreviewFrames[previewIndex]
 			if not frame then
@@ -515,7 +510,7 @@ function Tmog.UpdatePreviews()
 			end
 
 			local border = button.border
-			local r, g, b = GetItemQualityColor(quality or 1)
+			local r, g, b = GetItemQualityColor(quality)
 			border:SetVertexColor(r, g, b)
 			if quality == 2 then
 				border:SetAlpha(0.2)
@@ -1002,7 +997,8 @@ function Tmog.Dress(model)
 			(slot == 15 and showingCloak) or (slot == 15 and not showingCloak and Tmog.ActualGear[15] ~= Tmog.CurrentGear[15]) or
 			(slot ~= 1 and slot ~= 15)
 		then
-			model:TryOn(Tmog.CurrentGear[slot])
+			local itemID = Tmog.CurrentGear[slot] or 0
+			if itemID > 0 then model:TryOn(itemID) end
 		end
 	end
 end

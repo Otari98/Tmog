@@ -398,7 +398,8 @@ end
 function Tmog.DeleteOutfitButton_OnClick(self)
 	UIDropDownMenu_StartCounting(DropDownList1)
 	if self.parent then
-		StaticPopup_Show("TMOG_CONFIRM_DELETE_OUTFIT", self.parent.value, nil, self.parent.value)
+		local outfitName = self.parent.value
+		StaticPopup_Show("TMOG_CONFIRM_DELETE_OUTFIT", outfitName, nil, outfitName)
 	end
 end
 

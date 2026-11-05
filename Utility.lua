@@ -217,7 +217,7 @@ function Tmog.strtrim(s)
 	return (string.gsub(s or "", "^%s*(.-)%s*$", "%1"))
 end
 
-function Tmog.tkey(t, value)
+function Tmog.contains(t, value)
 	if type(t) ~= "table" then return nil end
 	for k, v in pairs(t) do
 		if v == value then return k end

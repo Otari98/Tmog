@@ -43,6 +43,8 @@ function Tmog.OnLoad(self)
 	self.nextPreview = 0
 	self.lastShownPreview = 1
 	self.elapsed = 0
+	self.updateInterval = 0.2
+	self.queueIDs = {}
 
 	for _, slot in pairs(Tmog.InventorySlots) do
 		local types = Tmog.GetTypesForSlot(slot)
@@ -254,25 +256,40 @@ function Tmog.OnEvent(self, event, arg1, arg2, arg3, arg4)
 end
 
 function Tmog.OnUpdate(self, elapsed)
-	-- self.elapsed = self.elapsed - elapsed
-	-- if self.elapsed > 0 then return end
-	-- self.elapsed = 0.001
-	if self.nextPreview > self.lastShownPreview then return end
-	for _ = 1, Tmog.modelsDressedPerFrame do
-		local frame = Tmog.PreviewFrames[self.nextPreview]
-		if frame then
-			local model = frame.model
-			if not model:IsShown() then
-				model:Show()
-				model:SetPosition(0, 0, 0)
-				model:SetUnit("player")
-				model:SetPosition(model.z, model.x, model.y)
-				model:Undress()
+	if self.nextPreview <= self.lastShownPreview then
+		for _ = 1, Tmog.modelsDressedPerFrame do
+			local frame = Tmog.PreviewFrames[self.nextPreview]
+			if frame then
+				local model = frame.model
+				if not model:IsShown() then
+					model:Show()
+					model:SetPosition(0, 0, 0)
+					model:SetUnit("player")
+					model:SetPosition(model.z, model.x, model.y)
+					model:Undress()
+				end
+				for _, itemID in ipairs(model.items) do model:TryOn(itemID) end
 			end
-			for _, itemID in ipairs(model.items) do model:TryOn(itemID) end
+			self.nextPreview = self.nextPreview + 1
+			if self.nextPreview > self.lastShownPreview then break end
 		end
-		self.nextPreview = self.nextPreview + 1
-		if self.nextPreview > self.lastShownPreview then break end
+	end
+
+	self.elapsed = self.elapsed + elapsed
+	if self.elapsed < self.updateInterval then return end
+	self.elapsed = 0
+
+	local doRefresh = false
+	for id in pairs(self.queueIDs) do
+		if GetItemInfo(id) then
+			self.queueIDs[id] = nil
+			doRefresh = true
+		end
+	end
+
+	if doRefresh then
+		Tmog.UpdatePreviewsData()
+		Tmog.UpdatePreviews()
 	end
 end
 
@@ -341,6 +358,8 @@ function Tmog.PlayerModel_OnLoad(self)
 	self.z, self.x, self.y = 0, 0, 0
 	self:SetFacing(Tmog.defaultRotation)
 	self:SetLight(unpack(Tmog.Light.playerModel))
+	if self.SetKeepModelOnHide then self:SetKeepModelOnHide(true) end
+	if self.SetAutoDress then self:SetAutoDress(false) end
 end
 
 function Tmog.Reset()
@@ -378,15 +397,12 @@ function Tmog.SelectType(type)
 	Tmog.currentType = type
 	Tmog.currentPage = 1
 	Tmog.UpdatePreviewsData()
-	if TmogLoadingFrame.queueTimer > 0 then
-		Tmog.HidePagination()
-		Tmog.HidePreviews()
-	end
 	if Tmog.currentSlot and Tmog.currentType and Tmog.PagesMemory[Tmog.currentSlot][Tmog.currentType] then
 		Tmog.SlotTypesMemory[Tmog.currentSlot] = type
 		if Tmog.LinkedSlots[Tmog.currentSlot] then
 			for slot in pairs(Tmog.SlotTypesMemory) do
-				if Tmog.LinkedSlots[slot] then Tmog.SlotTypesMemory[slot] = type end
+				local types = Tmog.GetTypesForSlot(slot)
+				if Tmog.LinkedSlots[slot] and Tmog.contains(types, type) then Tmog.SlotTypesMemory[slot] = type end
 			end
 		end
 		Tmog.GoToPage(Tmog.PagesMemory[Tmog.currentSlot][Tmog.currentType])
@@ -405,51 +421,6 @@ function Tmog.HidePreviews()
 	TmogFrame.nextPreview = 0
 end
 
-local LoadingFrame = CreateFrame("Frame", "TmogLoadingFrame")
-LoadingFrame.queueIDs = {}
-LoadingFrame.queueTimer = 0
-LoadingFrame.dotStrings = { [0] = "", [1] = ".", [2] = "..", [3] = "..." }
-LoadingFrame.dotCount = 0
-LoadingFrame.dotTimer = 0.3
-
-LoadingFrame:SetScript("OnUpdate", function(self, elapsed)
-	self = self or this
-	elapsed = elapsed or arg1
-
-	if self.queueTimer == 0 then
-		TmogFrameLoadingTexture:Hide()
-		return
-	end
-
-	if self.dotTimer <= 0 then
-		self.dotCount = self.dotCount + 1
-		if self.dotCount > 3 then self.dotCount = 0 end
-		TmogFrameLoadingTextureText:SetText(L["Loading"].." "..self.dotStrings[self.dotCount])
-		self.dotTimer = 0.3
-	else
-		self.dotTimer = self.dotTimer - elapsed
-	end
-
-	local allCached = true
-	for id in pairs(self.queueIDs) do
-		if not GetItemInfo(id) then allCached = false end
-	end
-	for _, frame in pairs(Tmog.PreviewFrames) do
-		frame.button:EnableMouse(false)
-	end
-	TmogFrameLoadingTexture:Show()
-	if allCached or self.queueTimer <= 0 then
-		self.queueTimer = 0
-		TmogFrameLoadingTexture:Hide()
-		for _, frame in pairs(Tmog.PreviewFrames) do
-			frame.button:EnableMouse(true)
-		end
-		Tmog.UpdatePreviews()
-	else
-		self.queueTimer = self.queueTimer - elapsed
-	end
-end)
-
 function Tmog.UpdatePreviews()
 	local row, col, size = 0, 0, 0
 	local firstIndex = (Tmog.currentPage - 1) * Tmog.itemsPerPage + 1
@@ -458,10 +429,9 @@ function Tmog.UpdatePreviews()
 	if Tmog.currentTab == "ITEMS" then
 		size = table.getn(Tmog.ItemsSorted)
 
-		if size == 0 or LoadingFrame.queueTimer > 0 or (not TmogConfig.collected and not TmogConfig.notCollected) or not Tmog.currentSlot then
+		if size == 0 or (not TmogConfig.collected and not TmogConfig.notCollected) or not Tmog.currentSlot then
 			Tmog.HidePreviews()
 			Tmog.HidePagination()
-			-- Tmog.currentPage = 1
 			return
 		end
 
@@ -745,12 +715,12 @@ function Tmog.HidePagination()
 end
 
 function Tmog.GoToPage(page)
-	if LoadingFrame.queueTimer > 0 then return end
 	if not Tmog.currentPage or not Tmog.totalPages then return end
 
 	Tmog.currentPage = tonumber(page) or 1
 
 	if Tmog.currentPage > Tmog.totalPages then Tmog.currentPage = Tmog.totalPages end
+	if Tmog.currentPage < 1 then Tmog.currentPage = 1 end
 
 	if Tmog.currentTab == "ITEMS" and Tmog.currentSlot and Tmog.currentType and TmogFrameSearchBox:GetText() == "" then
 		Tmog.PagesMemory[Tmog.currentSlot][Tmog.currentType] = Tmog.currentPage
@@ -819,7 +789,7 @@ function Tmog.PlayerSlot_OnClick(self, button)
 	elseif button == "RightButton" then
 		if Tmog.CurrentGear[slot] == 0 then
 			if Tmog.ActualGear[slot] == 0 then return end
-			TmogFramePlayerModel:TryOn(Tmog.ActualGear[slot])
+			TmogFramePlayerModel:TryOn(Tmog.ActualGear[slot], slot == 17 and "SECONDARYHANDSLOT" or nil)
 			Tmog.CurrentGear[slot] = Tmog.ActualGear[slot]
 			Tmog.UpdateOutfitButtons()
 			Tmog.UpdatePlayerSlotTextures()
@@ -937,7 +907,7 @@ function Tmog.SharedItem_OnClick(self, button)
 		if Tmog.currentSlot == 16 then
 			Tmog.UndressSlot(Tmog.currentSlot)
 		end
-		TmogFramePlayerModel:TryOn(itemID)
+		TmogFramePlayerModel:TryOn(itemID, Tmog.currentSlot == 17 and "SECONDARYHANDSLOT" or nil)
 		Tmog.CurrentGear[Tmog.currentSlot] = itemID
 		Tmog.UpdateOutfitButtons()
 		Tmog.UpdatePlayerSlotTextures()
@@ -998,7 +968,7 @@ function Tmog.Dress(model)
 			(slot ~= 1 and slot ~= 15)
 		then
 			local itemID = Tmog.CurrentGear[slot] or 0
-			if itemID > 0 then model:TryOn(itemID) end
+			if itemID > 0 then model:TryOn(itemID, slot == 17 and "SECONDARYHANDSLOT" or nil) end
 		end
 	end
 end
@@ -1043,6 +1013,8 @@ function Tmog.Preview_OnLoad(self)
 	self.model = _G[frameName.."ItemModel"]
 	self.button = _G[frameName.."Button"]
 	self.button:SetFrameLevel(self.model:GetFrameLevel() + 2)
+	if self.model.SetKeepModelOnHide then self.model:SetKeepModelOnHide(true) end
+	if self.model.SetAutoDress then self.model:SetAutoDress(false) end
 end
 
 function Tmog.PreviewButton_OnLoad(self)
@@ -1080,7 +1052,7 @@ function Tmog.PreviewButton_OnClick(self, button)
 				if Tmog.currentSlot == 16 then
 					Tmog.UndressSlot(Tmog.currentSlot)
 				end
-				TmogFramePlayerModel:TryOn(itemID)
+				TmogFramePlayerModel:TryOn(itemID, Tmog.currentSlot == 17 and "SECONDARYHANDSLOT" or nil)
 				Tmog.CurrentGear[Tmog.currentSlot] = itemID
 				Tmog.UpdateOutfitButtons()
 				Tmog.UpdatePlayerSlotTextures()
@@ -1326,7 +1298,6 @@ function Tmog.SwitchTab(newTab)
 		end
 
 	elseif newTab == "OUTFITS" then
-		-- LoadingFrame.queueTimer = 0
 		Tmog.currentPage = 1
 		TmogFrameTab1:Enable()
 		TmogFrameTab2:Disable()
@@ -1398,9 +1369,8 @@ function Tmog.UpdatePreviewsData()
 							if TmogConfig.onlyUsable and not Tmog.IsUsableItem(itemID) then insert = false end
 							if insert then table.insert(Tmog.ItemsSorted, itemID) end
 						end
-					elseif not LoadingFrame.queueIDs[itemID] then
-						LoadingFrame.queueTimer = Tmog.loadingTimeMax
-						LoadingFrame.queueIDs[itemID] = true
+					elseif not TmogFrame.queueIDs[itemID] then
+						TmogFrame.queueIDs[itemID] = true
 					end
 				end
 			end
@@ -1422,9 +1392,8 @@ function Tmog.UpdatePreviewsData()
 						SkipList[displayGroup] = true
 					end
 					if insert then table.insert(Tmog.ItemsSorted, itemID) end
-				elseif not LoadingFrame.queueIDs[itemID] then
-					LoadingFrame.queueTimer = Tmog.loadingTimeMax
-					LoadingFrame.queueIDs[itemID] = true
+				elseif not TmogFrame.queueIDs[itemID] then
+					TmogFrame.queueIDs[itemID] = true
 				end
 			end
 		end

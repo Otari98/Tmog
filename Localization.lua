@@ -79,7 +79,6 @@ Tmog.L = {
 	["Import"] = true,
 	["Outfit code:"] = true,
 	["Left-click to toggle dressing room\nHold Left-click and drag to move this button"] = true,
-	["Loading"] = true,
 	["Outfits: %s"] = true,
 	["Database links:"] = true,
 	["reset this character's collection"] = true,
@@ -135,7 +134,6 @@ if GetLocale() == "ruRU" then
 	Tmog.L["Import"] = "Импорт"
 	Tmog.L["Outfit code:"] = "Скопируйте код:"
 	Tmog.L["Left-click to toggle dressing room\nHold Left-click and drag to move this button"] = "ЛКМ чтобы открыть или закрыть примерочную\nУдерживайте ЛКМ и тащите чтобы перемесить эту кнопку."
-	Tmog.L["Loading"] = "Загрузка"
 
 elseif GetLocale() == "esES" then
 

@@ -17,7 +17,6 @@ Tmog.version = GetAddOnMetadata("Tmog", "Version")
 Tmog.maxColumns = 5
 Tmog.maxRows = 3
 Tmog.itemsPerPage = Tmog.maxColumns * Tmog.maxRows
-Tmog.loadingTimeMax = 2 -- loading screen maximum time in seconds
 
 Tmog.defaultRotation = 0.3
 Tmog.modelsDressedPerFrame = 2

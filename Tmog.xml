@@ -1,8 +1,8 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file="Localization.lua"/>
-	<Script file="ItemDB.lua"/>
-	<Script file="DisplayGroups.lua"/>
-	<Script file="ItemDisplayGroup.lua"/>
+	<Script file="Data\ItemDB.lua"/>
+	<Script file="Data\DisplayGroups.lua"/>
+	<Script file="Data\ItemDisplayGroup.lua"/>
 	<Script file="Constants.lua"/>
 	<Script file="Tmog.lua"/>
 	<Script file="Tooltip.lua"/>
@@ -694,29 +694,6 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			<Frame name="TmogFrameLoadingTexture" frameLevel="12" hidden="true">
-				<Anchors>
-					<Anchor point="TOPRIGHT"><Offset x="-20" y="-74"/></Anchor>
-					<Anchor point="BOTTOMLEFT"><Offset x="250" y="10"/></Anchor>
-				</Anchors>
-				<Layers>
-					<Layer level="OVERLAY">
-						<Texture setAllPoints="true">
-							<Color r="0" g="0" b="0" a="0.5"/>
-						</Texture>
-						<FontString name="TmogFrameLoadingTextureText" inherits="GameFontNormalLarge" justifyH="CENTER">
-							<Anchors>
-								<Anchor point="CENTER"/>
-							</Anchors>
-						</FontString>
-					</Layer>
-				</Layers>
-				<Scripts>
-					<OnLoad>
-						TmogFrameLoadingTextureText:SetText(Tmog.L["Loading"])
-					</OnLoad>
-				</Scripts>
-			</Frame>
 		</Frames>
 		<Scripts>
 			<OnLoad>

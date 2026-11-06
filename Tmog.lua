@@ -990,11 +990,11 @@ end
 
 function Tmog.UndressSlot(invSlot)
 	Tmog.CurrentGear[invSlot] = 0
-	if TmogFramePlayerModel.UndressSlot then
-		TmogFramePlayerModel:UndressSlot(invSlot)
-	else
+	-- if TmogFramePlayerModel.UndressSlot then
+	-- 	TmogFramePlayerModel:UndressSlot(invSlot)
+	-- else
 		Tmog.Dress(TmogFramePlayerModel)
-	end
+	-- end
 	Tmog.UpdateOutfitButtons()
 	Tmog.UpdatePlayerSlotTextures()
 	if Tmog.currentTab == "ITEMS" then

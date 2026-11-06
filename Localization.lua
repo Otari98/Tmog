@@ -83,6 +83,7 @@ Tmog.L = {
 	["Database links:"] = true,
 	["reset this character's collection"] = true,
 	["collection has been reset"] = true,
+	["Sheathe Weapons"] = true,
 }
 
 if GetLocale() == "ruRU" then

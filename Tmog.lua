@@ -36,10 +36,9 @@ function Tmog.OnLoad(self)
 	TmogFrameRaceBackground:SetTexture("Interface\\AddOns\\Tmog\\Textures\\transmogbackground"..Tmog.playerRace)
 	SetPortraitToTexture(TmogFramePortrait, "interface\\icons\\inv_chest_cloth_41")
 	TmogFrameVersionText:SetText(Tmog.version)
-	local frameName = self:GetName()
-	table.insert(UISpecialFrames, frameName)
+	table.insert(UISpecialFrames, "TmogFrame")
 	self.firstLoad = true
-	self.model = _G[frameName.."PlayerModel"]
+	self.model = TmogFramePlayerModel
 	self.nextPreview = 0
 	self.lastShownPreview = 1
 	self.elapsed = 0
@@ -62,6 +61,25 @@ function Tmog.OnLoad(self)
 				break
 			end
 		end
+	end
+
+	if self.model.SetSheathed then
+		local button = CreateFrame("CheckButton", "TmogFrameSheathedButton", self, "UICheckButtonTemplate")
+		button:SetPoint("TOPLEFT", TmogFrameMainHandSlot, "TOPLEFT", -50, 0)
+		button:SetFrameLevel(self.model:GetFrameLevel() + 2)
+		button:SetScript("OnClick", function()
+			local sheathed = not TmogFramePlayerModel:GetSheathed()
+			TmogFramePlayerModel:SetSheathed(sheathed)
+			TmogFrameFullScreenModel:SetSheathed(sheathed)
+			PlaySound("igMainMenuOptionCheckBoxOn")
+		end)
+		button:SetScript("OnEnter", function()
+			GameTooltip:SetOwner(this, "ANCHOR_RIGHT", -10, -10)
+			GameTooltip:SetText(L["Sheathe Weapons"])
+		end)
+		button:SetScript("OnLeave", function()
+			GameTooltip:Hide()
+		end)
 	end
 end
 
@@ -1243,6 +1261,9 @@ function Tmog.HideUI()
 		end
 		TmogFrameResetOutfit:Hide()
 		TmogFrameFullScreenButton:Hide()
+		if TmogFrameSheathedButton then
+			TmogFrameSheathedButton:Hide()
+		end
 		TmogFrameHideUI:SetText(L["Show UI"])
 		hidden = true
 	else
@@ -1251,6 +1272,9 @@ function Tmog.HideUI()
 		end
 		TmogFrameResetOutfit:Show()
 		TmogFrameFullScreenButton:Show()
+		if TmogFrameSheathedButton then
+			TmogFrameSheathedButton:Show()
+		end
 		TmogFrameHideUI:SetText(L["Hide UI"])
 		hidden = false
 	end

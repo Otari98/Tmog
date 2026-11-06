@@ -1050,7 +1050,17 @@ function Tmog.PreviewButton_OnClick(self, button)
 				Tmog.LinkItem(itemID)
 			else
 				if Tmog.currentSlot == 16 then
-					Tmog.UndressSlot(Tmog.currentSlot)
+					Tmog.UndressSlot(16)
+					local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc = GetItemInfo(itemID)
+					if itemEquipLoc == "INVTYPE_2HWEAPON" then
+						Tmog.UndressSlot(17)
+					end
+				end
+				if Tmog.currentSlot == 17 then
+					local itemName, itemLink, itemQuality, itemLevel, itemType, itemSubType, itemCount, itemEquipLoc = GetItemInfo(Tmog.CurrentGear[16])
+					if itemEquipLoc == "INVTYPE_2HWEAPON" then
+						Tmog.UndressSlot(16)
+					end
 				end
 				TmogFramePlayerModel:TryOn(itemID, Tmog.currentSlot == 17 and "SECONDARYHANDSLOT" or nil)
 				Tmog.CurrentGear[Tmog.currentSlot] = itemID

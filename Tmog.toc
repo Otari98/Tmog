@@ -1,8 +1,22 @@
 ## Interface: 11200
 ## Title: Tmog |cffc79c6e-Spit-|r
 ## Author: Otari98
-## Version: 5.1.0
-## Notes: Item browser and info about your transmog collection on game tooltips v.5.1.0
+## Version: 5.1.1
+## Notes: Item browser and info about your transmog collection on game tooltips v.5.1.1
 ## SavedVariablesPerCharacter: TMOG_CACHE, TMOG_PLAYER_OUTFITS, TMOG_TRANSMOG_STATUS, TmogConfig
 
+Localization.lua
+Data\ItemDB.lua
+Data\DisplayGroups.lua
+Data\ItemDisplayGroup.lua
+Constants.lua
+Tmog.lua
+Tooltip.lua
+Utility.lua
+Filters.lua
+Outfits.lua
+Fullscreen.lua
+PopupDialogs.lua
+Slashcmd.lua
+Templates.xml
 Tmog.xml

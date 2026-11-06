@@ -1,18 +1,4 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file="Localization.lua"/>
-	<Script file="Data\ItemDB.lua"/>
-	<Script file="Data\DisplayGroups.lua"/>
-	<Script file="Data\ItemDisplayGroup.lua"/>
-	<Script file="Constants.lua"/>
-	<Script file="Tmog.lua"/>
-	<Script file="Tooltip.lua"/>
-	<Script file="Utility.lua"/>
-	<Script file="Filters.lua"/>
-	<Script file="Outfits.lua"/>
-	<Script file="Fullscreen.lua"/>
-	<Script file="PopupDialogs.lua"/>
-	<Script file="Slashcmd.lua"/>
-	<Include file="Templates.xml"/>
 	<Frame name="TmogFrame" hidden="true" toplevel="true" parent="UIParent" movable="true" enableMouse="true" clampedToScreen="true">
 		<Size x="750" y="506"/>
 		<Anchors>
